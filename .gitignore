@@ -1,0 +1,10 @@
+*.snk
+*.vssscc
+*.suo
+*.user
+*.vspscc
+/.nuget
+/bin
+/obj
+/packages
+
