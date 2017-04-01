@@ -18,7 +18,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AMSoftware.Crm.PowerShell",
 		AMSoftware.Crm.PowerShell\AMSoftware.Crm.Powershell.Format.ps1xml = AMSoftware.Crm.PowerShell\AMSoftware.Crm.Powershell.Format.ps1xml
 		AMSoftware.Crm.PowerShell\AMSoftware.Crm.Powershell.Types.ps1xml = AMSoftware.Crm.PowerShell\AMSoftware.Crm.Powershell.Types.ps1xml
 		AMSoftware.Crm.PowerShell\AMSoftware.Crm.psd1 = AMSoftware.Crm.PowerShell\AMSoftware.Crm.psd1
-		AMSoftware.Crm.PowerShell\AMSoftware.Crm_1e7f1ebc-e035-4d73-86af-3c07a6a85260_HelpInfo.xml = AMSoftware.Crm.PowerShell\AMSoftware.Crm_1e7f1ebc-e035-4d73-86af-3c07a6a85260_HelpInfo.xml
 		AMSoftware.Crm.PowerShell\StartupShortcut.ps1 = AMSoftware.Crm.PowerShell\StartupShortcut.ps1
 	EndProjectSection
 EndProject
