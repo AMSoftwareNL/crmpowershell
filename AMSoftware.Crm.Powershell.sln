@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{596F15CE-AC31-4EF0-B3DA-836AF7A58FE0}"
+	ProjectSection(SolutionItems) = preProject
+		AMSoftware.Crm.PowerShell.Help.pshproj = AMSoftware.Crm.PowerShell.Help.pshproj
+		AMSoftware.Crm.Powershell.snk = AMSoftware.Crm.Powershell.snk
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMSoftware.Crm.PowerShell.Common", "AMSoftware.Crm.PowerShell.Common\AMSoftware.Crm.PowerShell.Common.csproj", "{A5D853A6-D872-4EB2-9D90-EE79F02B3469}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMSoftware.Crm.PowerShell.Commands", "AMSoftware.Crm.PowerShell.Commands\AMSoftware.Crm.PowerShell.Commands.csproj", "{40080DC5-FCE4-4056-B9A4-EB1B41803069}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AMSoftware.Crm.PowerShell", "AMSoftware.Crm.PowerShell", "{323AA9B6-DCDC-4A4D-BDB6-5C9EB49167BB}"
+	ProjectSection(SolutionItems) = preProject
+		AMSoftware.Crm.PowerShell\AMSoftware.Crm.Powershell.Format.ps1xml = AMSoftware.Crm.PowerShell\AMSoftware.Crm.Powershell.Format.ps1xml
+		AMSoftware.Crm.PowerShell\AMSoftware.Crm.Powershell.Types.ps1xml = AMSoftware.Crm.PowerShell\AMSoftware.Crm.Powershell.Types.ps1xml
+		AMSoftware.Crm.PowerShell\AMSoftware.Crm.psd1 = AMSoftware.Crm.PowerShell\AMSoftware.Crm.psd1
+		AMSoftware.Crm.PowerShell\AMSoftware.Crm_1e7f1ebc-e035-4d73-86af-3c07a6a85260_HelpInfo.xml = AMSoftware.Crm.PowerShell\AMSoftware.Crm_1e7f1ebc-e035-4d73-86af-3c07a6a85260_HelpInfo.xml
+		AMSoftware.Crm.PowerShell\StartupShortcut.ps1 = AMSoftware.Crm.PowerShell\StartupShortcut.ps1
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs.amsoftware.nl/products
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = AMSoftware.Crm.PowerShell.Common\\AMSoftware.Crm.PowerShell.Common.csproj
+		SccProjectName1 = AMSoftware.Crm.PowerShell.Common
+		SccLocalPath1 = AMSoftware.Crm.PowerShell.Common
+		SccProjectUniqueName2 = AMSoftware.Crm.PowerShell.Commands\\AMSoftware.Crm.PowerShell.Commands.csproj
+		SccProjectName2 = AMSoftware.Crm.PowerShell.Commands
+		SccLocalPath2 = AMSoftware.Crm.PowerShell.Commands
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A5D853A6-D872-4EB2-9D90-EE79F02B3469}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5D853A6-D872-4EB2-9D90-EE79F02B3469}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5D853A6-D872-4EB2-9D90-EE79F02B3469}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5D853A6-D872-4EB2-9D90-EE79F02B3469}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40080DC5-FCE4-4056-B9A4-EB1B41803069}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40080DC5-FCE4-4056-B9A4-EB1B41803069}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40080DC5-FCE4-4056-B9A4-EB1B41803069}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40080DC5-FCE4-4056-B9A4-EB1B41803069}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

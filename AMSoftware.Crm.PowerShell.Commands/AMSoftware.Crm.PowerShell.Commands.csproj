@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{40080DC5-FCE4-4056-B9A4-EB1B41803069}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AMSoftware.Crm.PowerShell.Commands</RootNamespace>
+    <AssemblyName>AMSoftware.Crm.PowerShell.Commands</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\AMSoftware.Crm.Powershell.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Crm.Sdk.Proxy, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CrmSdk.CoreAssemblies.8.2.0.2\lib\net452\Microsoft.Crm.Sdk.Proxy.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Xrm.Sdk, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CrmSdk.CoreAssemblies.8.2.0.2\lib\net452\Microsoft.Xrm.Sdk.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Management.Automation.dll.10.0.10586.0\lib\net40\System.Management.Automation.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Administration\NewTeamCommand.cs" />
+    <Compile Include="Administration\NewBusinessUnitCommand.cs" />
+    <Compile Include="Administration\NewRoleCommand.cs" />
+    <Compile Include="Administration\GetTeamUsersCommand.cs" />
+    <Compile Include="Administration\GetRolePrincipalsCommand.cs" />
+    <Compile Include="Administration\GetTeamCommand.cs" />
+    <Compile Include="Administration\GetBusinessUnitCommand.cs" />
+    <Compile Include="Administration\GetRoleCommand.cs" />
+    <Compile Include="Administration\GetUserTeamsCommand.cs" />
+    <Compile Include="Administration\GetPrincipalRolesCommand.cs" />
+    <Compile Include="Administration\RemoveUserParentCommand.cs" />
+    <Compile Include="Administration\SetOwnerCommand.cs" />
+    <Compile Include="Administration\SetTeamUsersCommand.cs" />
+    <Compile Include="Administration\SetRolePrincipalsCommand.cs" />
+    <Compile Include="Administration\SetUserTeamsCommand.cs" />
+    <Compile Include="Administration\SetPrincipalRolesCommand.cs" />
+    <Compile Include="Administration\NewUserCommand.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Administration\GetUserCommand.cs" />
+    <Compile Include="Administration\RemoveLanguageCommand.cs" />
+    <Compile Include="Administration\AddLanguageCommand.cs" />
+    <Compile Include="Administration\GetLanguageCommand.cs" />
+    <Compile Include="Administration\GetProcessCommand.cs" />
+    <Compile Include="Administration\StopProcessCommand.cs" />
+    <Compile Include="CrmCmdlet.cs" />
+    <Compile Include="Customizations\TestSolutionComponentCommand.cs" />
+    <Compile Include="Customizations\TestSolutionCommand.cs" />
+    <Compile Include="Customizations\NewPublisherCommand.cs" />
+    <Compile Include="Customizations\GetPublisherCommand.cs" />
+    <Compile Include="Customizations\NewSolutionCommand.cs" />
+    <Compile Include="Customizations\GetSolutionComponentCommand.cs" />
+    <Compile Include="Customizations\RemoveSolutionComponentCommand.cs" />
+    <Compile Include="Customizations\ExportSolutionCommand.cs" />
+    <Compile Include="Customizations\AddSolutionComponentCommand.cs" />
+    <Compile Include="Customizations\ImportSolutionCommand.cs" />
+    <Compile Include="Customizations\ImportTranslationCommand.cs" />
+    <Compile Include="Customizations\PublishComponentCommand.cs" />
+    <Compile Include="Customizations\SetWebresourceCommand.cs" />
+    <Compile Include="Customizations\NewWebresourceCommand.cs" />
+    <Compile Include="Customizations\RemoveWebresourceCommand.cs" />
+    <Compile Include="Customizations\ExportTranslationCommand.cs" />
+    <Compile Include="Customizations\ImportWebresourceCommand.cs" />
+    <Compile Include="Customizations\ExportWebresourceCommand.cs" />
+    <Compile Include="Customizations\GetWebresourceCommand.cs" />
+    <Compile Include="Customizations\GetSolutionCommand.cs" />
+    <Compile Include="Discovery\ConnectDeploymentCommand.cs" />
+    <Compile Include="Discovery\GetOrganizationCommand.cs" />
+    <Compile Include="Discovery\ConnectOrganizationCommand.cs" />
+    <Compile Include="FileContentDynamicsParameters.cs" />
+    <Compile Include="FileContentReaderWriter.cs" />
+    <Compile Include="HelpUrlConstants.cs" />
+    <Compile Include="Metadata\AddEntityKeyCommand.cs" />
+    <Compile Include="Metadata\AddAttributeCommand.cs" />
+    <Compile Include="Metadata\GetEntityKeyCommand.cs" />
+    <Compile Include="Metadata\RemoveEntityKeyCommand.cs" />
+    <Compile Include="Metadata\SetRelationshipCommand.cs" />
+    <Compile Include="Metadata\SetRelationshipCascadeConfigCommand.cs" />
+    <Compile Include="Metadata\NewEntityCommand.cs" />
+    <Compile Include="Metadata\NewOptionSetCommand.cs" />
+    <Compile Include="Metadata\AddRelationshipCommand.cs" />
+    <Compile Include="Metadata\GetAttributeCommand.cs" />
+    <Compile Include="Metadata\GetEntityCommand.cs" />
+    <Compile Include="Metadata\GetOptionSetCommand.cs" />
+    <Compile Include="Metadata\GetRelationshipCommand.cs" />
+    <Compile Include="Metadata\NewOptionSetValueCommand.cs" />
+    <Compile Include="Metadata\RemoveAttributeCommand.cs" />
+    <Compile Include="Metadata\RemoveRelationshipCommand.cs" />
+    <Compile Include="Metadata\RemoveEntityCommand.cs" />
+    <Compile Include="Metadata\SetOptionSetValueCommand.cs" />
+    <Compile Include="Metadata\SetOptionSetCommand.cs" />
+    <Compile Include="Metadata\RemoveOptionSetValueCommand.cs" />
+    <Compile Include="Metadata\RemoveOptionSetCommand.cs" />
+    <Compile Include="Metadata\SetAttributeCommand.cs" />
+    <Compile Include="Metadata\SetEntityCommand.cs" />
+    <Compile Include="Models\PSOptionSetValue.cs" />
+    <Compile Include="Content\SplitContentCommand.cs" />
+    <Compile Include="Content\JoinContentCommand.cs" />
+    <Compile Include="Administration\InvokeRequestCommand.cs" />
+    <Compile Include="Content\GetContentCommand.cs" />
+    <Compile Include="Content\AddContentCommand.cs" />
+    <Compile Include="Content\RemoveContentCommand.cs" />
+    <Compile Include="Content\SetContentCommand.cs" />
+    <Compile Include="Administration\StartProcessCommand.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Customizations\UseSolutionCommand.cs" />
+    <Compile Include="UseLanguageCommand.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="..\AMSoftware.Crm.Powershell.snk">
+      <Link>AMSoftware.Crm.Powershell.snk</Link>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AMSoftware.Crm.PowerShell.Common\AMSoftware.Crm.PowerShell.Common.csproj">
+      <Project>{a5d853a6-d872-4eb2-9d90-ee79f02b3469}</Project>
+      <Name>AMSoftware.Crm.PowerShell.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(SolutionDir)AMSoftware.Crm.PowerShell\*.*" "$(TargetDir)" /Y</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

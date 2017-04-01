@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--CRM PowerShell Library
+Copyright (C) 2017 Arjan Meskers / AMSoftware
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.-->
+<Types>
+  <Type>
+    <Name>Microsoft.Xrm.Sdk.Discovery.OrganizationDetail</Name>
+    <Members>
+      <AliasProperty>
+        <Name>Version</Name>
+        <ReferencedMemberName>OrganizationVersion</ReferencedMemberName>
+      </AliasProperty>
+      <ScriptProperty>
+        <Name>WebUrl</Name>
+        <GetScriptBlock>
+          $this.Endpoints.Item([Microsoft.Xrm.Sdk.Discovery.EndpointType]::WebApplication)
+        </GetScriptBlock>
+      </ScriptProperty>
+    </Members>
+  </Type>
+  <!-- Managed Property Values-->
+  <Type>
+    <Name>Microsoft.Xrm.Sdk.BooleanManagedProperty</Name>
+    <Members>
+      <ScriptMethod>
+        <Name>ToString</Name>
+        <Script>
+          $this.Value;
+        </Script>
+      </ScriptMethod>
+    </Members>
+    <TypeConverter>
+      <TypeName>AMSoftware.Crm.PowerShell.Common.Converters.ManagedPropertyConverter</TypeName>
+    </TypeConverter>
+  </Type>
+  <Type>
+    <Name>Microsoft.Xrm.Sdk.Metadata.AttributeRequiredLevelManagedProperty</Name>
+    <Members>
+      <ScriptMethod>
+        <Name>ToString</Name>
+        <Script>
+          [System.Enum]::Format($this.Value.GetType(), $this.Value, "F");
+        </Script>
+      </ScriptMethod>
+    </Members>
+    <TypeConverter>
+      <TypeName>AMSoftware.Crm.PowerShell.Common.Converters.ManagedPropertyConverter</TypeName>
+    </TypeConverter>
+  </Type> 
+  <!-- Localized Property Values -->
+  <Type>
+    <Name>Microsoft.Xrm.Sdk.Label</Name>
+    <Members>
+      <ScriptMethod>
+        <Name>ToString</Name>
+        <Script>
+          $converter = New-Object AMSoftware.Crm.PowerShell.Common.Converters.LabelConverter;
+          return $converter.ConvertToString($this);
+        </Script>
+      </ScriptMethod>
+    </Members>
+    <TypeConverter>
+      <TypeName>AMSoftware.Crm.PowerShell.Common.Converters.LabelConverter</TypeName>
+    </TypeConverter>
+  </Type>  
+  <!-- Metadata Property Values -->
+  <Type>
+    <Name>Microsoft.Xrm.Sdk.Metadata.AttributeTypeDisplayName</Name>
+    <Members>
+      <ScriptMethod>
+        <Name>ToString</Name>
+        <Script>
+          $this.Value
+        </Script>
+      </ScriptMethod>
+    </Members>
+  </Type>
+  <Type>
+    <Name>Microsoft.Xrm.Sdk.Metadata.DateTimeBehavior</Name>
+    <Members>
+      <ScriptMethod>
+        <Name>ToString</Name>
+        <Script>
+          $this.Value
+        </Script>
+      </ScriptMethod>
+    </Members>
+  </Type>
+  <Type>
+    <Name>Microsoft.Xrm.Sdk.Metadata.StringFormatName</Name>
+    <Members>
+      <ScriptMethod>
+        <Name>ToString</Name>
+        <Script>
+          $this.Value
+        </Script>
+      </ScriptMethod>
+    </Members>
+  </Type>
+  <!-- Entity Type Values -->
+  <Type>
+    <Name>Microsoft.Xrm.Sdk.Entity</Name>
+    <TypeAdapter>
+      <TypeName>AMSoftware.Crm.PowerShell.Common.PropertyAdapters.EntityPropertyAdapter</TypeName>
+    </TypeAdapter>
+    <TypeConverter>
+      <TypeName>AMSoftware.Crm.PowerShell.Common.Converters.EntityConverter</TypeName>
+    </TypeConverter>
+  </Type>
+  <Type>
+    <Name>Microsoft.Xrm.Sdk.AttributeCollection</Name>
+    <TypeAdapter>
+      <TypeName>AMSoftware.Crm.PowerShell.Common.PropertyAdapters.AttributeCollectionPropertyAdapter</TypeName>
+    </TypeAdapter>
+  </Type>
+  <Type>
+    <Name>Microsoft.Xrm.Sdk.FormattedValueCollection</Name>
+    <TypeAdapter>
+      <TypeName>AMSoftware.Crm.PowerShell.Common.PropertyAdapters.FormattedValueCollectionPropertyAdapter</TypeName>
+    </TypeAdapter>
+  </Type>
+  <!--<Type>
+    <Name>Microsoft.Xrm.Sdk.KeyAttributeCollection</Name>
+    <TypeAdapter>
+      <TypeName>AMSoftware.Crm.PowerShell.Common.PropertyAdapters.KeyAttributeCollectionPropertyAdapter</TypeName>
+    </TypeAdapter>
+  </Type>-->
+  <!-- Attribute Type Values -->
+  <Type>
+    <Name>Microsoft.Xrm.Sdk.OptionSetValue</Name>
+    <Members>
+      <ScriptMethod>
+        <Name>ToString</Name>
+        <Script>
+          $this.Value;
+        </Script>
+      </ScriptMethod>
+    </Members>
+    <TypeConverter>
+      <TypeName>AMSoftware.Crm.PowerShell.Common.Converters.OptionSetValueConverter</TypeName>
+    </TypeConverter>
+  </Type>
+  <Type>
+    <Name>Microsoft.Xrm.Sdk.EntityReference</Name>
+    <Members>
+      <ScriptMethod>
+        <Name>ToString</Name>
+        <Script>
+          $this.Id;
+        </Script>
+      </ScriptMethod>
+    </Members>
+  </Type>
+  <Type>
+    <Name>Microsoft.Xrm.Sdk.Money</Name>
+    <Members>
+      <ScriptMethod>
+        <Name>ToString</Name>
+        <Script>
+          $this.Value;
+        </Script>
+      </ScriptMethod>
+    </Members>
+    <TypeConverter>
+      <TypeName>AMSoftware.Crm.PowerShell.Common.Converters.MoneyConverter</TypeName>
+    </TypeConverter>
+  </Type>
+</Types>
+
