@@ -196,4 +196,79 @@ namespace AMSoftware.Crm.PowerShell.Common
         ConvertRule = 154,
         SLA = 152
     }
+
+    public enum CrmPluginStepMode
+    {
+        Synchronous = 0,
+        Asynchronous = 1
+    }
+
+    public enum CrmPluginStepStage
+    {
+        PreValidation = 10,
+        PreOperation = 20,
+        PostOperation = 40
+    }
+
+    public enum CrmPluginImageType
+    {
+        PreImage = 0,
+        PostImage = 1
+    }
+
+    public enum CrmAssemblySourceType
+    {
+        Database,
+        Disk,
+        GAC
+    }
+
+    public enum CrmAssemblyIsolationMode
+    {
+        None = 1,
+        Sandbox
+    }
+
+    public enum CrmPluginType
+    {
+        Plugin,
+        WorkflowActivity
+    }
+
+    public enum CrmPluginStepDeployment
+    {
+        ServerOnly = 0,
+        OfflineOnly = 1,
+        Both = 2
+    }
+
+    public enum CrmPluginStepImageType
+    {
+        PreImage,
+        PostImage,
+        Both
+    }
+
+    public enum CrmServiceEndpointUserClaim
+    {
+        None = 1,
+        UserId,
+        UserInfo
+    }
+
+    public enum CrmServiceEndpointContract
+    {
+        OneWay = 1,
+        Queue,
+        Rest,
+        TwoWay,
+        Topic,
+        PersistentQueue
+    }
+
+    public enum CrmServiceEndpointConnectionMode
+    {
+        Normal = 1,
+        Federated
+    }
 }

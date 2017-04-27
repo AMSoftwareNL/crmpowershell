@@ -25,7 +25,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Content
 {
     [Cmdlet(VerbsCommon.Add, "Content", HelpUri = HelpUrlConstants.AddContentHelpUrl, DefaultParameterSetName = AddContentByInputObjectParameterSet)]
     [OutputType(typeof(Entity))]
-    public class AddContentCommand : CrmOrganizationCmdlet
+    public sealed class AddContentCommand : CrmOrganizationCmdlet
     {
         private const string AddContentParameterSet = "AddContent";
         private const string AddContentByInputObjectParameterSet = "AddContentByInputObject";

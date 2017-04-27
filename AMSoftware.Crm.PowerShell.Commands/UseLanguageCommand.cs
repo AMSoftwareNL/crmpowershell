@@ -25,7 +25,7 @@ using Microsoft.Xrm.Sdk;
 namespace AMSoftware.Crm.PowerShell.Commands
 {
     [Cmdlet(VerbsOther.Use, "Language", HelpUri = HelpUrlConstants.UseLanguageHelpUrl)]
-    public class UseLanguageCommand : CrmOrganizationCmdlet
+    public sealed class UseLanguageCommand : CrmOrganizationCmdlet
     {
         private ContentRepository _repository = new ContentRepository();
 

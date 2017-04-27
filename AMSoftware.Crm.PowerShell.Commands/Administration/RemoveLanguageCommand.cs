@@ -23,7 +23,7 @@ using Microsoft.Xrm.Sdk;
 namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
     [Cmdlet(VerbsCommon.Remove, "Language", HelpUri = HelpUrlConstants.RemoveLanguageHelpUrl, ConfirmImpact = ConfirmImpact.High, SupportsShouldProcess = true)]
-    public class RemoveLanguageCommand : CrmOrganizationConfirmActionCmdlet
+    public sealed class RemoveLanguageCommand : CrmOrganizationConfirmActionCmdlet
     {
         private ContentRepository _repository = new ContentRepository();
 

@@ -27,7 +27,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Discovery
 {
     [Cmdlet(VerbsCommunications.Connect, "Deployment", HelpUri = HelpUrlConstants.ConnectDeploymentHelpUrl)]
     [OutputType(typeof(OrganizationDetail))]
-    public class ConnectDeploymentCommand : CrmCmdlet
+    public sealed class ConnectDeploymentCommand : CrmCmdlet
     {
         private const string ConnectOnlineParameterSet = "ConnectOnline";
         private const string ConnectOnPremisesParameterSet = "ConnectOnPremises";

@@ -18,7 +18,7 @@ Import-CrmWebresource [-Id] <Guid> -Value <Byte[]>
 
 ### ImportWebresourceFromPath
 ```
-Import-CrmWebresource [-Id] <Guid> -Path <String> [-Encoding <FileSystemCmdletProviderEncoding>]
+Import-CrmWebresource [-Id] <Guid> -LiteralPath <String> [-Encoding <FileSystemCmdletProviderEncoding>]
 ```
 
 ## DESCRIPTION
@@ -66,13 +66,13 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -Path
-{{Fill Path Description}}
+### -LiteralPath
+{{Fill LiteralPath Description}}
 
 ```yaml
 Type: String
 Parameter Sets: ImportWebresourceFromPath
-Aliases: 
+Aliases: PSPath, Path
 
 Required: True
 Position: Named

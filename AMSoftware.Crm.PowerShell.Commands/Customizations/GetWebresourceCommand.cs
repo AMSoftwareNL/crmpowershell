@@ -26,7 +26,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
     [Cmdlet(VerbsCommon.Get, "Webresource", HelpUri = HelpUrlConstants.GetWebresourceHelpUrl, SupportsPaging = true, DefaultParameterSetName = GetWebresourceParameterSet)]
     [OutputType(typeof(Entity))]
-    public class GetWebresourceCommand : CrmOrganizationCmdlet
+    public sealed class GetWebresourceCommand : CrmOrganizationCmdlet
     {
         private const string GetWebresourceParameterSet = "GetWebresource";
         private const string GetWebresourceByIdParameterSet = "GetWebresourceById";

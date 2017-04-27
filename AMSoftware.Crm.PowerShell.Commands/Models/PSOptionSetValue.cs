@@ -19,7 +19,7 @@ using System;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Models
 {
-    public class PSOptionSetValue
+    public sealed class PSOptionSetValue
     {
         internal PSOptionSetValue() { }
 

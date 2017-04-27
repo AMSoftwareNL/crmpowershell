@@ -27,7 +27,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 {
     [Cmdlet(VerbsCommon.Get, "Relationship", HelpUri = HelpUrlConstants.GetRelationshipHelpUrl)]
     [OutputType(typeof(RelationshipMetadataBase))]
-    public class GetRelationshipCommand : CrmOrganizationCmdlet
+    public sealed class GetRelationshipCommand : CrmOrganizationCmdlet
     {
         private const string GetRelationshipByNameParameterSet = "GetRelationshipByName";
         private const string GetRelationshipByIdParameterSet = "GetRelationshipById";

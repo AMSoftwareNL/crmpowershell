@@ -25,7 +25,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
     [Cmdlet(VerbsCommon.Get, "Language", HelpUri = HelpUrlConstants.GetLanguageHelpUrl)]
     [OutputType(typeof(CultureInfo))]
-    public class GetLanguageCommand : CrmOrganizationCmdlet
+    public sealed class GetLanguageCommand : CrmOrganizationCmdlet
     {
         private ContentRepository _repository = new ContentRepository();
 

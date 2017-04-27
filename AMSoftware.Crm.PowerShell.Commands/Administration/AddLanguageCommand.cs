@@ -23,7 +23,7 @@ using Microsoft.Xrm.Sdk;
 namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
     [Cmdlet(VerbsCommon.Add, "Language", HelpUri = HelpUrlConstants.AddLanguageHelpUrl, ConfirmImpact = ConfirmImpact.High, SupportsShouldProcess = true)]
-    public class AddLanguageCommand : CrmOrganizationConfirmActionCmdlet
+    public sealed class AddLanguageCommand : CrmOrganizationConfirmActionCmdlet
     {
         private ContentRepository _repository = new ContentRepository();
 

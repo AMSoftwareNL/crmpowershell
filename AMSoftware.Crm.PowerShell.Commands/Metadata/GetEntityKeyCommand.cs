@@ -27,7 +27,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 {
     [Cmdlet(VerbsCommon.Get, "EntityKey", HelpUri = HelpUrlConstants.GetEntityKeyHelpUrl, DefaultParameterSetName = GetEntityKeysByFilterParameterSet)]
     [OutputType(typeof(EntityKeyMetadata))]
-    public class GetEntityKeyCommand : CrmOrganizationCmdlet
+    public sealed class GetEntityKeyCommand : CrmOrganizationCmdlet
     {
         private const string GetEntityKeyByNameParameterSet = "GetEntityKeyByName";
         private const string GetEntityKeyByIdParameterSet = "GetEntityKeyById";

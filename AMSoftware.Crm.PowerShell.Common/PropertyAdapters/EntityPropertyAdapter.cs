@@ -29,7 +29,7 @@ using Microsoft.Xrm.Sdk.Metadata;
 
 namespace AMSoftware.Crm.PowerShell.Common.PropertyAdapters
 {
-    public class EntityPropertyAdapter : PSPropertyAdapter
+    public sealed class EntityPropertyAdapter : PSPropertyAdapter
     {
         private Dictionary<string, IAdaptedPropertyHandler<Entity>> _entityPropertyHandlerCache = null;
         private Cache<string> _entityPrimaryNameCache = new Cache<string>();
@@ -147,23 +147,37 @@ namespace AMSoftware.Crm.PowerShell.Common.PropertyAdapters
             }
         }
 
-        protected virtual Collection<PSAdaptedProperty> GetAdaptedProperties(Entity internalObject)
+        private Collection<PSAdaptedProperty> GetAdaptedProperties(Entity internalObject)
         {
             List<PSAdaptedProperty> properties = new List<PSAdaptedProperty>();
             foreach (var key in internalObject.Attributes.Keys)
             {
-                properties.Add(new PSAdaptedProperty(key, new AttributePropertyHandler(key)));
-
-                if (internalObject.Attributes[key] != null && internalObject.Attributes[key] is EntityReference)
+                if (internalObject.Attributes[key] != null && internalObject.Attributes[key] is AliasedValue)
                 {
-                    properties.Add(new PSAdaptedProperty(string.Format("{0}entity", key), new EntityRefAttributePropertyHandler(key, "Entity")));
-                    properties.Add(new PSAdaptedProperty(string.Format("{0}name", key), new EntityRefAttributePropertyHandler(key, "Name")));
+                    AliasedValue aliasedValueAttribute = internalObject.GetAttributeValue<AliasedValue>(key);
+                    string aliassedKey = string.Format("{0}_{1}", aliasedValueAttribute.EntityLogicalName, aliasedValueAttribute.AttributeLogicalName);
+                    properties.Add(new PSAdaptedProperty(aliassedKey, new AliassedAttributePropertyHandler(key)));
+
+                    if (aliasedValueAttribute.Value != null && aliasedValueAttribute.Value is EntityReference)
+                    {
+                        properties.Add(new PSAdaptedProperty(string.Format("{0}entity", aliassedKey), new EntityRefAttributePropertyHandler(key, "Entity")));
+                        properties.Add(new PSAdaptedProperty(string.Format("{0}name", aliassedKey), new EntityRefAttributePropertyHandler(key, "Name")));
+                    }
+                }
+                else
+                {
+                    properties.Add(new PSAdaptedProperty(key, new AttributePropertyHandler(key)));
+                    if (internalObject.Attributes[key] != null && internalObject.Attributes[key] is EntityReference)
+                    {
+                        properties.Add(new PSAdaptedProperty(string.Format("{0}entity", key), new EntityRefAttributePropertyHandler(key, "Entity")));
+                        properties.Add(new PSAdaptedProperty(string.Format("{0}name", key), new EntityRefAttributePropertyHandler(key, "Name")));
+                    }
                 }
             }
 
             foreach (var key in internalObject.FormattedValues.Keys)
             {
-                properties.Add(new PSAdaptedProperty(string.Format("{0}name", key), new FormattedValuePropertyHandler(key)));
+                properties.Add(new PSAdaptedProperty(string.Format("{0}name", key.Replace('.', '_')), new FormattedValuePropertyHandler(key)));
             }
 
             if (_entityPropertyHandlerCache == null)
@@ -268,30 +282,37 @@ namespace AMSoftware.Crm.PowerShell.Common.PropertyAdapters
                 _attributeName = attributeName;
             }
 
-            public string TypeName
+            public virtual string TypeName
             {
                 get { return typeof(object).FullName; }
             }
 
-            public bool IsSettable
+            public virtual bool IsSettable
             {
                 get { return true; }
             }
 
-            public bool IsGettable
+            public virtual bool IsGettable
             {
                 get { return true; }
             }
 
-            public object GetValue(Entity baseObject)
+            public virtual object GetValue(Entity baseObject)
             {
                 object result = null;
                 baseObject.Attributes.TryGetValue(_attributeName, out result);
 
-                return result;
+                if (result is AliasedValue)
+                {
+                    return ((AliasedValue)result).Value;
+                }
+                else
+                {
+                    return result;
+                }
             }
 
-            public void SetValue(Entity baseObject, object value)
+            public virtual void SetValue(Entity baseObject, object value)
             {
                 if (baseObject.Attributes.Contains(_attributeName))
                 {
@@ -315,22 +336,22 @@ namespace AMSoftware.Crm.PowerShell.Common.PropertyAdapters
                 _subvalue = subvalue;
             }
 
-            public string TypeName
+            public virtual string TypeName
             {
                 get { return typeof(string).FullName; }
             }
 
-            public bool IsSettable
+            public virtual bool IsSettable
             {
                 get { return false; }
             }
 
-            public bool IsGettable
+            public virtual bool IsGettable
             {
                 get { return true; }
             }
 
-            public object GetValue(Entity baseObject)
+            public virtual object GetValue(Entity baseObject)
             {
                 object result = null;
                 if (baseObject.Attributes.TryGetValue(_attributeName, out result))
@@ -340,12 +361,37 @@ namespace AMSoftware.Crm.PowerShell.Common.PropertyAdapters
                         if (_subvalue == "Entity") return ((EntityReference)result).LogicalName;
                         if (_subvalue == "Name") return ((EntityReference)result).Name;
                     }
+                    else if (result != null && result is AliasedValue && ((AliasedValue)result).Value is EntityReference)
+                    {
+                        EntityReference aliassedResult = ((AliasedValue)result).Value as EntityReference;
+                        if (aliassedResult != null)
+                        {
+                            if (_subvalue == "Entity") return aliassedResult.LogicalName;
+                            if (_subvalue == "Name") return aliassedResult.Name;
+                        }
+                    }
                 }
 
                 return null;
             }
 
-            public void SetValue(Entity baseObject, object value)
+            public virtual void SetValue(Entity baseObject, object value)
+            {
+                throw new NotSupportedException();
+            }
+        }
+
+        private class AliassedAttributePropertyHandler : AttributePropertyHandler
+        {
+            public AliassedAttributePropertyHandler(string attributeName)
+                : base(attributeName) { }
+
+            public override bool IsSettable
+            {
+                get { return false; }
+            }
+
+            public override void SetValue(Entity baseObject, object value)
             {
                 throw new NotSupportedException();
             }
@@ -360,22 +406,22 @@ namespace AMSoftware.Crm.PowerShell.Common.PropertyAdapters
                 _formattedValueName = formattedValueName;
             }
 
-            public string TypeName
+            public virtual string TypeName
             {
                 get { return typeof(string).FullName; }
             }
 
-            public bool IsSettable
+            public virtual bool IsSettable
             {
                 get { return false; }
             }
 
-            public bool IsGettable
+            public virtual bool IsGettable
             {
                 get { return true; }
             }
 
-            public object GetValue(Entity baseObject)
+            public virtual object GetValue(Entity baseObject)
             {
                 string result = null;
                 baseObject.FormattedValues.TryGetValue(_formattedValueName, out result);
@@ -383,7 +429,7 @@ namespace AMSoftware.Crm.PowerShell.Common.PropertyAdapters
                 return result;
             }
 
-            public void SetValue(Entity baseObject, object value)
+            public virtual void SetValue(Entity baseObject, object value)
             {
                 throw new NotSupportedException();
             }
@@ -398,27 +444,27 @@ namespace AMSoftware.Crm.PowerShell.Common.PropertyAdapters
                 _propertyInfo = propertyInfo;
             }
 
-            public string TypeName
+            public virtual string TypeName
             {
                 get { return _propertyInfo.PropertyType.FullName; }
             }
 
-            public bool IsSettable
+            public virtual bool IsSettable
             {
                 get { return _propertyInfo.CanWrite; }
             }
 
-            public bool IsGettable
+            public virtual bool IsGettable
             {
                 get { return _propertyInfo.CanRead; }
             }
 
-            public object GetValue(Entity baseObject)
+            public virtual object GetValue(Entity baseObject)
             {
                 return _propertyInfo.GetMethod.Invoke(baseObject, null);
             }
 
-            public void SetValue(Entity baseObject, object value)
+            public virtual void SetValue(Entity baseObject, object value)
             {
                 _propertyInfo.SetMethod.Invoke(baseObject, new object[] { value });
             }
@@ -433,27 +479,27 @@ namespace AMSoftware.Crm.PowerShell.Common.PropertyAdapters
                 _getFunction = getFunction;
             }
 
-            public string TypeName
+            public virtual string TypeName
             {
                 get { return typeof(TResult).FullName; }
             }
 
-            public bool IsSettable
+            public virtual bool IsSettable
             {
                 get { return false; }
             }
 
-            public bool IsGettable
+            public virtual bool IsGettable
             {
                 get { return true; }
             }
 
-            public object GetValue(Entity baseObject)
+            public virtual object GetValue(Entity baseObject)
             {
                 return _getFunction(baseObject);
             }
 
-            public void SetValue(Entity baseObject, object value)
+            public virtual void SetValue(Entity baseObject, object value)
             {
                 throw new NotSupportedException();
             }

@@ -23,7 +23,7 @@ using Microsoft.Xrm.Sdk;
 namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
     [Cmdlet(VerbsLifecycle.Invoke, "Request", HelpUri = HelpUrlConstants.InvokeRequestHelpUrl)]
-    public class InvokeRequestCommand : CrmOrganizationCmdlet
+    public sealed class InvokeRequestCommand : CrmOrganizationCmdlet
     {
         private ContentRepository _repository = new ContentRepository();
 

@@ -20,7 +20,7 @@ New-CrmWebresource [-Name] <String> [-DisplayName <String>] [-Description <Strin
 ### NewWebresourceFromPath
 ```
 New-CrmWebresource [-Name] <String> [-DisplayName <String>] [-Description <String>]
- -WebresourceType <CrmWebresourceType> -Path <String> [-IsCustomizable <Boolean>]
+ -WebresourceType <CrmWebresourceType> -LiteralPath <String> [-IsCustomizable <Boolean>]
  [-Encoding <FileSystemCmdletProviderEncoding>]
 ```
 
@@ -114,6 +114,21 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -LiteralPath
+{{Fill LiteralPath Description}}
+
+```yaml
+Type: String
+Parameter Sets: NewWebresourceFromPath
+Aliases: PSPath, Path
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -Name
 {{Fill Name Description}}
 
@@ -124,21 +139,6 @@ Aliases:
 
 Required: True
 Position: 1
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Path
-{{Fill Path Description}}
-
-```yaml
-Type: String
-Parameter Sets: NewWebresourceFromPath
-Aliases: 
-
-Required: True
-Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

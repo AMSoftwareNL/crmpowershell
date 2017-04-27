@@ -24,7 +24,7 @@ using Microsoft.Xrm.Sdk.Metadata;
 namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 {
     [Cmdlet(VerbsCommon.Set, "OptionSet", HelpUri = HelpUrlConstants.SetOptionSetHelpUrl)]
-    public class SetOptionSetCommand : CrmOrganizationCmdlet
+    public sealed class SetOptionSetCommand : CrmOrganizationCmdlet
     {
         private const string SetOptionSetParameterSet = "SetOptionSet";
         private const string SetOptionSetByInputObjectParameterSet = "SetOptionSetByInputObject";

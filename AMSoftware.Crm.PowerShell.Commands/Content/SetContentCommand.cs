@@ -24,7 +24,7 @@ using Microsoft.Xrm.Sdk;
 namespace AMSoftware.Crm.PowerShell.Commands.Content
 {
     [Cmdlet(VerbsCommon.Set, "Content", HelpUri = HelpUrlConstants.SetContentHelpUrl, DefaultParameterSetName = SetContentByInputObjectParameterSet)]
-    public class SetContentCommand : CrmOrganizationCmdlet
+    public sealed class SetContentCommand : CrmOrganizationCmdlet
     {
         private const string SetContentParameterSet = "SetContent";
         private const string SetContentByInputObjectParameterSet = "SetContentByInputObject";

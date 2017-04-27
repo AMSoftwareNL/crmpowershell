@@ -120,6 +120,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.-->
     </TypeConverter>
   </Type>
   <Type>
+    <Name>Microsoft.Xrm.Sdk.EntityReference</Name>
+    <Members>
+      <ScriptMethod>
+        <Name>ToString</Name>
+        <Script>
+          $this.Id;
+        </Script>
+      </ScriptMethod>
+    </Members>
+    <TypeConverter>
+      <TypeName>AMSoftware.Crm.PowerShell.Common.Converters.EntityReferenceConverter</TypeName>
+    </TypeConverter>
+  </Type>
+  <Type>
     <Name>Microsoft.Xrm.Sdk.AttributeCollection</Name>
     <TypeAdapter>
       <TypeName>AMSoftware.Crm.PowerShell.Common.PropertyAdapters.AttributeCollectionPropertyAdapter</TypeName>
@@ -151,17 +165,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.-->
     <TypeConverter>
       <TypeName>AMSoftware.Crm.PowerShell.Common.Converters.OptionSetValueConverter</TypeName>
     </TypeConverter>
-  </Type>
-  <Type>
-    <Name>Microsoft.Xrm.Sdk.EntityReference</Name>
-    <Members>
-      <ScriptMethod>
-        <Name>ToString</Name>
-        <Script>
-          $this.Id;
-        </Script>
-      </ScriptMethod>
-    </Members>
   </Type>
   <Type>
     <Name>Microsoft.Xrm.Sdk.Money</Name>

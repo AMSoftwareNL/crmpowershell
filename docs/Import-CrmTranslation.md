@@ -11,8 +11,14 @@ schema: 2.0.0
 
 ## SYNTAX
 
+### ImportTranslationFromPath (Default)
 ```
-Import-CrmTranslation [-Path] <String> [-WhatIf] [-Confirm]
+Import-CrmTranslation [-Path] <String[]> [-WhatIf] [-Confirm]
+```
+
+### ImportTranslationFromLiteralPath
+```
+Import-CrmTranslation [-LiteralPath] <String[]> [-WhatIf] [-Confirm]
 ```
 
 ## DESCRIPTION
@@ -29,6 +35,36 @@ PS C:\> {{ Add example code here }}
 
 ## PARAMETERS
 
+### -LiteralPath
+{{Fill LiteralPath Description}}
+
+```yaml
+Type: String[]
+Parameter Sets: ImportTranslationFromLiteralPath
+Aliases: PSPath
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -Path
+{{Fill Path Description}}
+
+```yaml
+Type: String[]
+Parameter Sets: ImportTranslationFromPath
+Aliases: 
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
 ### -Confirm
 Prompts you for confirmation before running the cmdlet.
 
@@ -39,21 +75,6 @@ Aliases: cf
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Path
-{{Fill Path Description}}
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: 
-
-Required: True
-Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -77,7 +98,7 @@ Accept wildcard characters: False
 
 ## INPUTS
 
-### None
+### System.String[]
 
 
 ## OUTPUTS

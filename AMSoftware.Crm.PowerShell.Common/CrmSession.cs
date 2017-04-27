@@ -26,7 +26,7 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace AMSoftware.Crm.PowerShell.Common
 {
-    public class CrmSession : IDisposable
+    internal sealed class CrmSession : IDisposable
     {
         private AuthenticationCredentials _tokenCredentials;
         private bool _disposed = false;
@@ -145,7 +145,7 @@ namespace AMSoftware.Crm.PowerShell.Common
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing)
+        private void Dispose(bool disposing)
         {
             if (!_disposed)
             {

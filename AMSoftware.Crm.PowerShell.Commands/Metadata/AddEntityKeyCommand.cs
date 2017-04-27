@@ -26,9 +26,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 {
     [Cmdlet(VerbsCommon.Add, "EntityKey", HelpUri = HelpUrlConstants.AddEntityKeyHelpUrl)]
     [OutputType(typeof(EntityKeyMetadata))]
-    public class AddEntityKeyCommand : CrmOrganizationCmdlet
+    public sealed class AddEntityKeyCommand : CrmOrganizationCmdlet
     {
-        protected MetadataRepository _repository = new MetadataRepository();
+        private MetadataRepository _repository = new MetadataRepository();
 
         [Parameter(Mandatory = true, Position = 1)]
         [ValidateNotNullOrEmpty]

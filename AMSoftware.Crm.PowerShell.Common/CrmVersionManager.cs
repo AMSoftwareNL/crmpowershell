@@ -64,7 +64,7 @@ namespace AMSoftware.Crm.PowerShell.Common
         CRM2016_2_RTM
     }
 
-    public static class CrmVersionManager
+    internal static class CrmVersionManager
     {
         private static Version _sdkVersion;
 

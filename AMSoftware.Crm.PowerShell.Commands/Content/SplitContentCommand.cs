@@ -22,7 +22,7 @@ using AMSoftware.Crm.PowerShell.Common.Repositories;
 namespace AMSoftware.Crm.PowerShell.Commands.Content
 {
     [Cmdlet(VerbsCommon.Split, "Content", HelpUri = HelpUrlConstants.SplitContentHelpUrl)]
-    public class SplitContentCommand : CrmOrganizationCmdlet
+    public sealed class SplitContentCommand : CrmOrganizationCmdlet
     {
         private ContentRepository _repository = new ContentRepository();
 

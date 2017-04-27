@@ -23,7 +23,7 @@ using Microsoft.Xrm.Sdk.Metadata;
 
 namespace AMSoftware.Crm.PowerShell.Common.Repositories
 {
-    public class MetadataRepository
+    internal sealed class MetadataRepository
     {
         #region Entity
         public EntityMetadata GetEntity(string name)

@@ -26,7 +26,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
     [Cmdlet(VerbsCommon.Get, "RolePrincipals", HelpUri = HelpUrlConstants.GetRolePrincipalsHelpUrl)]
     [OutputType(typeof(Entity))]
-    public class GetRolePrincipalsCommand : CrmOrganizationCmdlet
+    public sealed class GetRolePrincipalsCommand : CrmOrganizationCmdlet
     {
         private ContentRepository _repository = new ContentRepository();
 

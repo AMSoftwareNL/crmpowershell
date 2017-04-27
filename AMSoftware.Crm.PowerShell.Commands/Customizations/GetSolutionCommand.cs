@@ -25,7 +25,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
     [Cmdlet(VerbsCommon.Get, "Solution", HelpUri = HelpUrlConstants.GetSolutionHelpUrl, SupportsPaging = true, DefaultParameterSetName = GetSolutionParameterSet)]
     [OutputType(typeof(Entity))]
-    public class GetSolutionCommand : CrmOrganizationCmdlet
+    public sealed class GetSolutionCommand : CrmOrganizationCmdlet
     {
         private const string GetSolutionParameterSet = "GetSolution";
         private const string GetSolutionByIdParameterSet = "GetSolutionById";

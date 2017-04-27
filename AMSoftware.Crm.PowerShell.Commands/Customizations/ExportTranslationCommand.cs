@@ -26,7 +26,7 @@ using Microsoft.Xrm.Sdk;
 namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
     [Cmdlet(VerbsData.Export, "Translation", HelpUri = HelpUrlConstants.ExportTranslationHelpUrl)]
-    public class ExportTranslationCommand : CrmOrganizationCmdlet
+    public sealed class ExportTranslationCommand : CrmOrganizationCmdlet
     {
         private ContentRepository _repository = new ContentRepository();
 

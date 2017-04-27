@@ -24,7 +24,7 @@ using Microsoft.Xrm.Sdk.Query;
 namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
     [Cmdlet(VerbsLifecycle.Stop, "Process", HelpUri = HelpUrlConstants.StopProcessHelpUrl, ConfirmImpact = ConfirmImpact.High, SupportsShouldProcess = true, DefaultParameterSetName = StopProcessByAsyncOperationParameterSet)]
-    public class StopProcessCommand : CrmOrganizationConfirmActionCmdlet
+    public sealed class StopProcessCommand : CrmOrganizationConfirmActionCmdlet
     {
         private const string StopProcessByAsyncOperationParameterSet = "StopProcessByAsyncOperation";
         private const string StopProcessByWorkflowParameterSet = "StopProcessByWorkflow";

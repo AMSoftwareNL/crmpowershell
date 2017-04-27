@@ -16,8 +16,10 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 using System;
+using System.Collections.Generic;
 using System.Management.Automation;
 using AMSoftware.Crm.PowerShell.Common;
+using Microsoft.PowerShell.Commands;
 
 namespace AMSoftware.Crm.PowerShell.Commands
 {
@@ -97,6 +99,48 @@ namespace AMSoftware.Crm.PowerShell.Commands
         {
             this.WriteError(new ErrorRecord(ex, string.Empty, ErrorCategory.CloseError, null));
         }
+
+        protected string[] ResolvePaths(string[] pathsToProcess, bool expandWildcards)
+        {
+            List<string> resolvedPaths = new List<string>();
+
+            foreach (string path in pathsToProcess)
+            {
+                ProviderInfo provider;
+                PSDriveInfo drive;
+                if (expandWildcards)
+                {
+                    resolvedPaths.AddRange(this.GetResolvedProviderPathFromPSPath(path, out provider));
+                }
+                else
+                {
+                    resolvedPaths.Add(this.SessionState.Path.GetUnresolvedProviderPathFromPSPath(path, out provider, out drive));
+                }
+                // ensure that this path (or set of paths after wildcard expansion)
+                if (IsFileSystemPath(provider, path) == false)
+                {
+                    continue;
+                }
+            }
+
+            return resolvedPaths.ToArray();
+        }
+
+        private bool IsFileSystemPath(ProviderInfo provider, string path)
+        {
+            bool isFileSystem = true;
+            // check that this provider is the filesystem
+            if (provider.ImplementingType != typeof(FileSystemProvider))
+            {
+                ArgumentException ex = new ArgumentException(path + " does not resolve to a path on the FileSystem provider.");
+                ErrorRecord error = new ErrorRecord(ex, "InvalidProvider", ErrorCategory.InvalidArgument, path);
+
+                this.WriteError(error);
+                
+                isFileSystem = false;
+            }
+            return isFileSystem;
+        }
     }
 
     public abstract class CrmDiscoveryCmdlet : CrmCmdlet
@@ -168,7 +212,7 @@ namespace AMSoftware.Crm.PowerShell.Commands
         {
             if (ShouldProcess(target, action))
             {
-                if (Force || ShouldContinue(string.Empty, string.Empty, ref _yesToAll, ref _noToAll))
+                if (Force || ShouldContinue(target, action, ref _yesToAll, ref _noToAll))
                 {
                     cmdletAction();
                 }

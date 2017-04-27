@@ -27,7 +27,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
     [Cmdlet(VerbsCommon.Get, "Team", HelpUri = HelpUrlConstants.GetTeamHelpUrl, SupportsPaging = true, DefaultParameterSetName = GetAllTeamsParameterSet)]
     [OutputType(typeof(Entity))]
-    public class GetTeamCommand : CrmOrganizationCmdlet
+    public sealed class GetTeamCommand : CrmOrganizationCmdlet
     {
         private const string GetAllTeamsParameterSet = "GetAllTeams";
         private const string GetTeamByIdParameterSet = "GetTeamById";

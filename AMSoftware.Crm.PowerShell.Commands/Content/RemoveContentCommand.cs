@@ -22,7 +22,7 @@ using AMSoftware.Crm.PowerShell.Common.Repositories;
 namespace AMSoftware.Crm.PowerShell.Commands.Content
 {
     [Cmdlet(VerbsCommon.Remove, "Content", HelpUri = HelpUrlConstants.RemoveContentHelpUrl, SupportsShouldProcess = true)]
-    public class RemoveContentCommand : CrmOrganizationConfirmActionCmdlet
+    public sealed class RemoveContentCommand : CrmOrganizationConfirmActionCmdlet
     {
         private ContentRepository _repository = new ContentRepository();
 

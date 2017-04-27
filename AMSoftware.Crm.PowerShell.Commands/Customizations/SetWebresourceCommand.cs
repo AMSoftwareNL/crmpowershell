@@ -25,7 +25,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
     [Cmdlet(VerbsCommon.Set, "Webresource", HelpUri = HelpUrlConstants.SetWebresourceHelpUrl, DefaultParameterSetName = SetWebresourceParameterSet)]
     [OutputType(typeof(Entity))]
-    public class SetWebresourceCommand : CrmOrganizationCmdlet, IDynamicParameters
+    public sealed class SetWebresourceCommand : CrmOrganizationCmdlet, IDynamicParameters
     {
         internal const string SetWebresourceParameterSet = "SetWebresource";
         internal const string SetWebresourceFromContentParameterSet = "SetWebresourceFromContent";
@@ -51,8 +51,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
         public byte[] Content { get; set; }
 
         [Parameter(ParameterSetName = SetWebresourceFromPathParameterSet)]
+        [Alias("PSPath", "Path")]
         [ValidateNotNullOrEmpty]
-        public string Path { get; set; }
+        public string LiteralPath { get; set; }
 
         [Parameter]
         [ValidateNotNull]
@@ -100,7 +101,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
                     webresource.Attributes["content"] = contentAsBase64;
                     break;
                 case SetWebresourceFromPathParameterSet:
-                    FileContentReaderWriter fcrw = new FileContentReaderWriter(Path, _contentParameters.EncodingType, _contentParameters.UsingByteEncoding);
+                    FileContentReaderWriter fcrw = new FileContentReaderWriter(LiteralPath, _contentParameters.EncodingType, _contentParameters.UsingByteEncoding);
                     byte[] fileAsBytes = fcrw.ReadAsBytes();
                     string fileContentAsBase64 = Convert.ToBase64String(fileAsBytes);
                     webresource.Attributes["content"] = fileContentAsBase64;
@@ -113,7 +114,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
         }
     }
 
-        public class SetWebresourceDynamicParameters : FileContentDynamicsParameters
+    public sealed class SetWebresourceDynamicParameters : FileContentDynamicsParameters
     {
         [Parameter(ParameterSetName=SetWebresourceCommand.SetWebresourceFromPathParameterSet)]
         public FileSystemCmdletProviderEncoding Encoding

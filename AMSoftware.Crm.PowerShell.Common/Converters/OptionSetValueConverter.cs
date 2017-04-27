@@ -21,7 +21,7 @@ using Microsoft.Xrm.Sdk;
 
 namespace AMSoftware.Crm.PowerShell.Common.Converters
 {
-    public class OptionSetValueConverter : Int32Converter
+    public sealed class OptionSetValueConverter : Int32Converter
     {
         public override object ConvertFrom(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value)
         {

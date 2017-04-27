@@ -22,7 +22,7 @@ using AMSoftware.Crm.PowerShell.Common.Repositories;
 namespace AMSoftware.Crm.PowerShell.Commands.Content
 {
     [Cmdlet(VerbsCommon.Join, "Content", HelpUri = HelpUrlConstants.JoinContentHelpUrl)]
-    public class JoinContentCommand : CrmOrganizationCmdlet
+    public sealed class JoinContentCommand : CrmOrganizationCmdlet
     {
         private ContentRepository _repository = new ContentRepository();
 

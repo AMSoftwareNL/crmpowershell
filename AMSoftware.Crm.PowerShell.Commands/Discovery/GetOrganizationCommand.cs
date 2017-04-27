@@ -23,7 +23,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Discovery
 {
     [Cmdlet(VerbsCommon.Get, "Organization", HelpUri = HelpUrlConstants.GetOrganizationHelpUrl)]
     [OutputType(typeof(OrganizationDetail))]
-    public class GetOrganizationCommand : CrmDiscoveryCmdlet
+    public sealed class GetOrganizationCommand : CrmDiscoveryCmdlet
     {
         private DeploymentRepository _repository = new DeploymentRepository();
 

@@ -28,7 +28,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
     [OutputType(typeof(AttributeMetadata))]
     public abstract class AddAttributeCommandBase : CrmOrganizationCmdlet, IDynamicParameters
     {
-        protected MetadataRepository _repository = new MetadataRepository();
+        private MetadataRepository _repository = new MetadataRepository();
         private AddAttributeDynamicParameters _context;
 
         [Parameter(Mandatory = true, Position = 1)]
@@ -87,7 +87,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
             }
             else
             {
-                _context = new AddAttributeDynamicParameters();
+                _context = null;
             }
             return _context;
         }
@@ -124,7 +124,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 
     [Cmdlet(VerbsCommon.Add, "Attribute", HelpUri = HelpUrlConstants.AddAttributeHelpUrl)]
     [OutputType(typeof(AttributeMetadata))]
-    public class AddAttributeCommand : CrmOrganizationCmdlet
+    public sealed class AddAttributeCommand : CrmOrganizationCmdlet
     {
         private MetadataRepository _repository = new MetadataRepository();
 
@@ -147,7 +147,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 
     [Cmdlet(VerbsCommon.Add, "StringAttribute", HelpUri = HelpUrlConstants.AddStringAttributeHelpUrl)]
     [OutputType(typeof(StringAttributeMetadata))]
-    public class AddStringAttributeCommand : AddAttributeCommandBase
+    public sealed class AddStringAttributeCommand : AddAttributeCommandBase
     {
         [Parameter]
         [ValidateNotNull]
@@ -208,7 +208,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 
     [Cmdlet(VerbsCommon.Add, "MemoAttribute", HelpUri = HelpUrlConstants.AddMemoAttributeHelpUrl)]
     [OutputType(typeof(MemoAttributeMetadata))]
-    public class AddMemoAttributeCommand : AddAttributeCommandBase
+    public sealed class AddMemoAttributeCommand : AddAttributeCommandBase
     {
         [Parameter]
         [ValidateNotNull]
@@ -241,7 +241,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 
     [Cmdlet(VerbsCommon.Add, "IntegerAttribute", HelpUri = HelpUrlConstants.AddIntegerAttributeHelpUrl)]
     [OutputType(typeof(IntegerAttributeMetadata))]
-    public class AddIntegerAttributeCommand : AddAttributeCommandBase
+    public sealed class AddIntegerAttributeCommand : AddAttributeCommandBase
     {
         [Parameter]
         [ValidateNotNull]
@@ -281,7 +281,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 
     [Cmdlet(VerbsCommon.Add, "BigIntAttribute", HelpUri = HelpUrlConstants.AddBigIntAttributeHelpUrl)]
     [OutputType(typeof(BigIntAttributeMetadata))]
-    public class AddBigIntAttributeCommand : AddAttributeCommandBase
+    public sealed class AddBigIntAttributeCommand : AddAttributeCommandBase
     {
         protected override void ExecuteCmdlet()
         {
@@ -295,7 +295,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 
     [Cmdlet(VerbsCommon.Add, "DecimalAttribute", HelpUri = HelpUrlConstants.AddDecimalAttributeHelpUrl)]
     [OutputType(typeof(DecimalAttributeMetadata))]
-    public class AddDecimalAttributeCommand : AddAttributeCommandBase
+    public sealed class AddDecimalAttributeCommand : AddAttributeCommandBase
     {
         [Parameter]
         [ValidateNotNull]
@@ -337,7 +337,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 
     [Cmdlet(VerbsCommon.Add, "DoubleAttribute", HelpUri = HelpUrlConstants.AddDoubleAttributeHelpUrl)]
     [OutputType(typeof(DoubleAttributeMetadata))]
-    public class AddDoubleAttributeCommand : AddAttributeCommandBase
+    public sealed class AddDoubleAttributeCommand : AddAttributeCommandBase
     {
         [Parameter]
         [ValidateNotNull]
@@ -383,7 +383,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 
     [Cmdlet(VerbsCommon.Add, "MoneyAttribute", HelpUri = HelpUrlConstants.AddMoneyAttributeHelpUrl)]
     [OutputType(typeof(MoneyAttributeMetadata))]
-    public class AddMoneyAttributeCommand : AddAttributeCommandBase
+    public sealed class AddMoneyAttributeCommand : AddAttributeCommandBase
     {
         [Parameter]
         [ValidateNotNull]
@@ -438,7 +438,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 
     [Cmdlet(VerbsCommon.Add, "DateTimeAttribute", HelpUri = HelpUrlConstants.AddDateTimeAttributeHelpUrl)]
     [OutputType(typeof(DateTimeAttributeMetadata))]
-    public class AddDateTimeAttributeCommand : AddAttributeCommandBase
+    public sealed class AddDateTimeAttributeCommand : AddAttributeCommandBase
     {
         [Parameter]
         [ValidateNotNull]
@@ -484,7 +484,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 
     [Cmdlet(VerbsCommon.Add, "BooleanAttribute", HelpUri = HelpUrlConstants.AddBooleanAttributeHelpUrl)]
     [OutputType(typeof(BooleanAttributeMetadata))]
-    public class AddBooleanAttributeCommand : AddAttributeCommandBase
+    public sealed class AddBooleanAttributeCommand : AddAttributeCommandBase
     {
         [Parameter]
         [ValidateNotNull]
@@ -513,7 +513,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 
     [Cmdlet(VerbsCommon.Add, "OptionSetAttribute", HelpUri = HelpUrlConstants.AddOptionSetAttributeHelpUrl, DefaultParameterSetName = AddOptionSetNewParameterSet)]
     [OutputType(typeof(PicklistAttributeMetadata))]
-    public class AddOptionSetAttributeCommand : AddAttributeCommandBase
+    public sealed class AddOptionSetAttributeCommand : AddAttributeCommandBase
     {
         private const string AddOptionSetExistingParameterSet = "AddOptionSetExisting";
         private const string AddOptionSetNewParameterSet = "AddOptionSetNew";
@@ -548,7 +548,8 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
                     }
                     break;
                 case AddOptionSetExistingParameterSet:
-                    OptionSetMetadata optionset = _repository.GetOptionSet(OptionSet) as OptionSetMetadata;
+                    MetadataRepository repository = new MetadataRepository();
+                    OptionSetMetadata optionset = repository.GetOptionSet(OptionSet) as OptionSetMetadata;
                     if (optionset.IsGlobal.GetValueOrDefault()) {
                         attribute.OptionSet.Options.Clear();
                     }
@@ -564,7 +565,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 
     [Cmdlet(VerbsCommon.Add, "ImageAttribute", HelpUri = HelpUrlConstants.AddImageAttributeHelpUrl)]
     [OutputType(typeof(ImageAttributeMetadata))]
-    public class AddImageAttributeCommand : AddAttributeCommandBase
+    public sealed class AddImageAttributeCommand : AddAttributeCommandBase
     {
         protected override void BeginProcessing()
         {
@@ -585,14 +586,14 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         }
     }
 
-    public class AddAttributeDynamicParameters
+    public abstract class AddAttributeDynamicParameters
     {
         internal protected virtual void SetParametersOnAttribute(AttributeMetadata attribute)
         {
         }
     }
 
-    public class AddAttributeDynamicParameters2016 : AddAttributeDynamicParameters
+    public sealed class AddAttributeDynamicParameters2016 : AddAttributeDynamicParameters
     {
         [Parameter]
         [ValidateNotNull]

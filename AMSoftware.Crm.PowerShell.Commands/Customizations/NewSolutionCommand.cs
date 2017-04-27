@@ -25,7 +25,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
     [Cmdlet(VerbsCommon.New, "Solution", HelpUri = HelpUrlConstants.NewSolutionHelpUrl)]
     [OutputType(typeof(Entity))]
-    public class NewSolutionCommand : CrmOrganizationCmdlet
+    public sealed class NewSolutionCommand : CrmOrganizationCmdlet
     {
         private ContentRepository _repository = new ContentRepository();
 

@@ -24,7 +24,7 @@ using Microsoft.Xrm.Sdk;
 namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
     [Cmdlet(VerbsCommon.Set, "Owner", HelpUri = HelpUrlConstants.SetOwnerHelpUrl)]
-    public class SetOwnerCommand : CrmOrganizationCmdlet
+    public sealed class SetOwnerCommand : CrmOrganizationCmdlet
     {
         private const string AssignOwnerEntityParameterSet = "AssignOwnerEntity";
         private const string AssignOwnerRecordParameterSet = "AssignOwnerRecord";

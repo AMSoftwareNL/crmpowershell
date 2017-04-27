@@ -25,7 +25,7 @@ using Microsoft.Xrm.Sdk.Metadata.Query;
 
 namespace AMSoftware.Crm.PowerShell.Common
 {
-    internal class MetadataCache
+    internal sealed class MetadataCache
     {
         private Cache<EntityMetadata> _entities = new Cache<EntityMetadata>();
         private string _timestamp = null;

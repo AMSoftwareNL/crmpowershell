@@ -109,5 +109,26 @@ namespace AMSoftware.Crm.PowerShell.Commands
         public const string TestSolutionHelpUrl = "http://crmpowershell.amsoftware.nl/Test-CrmSolution.html";
         public const string TestSolutionComponentHelpUrl = "http://crmpowershell.amsoftware.nl/Test-CrmSolutionComponent.html";
         public const string UseSolutionHelpUrl = "http://crmpowershell.amsoftware.nl/Use-CrmSolution.html";
+
+        public const string GetPluginAssemblyHelpUrl = "http://crmpowershell.amsoftware.nl/Get-CrmPluginAssembly.html";
+        public const string GetPluginHelpUrl = "http://crmpowershell.amsoftware.nl/Get-CrmPlugin.html";
+        public const string GetPluginStepHelpUrl = "http://crmpowershell.amsoftware.nl/Get-CrmPluginStep.html";
+        public const string GetPluginImageHelpUrl = "http://crmpowershell.amsoftware.nl/Get-CrmPluginImage.html";
+        public const string GetServiceEndpointHelpUrl = "http://crmpowershell.amsoftware.nl/Get-CrmServiceEndpoint.html";
+        public const string RegisterPluginHelpUrl = "http://crmpowershell.amsoftware.nl/Register-CrmPlugin.html";
+        public const string SetPluginHelpUrl = "http://crmpowershell.amsoftware.nl/Set-CrmPlugin.html";
+        public const string RegisterServiceEndpointHelpUrl = "http://crmpowershell.amsoftware.nl/Register-CrmServiceEndpoint.html";
+        public const string SetServiceEndpointHelpUrl = "http://crmpowershell.amsoftware.nl/Set-CrmServiceEndpoint.html";
+        public const string RegisterPluginStepHelpUrl = "http://crmpowershell.amsoftware.nl/Register-CrmPluginStep.html";
+        public const string SetPluginStepHelpUrl = "http://crmpowershell.amsoftware.nl/Set-CrmPluginStep.html";
+        public const string RegisterPluginStepImageHelpUrl = "http://crmpowershell.amsoftware.nl/Register-CrmPluginStepImage.html";
+        public const string SetPluginStepImageHelpUrl = "http://crmpowershell.amsoftware.nl/Set-CrmPluginStepImage.html";
+        public const string UnregisterPluginAssemblyHelpUrl = "http://crmpowershell.amsoftware.nl/Unregister-CrmPluginAssembly.html";
+        public const string UnregisterServiceEndpointHelpUrl = "http://crmpowershell.amsoftware.nl/Unregister-CrmServiceEndpoint.html";
+        public const string UnregisterPluginHelpUrl = "http://crmpowershell.amsoftware.nl/Unregister-CrmPlugin.html";
+        public const string UnregisterPluginStepHelpUrl = "http://crmpowershell.amsoftware.nl/Unregister-CrmPluginStep.html";
+        public const string UnregisterPluginStepImageHelpUrl = "http://crmpowershell.amsoftware.nl/Unregister-CrmPluginStepImage.html";
+        public const string EnablePluginStepHelpUrl = "http://crmpowershell.amsoftware.nl/Enable-CrmPluginStep.html";
+        public const string DisablePluginStepHelpUrl = "http://crmpowershell.amsoftware.nl/Disable-CrmPluginStep.html";
     }
 }

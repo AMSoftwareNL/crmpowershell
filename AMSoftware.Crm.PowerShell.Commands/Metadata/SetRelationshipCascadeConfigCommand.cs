@@ -23,7 +23,7 @@ using Microsoft.Xrm.Sdk.Metadata;
 namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 {
     [Cmdlet(VerbsCommon.Set, "RelationshipCascadeConfig", HelpUri = HelpUrlConstants.SetRelationshipCascadeConfigHelpUrl)]
-    public class SetRelationshipCascadeConfigCommand : CrmOrganizationCmdlet
+    public sealed class SetRelationshipCascadeConfigCommand : CrmOrganizationCmdlet
     {
         private MetadataRepository _repository = new MetadataRepository();
 

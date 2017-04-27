@@ -26,15 +26,26 @@ using Microsoft.Crm.Sdk.Messages;
 
 namespace AMSoftware.Crm.PowerShell.Common.Repositories
 {
-    public sealed class ContentRepository
+    internal sealed class ContentRepository
     {
-        public Entity Get(string entity, Guid id, string[] columns = null)
+        public Entity Get(string entity, Guid id, string[] columns = null, Hashtable related = null)
         {
             ColumnSet columnSet = BuildColumnSet(columns);
-            return CrmContext.OrganizationProxy.Retrieve(entity, id, columnSet);
+            EntityReference reference = new EntityReference(entity, id);
+
+            OrganizationRequest request = new OrganizationRequest("Retrieve");
+            request.Parameters = new ParameterCollection();
+            request.Parameters.Add("Target", reference);
+            request.Parameters.Add("ColumnSet", columnSet);
+
+            IncludeRelatedEntitiesInRetrieveRequest(request, related);
+
+            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+
+            return (Entity)response.Results["Entity"];
         }
 
-        public Entity Get(string entity, Hashtable keys, string[] columns = null)
+        public Entity Get(string entity, Hashtable keys, string[] columns = null, Hashtable related = null)
         {
             if (!CrmVersionManager.IsSupported(CrmVersion.CRM2015_1_RTM))
             {
@@ -52,9 +63,29 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
             request.Parameters.Add("Target", reference);
             request.Parameters.Add("ColumnSet", columnSet);
 
+            IncludeRelatedEntitiesInRetrieveRequest(request, related);
+
             OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
 
             return (Entity)response.Results["Entity"];
+        }
+
+        private static void IncludeRelatedEntitiesInRetrieveRequest(OrganizationRequest request, Hashtable related)
+        {
+            if (related != null && related.Count > 0)
+            {
+                RelationshipQueryCollection relatedEntities = new RelationshipQueryCollection();
+                foreach (string relatedEntityName in related.Keys)
+                {
+                    QueryExpression relatedQuery = new QueryExpression(relatedEntityName)
+                    {
+                        ColumnSet = new ColumnSet(true)
+                    };
+                    Relationship relationship = new Relationship((string)related[relatedEntityName]);
+                    relatedEntities.Add(relationship, relatedQuery);
+                }
+                request.Parameters.Add("RelatedEntitiesQuery", relatedEntities);
+            }
         }
 
         public IEnumerable<Entity> Get(QueryBase query, ulong? first = null, ulong? skip = null)

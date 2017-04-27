@@ -24,7 +24,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
     [Cmdlet(VerbsLifecycle.Start, "Process", HelpUri = HelpUrlConstants.StartProcessHelpUrl, SupportsShouldProcess = true)]
     [OutputType(typeof(Guid))]
-    public class StartProcessCommand : CrmOrganizationActionCmdlet
+    public sealed class StartProcessCommand : CrmOrganizationActionCmdlet
     {
         private ContentRepository _repository = new ContentRepository();
 

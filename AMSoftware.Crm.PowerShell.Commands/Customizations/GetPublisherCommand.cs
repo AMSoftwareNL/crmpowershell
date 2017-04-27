@@ -26,7 +26,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
     [Cmdlet(VerbsCommon.Get, "Publisher", HelpUri = HelpUrlConstants.GetPublisherHelpUrl, SupportsPaging = true, DefaultParameterSetName = GetAllPublishersParameterSet)]
     [OutputType(typeof(Entity))]
-    public class GetPublisherCommand : CrmOrganizationCmdlet
+    public sealed class GetPublisherCommand : CrmOrganizationCmdlet
     {
         private const string GetAllPublishersParameterSet = "GetAllPublishers";
         private const string GetPublisherByIdParameterSet = "GetPublisherById";

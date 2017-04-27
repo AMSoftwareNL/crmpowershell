@@ -11,9 +11,16 @@ schema: 2.0.0
 
 ## SYNTAX
 
+### ImportSolutionFromPath (Default)
 ```
-Import-CrmSolution [-Path] <String> [-ConvertToManaged] [-Overwrite] [-PublishWorkflows] [-SkipDependencies]
+Import-CrmSolution [-Path] <String[]> [-ConvertToManaged] [-Overwrite] [-PublishWorkflows] [-SkipDependencies]
  [-WhatIf] [-Confirm]
+```
+
+### ImportSolutionFromLiteralPath
+```
+Import-CrmSolution [-LiteralPath] <String[]> [-ConvertToManaged] [-Overwrite] [-PublishWorkflows]
+ [-SkipDependencies] [-WhatIf] [-Confirm]
 ```
 
 ## DESCRIPTION
@@ -30,21 +37,6 @@ PS C:\> {{ Add example code here }}
 
 ## PARAMETERS
 
-### -Confirm
-Prompts you for confirmation before running the cmdlet.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: cf
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -ConvertToManaged
 {{Fill ConvertToManaged Description}}
 
@@ -57,6 +49,21 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -LiteralPath
+{{Fill LiteralPath Description}}
+
+```yaml
+Type: String[]
+Parameter Sets: ImportSolutionFromLiteralPath
+Aliases: PSPath
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
@@ -79,14 +86,14 @@ Accept wildcard characters: False
 {{Fill Path Description}}
 
 ```yaml
-Type: String
-Parameter Sets: (All)
+Type: String[]
+Parameter Sets: ImportSolutionFromPath
 Aliases: 
 
 Required: True
 Position: 1
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
@@ -120,6 +127,21 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -Confirm
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -WhatIf
 Shows what would happen if the cmdlet runs.
 The cmdlet is not run.
@@ -138,7 +160,7 @@ Accept wildcard characters: False
 
 ## INPUTS
 
-### None
+### System.String[]
 
 
 ## OUTPUTS

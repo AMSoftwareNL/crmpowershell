@@ -21,7 +21,7 @@ using AMSoftware.Crm.PowerShell.Common.Repositories;
 namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 {
     [Cmdlet(VerbsCommon.Remove, "Relationship", HelpUri = HelpUrlConstants.RemoveRelationshipHelpUrl, SupportsShouldProcess = true)]
-    public class RemoveRelationshipCommand : CrmOrganizationConfirmActionCmdlet
+    public sealed class RemoveRelationshipCommand : CrmOrganizationConfirmActionCmdlet
     {
         private const string RemoveRelationshipByNameParameterSet = "RemoveRelationshipByName";
         private const string RemoveRelationshipByEntityParameterSet = "RemoveRelationshipByEntity";

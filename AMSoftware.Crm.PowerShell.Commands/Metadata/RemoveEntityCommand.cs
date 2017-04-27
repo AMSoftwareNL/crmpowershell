@@ -21,7 +21,7 @@ using AMSoftware.Crm.PowerShell.Common.Repositories;
 namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 {
     [Cmdlet(VerbsCommon.Remove, "Entity", HelpUri = HelpUrlConstants.RemoveEntityHelpUrl, SupportsShouldProcess = true)]
-    public class RemoveEntityCommand : CrmOrganizationConfirmActionCmdlet
+    public sealed class RemoveEntityCommand : CrmOrganizationConfirmActionCmdlet
     {
         private MetadataRepository _repository = new MetadataRepository();
 

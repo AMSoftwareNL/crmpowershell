@@ -23,7 +23,7 @@ using Microsoft.Xrm.Sdk;
 namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
     [Cmdlet(VerbsCommon.Remove, "UserParent", HelpUri = HelpUrlConstants.RemoveUserParentHelpUrl, SupportsShouldProcess = true)]
-    public class RemoveUserParentCommand : CrmOrganizationActionCmdlet
+    public sealed class RemoveUserParentCommand : CrmOrganizationActionCmdlet
     {
         private ContentRepository _repository = new ContentRepository();
 

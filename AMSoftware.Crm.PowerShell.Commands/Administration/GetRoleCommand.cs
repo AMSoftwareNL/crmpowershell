@@ -26,7 +26,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
     [Cmdlet(VerbsCommon.Get, "Role", HelpUri = HelpUrlConstants.GetRoleHelpUrl, SupportsPaging = true, DefaultParameterSetName = GetAllRolesParameterSet)]
     [OutputType(typeof(Entity))]
-    public class GetRoleCommand : CrmOrganizationCmdlet
+    public sealed class GetRoleCommand : CrmOrganizationCmdlet
     {
         private const string GetAllRolesParameterSet = "GetAllRoles";
         private const string GetRoleByIdParameterSet = "GetRoleById";

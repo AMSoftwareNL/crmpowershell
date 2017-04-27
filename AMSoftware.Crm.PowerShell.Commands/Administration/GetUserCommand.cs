@@ -26,7 +26,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
     [Cmdlet(VerbsCommon.Get, "User", HelpUri = HelpUrlConstants.GetUserHelpUrl, SupportsPaging = true, DefaultParameterSetName = GetAllUsersParameterSet)]
     [OutputType(typeof(Entity))]
-    public class GetUserCommand : CrmOrganizationCmdlet
+    public sealed class GetUserCommand : CrmOrganizationCmdlet
     {
         private const string GetAllUsersParameterSet = "GetAllUsers";
         private const string GetUserByUserNameParameterSet = "GetUserByUserName";

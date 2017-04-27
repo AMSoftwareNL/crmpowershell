@@ -15,23 +15,11 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.-->
 <HelpInfo xmlns="http://schemas.microsoft.com/powershell/help/2010/05">
-   <HelpContentURI>http://crmpowershell.amsoftware.nl/</HelpContentURI>
-   <SupportedUICultures>
+  <HelpContentURI>http://crmpowershell.amsoftware.nl/</HelpContentURI>
+  <SupportedUICultures>
     <UICulture>
       <UICultureName>en-US</UICultureName>
-      <UICultureVersion>1.2.0.0</UICultureVersion>
+      <UICultureVersion>1.2.4.1</UICultureVersion>
     </UICulture>
-     <UICulture>
-       <UICultureName>en-US</UICultureName>
-       <UICultureVersion>1.2.1.0</UICultureVersion>
-     </UICulture>
-     <UICulture>
-       <UICultureName>en-US</UICultureName>
-       <UICultureVersion>1.2.2.0</UICultureVersion>
-     </UICulture>
-     <UICulture>
-       <UICultureName>en-US</UICultureName>
-       <UICultureVersion>1.2.3.0</UICultureVersion>
-     </UICulture>
-   </SupportedUICultures>
+  </SupportedUICultures>
 </HelpInfo>

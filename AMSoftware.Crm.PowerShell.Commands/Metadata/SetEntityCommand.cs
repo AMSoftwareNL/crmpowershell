@@ -26,7 +26,7 @@ using Microsoft.Xrm.Sdk.Metadata;
 namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 {
     [Cmdlet(VerbsCommon.Set, "Entity", HelpUri = HelpUrlConstants.SetEntityHelpUrl, DefaultParameterSetName = SetEntityByInputObjectParameterSet)]
-    public class SetEntityCommand : CrmOrganizationCmdlet, IDynamicParameters
+    public sealed class SetEntityCommand : CrmOrganizationCmdlet, IDynamicParameters
     {
         internal const string SetEntityParameterSet = "SetEntity";
         internal const string SetEntityByInputObjectParameterSet = "SetEntityByInputObject";
@@ -215,7 +215,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         }
     }
 
-    public class SetEntityDynamicParameters2013 : SetEntityDynamicParameters
+    public sealed class SetEntityDynamicParameters2013 : SetEntityDynamicParameters
     {
         [Parameter(ParameterSetName = SetEntityCommand.SetEntityParameterSet)]
         [ValidateNotNull]
@@ -245,7 +245,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         }
     }
 
-    public class SetEntityDynamicParameters2016 : SetEntityDynamicParameters
+    public sealed class SetEntityDynamicParameters2016 : SetEntityDynamicParameters
     {
         [Parameter(ParameterSetName = SetEntityCommand.SetEntityParameterSet)]
         [ValidateNotNull]

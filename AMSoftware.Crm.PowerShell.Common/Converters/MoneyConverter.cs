@@ -21,7 +21,7 @@ using Microsoft.Xrm.Sdk;
 
 namespace AMSoftware.Crm.PowerShell.Common.Converters
 {
-    public class MoneyConverter : DecimalConverter
+    public sealed class MoneyConverter : DecimalConverter
     {
         public override object ConvertFrom(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value)
         {

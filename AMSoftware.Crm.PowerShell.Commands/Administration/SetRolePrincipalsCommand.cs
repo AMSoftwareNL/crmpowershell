@@ -25,7 +25,7 @@ using AMSoftware.Crm.PowerShell.Common.Repositories;
 namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
     [Cmdlet(VerbsCommon.Set, "RolePrincipals", HelpUri = HelpUrlConstants.SetRolePrincipalsHelpUrl)]
-    public class SetRolePrincipalsCommand : CrmOrganizationCmdlet
+    public sealed class SetRolePrincipalsCommand : CrmOrganizationCmdlet
     {
         private ContentRepository _repository = new ContentRepository();
 

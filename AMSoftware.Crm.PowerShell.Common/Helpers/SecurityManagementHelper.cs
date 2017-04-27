@@ -24,7 +24,7 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace AMSoftware.Crm.PowerShell.Common.Helpers
 {
-    public class SecurityManagementHelper
+    internal sealed class SecurityManagementHelper
     {
         public static IEnumerable<Guid> GetRolesForPrincipal(ContentRepository repository, CrmPrincipalType principalType, Guid principalId)
         {

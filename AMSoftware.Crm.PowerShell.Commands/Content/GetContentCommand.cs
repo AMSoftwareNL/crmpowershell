@@ -28,7 +28,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Content
 {
     [Cmdlet(VerbsCommon.Get, "Content", HelpUri = HelpUrlConstants.GetContentHelpUrl, SupportsPaging = true, DefaultParameterSetName = GetContentForEntityByQueryParameterSet)]
     [OutputType(typeof(Entity))]
-    public class GetContentCommand : CrmOrganizationCmdlet
+    public sealed class GetContentCommand : CrmOrganizationCmdlet
     {
         private const string GetContentForEntityByIdParameterSet = "GetContentForEntityById";
         private const string GetContentForEntityByKeysParameterSet = "GetContentForEntityByKeys";
@@ -59,6 +59,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Content
         [ValidateNotNull]
         public Hashtable Order { get; set; }
 
+        [Parameter(ParameterSetName = GetContentForEntityByIdParameterSet)]
+        [Parameter(ParameterSetName = GetContentForEntityByKeysParameterSet)]
+        public Hashtable RelatedEntities { get; set; }
+
         [Parameter(ValueFromRemainingArguments = true, ParameterSetName = GetContentForEntityByIdParameterSet)]
         [Parameter(ValueFromRemainingArguments = true, ParameterSetName = GetContentForEntityByQueryParameterSet)]
         [Parameter(ValueFromRemainingArguments = true, ParameterSetName = GetContentForEntityByKeysParameterSet)]
@@ -75,10 +79,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Content
             switch (this.ParameterSetName)
             {
                 case GetContentForEntityByIdParameterSet:
-                    WriteObject(_repository.Get(Entity, Id, Columns), false);
+                    WriteObject(_repository.Get(Entity, Id, Columns, RelatedEntities), false);
                     break;
                 case GetContentForEntityByKeysParameterSet:
-                    WriteObject(_repository.Get(Entity, Keys, Columns), false);
+                    WriteObject(_repository.Get(Entity, Keys, Columns, RelatedEntities), false);
                     break;
                 case GetContentForEntityByQueryParameterSet:
                     QueryBase queryFromQuery = null;

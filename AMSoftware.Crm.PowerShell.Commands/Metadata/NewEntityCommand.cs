@@ -27,7 +27,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 {
     [Cmdlet(VerbsCommon.New, "Entity", HelpUri = HelpUrlConstants.NewEntityHelpUrl, DefaultParameterSetName = NewEntityByInputObjectParameterSet)]
     [OutputType(typeof(EntityMetadata))]
-    public class NewEntityCommand : CrmOrganizationCmdlet, IDynamicParameters
+    public sealed class NewEntityCommand : CrmOrganizationCmdlet, IDynamicParameters
     {
         internal const string NewEntityParameterSet = "NewEntity";
         internal const string NewEntityByInputObjectParameterSet = "NewEntityByInputObject";
@@ -307,7 +307,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         }
     }
 
-    public class NewEntityDynamicParameters2013 : NewEntityDynamicParameters
+    public sealed class NewEntityDynamicParameters2013 : NewEntityDynamicParameters
     {
         [Parameter(ParameterSetName = NewEntityCommand.NewEntityParameterSet)]
         [ValidateNotNull]
@@ -337,7 +337,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         }
     }
 
-    public class NewEntityDynamicParameters2016 : NewEntityDynamicParameters
+    public sealed class NewEntityDynamicParameters2016 : NewEntityDynamicParameters
     {
         [Parameter(ParameterSetName = NewEntityCommand.NewEntityParameterSet)]
         [ValidateNotNull]

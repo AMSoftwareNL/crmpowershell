@@ -23,7 +23,7 @@ Test-CrmSolution [[-Solution] <Guid>] [-Uninstall]
 
 ### TestMissingSolution
 ```
-Test-CrmSolution [-Path] <String>
+Test-CrmSolution [-LiteralPath] <String>
 ```
 
 ## DESCRIPTION
@@ -55,13 +55,13 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Path
-{{Fill Path Description}}
+### -LiteralPath
+{{Fill LiteralPath Description}}
 
 ```yaml
 Type: String
 Parameter Sets: TestMissingSolution
-Aliases: 
+Aliases: PSPath, Path
 
 Required: True
 Position: 1

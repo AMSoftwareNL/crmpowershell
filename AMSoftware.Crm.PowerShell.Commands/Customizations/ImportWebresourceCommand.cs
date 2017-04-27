@@ -24,7 +24,7 @@ using Microsoft.Xrm.Sdk;
 namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
     [Cmdlet(VerbsData.Import, "Webresource", HelpUri = HelpUrlConstants.ImportWebresourceHelpUrl)]
-    public class ImportWebresourceCommand : CrmOrganizationCmdlet, IDynamicParameters
+    public sealed class ImportWebresourceCommand : CrmOrganizationCmdlet, IDynamicParameters
     {
         internal const string ImportWebresourceFromValueParameterSet = "ImportWebresourceFromValue";
         internal const string ImportWebresourceFromPathParameterSet = "ImportWebresourceFromPath";
@@ -41,8 +41,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
         public byte[] Value { get; set; }
 
         [Parameter(Mandatory = true, ParameterSetName = ImportWebresourceFromPathParameterSet)]
+        [Alias("PSPath", "Path")]
         [ValidateNotNullOrEmpty]
-        public string Path { get; set; }
+        public string LiteralPath { get; set; }
 
         public object GetDynamicParameters()
         {
@@ -62,7 +63,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
                     webresource.Attributes["content"] = contentAsBase64;
                     break;
                 case ImportWebresourceFromPathParameterSet:
-                    FileContentReaderWriter fcrw = new FileContentReaderWriter(Path, _contentParameters.EncodingType, _contentParameters.UsingByteEncoding);
+                    FileContentReaderWriter fcrw = new FileContentReaderWriter(LiteralPath, _contentParameters.EncodingType, _contentParameters.UsingByteEncoding);
                     byte[] fileAsBytes = fcrw.ReadAsBytes();
                     string fileContentAsBase64 = Convert.ToBase64String(fileAsBytes);
                     webresource.Attributes["content"] = fileContentAsBase64;

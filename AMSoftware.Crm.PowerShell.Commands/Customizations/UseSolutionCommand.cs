@@ -25,7 +25,7 @@ using Microsoft.Xrm.Sdk;
 namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
     [Cmdlet(VerbsOther.Use, "Solution", HelpUri = HelpUrlConstants.UseSolutionHelpUrl)]
-    public class UseSolutionCommand : CrmOrganizationCmdlet
+    public sealed class UseSolutionCommand : CrmOrganizationCmdlet
     {
         private ContentRepository _repository = new ContentRepository();
 

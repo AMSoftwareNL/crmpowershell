@@ -24,7 +24,7 @@ using System.Threading.Tasks;
 
 namespace AMSoftware.Crm.PowerShell.Commands
 {
-    internal class FileContentReaderWriter
+    internal sealed class FileContentReaderWriter
     {
         public string Path { get; private set; }
         public Encoding FileEncoding { get; private set; }

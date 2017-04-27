@@ -26,7 +26,7 @@ using Microsoft.Xrm.Sdk.Metadata;
 
 namespace AMSoftware.Crm.PowerShell.Common.Helpers
 {
-    public class SolutionManagementHelper
+    internal sealed class SolutionManagementHelper
     {
         public static string GetSolutionUniqueName(ContentRepository repository, Guid id, bool managed)
         {

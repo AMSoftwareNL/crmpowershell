@@ -25,7 +25,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
     [Cmdlet(VerbsDiagnostic.Test, "SolutionComponent", HelpUri = HelpUrlConstants.TestSolutionComponentHelpUrl)]
     [OutputType(typeof(Entity))]
-    public class TestSolutionComponentCommand : CrmOrganizationCmdlet
+    public sealed class TestSolutionComponentCommand : CrmOrganizationCmdlet
     {
         private const string TestDeleteSolutionComponentEntityParameterSet = "TestDeleteSolutionComponentEntity";
         private const string TestDependenciesSolutionComponentEntityParameterSet = "TestDependenciesSolutionComponentEntity";

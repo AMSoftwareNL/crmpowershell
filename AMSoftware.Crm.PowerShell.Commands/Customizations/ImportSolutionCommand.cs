@@ -24,15 +24,38 @@ using Microsoft.Xrm.Sdk;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
-    [Cmdlet(VerbsData.Import, "Solution", HelpUri = HelpUrlConstants.ImportSolutionHelpUrl, SupportsShouldProcess = true)]
+    [Cmdlet(VerbsData.Import, "Solution", HelpUri = HelpUrlConstants.ImportSolutionHelpUrl, SupportsShouldProcess = true, DefaultParameterSetName = ImportSolutionFromPathParameterSet)]
     [OutputType(typeof(Entity))]
-    public class ImportSolutionCommand : CrmOrganizationActionCmdlet
+    public sealed class ImportSolutionCommand : CrmOrganizationActionCmdlet
     {
+        private const string ImportSolutionFromLiteralPathParameterSet = "ImportSolutionFromLiteralPath";
+        private const string ImportSolutionFromPathParameterSet = "ImportSolutionFromPath";
+
         private ContentRepository _repository = new ContentRepository();
 
-        [Parameter(Mandatory = true, Position = 1)]
+        private string[] _paths;
+        private bool _shouldExpandWildcards;
+
+        [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = false, ValueFromPipelineByPropertyName = true, ParameterSetName = ImportSolutionFromLiteralPathParameterSet)]
+        [Alias("PSPath")]
         [ValidateNotNullOrEmpty]
-        public string Path { get; set; }
+        public string[] LiteralPath
+        {
+            get { return _paths; }
+            set { _paths = value; }
+        }
+
+        [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true, ParameterSetName = ImportSolutionFromPathParameterSet)]
+        [ValidateNotNullOrEmpty]
+        public string[] Path
+        {
+            get { return _paths; }
+            set
+            {
+                _shouldExpandWildcards = true;
+                _paths = value;
+            }
+        }
 
         [Parameter]
         public SwitchParameter ConvertToManaged { get; set; }
@@ -50,23 +73,25 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
         {
             base.ExecuteCmdlet();
 
-            byte[] content = File.ReadAllBytes(Path);
-
-            ExecuteAction(Path, delegate
+            foreach (string fullPath in ResolvePaths(_paths, _shouldExpandWildcards))
             {
-                Guid importjobid = Guid.NewGuid();
+                byte[] content = File.ReadAllBytes(fullPath);
 
-                _repository.Execute("ImportSolution", new Hashtable() {
-                    { "CustomizationFile", content },
-                    { "ImportJobId", importjobid },
-                    { "ConvertToManaged", ConvertToManaged.ToBool() },
-                    { "OverwriteUnmanagedCustomizations", Overwrite.ToBool() },
-                    { "PublishWorkflows", PublishWorkflows.ToBool() },
-                    { "SkipProductUpdateDependencies", SkipDependencies.ToBool() }
+                ExecuteAction(fullPath, delegate
+                {
+                    Guid importjobid = Guid.NewGuid();
+                    _repository.Execute("ImportSolution", new Hashtable() {
+                        { "CustomizationFile", content },
+                        { "ImportJobId", importjobid },
+                        { "ConvertToManaged", ConvertToManaged.ToBool() },
+                        { "OverwriteUnmanagedCustomizations", Overwrite.ToBool() },
+                        { "PublishWorkflows", PublishWorkflows.ToBool() },
+                        { "SkipProductUpdateDependencies", SkipDependencies.ToBool() }
+                    });
+
+                    WriteObject(_repository.Get("importjob", importjobid));
                 });
-
-                WriteObject(_repository.Get("importjob", importjobid));
-            });
+            }
         }
     }
 }

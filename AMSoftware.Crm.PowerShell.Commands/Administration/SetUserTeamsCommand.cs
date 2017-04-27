@@ -24,7 +24,7 @@ using AMSoftware.Crm.PowerShell.Common.Repositories;
 namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
     [Cmdlet(VerbsCommon.Set, "UserTeams", HelpUri = HelpUrlConstants.SetUserTeamsHelpUrl)]
-    public class SetUserTeamsCommand : CrmOrganizationCmdlet
+    public sealed class SetUserTeamsCommand : CrmOrganizationCmdlet
     {
         private ContentRepository _repository = new ContentRepository();
 

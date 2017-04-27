@@ -24,7 +24,7 @@ using Microsoft.Xrm.Sdk.Metadata;
 namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 {
     [Cmdlet(VerbsCommon.Set, "Relationship", HelpUri = HelpUrlConstants.SetRelationshipHelpUrl)]
-    public class SetRelationshipCommand : CrmOrganizationCmdlet
+    public sealed class SetRelationshipCommand : CrmOrganizationCmdlet, IDynamicParameters
     {
         private const string SetRelationshipParameterSet = "SetRelationship";
         private const string SetRelationshipByInputObjectParameterSet = "SetRelationshipByInputObject";
@@ -89,14 +89,14 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         }
     }
 
-    public class SetRelationshipDynamicParameters
+    public abstract class SetRelationshipDynamicParameters
     {
         internal protected virtual void SetParametersOnRelationship(RelationshipMetadataBase relationship)
         {
         }
     }
 
-    public class SetRelationshipDynamicParameters2016 : SetRelationshipDynamicParameters
+    public sealed class SetRelationshipDynamicParameters2016 : SetRelationshipDynamicParameters
     {
         [Parameter, ValidateNotNull]
         public bool? IsHierarchical { get; set; }

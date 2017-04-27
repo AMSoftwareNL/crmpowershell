@@ -26,7 +26,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
     [Cmdlet(VerbsCommon.Get, "BusinessUnit", HelpUri = HelpUrlConstants.GetBusinessUnitHelpUrl, SupportsPaging = true, DefaultParameterSetName = GetAllBusinessUnitsParameterSet)]
     [OutputType(typeof(Entity))]
-    public class GetBusinessUnitCommand : CrmOrganizationCmdlet
+    public sealed class GetBusinessUnitCommand : CrmOrganizationCmdlet
     {
         private const string GetAllBusinessUnitsParameterSet = "GetAllBusinessUnits";
         private const string GetBusinessUnitByIdParameterSet = "GetBusinessUnitById";

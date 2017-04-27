@@ -25,7 +25,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Discovery
 {
     [Cmdlet(VerbsCommunications.Connect, "Organization", HelpUri = HelpUrlConstants.ConnectOrganizationHelpUrl)]
     [OutputType(typeof(OrganizationDetail))]
-    public class ConnectOrganizationCommand : CrmDiscoveryCmdlet
+    public sealed class ConnectOrganizationCommand : CrmDiscoveryCmdlet
     {
         private DeploymentRepository _repository = new DeploymentRepository();
 

@@ -22,7 +22,7 @@ using Microsoft.Xrm.Sdk;
 
 namespace AMSoftware.Crm.PowerShell.Common.Converters
 {
-    public class EntityConverter : TypeConverter
+    public sealed class EntityConverter : TypeConverter
     {
         public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
         {
@@ -38,6 +38,26 @@ namespace AMSoftware.Crm.PowerShell.Common.Converters
                 return ((Entity)value).Id;
             }
             
+            return base.ConvertTo(context, culture, value, destinationType);
+        }
+    }
+
+    public sealed class EntityReferenceConverter : TypeConverter
+    {
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+        {
+            if (destinationType == typeof(Guid)) return true;
+
+            return base.CanConvertTo(context, destinationType);
+        }
+
+        public override object ConvertTo(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, Type destinationType)
+        {
+            if (value != null && value is EntityReference && destinationType == typeof(Guid))
+            {
+                return ((EntityReference)value).Id;
+            }
+
             return base.ConvertTo(context, culture, value, destinationType);
         }
     }

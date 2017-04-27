@@ -25,7 +25,7 @@ using Microsoft.Xrm.Sdk;
 namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
     [Cmdlet(VerbsData.Export, "Webresource", HelpUri = HelpUrlConstants.ExportWebresourceHelpUrl)]
-    public class ExportWebresourceCommand : CrmOrganizationCmdlet, IDynamicParameters
+    public sealed class ExportWebresourceCommand : CrmOrganizationCmdlet, IDynamicParameters
     {
         private ContentRepository _repository = new ContentRepository();
         private ExportWebresourceDynamicParameters _contentParameters = new ExportWebresourceDynamicParameters();
@@ -59,7 +59,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
         }
     }
 
-    public class ExportWebresourceDynamicParameters : FileContentDynamicsParameters
+    public sealed class ExportWebresourceDynamicParameters : FileContentDynamicsParameters
     {
         [Parameter]
         public FileSystemCmdletProviderEncoding Encoding

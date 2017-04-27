@@ -28,7 +28,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
     [Cmdlet(VerbsCommon.Get, "SolutionComponent", HelpUri = HelpUrlConstants.GetSolutionComponentHelpUrl, SupportsPaging = true, DefaultParameterSetName = GetSolutionComponentSimpleParameterSet)]
     [OutputType(typeof(Entity))]
-    public class GetSolutionComponentCommand : CrmOrganizationCmdlet
+    public sealed class GetSolutionComponentCommand : CrmOrganizationCmdlet
     {
         private const string GetSolutionComponentSimpleParameterSet = "GetSolutionComponentSimple";
         private const string GetSolutionComponentAdvancedParameterSet = "GetSolutionComponentAdvanced";

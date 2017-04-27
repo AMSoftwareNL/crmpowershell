@@ -26,7 +26,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
     [Cmdlet(VerbsCommon.New, "Webresource", HelpUri = HelpUrlConstants.NewWebresourceHelpUrl, DefaultParameterSetName = NewWebresourceFromContentParameterSet)]
     [OutputType(typeof(Entity))]
-    public class NewWebresourceCommand : CrmOrganizationCmdlet, IDynamicParameters
+    public sealed class NewWebresourceCommand : CrmOrganizationCmdlet, IDynamicParameters
     {
         internal const string NewWebresourceFromContentParameterSet = "NewWebresourceFromContent";
         internal const string NewWebresourceFromPathParameterSet = "NewWebresourceFromPath";
@@ -55,8 +55,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
         public byte[] Content { get; set; }
 
         [Parameter(Mandatory = true, ParameterSetName = NewWebresourceFromPathParameterSet)]
+        [Alias("PSPath", "Path")]
         [ValidateNotNullOrEmpty]
-        public string Path { get; set; }
+        public string LiteralPath { get; set; }
 
         [Parameter]
         [ValidateNotNull]
@@ -87,7 +88,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
                     newWebResource.Attributes.Add("content", contentAsBase64);
                     break;
                 case NewWebresourceFromPathParameterSet:
-                    FileContentReaderWriter fcrw = new FileContentReaderWriter(Path, _contentParameters.EncodingType, _contentParameters.UsingByteEncoding);
+                    FileContentReaderWriter fcrw = new FileContentReaderWriter(LiteralPath, _contentParameters.EncodingType, _contentParameters.UsingByteEncoding);
                     byte[] fileAsBytes = fcrw.ReadAsBytes();
                     string fileContentAsBase64 = Convert.ToBase64String(fileAsBytes);
                     newWebResource.Attributes.Add("content", fileContentAsBase64);
@@ -130,7 +131,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
         }
     }
 
-    public class NewWebresourceDynamicParameters : FileContentDynamicsParameters
+    public sealed class NewWebresourceDynamicParameters : FileContentDynamicsParameters
     {
         [Parameter(ParameterSetName = NewWebresourceCommand.NewWebresourceFromPathParameterSet)]
         public FileSystemCmdletProviderEncoding Encoding

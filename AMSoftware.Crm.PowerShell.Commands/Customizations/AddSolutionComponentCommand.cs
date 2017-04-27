@@ -26,7 +26,7 @@ using Microsoft.Xrm.Sdk;
 namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
     [Cmdlet(VerbsCommon.Add, "SolutionComponent", HelpUri = HelpUrlConstants.AddSolutionComponentHelpUrl)]
-    public class AddSolutionComponentCommand : CrmOrganizationCmdlet, IDynamicParameters
+    public sealed class AddSolutionComponentCommand : CrmOrganizationCmdlet, IDynamicParameters
     {
         private const string AddSolutionComponentSimpleParameterSet = "AddSolutionComponentSimple";
         private const string AddSolutionComponentAdvancedParameterSet = "AddSolutionComponentAdvanced";
@@ -120,7 +120,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
         }
     }
 
-    public class AddSolutionComponentDynamicParameters2016 : AddSolutionComponentDynamicParameters
+    public sealed class AddSolutionComponentDynamicParameters2016 : AddSolutionComponentDynamicParameters
     {
         [Parameter]
         public SwitchParameter ExcludeSubComponents { get; set; }

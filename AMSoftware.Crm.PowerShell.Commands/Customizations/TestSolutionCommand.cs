@@ -27,7 +27,7 @@ using Microsoft.Xrm.Sdk;
 namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
     [Cmdlet(VerbsDiagnostic.Test, "Solution", HelpUri = HelpUrlConstants.TestSolutionHelpUrl)]
-    public class TestSolutionCommand : CrmOrganizationCmdlet
+    public sealed class TestSolutionCommand : CrmOrganizationCmdlet
     {
         private const string TestUninstallSolutionParameterSet = "TestUninstallSolution";
         private const string TestDependenciesSolutionParameterSet = "TestDependenciesSolution";
@@ -41,8 +41,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
         public Guid Solution { get; set; }
 
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = TestMissingSolutionParameterSet)]
+        [Alias("PSPath", "Path")]
         [ValidateNotNullOrEmpty]
-        public string Path { get; set; }
+        public string LiteralPath { get; set; }
 
         [Parameter(Mandatory=true, ParameterSetName=TestUninstallSolutionParameterSet)]
         public SwitchParameter Uninstall { get; set; }
@@ -65,7 +66,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
                     ExecuteTestDependencies(solutionUniqueName2);
                     break;
                 case TestMissingSolutionParameterSet:
-                    byte[] content = File.ReadAllBytes(Path);
+                    byte[] content = File.ReadAllBytes(LiteralPath);
                     ExecuteTestMissing(content);
                     break;
                 default:

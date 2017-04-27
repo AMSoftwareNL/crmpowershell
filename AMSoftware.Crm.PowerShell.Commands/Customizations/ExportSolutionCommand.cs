@@ -27,7 +27,7 @@ using Microsoft.Xrm.Sdk;
 namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
     [Cmdlet(VerbsData.Export, "Solution", HelpUri = HelpUrlConstants.ExportSolutionHelpUrl)]
-    public class ExportSolutionCommand : CrmOrganizationCmdlet, IDynamicParameters
+    public sealed class ExportSolutionCommand : CrmOrganizationCmdlet, IDynamicParameters
     {
         private ContentRepository _repository = new ContentRepository();
         private ExportSolutionDynamicParameters _context;
@@ -110,14 +110,14 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
         }
     }
 
-    public class ExportSolutionDynamicParameters
+    public abstract class ExportSolutionDynamicParameters
     {
         internal protected virtual void SetParametersOnRequest(Hashtable requestParameters)
         {
         }
     }
 
-    public class ExportSolutionDynamicParameters2015 : ExportSolutionDynamicParameters
+    public sealed class ExportSolutionDynamicParameters2015 : ExportSolutionDynamicParameters
     {
         [Parameter]
         [ValidateNotNull]

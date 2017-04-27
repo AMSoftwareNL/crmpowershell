@@ -26,7 +26,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 {
     [Cmdlet(VerbsCommon.Get, "OptionSet", HelpUri = HelpUrlConstants.GetOptionSetHelpUrl, DefaultParameterSetName = GetOptionSetByFilterParameterSet)]
     [OutputType(typeof(OptionSetMetadataBase))]
-    public class GetOptionSetCommand : CrmOrganizationCmdlet
+    public sealed class GetOptionSetCommand : CrmOrganizationCmdlet
     {
         private const string GetOptionSetByNameParameterSet = "GetOptionSetByName";
         private const string GetOptionSetByIdParameterSet = "GetOptionSetById";

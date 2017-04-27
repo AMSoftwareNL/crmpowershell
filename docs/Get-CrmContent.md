@@ -19,14 +19,14 @@ Get-CrmContent [-Entity] <String> [[-Query] <Hashtable>] [[-Order] <Hashtable>] 
 
 ### GetContentForEntityById
 ```
-Get-CrmContent [-Entity] <String> [-Id] <Guid> [-Columns <String[]>] [-IncludeTotalCount] [-Skip <UInt64>]
- [-First <UInt64>]
+Get-CrmContent [-Entity] <String> [-Id] <Guid> [-RelatedEntities <Hashtable>] [-Columns <String[]>]
+ [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>]
 ```
 
 ### GetContentForEntityByKeys
 ```
-Get-CrmContent [-Entity] <String> [-Keys] <Hashtable> [-Columns <String[]>] [-IncludeTotalCount]
- [-Skip <UInt64>] [-First <UInt64>]
+Get-CrmContent [-Entity] <String> [-Keys] <Hashtable> [-RelatedEntities <Hashtable>] [-Columns <String[]>]
+ [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>]
 ```
 
 ### GetContentWithFetchXml
@@ -178,6 +178,21 @@ Aliases:
 
 Required: False
 Position: 2
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -RelatedEntities
+{{Fill RelatedEntities Description}}
+
+```yaml
+Type: Hashtable
+Parameter Sets: GetContentForEntityById, GetContentForEntityByKeys
+Aliases: 
+
+Required: False
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

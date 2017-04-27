@@ -5,7 +5,6 @@ VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{596F15CE-AC31-4EF0-B3DA-836AF7A58FE0}"
 	ProjectSection(SolutionItems) = preProject
-		AMSoftware.Crm.PowerShell.Help.pshproj = AMSoftware.Crm.PowerShell.Help.pshproj
 		AMSoftware.Crm.Powershell.snk = AMSoftware.Crm.Powershell.snk
 	EndProjectSection
 EndProject

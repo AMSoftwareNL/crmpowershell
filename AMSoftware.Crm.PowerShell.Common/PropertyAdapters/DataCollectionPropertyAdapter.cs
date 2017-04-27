@@ -123,12 +123,12 @@ namespace AMSoftware.Crm.PowerShell.Common.PropertyAdapters
         }
     }
 
-    public class AttributeCollectionPropertyAdapter : DataCollectionPropertyAdapter<object>
+    public sealed class AttributeCollectionPropertyAdapter : DataCollectionPropertyAdapter<object>
     {
 
     }
 
-    public class FormattedValueCollectionPropertyAdapter : DataCollectionPropertyAdapter<string>
+    public sealed class FormattedValueCollectionPropertyAdapter : DataCollectionPropertyAdapter<string>
     {
         protected override bool IsReadOnly
         {
@@ -139,7 +139,7 @@ namespace AMSoftware.Crm.PowerShell.Common.PropertyAdapters
         }
     }
 
-    public class KeyAttributeCollectionPropertyAdapter : DataCollectionPropertyAdapter<object>
+    public sealed class KeyAttributeCollectionPropertyAdapter : DataCollectionPropertyAdapter<object>
     {
 
     }

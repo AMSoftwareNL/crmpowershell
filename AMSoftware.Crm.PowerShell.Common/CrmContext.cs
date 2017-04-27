@@ -27,7 +27,7 @@ using Microsoft.Crm.Sdk.Messages;
 
 namespace AMSoftware.Crm.PowerShell.Common
 {
-    public static class CrmContext
+    internal static class CrmContext
     {
         static CrmContext()
         {

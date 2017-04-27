@@ -26,7 +26,7 @@ using Microsoft.Xrm.Sdk;
 namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
     [Cmdlet(VerbsCommon.Remove, "SolutionComponent", HelpUri = HelpUrlConstants.RemoveSolutionComponentHelpUrl)]
-    public class RemoveSolutionComponentCommand : CrmOrganizationCmdlet
+    public sealed class RemoveSolutionComponentCommand : CrmOrganizationCmdlet
     {
         private const string RemoveSolutionComponentSimpleParameterSet = "RemoveSolutionComponentSimple";
         private const string RemoveSolutionComponentAdvancedParameterSet = "RemoveSolutionComponentAdvanced";

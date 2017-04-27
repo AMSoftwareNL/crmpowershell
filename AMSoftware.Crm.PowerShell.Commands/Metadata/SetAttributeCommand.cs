@@ -27,7 +27,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 {
     public abstract class SetAttributeCommandBase : CrmOrganizationCmdlet, IDynamicParameters
     {
-        protected MetadataRepository _repository = new MetadataRepository();
+        private MetadataRepository _repository = new MetadataRepository();
         private SetAttributeDynamicParameters _context;
 
         [Parameter(Mandatory = true, Position = 1)]
@@ -82,7 +82,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
             }
             else
             {
-                _context = new SetAttributeDynamicParameters();
+                _context = null;
             }
             return _context;
         }
@@ -119,7 +119,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
     }
 
     [Cmdlet(VerbsCommon.Set, "Attribute", HelpUri = HelpUrlConstants.SetAttributeHelpUrl)]
-    public class SetAttributeCommand : CrmOrganizationCmdlet
+    public sealed class SetAttributeCommand : CrmOrganizationCmdlet
     {
         private MetadataRepository _repository = new MetadataRepository();
 
@@ -140,7 +140,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
     }
 
     [Cmdlet(VerbsCommon.Set, "StringAttribute", HelpUri = HelpUrlConstants.SetStringAttributeHelpUrl)]
-    public class SetStringAttributeCommand : SetAttributeCommandBase
+    public sealed class SetStringAttributeCommand : SetAttributeCommandBase
     {
         [Parameter]
         [ValidateNotNull]
@@ -205,7 +205,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
     }
 
     [Cmdlet(VerbsCommon.Set, "MemoAttribute", HelpUri = HelpUrlConstants.SetMemoAttributeHelpUrl)]
-    public class SetMemoAttributeCommand : SetAttributeCommandBase
+    public sealed class SetMemoAttributeCommand : SetAttributeCommandBase
     {
         [Parameter]
         [ValidateNotNull]
@@ -239,7 +239,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
     }
 
     [Cmdlet(VerbsCommon.Set, "IntegerAttribute", HelpUri = HelpUrlConstants.SetIntegerAttributeHelpUrl)]
-    public class SetIntegerAttributeCommand : SetAttributeCommandBase
+    public sealed class SetIntegerAttributeCommand : SetAttributeCommandBase
     {
         [Parameter]
         [ValidateNotNull]
@@ -281,7 +281,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
     }
 
     [Cmdlet(VerbsCommon.Set, "BigIntAttribute", HelpUri = HelpUrlConstants.SetBigIntAttributeHelpUrl)]
-    public class SetBigIntAttributeCommand : SetAttributeCommandBase
+    public sealed class SetBigIntAttributeCommand : SetAttributeCommandBase
     {
         protected override void ExecuteCmdlet()
         {
@@ -294,7 +294,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
     }
 
     [Cmdlet(VerbsCommon.Set, "DecimalAttribute", HelpUri = HelpUrlConstants.SetDecimalAttributeHelpUrl)]
-    public class SetDecimalAttributeCommand : SetAttributeCommandBase
+    public sealed class SetDecimalAttributeCommand : SetAttributeCommandBase
     {
         [Parameter]
         [ValidateNotNull]
@@ -337,7 +337,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
     }
 
     [Cmdlet(VerbsCommon.Set, "DoubleAttribute", HelpUri = HelpUrlConstants.SetDoubleAttributeHelpUrl)]
-    public class SetDoubleAttributeCommand : SetAttributeCommandBase
+    public sealed class SetDoubleAttributeCommand : SetAttributeCommandBase
     {
         [Parameter]
         [ValidateNotNull]
@@ -385,7 +385,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
     }
 
     [Cmdlet(VerbsCommon.Set, "MoneyAttribute", HelpUri = HelpUrlConstants.SetMoneyAttributeHelpUrl)]
-    public class SetMoneyAttributeCommand : SetAttributeCommandBase
+    public sealed class SetMoneyAttributeCommand : SetAttributeCommandBase
     {
         [Parameter]
         [ValidateNotNull]
@@ -445,7 +445,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
     }
 
     [Cmdlet(VerbsCommon.Set, "DateTimeAttribute", HelpUri = HelpUrlConstants.SetDateTimeAttributeHelpUrl)]
-    public class SetDateTimeAttributeCommand : SetAttributeCommandBase
+    public sealed class SetDateTimeAttributeCommand : SetAttributeCommandBase
     {
         [Parameter]
         [ValidateNotNull]
@@ -499,7 +499,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
     }
 
     [Cmdlet(VerbsCommon.Set, "BooleanAttribute", HelpUri = HelpUrlConstants.SetBooleanAttributeHelpUrl)]
-    public class SetBooleanAttributeCommand : SetAttributeCommandBase
+    public sealed class SetBooleanAttributeCommand : SetAttributeCommandBase
     {
         [Parameter]
         [ValidateNotNull]
@@ -528,7 +528,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
     }
 
     [Cmdlet(VerbsCommon.Set, "OptionSetAttribute", HelpUri = HelpUrlConstants.SetOptionSetAttributeHelpUrl)]
-    public class SetOptionSetAttributeCommand : AddAttributeCommandBase
+    public sealed class SetOptionSetAttributeCommand : AddAttributeCommandBase
     {
         [Parameter]
         [ValidateNotNull]
@@ -546,7 +546,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
     }
 
     [Cmdlet(VerbsCommon.Set, "ImageAttribute", HelpUri = HelpUrlConstants.SetImageAttributeHelpUrl)]
-    public class SetImageAttributeCommand : SetAttributeCommandBase
+    public sealed class SetImageAttributeCommand : SetAttributeCommandBase
     {
         protected override void BeginProcessing()
         {
@@ -567,14 +567,14 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         }
     }
 
-    public class SetAttributeDynamicParameters
+    public abstract class SetAttributeDynamicParameters
     {
         internal protected virtual void SetParametersOnAttribute(AttributeMetadata attribute)
         {
         }
     }
 
-    public class SetAttributeDynamicParameters2016 : SetAttributeDynamicParameters
+    public sealed class SetAttributeDynamicParameters2016 : SetAttributeDynamicParameters
     {
         [Parameter]
         [ValidateNotNull]

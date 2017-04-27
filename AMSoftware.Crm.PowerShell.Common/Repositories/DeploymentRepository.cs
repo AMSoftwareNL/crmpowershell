@@ -22,7 +22,7 @@ using Microsoft.Xrm.Sdk.Discovery;
 
 namespace AMSoftware.Crm.PowerShell.Common.Repositories
 {
-    public sealed class DeploymentRepository
+    internal sealed class DeploymentRepository
     {
         public IEnumerable<OrganizationDetail> GetOrganization()
         {

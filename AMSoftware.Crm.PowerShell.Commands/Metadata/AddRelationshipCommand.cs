@@ -26,7 +26,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 {
     [Cmdlet(VerbsCommon.Add, "Relationship", HelpUri = HelpUrlConstants.AddRelationshipHelpUrl)]
     [OutputType(typeof(RelationshipMetadataBase))]
-    public class AddRelationshipCommand : CrmOrganizationCmdlet, IDynamicParameters
+    public sealed class AddRelationshipCommand : CrmOrganizationCmdlet, IDynamicParameters
     {
         private const string AddOneToManyRelationshipParameterSet = "AddOneToManyRelationship";
         private const string AddManyToManyRelationsipParameterSet = "AddManyToManyRelationship";
@@ -151,14 +151,14 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         }
     }
 
-    public class AddRelationshipDynamicParameters
+    public abstract class AddRelationshipDynamicParameters
     {
         internal protected virtual void SetParametersOnRelationship(RelationshipMetadataBase relationship)
         {
         }
     }
 
-    public class AddRelationshipDynamicParameters2016 : AddRelationshipDynamicParameters
+    public sealed class AddRelationshipDynamicParameters2016 : AddRelationshipDynamicParameters
     {
         [Parameter, ValidateNotNull]
         public bool? IsHierarchical { get; set; }

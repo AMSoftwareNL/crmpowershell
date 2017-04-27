@@ -21,7 +21,7 @@ using AMSoftware.Crm.PowerShell.Common.Repositories;
 namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 {
     [Cmdlet(VerbsCommon.Remove, "OptionSet", HelpUri = HelpUrlConstants.RemoveOptionSetHelpUrl, SupportsShouldProcess = true)]
-    public class RemoveOptionSetCommand : CrmOrganizationConfirmActionCmdlet
+    public sealed class RemoveOptionSetCommand : CrmOrganizationConfirmActionCmdlet
     {
         private MetadataRepository _repository = new MetadataRepository();
 

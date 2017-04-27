@@ -24,33 +24,59 @@ using Microsoft.Xrm.Sdk;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
-    [Cmdlet(VerbsData.Import, "Translation", HelpUri = HelpUrlConstants.ImportTranslationHelpUrl, SupportsShouldProcess = true)]
+    [Cmdlet(VerbsData.Import, "Translation", HelpUri = HelpUrlConstants.ImportTranslationHelpUrl, SupportsShouldProcess = true, DefaultParameterSetName = ImportTranslationFromPathParameterSet)]
     [OutputType(typeof(Entity))]
-    public class ImportTranslationCommand : CrmOrganizationActionCmdlet
+    public sealed class ImportTranslationCommand : CrmOrganizationActionCmdlet
     {
+        private const string ImportTranslationFromLiteralPathParameterSet = "ImportTranslationFromLiteralPath";
+        private const string ImportTranslationFromPathParameterSet = "ImportTranslationFromPath";
+
         private ContentRepository _repository = new ContentRepository();
 
-        [Parameter(Mandatory = true, Position = 1)]
+        private string[] _paths;
+        private bool _shouldExpandWildcards;
+
+        [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = false, ValueFromPipelineByPropertyName = true, ParameterSetName = ImportTranslationFromLiteralPathParameterSet)]
+        [Alias("PSPath")]
         [ValidateNotNullOrEmpty]
-        public string Path { get; set; }
+        public string[] LiteralPath
+        {
+            get { return _paths; }
+            set { _paths = value; }
+        }
+
+        [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true, ParameterSetName = ImportTranslationFromPathParameterSet)]
+        [ValidateNotNullOrEmpty]
+        public string[] Path
+        {
+            get { return _paths; }
+            set
+            {
+                _shouldExpandWildcards = true;
+                _paths = value;
+            }
+        }
 
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
 
-            byte[] content = File.ReadAllBytes(Path);
-
-            ExecuteAction(Path, delegate
+            foreach (string fullPath in ResolvePaths(_paths, _shouldExpandWildcards))
             {
-                Guid importjobid = Guid.NewGuid(); 
-                
-                _repository.Execute("ImportTranslation", new Hashtable() {
-                    { "TranslationFile", content },
-                    { "ImportJobId", importjobid }
-                });
+                byte[] content = File.ReadAllBytes(fullPath);
 
-                WriteObject(_repository.Get("importjob", importjobid));
-            });
+                ExecuteAction(fullPath, delegate
+                {
+                    Guid importjobid = Guid.NewGuid();
+
+                    _repository.Execute("ImportTranslation", new Hashtable() {
+                        { "TranslationFile", content },
+                        { "ImportJobId", importjobid }
+                    });
+
+                    WriteObject(_repository.Get("importjob", importjobid));
+                });
+            }
         }
     }
 }

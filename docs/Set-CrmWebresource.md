@@ -24,7 +24,7 @@ Set-CrmWebresource [-Id] <Guid> [-DisplayName <String>] [-Description <String>] 
 
 ### SetWebresourceFromPath
 ```
-Set-CrmWebresource [-Id] <Guid> [-DisplayName <String>] [-Description <String>] [-Path <String>]
+Set-CrmWebresource [-Id] <Guid> [-DisplayName <String>] [-Description <String>] [-LiteralPath <String>]
  [-IsCustomizable <Boolean>] [-Encoding <FileSystemCmdletProviderEncoding>]
 ```
 
@@ -133,13 +133,13 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Path
-{{Fill Path Description}}
+### -LiteralPath
+{{Fill LiteralPath Description}}
 
 ```yaml
 Type: String
 Parameter Sets: SetWebresourceFromPath
-Aliases: 
+Aliases: PSPath, Path
 
 Required: False
 Position: Named

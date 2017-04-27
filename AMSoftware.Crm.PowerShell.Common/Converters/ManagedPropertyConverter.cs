@@ -23,7 +23,7 @@ using Microsoft.Xrm.Sdk.Metadata;
 
 namespace AMSoftware.Crm.PowerShell.Common.Converters
 {
-    public class ManagedPropertyConverter : PSTypeConverter
+    public sealed class ManagedPropertyConverter : PSTypeConverter
     {
         public override bool CanConvertFrom(object sourceValue, Type destinationType)
         {

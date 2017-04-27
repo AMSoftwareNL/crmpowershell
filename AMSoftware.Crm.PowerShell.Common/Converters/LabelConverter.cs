@@ -22,7 +22,7 @@ using System.Linq;
 
 namespace AMSoftware.Crm.PowerShell.Common.Converters
 {
-    public class LabelConverter : StringConverter
+    public sealed class LabelConverter : StringConverter
     {
         public override object ConvertFrom(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value)
         {

@@ -26,7 +26,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
     [Cmdlet(VerbsCommon.Get, "Process", HelpUri = HelpUrlConstants.GetProcessHelpUrl, SupportsPaging = true, DefaultParameterSetName = GetAllProcessesParameterSet)]
     [OutputType(typeof(Entity))]
-    public class GetProcessCommand : CrmOrganizationCmdlet
+    public sealed class GetProcessCommand : CrmOrganizationCmdlet
     {
         private const string GetAllProcessesParameterSet = "GetAllProcesses";
         private const string GetProcessByNameParameterSet = "GetProcessByName";

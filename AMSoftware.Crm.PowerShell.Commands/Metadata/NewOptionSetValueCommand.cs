@@ -22,7 +22,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 {
     [Cmdlet(VerbsCommon.New, "OptionSetValue", HelpUri = HelpUrlConstants.NewOptionSetValueHelpUrl)]
     [OutputType(typeof(PSOptionSetValue))]
-    public class NewOptionSetValueCommand : CrmCmdlet
+    public sealed class NewOptionSetValueCommand : CrmCmdlet
     {
         [Parameter(Position = 1, Mandatory = true)]
         [ValidateNotNullOrEmpty]

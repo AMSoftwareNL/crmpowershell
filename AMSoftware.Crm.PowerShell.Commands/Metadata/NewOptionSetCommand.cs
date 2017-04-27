@@ -27,7 +27,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 {
     [Cmdlet(VerbsCommon.New, "OptionSet", HelpUri = HelpUrlConstants.NewOptionSetHelpUrl)]
     [OutputType(typeof(OptionSetMetadata))]
-    public class NewOptionSetCommand : CrmOrganizationCmdlet
+    public sealed class NewOptionSetCommand : CrmOrganizationCmdlet
     {
         private const string NewOptionSetParameterSet = "NewOptionSet";
         private const string NewOptionSetByInputObjectParameterSet = "NewOptionSetByInputObject";

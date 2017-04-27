@@ -11,24 +11,19 @@ schema: 2.0.0
 
 ## SYNTAX
 
-### TestDependenciesSolutionComponentEntity
-```
-Test-CrmSolutionComponent [[-SolutionComponent] <Entity>] [-Dependencies]
-```
-
 ### TestDeleteSolutionComponentEntity
 ```
 Test-CrmSolutionComponent [[-SolutionComponent] <Entity>] [-Delete]
 ```
 
+### TestDependenciesSolutionComponentEntity
+```
+Test-CrmSolutionComponent [[-SolutionComponent] <Entity>] [-Dependencies]
+```
+
 ### TestRequiredSolutionComponentEntity
 ```
 Test-CrmSolutionComponent [[-SolutionComponent] <Entity>] [-Required]
-```
-
-### TestDeleteSolutionComponent
-```
-Test-CrmSolutionComponent [[-ObjectId] <Guid>] [[-ComponentType] <Int32>] [-Delete]
 ```
 
 ### TestDependenciesSolutionComponent
@@ -39,6 +34,11 @@ Test-CrmSolutionComponent [[-ObjectId] <Guid>] [[-ComponentType] <Int32>] [-Depe
 ### TestRequiredSolutionComponent
 ```
 Test-CrmSolutionComponent [[-ObjectId] <Guid>] [[-ComponentType] <Int32>] [-Required]
+```
+
+### TestDeleteSolutionComponent
+```
+Test-CrmSolutionComponent [[-ObjectId] <Guid>] [[-ComponentType] <Int32>] [-Delete]
 ```
 
 ## DESCRIPTION
@@ -60,7 +60,7 @@ PS C:\> {{ Add example code here }}
 
 ```yaml
 Type: Int32
-Parameter Sets: TestDeleteSolutionComponent, TestDependenciesSolutionComponent, TestRequiredSolutionComponent
+Parameter Sets: TestDependenciesSolutionComponent, TestRequiredSolutionComponent, TestDeleteSolutionComponent
 Aliases: 
 
 Required: False
@@ -105,7 +105,7 @@ Accept wildcard characters: False
 
 ```yaml
 Type: Guid
-Parameter Sets: TestDeleteSolutionComponent, TestDependenciesSolutionComponent, TestRequiredSolutionComponent
+Parameter Sets: TestDependenciesSolutionComponent, TestRequiredSolutionComponent, TestDeleteSolutionComponent
 Aliases: 
 
 Required: False
@@ -135,7 +135,7 @@ Accept wildcard characters: False
 
 ```yaml
 Type: Entity
-Parameter Sets: TestDependenciesSolutionComponentEntity, TestDeleteSolutionComponentEntity, TestRequiredSolutionComponentEntity
+Parameter Sets: TestDeleteSolutionComponentEntity, TestDependenciesSolutionComponentEntity, TestRequiredSolutionComponentEntity
 Aliases: 
 
 Required: False

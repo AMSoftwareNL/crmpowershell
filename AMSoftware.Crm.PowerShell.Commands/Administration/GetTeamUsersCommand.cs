@@ -25,7 +25,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
     [Cmdlet(VerbsCommon.Get, "TeamUsers", HelpUri = HelpUrlConstants.GetTeamUsersHelpUrl)]
     [OutputType(typeof(Entity))]
-    public class GetTeamUsersCommand : CrmOrganizationCmdlet
+    public sealed class GetTeamUsersCommand : CrmOrganizationCmdlet
     {
         private ContentRepository _repository = new ContentRepository();
 
