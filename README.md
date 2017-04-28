@@ -24,6 +24,10 @@ Manage Business Units, Teams, Users, Roles, etc. Also manage processes like work
 
 Manage WebResources, and Translations. Manage and Publish solutions and components.
 
+**Plugin Registration**
+
+Register, update and unregister plugins, steps, images and serviceendpoints.
+
 **Supported Version**
 
 The library uses the Dynamics CRM SDK for interaction with Dynamics CRM. Dynamics CRM 2011 and up are supported.
