@@ -119,5 +119,9 @@ For on premises deployments the following form of authetnication are supported: 
 
 ## RELATED LINKS
 
+[Get-CrmOrganization](Get-CrmOrganization.md)
+
+[Connect-CrmOrganization](Get-CrmOrganization.md)
+
 [OrganizationDetail Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.discovery.organizationdetail.aspx)
 
