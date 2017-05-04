@@ -7,7 +7,7 @@ schema: 2.0.0
 # Use-CrmLanguage
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Set the active language to use in the PowerShell session.
 
 ## SYNTAX
 
@@ -16,21 +16,35 @@ Use-CrmLanguage [[-Language] <Int32>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Set the active language to use in the PowerShell session. This must be one of the installed languages in Dynamics CRM. Omit the language to return to the default (base) language of Dynamics CRM.
+
+Setting the language will affect all properties of type Label (Microsoft.Xrm.Sdk.Label) like DisplayName and Description for metadata. These will be returned in the active language of the session, and when set the provided text will set to the Label of the active language. This last is used to set multi language Labels for metadat.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Use-CrmLanguage -Language 1043
 ```
 
-{{ Add example description here }}
+Set the active language of the session to Dutch.
+
+### Example 2
+```
+PS C:\> Use-CrmLanguage -Language 1033
+PS C:\> Set-CrmEntity -Name account -DisplayName 'Organization'
+PS C:\> Use-CrmLanguage -Language 1043
+PS C:\> Set-CrmEntity -Name account -DisplayName 'Organisatie'
+```
+
+Set the DisplayName for the entity 'account' for English and Dutch.
 
 ## PARAMETERS
 
 ### -Language
-{{Fill Language Description}}
+The LCID of the language to set. Omit this parameter to reset to the default (base) language.
+
+The provide LCID must match an installed languagepack.
 
 ```yaml
 Type: Int32
@@ -46,16 +60,15 @@ Accept wildcard characters: False
 
 ## INPUTS
 
-### System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
+### System.Int32
 
 
 ## OUTPUTS
 
-### System.Object
+### None
 
 ## NOTES
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Use-CrmLanguage.html](http://crmpowershell.amsoftware.nl/Use-CrmLanguage.html)
-
+[Get-CrmLanguage](Get-CrmLanguage.md)
