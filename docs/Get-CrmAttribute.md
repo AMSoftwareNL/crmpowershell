@@ -7,7 +7,7 @@ schema: 2.0.0
 # Get-CrmAttribute
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Get the metadata of an attribute.
 
 ## SYNTAX
 
@@ -28,21 +28,27 @@ Get-CrmAttribute [-Entity] <String> [-Name] <String>
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Get the metadata of an attribute.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Get-CrmAttribute -Entity account -Include 'address1*'
 ```
 
-{{ Add example description here }}
+Get the metadata for the attributes on the entity 'account' whose LogicalName starts with 'address1'.
 
 ## PARAMETERS
 
 ### -AttributeType
-{{Fill AttributeType Description}}
+The type of attribute to retrieve the metadata for.
+
+Accepted values are:
+
+ -- Any string matching an AttributeTypeDisplayName (Microsoft.Xrm.Sdk.Metadata.AttributeTypeDisplayName)
+
+ -- Any string matching a member name of the AttributeTypeCode enumeration (Microsoft.Xrm.Sdk.Metadata.AttributeTypeCode)
 
 ```yaml
 Type: String
@@ -57,7 +63,7 @@ Accept wildcard characters: False
 ```
 
 ### -CustomOnly
-{{Fill CustomOnly Description}}
+Retrieve only the metadata for attributes that are marked as custom.
 
 ```yaml
 Type: SwitchParameter
@@ -72,7 +78,9 @@ Accept wildcard characters: False
 ```
 
 ### -Entity
-{{Fill Entity Description}}
+The LogicalName of the entity to retrieve attribute metadata for.
+
+NOTE: This parameter is case sensitive. i.e. it must match the case of the LogicalName exactly.
 
 ```yaml
 Type: String
@@ -87,7 +95,7 @@ Accept wildcard characters: False
 ```
 
 ### -Exclude
-{{Fill Exclude Description}}
+Exclude the metadata for attributes whose LogicalName matches the provided pattern.
 
 ```yaml
 Type: String
@@ -98,11 +106,11 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: False
+Accept wildcard characters: True
 ```
 
 ### -ExcludeManaged
-{{Fill ExcludeManaged Description}}
+Do not retrieve metadata for attributes that are marked as managed.
 
 ```yaml
 Type: SwitchParameter
@@ -117,7 +125,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{Fill Id Description}}
+The MetadataId of the attribute to retrieve.
 
 ```yaml
 Type: Guid
@@ -132,7 +140,7 @@ Accept wildcard characters: False
 ```
 
 ### -Include
-{{Fill Include Description}}
+Include the metadata for attributes whose LogicalName matches the provided pattern.
 
 ```yaml
 Type: String
@@ -143,11 +151,11 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: False
+Accept wildcard characters: True
 ```
 
 ### -IncludeLinked
-{{Fill IncludeLinked Description}}
+Include metadata for attributes marked as linked attributes. This are attributes automatically added by Dynamics CRM to store data of related entities.
 
 ```yaml
 Type: SwitchParameter
@@ -162,7 +170,9 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{Fill Name Description}}
+The LogicalName of the attribute to retrieve the metadata for.
+
+NOTE: This parameter is case sensitive. i.e. it must match the case of the LogicalName exactly.
 
 ```yaml
 Type: String
@@ -183,11 +193,30 @@ Accept wildcard characters: False
 
 ## OUTPUTS
 
-### System.Object
+### Microsoft.Xrm.Sdk.Metadata.AttributeMetadata
 
 ## NOTES
 
+The Entity and Name parameters are case sensitive. i.e. these must match the case of the LogicalName exactly.
+
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Get-CrmAttribute.html](http://crmpowershell.amsoftware.nl/Get-CrmAttribute.html)
+[Get-CrmEntity](Get-CrmEntity.md)
 
+[Get-CrmEntityKey](Get-CrmEntityKey.md)
+
+[Get-CrmOptionSet](Get-CrmOptionSet.md)
+
+[Get-CrmRelationship](Get-CrmRelationship.md)
+
+[Add-CrmAttribute](Add-CrmAttribute.md)
+
+[Set-CrmAttribute](Set-CrmAttribute.md)
+
+[Remove-CrmAttribute](Remove-CrmAttribute.md)
+
+[AttributeMetadata Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.metadata.attributemetadata.aspx)
+
+[AttributeTypeDisplayName Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.metadata.attributetypedisplayname.aspx)
+
+[AttributeTypeCode Enumeration](https://msdn.microsoft.com/library/microsoft.xrm.sdk.metadata.attributetypecode.aspx)
