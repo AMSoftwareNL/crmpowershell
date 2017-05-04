@@ -115,6 +115,8 @@ Accept wildcard characters: False
 
 ## NOTES
 
+For on premises deployments the following form of authetnication are supported: Windows Authentication, Claims Based Authentication (CBA) and Internet Facing Deployment (IFD).
+
 ## RELATED LINKS
 
 [OrganizationDetail Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.discovery.organizationdetail.aspx)
