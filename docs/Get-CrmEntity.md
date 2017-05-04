@@ -7,7 +7,7 @@ schema: 2.0.0
 # Get-CrmEntity
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Get the metadata of an entity.
 
 ## SYNTAX
 
@@ -27,21 +27,30 @@ Get-CrmEntity [-Name] <String>
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Get the metadata of an entity. 
+
+The first time retrieving the metadata will take some time. In consecutive calls the performance will improve as the metadata will be cached in the session. For Dynamics CRM 2011 Rollup 12 and later the cache will be automatically updated as required based on metadata changes. Before Dynamics CRM 2011 Rollup 12 the cache will be updated after 5 minutes. To force and update of the cache reconnect to the organization.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Get-CrmEntity -Name account
 ```
 
-{{ Add example description here }}
+Get the metadata of the entity 'account'.
+
+### Example 2
+```
+PS C:\> Get-CrmEntity -Include '*account*' -CustomOnly -ExcludeManaged
+```
+
+Get the metadata of all entities with 'account' in the LogicalName. Retrieve only custom entities, that are not managed.
 
 ## PARAMETERS
 
 ### -CustomOnly
-{{Fill CustomOnly Description}}
+Retrieve only the metadata for entities that are marked as custom.
 
 ```yaml
 Type: SwitchParameter
@@ -56,7 +65,7 @@ Accept wildcard characters: False
 ```
 
 ### -Exclude
-{{Fill Exclude Description}}
+Exclude the metadata for entities whose LogicalName matches the provided pattern.
 
 ```yaml
 Type: String
@@ -67,11 +76,11 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: False
+Accept wildcard characters: True
 ```
 
 ### -ExcludeManaged
-{{Fill ExcludeManaged Description}}
+Do not retrieve metadata for entities that are marked as managed.
 
 ```yaml
 Type: SwitchParameter
@@ -86,7 +95,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{Fill Id Description}}
+The MetadataId of the entity to retrieve.
 
 ```yaml
 Type: Guid
@@ -101,7 +110,7 @@ Accept wildcard characters: False
 ```
 
 ### -Include
-{{Fill Include Description}}
+Include the metadata for entities whose LogicalName matches the provided pattern.
 
 ```yaml
 Type: String
@@ -112,11 +121,11 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: False
+Accept wildcard characters: True
 ```
 
 ### -IncludeIntersects
-{{Fill IncludeIntersects Description}}
+Include the metadata for entities marked as intersect. These are entities which are created by Dynamics CRM to support N:N relationships.
 
 ```yaml
 Type: SwitchParameter
@@ -131,7 +140,9 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{Fill Name Description}}
+The LogicalName of the entity to retrieve the metadata for.
+
+NOTE: This parameter is case sensitive. i.e. it must match the case of the LogicalName exactly.
 
 ```yaml
 Type: String
@@ -157,7 +168,22 @@ Accept wildcard characters: False
 
 ## NOTES
 
+The Name parameter is case sensitive. i.e. it must match the case of the LogicalName exactly.
+
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Get-CrmEntity.html](http://crmpowershell.amsoftware.nl/Get-CrmEntity.html)
+[Get-CrmAttribute](Get-CrmAttribute.md)
 
+[Get-CrmEntityKey](Get-CrmEntityKey.md)
+
+[Get-CrmOptionSet](Get-CrmOptionSet.md)
+
+[Get-CrmRelationship](Get-CrmRelationship.md)
+
+[New-CrmEntity](New-CrmEntity.md)
+
+[Set-CrmEntity](Set-CrmEntity.md)
+
+[Remove-CrmEntity](Remove-CrmEntity.md)
+
+[EntityMetadata Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.metadata.entitymetadata.aspx)
