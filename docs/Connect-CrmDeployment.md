@@ -7,7 +7,7 @@ schema: 2.0.0
 # Connect-CrmDeployment
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Connect and authenticate to a Dynamics CRM deployment.
 
 ## SYNTAX
 
@@ -22,21 +22,32 @@ Connect-CrmDeployment [-DiscoveryUrl] <Uri> [[-Credential] <PSCredential>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Connect and authenticate with a Dynamics CRM deployment. This can be a on premises deployment (using the Discovery URL) or a Dynamics 365 deployment (specifying the region).
+
+When connecting to an on premises deployment the credentials are optional. If not provided the current Windows credentials will be used.
+
+This cmdlet should be the first to execute in the PowerShell session. The connection to the deployment will be stored in the session, and will remain until connecting to another deployment.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Connect-CrmDeployment -Region crm4 -Credentials (Get-Credentials)
 ```
 
-{{ Add example description here }}
+Connect to Dynamics 365 in the European region, and ask for the credentials.
+
+### Example 2
+```
+PS C:\> Connect-CrmDeployment -DiscoveryUrl https://crmdiscovery.amsoftware.nl
+```
+
+Connect to an on premises Dynamics CRM deployment using the credentials of the current logged in Windows user.
 
 ## PARAMETERS
 
 ### -Credential
-{{Fill Credential Description}}
+The credentials to authenticate with the deployment.
 
 ```yaml
 Type: PSCredential
@@ -63,7 +74,7 @@ Accept wildcard characters: False
 ```
 
 ### -DiscoveryUrl
-{{Fill DiscoveryUrl Description}}
+The URL of the Dynamics CRM Discovery Services. Provide the full URL or just the unique part for the deployment. '/XRMServices/2011/Discovery.svc' will be added to the end of the URL if not provided.
 
 ```yaml
 Type: Uri
@@ -78,7 +89,7 @@ Accept wildcard characters: False
 ```
 
 ### -Region
-{{Fill Region Description}}
+The region of Dynamics 365 to connect to. Region must be provided as 'crm[0..9]' i.e. 'crm4'.
 
 ```yaml
 Type: String
@@ -106,5 +117,5 @@ Accept wildcard characters: False
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Connect-CrmDeployment.html](http://crmpowershell.amsoftware.nl/Connect-CrmDeployment.html)
+[OrganizationDetail Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.discovery.organizationdetail.aspx)
 
