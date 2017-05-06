@@ -7,7 +7,7 @@ schema: 2.0.0
 # Get-CrmLanguage
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Get the language of the connected organization.
 
 ## SYNTAX
 
@@ -16,21 +16,23 @@ Get-CrmLanguage [-All] [-ListAvailable]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Get the language of the connected organization. This is based on the installation language, and available language packs.
+
+If no parameters are provided the enabled languages are returned.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Get-CrmLanguage -All
 ```
 
-{{ Add example description here }}
+Get all enabled and disabled languages.
 
 ## PARAMETERS
 
 ### -All
-{{Fill All Description}}
+Get all enabled and disabled languages.
 
 ```yaml
 Type: SwitchParameter
@@ -45,7 +47,7 @@ Accept wildcard characters: False
 ```
 
 ### -ListAvailable
-{{Fill ListAvailable Description}}
+Get all languages that are available but not enabled.
 
 ```yaml
 Type: SwitchParameter
@@ -73,5 +75,9 @@ Accept wildcard characters: False
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Get-CrmLanguage.html](http://crmpowershell.amsoftware.nl/Get-CrmLanguage.html)
+[Use-CrmLanguage](Use-CrmLanguage.md)
+
+[Add-CrmLanguage](Add-CrmLanguage.md)
+
+[Remove-CrmLanguage](Remove-CrmLanguage.md)
 
