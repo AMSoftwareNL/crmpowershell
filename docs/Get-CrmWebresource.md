@@ -7,7 +7,7 @@ schema: 2.0.0
 # Get-CrmWebresource
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Get a webresource.
 
 ## SYNTAX
 
@@ -28,21 +28,21 @@ Get-CrmWebresource [-Id] <Guid> [-IncludeTotalCount] [-Skip <UInt64>] [-First <U
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Get a webresource.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Get-CrmWebresource -WebresourceType JS
 ```
 
-{{ Add example description here }}
+Get all JavaScript webresources.
 
 ## PARAMETERS
 
 ### -ExcludeManaged
-{{Fill ExcludeManaged Description}}
+Exclude webresources marked as managed.
 
 ```yaml
 Type: SwitchParameter
@@ -57,7 +57,7 @@ Accept wildcard characters: False
 ```
 
 ### -First
-{{Fill First Description}}
+Specifies the number of records to retrieve from the beginning.
 
 ```yaml
 Type: UInt64
@@ -72,7 +72,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{Fill Id Description}}
+The id of the webresource to retrieve.
 
 ```yaml
 Type: Guid
@@ -87,7 +87,9 @@ Accept wildcard characters: False
 ```
 
 ### -IncludeTotalCount
-{{Fill IncludeTotalCount Description}}
+Return the total count (and accuracy) of the number of records before returning the result.
+
+Because of the limitations of Dynamics CRM, the total count is only returned accurate when the result is limited to 5000 items.
 
 ```yaml
 Type: SwitchParameter
@@ -102,7 +104,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{Fill Name Description}}
+The name of the webresource to retrieve.
 
 ```yaml
 Type: String
@@ -117,7 +119,7 @@ Accept wildcard characters: False
 ```
 
 ### -Skip
-{{Fill Skip Description}}
+Skips (does not return) the specified number of records.
 
 ```yaml
 Type: UInt64
@@ -132,7 +134,7 @@ Accept wildcard characters: False
 ```
 
 ### -WebresourceType
-{{Fill WebresourceType Description}}
+The type of webresource to retrieve. If not provided all types are returned.
 
 ```yaml
 Type: CrmWebresourceType
@@ -161,5 +163,14 @@ Accept wildcard characters: False
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Get-CrmWebresource.html](http://crmpowershell.amsoftware.nl/Get-CrmWebresource.html)
+[Export-CrmWebresource](Export-CrmWebresource.md)
 
+[Import-CrmWebresource](Import-CrmWebresource.md)
+
+[New-CrmWebresource](New-CrmWebresource.md)
+
+[Remove-CrmWebresource](Remove-CrmWebresource.md)
+
+[Set-CrmWebresource](Set-CrmWebresource.md)
+
+[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)
