@@ -7,7 +7,7 @@ schema: 2.0.0
 # Invoke-CrmRequest
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Execute any Dynamics CRM request.
 
 ## SYNTAX
 
@@ -16,21 +16,21 @@ Invoke-CrmRequest [-Request] <String> [[-Parameters] <Hashtable>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Execute any Dynamics CRM request.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Invoke-CrmRequest -Request WhoAmI
 ```
 
-{{ Add example description here }}
+Executes the WhoAmI request.
 
 ## PARAMETERS
 
 ### -Parameters
-{{Fill Parameters Description}}
+A hashtable of parameter names and values to pass to the request.
 
 ```yaml
 Type: Hashtable
@@ -45,7 +45,7 @@ Accept wildcard characters: False
 ```
 
 ### -Request
-{{Fill Request Description}}
+The name of the request to execute.
 
 ```yaml
 Type: String
@@ -71,6 +71,3 @@ Accept wildcard characters: False
 ## NOTES
 
 ## RELATED LINKS
-
-[http://crmpowershell.amsoftware.nl/Invoke-CrmRequest.html](http://crmpowershell.amsoftware.nl/Invoke-CrmRequest.html)
-
