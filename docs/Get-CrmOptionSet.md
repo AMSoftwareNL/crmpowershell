@@ -7,7 +7,7 @@ schema: 2.0.0
 # Get-CrmOptionSet
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Get the metadata of a global optionset.
 
 ## SYNTAX
 
@@ -27,21 +27,21 @@ Get-CrmOptionSet [-Name] <String>
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Get the metadata of a global optionset. For attribute specific optionsets use Get-CrmAttribute.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Get-CrmOptionSet | Select Name -ExpandProperty Options | Select Name, Label, Value
 ```
 
-{{ Add example description here }}
+Get all global optionsets with the labels and values of the options.
 
 ## PARAMETERS
 
 ### -CustomOnly
-{{Fill CustomOnly Description}}
+Retrieve only the metadata for optionsets that are marked as custom.
 
 ```yaml
 Type: SwitchParameter
@@ -56,7 +56,7 @@ Accept wildcard characters: False
 ```
 
 ### -Exclude
-{{Fill Exclude Description}}
+Exclude the metadata for optionsets whose Name matches the provided pattern.
 
 ```yaml
 Type: String
@@ -67,11 +67,11 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: False
+Accept wildcard characters: True
 ```
 
 ### -ExcludeManaged
-{{Fill ExcludeManaged Description}}
+Do not retrieve metadata for optionsets that are marked as managed.
 
 ```yaml
 Type: SwitchParameter
@@ -86,7 +86,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{Fill Id Description}}
+The MetadataId of the optionset to retrieve.
 
 ```yaml
 Type: Guid
@@ -101,7 +101,7 @@ Accept wildcard characters: False
 ```
 
 ### -Include
-{{Fill Include Description}}
+Include the metadata for optionsets whose LogicalName matches the provided pattern.
 
 ```yaml
 Type: String
@@ -112,11 +112,13 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: False
+Accept wildcard characters: True
 ```
 
 ### -Name
-{{Fill Name Description}}
+The Name of the optionset to retrieve the metadata for.
+
+NOTE: This parameter is case sensitive. i.e. it must match the case of the Name exactly.
 
 ```yaml
 Type: String
@@ -142,7 +144,30 @@ Accept wildcard characters: False
 
 ## NOTES
 
+The Name parameter is case sensitive. i.e. it must match the case of the LogicalName exactly.
+
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Get-CrmOptionSet.html](http://crmpowershell.amsoftware.nl/Get-CrmOptionSet.html)
+[Get-CrmEntity](Get-CrmEntity.md)
 
+[Get-CrmAttribute](Get-CrmAttribute.md)
+
+[Get-CrmEntityKey](Get-CrmEntityKey.md)
+
+[Get-CrmRelationship](Get-CrmRelationship.md)
+
+[New-CrmOptionSet](New-CrmOptionSet.md)
+
+[New-CrmOptionSetValue](New-CrmOptionSetValue.md)
+
+[Set-CrmOptionSet](Set-CrmOptionSet.md)
+
+[Set-CrmOptionSetValue](Set-CrmOptionSetValue.md)
+
+[Remove-CrmOptionSet](Remove-CrmOptionSet.md)
+
+[Remove-CrmOptionSetValue](Remove-CrmOptionSetValue.md)
+
+[OptionSetMetadata Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.metadata.optionsetmetadata.aspx)
+
+[BooleanOptionSetMetadata Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.metadata.booleanoptionsetmetadata.aspx)
