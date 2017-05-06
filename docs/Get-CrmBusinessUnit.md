@@ -7,7 +7,7 @@ schema: 2.0.0
 # Get-CrmBusinessUnit
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Get a Business Unit.
 
 ## SYNTAX
 
@@ -23,21 +23,21 @@ Get-CrmBusinessUnit [-Id] <Guid> [-IncludeTotalCount] [-Skip <UInt64>] [-First <
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Get a Business Unit from the connected organization.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Get-CrmBusinessUnit -Include 'amsoftwarecrm' | Get-CrmBusinessUnit
 ```
 
-{{ Add example description here }}
+Get the business units which are children of the business unit 'amsoftwarecrm'.
 
 ## PARAMETERS
 
 ### -Exclude
-{{Fill Exclude Description}}
+Exclude business units whose name matches the provided pattern.
 
 ```yaml
 Type: String
@@ -48,11 +48,11 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: False
+Accept wildcard characters: True
 ```
 
 ### -First
-{{Fill First Description}}
+Specifies the number of objects to select from the beginning.
 
 ```yaml
 Type: UInt64
@@ -67,7 +67,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{Fill Id Description}}
+The id of the business unit.
 
 ```yaml
 Type: Guid
@@ -82,7 +82,7 @@ Accept wildcard characters: False
 ```
 
 ### -Include
-{{Fill Include Description}}
+Include business units whose name matches the provided pattern.
 
 ```yaml
 Type: String
@@ -93,11 +93,13 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: False
+Accept wildcard characters: True
 ```
 
 ### -IncludeTotalCount
-{{Fill IncludeTotalCount Description}}
+Return the total count (and accuracy) of the number of records before returning the result.
+
+Because of the limitations of Dynamics CRM, the total count is only returned accurate when the result is limited to 5000 items.
 
 ```yaml
 Type: SwitchParameter
@@ -112,7 +114,7 @@ Accept wildcard characters: False
 ```
 
 ### -Parent
-{{Fill Parent Description}}
+The id of the parent business unit. When included only direct children of this business unit are returned.
 
 ```yaml
 Type: Guid
@@ -127,7 +129,7 @@ Accept wildcard characters: False
 ```
 
 ### -Skip
-{{Fill Skip Description}}
+Skips (does not return) the specified number of records.
 
 ```yaml
 Type: UInt64
@@ -143,7 +145,7 @@ Accept wildcard characters: False
 
 ## INPUTS
 
-### System.Nullable`1[[System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
+### System.Guid
 
 
 ## OUTPUTS
@@ -155,5 +157,6 @@ Accept wildcard characters: False
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Get-CrmBusinessUnit.html](http://crmpowershell.amsoftware.nl/Get-CrmBusinessUnit.html)
+[New-CrmBusinessUnit](New-CrmBusinessUnit.md)
 
+[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)
