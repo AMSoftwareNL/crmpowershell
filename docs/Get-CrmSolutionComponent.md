@@ -7,7 +7,7 @@ schema: 2.0.0
 # Get-CrmSolutionComponent
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Get the component in a customizations solution.
 
 ## SYNTAX
 
@@ -24,21 +24,21 @@ Get-CrmSolutionComponent [-Solution] <Guid> [-ComponentType <Int32>] [-IncludeTo
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Get the component in a customizations solution.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Get-CrmSolution 'Product 1' | Get-CrmSolutionComponent -Type Entity
 ```
 
-{{ Add example description here }}
+Get the entities that are part of the 'Product 1' solution.
 
 ## PARAMETERS
 
 ### -ComponentType
-{{Fill ComponentType Description}}
+The type of component to retrieve. Matches a value from the global optionset 'Component Type'(componenttype).
 
 ```yaml
 Type: Int32
@@ -53,7 +53,7 @@ Accept wildcard characters: False
 ```
 
 ### -First
-{{Fill First Description}}
+Specifies the number of records to retrieve from the beginning.
 
 ```yaml
 Type: UInt64
@@ -68,7 +68,9 @@ Accept wildcard characters: False
 ```
 
 ### -IncludeTotalCount
-{{Fill IncludeTotalCount Description}}
+Return the total count (and accuracy) of the number of records before returning the result.
+
+Because of the limitations of Dynamics CRM, the total count is only returned accurate when the result is limited to 5000 items.
 
 ```yaml
 Type: SwitchParameter
@@ -83,7 +85,7 @@ Accept wildcard characters: False
 ```
 
 ### -Skip
-{{Fill Skip Description}}
+Skips (does not return) the specified number of records.
 
 ```yaml
 Type: UInt64
@@ -98,7 +100,7 @@ Accept wildcard characters: False
 ```
 
 ### -Solution
-{{Fill Solution Description}}
+The id of the solution to retrieve components from.
 
 ```yaml
 Type: Guid
@@ -113,7 +115,7 @@ Accept wildcard characters: False
 ```
 
 ### -Type
-{{Fill Type Description}}
+The type of component to retrieve. 
 
 ```yaml
 Type: CrmComponentType
@@ -142,5 +144,12 @@ Accept wildcard characters: False
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Get-CrmSolutionComponent.html](http://crmpowershell.amsoftware.nl/Get-CrmSolutionComponent.html)
+[Get-CrmSolution](Get-CrmSolution.md)
 
+[Add-CrmSolutionComponent](Add-CrmSolutionComponent.md)
+
+[Remove-CrmSolutionComponent](Remove-CrmSolutionComponent.md)
+
+[Test-CrmSolutionComponent](Test-CrmSolutionComponent.md)
+
+[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)
