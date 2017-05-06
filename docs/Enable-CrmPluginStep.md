@@ -7,7 +7,7 @@ schema: 2.0.0
 # Enable-CrmPluginStep
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Enable a SDK Message Processing Step.
 
 ## SYNTAX
 
@@ -16,21 +16,19 @@ Enable-CrmPluginStep [-Id] <Guid>
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Enable a SDK Message Processing Step.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Enable-CrmPluginStep -Id 'BD1D1AF1-D43F-4B00-96DC-979DC0709CDE'
 ```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -Id
-{{Fill Id Description}}
+The id of the SDK Message Processing Step to enable.
 
 ```yaml
 Type: Guid
@@ -51,11 +49,18 @@ Accept wildcard characters: False
 
 ## OUTPUTS
 
-### System.Object
+### None
 
 ## NOTES
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Enable-CrmPluginStep.html](http://crmpowershell.amsoftware.nl/Enable-CrmPluginStep.html)
+[Disable-CrmPluginStep](Disable-CrmPluginStep.md)
 
+[Get-CrmPluginStep](Get-CrmPluginStep.md)
+
+[Register-CrmPluginStep](Register-CrmPluginStep.md)
+
+[Set-CrmPluginStep](Set-CrmPluginStep.md)
+
+[Unregister-CrmPluginStep](Unregister-CrmPluginStep.md)
