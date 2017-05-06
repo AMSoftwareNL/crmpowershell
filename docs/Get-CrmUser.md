@@ -7,7 +7,7 @@ schema: 2.0.0
 # Get-CrmUser
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Get user from the connected organization.
 
 ## SYNTAX
 
@@ -28,21 +28,21 @@ Get-CrmUser [-Id] <Guid> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Get user from the connected organization.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Get-CrmUser -UserName 'user1@organization.com'
 ```
 
-{{ Add example description here }}
+Gets the user matching username 'user1@organization.com'.
 
 ## PARAMETERS
 
 ### -BusinessUnit
-{{Fill BusinessUnit Description}}
+The id of a business unit to retrieve the related users for.
 
 ```yaml
 Type: Guid
@@ -57,7 +57,7 @@ Accept wildcard characters: False
 ```
 
 ### -Exclude
-{{Fill Exclude Description}}
+Exclude users whose name matches the provided pattern.
 
 ```yaml
 Type: String
@@ -68,11 +68,11 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: False
+Accept wildcard characters: True
 ```
 
 ### -First
-{{Fill First Description}}
+Specifies the number of records to retrieve from the beginning.
 
 ```yaml
 Type: UInt64
@@ -87,7 +87,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{Fill Id Description}}
+The id of the user to retrieve.
 
 ```yaml
 Type: Guid
@@ -102,7 +102,7 @@ Accept wildcard characters: False
 ```
 
 ### -Include
-{{Fill Include Description}}
+Include users whose name matches the provided pattern.
 
 ```yaml
 Type: String
@@ -113,11 +113,11 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: False
+Accept wildcard characters: True
 ```
 
 ### -IncludeDisabled
-{{Fill IncludeDisabled Description}}
+Include inactive users in the result.
 
 ```yaml
 Type: SwitchParameter
@@ -132,7 +132,9 @@ Accept wildcard characters: False
 ```
 
 ### -IncludeTotalCount
-{{Fill IncludeTotalCount Description}}
+Return the total count (and accuracy) of the number of records before returning the result.
+
+Because of the limitations of Dynamics CRM, the total count is only returned accurate when the result is limited to 5000 items
 
 ```yaml
 Type: SwitchParameter
@@ -147,7 +149,7 @@ Accept wildcard characters: False
 ```
 
 ### -Skip
-{{Fill Skip Description}}
+Skips (does not return) the specified number of records.
 
 ```yaml
 Type: UInt64
@@ -162,7 +164,7 @@ Accept wildcard characters: False
 ```
 
 ### -UserName
-{{Fill UserName Description}}
+The username of the user to retrieve.
 
 ```yaml
 Type: String
@@ -190,5 +192,16 @@ Accept wildcard characters: False
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Get-CrmUser.html](http://crmpowershell.amsoftware.nl/Get-CrmUser.html)
+[Get-CrmTeamUsers](Get-CrmTeamUsers.md)
 
+[Get-CrmUserTeams](Get-CrmUserTeams.md)
+
+[New-CrmUser](New-CrmUser.md)
+
+[Remove-CrmUserParent](Remove-CrmUserParent.md)
+
+[Set-CrmTeamUsers](Set-CrmTeamUsers.md)
+
+[Set-CrmUserTeams](Set-CrmUserTeams.md)
+
+[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)
