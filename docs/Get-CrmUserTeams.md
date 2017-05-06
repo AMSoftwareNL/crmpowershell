@@ -7,30 +7,30 @@ schema: 2.0.0
 # Get-CrmUserTeams
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Get the teams a user is assinged to.
 
 ## SYNTAX
 
 ```
-Get-CrmUserTeams [-Team] <Guid>
+Get-CrmUserTeams [-User] <Guid>
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Get the teams a user is assinged to.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Get-CrmUser -UserName 'user1@organization.com' | Get-CrmUserTeams
 ```
 
-{{ Add example description here }}
+Get the assinged teams for the user with username 'user1@organization.com'.
 
 ## PARAMETERS
 
-### -Team
-{{Fill Team Description}}
+### -User
+The id of the user to get the assinged teams for.
 
 ```yaml
 Type: Guid
@@ -58,5 +58,16 @@ Accept wildcard characters: False
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Get-CrmUserTeams.html](http://crmpowershell.amsoftware.nl/Get-CrmUserTeams.html)
+[Get-CrmTeamUsers](Get-CrmTeamUsers.md)
 
+[Get-CrmUser](Get-CrmUser.md)
+
+[New-CrmUser](New-CrmUser.md)
+
+[Remove-CrmUserParent](Remove-CrmUserParent.md)
+
+[Set-CrmTeamUsers](Set-CrmTeamUsers.md)
+
+[Set-CrmUserTeams](Set-CrmUserTeams.md)
+
+[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)
