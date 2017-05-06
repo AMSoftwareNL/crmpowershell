@@ -7,7 +7,7 @@ schema: 2.0.0
 # Get-CrmTeam
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Get team from the connected organization.
 
 ## SYNTAX
 
@@ -23,21 +23,21 @@ Get-CrmTeam [-Id] <Guid> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Get team from the connected organization.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Get-CrmBusinessUnit -Include 'amsoftwarecrm' | Get-CrmTeam 
 ```
 
-{{ Add example description here }}
+Get all teams for the business unit 'amsoftwarecrm'.
 
 ## PARAMETERS
 
 ### -Administrator
-{{Fill Administrator Description}}
+The id of the user who is administrator of the team.
 
 ```yaml
 Type: Guid
@@ -52,7 +52,7 @@ Accept wildcard characters: False
 ```
 
 ### -BusinessUnit
-{{Fill BusinessUnit Description}}
+The id of the business unit the team is related to.
 
 ```yaml
 Type: Guid
@@ -67,7 +67,7 @@ Accept wildcard characters: False
 ```
 
 ### -Exclude
-{{Fill Exclude Description}}
+Exclude teams whose name matches the provided pattern.
 
 ```yaml
 Type: String
@@ -78,11 +78,11 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: False
+Accept wildcard characters: True
 ```
 
 ### -First
-{{Fill First Description}}
+Specifies the number of records to retrieve from the beginning.
 
 ```yaml
 Type: UInt64
@@ -97,7 +97,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{Fill Id Description}}
+The id of the team to retrieve.
 
 ```yaml
 Type: Guid
@@ -112,7 +112,7 @@ Accept wildcard characters: False
 ```
 
 ### -Include
-{{Fill Include Description}}
+Include teams whose name matches the provided pattern.
 
 ```yaml
 Type: String
@@ -123,11 +123,13 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: False
+Accept wildcard characters: True
 ```
 
 ### -IncludeTotalCount
-{{Fill IncludeTotalCount Description}}
+Return the total count (and accuracy) of the number of records before returning the result.
+
+Because of the limitations of Dynamics CRM, the total count is only returned accurate when the result is limited to 5000 items.
 
 ```yaml
 Type: SwitchParameter
@@ -142,7 +144,7 @@ Accept wildcard characters: False
 ```
 
 ### -Skip
-{{Fill Skip Description}}
+Skips (does not return) the specified number of records.
 
 ```yaml
 Type: UInt64
@@ -157,7 +159,7 @@ Accept wildcard characters: False
 ```
 
 ### -TeamType
-{{Fill TeamType Description}}
+The type of team to retrieve. If not provide all types of teams will be returned.
 
 ```yaml
 Type: CrmTeamType
@@ -186,5 +188,14 @@ Accept wildcard characters: False
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Get-CrmTeam.html](http://crmpowershell.amsoftware.nl/Get-CrmTeam.html)
+[New-CrmTeam](New-CrmTeam.md)
 
+[Get-CrmTeamUsers](Get-CrmTeamUsers.md)
+
+[Get-CrmUserTeams](Get-CrmUserTeams.md)
+
+[Set-CrmTeamUsers](Set-CrmTeamUsers.md)
+
+[Set-CrmUserTeams](Set-CrmUserTeams.md)
+
+[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)
