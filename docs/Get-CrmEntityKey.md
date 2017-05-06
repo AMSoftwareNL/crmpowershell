@@ -7,7 +7,7 @@ schema: 2.0.0
 # Get-CrmEntityKey
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Get entity key metadata for an entity.
 
 ## SYNTAX
 
@@ -28,21 +28,23 @@ Get-CrmEntityKey [-Entity] <String> [-Name] <String>
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Get entity key metadata for an entity. This is only available with Dynamics CRM 2015 and later.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Get-CrmEntityKey -Entity account -Attributes accountnumber -ExcludeManaged
 ```
 
-{{ Add example description here }}
+Get the metadata for entity keys from the entity 'account' using attribute 'accountnumber'. Exclude keys marked as managed.
 
 ## PARAMETERS
 
 ### -Attributes
-{{Fill Attributes Description}}
+An array of LogicalNames of attributes which are part of the key. Any key containing at least the provided attributes is returned. 
+
+NOTE: This parameter is case sensitive. i.e. it must match the case of the LogicalName exactly.
 
 ```yaml
 Type: String[]
@@ -57,7 +59,9 @@ Accept wildcard characters: False
 ```
 
 ### -Entity
-{{Fill Entity Description}}
+The LogicalName of the entity to retrieve attribute metadata for.
+
+NOTE: This parameter is case sensitive. i.e. it must match the case of the LogicalName exactly.
 
 ```yaml
 Type: String
@@ -72,7 +76,7 @@ Accept wildcard characters: False
 ```
 
 ### -Exclude
-{{Fill Exclude Description}}
+Exclude the metadata for entitie keys whose LogicalName matches the provided pattern.
 
 ```yaml
 Type: String
@@ -83,11 +87,11 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: False
+Accept wildcard characters: True
 ```
 
 ### -ExcludeManaged
-{{Fill ExcludeManaged Description}}
+Do not retrieve metadata for entitie keys that are marked as managed.
 
 ```yaml
 Type: SwitchParameter
@@ -102,7 +106,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{Fill Id Description}}
+The MetadataId of the entity key to retrieve.
 
 ```yaml
 Type: Guid
@@ -117,7 +121,7 @@ Accept wildcard characters: False
 ```
 
 ### -Include
-{{Fill Include Description}}
+Include the metadata for entitie keys whose LogicalName matches the provided pattern.
 
 ```yaml
 Type: String
@@ -128,11 +132,13 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: False
+Accept wildcard characters: True
 ```
 
 ### -Name
-{{Fill Name Description}}
+The LogicalName of the entity key to retrieve the metadata for.
+
+NOTE: This parameter is case sensitive. i.e. it must match the case of the LogicalName exactly.
 
 ```yaml
 Type: String
@@ -158,7 +164,20 @@ Accept wildcard characters: False
 
 ## NOTES
 
+The Name and Attributes parameters are case sensitive. i.e. these must match the case of the LogicalName exactly.
+
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Get-CrmEntityKey.html](http://crmpowershell.amsoftware.nl/Get-CrmEntityKey.html)
+[Get-CrmEntity](Get-CrmEntity.md)
 
+[Get-CrmAttribute](Get-CrmAttribute.md)
+
+[Get-CrmOptionSet](Get-CrmOptionSet.md)
+
+[Get-CrmRelationship](Get-CrmRelationship.md)
+
+[Add-CrmEntityKey](Add-CrmEntityKey.md)
+
+[Remove-CrmEntityKey](Remove-CrmEntityKey.md)
+
+[EntityKeyMetadata Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.metadata.entitykeymetadata.aspx)
