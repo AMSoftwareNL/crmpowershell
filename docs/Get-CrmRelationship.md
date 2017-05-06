@@ -204,8 +204,6 @@ The Entity, RelatedEntity and Name parameters are case sensitive. i.e. these mus
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Get-CrmRelationship.html](http://crmpowershell.amsoftware.nl/Get-CrmRelationship.html)
-
 [Get-CrmEntity](Get-CrmEntity.md)
 
 [Get-CrmAttribute](Get-CrmAttribute.md)
