@@ -7,7 +7,7 @@ schema: 2.0.0
 # Get-CrmOrganization
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Retrieve the organizations available in the connected deployment.
 
 ## SYNTAX
 
@@ -16,21 +16,21 @@ Get-CrmOrganization [[-Name] <String>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Retrieve the organizations available in the connected deployment, based on unique name, organization service URL or friendly name.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Get-CrmOrganization -Name amsoftwarecrm
 ```
 
-{{ Add example description here }}
+Get the organization information for the organization in the connected deployment with the name 'amsoftwarecrm'.
 
 ## PARAMETERS
 
 ### -Name
-{{Fill Name Description}}
+The unique name, organization service url or friendly name of the organization. The first organization matching the name is returned.
 
 ```yaml
 Type: String
@@ -58,5 +58,8 @@ Accept wildcard characters: False
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Get-CrmOrganization.html](http://crmpowershell.amsoftware.nl/Get-CrmOrganization.html)
+[Connect-CrmDeployment](Get-CrmDeployment.md)
 
+[Connect-CrmOrganization](Connect-CrmOrganization.md)
+
+[OrganizationDetail Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.organization.organizationdetail.aspx)
