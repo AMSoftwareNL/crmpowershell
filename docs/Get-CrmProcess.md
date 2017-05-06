@@ -7,7 +7,7 @@ schema: 2.0.0
 # Get-CrmProcess
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Get Workflow, Dialog, BusinessRule, Action or BusinessProcessFlow.
 
 ## SYNTAX
 
@@ -28,21 +28,21 @@ Get-CrmProcess [-Id] <Guid> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt6
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Get Workflow, Dialog, BusinessRule, Action or BusinessProcessFlow.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Get-CrmProcess -ProcessType Workflow
 ```
 
-{{ Add example description here }}
+Get all workflows in the connected organization.
 
 ## PARAMETERS
 
 ### -Entity
-{{Fill Entity Description}}
+The logicalname of the entity to retrieve the records from.
 
 ```yaml
 Type: String
@@ -57,7 +57,7 @@ Accept wildcard characters: False
 ```
 
 ### -First
-{{Fill First Description}}
+Specifies the number of records to retrieve from the beginning.
 
 ```yaml
 Type: UInt64
@@ -72,7 +72,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{Fill Id Description}}
+The id of the process to retrieve.
 
 ```yaml
 Type: Guid
@@ -87,7 +87,9 @@ Accept wildcard characters: False
 ```
 
 ### -IncludeTotalCount
-{{Fill IncludeTotalCount Description}}
+Return the total count (and accuracy) of the number of records before returning the result.
+
+Because of the limitations of Dynamics CRM, the total count is only returned accurate when the result is limited to 5000 items.
 
 ```yaml
 Type: SwitchParameter
@@ -102,7 +104,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{Fill Name Description}}
+The name of the process to retrieve.
 
 ```yaml
 Type: String
@@ -117,7 +119,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProcessType
-{{Fill ProcessType Description}}
+The type of process to retrieve. If not provide all processes will be returned.
 
 ```yaml
 Type: CrmProcessType
@@ -133,7 +135,7 @@ Accept wildcard characters: False
 ```
 
 ### -Skip
-{{Fill Skip Description}}
+Skips (does not return) the specified number of records.
 
 ```yaml
 Type: UInt64
@@ -161,5 +163,8 @@ Accept wildcard characters: False
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Get-CrmProcess.html](http://crmpowershell.amsoftware.nl/Get-CrmProcess.html)
+[Start-CrmProcess](Start-CrmProcess.md)
 
+[Stop-CrmProcess](Stop-CrmProcess.md)
+
+[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)
