@@ -7,7 +7,7 @@ schema: 2.0.0
 # Get-CrmPrincipalRoles
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Get the roles related to a user or team.
 
 ## SYNTAX
 
@@ -16,21 +16,21 @@ Get-CrmPrincipalRoles [-Principal] <Guid>
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Get the roles related to a user or team.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Get-Team -Name 'Sales Team' | Get-PrincipalRoles
 ```
 
-{{ Add example description here }}
+Get the roles for the team 'Sales Team'.
 
 ## PARAMETERS
 
 ### -Principal
-{{Fill Principal Description}}
+The id of a user or team to get the roles for.
 
 ```yaml
 Type: Guid
@@ -58,5 +58,12 @@ Accept wildcard characters: False
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Get-CrmPrincipalRoles.html](http://crmpowershell.amsoftware.nl/Get-CrmPrincipalRoles.html)
+[Get-CrmRole](Get-CrmRole.md)
 
+[Get-CrmUser](Get-CrmUser.md)
+
+[Get-CrmTeam](Get-CrmTeam.md)
+
+[Get-CrmRolePrincipals](Get-CrmRolePrincipals.md)
+
+[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)

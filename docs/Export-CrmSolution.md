@@ -7,7 +7,7 @@ schema: 2.0.0
 # Export-CrmSolution
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Export a customization solution.
 
 ## SYNTAX
 
@@ -18,21 +18,21 @@ Export-CrmSolution [-Id] <Guid> [-Path] <String> [-Managed] [-AutoNumberingSetti
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Export a customization solution as a file to the file system.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Get-CrmSolution -Name 'Product 1' | Export-CrmSolution -Managed -Path c:\temp\product1.zip
 ```
 
-{{ Add example description here }}
+Export the solution 'Product 1' as a managed solution to 'product1.zip'.
 
 ## PARAMETERS
 
 ### -AutoNumberingSettings
-{{Fill AutoNumberingSettings Description}}
+Include auto-numbering settings in the exported solution.
 
 ```yaml
 Type: SwitchParameter
@@ -47,7 +47,7 @@ Accept wildcard characters: False
 ```
 
 ### -CalendarSettings
-{{Fill CalendarSettings Description}}
+Include calendar settings in the exported solution.
 
 ```yaml
 Type: SwitchParameter
@@ -62,7 +62,7 @@ Accept wildcard characters: False
 ```
 
 ### -CustomizationSettings
-{{Fill CustomizationSettings Description}}
+Include customization settings in the exported solution.
 
 ```yaml
 Type: SwitchParameter
@@ -77,7 +77,7 @@ Accept wildcard characters: False
 ```
 
 ### -EmailTrackingSettings
-{{Fill EmailTrackingSettings Description}}
+Include email tracking settings in the exported solution.
 
 ```yaml
 Type: SwitchParameter
@@ -92,7 +92,7 @@ Accept wildcard characters: False
 ```
 
 ### -GeneralSettings
-{{Fill GeneralSettings Description}}
+Include general settings in the exported solution.
 
 ```yaml
 Type: SwitchParameter
@@ -107,7 +107,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{Fill Id Description}}
+The id of the solution to export.
 
 ```yaml
 Type: Guid
@@ -122,7 +122,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsvConfig
-{{Fill IsvConfig Description}}
+Include ISV configuration in the exported solution.
 
 ```yaml
 Type: SwitchParameter
@@ -137,7 +137,7 @@ Accept wildcard characters: False
 ```
 
 ### -Managed
-{{Fill Managed Description}}
+Export as managed solution
 
 ```yaml
 Type: SwitchParameter
@@ -152,7 +152,7 @@ Accept wildcard characters: False
 ```
 
 ### -MarketingSettings
-{{Fill MarketingSettings Description}}
+Include marketing settings in the exported solution.
 
 ```yaml
 Type: SwitchParameter
@@ -167,7 +167,7 @@ Accept wildcard characters: False
 ```
 
 ### -OutlookSynchronizationSettings
-{{Fill OutlookSynchronizationSettings Description}}
+Include Outlook synchronization settings in the exported solution.
 
 ```yaml
 Type: SwitchParameter
@@ -182,7 +182,7 @@ Accept wildcard characters: False
 ```
 
 ### -Path
-{{Fill Path Description}}
+The file ystem path to export the solution to. This must include to filename.
 
 ```yaml
 Type: String
@@ -197,7 +197,7 @@ Accept wildcard characters: False
 ```
 
 ### -RelationshipRoles
-{{Fill RelationshipRoles Description}}
+Include relationship roles in the exported solution.
 
 ```yaml
 Type: SwitchParameter
@@ -212,7 +212,7 @@ Accept wildcard characters: False
 ```
 
 ### -Target
-{{Fill Target Description}}
+Sets the version that the exported solution will support.
 
 ```yaml
 Type: String
@@ -233,7 +233,7 @@ Accept wildcard characters: False
 
 ## OUTPUTS
 
-### System.Object
+### None
 
 ## NOTES
 
@@ -241,3 +241,12 @@ Accept wildcard characters: False
 
 [http://crmpowershell.amsoftware.nl/Export-CrmSolution.html](http://crmpowershell.amsoftware.nl/Export-CrmSolution.html)
 
+[Get-CrmSolution](Get-CrmSolution.md)
+
+[Import-CrmSolution](Import-CrmSolution.md)
+
+[New-CrmSolution](New-CrmSolution.md)
+
+[Test-CrmSolution](Test-CrmSolution.md)
+
+[Use-CrmSolution](Use-CrmSolution.md)

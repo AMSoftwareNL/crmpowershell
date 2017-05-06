@@ -7,7 +7,7 @@ schema: 2.0.0
 # Get-CrmRole
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Get role from the connected organization.
 
 ## SYNTAX
 
@@ -23,21 +23,21 @@ Get-CrmRole [-Id] <Guid> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Get role from the connected organization.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Get-CrmBusinessUnit -Include 'amsoftwarecrm' | Get-CrmRole 
 ```
 
-{{ Add example description here }}
+Get all roles for the business unit 'amsoftwarecrm'.
 
 ## PARAMETERS
 
 ### -BusinessUnit
-{{Fill BusinessUnit Description}}
+The id of a business unit to retrieve the related roles for.
 
 ```yaml
 Type: Guid
@@ -52,7 +52,7 @@ Accept wildcard characters: False
 ```
 
 ### -Exclude
-{{Fill Exclude Description}}
+Exclude roles whose name matches the provided pattern.
 
 ```yaml
 Type: String
@@ -67,7 +67,7 @@ Accept wildcard characters: False
 ```
 
 ### -First
-{{Fill First Description}}
+Specifies the number of records to retrieve from the beginning.
 
 ```yaml
 Type: UInt64
@@ -82,7 +82,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{Fill Id Description}}
+The id of the role to retrieve.
 
 ```yaml
 Type: Guid
@@ -97,7 +97,7 @@ Accept wildcard characters: False
 ```
 
 ### -Include
-{{Fill Include Description}}
+Include roles whose name matches the provided pattern.
 
 ```yaml
 Type: String
@@ -112,7 +112,9 @@ Accept wildcard characters: False
 ```
 
 ### -IncludeTotalCount
-{{Fill IncludeTotalCount Description}}
+Return the total count (and accuracy) of the number of records before returning the result.
+
+Because of the limitations of Dynamics CRM, the total count is only returned accurate when the result is limited to 5000 items.
 
 ```yaml
 Type: SwitchParameter
@@ -127,7 +129,7 @@ Accept wildcard characters: False
 ```
 
 ### -Skip
-{{Fill Skip Description}}
+Skips (does not return) the specified number of records.
 
 ```yaml
 Type: UInt64
@@ -143,7 +145,7 @@ Accept wildcard characters: False
 
 ## INPUTS
 
-### System.Nullable`1[[System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
+### System.Guid
 
 
 ## OUTPUTS
@@ -155,5 +157,10 @@ Accept wildcard characters: False
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Get-CrmRole.html](http://crmpowershell.amsoftware.nl/Get-CrmRole.html)
+[New-CrmRole](New-CrmRole.md)
 
+[Get-CrmRolePrincipals](Get-CrmRolePrincipals.md)
+
+[Get-CrmPrincipalRoles](Get-CrmPrincipalRoles.md)
+
+[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)

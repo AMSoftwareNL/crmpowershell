@@ -7,7 +7,7 @@ schema: 2.0.0
 # Use-CrmSolution
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Set the active CRM solution to use in the PowerShell session.
 
 ## SYNTAX
 
@@ -16,21 +16,23 @@ Use-CrmSolution [[-Solution] <Guid>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Set the active CRM solution to use in the PowerShell session. Omit the solution to return to the default (base) solution of Dynamics CRM.
+
+Setting the solution will affect all CmdLets capable of making changes to a CRM solution. The active solution will be included in all supporting actions. This includes all actions on metadata, but also actions creating and updating records.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Use-CrmSolution -Solution '155f4747-2c32-4954-9b06-2f9f9bf19e51'
 ```
 
-{{ Add example description here }}
+Set the active CRM solution of the session to the solution with ID '155f4747-2c32-4954-9b06-2f9f9bf19e51'.
 
 ## PARAMETERS
 
 ### -Solution
-{{Fill Solution Description}}
+The unique ID of the CRM solution. Omit this parameter to reset the the default (base) solution.
 
 ```yaml
 Type: Guid
@@ -46,16 +48,15 @@ Accept wildcard characters: False
 
 ## INPUTS
 
-### System.Nullable`1[[System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
+### System.Guid
 
 
 ## OUTPUTS
 
-### System.Object
+### None
 
 ## NOTES
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Use-CrmSolution.html](http://crmpowershell.amsoftware.nl/Use-CrmSolution.html)
-
+[Get-CrmSolution](Get-CrmSolution.md)

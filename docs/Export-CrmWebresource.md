@@ -7,7 +7,7 @@ schema: 2.0.0
 # Export-CrmWebresource
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Export the content of a webresource to the pipeline.
 
 ## SYNTAX
 
@@ -16,21 +16,21 @@ Export-CrmWebresource [-Id] <Guid> [-Encoding <FileSystemCmdletProviderEncoding>
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Export the content of a webresource to the file system.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Get-CrmWebResource -WebResourceType JS | Export-CrmWebResource -Encoding UTF8
 ```
 
-{{ Add example description here }}
+Export the content of all JavaScript webresource to the pipeline.
 
 ## PARAMETERS
 
 ### -Encoding
-{{Fill Encoding Description}}
+The encoding to apply to the exported content. If not provided byte encoding is used.
 
 ```yaml
 Type: FileSystemCmdletProviderEncoding
@@ -46,7 +46,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{Fill Id Description}}
+The id of the webresource to export.
 
 ```yaml
 Type: Guid
@@ -64,7 +64,6 @@ Accept wildcard characters: False
 
 ### System.Guid
 
-
 ## OUTPUTS
 
 ### System.Object
@@ -73,5 +72,12 @@ Accept wildcard characters: False
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Export-CrmWebresource.html](http://crmpowershell.amsoftware.nl/Export-CrmWebresource.html)
+[Get-CrmWebresource](Get-CrmWebresource.md)
 
+[Import-CrmWebresource](Import-CrmWebresource.md)
+
+[New-CrmWebresource](New-CrmWebresource.md)
+
+[Remove-CrmWebresource](Remove-CrmWebresource.md)
+
+[Set-CrmWebresource](Set-CrmWebresource.md)

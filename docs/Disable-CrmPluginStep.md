@@ -7,7 +7,7 @@ schema: 2.0.0
 # Disable-CrmPluginStep
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Disable a SDK Message Processing Step.
 
 ## SYNTAX
 
@@ -16,21 +16,19 @@ Disable-CrmPluginStep [-Id] <Guid>
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Disable a SDK Message Processing Step.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Disable-CrmPluginStep -Id 'BD1D1AF1-D43F-4B00-96DC-979DC0709CDE'
 ```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -Id
-{{Fill Id Description}}
+The id of the SDK Message Processing Step to disable.
 
 ```yaml
 Type: Guid
@@ -51,11 +49,18 @@ Accept wildcard characters: False
 
 ## OUTPUTS
 
-### System.Object
+### None
 
 ## NOTES
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Disable-CrmPluginStep.html](http://crmpowershell.amsoftware.nl/Disable-CrmPluginStep.html)
+[Enable-CrmPluginStep](Enable-CrmPluginStep.md)
 
+[Get-CrmPluginStep](Get-CrmPluginStep.md)
+
+[Register-CrmPluginStep](Register-CrmPluginStep.md)
+
+[Set-CrmPluginStep](Set-CrmPluginStep.md)
+
+[Unregister-CrmPluginStep](Unregister-CrmPluginStep.md)

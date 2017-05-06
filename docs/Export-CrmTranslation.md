@@ -7,7 +7,7 @@ schema: 2.0.0
 # Export-CrmTranslation
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Export all translations for a specific solution to a compressed file.
 
 ## SYNTAX
 
@@ -16,21 +16,21 @@ Export-CrmTranslation [-Solution] <Guid> [-Path] <String>
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Export all translations for a specific solution to a compressed file.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Get-CrmSolution -Name 'product1' | Export-CrmTranslation -Path c:\temp\product1_translations.zip
 ```
 
-{{ Add example description here }}
+Export the translation of solution 'product1'.
 
 ## PARAMETERS
 
 ### -Path
-{{Fill Path Description}}
+The file system path to export to translations to. This must include the filename.
 
 ```yaml
 Type: String
@@ -45,7 +45,7 @@ Accept wildcard characters: False
 ```
 
 ### -Solution
-{{Fill Solution Description}}
+The id of the solution to export the translations for.
 
 ```yaml
 Type: Guid
@@ -66,11 +66,10 @@ Accept wildcard characters: False
 
 ## OUTPUTS
 
-### System.Object
+### None
 
 ## NOTES
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Export-CrmTranslation.html](http://crmpowershell.amsoftware.nl/Export-CrmTranslation.html)
-
+[Import-CrmTranslation](Import-CrmTranslation.md)

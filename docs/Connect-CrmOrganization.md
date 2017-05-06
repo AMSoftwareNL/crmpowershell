@@ -7,7 +7,7 @@ schema: 2.0.0
 # Connect-CrmOrganization
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Connect to a specific organization in the connected deployment.
 
 ## SYNTAX
 
@@ -16,21 +16,19 @@ Connect-CrmOrganization [-Name] <String>
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Connect to a specific organization in the connected deployment. This will set the organization as the active organization in the PowerShell session, until connection to another Deployment or Organization.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Connect-CrmOrganization -Name amsoftwarecrm
 ```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -Name
-{{Fill Name Description}}
+The unique name or friendly name of the organization to connect to.
 
 ```yaml
 Type: String
@@ -58,5 +56,8 @@ Accept wildcard characters: False
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Connect-CrmOrganization.html](http://crmpowershell.amsoftware.nl/Connect-CrmOrganization.html)
+[Connect-CrmDeployment](Connect-CrmDeployment.md)
 
+[Get-CrmOrganization](Get-CrmOrganization.md)
+
+[OrganizationDetail Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.organization.organizationdetail.aspx)

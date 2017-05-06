@@ -7,7 +7,7 @@ schema: 2.0.0
 # Get-CrmPublisher
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Get a publisher for customizations.
 
 ## SYNTAX
 
@@ -23,21 +23,21 @@ Get-CrmPublisher [-Id] <Guid> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UIn
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Get a publisher for customizations.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Get-CrmPublisher -Include 'AMSoftware'
 ```
 
-{{ Add example description here }}
+Get publisher with the name 'AMSoftware'.
 
 ## PARAMETERS
 
 ### -Exclude
-{{Fill Exclude Description}}
+Exclude publishers whose name matches the provided pattern.
 
 ```yaml
 Type: String
@@ -52,7 +52,7 @@ Accept wildcard characters: False
 ```
 
 ### -First
-{{Fill First Description}}
+Specifies the number of records to retrieve from the beginning.
 
 ```yaml
 Type: UInt64
@@ -67,7 +67,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{Fill Id Description}}
+The id of the publisher to retrieve.
 
 ```yaml
 Type: Guid
@@ -82,7 +82,7 @@ Accept wildcard characters: False
 ```
 
 ### -Include
-{{Fill Include Description}}
+Include publishers whose name matches the provided pattern.
 
 ```yaml
 Type: String
@@ -97,7 +97,9 @@ Accept wildcard characters: False
 ```
 
 ### -IncludeTotalCount
-{{Fill IncludeTotalCount Description}}
+Return the total count (and accuracy) of the number of records before returning the result.
+
+Because of the limitations of Dynamics CRM, the total count is only returned accurate when the result is limited to 5000 items.
 
 ```yaml
 Type: SwitchParameter
@@ -112,7 +114,7 @@ Accept wildcard characters: False
 ```
 
 ### -Skip
-{{Fill Skip Description}}
+Skips (does not return) the specified number of records.
 
 ```yaml
 Type: UInt64
@@ -140,5 +142,6 @@ Accept wildcard characters: False
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Get-CrmPublisher.html](http://crmpowershell.amsoftware.nl/Get-CrmPublisher.html)
+[New-CrmPublisher](New-CrmPublisher.md)
 
+[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)

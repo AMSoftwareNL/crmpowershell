@@ -7,7 +7,7 @@ schema: 2.0.0
 # Get-CrmRolePrincipals
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Get the users and teams assigned to a role.
 
 ## SYNTAX
 
@@ -16,21 +16,21 @@ Get-CrmRolePrincipals [-Role] <Guid>
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Get the users and teams assigned to a role.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Get-CrmRole -Include 'Sales Person' | Get-CrmRolePrincipals
 ```
 
-{{ Add example description here }}
+Get the users and teams assigned to the 'Sales Person' role.
 
 ## PARAMETERS
 
 ### -Role
-{{Fill Role Description}}
+The id of the role to get the users and teams for.
 
 ```yaml
 Type: Guid
@@ -48,15 +48,16 @@ Accept wildcard characters: False
 
 ### System.Guid
 
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
-
 
 ## NOTES
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Get-CrmRolePrincipals.html](http://crmpowershell.amsoftware.nl/Get-CrmRolePrincipals.html)
+[Set-CrmRolePrincipals](Set-CrmRolePrincipals.md)
 
+[Get-CrmRole](Get-CrmRole.md)
+
+[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)

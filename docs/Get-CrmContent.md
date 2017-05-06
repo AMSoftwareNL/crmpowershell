@@ -7,7 +7,7 @@ schema: 2.0.0
 # Get-CrmContent
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Retrieve data records from an entity.
 
 ## SYNTAX
 
@@ -35,21 +35,40 @@ Get-CrmContent [-FetchXml] <XmlDocument> [-IncludeTotalCount] [-Skip <UInt64>] [
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Retrieve data-records from an entity using attribute values, key values, the id or FetchXML. 
+
+Paging is applied when retrieving the records to ensure all items are returned instead of only the first 5000.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Get-CrmContent -Entity account -Query @{accountnumber='123456'} -Columns@('accountnumber','accountname')
 ```
 
-{{ Add example description here }}
+Retrieve the record from the entity 'account' where the accountnumber is '123456'. Include only the accountnumber and accountname in the result.
+
+### Example 2
+```
+PS C:\> Get-CrmContent -Entity account -Order @{accountname='Descending'} 
+```
+
+Retrieve  records from the entity 'account'. Sort the result by accountname in descending order.
+
+### Example 3
+```
+PS C:\> [xml]$fetchxml = Get-Content -LiteralPath c:\temp\fetch.xml -Encoding UTF8
+PS C:\> Get-CrmContent -FetchXml $fecthxml
+```
+
+Retrieve records based on a FetchXML query stored in fetch.xml.
 
 ## PARAMETERS
 
 ### -Columns
-{{Fill Columns Description}}
+The logicalnames of the attributes to include in the result.
+
+NOTE: This parameter is case sensitive. i.e. it must match the case of the LogicalName exactly.
 
 ```yaml
 Type: String[]
@@ -64,7 +83,9 @@ Accept wildcard characters: False
 ```
 
 ### -Entity
-{{Fill Entity Description}}
+The logicalname of the entity to retrieve the records from.
+
+NOTE: This parameter is case sensitive. i.e. it must match the case of the LogicalName exactly.
 
 ```yaml
 Type: String
@@ -79,7 +100,7 @@ Accept wildcard characters: False
 ```
 
 ### -FetchXml
-{{Fill FetchXml Description}}
+The XmlDocument containing a FecthXML query.
 
 ```yaml
 Type: XmlDocument
@@ -94,7 +115,7 @@ Accept wildcard characters: False
 ```
 
 ### -First
-{{Fill First Description}}
+Specifies the number of records to retrieve from the beginning.
 
 ```yaml
 Type: UInt64
@@ -109,7 +130,9 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{Fill Id Description}}
+The Id of the record to retrieve. 
+
+This can be an Entity object or EntityReference object. These will be converted to Guid as required.
 
 ```yaml
 Type: Guid
@@ -124,7 +147,9 @@ Accept wildcard characters: False
 ```
 
 ### -IncludeTotalCount
-{{Fill IncludeTotalCount Description}}
+Return the total count (and accuracy) of the number of records before returning the result.
+
+Because of the limitations of Dynamics CRM, the total count is only returned accurate when the result is limited to 5000 items.
 
 ```yaml
 Type: SwitchParameter
@@ -139,7 +164,7 @@ Accept wildcard characters: False
 ```
 
 ### -Keys
-{{Fill Keys Description}}
+A hashtable of attribute logicalnames and values which match an entity key. The record is retrieved using the unique key.
 
 ```yaml
 Type: Hashtable
@@ -154,7 +179,13 @@ Accept wildcard characters: False
 ```
 
 ### -Order
-{{Fill Order Description}}
+A hashtable of attribute logicalnames and the order the sort the result. Provide the attribute logicalname as the key and the sort order as the value.
+
+Valid values for the sort order are:
+
+ -- Ascending : Sort the attribute ascending.
+ 
+ -- Decending : Sort the attribute decending.
 
 ```yaml
 Type: Hashtable
@@ -169,7 +200,7 @@ Accept wildcard characters: False
 ```
 
 ### -Query
-{{Fill Query Description}}
+A hashtable of attribute logicalnames and values to filter the results. 
 
 ```yaml
 Type: Hashtable
@@ -184,7 +215,7 @@ Accept wildcard characters: False
 ```
 
 ### -RelatedEntities
-{{Fill RelatedEntities Description}}
+A hashtable of entity logicalnames and relationship schemanames describing the related entities to include in the result.
 
 ```yaml
 Type: Hashtable
@@ -199,7 +230,7 @@ Accept wildcard characters: False
 ```
 
 ### -Skip
-{{Fill Skip Description}}
+Skips (does not return) the specified number of records.
 
 ```yaml
 Type: UInt64
@@ -215,7 +246,7 @@ Accept wildcard characters: False
 
 ## INPUTS
 
-### System.String[]
+### None
 
 
 ## OUTPUTS
@@ -225,7 +256,18 @@ Accept wildcard characters: False
 
 ## NOTES
 
+Referenced LogicalNames and SchemaNames are case sensitive. i.e. These must match the case of the LogicalName or SchemaName exactly.
+
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Get-CrmContent.html](http://crmpowershell.amsoftware.nl/Get-CrmContent.html)
+[Add-CrmContent](Add-CrmContent.md)
 
+[Join-CrmContent](Join.CrmContent.md)
+
+[Set-CrmContent](Set-CrmContent.md)
+
+[Split-CrmContent](Split-CrmContent.md)
+
+[Remove-CrmContent](Remove-CrmContent.md)
+
+[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)

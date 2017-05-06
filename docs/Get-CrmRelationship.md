@@ -7,9 +7,14 @@ schema: 2.0.0
 # Get-CrmRelationship
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Get the metadata of a relationship.
 
 ## SYNTAX
+
+### GetRelationshipByFilter
+```
+Get-CrmRelationship [[-Entity] <String>] [[-RelatedEntity] <String>] [-Include <String>] [-Exclude <String>] [-Type <CrmRelationshipType>] [-CustomOnly] [-ExcludeManaged]
+```
 
 ### GetRelationshipByName
 ```
@@ -21,28 +26,22 @@ Get-CrmRelationship [-Name] <String>
 Get-CrmRelationship [-Id] <Guid>
 ```
 
-### GetRelationshipByFilter
-```
-Get-CrmRelationship [[-Entity] <String>] [[-RelatedEntity] <String>] [-Include <String>] [-Exclude <String>]
- [-Type <CrmRelationshipType>] [-CustomOnly] [-ExcludeManaged]
-```
-
 ## DESCRIPTION
-{{Fill in the Description}}
+Get the metadata of a relationship. Relationship can be one-to-many or many-to-many.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Get-CrmRelationship -Entity account -RelatedEntity contact -Type OneToMany
 ```
 
-{{ Add example description here }}
+Get the metadata for the one-to-many relationships between the entities 'account' and 'contact'.
 
 ## PARAMETERS
 
 ### -CustomOnly
-{{Fill CustomOnly Description}}
+Retrieve only the metadata for relationships that are marked as custom.
 
 ```yaml
 Type: SwitchParameter
@@ -57,7 +56,9 @@ Accept wildcard characters: False
 ```
 
 ### -Entity
-{{Fill Entity Description}}
+The LogicalName of the entity to retrieve relationship metadata for.
+
+NOTE: This parameter is case sensitive. i.e. it must match the case of the LogicalName exactly.
 
 ```yaml
 Type: String
@@ -72,7 +73,7 @@ Accept wildcard characters: False
 ```
 
 ### -Exclude
-{{Fill Exclude Description}}
+Exclude the metadata for relationships whose SchemaName matches the provided pattern.
 
 ```yaml
 Type: String
@@ -83,11 +84,11 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: False
+Accept wildcard characters: True
 ```
 
 ### -ExcludeManaged
-{{Fill ExcludeManaged Description}}
+Do not retrieve metadata for relationships that are marked as managed.
 
 ```yaml
 Type: SwitchParameter
@@ -102,7 +103,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{Fill Id Description}}
+The MetadataId of the relationship to retrieve.
 
 ```yaml
 Type: Guid
@@ -117,7 +118,7 @@ Accept wildcard characters: False
 ```
 
 ### -Include
-{{Fill Include Description}}
+Include the metadata for relationships whose SchemaName matches the provided pattern.
 
 ```yaml
 Type: String
@@ -132,7 +133,9 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{Fill Name Description}}
+The SchemaName of the relationship to retrieve the metadata for.
+
+NOTE: This parameter is case sensitive. i.e. it must match the case of the SchemaName exactly.
 
 ```yaml
 Type: String
@@ -147,7 +150,7 @@ Accept wildcard characters: False
 ```
 
 ### -RelatedEntity
-{{Fill RelatedEntity Description}}
+The LogicalName of the related entity participating in the relationship to retrieve the metadata for.
 
 ```yaml
 Type: String
@@ -162,7 +165,15 @@ Accept wildcard characters: False
 ```
 
 ### -Type
-{{Fill Type Description}}
+The type of relationship to retrieve the metadata for.
+
+Accepted values are:
+
+ -- All : (Default) Retrieve all types of relationships.
+
+ -- OneToMany : Only retrieve the metadata for one-to-many relationships.
+ 
+ -- ManyTOMany : Only retrieve the metadata for many-to-many relationships.
 
 ```yaml
 Type: CrmRelationshipType
@@ -189,7 +200,26 @@ Accept wildcard characters: False
 
 ## NOTES
 
+The Entity, RelatedEntity and Name parameters are case sensitive. i.e. these must match the case of the LogicalName or SchemaName exactly.
+
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Get-CrmRelationship.html](http://crmpowershell.amsoftware.nl/Get-CrmRelationship.html)
+[Get-CrmEntity](Get-CrmEntity.md)
 
+[Get-CrmAttribute](Get-CrmAttribute.md)
+
+[Get-CrmEntityKey](Get-CrmEntityKey.md)
+
+[Get-CrmOptionSet](Get-CrmOptionSet.md)
+
+[Add-CrmRelationship](Add-CrmRelationship.md)
+
+[Set-CrmRelationship](Set-CrmRelationship.md)
+
+[Set-CrmRelationshipCascadeConfig](Set-CrmRelationshipCascadeConfig.md)
+
+[Remove-CrmRelationship](Remove-CrmRelationship.md)
+
+[ManyToManyRelationshipMetadata Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.metadata.manytomanyrelationshipmetadata.aspx)
+
+[OneToManyRelationshipMetadata Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.metadata.onetomanyrelationshipmetadata.aspx)
