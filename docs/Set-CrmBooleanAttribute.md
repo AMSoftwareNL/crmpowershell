@@ -7,7 +7,7 @@ schema: 2.0.0
 # Set-CrmBooleanAttribute
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Update an attribute of type Boolean.
 
 ## SYNTAX
 
@@ -21,21 +21,16 @@ Set-CrmBooleanAttribute [-DefaultValue <Boolean>] [-TrueValue <PSOptionSetValue>
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Update an attribute of type Boolean.
 
 ## EXAMPLES
 
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
 
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -CanModifyAdditionalSettings
-{{Fill CanModifyAdditionalSettings Description}}
+Whether any settings not controlled by managed properties can be changed.
 
 ```yaml
 Type: Boolean
@@ -50,7 +45,7 @@ Accept wildcard characters: False
 ```
 
 ### -DefaultValue
-{{Fill DefaultValue Description}}
+The default form value for the attribute.
 
 ```yaml
 Type: Boolean
@@ -65,7 +60,7 @@ Accept wildcard characters: False
 ```
 
 ### -Description
-{{Fill Description Description}}
+The description of the attribute.
 
 ```yaml
 Type: String
@@ -80,7 +75,7 @@ Accept wildcard characters: False
 ```
 
 ### -DisplayName
-{{Fill DisplayName Description}}
+The display name for the attribute.
 
 ```yaml
 Type: String
@@ -95,7 +90,7 @@ Accept wildcard characters: False
 ```
 
 ### -Entity
-{{Fill Entity Description}}
+The LogicalName of the entity containing the attribute.
 
 ```yaml
 Type: String
@@ -110,7 +105,7 @@ Accept wildcard characters: False
 ```
 
 ### -FalseValue
-{{Fill FalseValue Description}}
+OptionSetValue to assign to the false choice of the boolean.
 
 ```yaml
 Type: PSOptionSetValue
@@ -125,7 +120,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsAuditEnabled
-{{Fill IsAuditEnabled Description}}
+Whether the attribute is enabled for auditing.
 
 ```yaml
 Type: Boolean
@@ -140,7 +135,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsCustomizable
-{{Fill IsCustomizable Description}}
+Whether the attribute is a custom attribute.
 
 ```yaml
 Type: Boolean
@@ -155,7 +150,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsGlobalFilterEnabled
-{{Fill IsGlobalFilterEnabled Description}}
+Whether the attribute is enabled for global filtering.
 
 ```yaml
 Type: Boolean
@@ -170,7 +165,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsRenameable
-{{Fill IsRenameable Description}}
+Whether the attribute display name can be changed.
 
 ```yaml
 Type: Boolean
@@ -185,7 +180,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsSecured
-{{Fill IsSecured Description}}
+Whether the attribute is secured for field-level security.
 
 ```yaml
 Type: Boolean
@@ -200,7 +195,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsSortableEnabled
-{{Fill IsSortableEnabled Description}}
+Whether the attribute is sortable.
 
 ```yaml
 Type: Boolean
@@ -215,7 +210,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsValidForAdvancedFind
-{{Fill IsValidForAdvancedFind Description}}
+Whether the attribute appears in Advanced Find.
 
 ```yaml
 Type: Boolean
@@ -230,7 +225,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{Fill Name Description}}
+The LogicalName of the attribute to update.
 
 ```yaml
 Type: String
@@ -245,7 +240,7 @@ Accept wildcard characters: False
 ```
 
 ### -Required
-{{Fill Required Description}}
+The data entry requirement level enforced for the attribute.
 
 ```yaml
 Type: CrmRequiredLevel
@@ -261,7 +256,7 @@ Accept wildcard characters: False
 ```
 
 ### -TrueValue
-{{Fill TrueValue Description}}
+OptionSetValue to assign to the true choice of the boolean.
 
 ```yaml
 Type: PSOptionSetValue
@@ -282,11 +277,30 @@ Accept wildcard characters: False
 
 ## OUTPUTS
 
-### System.Object
+### None
 
 ## NOTES
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Set-CrmBooleanAttribute.html](http://crmpowershell.amsoftware.nl/Set-CrmBooleanAttribute.html)
+[Set-CrmBigIntAttribute](Set-CrmBigIntAttribute.md)
 
+[Set-CrmDateTimeAttribute](Set-CrmDateTimeAttribute.md)
+
+[Set-CrmDecimalAttribute](Set-CrmDecimalAttribute.md)
+
+[Set-CrmDoubleAttribute](Set-CrmDoubleAttribute.md)
+
+[Set-CrmImageAttribute](Set-CrmImageAttribute.md)
+
+[Set-CrmIntegerAttribute](Set-CrmIntegerAttribute.md)
+
+[Set-CrmMemoAttribute](Set-CrmMemoAttribute.md)
+
+[Set-CrmMoneyAttribute](Set-CrmMoneyAttribute.md)
+
+[Set-CrmOptionSetAttribute](Set-CrmOptionSetAttribute.md)
+
+[Set-CrmStringAttribute](Set-CrmStringAttribute.md)
+
+[BooleanAttributeMetadata Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.metadata.booleanattributemetadata.aspx)
