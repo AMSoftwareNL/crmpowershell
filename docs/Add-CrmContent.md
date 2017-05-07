@@ -7,7 +7,7 @@ schema: 2.0.0
 # Add-CrmContent
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Add a data record to an entity.
 
 ## SYNTAX
 
@@ -22,21 +22,21 @@ Add-CrmContent [-Entity] <String> [[-Id] <Guid>] [-Attributes] <Hashtable>
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Add a data record to an entity.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Add-CrmContent -Entity account -Attributes @{accountnumber='123456';'accountname'='AMSoftware'}
 ```
 
-{{ Add example description here }}
+Add an record to account.
 
 ## PARAMETERS
 
 ### -Attributes
-{{Fill Attributes Description}}
+A hashtable containing to attribute LogicalNames and values of the record.
 
 ```yaml
 Type: Hashtable
@@ -51,7 +51,7 @@ Accept wildcard characters: False
 ```
 
 ### -Entity
-{{Fill Entity Description}}
+The LogicalName of the entity to add the record to.
 
 ```yaml
 Type: String
@@ -66,7 +66,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{Fill Id Description}}
+The unique id of the new record.
 
 ```yaml
 Type: Guid
@@ -81,7 +81,7 @@ Accept wildcard characters: False
 ```
 
 ### -Record
-{{Fill Record Description}}
+An entity object containing the attributes and values of the record.
 
 ```yaml
 Type: Entity
@@ -109,5 +109,14 @@ Accept wildcard characters: False
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Add-CrmContent.html](http://crmpowershell.amsoftware.nl/Add-CrmContent.html)
+[Get-CrmContent](Get-CrmContent.md)
 
+[Join-CrmContent](Join-CrmContent.md)
+
+[Remove-CrmContent](Remove-CrmContent.md)
+
+[Set-CrmContent](Set-CrmContent.md)
+
+[Split-CrmContent](Split-CrmContent.md)
+
+[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)
