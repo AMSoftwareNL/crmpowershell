@@ -7,7 +7,7 @@ schema: 2.0.0
 # Publish-CrmComponent
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Publish customization components.
 
 ## SYNTAX
 
@@ -28,21 +28,21 @@ Publish-CrmComponent [-Entities <String[]>] [-Webresources <Guid[]>] [-Optionset
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Publish customization components.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Publish-CrmComponent -Entities @('account'','contact')
 ```
 
-{{ Add example description here }}
+Publish customization for the entities 'account' and 'contact'.
 
 ## PARAMETERS
 
 ### -All
-{{Fill All Description}}
+Publish all customizations in the organization.
 
 ```yaml
 Type: SwitchParameter
@@ -57,7 +57,9 @@ Accept wildcard characters: False
 ```
 
 ### -Dashboards
-{{Fill Dashboards Description}}
+The id of the dashboards to publish. 
+
+The id must match id for records in the entity 'systemform'.
 
 ```yaml
 Type: Guid[]
@@ -72,7 +74,7 @@ Accept wildcard characters: False
 ```
 
 ### -Entities
-{{Fill Entities Description}}
+The LogicalName of entities to publish.
 
 ```yaml
 Type: String[]
@@ -87,7 +89,7 @@ Accept wildcard characters: False
 ```
 
 ### -Optionsets
-{{Fill Optionsets Description}}
+The name of global optionsets to publish.
 
 ```yaml
 Type: String[]
@@ -102,7 +104,7 @@ Accept wildcard characters: False
 ```
 
 ### -PublishRibbon
-{{Fill PublishRibbon Description}}
+Include the ribbon in publishing.
 
 ```yaml
 Type: SwitchParameter
@@ -117,7 +119,7 @@ Accept wildcard characters: False
 ```
 
 ### -PublishSiteMap
-{{Fill PublishSiteMap Description}}
+Publish the sitemap.
 
 ```yaml
 Type: SwitchParameter
@@ -132,7 +134,7 @@ Accept wildcard characters: False
 ```
 
 ### -Solution
-{{Fill Solution Description}}
+The id of the solution containing the components to publish.
 
 ```yaml
 Type: Guid
@@ -147,7 +149,9 @@ Accept wildcard characters: False
 ```
 
 ### -Webresources
-{{Fill Webresources Description}}
+The id of the webresources to publish. 
+
+The id must match id for records in the entity 'webresource'.
 
 ```yaml
 Type: Guid[]
@@ -165,14 +169,20 @@ Accept wildcard characters: False
 
 ### System.Guid
 
-
 ## OUTPUTS
 
-### System.Object
+### None
 
 ## NOTES
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Publish-CrmComponent.html](http://crmpowershell.amsoftware.nl/Publish-CrmComponent.html)
+[Get-CrmSolution](Get-CrmSolution.md)
 
+[Add-CrmSolutionComponent](Add-CrmSolutionComponent.md)
+
+[Get-CrmSolutionComponent](Get-CrmSolutionComponent.md)
+
+[Remove-CrmSolutionComponent](Remove-CrmSolutionComponent.md)
+
+[Test-CrmSolutionComponent](Test-CrmSolutionComponent.md)
