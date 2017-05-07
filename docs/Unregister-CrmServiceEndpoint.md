@@ -7,7 +7,7 @@ schema: 2.0.0
 # Unregister-CrmServiceEndpoint
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Unregister a serviceendpoint.
 
 ## SYNTAX
 
@@ -16,21 +16,15 @@ Unregister-CrmServiceEndpoint [-Id] <Guid> [-Force]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Unregister a serviceendpoint.
 
 ## EXAMPLES
 
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -Force
-{{Fill Force Description}}
+Executes the action without prompting for confirmation.
 
 ```yaml
 Type: SwitchParameter
@@ -45,7 +39,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{Fill Id Description}}
+The id of the serviceendpoint to unregister.
 
 ```yaml
 Type: Guid
@@ -66,11 +60,14 @@ Accept wildcard characters: False
 
 ## OUTPUTS
 
-### System.Object
+### None
 
 ## NOTES
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Unregister-CrmServiceEndpoint.html](http://crmpowershell.amsoftware.nl/Unregister-CrmServiceEndpoint.html)
+[Get-CrmServiceEndpoint](Get-CrmServiceEndpoint.md)
 
+[Register-CrmServiceEndpoint](Register-CrmServiceEndpoint.md)
+
+[Set-CrmServiceEndpoint](Set-CrmServiceEndpoint.md)
