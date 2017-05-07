@@ -7,7 +7,7 @@ schema: 2.0.0
 # Stop-CrmProcess
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Stop a running asynchronous operation (System Job).
 
 ## SYNTAX
 
@@ -22,21 +22,21 @@ Stop-CrmProcess [-Process] <Guid> [[-Record] <Guid>] [-Force] [-WhatIf] [-Confir
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Stop a running asynchronous operation (System Job).
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Stop-CrmProcess -Process 'AA5C6340-D76D-44E1-B3B8-1D3EFA0C4B8D' -Record '146C4190-4D68-4A98-9B6E-AD911F4351D9'
 ```
 
-{{ Add example description here }}
+Stop any System Job associated to the sepcified process and record.
 
 ## PARAMETERS
 
 ### -ASyncOperation
-{{Fill ASyncOperation Description}}
+The id of the System Job to stop.
 
 ```yaml
 Type: Guid
@@ -51,7 +51,7 @@ Accept wildcard characters: False
 ```
 
 ### -Force
-{{Fill Force Description}}
+Stops the specified processes without prompting for confirmation.
 
 ```yaml
 Type: SwitchParameter
@@ -66,7 +66,7 @@ Accept wildcard characters: False
 ```
 
 ### -Process
-{{Fill Process Description}}
+The id of the process (workflow) to stop all associated System Jobs for.
 
 ```yaml
 Type: Guid
@@ -81,7 +81,7 @@ Accept wildcard characters: False
 ```
 
 ### -Record
-{{Fill Record Description}}
+The id of the record to stop the associated System Jobs for.
 
 ```yaml
 Type: Guid
@@ -133,11 +133,12 @@ Accept wildcard characters: False
 
 ## OUTPUTS
 
-### System.Object
+### None
 
 ## NOTES
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Stop-CrmProcess.html](http://crmpowershell.amsoftware.nl/Stop-CrmProcess.html)
+[Get-CrmProcess](Get-CrmProcess.md)
 
+[Start-CrmProcess](Start-CrmProcess.md)
