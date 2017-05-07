@@ -7,7 +7,7 @@ schema: 2.0.0
 # Split-CrmContent
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Disassociate one record from another.
 
 ## SYNTAX
 
@@ -16,21 +16,25 @@ Split-CrmContent [-Entity] <String> [-Id] <Guid> [-FromEntity] <String> [-FromId
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Disassociate one record from another.
+
+This can be used to clear lookups (instead of Set-CrmContent), but is most usefull for breaking associated records in many-to-many relations.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Split-CrmEnity -Entity 'contact' -Id '53B38B4C-7A26-4731-84A3-6A3229F9CC60' -FromEntity 'account' -FromId '76629DD4-7A1A-4F47-BEEA-5D881676938C' -Attribute 'primarycontactid'
 ```
 
-{{ Add example description here }}
+Disassociate the specified contact from the specified account for attribute 'primarycontactid'
 
 ## PARAMETERS
 
 ### -Attribute
-{{Fill Attribute Description}}
+The LogicalName of the attribute on the target entity to clear the association for.
+
+If the relationship between the entity and target entity is unique this parameter is not required.
 
 ```yaml
 Type: String
@@ -45,7 +49,7 @@ Accept wildcard characters: False
 ```
 
 ### -Entity
-{{Fill Entity Description}}
+The LogicalName of the entity to disassociate.
 
 ```yaml
 Type: String
@@ -60,7 +64,7 @@ Accept wildcard characters: False
 ```
 
 ### -FromEntity
-{{Fill FromEntity Description}}
+The LogicalName of the entity disassociate the record from.
 
 ```yaml
 Type: String
@@ -75,7 +79,7 @@ Accept wildcard characters: False
 ```
 
 ### -FromId
-{{Fill FromId Description}}
+The id of the record of the entity to disassociate the record from.
 
 ```yaml
 Type: Guid
@@ -90,7 +94,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{Fill Id Description}}
+The id of the record of the entity to disassociate.
 
 ```yaml
 Type: Guid
@@ -111,11 +115,18 @@ Accept wildcard characters: False
 
 ## OUTPUTS
 
-### System.Object
+### None
 
 ## NOTES
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Split-CrmContent.html](http://crmpowershell.amsoftware.nl/Split-CrmContent.html)
+[Add-CrmContent](Add-CrmContent.md)
 
+[Get-CrmContent](Get-CrmContent.md)
+
+[Join-CrmContent](Join-CrmContent.md)
+
+[Remove-CrmContent](Remove-CrmContent.md)
+
+[Set-CrmContent](Set-CrmContent.md)
