@@ -7,38 +7,32 @@ schema: 2.0.0
 # Add-CrmSolutionComponent
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Add a component to a customization solution.
 
 ## SYNTAX
 
 ### AddSolutionComponentSimple
 ```
 Add-CrmSolutionComponent [-Solution] <Guid> -Type <CrmComponentType> -ComponentId <Guid> [-IncludeRequired]
- [-ExcludeSubComponents] [-ExcludeMetadata] [<CommonParameters>]
+ [-ExcludeSubComponents] [-ExcludeMetadata]
 ```
 
 ### AddSolutionComponentAdvanced
 ```
 Add-CrmSolutionComponent [-Solution] <Guid> -ComponentType <Int32> -ComponentId <Guid> [-IncludeRequired]
- [-ExcludeSubComponents] [-ExcludeMetadata] [<CommonParameters>]
+ [-ExcludeSubComponents] [-ExcludeMetadata]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Add a component to a customization solution.
 
 ## EXAMPLES
 
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -ComponentId
-{{Fill ComponentId Description}}
+The id of the component to add.
 
 ```yaml
 Type: Guid
@@ -53,7 +47,7 @@ Accept wildcard characters: False
 ```
 
 ### -ComponentType
-{{Fill ComponentType Description}}
+The type of component to add. Matches a value from the global optionset 'Component Type'(componenttype).
 
 ```yaml
 Type: Int32
@@ -68,7 +62,7 @@ Accept wildcard characters: False
 ```
 
 ### -ExcludeMetadata
-{{Fill ExcludeMetadata Description}}
+Specifies if the component is added to the solution without its metadata.
 
 ```yaml
 Type: SwitchParameter
@@ -83,7 +77,7 @@ Accept wildcard characters: False
 ```
 
 ### -ExcludeSubComponents
-{{Fill ExcludeSubComponents Description}}
+Whether the subcomponents should be excluded.
 
 ```yaml
 Type: SwitchParameter
@@ -98,7 +92,7 @@ Accept wildcard characters: False
 ```
 
 ### -IncludeRequired
-{{Fill IncludeRequired Description}}
+Whether other solution components that are required by the solution component that you are adding should also be added to the unmanaged solution.
 
 ```yaml
 Type: SwitchParameter
@@ -113,7 +107,7 @@ Accept wildcard characters: False
 ```
 
 ### -Solution
-{{Fill Solution Description}}
+The id of the solution to add the component to.
 
 ```yaml
 Type: Guid
@@ -128,7 +122,7 @@ Accept wildcard characters: False
 ```
 
 ### -Type
-{{Fill Type Description}}
+The type of component to add.
 
 ```yaml
 Type: CrmComponentType
@@ -143,20 +137,23 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
-
 ## INPUTS
 
 ### System.Guid
 
+
 ## OUTPUTS
 
-### System.Object
+### None
 
 ## NOTES
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Add-CrmSolutionComponent.html](http://crmpowershell.amsoftware.nl/Add-CrmSolutionComponent.html)
+[Get-CrmSolution](Get-CrmSolution.md)
 
+[Get-CrmSolutionComponent](Get-CrmSolutionComponent.md)
+
+[Remove-CrmSolutionComponent](Remove-CrmSolutionComponent.md)
+
+[Test-CrmSolutionComponent](Test-CrmSolutionComponent.md)

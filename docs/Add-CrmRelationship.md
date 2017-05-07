@@ -7,39 +7,33 @@ schema: 2.0.0
 # Add-CrmRelationship
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Add a relationship.
 
 ## SYNTAX
 
 ### AddManyToManyRelationship
 ```
 Add-CrmRelationship [-Entity1] <String> [-Entity2] <String> [-Name] <String> [-IntersectName] <String>
- [-AdvancedFind <Boolean>] [-Customizable <Boolean>] [<CommonParameters>]
+ [-AdvancedFind <Boolean>] [-Customizable <Boolean>]
 ```
 
 ### AddOneToManyRelationship
 ```
 Add-CrmRelationship [-Entity] <String> [-ToEntity] <String> [-Name] <String> -AttributeName <String>
  -AttributeDisplayName <String> [-AttributeDescription <String>] [-AttributeRequired <CrmRequiredLevel>]
- [-AdvancedFind <Boolean>] [-Customizable <Boolean>] [<CommonParameters>]
+ [-AdvancedFind <Boolean>] [-Customizable <Boolean>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Add a relationship.
 
 ## EXAMPLES
 
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -AdvancedFind
-{{Fill AdvancedFind Description}}
+Whether the relationship appears in Advanced Find.
 
 ```yaml
 Type: Boolean
@@ -54,7 +48,7 @@ Accept wildcard characters: False
 ```
 
 ### -AttributeDescription
-{{Fill AttributeDescription Description}}
+The description for the lookup attribute.
 
 ```yaml
 Type: String
@@ -69,7 +63,7 @@ Accept wildcard characters: False
 ```
 
 ### -AttributeDisplayName
-{{Fill AttributeDisplayName Description}}
+The displayname for the lookup attribute.
 
 ```yaml
 Type: String
@@ -84,7 +78,7 @@ Accept wildcard characters: False
 ```
 
 ### -AttributeName
-{{Fill AttributeName Description}}
+The LogicalName for the lookup attribute
 
 ```yaml
 Type: String
@@ -99,7 +93,7 @@ Accept wildcard characters: False
 ```
 
 ### -AttributeRequired
-{{Fill AttributeRequired Description}}
+The data entry requirement level enforced for the lookup attribute.
 
 ```yaml
 Type: CrmRequiredLevel
@@ -115,7 +109,7 @@ Accept wildcard characters: False
 ```
 
 ### -Customizable
-{{Fill Customizable Description}}
+Whether the relationship is a custom relationship.
 
 ```yaml
 Type: Boolean
@@ -130,7 +124,7 @@ Accept wildcard characters: False
 ```
 
 ### -Entity
-{{Fill Entity Description}}
+The entity to add the one-to-many relationship for.
 
 ```yaml
 Type: String
@@ -145,7 +139,7 @@ Accept wildcard characters: False
 ```
 
 ### -Entity1
-{{Fill Entity1 Description}}
+The entity to add the many-to-many relationship for.
 
 ```yaml
 Type: String
@@ -160,7 +154,7 @@ Accept wildcard characters: False
 ```
 
 ### -Entity2
-{{Fill Entity2 Description}}
+The entity to add the many-to-many relationship for.
 
 ```yaml
 Type: String
@@ -175,7 +169,7 @@ Accept wildcard characters: False
 ```
 
 ### -IntersectName
-{{Fill IntersectName Description}}
+The LogicalName for the intersect entity to create.
 
 ```yaml
 Type: String
@@ -190,7 +184,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{Fill Name Description}}
+The SchemaName of the relationship.
 
 ```yaml
 Type: String
@@ -205,7 +199,7 @@ Accept wildcard characters: False
 ```
 
 ### -ToEntity
-{{Fill ToEntity Description}}
+The entity to add the one-to-many relationship to.
 
 ```yaml
 Type: String
@@ -219,20 +213,28 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
-
 ## INPUTS
 
 ### None
+
 
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Metadata.RelationshipMetadataBase
 
+
 ## NOTES
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Add-CrmRelationship.html](http://crmpowershell.amsoftware.nl/Add-CrmRelationship.html)
+[Get-CrmRelationship](Get-CrmRelationship.md)
 
+[Set-CrmRelationship](Set-CrmRelationship.md)
+
+[Set-CrmRelationshipCascadeConfig](Set-CrmRelationshipCascadeConfig.md)
+
+[Remove-CrmRelationship](Remove-CrmRelationship.md)
+
+[ManyToManyRelationshipMetadata Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.metadata.manytomanyrelationshipmetadata.aspx)
+
+[OneToManyRelationshipMetadata Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.metadata.onetomanyrelationshipmetadata.aspx)
