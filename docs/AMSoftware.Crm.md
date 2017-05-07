@@ -8,7 +8,12 @@ Locale: en-us
 
 # amsoftware.crm Module
 ## Description
-{{Manually Enter Description Here}}
+PowerShell CmdLet Library for use with Dynamics CRM Organization. Manage Metadata and content, and administer the organization.
+
+CRM PowerShell Library is a collection of PowerShell Cmdlets for working with Dynamics CRM.
+
+Connect to your on premises CRM using Windows Authentication, Claims Based Authentication or IFD. Or connect to CRM Online (Dynamics 365) by specifying the Region. List and select an available organization, and you are ready to go.
+
 
 ## amsoftware.crm Cmdlets
 ### [Add-CrmAttribute](Add-CrmAttribute.md)

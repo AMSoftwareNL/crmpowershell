@@ -49,7 +49,7 @@ PS C:\> {{ Add example code here }}
 ## PARAMETERS
 
 ### -AutoRouteToOwnerQueue
-{{Fill AutoRouteToOwnerQueue Description}}
+Whether to automatically move records to the owner’s default queue when a record of this type is created or assigned.
 
 ```yaml
 Type: Boolean
@@ -64,7 +64,7 @@ Accept wildcard characters: False
 ```
 
 ### -CanChangeHierarchicalRelationship
-{{Fill CanChangeHierarchicalRelationship Description}}
+Whether the hierarchical state of entity relationships included in your managed solutions can be changed.
 
 ```yaml
 Type: Boolean
@@ -79,7 +79,7 @@ Accept wildcard characters: False
 ```
 
 ### -CanCreateAttributes
-{{Fill CanCreateAttributes Description}}
+Whether additional attributes can be added to the entity.
 
 ```yaml
 Type: Boolean
@@ -94,7 +94,7 @@ Accept wildcard characters: False
 ```
 
 ### -CanCreateCharts
-{{Fill CanCreateCharts Description}}
+Whether new charts can be created for the entity.
 
 ```yaml
 Type: Boolean
@@ -109,7 +109,7 @@ Accept wildcard characters: False
 ```
 
 ### -CanCreateForms
-{{Fill CanCreateForms Description}}
+Whether new forms can be created for the entity.
 
 ```yaml
 Type: Boolean
@@ -124,7 +124,7 @@ Accept wildcard characters: False
 ```
 
 ### -CanCreateViews
-{{Fill CanCreateViews Description}}
+Whether new views can be created for the entity.
 
 ```yaml
 Type: Boolean
@@ -139,7 +139,7 @@ Accept wildcard characters: False
 ```
 
 ### -CanEnableSyncToExternalSearchIndex
-{{Fill CanEnableSyncToExternalSearchIndex Description}}
+Whether this entity can be enabled for relevance search when customizing a managed solution.
 
 ```yaml
 Type: Boolean
@@ -154,7 +154,7 @@ Accept wildcard characters: False
 ```
 
 ### -CanModifyAdditionalSettings
-{{Fill CanModifyAdditionalSettings Description}}
+Whether any other entity properties not represented by a managed property can be changed.
 
 ```yaml
 Type: Boolean
@@ -169,7 +169,7 @@ Accept wildcard characters: False
 ```
 
 ### -ChangeTrackingEnabled
-{{Fill ChangeTrackingEnabled Description}}
+Whether change tracking is enabled for an entity or not.
 
 ```yaml
 Type: Boolean
@@ -184,7 +184,7 @@ Accept wildcard characters: False
 ```
 
 ### -Customizable
-{{Fill Customizable Description}}
+Whether the entity is customizable.
 
 ```yaml
 Type: Boolean
@@ -199,7 +199,7 @@ Accept wildcard characters: False
 ```
 
 ### -Description
-{{Fill Description Description}}
+The label containing the description for the entity.
 
 ```yaml
 Type: String
@@ -214,7 +214,7 @@ Accept wildcard characters: False
 ```
 
 ### -DisplayCollectionName
-{{Fill DisplayCollectionName Description}}
+The label containing the plural display name for the entity.
 
 ```yaml
 Type: String
@@ -229,7 +229,7 @@ Accept wildcard characters: False
 ```
 
 ### -DisplayName
-{{Fill DisplayName Description}}
+The label containing the display name for the entity.
 
 ```yaml
 Type: String
@@ -244,7 +244,7 @@ Accept wildcard characters: False
 ```
 
 ### -Entity
-{{Fill Entity Description}}
+The updated EntityMetadata object for the entity.
 
 ```yaml
 Type: EntityMetadata
@@ -259,7 +259,9 @@ Accept wildcard characters: False
 ```
 
 ### -EntityColor
-{{Fill EntityColor Description}}
+The color to be used for this entity in the application.
+
+Any string matching a color in System.Drawing.Color.
 
 ```yaml
 Type: String
@@ -274,7 +276,7 @@ Accept wildcard characters: False
 ```
 
 ### -EntityHelpUrl
-{{Fill EntityHelpUrl Description}}
+The URL of the resource to display help content for this entity.
 
 ```yaml
 Type: Uri
@@ -289,7 +291,7 @@ Accept wildcard characters: False
 ```
 
 ### -EntityHelpUrlEnabled
-{{Fill EntityHelpUrlEnabled Description}}
+Whether the entity supports custom help content.
 
 ```yaml
 Type: Boolean
@@ -334,7 +336,7 @@ Accept wildcard characters: False
 ```
 
 ### -IconLargeName
-{{Fill IconLargeName Description}}
+The name of the image web resource for the large icon for the entity.
 
 ```yaml
 Type: String
@@ -349,7 +351,7 @@ Accept wildcard characters: False
 ```
 
 ### -IconMediumName
-{{Fill IconMediumName Description}}
+The name of the image web resource for the medium icon for the entity.
 
 ```yaml
 Type: String
@@ -364,7 +366,7 @@ Accept wildcard characters: False
 ```
 
 ### -IconSmallName
-{{Fill IconSmallName Description}}
+The name of the image web resource for the small icon for the entity.
 
 ```yaml
 Type: String
@@ -379,7 +381,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsActivityParty
-{{Fill IsActivityParty Description}}
+Whether the email messages can be sent to an email address stored in a record of this type.
 
 ```yaml
 Type: Boolean
@@ -394,7 +396,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsAuditEnabled
-{{Fill IsAuditEnabled Description}}
+Whether auditing has been enabled for the entity.
 
 ```yaml
 Type: Boolean
@@ -409,7 +411,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsAvailableOffline
-{{Fill IsAvailableOffline Description}}
+Whether the entity is available offline.
 
 ```yaml
 Type: Boolean
@@ -424,7 +426,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsConnectionsEnabled
-{{Fill IsConnectionsEnabled Description}}
+Whether connections are enabled for this entity.
 
 ```yaml
 Type: Boolean
@@ -439,7 +441,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsDocumentManagementEnabled
-{{Fill IsDocumentManagementEnabled Description}}
+Whether document management is enabled.
 
 ```yaml
 Type: Boolean
@@ -454,7 +456,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsDuplicateDetectionEnabled
-{{Fill IsDuplicateDetectionEnabled Description}}
+Whether duplicate detection is enabled.
 
 ```yaml
 Type: Boolean
@@ -469,7 +471,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsInteractionCentricEnabled
-{{Fill IsInteractionCentricEnabled Description}}
+Whether the entity is enabled for interactive experience.
 
 ```yaml
 Type: Boolean
@@ -484,7 +486,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsKnowledgeManagementEnabled
-{{Fill IsKnowledgeManagementEnabled Description}}
+Whether Parature knowledge management integration is enabled for the entity.
 
 ```yaml
 Type: Boolean
@@ -499,7 +501,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsMailMergeEnabled
-{{Fill IsMailMergeEnabled Description}}
+Whether mail merge is enabled for this entity.
 
 ```yaml
 Type: Boolean
@@ -514,7 +516,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsMappable
-{{Fill IsMappable Description}}
+Whether entity mapping is available for the entity.
 
 ```yaml
 Type: Boolean
@@ -544,7 +546,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsOneNoteIntegrationEnabled
-{{Fill IsOneNoteIntegrationEnabled Description}}
+Whether OneNote integration is enabled for the entity.
 
 ```yaml
 Type: Boolean
@@ -559,7 +561,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsOptimisticConcurrencyEnabled
-{{Fill IsOptimisticConcurrencyEnabled Description}}
+Whether optimistic concurrency is enabled for the entity.
 
 ```yaml
 Type: Boolean
@@ -574,7 +576,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsRenameable
-{{Fill IsRenameable Description}}
+Whether the entity DisplayName and DisplayCollectionName can be changed by editing the entity in the application.
 
 ```yaml
 Type: Boolean
@@ -589,7 +591,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsSLAEnabled
-{{Fill IsSLAEnabled Description}}
+If the entity is enabled for service level agreements (SLAs).
 
 ```yaml
 Type: Boolean
@@ -604,7 +606,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsValidForQueue
-{{Fill IsValidForQueue Description}}
+Whether the entity is enabled for queues.
 
 ```yaml
 Type: Boolean
@@ -619,7 +621,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsVisibleInMobile
-{{Fill IsVisibleInMobile Description}}
+Whether Microsoft Dynamics 365 for phones users can see data for this entity.
 
 ```yaml
 Type: Boolean
@@ -634,7 +636,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{Fill Name Description}}
+The LogicalName of the entity to update.
 
 ```yaml
 Type: String
@@ -649,7 +651,7 @@ Accept wildcard characters: False
 ```
 
 ### -SyncToExternalSearchIndex
-{{Fill SyncToExternalSearchIndex Description}}
+Whether this entity is searchable in relevance search. 
 
 ```yaml
 Type: Boolean
@@ -672,11 +674,16 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### System.Object
+### None
 
 ## NOTES
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Set-CrmEntity.html](http://crmpowershell.amsoftware.nl/Set-CrmEntity.html)
+[Get-CrmEntity](Get-CrmEntity.md)
 
+[New-CrmEntity](New-CrmEntity.md)
+
+[Remove-CrmEntity](Remove-CrmEntity.md)
+
+[EntityMetadata Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.metadata.entitymetadata.aspx)
