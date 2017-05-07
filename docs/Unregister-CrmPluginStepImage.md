@@ -7,7 +7,7 @@ schema: 2.0.0
 # Unregister-CrmPluginStepImage
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Unregister SDK Message Processing Step Image.
 
 ## SYNTAX
 
@@ -16,21 +16,15 @@ Unregister-CrmPluginStepImage [-Id] <Guid> [-Force]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Unregister SDK Message Processing Step Image.
 
 ## EXAMPLES
 
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -Force
-{{Fill Force Description}}
+Executes the action without prompting for confirmation.
 
 ```yaml
 Type: SwitchParameter
@@ -45,7 +39,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{Fill Id Description}}
+The id of the SDK Message Processing Step Image to unregister.
 
 ```yaml
 Type: Guid
@@ -66,11 +60,14 @@ Accept wildcard characters: False
 
 ## OUTPUTS
 
-### System.Object
+### None
 
 ## NOTES
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Unregister-CrmPluginStepImage.html](http://crmpowershell.amsoftware.nl/Unregister-CrmPluginStepImage.html)
+[Get-CrmPluginStepImage](Get-CrmPluginStepImage.md)
 
+[Register-CrmPluginStepImage](Register-CrmPluginStepImage.md)
+
+[Set-CrmPluginStepImage](Set-CrmPluginStepImage.md)
