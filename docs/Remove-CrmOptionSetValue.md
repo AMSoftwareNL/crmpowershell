@@ -7,7 +7,7 @@ schema: 2.0.0
 # Remove-CrmOptionSetValue
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Remove a value from a global optionset or picklist attribute.
 
 ## SYNTAX
 
@@ -23,21 +23,15 @@ Remove-CrmOptionSetValue [-Entity] <String> [-Attribute] <String> [-Value] <Int3
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Remove a value from a global optionset or picklist attribute.
 
 ## EXAMPLES
 
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -Attribute
-{{Fill Attribute Description}}
+The LogicalName of the picklist attribute to remove the value from.
 
 ```yaml
 Type: String
@@ -52,7 +46,7 @@ Accept wildcard characters: False
 ```
 
 ### -Entity
-{{Fill Entity Description}}
+The LogicalName of the entity containing the picklist attribute.
 
 ```yaml
 Type: String
@@ -67,7 +61,7 @@ Accept wildcard characters: False
 ```
 
 ### -Force
-{{Fill Force Description}}
+Executes the action without prompting for confirmation.
 
 ```yaml
 Type: SwitchParameter
@@ -82,7 +76,7 @@ Accept wildcard characters: False
 ```
 
 ### -OptionSet
-{{Fill OptionSet Description}}
+The name of the global optionset the remove the value from.
 
 ```yaml
 Type: String
@@ -97,7 +91,7 @@ Accept wildcard characters: False
 ```
 
 ### -Value
-{{Fill Value Description}}
+The number representing the value to remove.
 
 ```yaml
 Type: Int32
@@ -149,11 +143,12 @@ Accept wildcard characters: False
 
 ## OUTPUTS
 
-### System.Object
+### None
 
 ## NOTES
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Remove-CrmOptionSetValue.html](http://crmpowershell.amsoftware.nl/Remove-CrmOptionSetValue.html)
+[New-CrmOptionSetValue](New-CrmOptionSetValue.md)
 
+[Set-CrmOptionSetValue](Set-CrmOptionSetValue.md)
