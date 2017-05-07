@@ -7,7 +7,7 @@ schema: 2.0.0
 # Import-CrmSolution
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Import a customizations solution into Dynamics CRM.
 
 ## SYNTAX
 
@@ -24,21 +24,21 @@ Import-CrmSolution [-LiteralPath] <String[]> [-ConvertToManaged] [-Overwrite] [-
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Import a customizations solution into Dynamics CRM from the file system.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Import-CrmSolution -Path c:\temp\product1.zip -ConvertToManaged -Overwrite -PublishWorkflows
 ```
 
-{{ Add example description here }}
+Import the solution 'product1.zip' into Dynamics CRM as managed solution and publish the workflows contained in the solution. Overwrite if the solution already exists.
 
 ## PARAMETERS
 
 ### -ConvertToManaged
-{{Fill ConvertToManaged Description}}
+Direct the system to convert any matching unmanaged customizations into your managed solution.
 
 ```yaml
 Type: SwitchParameter
@@ -53,7 +53,7 @@ Accept wildcard characters: False
 ```
 
 ### -LiteralPath
-{{Fill LiteralPath Description}}
+The literal path of the solution file to import.
 
 ```yaml
 Type: String[]
@@ -68,7 +68,7 @@ Accept wildcard characters: False
 ```
 
 ### -Overwrite
-{{Fill Overwrite Description}}
+Whether any unmanaged customizations that have been applied over existing managed solution components should be overwritten.
 
 ```yaml
 Type: SwitchParameter
@@ -83,7 +83,7 @@ Accept wildcard characters: False
 ```
 
 ### -Path
-{{Fill Path Description}}
+The path of the solution file to import.
 
 ```yaml
 Type: String[]
@@ -98,7 +98,7 @@ Accept wildcard characters: False
 ```
 
 ### -PublishWorkflows
-{{Fill PublishWorkflows Description}}
+Whether any processes (workflows) included in the solution should be activated after they are imported.
 
 ```yaml
 Type: SwitchParameter
@@ -113,7 +113,7 @@ Accept wildcard characters: False
 ```
 
 ### -SkipDependencies
-{{Fill SkipDependencies Description}}
+Whether enforcement of dependencies related to product updates should be skipped.
 
 ```yaml
 Type: SwitchParameter
@@ -172,5 +172,14 @@ Accept wildcard characters: False
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Import-CrmSolution.html](http://crmpowershell.amsoftware.nl/Import-CrmSolution.html)
+[Export-CrmSolution](Export-CrmSolution.md)
 
+[Get-CrmSolution](Get-CrmSolution.md)
+
+[New-CrmSolution](New-CrmSolution.md)
+
+[Test-CrmSolution](Test-CrmSolution.md)
+
+[Use-CrmSolution](Use-CrmSolution.md)
+
+[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)
