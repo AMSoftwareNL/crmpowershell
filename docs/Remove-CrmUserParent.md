@@ -7,7 +7,7 @@ schema: 2.0.0
 # Remove-CrmUserParent
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Remove the parent for a system user (user) record.
 
 ## SYNTAX
 
@@ -16,21 +16,15 @@ Remove-CrmUserParent [-User] <Guid> [-WhatIf] [-Confirm]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Remove the parent for a system user (user) record.
 
 ## EXAMPLES
 
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -User
-{{Fill User Description}}
+The id of the user to remove the parent for.
 
 ```yaml
 Type: Guid
@@ -82,11 +76,12 @@ Accept wildcard characters: False
 
 ## OUTPUTS
 
-### System.Object
+### None
 
 ## NOTES
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Remove-CrmUserParent.html](http://crmpowershell.amsoftware.nl/Remove-CrmUserParent.html)
+[Get-CrmUser](Get-CrmUser.md)
 
+[New-CrmUser](New-CrmUser.md)
