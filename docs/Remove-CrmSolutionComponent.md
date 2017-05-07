@@ -7,7 +7,7 @@ schema: 2.0.0
 # Remove-CrmSolutionComponent
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Remove a component from a customization solution.
 
 ## SYNTAX
 
@@ -22,21 +22,17 @@ Remove-CrmSolutionComponent [-Solution] <Guid> -ComponentType <Int32> -Component
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Remove a component from a customization solution.
 
 ## EXAMPLES
 
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -ComponentId
-{{Fill ComponentId Description}}
+The id of the component to remove.
+
+This can be the MetadataId or the id of the record.
 
 ```yaml
 Type: Guid
@@ -51,7 +47,7 @@ Accept wildcard characters: False
 ```
 
 ### -ComponentType
-{{Fill ComponentType Description}}
+The type of component to remove. Matches a value from the global optionset 'Component Type'(componenttype).
 
 ```yaml
 Type: Int32
@@ -66,7 +62,7 @@ Accept wildcard characters: False
 ```
 
 ### -Solution
-{{Fill Solution Description}}
+The id of the solution to remove the component from.
 
 ```yaml
 Type: Guid
@@ -81,7 +77,7 @@ Accept wildcard characters: False
 ```
 
 ### -Type
-{{Fill Type Description}}
+The type of component to remove.
 
 ```yaml
 Type: CrmComponentType
@@ -103,11 +99,14 @@ Accept wildcard characters: False
 
 ## OUTPUTS
 
-### System.Object
+### None
 
 ## NOTES
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Remove-CrmSolutionComponent.html](http://crmpowershell.amsoftware.nl/Remove-CrmSolutionComponent.html)
+[Add-CrmSolutionComponent](Add-CrmSolutionComponent.md)
 
+[Get-CrmSolutionComponent](Get-CrmSolutionComponent.md)
+
+[Test-CrmSolutionComponent](Test-CrmSolutionComponent.md)

@@ -7,7 +7,7 @@ schema: 2.0.0
 # Add-CrmAttribute
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Add an attribute to an entity.
 
 ## SYNTAX
 
@@ -16,21 +16,15 @@ Add-CrmAttribute [-Entity] <String> [-Attribute] <AttributeMetadata>
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Add an attribute to an entity.
 
 ## EXAMPLES
 
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -Attribute
-{{Fill Attribute Description}}
+The AttributeMetadata of the attribute to add.
 
 ```yaml
 Type: AttributeMetadata
@@ -45,7 +39,7 @@ Accept wildcard characters: False
 ```
 
 ### -Entity
-{{Fill Entity Description}}
+The LogicalName of the entity to add the attribute to.
 
 ```yaml
 Type: String
@@ -73,5 +67,26 @@ Accept wildcard characters: False
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Add-CrmAttribute.html](http://crmpowershell.amsoftware.nl/Add-CrmAttribute.html)
+[Add-CrmBigIntAttribute](Add-CrmBigIntAttribute.md)
 
+[Add-CrmBooleanAttribute](Add-CrmBooleanAttribute.md)
+
+[Add-CrmDateTimeAttribute](Add-CrmDateTimeAttribute.md)
+
+[Add-CrmDecimalAttribute](Add-CrmDecimalAttribute.md)
+
+[Add-CrmDoubleAttribute](Add-CrmDoubleAttribute.md)
+
+[Add-CrmImageAttribute](Add-CrmImageAttribute.md)
+
+[Add-CrmIntegerAttribute](Add-CrmIntegerAttribute.md)
+
+[Add-CrmMemoAttribute](Add-CrmMemoAttribute.md)
+
+[Add-CrmMoneyAttribute](Add-CrmMoneyAttribute.md)
+
+[Add-CrmOptionSetAttribute](Add-CrmOptionSetAttribute.md)
+
+[Add-CrmStringAttribute](Add-CrmStringAttribute.md)
+
+[AttributeMetadata Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.metadata.attributemetadata.aspx)

@@ -7,7 +7,7 @@ schema: 2.0.0
 # Unregister-CrmPluginStep
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Unregister a SDK Messgae Processing Step.
 
 ## SYNTAX
 
@@ -16,21 +16,15 @@ Unregister-CrmPluginStep [-Id] <Guid> [-Force]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Unregister a SDK Messgae Processing Step.
 
 ## EXAMPLES
 
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -Force
-{{Fill Force Description}}
+Executes the action without prompting for confirmation.
 
 ```yaml
 Type: SwitchParameter
@@ -45,7 +39,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{Fill Id Description}}
+The id of the SDK Messgae Processing Step to unregister.
 
 ```yaml
 Type: Guid
@@ -72,5 +66,12 @@ Accept wildcard characters: False
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Unregister-CrmPluginStep.html](http://crmpowershell.amsoftware.nl/Unregister-CrmPluginStep.html)
+[Disable-CrmPluginStep](Disable-CrmPluginStep.md)
 
+[Enable-CrmPluginStep](Enable-CrmPluginStep.md)
+
+[Get-CrmPluginStep](Get-CrmPluginStep.md)
+
+[Register-CrmPluginStep](Register-CrmPluginStep.md)
+
+[Set-CrmPluginStep](Set-CrmPluginStep.md)

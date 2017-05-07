@@ -7,7 +7,7 @@ schema: 2.0.0
 # Add-CrmLanguage
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Provision a language.
 
 ## SYNTAX
 
@@ -16,21 +16,21 @@ Add-CrmLanguage [-LocaleId] <Int32> [-Force] [-WhatIf] [-Confirm]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Provision a language.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Add-CrmLanguage -LocaleId 1043
 ```
 
-{{ Add example description here }}
+Provision the Dutch language.
 
 ## PARAMETERS
 
 ### -Force
-{{Fill Force Description}}
+Executes the action without prompting for confirmation.
 
 ```yaml
 Type: SwitchParameter
@@ -45,7 +45,7 @@ Accept wildcard characters: False
 ```
 
 ### -LocaleId
-{{Fill LocaleId Description}}
+The LCID of the language to provision.
 
 ```yaml
 Type: Int32
@@ -97,11 +97,14 @@ Accept wildcard characters: False
 
 ## OUTPUTS
 
-### System.Object
+### None
 
 ## NOTES
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Add-CrmLanguage.html](http://crmpowershell.amsoftware.nl/Add-CrmLanguage.html)
+[Get-CrmLanguage](Get-CrmLanguage.md)
 
+[Remove-CrmLanguage](Remove-CrmLanguage.md)
+
+[Use-CrmLanguage](Use-CrmLanguage.md)

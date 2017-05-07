@@ -7,7 +7,7 @@ schema: 2.0.0
 # Test-CrmSolutionComponent
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Validate a component in a solution.
 
 ## SYNTAX
 
@@ -42,21 +42,20 @@ Test-CrmSolutionComponent [[-ObjectId] <Guid>] [[-ComponentType] <Int32>] [-Dele
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Validate a component in a solution.
 
-## EXAMPLES
+The following validations can be applied:
 
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
+ -- Retrieve a collection of dependency records that describe any solution components that would prevent a solution component from being deleted.
+ 
+ -- Retrieves a list dependencies for solution components that directly depend on a solution component.
+ 
+ -- Retrieve a collection of solution components that are required for a solution component.
 
 ## PARAMETERS
 
 ### -ComponentType
-{{Fill ComponentType Description}}
+The type of component to test. Matches a value from the global optionset 'Component Type'(componenttype).
 
 ```yaml
 Type: Int32
@@ -71,7 +70,7 @@ Accept wildcard characters: False
 ```
 
 ### -Delete
-{{Fill Delete Description}}
+Retrieve a collection of dependency records that describe any solution components that would prevent a solution component from being deleted.
 
 ```yaml
 Type: SwitchParameter
@@ -86,7 +85,7 @@ Accept wildcard characters: False
 ```
 
 ### -Dependencies
-{{Fill Dependencies Description}}
+Retrieves a list dependencies for solution components that directly depend on a solution component. 
 
 ```yaml
 Type: SwitchParameter
@@ -101,7 +100,9 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-{{Fill ObjectId Description}}
+The id of the object in the solution to test. 
+
+This depends on the type of object represented by the solution copmponent. From metadata items the id is the Metadata Id, for other items it is the id of the record.
 
 ```yaml
 Type: Guid
@@ -116,7 +117,7 @@ Accept wildcard characters: False
 ```
 
 ### -Required
-{{Fill Required Description}}
+Retrieve a collection of solution components that are required for a solution component.
 
 ```yaml
 Type: SwitchParameter
@@ -131,7 +132,7 @@ Accept wildcard characters: False
 ```
 
 ### -SolutionComponent
-{{Fill SolutionComponent Description}}
+A record from the solutioncomponent entity describing the solution component to validate.
 
 ```yaml
 Type: Entity
@@ -148,17 +149,21 @@ Accept wildcard characters: False
 ## INPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
-System.Guid
 
+### System.Guid
 
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
 
-
 ## NOTES
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Test-CrmSolutionComponent.html](http://crmpowershell.amsoftware.nl/Test-CrmSolutionComponent.html)
+[Add-CrmSolutionComponent](Add-CrmSolutionComponent.md)
 
+[Get-CrmSolutionComponent](Get-CrmSolutionComponent.md)
+
+[Remove-CrmSolutionComponent](Remove-CrmSolutionComponent.md)
+
+[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)

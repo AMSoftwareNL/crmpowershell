@@ -7,7 +7,7 @@ schema: 2.0.0
 # Get-CrmPluginStep
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Get SDK Message Processing Step.
 
 ## SYNTAX
 
@@ -24,21 +24,21 @@ Get-CrmPluginStep [-Id] <Guid> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UI
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Get SDK Message Processing Step.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Get-CrmPlugin -Name 'AMSoftware.Plugins.CreateAccount' | Get-CrmPluginStep -Message 'Create' -Entity 'account'
 ```
 
-{{ Add example description here }}
+Get SDK Message Processing Steps from assembly 'amsoftware.plugins' registered for Create messages on account.
 
 ## PARAMETERS
 
 ### -Entity
-{{Fill Entity Description}}
+The LogicalName of the entity the SDK Message Processing Step is registered on.
 
 ```yaml
 Type: String
@@ -53,7 +53,7 @@ Accept wildcard characters: False
 ```
 
 ### -EventSource
-{{Fill EventSource Description}}
+The plugin or serviceendpoint the SDK Message Processing Step is registered on.
 
 ```yaml
 Type: Guid
@@ -68,7 +68,7 @@ Accept wildcard characters: False
 ```
 
 ### -First
-{{Fill First Description}}
+Specifies the number of records to retrieve from the beginning.
 
 ```yaml
 Type: UInt64
@@ -83,7 +83,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{Fill Id Description}}
+The id of the SDK Message Processing Step to retrieve.
 
 ```yaml
 Type: Guid
@@ -98,7 +98,7 @@ Accept wildcard characters: False
 ```
 
 ### -IncludeHidden
-{{Fill IncludeHidden Description}}
+Include SDK Message Processing Steps marked as hidden.
 
 ```yaml
 Type: SwitchParameter
@@ -113,7 +113,7 @@ Accept wildcard characters: False
 ```
 
 ### -IncludeInternalStages
-{{Fill IncludeInternalStages Description}}
+Include SDK Message Processing Steps registered on internal stages.
 
 ```yaml
 Type: SwitchParameter
@@ -128,7 +128,7 @@ Accept wildcard characters: False
 ```
 
 ### -IncludeTotalCount
-{{Fill IncludeTotalCount Description}}
+Include SDK Message Processing Steps whose name matches the provided pattern.
 
 ```yaml
 Type: SwitchParameter
@@ -143,7 +143,7 @@ Accept wildcard characters: False
 ```
 
 ### -Message
-{{Fill Message Description}}
+The name of the message the SDK Message Processing Step is registered on.
 
 ```yaml
 Type: String
@@ -158,7 +158,7 @@ Accept wildcard characters: False
 ```
 
 ### -Mode
-{{Fill Mode Description}}
+The mode of the SDK Message Processing Step to retrieve. If not provided all modes are returned.
 
 ```yaml
 Type: CrmPluginStepMode
@@ -174,7 +174,7 @@ Accept wildcard characters: False
 ```
 
 ### -Skip
-{{Fill Skip Description}}
+Skips (does not return) the specified number of records.
 
 ```yaml
 Type: UInt64
@@ -189,7 +189,7 @@ Accept wildcard characters: False
 ```
 
 ### -Stage
-{{Fill Stage Description}}
+The stage of the SDK Message Processing Step to retrieve. If not provided all stages are returned.
 
 ```yaml
 Type: CrmPluginStepStage
@@ -218,5 +218,14 @@ Accept wildcard characters: False
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Get-CrmPluginStep.html](http://crmpowershell.amsoftware.nl/Get-CrmPluginStep.html)
+[Disable-CrmPluginStep](Disable-CrmPluginStep.md)
 
+[Enable-CrmPluginStep](Enable-CrmPluginStep.md)
+
+[Register-CrmPluginStep](Register-CrmPluginStep.md)
+
+[Set-CrmPluginStep](Set-CrmPluginStep.md)
+
+[Unregister-CrmPluginStep](Unregister-CrmPluginStep.md)
+
+[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)

@@ -7,7 +7,7 @@ schema: 2.0.0
 # Remove-CrmContent
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Remove a data record from an entity.
 
 ## SYNTAX
 
@@ -16,21 +16,15 @@ Remove-CrmContent [-Entity] <String> [-Id] <Guid> [-Force] [-WhatIf] [-Confirm]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Remove a data record from an entity.
 
 ## EXAMPLES
 
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -Entity
-{{Fill Entity Description}}
+The LogicalName of the entity to remove the record from.
 
 ```yaml
 Type: String
@@ -45,7 +39,7 @@ Accept wildcard characters: False
 ```
 
 ### -Force
-{{Fill Force Description}}
+Executes the action without prompting for confirmation.
 
 ```yaml
 Type: SwitchParameter
@@ -60,7 +54,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{Fill Id Description}}
+The id of the data record to remove.
 
 ```yaml
 Type: Guid
@@ -109,14 +103,20 @@ Accept wildcard characters: False
 
 ### System.Guid
 
-
 ## OUTPUTS
 
-### System.Object
+### None
 
 ## NOTES
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Remove-CrmContent.html](http://crmpowershell.amsoftware.nl/Remove-CrmContent.html)
+[Add-CrmContent](Add-CrmContent.md)
 
+[Get-CrmContent](Get-CrmContent.md)
+
+[Join-CrmContent](Join-CrmContent.md)
+
+[Set-CrmContent](Set-CrmContent.md)
+
+[Split-CrmContent](Split-CrmContent.md)

@@ -7,7 +7,7 @@ schema: 2.0.0
 # Remove-CrmWebresource
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Remove a webresource.
 
 ## SYNTAX
 
@@ -16,21 +16,15 @@ Remove-CrmWebresource [-Id] <Guid> [-Force] [-WhatIf] [-Confirm]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Remove a webresource.
 
 ## EXAMPLES
 
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -Force
-{{Fill Force Description}}
+Executes the action without prompting for confirmation.
 
 ```yaml
 Type: SwitchParameter
@@ -45,7 +39,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{Fill Id Description}}
+The id of the webresource to remove.
 
 ```yaml
 Type: Guid
@@ -97,11 +91,18 @@ Accept wildcard characters: False
 
 ## OUTPUTS
 
-### System.Object
+### None
 
 ## NOTES
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Remove-CrmWebresource.html](http://crmpowershell.amsoftware.nl/Remove-CrmWebresource.html)
+[Export-CrmWebresource](Export-CrmWebresource.md)
 
+[Get-CrmWebresource](Get-CrmWebresource.md)
+
+[Import-CrmWebresource](Import-CrmWebresource.md)
+
+[New-CrmWebresource](New-CrmWebresource.md)
+
+[Set-CrmWebresource](Set-CrmWebresource.md)

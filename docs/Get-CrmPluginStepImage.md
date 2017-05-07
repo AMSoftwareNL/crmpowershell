@@ -1,60 +1,40 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Get-CrmServiceEndpoint.html
+online version: http://crmpowershell.amsoftware.nl/Get-CrmPluginStepImage.html
 schema: 2.0.0
 ---
 
-# Get-CrmServiceEndpoint
+# Get-CrmPluginStepImage
 
 ## SYNOPSIS
-Get a registered serviceendpoint.
+Get SDK Message Processing Step Image.
 
 ## SYNTAX
 
-### GetServiceEndPointByFilter (Default)
+### GetPluginStepImageByFilter (Default)
 ```
-Get-CrmServiceEndpoint [-Include <String>] [-Exclude <String>] [-IncludeTotalCount] [-Skip <UInt64>]
- [-First <UInt64>]
-```
-
-### GetServiceEndPointById
-```
-Get-CrmServiceEndpoint [-Id] <Guid> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>]
+Get-CrmPluginStepImage [[-PluginStep] <Guid>] [-ImageType <CrmPluginImageType>] [-IncludeTotalCount]
+ [-Skip <UInt64>] [-First <UInt64>]
 ```
 
-### GetServiceEndPointByName
+### GetPluginStepImageById
 ```
-Get-CrmServiceEndpoint [-Name] <String> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>]
+Get-CrmPluginStepImage [-Id] <Guid> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>]
 ```
 
 ## DESCRIPTION
-Get a registered serviceendpoint.
+Get SDK Message Processing Step Image.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> Get-CrmServiceEndpoint -Name 'AMSoftware.AzureServiceBus'
+PS C:\> Get-CrmPluginStepImage -PluginStep '1F1DE3ED-7CC0-497F-8A9A-DB9F1EE67B6F' -ImageType PostImage
 ```
 
-Retrieve the serviceendpoint named 'AMSoftware.AzureServiceBus'.
+Get post images for the specified SDK Message Processing Step.
 
 ## PARAMETERS
-
-### -Exclude
-Exclude serviceendpoints whose name matches the provided pattern.
-
-```yaml
-Type: String
-Parameter Sets: GetServiceEndPointByFilter
-Aliases: 
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: True
-```
 
 ### -First
 Specifies the number of records to retrieve from the beginning.
@@ -72,11 +52,11 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-The id of the serviceendpoint to retrieve.
+The id of the SDK Message Processing Step image to retrieve.
 
 ```yaml
 Type: Guid
-Parameter Sets: GetServiceEndPointById
+Parameter Sets: GetPluginStepImageById
 Aliases: 
 
 Required: True
@@ -86,13 +66,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Include
-Include serviceendpoints whose name matches the provided pattern.
+### -ImageType
+The type of SDK Message Procesing Step image to retrieve. If not specified all image types are retrieved.
 
 ```yaml
-Type: String
-Parameter Sets: GetServiceEndPointByFilter
+Type: CrmPluginImageType
+Parameter Sets: GetPluginStepImageByFilter
 Aliases: 
+Accepted values: PreImage, PostImage
 
 Required: False
 Position: Named
@@ -118,18 +99,18 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Name
-The name of the serviceendpoint to retrieve.
+### -PluginStep
+The id of the SDK Message Processing Step to retrieve images for.
 
 ```yaml
-Type: String
-Parameter Sets: GetServiceEndPointByName
+Type: Guid
+Parameter Sets: GetPluginStepImageByFilter
 Aliases: 
 
-Required: True
+Required: False
 Position: 1
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
@@ -150,7 +131,7 @@ Accept wildcard characters: False
 
 ## INPUTS
 
-### None
+### System.Guid
 
 
 ## OUTPUTS
@@ -162,10 +143,12 @@ Accept wildcard characters: False
 
 ## RELATED LINKS
 
-[Register-CrmServiceEndpoint](Register-CrmServiceEndpoint.md)
+[Register-CrmPluginStepImage](Register-CrmPluginStepImage.md)
 
-[Set-CrmServiceEndpoint](Set-CrmServiceEndpoint.md)
+[Set-CrmPluginStepImage](Set-CrmPluginStepImage.md)
 
-[Unregister-CrmServiceEndpoint](Unregister-CrmServiceEndpoint.md)
+[Unregister-CrmPluginStepImage](Unregister-CrmPluginStepImage.md)
+
+[Get-CrmPluginStep](Get-CrmPluginStep.md)
 
 [Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)

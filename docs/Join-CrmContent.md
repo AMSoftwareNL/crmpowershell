@@ -7,7 +7,7 @@ schema: 2.0.0
 # Join-CrmContent
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Associate one record with another.
 
 ## SYNTAX
 
@@ -16,21 +16,25 @@ Join-CrmContent [-Entity] <String> [-Id] <Guid> [-ToEntity] <String> [-ToId] <Gu
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Associate one record with another.
+
+This can be used to set lookups (instead of Set-CrmContent), but is most usefull for setting associated records in many-to-many relations.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Join-CrmEnity -Entity 'contact' -Id '53B38B4C-7A26-4731-84A3-6A3229F9CC60' -ToEntity 'account' -ToId '76629DD4-7A1A-4F47-BEEA-5D881676938C' -Attribute 'primarycontactid'
 ```
 
-{{ Add example description here }}
+Associate the specified contact with the specified account for attribute 'primarycontactid'
 
 ## PARAMETERS
 
 ### -Attribute
-{{Fill Attribute Description}}
+The LogicalName of the attribute on the target entity to set the association for.
+
+If the relationship between the entity and target entity is unique this parameter is not required. 
 
 ```yaml
 Type: String
@@ -45,7 +49,7 @@ Accept wildcard characters: False
 ```
 
 ### -Entity
-{{Fill Entity Description}}
+The LogicalName of the entity to associate.
 
 ```yaml
 Type: String
@@ -60,7 +64,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{Fill Id Description}}
+The id of the record of the entity to associate.
 
 ```yaml
 Type: Guid
@@ -75,7 +79,7 @@ Accept wildcard characters: False
 ```
 
 ### -ToEntity
-{{Fill ToEntity Description}}
+The LogicalName of the entity associate the record with.
 
 ```yaml
 Type: String
@@ -90,7 +94,7 @@ Accept wildcard characters: False
 ```
 
 ### -ToId
-{{Fill ToId Description}}
+The id of the record of the entity to associate the record with.
 
 ```yaml
 Type: Guid
@@ -111,11 +115,18 @@ Accept wildcard characters: False
 
 ## OUTPUTS
 
-### System.Object
+### None
 
 ## NOTES
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Join-CrmContent.html](http://crmpowershell.amsoftware.nl/Join-CrmContent.html)
+[Add-CrmContent](Add-CrmContent.md)
 
+[Get-CrmContent](Get-CrmContent.md)
+
+[Remove-CrmContent](Remove-CrmContent.md)
+
+[Set-CrmContent](Set-CrmContent.md)
+
+[Split-CrmContent](Split-CrmContent.md)

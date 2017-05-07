@@ -7,7 +7,7 @@ schema: 2.0.0
 # Start-CrmProcess
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Execute a workflow.
 
 ## SYNTAX
 
@@ -16,21 +16,23 @@ Start-CrmProcess [-Process] <Guid> [-Record] <Guid> [-WhatIf] [-Confirm]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Execute a workflow.
+
+The return value is the ID of the asynchronous operation (system job) that is created.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Get-CrmContent -Entity account | Execute-Process -Process 'AA5C6340-D76D-44E1-B3B8-1D3EFA0C4B8D'
 ```
 
-{{ Add example description here }}
+Execute the workflow on all records in the 'account' entity.
 
 ## PARAMETERS
 
 ### -Process
-{{Fill Process Description}}
+The id of the workflow (process) to execute.
 
 ```yaml
 Type: Guid
@@ -45,7 +47,9 @@ Accept wildcard characters: False
 ```
 
 ### -Record
-{{Fill Record Description}}
+the ID of the record on which the workflow executes. 
+
+The entity is determined by the entity the workflow is associated with.
 
 ```yaml
 Type: Guid
@@ -104,5 +108,6 @@ Accept wildcard characters: False
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Start-CrmProcess.html](http://crmpowershell.amsoftware.nl/Start-CrmProcess.html)
+[Get-CrmProcess](Get-CrmProcess.md)
 
+[Stop-CrmProcess](Stop-CrmProcess.md)

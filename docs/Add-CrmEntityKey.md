@@ -7,7 +7,7 @@ schema: 2.0.0
 # Add-CrmEntityKey
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Add a key to an entity.
 
 ## SYNTAX
 
@@ -17,21 +17,21 @@ Add-CrmEntityKey [-Entity] <String> [-Name] <String> [-DisplayName] <String> -At
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Add a key to an entity.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Add-CrmEntityKey -Entity account -Name accountnumber -DisplayName Accountnumber -Attributes @('accountnumber')
 ```
 
-{{ Add example description here }}
+Add accountnumber as unique key on account.
 
 ## PARAMETERS
 
 ### -Attributes
-{{Fill Attributes Description}}
+The LogicalName of the attributes for the key.
 
 ```yaml
 Type: String[]
@@ -46,7 +46,7 @@ Accept wildcard characters: False
 ```
 
 ### -DisplayName
-{{Fill DisplayName Description}}
+The displayname for the key.
 
 ```yaml
 Type: String
@@ -61,7 +61,7 @@ Accept wildcard characters: False
 ```
 
 ### -Entity
-{{Fill Entity Description}}
+The LogicalName of the entity the add the key to.
 
 ```yaml
 Type: String
@@ -76,7 +76,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{Fill Name Description}}
+The name for the key.
 
 ```yaml
 Type: String
@@ -91,7 +91,7 @@ Accept wildcard characters: False
 ```
 
 ### -SchemaName
-{{Fill SchemaName Description}}
+The SchemaName for the key. If omitted the Name will be used as the SchemaName.
 
 ```yaml
 Type: String
@@ -119,5 +119,8 @@ Accept wildcard characters: False
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Add-CrmEntityKey.html](http://crmpowershell.amsoftware.nl/Add-CrmEntityKey.html)
+[Get-CrmEntityKey](Get-CrmEntityKey.md)
 
+[Remove-CrmEntityKey](Remove-CrmEntityKey.md)
+
+[EntityMetadata Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.metadata.entitymetadata.aspx)

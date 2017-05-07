@@ -7,7 +7,7 @@ schema: 2.0.0
 # Set-CrmAttribute
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Update an attribute.
 
 ## SYNTAX
 
@@ -16,21 +16,16 @@ Set-CrmAttribute [-Entity] <String> [-Attribute] <AttributeMetadata>
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Update an attribute.
 
 ## EXAMPLES
 
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
 
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -Attribute
-{{Fill Attribute Description}}
+The updated AttributeMetadata of the attribute.
 
 ```yaml
 Type: AttributeMetadata
@@ -45,7 +40,7 @@ Accept wildcard characters: False
 ```
 
 ### -Entity
-{{Fill Entity Description}}
+The LogicalName of the entity to update the attribute for.
 
 ```yaml
 Type: String
@@ -72,5 +67,26 @@ Accept wildcard characters: False
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Set-CrmAttribute.html](http://crmpowershell.amsoftware.nl/Set-CrmAttribute.html)
+[Set-CrmBigIntAttribute](Set-CrmBigIntAttribute.md)
 
+[Set-CrmBooleanAttribute](Set-CrmBooleanAttribute.md)
+
+[Set-CrmDateTimeAttribute](Set-CrmDateTimeAttribute.md)
+
+[Set-CrmDecimalAttribute](Set-CrmDecimalAttribute.md)
+
+[Set-CrmDoubleAttribute](Set-CrmDoubleAttribute.md)
+
+[Set-CrmImageAttribute](Set-CrmImageAttribute.md)
+
+[Set-CrmIntegerAttribute](Set-CrmIntegerAttribute.md)
+
+[Set-CrmMemoAttribute](Set-CrmMemoAttribute.md)
+
+[Set-CrmMoneyAttribute](Set-CrmMoneyAttribute.md)
+
+[Set-CrmOptionSetAttribute](Set-CrmOptionSetAttribute.md)
+
+[Set-CrmStringAttribute](Set-CrmStringAttribute.md)
+
+[AttributeMetadata Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.metadata.attributemetadata.aspx)

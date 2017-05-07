@@ -7,7 +7,7 @@ schema: 2.0.0
 # Set-CrmContent
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Update a data record of an entity.
 
 ## SYNTAX
 
@@ -22,21 +22,21 @@ Set-CrmContent [-Entity] <String> [-Id] <Guid> [-Attributes] <Hashtable>
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Update a data record of an entity.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Set-CrmContent -Entity account -Id 'A0B7A137-8CBF-4D4B-BF2A-7305126BDA4A' -Attributes @{accountnumber='123456';'accountname'='AMSoftware'}
 ```
 
-{{ Add example description here }}
+Update a record for an account.
 
 ## PARAMETERS
 
 ### -Attributes
-{{Fill Attributes Description}}
+A hashtable containing to attribute LogicalNames and values of the record.
 
 ```yaml
 Type: Hashtable
@@ -51,7 +51,7 @@ Accept wildcard characters: False
 ```
 
 ### -Entity
-{{Fill Entity Description}}
+The LogicalName of the entity to update the record for.
 
 ```yaml
 Type: String
@@ -66,7 +66,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{Fill Id Description}}
+The unique id of the record to update.
 
 ```yaml
 Type: Guid
@@ -81,7 +81,7 @@ Accept wildcard characters: False
 ```
 
 ### -Record
-{{Fill Record Description}}
+An entity object containing the attributes and values of the record.
 
 ```yaml
 Type: Entity
@@ -102,11 +102,20 @@ Accept wildcard characters: False
 
 ## OUTPUTS
 
-### System.Object
+### None
 
 ## NOTES
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Set-CrmContent.html](http://crmpowershell.amsoftware.nl/Set-CrmContent.html)
+[Add-CrmContent](Add-CrmContent.md)
 
+[Get-CrmContent](Get-CrmContent.md)
+
+[Join-CrmContent](Join-CrmContent.md)
+
+[Remove-CrmContent](Remove-CrmContent.md)
+
+[Split-CrmContent](Split-CrmContent.md)
+
+[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)

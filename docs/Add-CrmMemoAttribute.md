@@ -7,7 +7,7 @@ schema: 2.0.0
 # Add-CrmMemoAttribute
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Add an attribute of type Memo.
 
 ## SYNTAX
 
@@ -20,21 +20,15 @@ Add-CrmMemoAttribute [-ImeType <CrmImeType>] [-Length <Int32>] [-Entity] <String
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Add an attribute of type Memo.
 
 ## EXAMPLES
 
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -CanModifyAdditionalSettings
-{{Fill CanModifyAdditionalSettings Description}}
+Whether any settings not controlled by managed properties can be changed.
 
 ```yaml
 Type: Boolean
@@ -49,7 +43,7 @@ Accept wildcard characters: False
 ```
 
 ### -Description
-{{Fill Description Description}}
+The description of the attribute.
 
 ```yaml
 Type: String
@@ -64,7 +58,7 @@ Accept wildcard characters: False
 ```
 
 ### -DisplayName
-{{Fill DisplayName Description}}
+The display name for the attribute.
 
 ```yaml
 Type: String
@@ -79,7 +73,7 @@ Accept wildcard characters: False
 ```
 
 ### -Entity
-{{Fill Entity Description}}
+The LogicalName of the entity to add the attribute to.
 
 ```yaml
 Type: String
@@ -94,7 +88,7 @@ Accept wildcard characters: False
 ```
 
 ### -ImeType
-{{Fill ImeType Description}}
+The input method editor (IME) mode for the attribute.
 
 ```yaml
 Type: CrmImeType
@@ -110,7 +104,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsAuditEnabled
-{{Fill IsAuditEnabled Description}}
+Whether the attribute is enabled for auditing.
 
 ```yaml
 Type: Boolean
@@ -125,7 +119,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsCustomizable
-{{Fill IsCustomizable Description}}
+Whether the attribute is a custom attribute.
 
 ```yaml
 Type: Boolean
@@ -140,7 +134,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsGlobalFilterEnabled
-{{Fill IsGlobalFilterEnabled Description}}
+Whether the attribute is enabled for global filtering.
 
 ```yaml
 Type: Boolean
@@ -155,7 +149,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsRenameable
-{{Fill IsRenameable Description}}
+Whether the attribute display name can be changed.
 
 ```yaml
 Type: Boolean
@@ -170,7 +164,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsSecured
-{{Fill IsSecured Description}}
+Whether the attribute is secured for field-level security.
 
 ```yaml
 Type: Boolean
@@ -185,7 +179,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsSortableEnabled
-{{Fill IsSortableEnabled Description}}
+Whether the attribute is sortable.
 
 ```yaml
 Type: Boolean
@@ -200,7 +194,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsValidForAdvancedFind
-{{Fill IsValidForAdvancedFind Description}}
+Whether the attribute appears in Advanced Find.
 
 ```yaml
 Type: Boolean
@@ -215,7 +209,7 @@ Accept wildcard characters: False
 ```
 
 ### -Length
-{{Fill Length Description}}
+The maximum length for the attribute.
 
 ```yaml
 Type: Int32
@@ -230,7 +224,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{Fill Name Description}}
+The LogicalName for the attribute.
 
 ```yaml
 Type: String
@@ -245,7 +239,7 @@ Accept wildcard characters: False
 ```
 
 ### -Required
-{{Fill Required Description}}
+The data entry requirement level enforced for the attribute.
 
 ```yaml
 Type: CrmRequiredLevel
@@ -261,7 +255,7 @@ Accept wildcard characters: False
 ```
 
 ### -SchemaName
-{{Fill SchemaName Description}}
+The SchemaName for the attribute. If omitted the Name will be used as the SchemaName.
 
 ```yaml
 Type: String
@@ -289,5 +283,24 @@ Accept wildcard characters: False
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Add-CrmMemoAttribute.html](http://crmpowershell.amsoftware.nl/Add-CrmMemoAttribute.html)
+[Add-CrmBigIntAttribute](Add-CrmBigIntAttribute.md)
 
+[Add-CrmBooleanAttribute](Add-CrmBooleanAttribute.md)
+
+[Add-CrmDateTimeAttribute](Add-CrmDateTimeAttribute.md)
+
+[Add-CrmDecimalAttribute](Add-CrmDecimalAttribute.md)
+
+[Add-CrmDoubleAttribute](Add-CrmDoubleAttribute.md)
+
+[Add-CrmImageAttribute](Add-CrmImageAttribute.md)
+
+[Add-CrmIntegerAttribute](Add-CrmIntegerAttribute.md)
+
+[Add-CrmMoneyAttribute](Add-CrmMoneyAttribute.md)
+
+[Add-CrmOptionSetAttribute](Add-CrmOptionSetAttribute.md)
+
+[Add-CrmStringAttribute](Add-CrmStringAttribute.md)
+
+[MemoAttributeMetadata Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.metadata.memoattributemetadata.aspx)
