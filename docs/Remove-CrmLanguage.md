@@ -7,7 +7,7 @@ schema: 2.0.0
 # Remove-CrmLanguage
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Deprovision a language.
 
 ## SYNTAX
 
@@ -16,21 +16,15 @@ Remove-CrmLanguage [-LocaleId] <Int32> [-Force] [-WhatIf] [-Confirm]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Deprovision a language.
 
 ## EXAMPLES
 
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -Force
-{{Fill Force Description}}
+Executes the action without prompting for confirmation.
 
 ```yaml
 Type: SwitchParameter
@@ -45,7 +39,7 @@ Accept wildcard characters: False
 ```
 
 ### -LocaleId
-{{Fill LocaleId Description}}
+The LCID of the language to deprovision.
 
 ```yaml
 Type: Int32
@@ -97,11 +91,14 @@ Accept wildcard characters: False
 
 ## OUTPUTS
 
-### System.Object
+### None
 
 ## NOTES
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Remove-CrmLanguage.html](http://crmpowershell.amsoftware.nl/Remove-CrmLanguage.html)
+[Add-CrmLanguage](Add-CrmLanguage.md)
 
+[Get-CrmLanguage](Get-CrmLanguage.md)
+
+[Use-CrmLanguage](Use-CrmLanguage.md)
