@@ -7,7 +7,7 @@ schema: 2.0.0
 # Remove-CrmOptionSet
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Remove a global optionset.
 
 ## SYNTAX
 
@@ -16,21 +16,15 @@ Remove-CrmOptionSet [-Name] <String> [-Force] [-WhatIf] [-Confirm]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Remove a global optionset.
 
 ## EXAMPLES
 
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -Force
-{{Fill Force Description}}
+Executes the action without prompting for confirmation.
 
 ```yaml
 Type: SwitchParameter
@@ -45,7 +39,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{Fill Name Description}}
+The name of the global optionset te remove.
 
 ```yaml
 Type: String
@@ -97,11 +91,14 @@ Accept wildcard characters: False
 
 ## OUTPUTS
 
-### System.Object
+### None
 
 ## NOTES
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Remove-CrmOptionSet.html](http://crmpowershell.amsoftware.nl/Remove-CrmOptionSet.html)
+[Get-CrmOptionSet](Get-CrmOptionSet.md)
 
+[New-CrmOptionSet](New-CrmOptionSet.md)
+
+[Set-CrmOptionSet](Set-CrmOptionSet.md)
