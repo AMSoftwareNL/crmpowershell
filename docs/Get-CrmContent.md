@@ -14,24 +14,25 @@ Retrieve data records from an entity.
 ### GetContentForEntityByQuery (Default)
 ```
 Get-CrmContent [-Entity] <String> [[-Query] <Hashtable>] [[-Order] <Hashtable>] [-Columns <String[]>]
- [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>]
+ [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
 ```
 
 ### GetContentForEntityById
 ```
 Get-CrmContent [-Entity] <String> [-Id] <Guid> [-RelatedEntities <Hashtable>] [-Columns <String[]>]
- [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>]
+ [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
 ```
 
 ### GetContentForEntityByKeys
 ```
 Get-CrmContent [-Entity] <String> [-Keys] <Hashtable> [-RelatedEntities <Hashtable>] [-Columns <String[]>]
- [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>]
+ [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
 ```
 
 ### GetContentWithFetchXml
 ```
 Get-CrmContent [-FetchXml] <XmlDocument> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -50,7 +51,7 @@ Retrieve the record from the entity 'account' where the accountnumber is '123456
 
 ### Example 2
 ```
-PS C:\> Get-CrmContent -Entity account -Order @{accountname='Descending'} 
+PS C:\> Get-CrmContent -Entity account -Order @{accountname='Descending'}
 ```
 
 Retrieve  records from the entity 'account'. Sort the result by accountname in descending order.
@@ -244,18 +245,18 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### None
-
 
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
 
-
 ## NOTES
-
 Referenced LogicalNames and SchemaNames are case sensitive. i.e. These must match the case of the LogicalName or SchemaName exactly.
 
 ## RELATED LINKS

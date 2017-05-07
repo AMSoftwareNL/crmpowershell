@@ -12,14 +12,13 @@ Remove a data record from an entity.
 ## SYNTAX
 
 ```
-Remove-CrmContent [-Entity] <String> [-Id] <Guid> [-Force] [-WhatIf] [-Confirm]
+Remove-CrmContent [-Entity] <String> [-Id] <Guid> [-Force] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 Remove a data record from an entity.
 
 ## EXAMPLES
-
 
 ## PARAMETERS
 
@@ -98,6 +97,9 @@ Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
+
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

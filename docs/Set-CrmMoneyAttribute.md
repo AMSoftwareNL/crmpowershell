@@ -17,14 +17,13 @@ Set-CrmMoneyAttribute [-ImeType <CrmImeType>] [-MaxValue <Double>] [-MinValue <D
  [-Description <String>] [-CanModifyAdditionalSettings <Boolean>] [-IsAuditEnabled <Boolean>]
  [-IsCustomizable <Boolean>] [-IsRenameable <Boolean>] [-IsSecured <Boolean>]
  [-IsValidForAdvancedFind <Boolean>] [-Required <CrmRequiredLevel>] [-IsGlobalFilterEnabled <Boolean>]
- [-IsSortableEnabled <Boolean>]
+ [-IsSortableEnabled <Boolean>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 Update an attribute of type Money.
 
 ## EXAMPLES
-
 
 ## PARAMETERS
 
@@ -301,10 +300,12 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### None
-
 
 ## OUTPUTS
 

@@ -14,17 +14,17 @@ Get user from the connected organization.
 ### GetAllUsers (Default)
 ```
 Get-CrmUser [-Include <String>] [-Exclude <String>] [-BusinessUnit <Guid>] [-IncludeDisabled]
- [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>]
+ [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
 ```
 
 ### GetUserByUserName
 ```
-Get-CrmUser [-UserName] <String> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>]
+Get-CrmUser [-UserName] <String> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
 ```
 
 ### GetUserById
 ```
-Get-CrmUser [-Id] <Guid> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>]
+Get-CrmUser [-Id] <Guid> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -68,7 +68,7 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: True
+Accept wildcard characters: False
 ```
 
 ### -First
@@ -113,7 +113,7 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: True
+Accept wildcard characters: False
 ```
 
 ### -IncludeDisabled
@@ -178,15 +178,16 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### None
 
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
-
 
 ## NOTES
 

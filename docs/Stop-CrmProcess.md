@@ -13,12 +13,12 @@ Stop a running asynchronous operation (System Job).
 
 ### StopProcessByAsyncOperation (Default)
 ```
-Stop-CrmProcess [-ASyncOperation] <Guid> [-Force] [-WhatIf] [-Confirm]
+Stop-CrmProcess [-ASyncOperation] <Guid> [-Force] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### StopProcessByWorkflow
 ```
-Stop-CrmProcess [-Process] <Guid> [[-Record] <Guid>] [-Force] [-WhatIf] [-Confirm]
+Stop-CrmProcess [-Process] <Guid> [[-Record] <Guid>] [-Force] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -126,10 +126,12 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### System.Guid
-
 
 ## OUTPUTS
 

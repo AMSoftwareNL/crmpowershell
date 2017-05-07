@@ -13,7 +13,7 @@ schema: 2.0.0
 
 ```
 New-CrmTeam [-Name] <String> [-TeamType] <CrmTeamType> [-Administrator] <Guid> [-BusinessUnit <Guid>]
- [-Description <String>] [-Users <Guid[]>]
+ [-Description <String>] [-Users <Guid[]>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -121,16 +121,17 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### System.Nullable`1[[System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
 System.Guid[]
 
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
-
 
 ## NOTES
 

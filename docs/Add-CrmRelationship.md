@@ -14,14 +14,14 @@ schema: 2.0.0
 ### AddManyToManyRelationship
 ```
 Add-CrmRelationship [-Entity1] <String> [-Entity2] <String> [-Name] <String> [-IntersectName] <String>
- [-AdvancedFind <Boolean>] [-Customizable <Boolean>]
+ [-AdvancedFind <Boolean>] [-Customizable <Boolean>] [<CommonParameters>]
 ```
 
 ### AddOneToManyRelationship
 ```
 Add-CrmRelationship [-Entity] <String> [-ToEntity] <String> [-Name] <String> -AttributeName <String>
  -AttributeDisplayName <String> [-AttributeDescription <String>] [-AttributeRequired <CrmRequiredLevel>]
- [-AdvancedFind <Boolean>] [-Customizable <Boolean>]
+ [-AdvancedFind <Boolean>] [-Customizable <Boolean>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -219,15 +219,16 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### None
 
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Metadata.RelationshipMetadataBase
-
 
 ## NOTES
 

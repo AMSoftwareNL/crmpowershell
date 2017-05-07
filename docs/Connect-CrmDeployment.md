@@ -13,12 +13,12 @@ Connect and authenticate to a Dynamics CRM deployment.
 
 ### ConnectOnline
 ```
-Connect-CrmDeployment [-Region] <String> [-Credential] <PSCredential>
+Connect-CrmDeployment [-Region] <String> [-Credential] <PSCredential> [<CommonParameters>]
 ```
 
 ### ConnectOnPremises
 ```
-Connect-CrmDeployment [-DiscoveryUrl] <Uri> [[-Credential] <PSCredential>]
+Connect-CrmDeployment [-DiscoveryUrl] <Uri> [[-Credential] <PSCredential>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -103,18 +103,18 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### None
-
 
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Discovery.OrganizationDetail
 
-
 ## NOTES
-
 For on premises deployments the following form of authetnication are supported: Windows Authentication, Claims Based Authentication (CBA) and Internet Facing Deployment (IFD).
 
 ## RELATED LINKS

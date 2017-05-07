@@ -14,12 +14,13 @@ schema: 2.0.0
 ### SetOptionSetValueGlobal (Default)
 ```
 Set-CrmOptionSetValue [-OptionSet] <String> [-Value <Int32>] [-DisplayName <String>] [-Description <String>]
+ [<CommonParameters>]
 ```
 
 ### SetOptionSetValueEntity
 ```
 Set-CrmOptionSetValue [-Entity] <String> [-Attribute] <String> [-Value <Int32>] [-DisplayName <String>]
- [-Description <String>]
+ [-Description <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -126,10 +127,12 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### None
-
 
 ## OUTPUTS
 

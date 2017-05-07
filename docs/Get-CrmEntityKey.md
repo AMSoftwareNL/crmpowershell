@@ -14,17 +14,17 @@ Get entity key metadata for an entity.
 ### GetEntityKeysByFilter (Default)
 ```
 Get-CrmEntityKey [-Entity] <String> [-Attributes <String[]>] [-Include <String>] [-Exclude <String>]
- [-ExcludeManaged]
+ [-ExcludeManaged] [<CommonParameters>]
 ```
 
 ### GetEntityKeyById
 ```
-Get-CrmEntityKey [-Id] <Guid>
+Get-CrmEntityKey [-Id] <Guid> [<CommonParameters>]
 ```
 
 ### GetEntityKeyByName
 ```
-Get-CrmEntityKey [-Entity] <String> [-Name] <String>
+Get-CrmEntityKey [-Entity] <String> [-Name] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -87,7 +87,7 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: True
+Accept wildcard characters: False
 ```
 
 ### -ExcludeManaged
@@ -132,7 +132,7 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: True
+Accept wildcard characters: False
 ```
 
 ### -Name
@@ -152,18 +152,18 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### None
-
 
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Metadata.EntityKeyMetadata
 
-
 ## NOTES
-
 The Name and Attributes parameters are case sensitive. i.e. these must match the case of the LogicalName exactly.
 
 ## RELATED LINKS

@@ -14,6 +14,7 @@ schema: 2.0.0
 ```
 Set-CrmServiceEndpoint [-Id] <Guid> [-Name <String>] [-Description <String>] [-Namespace <String>]
  [-Path <String>] [-Contract <CrmServiceEndpointContract>] [-Claim <CrmServiceEndpointUserClaim>] [-Federated]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -152,10 +153,12 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### System.Guid
-
 
 ## OUTPUTS
 

@@ -13,13 +13,13 @@ schema: 2.0.0
 
 ### NewEntityByInputObject (Default)
 ```
-New-CrmEntity [-Entity] <EntityMetadata> [-PrimaryAttribute] <StringAttributeMetadata>
+New-CrmEntity [-Entity] <EntityMetadata> [-PrimaryAttribute] <StringAttributeMetadata> [<CommonParameters>]
 ```
 
 ### NewActivity
 ```
 New-CrmEntity [-IsActivity] [-ExcludeFromMenu] [-Name] <String> [-DisplayName] <String>
- -DisplayCollectionName <String> [-Description <String>] [-Customizable <Boolean>]
+ -DisplayCollectionName <String> [-Description <String>] [-Customizable <Boolean>] [<CommonParameters>]
 ```
 
 ### NewEntity
@@ -39,7 +39,7 @@ New-CrmEntity [-Name] <String> [-DisplayName] <String> -DisplayCollectionName <S
  [-IsConnectionsEnabled <Boolean>] [-IsDocumentManagementEnabled <Boolean>]
  [-IsDuplicateDetectionEnabled <Boolean>] [-IsMailMergeEnabled <Boolean>] [-IsMappable <Boolean>]
  [-IsRenameable <Boolean>] [-IsValidForQueue <Boolean>] [-IsVisibleInMobile <Boolean>]
- [-IconLargeName <String>] [-IconMediumName <String>] [-IconSmallName <String>]
+ [-IconLargeName <String>] [-IconMediumName <String>] [-IconSmallName <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -808,15 +808,16 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### None
 
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Metadata.EntityMetadata
-
 
 ## NOTES
 

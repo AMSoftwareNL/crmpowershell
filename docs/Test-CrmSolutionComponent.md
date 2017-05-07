@@ -13,32 +13,32 @@ Validate a component in a solution.
 
 ### TestDeleteSolutionComponentEntity
 ```
-Test-CrmSolutionComponent [[-SolutionComponent] <Entity>] [-Delete]
+Test-CrmSolutionComponent [[-SolutionComponent] <Entity>] [-Delete] [<CommonParameters>]
 ```
 
 ### TestDependenciesSolutionComponentEntity
 ```
-Test-CrmSolutionComponent [[-SolutionComponent] <Entity>] [-Dependencies]
+Test-CrmSolutionComponent [[-SolutionComponent] <Entity>] [-Dependencies] [<CommonParameters>]
 ```
 
 ### TestRequiredSolutionComponentEntity
 ```
-Test-CrmSolutionComponent [[-SolutionComponent] <Entity>] [-Required]
+Test-CrmSolutionComponent [[-SolutionComponent] <Entity>] [-Required] [<CommonParameters>]
 ```
 
 ### TestDependenciesSolutionComponent
 ```
-Test-CrmSolutionComponent [[-ObjectId] <Guid>] [[-ComponentType] <Int32>] [-Dependencies]
+Test-CrmSolutionComponent [[-ObjectId] <Guid>] [[-ComponentType] <Int32>] [-Dependencies] [<CommonParameters>]
 ```
 
 ### TestRequiredSolutionComponent
 ```
-Test-CrmSolutionComponent [[-ObjectId] <Guid>] [[-ComponentType] <Int32>] [-Required]
+Test-CrmSolutionComponent [[-ObjectId] <Guid>] [[-ComponentType] <Int32>] [-Required] [<CommonParameters>]
 ```
 
 ### TestDeleteSolutionComponent
 ```
-Test-CrmSolutionComponent [[-ObjectId] <Guid>] [[-ComponentType] <Int32>] [-Delete]
+Test-CrmSolutionComponent [[-ObjectId] <Guid>] [[-ComponentType] <Int32>] [-Delete] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -51,6 +51,8 @@ The following validations can be applied:
  -- Retrieves a list dependencies for solution components that directly depend on a solution component.
  
  -- Retrieve a collection of solution components that are required for a solution component.
+
+## EXAMPLES
 
 ## PARAMETERS
 
@@ -85,7 +87,7 @@ Accept wildcard characters: False
 ```
 
 ### -Dependencies
-Retrieves a list dependencies for solution components that directly depend on a solution component. 
+Retrieves a list dependencies for solution components that directly depend on a solution component. 
 
 ```yaml
 Type: SwitchParameter
@@ -145,6 +147,9 @@ Default value: None
 Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
+
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

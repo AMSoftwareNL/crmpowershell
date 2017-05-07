@@ -14,17 +14,19 @@ schema: 2.0.0
 ### AssignOwnerEntity
 ```
 Set-CrmOwner [-InputObject] <Entity> -ToPrincipalType <CrmPrincipalType> -ToPrincipalId <Guid>
+ [<CommonParameters>]
 ```
 
 ### AssignOwnerRecord
 ```
 Set-CrmOwner [-Entity] <String> [-Id] <Guid> -ToPrincipalType <CrmPrincipalType> -ToPrincipalId <Guid>
+ [<CommonParameters>]
 ```
 
 ### ReassignOwner
 ```
 Set-CrmOwner [-FromPrincipalType] <CrmPrincipalType> [-FromPrincipalId] <Guid>
- -ToPrincipalType <CrmPrincipalType> -ToPrincipalId <Guid>
+ -ToPrincipalType <CrmPrincipalType> -ToPrincipalId <Guid> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -148,10 +150,12 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
-
 
 ## OUTPUTS
 

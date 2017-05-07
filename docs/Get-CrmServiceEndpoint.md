@@ -14,17 +14,19 @@ Get a registered serviceendpoint.
 ### GetServiceEndPointByFilter (Default)
 ```
 Get-CrmServiceEndpoint [-Include <String>] [-Exclude <String>] [-IncludeTotalCount] [-Skip <UInt64>]
- [-First <UInt64>]
+ [-First <UInt64>] [<CommonParameters>]
 ```
 
 ### GetServiceEndPointById
 ```
 Get-CrmServiceEndpoint [-Id] <Guid> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>]
+ [<CommonParameters>]
 ```
 
 ### GetServiceEndPointByName
 ```
 Get-CrmServiceEndpoint [-Name] <String> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -53,7 +55,7 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: True
+Accept wildcard characters: False
 ```
 
 ### -First
@@ -148,15 +150,16 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### None
 
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
-
 
 ## NOTES
 

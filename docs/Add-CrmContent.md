@@ -13,12 +13,12 @@ Add a data record to an entity.
 
 ### AddContentByInputObject (Default)
 ```
-Add-CrmContent [-Record] <Entity>
+Add-CrmContent [-Record] <Entity> [<CommonParameters>]
 ```
 
 ### AddContent
 ```
-Add-CrmContent [-Entity] <String> [[-Id] <Guid>] [-Attributes] <Hashtable>
+Add-CrmContent [-Entity] <String> [[-Id] <Guid>] [-Attributes] <Hashtable> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -95,15 +95,16 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### None
 
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
-
 
 ## NOTES
 

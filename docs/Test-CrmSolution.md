@@ -13,17 +13,17 @@ Validate a customization solution.
 
 ### TestDependenciesSolution
 ```
-Test-CrmSolution [[-Solution] <Guid>] [-Dependencies]
+Test-CrmSolution [[-Solution] <Guid>] [-Dependencies] [<CommonParameters>]
 ```
 
 ### TestUninstallSolution
 ```
-Test-CrmSolution [[-Solution] <Guid>] [-Uninstall]
+Test-CrmSolution [[-Solution] <Guid>] [-Uninstall] [<CommonParameters>]
 ```
 
 ### TestMissingSolution
 ```
-Test-CrmSolution [-LiteralPath] <String>
+Test-CrmSolution [-LiteralPath] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -58,7 +58,6 @@ PS C:\> Test-CrmSolution -LiteralPath 'c:\temp\product1.zip'
 ```
 
 Retrieve a list of missing components in the target organization.
-
 
 ## PARAMETERS
 
@@ -122,10 +121,12 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### System.Guid
-
 
 ## OUTPUTS
 

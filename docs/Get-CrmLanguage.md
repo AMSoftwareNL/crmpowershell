@@ -12,7 +12,7 @@ Get the language of the connected organization.
 ## SYNTAX
 
 ```
-Get-CrmLanguage [-All] [-ListAvailable]
+Get-CrmLanguage [-All] [-ListAvailable] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -61,15 +61,16 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### None
 
-
 ## OUTPUTS
 
 ### System.Globalization.CultureInfo
-
 
 ## NOTES
 

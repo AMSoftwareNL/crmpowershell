@@ -15,12 +15,12 @@ Get SDK Message Processing Step.
 ```
 Get-CrmPluginStep [[-EventSource] <Guid>] [-Message <String>] [-Entity <String>] [-Stage <CrmPluginStepStage>]
  [-Mode <CrmPluginStepMode>] [-IncludeInternalStages] [-IncludeHidden] [-IncludeTotalCount] [-Skip <UInt64>]
- [-First <UInt64>]
+ [-First <UInt64>] [<CommonParameters>]
 ```
 
 ### GetPluginStepById
 ```
-Get-CrmPluginStep [-Id] <Guid> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>]
+Get-CrmPluginStep [-Id] <Guid> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -204,15 +204,16 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### System.Guid
 
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
-
 
 ## NOTES
 

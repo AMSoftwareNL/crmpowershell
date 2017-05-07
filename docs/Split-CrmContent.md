@@ -13,6 +13,7 @@ Disassociate one record from another.
 
 ```
 Split-CrmContent [-Entity] <String> [-Id] <Guid> [-FromEntity] <String> [-FromId] <Guid> [-Attribute <String>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -108,10 +109,12 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### None
-
 
 ## OUTPUTS
 

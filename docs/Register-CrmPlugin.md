@@ -15,12 +15,14 @@ schema: 2.0.0
 ```
 Register-CrmPlugin [-Path] <String[]> [-IsolationMode <CrmAssemblyIsolationMode>]
  [-AssemblyLocation <CrmAssemblySourceType>] [-Description <String>] [-Force] [-Plugins <String[]>]
+ [<CommonParameters>]
 ```
 
 ### RegisterPluginFromLiteralPath
 ```
 Register-CrmPlugin [-LiteralPath] <String[]> [-IsolationMode <CrmAssemblyIsolationMode>]
  [-AssemblyLocation <CrmAssemblySourceType>] [-Description <String>] [-Force] [-Plugins <String[]>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -144,15 +146,16 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### System.String[]
 
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
-
 
 ## NOTES
 

@@ -13,20 +13,19 @@ Remove a relationship.
 
 ### RemoveRelationshipByName
 ```
-Remove-CrmRelationship [-Name] <String> [-Force] [-WhatIf] [-Confirm]
+Remove-CrmRelationship [-Name] <String> [-Force] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### RemoveRelationshipByEntity
 ```
 Remove-CrmRelationship [-Entity] <String> [-FromEntity] <String> [-Attribute <String>] [-Force] [-WhatIf]
- [-Confirm]
+ [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 Remove a relationship.
 
 ## EXAMPLES
-
 
 ## PARAMETERS
 
@@ -138,10 +137,12 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### None
-
 
 ## OUTPUTS
 

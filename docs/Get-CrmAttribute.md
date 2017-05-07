@@ -14,17 +14,17 @@ Get the metadata of an attribute.
 ### GetAttributesByFilter (Default)
 ```
 Get-CrmAttribute [-Entity] <String> [-Include <String>] [-Exclude <String>] [-CustomOnly] [-ExcludeManaged]
- [-IncludeLinked] [-AttributeType <String>]
+ [-IncludeLinked] [-AttributeType <String>] [<CommonParameters>]
 ```
 
 ### GetAttributeById
 ```
-Get-CrmAttribute [-Id] <Guid>
+Get-CrmAttribute [-Id] <Guid> [<CommonParameters>]
 ```
 
 ### GetAttributeByName
 ```
-Get-CrmAttribute [-Entity] <String> [-Name] <String>
+Get-CrmAttribute [-Entity] <String> [-Name] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -106,7 +106,7 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: True
+Accept wildcard characters: False
 ```
 
 ### -ExcludeManaged
@@ -151,7 +151,7 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: True
+Accept wildcard characters: False
 ```
 
 ### -IncludeLinked
@@ -186,17 +186,18 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### None
-
 
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Metadata.AttributeMetadata
 
 ## NOTES
-
 The Entity and Name parameters are case sensitive. i.e. these must match the case of the LogicalName exactly.
 
 ## RELATED LINKS

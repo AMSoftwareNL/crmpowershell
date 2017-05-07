@@ -14,12 +14,12 @@ Get team from the connected organization.
 ### GetAllTeams (Default)
 ```
 Get-CrmTeam [-TeamType <CrmTeamType>] [-Administrator <Guid>] [-Include <String>] [-Exclude <String>]
- [-BusinessUnit <Guid>] [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>]
+ [-BusinessUnit <Guid>] [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
 ```
 
 ### GetTeamById
 ```
-Get-CrmTeam [-Id] <Guid> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>]
+Get-CrmTeam [-Id] <Guid> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -29,7 +29,7 @@ Get team from the connected organization.
 
 ### Example 1
 ```
-PS C:\> Get-CrmBusinessUnit -Include 'amsoftwarecrm' | Get-CrmTeam 
+PS C:\> Get-CrmBusinessUnit -Include 'amsoftwarecrm' | Get-CrmTeam
 ```
 
 Get all teams for the business unit 'amsoftwarecrm'.
@@ -78,7 +78,7 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: True
+Accept wildcard characters: False
 ```
 
 ### -First
@@ -123,7 +123,7 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: True
+Accept wildcard characters: False
 ```
 
 ### -IncludeTotalCount
@@ -174,15 +174,16 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### None
 
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
-
 
 ## NOTES
 

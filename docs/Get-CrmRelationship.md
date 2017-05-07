@@ -11,19 +11,20 @@ Get the metadata of a relationship.
 
 ## SYNTAX
 
-### GetRelationshipByFilter
-```
-Get-CrmRelationship [[-Entity] <String>] [[-RelatedEntity] <String>] [-Include <String>] [-Exclude <String>] [-Type <CrmRelationshipType>] [-CustomOnly] [-ExcludeManaged]
-```
-
 ### GetRelationshipByName
 ```
-Get-CrmRelationship [-Name] <String>
+Get-CrmRelationship [-Name] <String> [<CommonParameters>]
 ```
 
 ### GetRelationshipById
 ```
-Get-CrmRelationship [-Id] <Guid>
+Get-CrmRelationship [-Id] <Guid> [<CommonParameters>]
+```
+
+### GetRelationshipByFilter
+```
+Get-CrmRelationship [[-Entity] <String>] [[-RelatedEntity] <String>] [-Include <String>] [-Exclude <String>]
+ [-Type <CrmRelationshipType>] [-CustomOnly] [-ExcludeManaged] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -84,7 +85,7 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: True
+Accept wildcard characters: False
 ```
 
 ### -ExcludeManaged
@@ -188,18 +189,18 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### None
-
 
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Metadata.RelationshipMetadataBase
 
-
 ## NOTES
-
 The Entity, RelatedEntity and Name parameters are case sensitive. i.e. these must match the case of the LogicalName or SchemaName exactly.
 
 ## RELATED LINKS

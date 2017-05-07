@@ -13,7 +13,7 @@ Add a key to an entity.
 
 ```
 Add-CrmEntityKey [-Entity] <String> [-Name] <String> [-DisplayName] <String> -Attributes <String[]>
- [-SchemaName <String>]
+ [-SchemaName <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -105,15 +105,16 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### None
 
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Metadata.EntityKeyMetadata
-
 
 ## NOTES
 

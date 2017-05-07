@@ -12,14 +12,13 @@ Unregister a plugin assembly.
 ## SYNTAX
 
 ```
-Unregister-CrmPluginAssembly [-Id] <Guid> [-Force]
+Unregister-CrmPluginAssembly [-Id] <Guid> [-Force] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 Unregister a plugin assembly.
 
 ## EXAMPLES
-
 
 ## PARAMETERS
 
@@ -53,10 +52,12 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### System.Guid
-
 
 ## OUTPUTS
 

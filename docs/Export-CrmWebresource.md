@@ -12,7 +12,7 @@ Export the content of a webresource to the pipeline.
 ## SYNTAX
 
 ```
-Export-CrmWebresource [-Id] <Guid> [-Encoding <FileSystemCmdletProviderEncoding>]
+Export-CrmWebresource [-Id] <Guid> [-Encoding <FileSystemCmdletProviderEncoding>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -59,6 +59,9 @@ Default value: None
 Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
+
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

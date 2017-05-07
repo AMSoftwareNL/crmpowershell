@@ -12,7 +12,7 @@ schema: 2.0.0
 ## SYNTAX
 
 ```
-Set-CrmTeamUsers [-Team] <Guid> [-Users] <Guid[]> [-Overwrite]
+Set-CrmTeamUsers [-Team] <Guid> [-Users] <Guid[]> [-Overwrite] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -74,11 +74,13 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### System.Guid
 System.Guid[]
-
 
 ## OUTPUTS
 

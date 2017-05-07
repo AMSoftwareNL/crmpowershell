@@ -12,7 +12,7 @@ Disable a SDK Message Processing Step.
 ## SYNTAX
 
 ```
-Disable-CrmPluginStep [-Id] <Guid>
+Disable-CrmPluginStep [-Id] <Guid> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -42,10 +42,12 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### System.Guid
-
 
 ## OUTPUTS
 

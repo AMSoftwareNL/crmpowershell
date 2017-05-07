@@ -13,17 +13,17 @@ Get the metadata of a global optionset.
 
 ### GetOptionSetByFilter (Default)
 ```
-Get-CrmOptionSet [-Include <String>] [-Exclude <String>] [-CustomOnly] [-ExcludeManaged]
+Get-CrmOptionSet [-Include <String>] [-Exclude <String>] [-CustomOnly] [-ExcludeManaged] [<CommonParameters>]
 ```
 
 ### GetOptionSetById
 ```
-Get-CrmOptionSet [-Id] <Guid>
+Get-CrmOptionSet [-Id] <Guid> [<CommonParameters>]
 ```
 
 ### GetOptionSetByName
 ```
-Get-CrmOptionSet [-Name] <String>
+Get-CrmOptionSet [-Name] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -67,7 +67,7 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: True
+Accept wildcard characters: False
 ```
 
 ### -ExcludeManaged
@@ -112,7 +112,7 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: True
+Accept wildcard characters: False
 ```
 
 ### -Name
@@ -132,18 +132,18 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### None
-
 
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Metadata.OptionSetMetadataBase
 
-
 ## NOTES
-
 The Name parameter is case sensitive. i.e. it must match the case of the LogicalName exactly.
 
 ## RELATED LINKS

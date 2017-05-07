@@ -13,12 +13,12 @@ Import translations from a compressed file.
 
 ### ImportTranslationFromPath (Default)
 ```
-Import-CrmTranslation [-Path] <String[]> [-WhatIf] [-Confirm]
+Import-CrmTranslation [-Path] <String[]> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### ImportTranslationFromLiteralPath
 ```
-Import-CrmTranslation [-LiteralPath] <String[]> [-WhatIf] [-Confirm]
+Import-CrmTranslation [-LiteralPath] <String[]> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -96,15 +96,16 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### System.String[]
 
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
-
 
 ## NOTES
 

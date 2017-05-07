@@ -14,16 +14,17 @@ Get the metadata of an entity.
 ### GetEntitiesByFilter (Default)
 ```
 Get-CrmEntity [-Include <String>] [-Exclude <String>] [-CustomOnly] [-ExcludeManaged] [-IncludeIntersects]
+ [<CommonParameters>]
 ```
 
 ### GetEntityById
 ```
-Get-CrmEntity [-Id] <Guid>
+Get-CrmEntity [-Id] <Guid> [<CommonParameters>]
 ```
 
 ### GetEntityByName
 ```
-Get-CrmEntity [-Name] <String>
+Get-CrmEntity [-Name] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -76,7 +77,7 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: True
+Accept wildcard characters: False
 ```
 
 ### -ExcludeManaged
@@ -121,7 +122,7 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: True
+Accept wildcard characters: False
 ```
 
 ### -IncludeIntersects
@@ -156,18 +157,18 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### None
-
 
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Metadata.EntityMetadata
 
-
 ## NOTES
-
 The Name parameter is case sensitive. i.e. it must match the case of the LogicalName exactly.
 
 ## RELATED LINKS

@@ -16,7 +16,7 @@ Register-CrmPluginStep [-EventSource] <Guid> [-Message] <String> [[-PrimaryEntit
  [-SecondaryEntity <String>] [-ExecutionOrder <Int32>] [-Name <String>] [-Description <String>]
  -Stage <CrmPluginStepStage> -Mode <CrmPluginStepMode> -Deployment <CrmPluginStepDeployment>
  [-DeleteAsyncOperation] [-UnsecureConfig <String>] [-SecureConfig <String>] [-User <Guid>]
- [-Attributes <String[]>]
+ [-Attributes <String[]>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -261,16 +261,17 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### System.Guid
 System.String[]
 
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
-
 
 ## NOTES
 

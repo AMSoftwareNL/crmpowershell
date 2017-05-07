@@ -14,18 +14,19 @@ schema: 2.0.0
 ### SetWebresource (Default)
 ```
 Set-CrmWebresource [-Id] <Guid> [-DisplayName <String>] [-Description <String>] [-IsCustomizable <Boolean>]
+ [<CommonParameters>]
 ```
 
 ### SetWebresourceFromContent
 ```
 Set-CrmWebresource [-Id] <Guid> [-DisplayName <String>] [-Description <String>] [-Content <Byte[]>]
- [-IsCustomizable <Boolean>]
+ [-IsCustomizable <Boolean>] [<CommonParameters>]
 ```
 
 ### SetWebresourceFromPath
 ```
 Set-CrmWebresource [-Id] <Guid> [-DisplayName <String>] [-Description <String>] [-LiteralPath <String>]
- [-IsCustomizable <Boolean>] [-Encoding <FileSystemCmdletProviderEncoding>]
+ [-IsCustomizable <Boolean>] [-Encoding <FileSystemCmdletProviderEncoding>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -148,15 +149,16 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### System.Guid
 
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
-
 
 ## NOTES
 

@@ -2,7 +2,7 @@
 Module Name: amsoftware.crm
 Module Guid: 1e7f1ebc-e035-4d73-86af-3c07a6a85260
 Download Help Link: http://crmpowershell.amsoftware.nl/
-Help Version: 1.2.4.0
+Help Version: 1.2.4.2
 Locale: en-us
 ---
 
@@ -12,365 +12,363 @@ Locale: en-us
 
 ## amsoftware.crm Cmdlets
 ### [Add-CrmAttribute](Add-CrmAttribute.md)
-{{Manually Enter Add-CrmAttribute Description Here}}
+Add an attribute to an entity.
 
 ### [Add-CrmBigIntAttribute](Add-CrmBigIntAttribute.md)
-{{Manually Enter Add-CrmBigIntAttribute Description Here}}
+Add an attribute of type BigInt.
 
 ### [Add-CrmBooleanAttribute](Add-CrmBooleanAttribute.md)
-{{Manually Enter Add-CrmBooleanAttribute Description Here}}
+Add an attribute of type Boolean
 
 ### [Add-CrmContent](Add-CrmContent.md)
-{{Manually Enter Add-CrmContent Description Here}}
+Add a data record to an entity.
 
 ### [Add-CrmDateTimeAttribute](Add-CrmDateTimeAttribute.md)
-{{Manually Enter Add-CrmDateTimeAttribute Description Here}}
+Add an attribute of type DateTime.
 
 ### [Add-CrmDecimalAttribute](Add-CrmDecimalAttribute.md)
-{{Manually Enter Add-CrmDecimalAttribute Description Here}}
+Add an attribute of type Decimal
 
 ### [Add-CrmDoubleAttribute](Add-CrmDoubleAttribute.md)
-{{Manually Enter Add-CrmDoubleAttribute Description Here}}
+Add an attribute of type Double.
 
 ### [Add-CrmEntityKey](Add-CrmEntityKey.md)
-{{Manually Enter Add-CrmEntityKey Description Here}}
+Add a key to an entity.
 
 ### [Add-CrmImageAttribute](Add-CrmImageAttribute.md)
-{{Manually Enter Add-CrmImageAttribute Description Here}}
+Add an attribute of type Image.
 
 ### [Add-CrmIntegerAttribute](Add-CrmIntegerAttribute.md)
-{{Manually Enter Add-CrmIntegerAttribute Description Here}}
+Add an attribute of type Integer.
 
 ### [Add-CrmLanguage](Add-CrmLanguage.md)
-{{Manually Enter Add-CrmLanguage Description Here}}
+Provision a language.
 
 ### [Add-CrmMemoAttribute](Add-CrmMemoAttribute.md)
-{{Manually Enter Add-CrmMemoAttribute Description Here}}
+Add an attribute of type Memo.
 
 ### [Add-CrmMoneyAttribute](Add-CrmMoneyAttribute.md)
-{{Manually Enter Add-CrmMoneyAttribute Description Here}}
+Add an attribute of type Money.
 
 ### [Add-CrmOptionSetAttribute](Add-CrmOptionSetAttribute.md)
-{{Manually Enter Add-CrmOptionSetAttribute Description Here}}
+Add an attribute of type OptionSet.
 
 ### [Add-CrmRelationship](Add-CrmRelationship.md)
-{{Manually Enter Add-CrmRelationship Description Here}}
+{{Fill in the Synopsis}}
 
 ### [Add-CrmSolutionComponent](Add-CrmSolutionComponent.md)
-{{Manually Enter Add-CrmSolutionComponent Description Here}}
+{{Fill in the Synopsis}}
 
 ### [Add-CrmStringAttribute](Add-CrmStringAttribute.md)
-{{Manually Enter Add-CrmStringAttribute Description Here}}
+Add an attribute of type String.
 
 ### [Connect-CrmDeployment](Connect-CrmDeployment.md)
-{{Manually Enter Connect-CrmDeployment Description Here}}
+Connect and authenticate to a Dynamics CRM deployment.
 
 ### [Connect-CrmOrganization](Connect-CrmOrganization.md)
-{{Manually Enter Connect-CrmOrganization Description Here}}
+Connect to a specific organization in the connected deployment.
 
 ### [Disable-CrmPluginStep](Disable-CrmPluginStep.md)
-{{Manually Enter Disable-CrmPluginStep Description Here}}
+Disable a SDK Message Processing Step.
 
 ### [Enable-CrmPluginStep](Enable-CrmPluginStep.md)
-{{Manually Enter Enable-CrmPluginStep Description Here}}
+Enable a SDK Message Processing Step.
 
 ### [Export-CrmSolution](Export-CrmSolution.md)
-{{Manually Enter Export-CrmSolution Description Here}}
+Export a customization solution.
 
 ### [Export-CrmTranslation](Export-CrmTranslation.md)
-{{Manually Enter Export-CrmTranslation Description Here}}
+Export all translations for a specific solution to a compressed file.
 
 ### [Export-CrmWebresource](Export-CrmWebresource.md)
-{{Manually Enter Export-CrmWebresource Description Here}}
+Export the content of a webresource to the pipeline.
 
 ### [Get-CrmAttribute](Get-CrmAttribute.md)
-{{Manually Enter Get-CrmAttribute Description Here}}
+Get the metadata of an attribute.
 
 ### [Get-CrmBusinessUnit](Get-CrmBusinessUnit.md)
-{{Manually Enter Get-CrmBusinessUnit Description Here}}
+Get a Business Unit.
 
 ### [Get-CrmContent](Get-CrmContent.md)
-{{Manually Enter Get-CrmContent Description Here}}
+Retrieve data records from an entity.
 
 ### [Get-CrmEntity](Get-CrmEntity.md)
-{{Manually Enter Get-CrmEntity Description Here}}
+Get the metadata of an entity.
 
 ### [Get-CrmEntityKey](Get-CrmEntityKey.md)
-{{Manually Enter Get-CrmEntityKey Description Here}}
+Get entity key metadata for an entity.
 
 ### [Get-CrmLanguage](Get-CrmLanguage.md)
-{{Manually Enter Get-CrmLanguage Description Here}}
+Get the language of the connected organization.
 
 ### [Get-CrmOptionSet](Get-CrmOptionSet.md)
-{{Manually Enter Get-CrmOptionSet Description Here}}
+Get the metadata of a global optionset.
 
 ### [Get-CrmOrganization](Get-CrmOrganization.md)
-{{Manually Enter Get-CrmOrganization Description Here}}
+Retrieve the organizations available in the connected deployment.
 
 ### [Get-CrmPlugin](Get-CrmPlugin.md)
-{{Manually Enter Get-CrmPlugin Description Here}}
+Get a plugin.
 
 ### [Get-CrmPluginAssembly](Get-CrmPluginAssembly.md)
-{{Manually Enter Get-CrmPluginAssembly Description Here}}
-
-### [Get-CrmPluginImage](Get-CrmPluginImage.md)
-{{Manually Enter Get-CrmPluginImage Description Here}}
+Get plugin assembly.
 
 ### [Get-CrmPluginStep](Get-CrmPluginStep.md)
-{{Manually Enter Get-CrmPluginStep Description Here}}
+Get SDK Message Processing Step.
 
 ### [Get-CrmPrincipalRoles](Get-CrmPrincipalRoles.md)
-{{Manually Enter Get-CrmPrincipalRoles Description Here}}
+Get the roles related to a user or team.
 
 ### [Get-CrmProcess](Get-CrmProcess.md)
-{{Manually Enter Get-CrmProcess Description Here}}
+Get Workflow, Dialog, BusinessRule, Action or BusinessProcessFlow.
 
 ### [Get-CrmPublisher](Get-CrmPublisher.md)
-{{Manually Enter Get-CrmPublisher Description Here}}
+Get a publisher for customizations.
 
 ### [Get-CrmRelationship](Get-CrmRelationship.md)
-{{Manually Enter Get-CrmRelationship Description Here}}
+Get the metadata of a relationship.
 
 ### [Get-CrmRole](Get-CrmRole.md)
-{{Manually Enter Get-CrmRole Description Here}}
+Get role from the connected organization.
 
 ### [Get-CrmRolePrincipals](Get-CrmRolePrincipals.md)
-{{Manually Enter Get-CrmRolePrincipals Description Here}}
+Get the users and teams assigned to a role.
 
 ### [Get-CrmServiceEndpoint](Get-CrmServiceEndpoint.md)
-{{Manually Enter Get-CrmServiceEndpoint Description Here}}
+Get a registered serviceendpoint.
 
 ### [Get-CrmSolution](Get-CrmSolution.md)
-{{Manually Enter Get-CrmSolution Description Here}}
+Get a customizations solution.
 
 ### [Get-CrmSolutionComponent](Get-CrmSolutionComponent.md)
-{{Manually Enter Get-CrmSolutionComponent Description Here}}
+Get the component in a customizations solution.
 
 ### [Get-CrmTeam](Get-CrmTeam.md)
-{{Manually Enter Get-CrmTeam Description Here}}
+Get team from the connected organization.
 
 ### [Get-CrmTeamUsers](Get-CrmTeamUsers.md)
-{{Manually Enter Get-CrmTeamUsers Description Here}}
+Get the users assinged to a team.
 
 ### [Get-CrmUser](Get-CrmUser.md)
-{{Manually Enter Get-CrmUser Description Here}}
+Get user from the connected organization.
 
 ### [Get-CrmUserTeams](Get-CrmUserTeams.md)
-{{Manually Enter Get-CrmUserTeams Description Here}}
+Get the teams a user is assinged to.
 
 ### [Get-CrmWebresource](Get-CrmWebresource.md)
-{{Manually Enter Get-CrmWebresource Description Here}}
+Get a webresource.
 
 ### [Import-CrmSolution](Import-CrmSolution.md)
-{{Manually Enter Import-CrmSolution Description Here}}
+Import a customizations solution into Dynamics CRM.
 
 ### [Import-CrmTranslation](Import-CrmTranslation.md)
-{{Manually Enter Import-CrmTranslation Description Here}}
+Import translations from a compressed file.
 
 ### [Import-CrmWebresource](Import-CrmWebresource.md)
-{{Manually Enter Import-CrmWebresource Description Here}}
+Import content for an existing webresource.
 
 ### [Invoke-CrmRequest](Invoke-CrmRequest.md)
-{{Manually Enter Invoke-CrmRequest Description Here}}
+Execute any Dynamics CRM request.
 
 ### [Join-CrmContent](Join-CrmContent.md)
-{{Manually Enter Join-CrmContent Description Here}}
+Associate one record with another.
 
 ### [New-CrmBusinessUnit](New-CrmBusinessUnit.md)
-{{Manually Enter New-CrmBusinessUnit Description Here}}
+{{Fill in the Synopsis}}
 
 ### [New-CrmEntity](New-CrmEntity.md)
-{{Manually Enter New-CrmEntity Description Here}}
+{{Fill in the Synopsis}}
 
 ### [New-CrmOptionSet](New-CrmOptionSet.md)
-{{Manually Enter New-CrmOptionSet Description Here}}
+{{Fill in the Synopsis}}
 
 ### [New-CrmOptionSetValue](New-CrmOptionSetValue.md)
-{{Manually Enter New-CrmOptionSetValue Description Here}}
+{{Fill in the Synopsis}}
 
 ### [New-CrmPublisher](New-CrmPublisher.md)
-{{Manually Enter New-CrmPublisher Description Here}}
+{{Fill in the Synopsis}}
 
 ### [New-CrmRole](New-CrmRole.md)
-{{Manually Enter New-CrmRole Description Here}}
+{{Fill in the Synopsis}}
 
 ### [New-CrmSolution](New-CrmSolution.md)
-{{Manually Enter New-CrmSolution Description Here}}
+{{Fill in the Synopsis}}
 
 ### [New-CrmTeam](New-CrmTeam.md)
-{{Manually Enter New-CrmTeam Description Here}}
+{{Fill in the Synopsis}}
 
 ### [New-CrmUser](New-CrmUser.md)
-{{Manually Enter New-CrmUser Description Here}}
+{{Fill in the Synopsis}}
 
 ### [New-CrmWebresource](New-CrmWebresource.md)
-{{Manually Enter New-CrmWebresource Description Here}}
+{{Fill in the Synopsis}}
 
 ### [Publish-CrmComponent](Publish-CrmComponent.md)
-{{Manually Enter Publish-CrmComponent Description Here}}
+Publish customization components.
 
 ### [Register-CrmPlugin](Register-CrmPlugin.md)
-{{Manually Enter Register-CrmPlugin Description Here}}
+{{Fill in the Synopsis}}
 
 ### [Register-CrmPluginStep](Register-CrmPluginStep.md)
-{{Manually Enter Register-CrmPluginStep Description Here}}
+{{Fill in the Synopsis}}
 
 ### [Register-CrmPluginStepImage](Register-CrmPluginStepImage.md)
-{{Manually Enter Register-CrmPluginStepImage Description Here}}
+{{Fill in the Synopsis}}
 
 ### [Register-CrmServiceEndpoint](Register-CrmServiceEndpoint.md)
-{{Manually Enter Register-CrmServiceEndpoint Description Here}}
+{{Fill in the Synopsis}}
 
 ### [Remove-CrmAttribute](Remove-CrmAttribute.md)
-{{Manually Enter Remove-CrmAttribute Description Here}}
+Remove an attribute from an entity.
 
 ### [Remove-CrmContent](Remove-CrmContent.md)
-{{Manually Enter Remove-CrmContent Description Here}}
+Remove a data record from an entity.
 
 ### [Remove-CrmEntity](Remove-CrmEntity.md)
-{{Manually Enter Remove-CrmEntity Description Here}}
+Remove an entity.
 
 ### [Remove-CrmEntityKey](Remove-CrmEntityKey.md)
-{{Manually Enter Remove-CrmEntityKey Description Here}}
+Remove a key from an entity.
 
 ### [Remove-CrmLanguage](Remove-CrmLanguage.md)
-{{Manually Enter Remove-CrmLanguage Description Here}}
+Deprovision a language.
 
 ### [Remove-CrmOptionSet](Remove-CrmOptionSet.md)
-{{Manually Enter Remove-CrmOptionSet Description Here}}
+Remove a global optionset.
 
 ### [Remove-CrmOptionSetValue](Remove-CrmOptionSetValue.md)
-{{Manually Enter Remove-CrmOptionSetValue Description Here}}
+Remove a value from a global optionset or picklist attribute.
 
 ### [Remove-CrmRelationship](Remove-CrmRelationship.md)
-{{Manually Enter Remove-CrmRelationship Description Here}}
+Remove a relationship.
 
 ### [Remove-CrmSolutionComponent](Remove-CrmSolutionComponent.md)
-{{Manually Enter Remove-CrmSolutionComponent Description Here}}
+Remove a component from a customization solution.
 
 ### [Remove-CrmUserParent](Remove-CrmUserParent.md)
-{{Manually Enter Remove-CrmUserParent Description Here}}
+Remove the parent for a system user (user) record.
 
 ### [Remove-CrmWebresource](Remove-CrmWebresource.md)
-{{Manually Enter Remove-CrmWebresource Description Here}}
+Remove a webresource.
 
 ### [Set-CrmAttribute](Set-CrmAttribute.md)
-{{Manually Enter Set-CrmAttribute Description Here}}
+Update an attribute.
 
 ### [Set-CrmBigIntAttribute](Set-CrmBigIntAttribute.md)
-{{Manually Enter Set-CrmBigIntAttribute Description Here}}
+Update an attribute of type BigInt.
 
 ### [Set-CrmBooleanAttribute](Set-CrmBooleanAttribute.md)
-{{Manually Enter Set-CrmBooleanAttribute Description Here}}
+Update an attribute of type Boolean.
 
 ### [Set-CrmContent](Set-CrmContent.md)
-{{Manually Enter Set-CrmContent Description Here}}
+Update a data record of an entity.
 
 ### [Set-CrmDateTimeAttribute](Set-CrmDateTimeAttribute.md)
-{{Manually Enter Set-CrmDateTimeAttribute Description Here}}
+Update an attribute of type DateTime.
 
 ### [Set-CrmDecimalAttribute](Set-CrmDecimalAttribute.md)
-{{Manually Enter Set-CrmDecimalAttribute Description Here}}
+Update an attribute of type Decimal.
 
 ### [Set-CrmDoubleAttribute](Set-CrmDoubleAttribute.md)
-{{Manually Enter Set-CrmDoubleAttribute Description Here}}
+Update an attribute of type Double.
 
 ### [Set-CrmEntity](Set-CrmEntity.md)
-{{Manually Enter Set-CrmEntity Description Here}}
+{{Fill in the Synopsis}}
 
 ### [Set-CrmImageAttribute](Set-CrmImageAttribute.md)
-{{Manually Enter Set-CrmImageAttribute Description Here}}
+Update an attribute of type Image.
 
 ### [Set-CrmIntegerAttribute](Set-CrmIntegerAttribute.md)
-{{Manually Enter Set-CrmIntegerAttribute Description Here}}
+Update an attribute of type Integer.
 
 ### [Set-CrmMemoAttribute](Set-CrmMemoAttribute.md)
-{{Manually Enter Set-CrmMemoAttribute Description Here}}
+Update an attribute of type Memo.
 
 ### [Set-CrmMoneyAttribute](Set-CrmMoneyAttribute.md)
-{{Manually Enter Set-CrmMoneyAttribute Description Here}}
+Update an attribute of type Money.
 
 ### [Set-CrmOptionSet](Set-CrmOptionSet.md)
-{{Manually Enter Set-CrmOptionSet Description Here}}
+{{Fill in the Synopsis}}
 
 ### [Set-CrmOptionSetAttribute](Set-CrmOptionSetAttribute.md)
-{{Manually Enter Set-CrmOptionSetAttribute Description Here}}
+Update an attribute of type OptionSet.
 
 ### [Set-CrmOptionSetValue](Set-CrmOptionSetValue.md)
-{{Manually Enter Set-CrmOptionSetValue Description Here}}
+{{Fill in the Synopsis}}
 
 ### [Set-CrmOwner](Set-CrmOwner.md)
-{{Manually Enter Set-CrmOwner Description Here}}
+{{Fill in the Synopsis}}
 
 ### [Set-CrmPlugin](Set-CrmPlugin.md)
-{{Manually Enter Set-CrmPlugin Description Here}}
+{{Fill in the Synopsis}}
 
 ### [Set-CrmPluginStep](Set-CrmPluginStep.md)
-{{Manually Enter Set-CrmPluginStep Description Here}}
+{{Fill in the Synopsis}}
 
 ### [Set-CrmPluginStepImage](Set-CrmPluginStepImage.md)
-{{Manually Enter Set-CrmPluginStepImage Description Here}}
+{{Fill in the Synopsis}}
 
 ### [Set-CrmPrincipalRoles](Set-CrmPrincipalRoles.md)
-{{Manually Enter Set-CrmPrincipalRoles Description Here}}
+{{Fill in the Synopsis}}
 
 ### [Set-CrmRelationship](Set-CrmRelationship.md)
-{{Manually Enter Set-CrmRelationship Description Here}}
+{{Fill in the Synopsis}}
 
 ### [Set-CrmRelationshipCascadeConfig](Set-CrmRelationshipCascadeConfig.md)
-{{Manually Enter Set-CrmRelationshipCascadeConfig Description Here}}
+{{Fill in the Synopsis}}
 
 ### [Set-CrmRolePrincipals](Set-CrmRolePrincipals.md)
-{{Manually Enter Set-CrmRolePrincipals Description Here}}
+{{Fill in the Synopsis}}
 
 ### [Set-CrmServiceEndpoint](Set-CrmServiceEndpoint.md)
-{{Manually Enter Set-CrmServiceEndpoint Description Here}}
+{{Fill in the Synopsis}}
 
 ### [Set-CrmStringAttribute](Set-CrmStringAttribute.md)
-{{Manually Enter Set-CrmStringAttribute Description Here}}
+Update an attribute of type String.
 
 ### [Set-CrmTeamUsers](Set-CrmTeamUsers.md)
-{{Manually Enter Set-CrmTeamUsers Description Here}}
+{{Fill in the Synopsis}}
 
 ### [Set-CrmUserTeams](Set-CrmUserTeams.md)
-{{Manually Enter Set-CrmUserTeams Description Here}}
+{{Fill in the Synopsis}}
 
 ### [Set-CrmWebresource](Set-CrmWebresource.md)
-{{Manually Enter Set-CrmWebresource Description Here}}
+{{Fill in the Synopsis}}
 
 ### [Split-CrmContent](Split-CrmContent.md)
-{{Manually Enter Split-CrmContent Description Here}}
+Disassociate one record from another.
 
 ### [Start-CrmProcess](Start-CrmProcess.md)
-{{Manually Enter Start-CrmProcess Description Here}}
+Execute a workflow.
 
 ### [Stop-CrmProcess](Stop-CrmProcess.md)
-{{Manually Enter Stop-CrmProcess Description Here}}
+Stop a running asynchronous operation (System Job).
 
 ### [Test-CrmSolution](Test-CrmSolution.md)
-{{Manually Enter Test-CrmSolution Description Here}}
+Validate a customization solution.
 
 ### [Test-CrmSolutionComponent](Test-CrmSolutionComponent.md)
-{{Manually Enter Test-CrmSolutionComponent Description Here}}
+Validate a component in a solution.
 
 ### [Unregister-CrmPlugin](Unregister-CrmPlugin.md)
-{{Manually Enter Unregister-CrmPlugin Description Here}}
+Unregister a plugin.
 
 ### [Unregister-CrmPluginAssembly](Unregister-CrmPluginAssembly.md)
-{{Manually Enter Unregister-CrmPluginAssembly Description Here}}
+Unregister a plugin assembly.
 
 ### [Unregister-CrmPluginStep](Unregister-CrmPluginStep.md)
-{{Manually Enter Unregister-CrmPluginStep Description Here}}
+Unregister a SDK Messgae Processing Step.
 
 ### [Unregister-CrmPluginStepImage](Unregister-CrmPluginStepImage.md)
-{{Manually Enter Unregister-CrmPluginStepImage Description Here}}
+Unregister SDK Message Processing Step Image.
 
 ### [Unregister-CrmServiceEndpoint](Unregister-CrmServiceEndpoint.md)
-{{Manually Enter Unregister-CrmServiceEndpoint Description Here}}
+Unregister a serviceendpoint.
 
 ### [Use-CrmLanguage](Use-CrmLanguage.md)
-{{Manually Enter Use-CrmLanguage Description Here}}
+Set the active language to use in the PowerShell session.
 
 ### [Use-CrmSolution](Use-CrmSolution.md)
-{{Manually Enter Use-CrmSolution Description Here}}
+Set the active CRM solution to use in the PowerShell session.
+
 

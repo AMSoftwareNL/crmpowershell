@@ -14,19 +14,19 @@ Remove a value from a global optionset or picklist attribute.
 ### RemoveOptionSetValueGlobal (Default)
 ```
 Remove-CrmOptionSetValue [-OptionSet] <String> [-Value] <Int32> [-Force] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ### RemoveOptionSetValueEntity
 ```
 Remove-CrmOptionSetValue [-Entity] <String> [-Attribute] <String> [-Value] <Int32> [-Force] [-WhatIf]
- [-Confirm]
+ [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 Remove a value from a global optionset or picklist attribute.
 
 ## EXAMPLES
-
 
 ## PARAMETERS
 
@@ -136,10 +136,12 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### None
-
 
 ## OUTPUTS
 

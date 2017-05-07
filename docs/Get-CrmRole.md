@@ -14,12 +14,12 @@ Get role from the connected organization.
 ### GetAllRoles (Default)
 ```
 Get-CrmRole [-Include <String>] [-Exclude <String>] [-BusinessUnit <Guid>] [-IncludeTotalCount]
- [-Skip <UInt64>] [-First <UInt64>]
+ [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
 ```
 
 ### GetRoleById
 ```
-Get-CrmRole [-Id] <Guid> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>]
+Get-CrmRole [-Id] <Guid> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -29,7 +29,7 @@ Get role from the connected organization.
 
 ### Example 1
 ```
-PS C:\> Get-CrmBusinessUnit -Include 'amsoftwarecrm' | Get-CrmRole 
+PS C:\> Get-CrmBusinessUnit -Include 'amsoftwarecrm' | Get-CrmRole
 ```
 
 Get all roles for the business unit 'amsoftwarecrm'.
@@ -143,15 +143,16 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### System.Guid
 
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
-
 
 ## NOTES
 

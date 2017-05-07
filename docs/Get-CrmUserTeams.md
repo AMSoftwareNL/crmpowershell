@@ -12,7 +12,7 @@ Get the teams a user is assinged to.
 ## SYNTAX
 
 ```
-Get-CrmUserTeams [-User] <Guid>
+Get-CrmUserTeams [-Team] <Guid> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -29,8 +29,8 @@ Get the assinged teams for the user with username 'user1@organization.com'.
 
 ## PARAMETERS
 
-### -User
-The id of the user to get the assinged teams for.
+### -Team
+{{Fill Team Description}}
 
 ```yaml
 Type: Guid
@@ -44,15 +44,16 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### System.Guid
 
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
-
 
 ## NOTES
 
