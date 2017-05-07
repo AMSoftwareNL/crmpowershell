@@ -7,7 +7,7 @@ schema: 2.0.0
 # Set-CrmWebresource
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Update a webresource.
 
 ## SYNTAX
 
@@ -30,21 +30,14 @@ Set-CrmWebresource [-Id] <Guid> [-DisplayName <String>] [-Description <String>] 
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Update a webresource.
 
 ## EXAMPLES
-
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -Content
-{{Fill Content Description}}
+The content for the webresource.
 
 ```yaml
 Type: Byte[]
@@ -59,7 +52,7 @@ Accept wildcard characters: False
 ```
 
 ### -Description
-{{Fill Description Description}}
+The description for the webresource.
 
 ```yaml
 Type: String
@@ -74,7 +67,7 @@ Accept wildcard characters: False
 ```
 
 ### -DisplayName
-{{Fill DisplayName Description}}
+The displayname for the webresource.
 
 ```yaml
 Type: String
@@ -89,7 +82,7 @@ Accept wildcard characters: False
 ```
 
 ### -Encoding
-{{Fill Encoding Description}}
+The encoding of the file containing the content for the webresource.
 
 ```yaml
 Type: FileSystemCmdletProviderEncoding
@@ -105,7 +98,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{Fill Id Description}}
+The id of the webresource to update.
 
 ```yaml
 Type: Guid
@@ -120,7 +113,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsCustomizable
-{{Fill IsCustomizable Description}}
+Whether the webresource is customizable.
 
 ```yaml
 Type: Boolean
@@ -135,7 +128,7 @@ Accept wildcard characters: False
 ```
 
 ### -LiteralPath
-{{Fill LiteralPath Description}}
+The path to the file containing the content for the webresource.
 
 ```yaml
 Type: String
@@ -164,5 +157,14 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Set-CrmWebresource.html](http://crmpowershell.amsoftware.nl/Set-CrmWebresource.html)
+[Export-CrmWebresource](Export-CrmWebresource.md)
 
+[Get-CrmWebresource](Get-CrmWebresource.md)
+
+[Import-CrmWebresource](Import-CrmWebresource.md)
+
+[New-CrmWebresource](New-CrmWebresource.md)
+
+[Remove-CrmWebresource](Remove-CrmWebresource.md)
+
+[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)

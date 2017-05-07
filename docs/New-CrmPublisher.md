@@ -7,7 +7,7 @@ schema: 2.0.0
 # New-CrmPublisher
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Add a new customizations publisher.
 
 ## SYNTAX
 
@@ -17,21 +17,19 @@ New-CrmPublisher [-Name] <String> -DisplayName <String> -Prefix <String> [-Optio
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Add a new customizations publisher.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> New-CrmPublisher -Name 'amsoftware' -DisplayName 'AMSoftware' -Prefix 'ams'
 ```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -Description
-{{Fill Description Description}}
+The description for the publisher.
 
 ```yaml
 Type: String
@@ -46,7 +44,7 @@ Accept wildcard characters: False
 ```
 
 ### -DisplayName
-{{Fill DisplayName Description}}
+The displayname for the publisher.
 
 ```yaml
 Type: String
@@ -61,7 +59,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{Fill Name Description}}
+The name for the publisher.
 
 ```yaml
 Type: String
@@ -76,7 +74,7 @@ Accept wildcard characters: False
 ```
 
 ### -OptionSetValuePrefix
-{{Fill OptionSetValuePrefix Description}}
+The optionset value prefix for the publisher.
 
 ```yaml
 Type: Int32
@@ -91,7 +89,7 @@ Accept wildcard characters: False
 ```
 
 ### -Prefix
-{{Fill Prefix Description}}
+The prefix for the publisher.
 
 ```yaml
 Type: String
@@ -120,5 +118,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/New-CrmPublisher.html](http://crmpowershell.amsoftware.nl/New-CrmPublisher.html)
+[Get-CrmPublisher](Get-CrmPublisher.md)
 
+[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)

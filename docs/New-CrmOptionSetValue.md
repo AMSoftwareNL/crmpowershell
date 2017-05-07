@@ -7,7 +7,7 @@ schema: 2.0.0
 # New-CrmOptionSetValue
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Create a new OptionSetValue to use with optionsets.
 
 ## SYNTAX
 
@@ -16,21 +16,14 @@ New-CrmOptionSetValue [-DisplayName] <String> [[-Value] <Int32>] [[-Description]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Create a new OptionSetValue to use with optionsets.
 
 ## EXAMPLES
-
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -Description
-{{Fill Description Description}}
+The description for the optionset value.
 
 ```yaml
 Type: String
@@ -45,7 +38,7 @@ Accept wildcard characters: False
 ```
 
 ### -DisplayName
-{{Fill DisplayName Description}}
+The displayname for the optionset value.
 
 ```yaml
 Type: String
@@ -60,7 +53,7 @@ Accept wildcard characters: False
 ```
 
 ### -Value
-{{Fill Value Description}}
+The value for the optionset value.
 
 ```yaml
 Type: Int32
@@ -89,5 +82,18 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/New-CrmOptionSetValue.html](http://crmpowershell.amsoftware.nl/New-CrmOptionSetValue.html)
+[Add-CrmOptionSetAttribute](Add-CrmOptionSetAttribute.md)
 
+[Get-CrmOptionSet](Get-CrmOptionSet.md)
+
+[New-CrmOptionSet](New-CrmOptionSet.md)
+
+[Remove-CrmOptionSet](Remove-CrmOptionSet.md)
+
+[Remove-CrmOptionSetValue](Remove-CrmOptionSetValue.md)
+
+[Set-CrmOptionSet](Set-CrmOptionSet.md)
+
+[Set-CrmOptionSetAttribute](Set-CrmOptionSetAttribute.md)
+
+[Set-CrmOptionSetValue](Set-CrmOptionSetValue.md)

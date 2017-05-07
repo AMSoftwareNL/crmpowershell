@@ -7,7 +7,7 @@ schema: 2.0.0
 # Set-CrmTeamUsers
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Set the users who are members of team.
 
 ## SYNTAX
 
@@ -16,21 +16,14 @@ Set-CrmTeamUsers [-Team] <Guid> [-Users] <Guid[]> [-Overwrite] [<CommonParameter
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Set the users who are members of team.
 
 ## EXAMPLES
-
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -Overwrite
-{{Fill Overwrite Description}}
+Overwrite the current users for the team. If omitted the existing and new users will be merged.
 
 ```yaml
 Type: SwitchParameter
@@ -45,7 +38,7 @@ Accept wildcard characters: False
 ```
 
 ### -Team
-{{Fill Team Description}}
+The id of the team to set the users for.
 
 ```yaml
 Type: Guid
@@ -60,7 +53,7 @@ Accept wildcard characters: False
 ```
 
 ### -Users
-{{Fill Users Description}}
+The id of the users to set as members of the team.
 
 ```yaml
 Type: Guid[]
@@ -90,5 +83,12 @@ System.Guid[]
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Set-CrmTeamUsers.html](http://crmpowershell.amsoftware.nl/Set-CrmTeamUsers.html)
+[Get-CrmTeam](Get-CrmTeam.md)
 
+[Get-CrmTeamUsers](Get-CrmTeamUsers.md)
+
+[Get-CrmUserTeams](Get-CrmUserTeams.md)
+
+[New-CrmTeam](New-CrmTeam.md)
+
+[Set-CrmUserTeams](Set-CrmUserTeams.md)

@@ -7,7 +7,7 @@ schema: 2.0.0
 # Set-CrmOptionSet
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Update a global optionset.
 
 ## SYNTAX
 
@@ -23,21 +23,14 @@ Set-CrmOptionSet [-Name] <String> [-DisplayName <String>] [-Description <String>
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Update a global optionset.
 
 ## EXAMPLES
-
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -Customizable
-{{Fill Customizable Description}}
+Whether the optionset is customizable. 
 
 ```yaml
 Type: Boolean
@@ -52,7 +45,7 @@ Accept wildcard characters: False
 ```
 
 ### -Description
-{{Fill Description Description}}
+The description for the optionset.
 
 ```yaml
 Type: String
@@ -67,7 +60,7 @@ Accept wildcard characters: False
 ```
 
 ### -DisplayName
-{{Fill DisplayName Description}}
+The displayname for the optionset.
 
 ```yaml
 Type: String
@@ -82,7 +75,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{Fill Name Description}}
+The name of the optionset to update.
 
 ```yaml
 Type: String
@@ -97,7 +90,7 @@ Accept wildcard characters: False
 ```
 
 ### -OptionSet
-{{Fill OptionSet Description}}
+The updated OptionSetMetadata object for the optionset.
 
 ```yaml
 Type: OptionSetMetadata
@@ -120,11 +113,22 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### System.Object
+### None
 
 ## NOTES
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Set-CrmOptionSet.html](http://crmpowershell.amsoftware.nl/Set-CrmOptionSet.html)
+[Get-CrmOptionSet](Get-CrmOptionSet.md)
 
+[New-CrmOptionSet](New-CrmOptionSet.md)
+
+[New-CrmOptionSetValue](New-CrmOptionSetValue.md)
+
+[Remove-CrmOptionSet](Remove-CrmOptionSet.md)
+
+[Remove-CrmOptionSetValue](Remove-CrmOptionSetValue.md)
+
+[Set-CrmOptionSetValue](Set-CrmOptionSetValue.md)
+
+[OptionSetMetadata Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.metadata.optionsetmetadata.aspx)

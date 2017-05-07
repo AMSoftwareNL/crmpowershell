@@ -7,7 +7,7 @@ schema: 2.0.0
 # New-CrmBusinessUnit
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Add a new business unit.
 
 ## SYNTAX
 
@@ -16,21 +16,21 @@ New-CrmBusinessUnit [-Name] <String> [-Parent <Guid>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Add a new business unit.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Get-CrmBusinessUnit -Include amsoftwarecrm | New-CrmBusinessUnit -Name 'sales'
 ```
 
-{{ Add example description here }}
+Add a business unit 'sales' below the parent 'amsoftwarecrm'.
 
 ## PARAMETERS
 
 ### -Name
-{{Fill Name Description}}
+The name of the new business unit.
 
 ```yaml
 Type: String
@@ -45,7 +45,7 @@ Accept wildcard characters: False
 ```
 
 ### -Parent
-{{Fill Parent Description}}
+The id of the parent business unit.
 
 ```yaml
 Type: Guid
@@ -64,7 +64,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### System.Nullable`1[[System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
+### System.Guid
 
 ## OUTPUTS
 
@@ -74,5 +74,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/New-CrmBusinessUnit.html](http://crmpowershell.amsoftware.nl/New-CrmBusinessUnit.html)
+[Get-CrmBusinessUnit](Get-CrmBusinessUnit.md)
 
+[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)

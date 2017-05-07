@@ -7,7 +7,7 @@ schema: 2.0.0
 # Set-CrmPluginStepImage
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Update a SDK Message Processing Step image.
 
 ## SYNTAX
 
@@ -17,21 +17,14 @@ Set-CrmPluginStepImage [-Id] <Guid> [-Name <String>] [-Alias <String>] [-ImageTy
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Update a SDK Message Processing Step image.
 
 ## EXAMPLES
-
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -Alias
-{{Fill Alias Description}}
+The alias for the SDK Message Processing Step image.
 
 ```yaml
 Type: String
@@ -46,7 +39,7 @@ Accept wildcard characters: False
 ```
 
 ### -Attributes
-{{Fill Attributes Description}}
+The LogicalName of the filtering attributes for the SDK Message Processing Step image.
 
 ```yaml
 Type: String[]
@@ -61,7 +54,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{Fill Id Description}}
+The id of the SDK Message Processing Step image to update.
 
 ```yaml
 Type: Guid
@@ -76,7 +69,7 @@ Accept wildcard characters: False
 ```
 
 ### -ImageType
-{{Fill ImageType Description}}
+The type of the SDK Message Processing Step image.
 
 ```yaml
 Type: CrmPluginStepImageType
@@ -92,7 +85,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{Fill Name Description}}
+The name for the SDK Message Processing Step image.
 
 ```yaml
 Type: String
@@ -112,15 +105,19 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.Guid
-System.String[]
+
+### System.String[]
 
 ## OUTPUTS
 
-### System.Object
+### None
 
 ## NOTES
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Set-CrmPluginStepImage.html](http://crmpowershell.amsoftware.nl/Set-CrmPluginStepImage.html)
+[Get-CrmPluginStepImage](Get-CrmPluginStepImage.md)
 
+[Register-CrmPluginStepImage](Register-CrmPluginStepImage.md)
+
+[Unregister-CrmPluginStepImage](Unregister-CrmPluginStepImage.md)

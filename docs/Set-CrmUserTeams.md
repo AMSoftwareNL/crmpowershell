@@ -7,7 +7,7 @@ schema: 2.0.0
 # Set-CrmUserTeams
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Set the teams a user is a member of.
 
 ## SYNTAX
 
@@ -16,21 +16,14 @@ Set-CrmUserTeams [-User] <Guid> [-Teams] <Guid[]> [-Overwrite] [<CommonParameter
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Set the teams a user is a member of.
 
 ## EXAMPLES
-
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -Overwrite
-{{Fill Overwrite Description}}
+Overwrite the current teams for the user. If omitted the existing and new teams will be merged.
 
 ```yaml
 Type: SwitchParameter
@@ -45,7 +38,7 @@ Accept wildcard characters: False
 ```
 
 ### -Teams
-{{Fill Teams Description}}
+The id of the teams the user is a member of.
 
 ```yaml
 Type: Guid[]
@@ -60,7 +53,7 @@ Accept wildcard characters: False
 ```
 
 ### -User
-{{Fill User Description}}
+The id of the user to set the teams for.
 
 ```yaml
 Type: Guid
@@ -80,15 +73,21 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.Guid
-System.Guid[]
 
 ## OUTPUTS
 
-### System.Object
+### None
 
 ## NOTES
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Set-CrmUserTeams.html](http://crmpowershell.amsoftware.nl/Set-CrmUserTeams.html)
+[Get-CrmTeamUsers](Get-CrmTeamUsers.md)
 
+[Get-CrmUser](Get-CrmUser.md)
+
+[Get-CrmUserTeams](Get-CrmUserTeams.md)
+
+[New-CrmUser](New-CrmUser.md)
+
+[Set-CrmTeamUsers](Set-CrmTeamUsers.md)

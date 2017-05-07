@@ -7,7 +7,7 @@ schema: 2.0.0
 # Set-CrmPrincipalRoles
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Set the roles for a user or team.
 
 ## SYNTAX
 
@@ -17,21 +17,14 @@ Set-CrmPrincipalRoles [-Principal] <Guid> [-PrincipalType] <CrmPrincipalType> -R
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Set the roles for a user or team.
 
 ## EXAMPLES
-
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -Overwrite
-{{Fill Overwrite Description}}
+Overwrite the existing roles for the user or team. If omitted the roles will be merged.
 
 ```yaml
 Type: SwitchParameter
@@ -46,7 +39,7 @@ Accept wildcard characters: False
 ```
 
 ### -Principal
-{{Fill Principal Description}}
+The id of the user or team to set the roles for.
 
 ```yaml
 Type: Guid
@@ -61,7 +54,7 @@ Accept wildcard characters: False
 ```
 
 ### -PrincipalType
-{{Fill PrincipalType Description}}
+The type of principal to set the roles for.
 
 ```yaml
 Type: CrmPrincipalType
@@ -77,7 +70,7 @@ Accept wildcard characters: False
 ```
 
 ### -Roles
-{{Fill Roles Description}}
+The id of the roles to assigned to the user or team.
 
 ```yaml
 Type: Guid[]
@@ -97,15 +90,17 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.Guid
-System.Guid[]
 
 ## OUTPUTS
 
-### System.Object
+### None
 
 ## NOTES
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Set-CrmPrincipalRoles.html](http://crmpowershell.amsoftware.nl/Set-CrmPrincipalRoles.html)
+[Get-CrmPrincipalRoles](Get-CrmPrincipalRoles.md)
 
+[Get-CrmRolePrincipals](Get-CrmRolePrincipals.md)
+
+[Set-CrmRolePrincipals](Set-CrmRolePrincipals.md)

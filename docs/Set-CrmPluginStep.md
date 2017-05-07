@@ -7,7 +7,7 @@ schema: 2.0.0
 # Set-CrmPluginStep
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Update a SDK Message Processing Step.
 
 ## SYNTAX
 
@@ -19,21 +19,14 @@ Set-CrmPluginStep [-Id] <Guid> [-ExecutionOrder <Int32>] [-Name <String>] [-Desc
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Update a SDK Message Processing Step.
 
 ## EXAMPLES
-
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -Attributes
-{{Fill Attributes Description}}
+The LogicalName of the filtering attributes for the SDK Message Processing Step.
 
 ```yaml
 Type: String[]
@@ -48,7 +41,7 @@ Accept wildcard characters: False
 ```
 
 ### -DeleteAsyncOperation
-{{Fill DeleteAsyncOperation Description}}
+Set Delete async operation when completed for the SDK Message Processing Step.
 
 ```yaml
 Type: SwitchParameter
@@ -63,7 +56,7 @@ Accept wildcard characters: False
 ```
 
 ### -Deployment
-{{Fill Deployment Description}}
+The deployment type for the SDK Message Processing Step.
 
 ```yaml
 Type: CrmPluginStepDeployment
@@ -79,7 +72,7 @@ Accept wildcard characters: False
 ```
 
 ### -Description
-{{Fill Description Description}}
+The description for the SDK Message Processing Step.
 
 ```yaml
 Type: String
@@ -94,7 +87,7 @@ Accept wildcard characters: False
 ```
 
 ### -ExecutionOrder
-{{Fill ExecutionOrder Description}}
+The execution order for the SDK Message Processing Step.
 
 ```yaml
 Type: Int32
@@ -109,7 +102,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{Fill Id Description}}
+The id of the SDK Message Processing Step to update.
 
 ```yaml
 Type: Guid
@@ -124,7 +117,7 @@ Accept wildcard characters: False
 ```
 
 ### -Mode
-{{Fill Mode Description}}
+The mode for the SDK Message Processing Step.
 
 ```yaml
 Type: CrmPluginStepMode
@@ -140,7 +133,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{Fill Name Description}}
+The name for the SDK Message Processing Step.
 
 ```yaml
 Type: String
@@ -155,7 +148,7 @@ Accept wildcard characters: False
 ```
 
 ### -SecureConfig
-{{Fill SecureConfig Description}}
+The secure configuration for the SDK Message Processing Step.
 
 ```yaml
 Type: String
@@ -170,7 +163,7 @@ Accept wildcard characters: False
 ```
 
 ### -Stage
-{{Fill Stage Description}}
+The stage for the SDK Message Processing Step.
 
 ```yaml
 Type: CrmPluginStepStage
@@ -186,7 +179,7 @@ Accept wildcard characters: False
 ```
 
 ### -UnsecureConfig
-{{Fill UnsecureConfig Description}}
+The unsecure configuration for the SDK Message Processing Step.
 
 ```yaml
 Type: String
@@ -201,7 +194,7 @@ Accept wildcard characters: False
 ```
 
 ### -User
-{{Fill User Description}}
+The id of the user for the SDK Message Processing Step context.
 
 ```yaml
 Type: Guid
@@ -221,15 +214,23 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.Guid
-System.String[]
+
+### System.String[]
 
 ## OUTPUTS
 
-### System.Object
+### None
 
 ## NOTES
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Set-CrmPluginStep.html](http://crmpowershell.amsoftware.nl/Set-CrmPluginStep.html)
+[Disable-CrmPluginStep](Disable-CrmPluginStep.md)
 
+[Enable-CrmPluginStep](Enable-CrmPluginStep.md)
+
+[Get-CrmPluginStep](Get-CrmPluginStep.md)
+
+[Register-CrmPluginStep](Register-CrmPluginStep.md)
+
+[Unregister-CrmPluginStep](Unregister-CrmPluginStep.md)

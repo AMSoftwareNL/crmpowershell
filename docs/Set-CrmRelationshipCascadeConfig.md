@@ -7,7 +7,7 @@ schema: 2.0.0
 # Set-CrmRelationshipCascadeConfig
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Set the cascading behavior for a relationship.
 
 ## SYNTAX
 
@@ -18,21 +18,14 @@ Set-CrmRelationshipCascadeConfig [-Relationship] <String> [-Assign <CrmCascadeTy
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Set the cascading behavior for a relationship.
 
 ## EXAMPLES
-
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -Assign
-{{Fill Assign Description}}
+The referenced entity record owner is changed.
 
 ```yaml
 Type: CrmCascadeType
@@ -48,7 +41,7 @@ Accept wildcard characters: False
 ```
 
 ### -Delete
-{{Fill Delete Description}}
+The referenced entity record is deleted.
 
 ```yaml
 Type: CrmCascadeType
@@ -64,7 +57,7 @@ Accept wildcard characters: False
 ```
 
 ### -Merge
-{{Fill Merge Description}}
+The record is merged with another record.
 
 ```yaml
 Type: CrmCascadeType
@@ -80,7 +73,7 @@ Accept wildcard characters: False
 ```
 
 ### -Relationship
-{{Fill Relationship Description}}
+The SchemaName of the relationship to set the cascade configuration for.
 
 ```yaml
 Type: String
@@ -95,7 +88,7 @@ Accept wildcard characters: False
 ```
 
 ### -Reparent
-{{Fill Reparent Description}}
+The value of the referencing attribute in a parental relationship changes.
 
 ```yaml
 Type: CrmCascadeType
@@ -111,7 +104,7 @@ Accept wildcard characters: False
 ```
 
 ### -Share
-{{Fill Share Description}}
+The referenced entity record is shared with another user.
 
 ```yaml
 Type: CrmCascadeType
@@ -127,7 +120,7 @@ Accept wildcard characters: False
 ```
 
 ### -Unshare
-{{Fill Unshare Description}}
+Sharing is removed for the referenced entity record.
 
 ```yaml
 Type: CrmCascadeType
@@ -157,5 +150,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Set-CrmRelationshipCascadeConfig.html](http://crmpowershell.amsoftware.nl/Set-CrmRelationshipCascadeConfig.html)
+[Get-CrmRelationship](Get-CrmRelationship.md)
 
+[Set-CrmRelationship](Set-CrmRelationship.md)
+
+[CascadeConfiguration Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.metadata.cascadeconfiguration.aspx)

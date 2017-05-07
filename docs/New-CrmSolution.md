@@ -7,7 +7,7 @@ schema: 2.0.0
 # New-CrmSolution
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Add new customizations solution.
 
 ## SYNTAX
 
@@ -17,21 +17,14 @@ New-CrmSolution [-Name] <String> -DisplayName <String> -Version <String> -Publis
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Add new customizations solution.
 
 ## EXAMPLES
-
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -Description
-{{Fill Description Description}}
+The description for the solution.
 
 ```yaml
 Type: String
@@ -46,7 +39,7 @@ Accept wildcard characters: False
 ```
 
 ### -DisplayName
-{{Fill DisplayName Description}}
+The displayname for the solution.
 
 ```yaml
 Type: String
@@ -61,7 +54,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{Fill Name Description}}
+The name for the solution.
 
 ```yaml
 Type: String
@@ -76,7 +69,7 @@ Accept wildcard characters: False
 ```
 
 ### -Publisher
-{{Fill Publisher Description}}
+The id of the publisher this solution is associated with.
 
 ```yaml
 Type: Guid
@@ -91,7 +84,7 @@ Accept wildcard characters: False
 ```
 
 ### -Version
-{{Fill Version Description}}
+The version of the solution.
 
 ```yaml
 Type: String
@@ -120,5 +113,14 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/New-CrmSolution.html](http://crmpowershell.amsoftware.nl/New-CrmSolution.html)
+[Export-CrmSolution](Export-CrmSolution.md)
 
+[Get-CrmSolution](Get-CrmSolution.md)
+
+[Import-CrmSolution](Import-CrmSolution.md)
+
+[Test-CrmSolution](Test-CrmSolution.md)
+
+[Use-CrmSolution](Use-CrmSolution.md)
+
+[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)

@@ -7,7 +7,7 @@ schema: 2.0.0
 # Set-CrmOwner
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Update the owner of a record.
 
 ## SYNTAX
 
@@ -30,21 +30,14 @@ Set-CrmOwner [-FromPrincipalType] <CrmPrincipalType> [-FromPrincipalId] <Guid>
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Update the owner of a record. This can be a user or a team.
 
 ## EXAMPLES
-
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -Entity
-{{Fill Entity Description}}
+The LogicalName of the entity.
 
 ```yaml
 Type: String
@@ -59,7 +52,7 @@ Accept wildcard characters: False
 ```
 
 ### -FromPrincipalId
-{{Fill FromPrincipalId Description}}
+The id of the current user or team.
 
 ```yaml
 Type: Guid
@@ -74,7 +67,7 @@ Accept wildcard characters: False
 ```
 
 ### -FromPrincipalType
-{{Fill FromPrincipalType Description}}
+The team of principal of the current owner.
 
 ```yaml
 Type: CrmPrincipalType
@@ -90,7 +83,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{Fill Id Description}}
+The id of the record to update the owner for.
 
 ```yaml
 Type: Guid
@@ -105,7 +98,7 @@ Accept wildcard characters: False
 ```
 
 ### -InputObject
-{{Fill InputObject Description}}
+The Entity object representing the record to update the owner for.
 
 ```yaml
 Type: Entity
@@ -120,7 +113,7 @@ Accept wildcard characters: False
 ```
 
 ### -ToPrincipalId
-{{Fill ToPrincipalId Description}}
+The id of the team or user of the new owner.
 
 ```yaml
 Type: Guid
@@ -135,7 +128,7 @@ Accept wildcard characters: False
 ```
 
 ### -ToPrincipalType
-{{Fill ToPrincipalType Description}}
+The type of principal of the new owner.
 
 ```yaml
 Type: CrmPrincipalType
@@ -159,11 +152,10 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### System.Object
+### None
 
 ## NOTES
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Set-CrmOwner.html](http://crmpowershell.amsoftware.nl/Set-CrmOwner.html)
-
+[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)

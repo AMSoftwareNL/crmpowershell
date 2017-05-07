@@ -7,7 +7,7 @@ schema: 2.0.0
 # Register-CrmPluginStep
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Register a SDK Message Processing Step.
 
 ## SYNTAX
 
@@ -20,21 +20,14 @@ Register-CrmPluginStep [-EventSource] <Guid> [-Message] <String> [[-PrimaryEntit
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Register a SDK Message Processing Step.
 
 ## EXAMPLES
-
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -Attributes
-{{Fill Attributes Description}}
+The LogicalName of the filtering attributes for the SDK Message Processing Step.
 
 ```yaml
 Type: String[]
@@ -49,7 +42,7 @@ Accept wildcard characters: False
 ```
 
 ### -DeleteAsyncOperation
-{{Fill DeleteAsyncOperation Description}}
+Set Delete async operation when completed for the SDK Message Processing Step.
 
 ```yaml
 Type: SwitchParameter
@@ -64,7 +57,7 @@ Accept wildcard characters: False
 ```
 
 ### -Deployment
-{{Fill Deployment Description}}
+The deployment type for the SDK Message Processing Step.
 
 ```yaml
 Type: CrmPluginStepDeployment
@@ -80,7 +73,7 @@ Accept wildcard characters: False
 ```
 
 ### -Description
-{{Fill Description Description}}
+The description for the SDK Message Processing Step.
 
 ```yaml
 Type: String
@@ -95,7 +88,7 @@ Accept wildcard characters: False
 ```
 
 ### -EventSource
-{{Fill EventSource Description}}
+The id of the plugin or serviceendpoint for the SDK Message Processing Step.
 
 ```yaml
 Type: Guid
@@ -110,7 +103,7 @@ Accept wildcard characters: False
 ```
 
 ### -ExecutionOrder
-{{Fill ExecutionOrder Description}}
+The execution order for the SDK Message Processing Step.
 
 ```yaml
 Type: Int32
@@ -125,7 +118,7 @@ Accept wildcard characters: False
 ```
 
 ### -Message
-{{Fill Message Description}}
+The message to register the SDK Message Processing Step for.
 
 ```yaml
 Type: String
@@ -140,7 +133,7 @@ Accept wildcard characters: False
 ```
 
 ### -Mode
-{{Fill Mode Description}}
+The mode for the SDK Message Processing Step.
 
 ```yaml
 Type: CrmPluginStepMode
@@ -156,7 +149,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{Fill Name Description}}
+The name for the SDK Message Processing Step.
 
 ```yaml
 Type: String
@@ -171,7 +164,7 @@ Accept wildcard characters: False
 ```
 
 ### -PrimaryEntity
-{{Fill PrimaryEntity Description}}
+The primary entity the SDK Message Processing Step is registered for.
 
 ```yaml
 Type: String
@@ -186,7 +179,7 @@ Accept wildcard characters: False
 ```
 
 ### -SecondaryEntity
-{{Fill SecondaryEntity Description}}
+The secondary entity the SDK Message Processing Step is registered for.
 
 ```yaml
 Type: String
@@ -201,7 +194,7 @@ Accept wildcard characters: False
 ```
 
 ### -SecureConfig
-{{Fill SecureConfig Description}}
+The secure configuration for the SDK Message Processing Step.
 
 ```yaml
 Type: String
@@ -216,7 +209,7 @@ Accept wildcard characters: False
 ```
 
 ### -Stage
-{{Fill Stage Description}}
+The stage for the SDK Message Processing Step.
 
 ```yaml
 Type: CrmPluginStepStage
@@ -232,7 +225,7 @@ Accept wildcard characters: False
 ```
 
 ### -UnsecureConfig
-{{Fill UnsecureConfig Description}}
+The unsecure configuration for the SDK Message Processing Step.
 
 ```yaml
 Type: String
@@ -247,7 +240,7 @@ Accept wildcard characters: False
 ```
 
 ### -User
-{{Fill User Description}}
+The id of the user for the SDK Message Processing Step context.
 
 ```yaml
 Type: Guid
@@ -267,7 +260,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.Guid
-System.String[]
 
 ## OUTPUTS
 
@@ -277,5 +269,14 @@ System.String[]
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Register-CrmPluginStep.html](http://crmpowershell.amsoftware.nl/Register-CrmPluginStep.html)
+[Disable-CrmPluginStep](Disable-CrmPluginStep.md)
 
+[Enable-CrmPluginStep](Enable-CrmPluginStep.md)
+
+[Get-CrmPluginStep](Get-CrmPluginStep.md)
+
+[Set-CrmPluginStep](Set-CrmPluginStep.md)
+
+[Unregister-CrmPluginStep](Unregister-CrmPluginStep.md)
+
+[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)

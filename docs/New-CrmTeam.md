@@ -7,7 +7,7 @@ schema: 2.0.0
 # New-CrmTeam
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Add a new team.
 
 ## SYNTAX
 
@@ -17,21 +17,14 @@ New-CrmTeam [-Name] <String> [-TeamType] <CrmTeamType> [-Administrator] <Guid> [
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Add a new team.
 
 ## EXAMPLES
-
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -Administrator
-{{Fill Administrator Description}}
+The id of the user who administers the team.
 
 ```yaml
 Type: Guid
@@ -46,7 +39,7 @@ Accept wildcard characters: False
 ```
 
 ### -BusinessUnit
-{{Fill BusinessUnit Description}}
+The id of the business unit the team is associated with.
 
 ```yaml
 Type: Guid
@@ -61,7 +54,7 @@ Accept wildcard characters: False
 ```
 
 ### -Description
-{{Fill Description Description}}
+The description for the team.
 
 ```yaml
 Type: String
@@ -76,7 +69,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{Fill Name Description}}
+The name for the team.
 
 ```yaml
 Type: String
@@ -91,7 +84,7 @@ Accept wildcard characters: False
 ```
 
 ### -TeamType
-{{Fill TeamType Description}}
+The team of team to create.
 
 ```yaml
 Type: CrmTeamType
@@ -107,7 +100,7 @@ Accept wildcard characters: False
 ```
 
 ### -Users
-{{Fill Users Description}}
+The id of users who will be members of the team.
 
 ```yaml
 Type: Guid[]
@@ -126,8 +119,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### System.Nullable`1[[System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
-System.Guid[]
+### System.Guid[]
 
 ## OUTPUTS
 
@@ -137,5 +129,6 @@ System.Guid[]
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/New-CrmTeam.html](http://crmpowershell.amsoftware.nl/New-CrmTeam.html)
+[Get-CrmTeam](Get-CrmTeam.md)
 
+[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)

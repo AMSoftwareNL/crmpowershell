@@ -7,7 +7,7 @@ schema: 2.0.0
 # Set-CrmServiceEndpoint
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Update a serviceendpoint.
 
 ## SYNTAX
 
@@ -18,21 +18,14 @@ Set-CrmServiceEndpoint [-Id] <Guid> [-Name <String>] [-Description <String>] [-N
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Update a serviceendpoint.
 
 ## EXAMPLES
-
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -Claim
-{{Fill Claim Description}}
+The type of claim for the serviceendpoint.
 
 ```yaml
 Type: CrmServiceEndpointUserClaim
@@ -48,7 +41,7 @@ Accept wildcard characters: False
 ```
 
 ### -Contract
-{{Fill Contract Description}}
+The contract for the serviceendpoint.
 
 ```yaml
 Type: CrmServiceEndpointContract
@@ -64,7 +57,7 @@ Accept wildcard characters: False
 ```
 
 ### -Description
-{{Fill Description Description}}
+The description for the serviceendpoint.
 
 ```yaml
 Type: String
@@ -79,7 +72,7 @@ Accept wildcard characters: False
 ```
 
 ### -Federated
-{{Fill Federated Description}}
+Whether the serviceendpoint is federated.
 
 ```yaml
 Type: SwitchParameter
@@ -94,7 +87,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{Fill Id Description}}
+The id of the serviceendpoint to update.
 
 ```yaml
 Type: Guid
@@ -109,7 +102,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{Fill Name Description}}
+The name for the serviceendpoint.
 
 ```yaml
 Type: String
@@ -124,7 +117,7 @@ Accept wildcard characters: False
 ```
 
 ### -Namespace
-{{Fill Namespace Description}}
+The namespace for the serviceendpoint.
 
 ```yaml
 Type: String
@@ -139,7 +132,7 @@ Accept wildcard characters: False
 ```
 
 ### -Path
-{{Fill Path Description}}
+The path for the serviceendpoint.
 
 ```yaml
 Type: String
@@ -162,11 +155,14 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### System.Object
+### None
 
 ## NOTES
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Set-CrmServiceEndpoint.html](http://crmpowershell.amsoftware.nl/Set-CrmServiceEndpoint.html)
+[Get-CrmServiceEndpoint](Get-CrmServiceEndpoint.md)
 
+[Register-CrmServiceEndpoint](Register-CrmServiceEndpoint.md)
+
+[Unregister-CrmServiceEndpoint](Unregister-CrmServiceEndpoint.md)

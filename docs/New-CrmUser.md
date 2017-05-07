@@ -7,7 +7,7 @@ schema: 2.0.0
 # New-CrmUser
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Add a new user.
 
 ## SYNTAX
 
@@ -17,21 +17,14 @@ New-CrmUser [-UserName] <String> [-Firstname] <String> [-Lastname] <String> [-Ac
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Add a new user.
 
 ## EXAMPLES
-
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -Access
-{{Fill Access Description}}
+The type of access for the user.
 
 ```yaml
 Type: CrmUserAccessMode
@@ -47,7 +40,7 @@ Accept wildcard characters: False
 ```
 
 ### -BusinessUnit
-{{Fill BusinessUnit Description}}
+The id of the business unit the user is associated with.
 
 ```yaml
 Type: Guid
@@ -62,7 +55,7 @@ Accept wildcard characters: False
 ```
 
 ### -Firstname
-{{Fill Firstname Description}}
+The firstname of the user.
 
 ```yaml
 Type: String
@@ -77,7 +70,7 @@ Accept wildcard characters: False
 ```
 
 ### -Lastname
-{{Fill Lastname Description}}
+The lastname of the user.
 
 ```yaml
 Type: String
@@ -92,7 +85,7 @@ Accept wildcard characters: False
 ```
 
 ### -License
-{{Fill License Description}}
+The type of license for the user.
 
 ```yaml
 Type: CrmUserClientLicense
@@ -108,7 +101,7 @@ Accept wildcard characters: False
 ```
 
 ### -Roles
-{{Fill Roles Description}}
+The id of the roles the user will be assigned to.
 
 ```yaml
 Type: Guid[]
@@ -123,7 +116,7 @@ Accept wildcard characters: False
 ```
 
 ### -UserName
-{{Fill UserName Description}}
+The username of the user.
 
 ```yaml
 Type: String
@@ -142,8 +135,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### System.Nullable`1[[System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
-System.Guid[]
+### System.Guid[]
 
 ## OUTPUTS
 
@@ -153,5 +145,6 @@ System.Guid[]
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/New-CrmUser.html](http://crmpowershell.amsoftware.nl/New-CrmUser.html)
+[Get-CrmUser](Get-CrmUser.md)
 
+[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)

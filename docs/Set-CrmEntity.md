@@ -7,7 +7,7 @@ schema: 2.0.0
 # Set-CrmEntity
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Update an entity.
 
 ## SYNTAX
 
@@ -35,21 +35,14 @@ Set-CrmEntity [-Name] <String> [-DisplayName <String>] [-DisplayCollectionName <
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Update an entity.
 
 ## EXAMPLES
-
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -AutoRouteToOwnerQueue
-Whether to automatically move records to the owner’s default queue when a record of this type is created or assigned.
+Whether to automatically move records to the owner's default queue when a record of this type is created or assigned.
 
 ```yaml
 Type: Boolean
@@ -306,7 +299,7 @@ Accept wildcard characters: False
 ```
 
 ### -HasActivities
-{{Fill HasActivities Description}}
+Whether a custom entity is created that has a special relationship to activity entities and is a valid regarding object for the activity.
 
 ```yaml
 Type: Boolean
@@ -321,7 +314,7 @@ Accept wildcard characters: False
 ```
 
 ### -HasNotes
-{{Fill HasNotes Description}}
+Whether the custom entity that is created has a special relationship to the annotation entity.
 
 ```yaml
 Type: Boolean

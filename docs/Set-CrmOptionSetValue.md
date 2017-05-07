@@ -7,7 +7,7 @@ schema: 2.0.0
 # Set-CrmOptionSetValue
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Update the value of an optionset.
 
 ## SYNTAX
 
@@ -24,21 +24,14 @@ Set-CrmOptionSetValue [-Entity] <String> [-Attribute] <String> [-Value <Int32>] 
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Update the value of an optionset.
 
 ## EXAMPLES
-
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -Attribute
-{{Fill Attribute Description}}
+The LogicalName of the Attribute to update.
 
 ```yaml
 Type: String
@@ -53,7 +46,7 @@ Accept wildcard characters: False
 ```
 
 ### -Description
-{{Fill Description Description}}
+The description for the optionset value.
 
 ```yaml
 Type: String
@@ -68,7 +61,7 @@ Accept wildcard characters: False
 ```
 
 ### -DisplayName
-{{Fill DisplayName Description}}
+The displayname for the optionset value.
 
 ```yaml
 Type: String
@@ -83,7 +76,7 @@ Accept wildcard characters: False
 ```
 
 ### -Entity
-{{Fill Entity Description}}
+The LogicalName of the entity to update.
 
 ```yaml
 Type: String
@@ -98,7 +91,7 @@ Accept wildcard characters: False
 ```
 
 ### -OptionSet
-{{Fill OptionSet Description}}
+The name of the global optionset to update.
 
 ```yaml
 Type: String
@@ -113,7 +106,7 @@ Accept wildcard characters: False
 ```
 
 ### -Value
-{{Fill Value Description}}
+The value of the optionset value to update.
 
 ```yaml
 Type: Int32
@@ -136,11 +129,12 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### System.Object
+### None
 
 ## NOTES
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Set-CrmOptionSetValue.html](http://crmpowershell.amsoftware.nl/Set-CrmOptionSetValue.html)
+[New-CrmOptionSetValue](New-CrmOptionSetValue.md)
 
+[Remove-CrmOptionSetValue](Remove-CrmOptionSetValue.md)

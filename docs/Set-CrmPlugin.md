@@ -7,7 +7,7 @@ schema: 2.0.0
 # Set-CrmPlugin
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Update a plugin.
 
 ## SYNTAX
 
@@ -17,21 +17,14 @@ Set-CrmPlugin [-Id] <Guid> [-Name <String>] [-FriendlyName <String>] [-Descripti
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Update a plugin.
 
 ## EXAMPLES
-
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -Description
-{{Fill Description Description}}
+The description for the plugin.
 
 ```yaml
 Type: String
@@ -46,7 +39,7 @@ Accept wildcard characters: False
 ```
 
 ### -FriendlyName
-{{Fill FriendlyName Description}}
+The friendly name for the plugin.
 
 ```yaml
 Type: String
@@ -61,7 +54,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{Fill Id Description}}
+The id of the plugin to update.
 
 ```yaml
 Type: Guid
@@ -76,7 +69,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{Fill Name Description}}
+The name for the plugin.
 
 ```yaml
 Type: String
@@ -91,7 +84,7 @@ Accept wildcard characters: False
 ```
 
 ### -WorkflowActivityGroupName
-{{Fill WorkflowActivityGroupName Description}}
+The workflow activity group name for the plugin.
 
 ```yaml
 Type: String
@@ -114,11 +107,20 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### System.Object
+### None
 
 ## NOTES
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Set-CrmPlugin.html](http://crmpowershell.amsoftware.nl/Set-CrmPlugin.html)
+[Get-CrmPlugin](Get-CrmPlugin.md)
 
+[Register-CrmPlugin](Register-CrmPlugin.md)
+
+[Unregister-CrmPlugin](Unregister-CrmPlugin.md)
+
+[Get-CrmPluginAssembly](Get-CrmPluginAssembly.md)
+
+[Unregister-CrmPluginAssembly](Unregister-CrmPluginAssembly.md)
+
+[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)

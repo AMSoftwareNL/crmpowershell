@@ -7,7 +7,7 @@ schema: 2.0.0
 # Register-CrmPlugin
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Register a plugin and assembly.
 
 ## SYNTAX
 
@@ -26,21 +26,14 @@ Register-CrmPlugin [-LiteralPath] <String[]> [-IsolationMode <CrmAssemblyIsolati
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Register a plugin and assembly.
 
 ## EXAMPLES
-
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -AssemblyLocation
-{{Fill AssemblyLocation Description}}
+The location to store the plugin assembly.
 
 ```yaml
 Type: CrmAssemblySourceType
@@ -56,7 +49,7 @@ Accept wildcard characters: False
 ```
 
 ### -Description
-{{Fill Description Description}}
+The description for the plugin.
 
 ```yaml
 Type: String
@@ -71,7 +64,7 @@ Accept wildcard characters: False
 ```
 
 ### -Force
-{{Fill Force Description}}
+Executes the action without prompting for confirmation.
 
 ```yaml
 Type: SwitchParameter
@@ -86,7 +79,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsolationMode
-{{Fill IsolationMode Description}}
+The isolation mode for the plugin assembly.
 
 ```yaml
 Type: CrmAssemblyIsolationMode
@@ -102,7 +95,7 @@ Accept wildcard characters: False
 ```
 
 ### -LiteralPath
-{{Fill LiteralPath Description}}
+The path to the plugin assembly.
 
 ```yaml
 Type: String[]
@@ -117,7 +110,7 @@ Accept wildcard characters: False
 ```
 
 ### -Path
-{{Fill Path Description}}
+The path to the plugin assembly.
 
 ```yaml
 Type: String[]
@@ -132,7 +125,7 @@ Accept wildcard characters: False
 ```
 
 ### -Plugins
-{{Fill Plugins Description}}
+The names of the plugins to register from the assembly.
 
 ```yaml
 Type: String[]
@@ -161,5 +154,14 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Register-CrmPlugin.html](http://crmpowershell.amsoftware.nl/Register-CrmPlugin.html)
+[Get-CrmPlugin](Get-CrmPlugin.md)
 
+[Set-CrmPlugin](Set-CrmPlugin.md)
+
+[Unregister-CrmPlugin](Unregister-CrmPlugin.md)
+
+[Get-CrmPluginAssembly](Get-CrmPluginAssembly.md)
+
+[Unregister-CrmPluginAssembly](Unregister-CrmPluginAssembly.md)
+
+[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)

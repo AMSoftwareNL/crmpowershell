@@ -7,7 +7,7 @@ schema: 2.0.0
 # Set-CrmRelationship
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Update a relationship.
 
 ## SYNTAX
 
@@ -22,21 +22,14 @@ Set-CrmRelationship [-Name] <String> [-AdvancedFind <Boolean>] [-Customizable <B
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Update a relationship.
 
 ## EXAMPLES
-
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -AdvancedFind
-{{Fill AdvancedFind Description}}
+Whether the relationship appears in Advanced Find.
 
 ```yaml
 Type: Boolean
@@ -51,7 +44,7 @@ Accept wildcard characters: False
 ```
 
 ### -Customizable
-{{Fill Customizable Description}}
+Whether the relationship is a custom relationship.
 
 ```yaml
 Type: Boolean
@@ -66,7 +59,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{Fill Name Description}}
+The SchemaName of the relationship.
 
 ```yaml
 Type: String
@@ -81,7 +74,7 @@ Accept wildcard characters: False
 ```
 
 ### -Relationship
-{{Fill Relationship Description}}
+The updated RelationshipMetadata for the relationship.
 
 ```yaml
 Type: RelationshipMetadataBase
@@ -104,11 +97,20 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### System.Object
+### None
 
 ## NOTES
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Set-CrmRelationship.html](http://crmpowershell.amsoftware.nl/Set-CrmRelationship.html)
+[Add-CrmRelationship](Add-CrmRelationship.md)
 
+[Get-CrmRelationship](Get-CrmRelationship.md)
+
+[Set-CrmRelationshipCascadeConfig](Set-CrmRelationshipCascadeConfig.md)
+
+[Remove-CrmRelationship](Remove-CrmRelationship.md)
+
+[ManyToManyRelationshipMetadata Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.metadata.manytomanyrelationshipmetadata.aspx)
+
+[OneToManyRelationshipMetadata Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.metadata.onetomanyrelationshipmetadata.aspx)

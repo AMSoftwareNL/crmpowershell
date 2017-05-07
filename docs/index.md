@@ -8,7 +8,9 @@ Locale: en-us
 
 # amsoftware.crm Module
 ## Description
-{{Manually Enter Description Here}}
+PowerShell CmdLet Library for use with Dynamics CRM Organization. Manage Metadata and content, and administer the organization.
+CRM PowerShell Library is a collection of PowerShell Cmdlets for working with Dynamics CRM.
+Connect to your on premises CRM using Windows Authentication, Claims Based Authentication or IFD. Or connect to CRM Online (Dynamics 365) by specifying the Region. List and select an available organization, and you are ready to go.
 
 ## amsoftware.crm Cmdlets
 ### [Add-CrmAttribute](Add-CrmAttribute.md)
@@ -54,10 +56,10 @@ Add an attribute of type Money.
 Add an attribute of type OptionSet.
 
 ### [Add-CrmRelationship](Add-CrmRelationship.md)
-{{Fill in the Synopsis}}
+Add a relationship.
 
 ### [Add-CrmSolutionComponent](Add-CrmSolutionComponent.md)
-{{Fill in the Synopsis}}
+Add a component to a customization solution.
 
 ### [Add-CrmStringAttribute](Add-CrmStringAttribute.md)
 Add an attribute of type String.
@@ -112,6 +114,9 @@ Get a plugin.
 
 ### [Get-CrmPluginAssembly](Get-CrmPluginAssembly.md)
 Get plugin assembly.
+
+### [Get-CrmPluginImage](Get-CrmPluginImage.md)
+{{Fill in the Synopsis}}
 
 ### [Get-CrmPluginStep](Get-CrmPluginStep.md)
 Get SDK Message Processing Step.
@@ -174,49 +179,49 @@ Execute any Dynamics CRM request.
 Associate one record with another.
 
 ### [New-CrmBusinessUnit](New-CrmBusinessUnit.md)
-{{Fill in the Synopsis}}
+Add a new business unit.
 
 ### [New-CrmEntity](New-CrmEntity.md)
-{{Fill in the Synopsis}}
+Add a new entity.
 
 ### [New-CrmOptionSet](New-CrmOptionSet.md)
-{{Fill in the Synopsis}}
+Add a new global optionset.
 
 ### [New-CrmOptionSetValue](New-CrmOptionSetValue.md)
-{{Fill in the Synopsis}}
+Create a new OptionSetValue to use with optionsets.
 
 ### [New-CrmPublisher](New-CrmPublisher.md)
-{{Fill in the Synopsis}}
+Add a new customizations publisher.
 
 ### [New-CrmRole](New-CrmRole.md)
-{{Fill in the Synopsis}}
+Add a new role.
 
 ### [New-CrmSolution](New-CrmSolution.md)
-{{Fill in the Synopsis}}
+Add new customizations solution.
 
 ### [New-CrmTeam](New-CrmTeam.md)
-{{Fill in the Synopsis}}
+Add a new team.
 
 ### [New-CrmUser](New-CrmUser.md)
-{{Fill in the Synopsis}}
+Add a new user.
 
 ### [New-CrmWebresource](New-CrmWebresource.md)
-{{Fill in the Synopsis}}
+Add new new webresource.
 
 ### [Publish-CrmComponent](Publish-CrmComponent.md)
 Publish customization components.
 
 ### [Register-CrmPlugin](Register-CrmPlugin.md)
-{{Fill in the Synopsis}}
+Register a plugin and assembly.
 
 ### [Register-CrmPluginStep](Register-CrmPluginStep.md)
-{{Fill in the Synopsis}}
+Register a SDK Message Processing Step.
 
 ### [Register-CrmPluginStepImage](Register-CrmPluginStepImage.md)
-{{Fill in the Synopsis}}
+Register a SDK Message Processing Step image.
 
 ### [Register-CrmServiceEndpoint](Register-CrmServiceEndpoint.md)
-{{Fill in the Synopsis}}
+Register a serviceendpoint.
 
 ### [Remove-CrmAttribute](Remove-CrmAttribute.md)
 Remove an attribute from an entity.
@@ -273,7 +278,7 @@ Update an attribute of type Decimal.
 Update an attribute of type Double.
 
 ### [Set-CrmEntity](Set-CrmEntity.md)
-{{Fill in the Synopsis}}
+Update an entity.
 
 ### [Set-CrmImageAttribute](Set-CrmImageAttribute.md)
 Update an attribute of type Image.
@@ -288,52 +293,52 @@ Update an attribute of type Memo.
 Update an attribute of type Money.
 
 ### [Set-CrmOptionSet](Set-CrmOptionSet.md)
-{{Fill in the Synopsis}}
+Update a global optionset.
 
 ### [Set-CrmOptionSetAttribute](Set-CrmOptionSetAttribute.md)
 Update an attribute of type OptionSet.
 
 ### [Set-CrmOptionSetValue](Set-CrmOptionSetValue.md)
-{{Fill in the Synopsis}}
+Update the value of an optionset.
 
 ### [Set-CrmOwner](Set-CrmOwner.md)
-{{Fill in the Synopsis}}
+Update the owner of a record.
 
 ### [Set-CrmPlugin](Set-CrmPlugin.md)
-{{Fill in the Synopsis}}
+Update a plugin.
 
 ### [Set-CrmPluginStep](Set-CrmPluginStep.md)
-{{Fill in the Synopsis}}
+Update a SDK Message Processing Step.
 
 ### [Set-CrmPluginStepImage](Set-CrmPluginStepImage.md)
-{{Fill in the Synopsis}}
+Update a SDK Message Processing Step image.
 
 ### [Set-CrmPrincipalRoles](Set-CrmPrincipalRoles.md)
-{{Fill in the Synopsis}}
+Set the roles for a user or team.
 
 ### [Set-CrmRelationship](Set-CrmRelationship.md)
-{{Fill in the Synopsis}}
+Update a relationship.
 
 ### [Set-CrmRelationshipCascadeConfig](Set-CrmRelationshipCascadeConfig.md)
-{{Fill in the Synopsis}}
+Set the cascading behavior for a relationship.
 
 ### [Set-CrmRolePrincipals](Set-CrmRolePrincipals.md)
-{{Fill in the Synopsis}}
+Set the teams or users assigned to a role.
 
 ### [Set-CrmServiceEndpoint](Set-CrmServiceEndpoint.md)
-{{Fill in the Synopsis}}
+Update a serviceendpoint.
 
 ### [Set-CrmStringAttribute](Set-CrmStringAttribute.md)
 Update an attribute of type String.
 
 ### [Set-CrmTeamUsers](Set-CrmTeamUsers.md)
-{{Fill in the Synopsis}}
+Set the users who are members of team.
 
 ### [Set-CrmUserTeams](Set-CrmUserTeams.md)
-{{Fill in the Synopsis}}
+Set the teams a user is a member of.
 
 ### [Set-CrmWebresource](Set-CrmWebresource.md)
-{{Fill in the Synopsis}}
+Update a webresource.
 
 ### [Split-CrmContent](Split-CrmContent.md)
 Disassociate one record from another.
@@ -370,5 +375,4 @@ Set the active language to use in the PowerShell session.
 
 ### [Use-CrmSolution](Use-CrmSolution.md)
 Set the active CRM solution to use in the PowerShell session.
-
 

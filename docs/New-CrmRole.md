@@ -7,7 +7,7 @@ schema: 2.0.0
 # New-CrmRole
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Add a new role.
 
 ## SYNTAX
 
@@ -16,21 +16,14 @@ New-CrmRole [-Name] <String> [-BusinessUnit <Guid>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Add a new role.
 
 ## EXAMPLES
-
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -BusinessUnit
-{{Fill BusinessUnit Description}}
+The id of the business unit the new role is associated with.
 
 ```yaml
 Type: Guid
@@ -45,7 +38,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{Fill Name Description}}
+The name for the role.
 
 ```yaml
 Type: String
@@ -64,7 +57,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### System.Nullable`1[[System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
+### System.Guid
 
 ## OUTPUTS
 
@@ -74,5 +67,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/New-CrmRole.html](http://crmpowershell.amsoftware.nl/New-CrmRole.html)
+[Get-CrmRole](Get-CrmRole.md)
 
+[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)

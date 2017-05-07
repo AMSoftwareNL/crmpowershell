@@ -7,7 +7,7 @@ schema: 2.0.0
 # New-CrmWebresource
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Add new new webresource.
 
 ## SYNTAX
 
@@ -25,21 +25,14 @@ New-CrmWebresource [-Name] <String> [-DisplayName <String>] [-Description <Strin
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Add new new webresource.
 
 ## EXAMPLES
-
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -Content
-{{Fill Content Description}}
+The content for the webresource.
 
 ```yaml
 Type: Byte[]
@@ -54,7 +47,7 @@ Accept wildcard characters: False
 ```
 
 ### -Description
-{{Fill Description Description}}
+The description for the webresource.
 
 ```yaml
 Type: String
@@ -69,7 +62,7 @@ Accept wildcard characters: False
 ```
 
 ### -DisplayName
-{{Fill DisplayName Description}}
+The displayname for the webresource.
 
 ```yaml
 Type: String
@@ -84,7 +77,7 @@ Accept wildcard characters: False
 ```
 
 ### -Encoding
-{{Fill Encoding Description}}
+The encoding to use reading the content for the file system.
 
 ```yaml
 Type: FileSystemCmdletProviderEncoding
@@ -100,7 +93,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsCustomizable
-{{Fill IsCustomizable Description}}
+Whether the webresource is customizable.
 
 ```yaml
 Type: Boolean
@@ -115,7 +108,7 @@ Accept wildcard characters: False
 ```
 
 ### -LiteralPath
-{{Fill LiteralPath Description}}
+The path to a file the get the content of the webresource from.
 
 ```yaml
 Type: String
@@ -130,7 +123,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{Fill Name Description}}
+The name for the webresource.
 
 ```yaml
 Type: String
@@ -145,7 +138,7 @@ Accept wildcard characters: False
 ```
 
 ### -WebresourceType
-{{Fill WebresourceType Description}}
+The type of the webresource.
 
 ```yaml
 Type: CrmWebresourceType
@@ -175,5 +168,14 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/New-CrmWebresource.html](http://crmpowershell.amsoftware.nl/New-CrmWebresource.html)
+[Export-CrmWebresource](Export-CrmWebresource.md)
 
+[Get-CrmWebresource](Get-CrmWebresource.md)
+
+[Import-CrmWebresource](Import-CrmWebresource.md)
+
+[Remove-CrmWebresource](Remove-CrmWebresource.md)
+
+[Set-CrmWebresource](Set-CrmWebresource.md)
+
+[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)

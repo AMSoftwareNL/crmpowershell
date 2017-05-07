@@ -7,7 +7,7 @@ schema: 2.0.0
 # Register-CrmPluginStepImage
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Register a SDK Message Processing Step image.
 
 ## SYNTAX
 
@@ -18,21 +18,14 @@ Register-CrmPluginStepImage [-PluginStep] <Guid> [-Name] <String> -Alias <String
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Register a SDK Message Processing Step image.
 
 ## EXAMPLES
-
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -Alias
-{{Fill Alias Description}}
+The alias for the SDK Message Processing Step image.
 
 ```yaml
 Type: String
@@ -47,7 +40,7 @@ Accept wildcard characters: False
 ```
 
 ### -Attributes
-{{Fill Attributes Description}}
+The LogicalName of the filtering attributes for the SDK Message Processing Step image.
 
 ```yaml
 Type: String[]
@@ -62,7 +55,7 @@ Accept wildcard characters: False
 ```
 
 ### -ImageType
-{{Fill ImageType Description}}
+The type of the SDK Message Processing Step image.
 
 ```yaml
 Type: CrmPluginStepImageType
@@ -78,7 +71,9 @@ Accept wildcard characters: False
 ```
 
 ### -MessagePropertyName
-{{Fill MessagePropertyName Description}}
+The property name for the SDK Message Processing Step image.
+
+Only needed for Messages supporting multiple properties as the trigger. Can be omitted in most cases.
 
 ```yaml
 Type: String
@@ -93,7 +88,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{Fill Name Description}}
+The name for the SDK Message Processing Step image.
 
 ```yaml
 Type: String
@@ -108,7 +103,7 @@ Accept wildcard characters: False
 ```
 
 ### -PluginStep
-{{Fill PluginStep Description}}
+The id of the SDK Message Processing Step to register the SDK Message Processing Step image for.
 
 ```yaml
 Type: Guid
@@ -128,7 +123,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.Guid
-System.String[]
+
+### System.String[]
 
 ## OUTPUTS
 
@@ -138,5 +134,10 @@ System.String[]
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Register-CrmPluginStepImage.html](http://crmpowershell.amsoftware.nl/Register-CrmPluginStepImage.html)
+[Get-CrmPluginStepImage](Get-CrmPluginStepImage.md)
 
+[Set-CrmPluginStepImage](Set-CrmPluginStepImage.md)
+
+[Unregister-CrmPluginStepImage](Unregister-CrmPluginStepImage.md)
+
+[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)

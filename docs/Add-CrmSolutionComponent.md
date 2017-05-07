@@ -14,20 +14,19 @@ Add a component to a customization solution.
 ### AddSolutionComponentSimple
 ```
 Add-CrmSolutionComponent [-Solution] <Guid> -Type <CrmComponentType> -ComponentId <Guid> [-IncludeRequired]
- [-ExcludeSubComponents] [-ExcludeMetadata]
+ [-ExcludeSubComponents] [-ExcludeMetadata] [<CommonParameters>]
 ```
 
 ### AddSolutionComponentAdvanced
 ```
 Add-CrmSolutionComponent [-Solution] <Guid> -ComponentType <Int32> -ComponentId <Guid> [-IncludeRequired]
- [-ExcludeSubComponents] [-ExcludeMetadata]
+ [-ExcludeSubComponents] [-ExcludeMetadata] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 Add a component to a customization solution.
 
 ## EXAMPLES
-
 
 ## PARAMETERS
 
@@ -137,10 +136,12 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### System.Guid
-
 
 ## OUTPUTS
 
