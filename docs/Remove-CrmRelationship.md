@@ -7,7 +7,7 @@ schema: 2.0.0
 # Remove-CrmRelationship
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Remove a relationship.
 
 ## SYNTAX
 
@@ -23,21 +23,17 @@ Remove-CrmRelationship [-Entity] <String> [-FromEntity] <String> [-Attribute <St
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Remove a relationship.
 
 ## EXAMPLES
 
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -Attribute
-{{Fill Attribute Description}}
+The LogicalName of the attribute on the entity to remove the lookup from.
+
+This is only required if the relationship cannot be uniquely determined for both entities.
 
 ```yaml
 Type: String
@@ -52,7 +48,7 @@ Accept wildcard characters: False
 ```
 
 ### -Entity
-{{Fill Entity Description}}
+The LogicalName of the entity to remove to relationship for.
 
 ```yaml
 Type: String
@@ -67,7 +63,7 @@ Accept wildcard characters: False
 ```
 
 ### -Force
-{{Fill Force Description}}
+Executes the action without prompting for confirmation.
 
 ```yaml
 Type: SwitchParameter
@@ -82,7 +78,7 @@ Accept wildcard characters: False
 ```
 
 ### -FromEntity
-{{Fill FromEntity Description}}
+The LogicalName of the entity to remove the relationship from.
 
 ```yaml
 Type: String
@@ -97,7 +93,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{Fill Name Description}}
+The SchemaName of the relationship to remove.
 
 ```yaml
 Type: String
@@ -149,11 +145,14 @@ Accept wildcard characters: False
 
 ## OUTPUTS
 
-### System.Object
+### None
 
 ## NOTES
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Remove-CrmRelationship.html](http://crmpowershell.amsoftware.nl/Remove-CrmRelationship.html)
+[Add-CrmRelationship](Add-CrmRelationship.md)
 
+[Get-CrmRelationship](Get-CrmRelationship.md)
+
+[Set-CrmRelationship](Set-CrmRelationship.md)
