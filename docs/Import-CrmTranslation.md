@@ -7,7 +7,7 @@ schema: 2.0.0
 # Import-CrmTranslation
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Import translations from a compressed file.
 
 ## SYNTAX
 
@@ -22,21 +22,21 @@ Import-CrmTranslation [-LiteralPath] <String[]> [-WhatIf] [-Confirm]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Import translations from a compressed file.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Import-CrmTranslation -Path c:\temp\product1-translations.zip
 ```
 
-{{ Add example description here }}
+Import the translations from 'product1-translations.zip'.
 
 ## PARAMETERS
 
 ### -LiteralPath
-{{Fill LiteralPath Description}}
+The path to the file containing the translations.
 
 ```yaml
 Type: String[]
@@ -51,7 +51,7 @@ Accept wildcard characters: False
 ```
 
 ### -Path
-{{Fill Path Description}}
+The path to the file containing the translations.
 
 ```yaml
 Type: String[]
@@ -110,5 +110,6 @@ Accept wildcard characters: False
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Import-CrmTranslation.html](http://crmpowershell.amsoftware.nl/Import-CrmTranslation.html)
+[Export-CrmTranslation](Export-CrmTranslation.md)
 
+[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)
