@@ -7,7 +7,7 @@ schema: 2.0.0
 # Unregister-CrmPluginAssembly
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Unregister a plugin assembly.
 
 ## SYNTAX
 
@@ -16,21 +16,15 @@ Unregister-CrmPluginAssembly [-Id] <Guid> [-Force]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Unregister a plugin assembly.
 
 ## EXAMPLES
 
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -Force
-{{Fill Force Description}}
+Executes the action without prompting for confirmation.
 
 ```yaml
 Type: SwitchParameter
@@ -45,7 +39,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{Fill Id Description}}
+The id of the plugin assembly to unregister.
 
 ```yaml
 Type: Guid
@@ -66,11 +60,12 @@ Accept wildcard characters: False
 
 ## OUTPUTS
 
-### System.Object
+### None
 
 ## NOTES
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Unregister-CrmPluginAssembly.html](http://crmpowershell.amsoftware.nl/Unregister-CrmPluginAssembly.html)
+[Get-CrmPluginAssembly](Get-CrmPluginAssembly.md)
 
+[Register-CrmPlugin](Register-CrmPlugin.md)
