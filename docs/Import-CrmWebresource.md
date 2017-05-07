@@ -7,7 +7,7 @@ schema: 2.0.0
 # Import-CrmWebresource
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Import content for an existing webresource.
 
 ## SYNTAX
 
@@ -22,21 +22,21 @@ Import-CrmWebresource [-Id] <Guid> -LiteralPath <String> [-Encoding <FileSystemC
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Import content for an existing webresource.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Import-CrmWebresource -Id '49C1B629-DEAB-4EBD-9A37-2E4477ABAD9A' -LiteralPath c:\temp\NewAccount.js -Encoding UTF8
 ```
 
-{{ Add example description here }}
+Import the content from NewAccount.js into the specified webresource.
 
 ## PARAMETERS
 
 ### -Encoding
-{{Fill Encoding Description}}
+The encoding to use when reading the file from the filesystem.
 
 ```yaml
 Type: FileSystemCmdletProviderEncoding
@@ -52,7 +52,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{Fill Id Description}}
+The id of the webresource to import the content for.
 
 ```yaml
 Type: Guid
@@ -67,7 +67,7 @@ Accept wildcard characters: False
 ```
 
 ### -LiteralPath
-{{Fill LiteralPath Description}}
+The path to the file containing the content for the webresource.
 
 ```yaml
 Type: String
@@ -82,7 +82,7 @@ Accept wildcard characters: False
 ```
 
 ### -Value
-{{Fill Value Description}}
+A byte-array containing the content for the webresource to import.
 
 ```yaml
 Type: Byte[]
@@ -103,11 +103,18 @@ Accept wildcard characters: False
 
 ## OUTPUTS
 
-### System.Object
+### None
 
 ## NOTES
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Import-CrmWebresource.html](http://crmpowershell.amsoftware.nl/Import-CrmWebresource.html)
+[Export-CrmWebresource](Export-CrmWebresource.md)
 
+[Get-CrmWebresource](Get-CrmWebresource.md)
+
+[New-CrmWebresource](New-CrmWebresource.md)
+
+[Remove-CrmWebresource](Remove-CrmWebresource.md)
+
+[Set-CrmWebresource](Set-CrmWebresource.md)
