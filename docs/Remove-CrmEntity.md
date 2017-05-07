@@ -7,7 +7,7 @@ schema: 2.0.0
 # Remove-CrmEntity
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Remove an entity.
 
 ## SYNTAX
 
@@ -16,21 +16,15 @@ Remove-CrmEntity [-Name] <String> [-Force] [-WhatIf] [-Confirm]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Remove an entity.
 
 ## EXAMPLES
 
-### Example 1
-```
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -Force
-{{Fill Force Description}}
+Executes the action without prompting for confirmation.
 
 ```yaml
 Type: SwitchParameter
@@ -45,7 +39,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{Fill Name Description}}
+The LogicalName of the entity to remove.
 
 ```yaml
 Type: String
@@ -97,11 +91,14 @@ Accept wildcard characters: False
 
 ## OUTPUTS
 
-### System.Object
+### None
 
 ## NOTES
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Remove-CrmEntity.html](http://crmpowershell.amsoftware.nl/Remove-CrmEntity.html)
+[Get-CrmEntity](Get-CrmEntity.md)
 
+[New-CrmEntity](New-CrmEntity.md)
+
+[Set-CrmEntity](Set-CrmEntity.md)
