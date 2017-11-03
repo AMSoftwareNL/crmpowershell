@@ -1,7 +1,7 @@
 ---
 Module Name: AMSoftware.Crm
 Module Guid: 1e7f1ebc-e035-4d73-86af-3c07a6a85260
-Download Help Link: https://github.com/AMSoftwareNL/crmpowershell/blob/master/help/
+Download Help Link: https://raw.githubusercontent.com/AMSoftwareNL/crmpowershell/master/help/
 Help Version: 1.3.0.0
 Locale: en-us
 ---

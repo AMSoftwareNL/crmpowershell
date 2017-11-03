@@ -3,6 +3,7 @@
 *.suo
 *.user
 *.vspscc
+sign.bat
 */.nuget
 */bin
 */obj
