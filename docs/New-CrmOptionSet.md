@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/New-CrmOptionSet.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/New-CrmOptionSet.md
 schema: 2.0.0
 ---
 
@@ -11,15 +12,15 @@ Add a new global optionset.
 
 ## SYNTAX
 
-### NewOptionSetByInputObject
+### NewOptionSetByInputObject (Default)
 ```
-New-CrmOptionSet [-OptionSet] <OptionSetMetadata> [<CommonParameters>]
+New-CrmOptionSet [-InputObject] <OptionSetMetadata> [-PassThru] [<CommonParameters>]
 ```
 
 ### NewOptionSet
 ```
-New-CrmOptionSet [-Name] <String> [-DisplayName] <String> [-Values] <PSOptionSetValue[]>
- [-Description <String>] [-Customizable <Boolean>] [<CommonParameters>]
+New-CrmOptionSet [-Name] <String> [-DisplayName] <String> -Values <PSOptionSetValue[]> [-Description <String>]
+ [-Customizable <Boolean>] [-PassThru] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -74,6 +75,21 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -InputObject
+The OptionSetMetadata object for the new optionset.
+
+```yaml
+Type: OptionSetMetadata
+Parameter Sets: NewOptionSetByInputObject
+Aliases: OptionSet
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
 ### -Name
 The name for the optionset.
 
@@ -89,16 +105,16 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -OptionSet
-The OptionSetMetadata object for the new optionset.
+### -PassThru
+Returns an object that represents the OptionSetMetadata. By default, this cmdlet does not generate any output.
 
 ```yaml
-Type: OptionSetMetadata
-Parameter Sets: NewOptionSetByInputObject
+Type: SwitchParameter
+Parameter Sets: (All)
 Aliases: 
 
-Required: True
-Position: 1
+Required: False
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -113,7 +129,7 @@ Parameter Sets: NewOptionSet
 Aliases: 
 
 Required: True
-Position: 3
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

@@ -15,14 +15,15 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-using System;
-using System.Management.Automation;
 using AMSoftware.Crm.PowerShell.Common.Repositories;
 using Microsoft.Xrm.Sdk;
+using System;
+using System.Management.Automation;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 {
     [Cmdlet(VerbsCommon.Set, "Plugin", HelpUri = HelpUrlConstants.SetPluginHelpUrl)]
+    [OutputType(typeof(Entity))]
     public sealed class SetPluginCommand : CrmOrganizationCmdlet
     {
         private ContentRepository _repository = new ContentRepository();
@@ -46,6 +47,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
         [Parameter]
         [ValidateNotNull]
         public string WorkflowActivityGroupName { get; set; }
+
+        [Parameter]
+        public SwitchParameter PassThru { get; set; }
 
         protected override void ExecuteCmdlet()
         {
@@ -76,6 +80,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
             }
 
             _repository.Update(crmPluginType);
+            if (PassThru)
+            {
+                WriteObject(_repository.Get("plugintype", Id));
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Get-CrmTeam.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Get-CrmTeam.md
 schema: 2.0.0
 ---
 
@@ -13,8 +14,8 @@ Get team from the connected organization.
 
 ### GetAllTeams (Default)
 ```
-Get-CrmTeam [-TeamType <CrmTeamType>] [-Administrator <Guid>] [-Include <String>] [-Exclude <String>]
- [-BusinessUnit <Guid>] [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
+Get-CrmTeam [[-Name] <String>] [-Exclude <String>] [-BusinessUnit <Guid>] [-TeamType <CrmTeamType>]
+ [-Administrator <Guid>] [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
 ```
 
 ### GetTeamById
@@ -107,22 +108,7 @@ Aliases:
 Required: True
 Position: 0
 Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Include
-Include teams whose name matches the provided pattern.
-
-```yaml
-Type: String
-Parameter Sets: GetAllTeams
-Aliases: 
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
@@ -138,6 +124,21 @@ Aliases:
 
 Required: False
 Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Name
+Include teams whose name matches the provided pattern.
+
+```yaml
+Type: String
+Parameter Sets: GetAllTeams
+Aliases: Include
+
+Required: False
+Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

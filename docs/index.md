@@ -1,7 +1,7 @@
 ---
 Module Name: amsoftware.crm
 Module Guid: 1e7f1ebc-e035-4d73-86af-3c07a6a85260
-Download Help Link: http://crmpowershell.amsoftware.nl/
+Download Help Link: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/
 Help Version: 1.2.4.2
 Locale: en-us
 ---
@@ -115,8 +115,8 @@ Get a plugin.
 ### [Get-CrmPluginAssembly](Get-CrmPluginAssembly.md)
 Get plugin assembly.
 
-### [Get-CrmPluginImage](Get-CrmPluginImage.md)
-{{Fill in the Synopsis}}
+### [Get-CrmPluginStepImage](Get-CrmPluginStepImage.md)
+Get SDK Message Processing Step Image.
 
 ### [Get-CrmPluginStep](Get-CrmPluginStep.md)
 Get SDK Message Processing Step.

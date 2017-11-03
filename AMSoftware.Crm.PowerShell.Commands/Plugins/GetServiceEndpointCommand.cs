@@ -28,24 +28,20 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
     [OutputType(typeof(Entity))]
     public sealed class GetServiceEndpointCommand : CrmOrganizationCmdlet
     {
-        private const string GetServiceEndpointByNameParameterSet = "GetServiceEndPointByName";
         private const string GetServiceEndpointByIdParameterSet = "GetServiceEndPointById";
         private const string GetServiceEndpointByFilterParameterSet = "GetServiceEndPointByFilter";
 
         private ContentRepository _repository = new ContentRepository();
 
-        [Parameter(Position = 1, Mandatory = true, ParameterSetName = GetServiceEndpointByIdParameterSet)]
+        [Parameter(Position = 1, Mandatory = true, ParameterSetName = GetServiceEndpointByIdParameterSet, ValueFromPipeline = true)]
         [ValidateNotNull]
         public Guid Id { get; set; }
 
-        [Parameter(Position = 1, Mandatory = true, ParameterSetName = GetServiceEndpointByNameParameterSet)]
-        [ValidateNotNullOrEmpty]
-        public string Name { get; set; }
-
-        [Parameter(ParameterSetName = GetServiceEndpointByFilterParameterSet)]
+        [Parameter(Position = 1, ParameterSetName = GetServiceEndpointByFilterParameterSet)]
+        [Alias("Include")]
         [ValidateNotNullOrEmpty]
         [SupportsWildcards]
-        public string Include { get; set; }
+        public string Name { get; set; }
 
         [Parameter(ParameterSetName = GetServiceEndpointByFilterParameterSet)]
         [ValidateNotNullOrEmpty]
@@ -58,10 +54,6 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 
             switch (this.ParameterSetName)
             {
-                case GetServiceEndpointByNameParameterSet:
-                    QueryExpression nameQuery = BuildServiceEndpointByNameQuery();
-                    GetContentByQuery(nameQuery);
-                    break;
                 case GetServiceEndpointByIdParameterSet:
                     WriteObject(_repository.Get("serviceendpoint", Id));
                     break;
@@ -77,20 +69,23 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
         {
             QueryExpression advancedFilterQuery = new QueryExpression("serviceendpoint")
             {
-                ColumnSet = new ColumnSet(true)
+                ColumnSet = new ColumnSet(true),
+                Orders =
+                {
+                    new OrderExpression("name", OrderType.Ascending)
+                }
             };
 
             if (PagingParameters.IncludeTotalCount)
             {
-                double accuracy;
-                int count = _repository.GetRowCount(advancedFilterQuery, out accuracy);
+                int count = _repository.GetRowCount(advancedFilterQuery, out double accuracy);
                 WriteObject(PagingParameters.NewTotalCount(Convert.ToUInt64(count), accuracy));
             }
 
             var result = _repository.Get(advancedFilterQuery, PagingParameters.First, PagingParameters.Skip);
-            if (!string.IsNullOrWhiteSpace(Include))
+            if (!string.IsNullOrWhiteSpace(Name))
             {
-                WildcardPattern includePattern = new WildcardPattern(Include, WildcardOptions.IgnoreCase);
+                WildcardPattern includePattern = new WildcardPattern(Name, WildcardOptions.IgnoreCase);
                 result = result.Where(a => includePattern.IsMatch(a.GetAttributeValue<string>("name")) || includePattern.IsMatch(a.GetAttributeValue<string>("solutionnamespace")));
             }
             if (!string.IsNullOrWhiteSpace(Exclude))
@@ -100,43 +95,6 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
             }
 
             WriteObject(result, true);
-        }
-
-        private void GetContentByQuery(QueryBase query)
-        {
-            if (PagingParameters.IncludeTotalCount)
-            {
-                double accuracy;
-                int count = _repository.GetRowCount(query, out accuracy);
-                WriteObject(PagingParameters.NewTotalCount(Convert.ToUInt64(count), accuracy));
-            }
-
-            foreach (var item in _repository.Get(query, PagingParameters.First, PagingParameters.Skip))
-            {
-                WriteObject(item);
-            }
-        }
-
-        private QueryExpression BuildServiceEndpointByNameQuery()
-        {
-            QueryExpression query = new QueryExpression("serviceendpoint")
-            {
-                ColumnSet = new ColumnSet(true),
-                Criteria =
-                {
-                    Filters = {
-                        new FilterExpression(LogicalOperator.Or)
-                        {
-                            Conditions =
-                            {
-                                new ConditionExpression("name", ConditionOperator.Equal, Name),
-                                new ConditionExpression("solutionnamespace", ConditionOperator.Equal, Name)
-                            }
-                        }
-                    }
-                }
-            };
-            return query;
         }
     }
 }

@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Connect-CrmOrganization.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Connect-CrmOrganization.md
 schema: 2.0.0
 ---
 
@@ -33,12 +34,12 @@ The unique name or friendly name of the organization to connect to.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases: UniqueName, FriendlyName, UrlName
 
 Required: True
 Position: 1
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 

@@ -58,7 +58,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
 
             if (languageIds != null)
             {
-                WriteObject(languageIds.Select(l => CultureInfo.GetCultureInfo(l)));
+                WriteObject(languageIds.Select(l => CultureInfo.GetCultureInfo(l)).OrderBy(c => c.Name));
             }
         }
     }

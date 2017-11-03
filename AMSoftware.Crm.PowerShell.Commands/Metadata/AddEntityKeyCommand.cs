@@ -24,48 +24,77 @@ using Microsoft.Xrm.Sdk.Metadata;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 {
-    [Cmdlet(VerbsCommon.Add, "EntityKey", HelpUri = HelpUrlConstants.AddEntityKeyHelpUrl)]
+    [Cmdlet(VerbsCommon.Add, "EntityKey", HelpUri = HelpUrlConstants.AddEntityKeyHelpUrl, DefaultParameterSetName = AddEntityKeyByInputObjectParameterSet)]
     [OutputType(typeof(EntityKeyMetadata))]
     public sealed class AddEntityKeyCommand : CrmOrganizationCmdlet
     {
+        private const string AddEntityKeyParameterSet = "AddEntityKey";
+        private const string AddEntityKeyByInputObjectParameterSet = "AddEntityKeyByInputObject";
+
         private MetadataRepository _repository = new MetadataRepository();
 
-        [Parameter(Mandatory = true, Position = 1)]
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = AddEntityKeyByInputObjectParameterSet)]
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = AddEntityKeyParameterSet, ValueFromPipelineByPropertyName = true)]
+        [Alias("EntityLogicalName", "LogicalName")]
         [ValidateNotNullOrEmpty]
         public string Entity { get; set; }
 
-        [Parameter(Mandatory = true, Position = 2)]
+        [Parameter(Mandatory = true, Position = 2, ParameterSetName = AddEntityKeyByInputObjectParameterSet, ValueFromPipeline = true)]
+        [Alias("EntityKey")]
+        [ValidateNotNullOrEmpty]
+        public EntityKeyMetadata InputObject { get; set; }
+
+        [Parameter(Mandatory = true, Position = 2, ParameterSetName = AddEntityKeyParameterSet)]
         [ValidateNotNullOrEmpty]
         public string Name { get; set; }
 
-        [Parameter(Mandatory = true, Position = 3)]
+        [Parameter(Mandatory = true, Position = 3, ParameterSetName = AddEntityKeyParameterSet)]
         [ValidateNotNullOrEmpty]
         public string DisplayName { get; set; }
 
-        [Parameter(Mandatory = true)]
+        [Parameter(Mandatory = true, ParameterSetName = AddEntityKeyParameterSet)]
         [ValidateNotNull]
         [ValidateCount(1, int.MaxValue)]
         public string[] Attributes { get; set; }
 
-        [Parameter]
+        [Parameter(ParameterSetName = AddEntityKeyParameterSet)]
         [ValidateNotNull]
         public string SchemaName { get; set; }
+
+        [Parameter]
+        public SwitchParameter PassThru { get; set; }
 
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
 
-            EntityKeyMetadata key = new EntityKeyMetadata()
+            switch (this.ParameterSetName)
             {
-                LogicalName = Name,
-                SchemaName = Name,
-                DisplayName = new Label(DisplayName, CrmContext.Language)
-            };
-            key.KeyAttributes = Attributes;
-            if (!string.IsNullOrWhiteSpace(SchemaName)) key.SchemaName = SchemaName;
-            
-            Guid id = _repository.AddEntityKey(Entity, key);
-            WriteObject(_repository.GetEntityKey(id));
+                case AddEntityKeyParameterSet:
+                    EntityKeyMetadata key = new EntityKeyMetadata()
+                    {
+                        LogicalName = Name,
+                        SchemaName = Name,
+                        DisplayName = new Label(DisplayName, CrmContext.Language)
+                    };
+                    key.KeyAttributes = Attributes;
+                    if (!string.IsNullOrWhiteSpace(SchemaName)) key.SchemaName = SchemaName;
+
+                    Guid id1 = _repository.AddEntityKey(Entity, key);
+                    if (PassThru)
+                    {
+                        WriteObject(_repository.GetEntityKey(id1));
+                    }
+                    break;
+                case AddEntityKeyByInputObjectParameterSet:
+                    Guid id2 = _repository.AddEntityKey(Entity, InputObject);
+                    if (PassThru) {
+                        WriteObject(_repository.GetEntityKey(id2));
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

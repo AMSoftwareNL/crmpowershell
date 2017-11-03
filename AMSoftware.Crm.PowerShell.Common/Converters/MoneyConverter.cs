@@ -16,21 +16,56 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 using System;
-using System.ComponentModel;
 using Microsoft.Xrm.Sdk;
+using System.Management.Automation;
+using System.ComponentModel;
 
 namespace AMSoftware.Crm.PowerShell.Common.Converters
 {
-    public sealed class MoneyConverter : DecimalConverter
+    public sealed class MoneyConverter : PSTypeConverter
     {
-        public override object ConvertFrom(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value)
+        public override bool CanConvertFrom(object sourceValue, Type destinationType)
         {
-            return new Money((decimal)base.ConvertFrom(context, culture, value));
+            if (sourceValue == null) return true;
+            if (sourceValue.GetType() == typeof(decimal)) return true;
+
+            DecimalConverter dc = new DecimalConverter();
+            return dc.CanConvertFrom(sourceValue.GetType());
         }
 
-        public override object ConvertTo(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, Type destinationType)
+        public override bool CanConvertTo(object sourceValue, Type destinationType)
         {
-            return base.ConvertTo(context, culture, ((Money)value).Value, destinationType);
+            if (sourceValue == null) return false;
+            if (destinationType == typeof(decimal)) return true;
+
+            DecimalConverter dc = new DecimalConverter();
+            return dc.CanConvertTo(destinationType);
+        }
+
+        public override object ConvertFrom(object sourceValue, Type destinationType, IFormatProvider formatProvider, bool ignoreCase)
+        {
+            if (sourceValue == null) return null;
+            if (sourceValue.GetType() == typeof(decimal)) return new Money((decimal)sourceValue);
+
+            DecimalConverter dc = new DecimalConverter();
+            return new Money((decimal)dc.ConvertFrom(sourceValue));
+        }
+
+        public override object ConvertTo(object sourceValue, Type destinationType, IFormatProvider formatProvider, bool ignoreCase)
+        {
+            if (sourceValue == null) throw new NotSupportedException();
+
+            if (sourceValue is Money moneyValue)
+            {
+                if (destinationType == typeof(decimal)) return moneyValue.Value;
+                else
+                {
+                    DecimalConverter dc = new DecimalConverter();
+                    return dc.ConvertTo(moneyValue.Value, destinationType);
+                }
+            }
+
+            return new NotSupportedException();
         }
     }
 }

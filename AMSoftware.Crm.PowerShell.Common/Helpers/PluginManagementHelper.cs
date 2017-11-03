@@ -86,8 +86,10 @@ namespace AMSoftware.Crm.PowerShell.Common.Helpers
 
         public static void RefreshFromExistingAssembly(ContentRepository _repository, PluginAssemblyInfo assemblyInfo)
         {
-            QueryByAttribute query = new QueryByAttribute("pluginassembly");
-            query.ColumnSet = new ColumnSet(true);
+            QueryByAttribute query = new QueryByAttribute("pluginassembly")
+            {
+                ColumnSet = new ColumnSet(true)
+            };
             query.AddAttributeValue("name", assemblyInfo.Name);
             Entity crmPluginAssembly = _repository.Get(query).SingleOrDefault();
             if (crmPluginAssembly == null)
@@ -100,8 +102,10 @@ namespace AMSoftware.Crm.PowerShell.Common.Helpers
                 assemblyInfo.Description = crmPluginAssembly.GetAttributeValue<string>("description");
             }
 
-            query = new QueryByAttribute("plugintype");
-            query.ColumnSet = new ColumnSet(true);
+            query = new QueryByAttribute("plugintype")
+            {
+                ColumnSet = new ColumnSet(true)
+            };
             query.AddAttributeValue("pluginassemblyid", assemblyInfo.AssemblyId);
 
             foreach (Entity crmPluginType in _repository.Get(query))
@@ -112,7 +116,6 @@ namespace AMSoftware.Crm.PowerShell.Common.Helpers
                     typeInfo.PluginId = crmPluginType.Id;
                     typeInfo.FriendlyName = crmPluginType.GetAttributeValue<string>("friendlyname");
                     typeInfo.Name = crmPluginType.GetAttributeValue<string>("name");
-                    //TODO: Check attributename
                     if (crmPluginType.Contains("isworkflowactivity") && crmPluginType.GetAttributeValue<bool>("isworkflowactivity") == true)
                     {
                         // Check if previous Activity Groupname was the default. If so keep the new default name, else keep existing name

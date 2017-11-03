@@ -30,15 +30,18 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 
         private MetadataRepository _repository = new MetadataRepository();
 
-        [Parameter(Position = 1, Mandatory = true, ParameterSetName = SetOptionSetValueGlobalParameterSet)]
+        [Parameter(Position = 1, Mandatory = true, ParameterSetName = SetOptionSetValueGlobalParameterSet,ValueFromPipelineByPropertyName = true)]
+        [Alias("Name")]
         [ValidateNotNullOrEmpty]
         public string OptionSet { get; set; }
 
-        [Parameter(Position = 1, Mandatory = true, ParameterSetName = SetOptionSetValueEntityParameterSet)]
+        [Parameter(Position = 1, Mandatory = true, ParameterSetName = SetOptionSetValueEntityParameterSet, ValueFromPipelineByPropertyName = true)]
+        [Alias("EntityLogicalName")]
         [ValidateNotNullOrEmpty]
         public string Entity { get; set; }
 
-        [Parameter(Position = 2, Mandatory = true, ParameterSetName = SetOptionSetValueEntityParameterSet)]
+        [Parameter(Position = 2, Mandatory = true, ParameterSetName = SetOptionSetValueEntityParameterSet, ValueFromPipelineByPropertyName = true)]
+        [Alias("LogicalName")]
         [ValidateNotNullOrEmpty]
         public string Attribute { get; set; }
 

@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Remove-CrmOptionSetValue.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Remove-CrmOptionSetValue.md
 schema: 2.0.0
 ---
 
@@ -36,10 +37,25 @@ The LogicalName of the picklist attribute to remove the value from.
 ```yaml
 Type: String
 Parameter Sets: RemoveOptionSetValueEntity
-Aliases: 
+Aliases: LogicalName
 
 Required: True
 Position: 2
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -Confirm
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -51,12 +67,12 @@ The LogicalName of the entity containing the picklist attribute.
 ```yaml
 Type: String
 Parameter Sets: RemoveOptionSetValueEntity
-Aliases: 
+Aliases: EntityLogicalName
 
 Required: True
 Position: 1
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
@@ -81,12 +97,12 @@ The name of the global optionset the remove the value from.
 ```yaml
 Type: String
 Parameter Sets: RemoveOptionSetValueGlobal
-Aliases: 
+Aliases: Name
 
 Required: True
 Position: 1
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
@@ -100,21 +116,6 @@ Aliases:
 
 Required: True
 Position: 2
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Confirm
-Prompts you for confirmation before running the cmdlet.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: cf
-
-Required: False
-Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

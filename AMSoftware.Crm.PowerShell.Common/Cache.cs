@@ -58,8 +58,7 @@ namespace AMSoftware.Crm.PowerShell.Common
 
         public TValue Get(string key)
         {
-            TValue result = default(TValue);
-            if (TryGetValue(key, out result))
+            if (TryGetValue(key, out TValue result))
             {
                 return result;
             }

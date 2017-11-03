@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/New-CrmUser.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/New-CrmUser.md
 schema: 2.0.0
 ---
 
@@ -13,7 +14,7 @@ Add a new user.
 
 ```
 New-CrmUser [-UserName] <String> [-Firstname] <String> [-Lastname] <String> [-Access <CrmUserAccessMode>]
- [-License <CrmUserClientLicense>] [-BusinessUnit <Guid>] [-Roles <Guid[]>] [<CommonParameters>]
+ [-License <CrmUserClientLicense>] [-BusinessUnit <Guid>] [-Roles <Guid[]>] [-PassThru] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -92,6 +93,21 @@ Type: CrmUserClientLicense
 Parameter Sets: (All)
 Aliases: 
 Accepted values: Pro, Admin, Basic, DevicePro, DeviceBasic, Essential, DeviceEssential, Enterprise, DeviceEnterprise, Sales, Service, FieldService, ProjectService
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -PassThru
+Returns an object that represents the User. By default, this cmdlet does not generate any output.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: 
 
 Required: False
 Position: Named

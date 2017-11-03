@@ -54,6 +54,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
         [Parameter(ValueFromRemainingArguments = true)]
         public string[] Attributes { get; set; }
 
+        [Parameter]
+        public SwitchParameter PassThru { get; set; }
+
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
@@ -82,13 +85,19 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
                 MessagePropertyName = messageProperties[0];
             }
 
-            WriteObject(_repository.Add(GenerateCrmEntity()));
+            Guid newId = _repository.Add(GenerateCrmEntity());
+            if (PassThru)
+            {
+                WriteObject(_repository.Get("sdkmessageprocessingstepimage", newId));
+            }
         }
 
         private Entity GenerateCrmEntity()
         {
-            Entity crmPluginStepImage = new Entity("sdkmessageprocessingstepimage");
-            crmPluginStepImage.Attributes = new AttributeCollection();
+            Entity crmPluginStepImage = new Entity("sdkmessageprocessingstepimage")
+            {
+                Attributes = new AttributeCollection()
+            };
             crmPluginStepImage.Attributes.Add("sdkmessageprocessingstepid", new EntityReference("sdkmessageprocessingstep", PluginStep));
             crmPluginStepImage.Attributes.Add("name", Name);
             crmPluginStepImage.Attributes.Add("entityalias", Alias);

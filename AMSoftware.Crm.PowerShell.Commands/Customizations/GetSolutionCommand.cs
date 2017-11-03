@@ -16,6 +16,7 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 using System;
+using System.Linq;
 using System.Management.Automation;
 using AMSoftware.Crm.PowerShell.Common.Repositories;
 using Microsoft.Xrm.Sdk;
@@ -23,25 +24,31 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
-    [Cmdlet(VerbsCommon.Get, "Solution", HelpUri = HelpUrlConstants.GetSolutionHelpUrl, SupportsPaging = true, DefaultParameterSetName = GetSolutionParameterSet)]
+    [Cmdlet(VerbsCommon.Get, "Solution", HelpUri = HelpUrlConstants.GetSolutionHelpUrl, SupportsPaging = true, DefaultParameterSetName = GetAllSolutionsParameterSet)]
     [OutputType(typeof(Entity))]
     public sealed class GetSolutionCommand : CrmOrganizationCmdlet
     {
-        private const string GetSolutionParameterSet = "GetSolution";
+        private const string GetAllSolutionsParameterSet = "GetAllSolutions";
         private const string GetSolutionByIdParameterSet = "GetSolutionById";
-        private const string GetSolutionByNameParameterSet = "GetSolutionByName";
 
         private ContentRepository _repository = new ContentRepository();
 
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = GetSolutionByNameParameterSet)]
-        [ValidateNotNullOrEmpty]
-        public string Name { get; set; }
-
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = GetSolutionByIdParameterSet)]
+        [Parameter(Mandatory = true, Position = 0, ParameterSetName = GetSolutionByIdParameterSet, ValueFromPipeline = true)]
         [ValidateNotNull]
         public Guid Id { get; set; }
 
-        [Parameter(ParameterSetName = GetSolutionParameterSet)]
+        [Parameter(ParameterSetName = GetAllSolutionsParameterSet, Position = 0)]
+        [Alias("Include")]
+        [ValidateNotNullOrEmpty]
+        [SupportsWildcards]
+        public string Name { get; set; }
+
+        [Parameter(ParameterSetName = GetAllSolutionsParameterSet)]
+        [ValidateNotNullOrEmpty]
+        [SupportsWildcards]
+        public string Exclude { get; set; }
+
+        [Parameter(ParameterSetName = GetAllSolutionsParameterSet)]
         public SwitchParameter ExcludeManaged { get; set; }
 
         protected override void ExecuteCmdlet()
@@ -50,56 +57,51 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 
             switch (this.ParameterSetName)
             {
-                case GetSolutionParameterSet:
-                    GetContentByQuery(BuildSolutionQuery(ExcludeManaged.ToBool()));
+                case GetAllSolutionsParameterSet:
+                    GetFilteredContent();
                     break;
                 case GetSolutionByIdParameterSet:
                     WriteObject(_repository.Get("solution", Id, null));
-                    break;
-                case GetSolutionByNameParameterSet:
-                    GetContentByQuery(BuildByNameQuery(Name));
                     break;
                 default:
                     break;
             }
         }
 
-        private void GetContentByQuery(QueryBase query)
+        private void GetFilteredContent()
         {
+            QueryExpression advancedFilterQuery = BuildSolutionQuery(ExcludeManaged.ToBool());
+
             if (PagingParameters.IncludeTotalCount)
             {
-                double accuracy;
-                int count = _repository.GetRowCount(query, out accuracy);
+                int count = _repository.GetRowCount(advancedFilterQuery, out double accuracy);
                 WriteObject(PagingParameters.NewTotalCount(Convert.ToUInt64(count), accuracy));
             }
-            
-            foreach (var item in _repository.Get(query))
+
+            var result = _repository.Get(advancedFilterQuery, PagingParameters.First, PagingParameters.Skip);
+            if (!string.IsNullOrWhiteSpace(Name))
             {
-                WriteObject(item);
+                WildcardPattern includePattern = new WildcardPattern(Name, WildcardOptions.IgnoreCase);
+                result = result.Where(a => includePattern.IsMatch(a.GetAttributeValue<string>("uniquename")) || includePattern.IsMatch(a.GetAttributeValue<string>("friendlyname")));
             }
-        }
-
-        private static QueryExpression BuildByNameQuery(string name)
-        {
-            QueryExpression query = new QueryExpression("solution")
+            if (!string.IsNullOrWhiteSpace(Exclude))
             {
-                ColumnSet = new ColumnSet(true)
-            };
+                WildcardPattern excludePattern = new WildcardPattern(Exclude, WildcardOptions.IgnoreCase);
+                result = result.Where(a => !(excludePattern.IsMatch(a.GetAttributeValue<string>("uniquename")) || excludePattern.IsMatch(a.GetAttributeValue<string>("friendlyname"))));
+            }
 
-            FilterExpression nameFilter = new FilterExpression(LogicalOperator.Or);
-            nameFilter.AddCondition(new ConditionExpression("friendlyname", ConditionOperator.Equal, name));
-            nameFilter.AddCondition(new ConditionExpression("uniquename", ConditionOperator.Equal, name));
-
-            query.Criteria.AddFilter(nameFilter);
-
-            return query;
+            WriteObject(result, true);
         }
 
         private static QueryExpression BuildSolutionQuery(bool excludeManaged)
         {
             QueryExpression query = new QueryExpression("solution")
             {
-                ColumnSet = new ColumnSet(true)
+                ColumnSet = new ColumnSet(true),
+                Orders =
+                {
+                    new OrderExpression("uniquename", OrderType.Ascending)
+                }
             };
 
             if (excludeManaged)

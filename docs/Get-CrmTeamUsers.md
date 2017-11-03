@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Get-CrmTeamUsers.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Get-CrmTeamUsers.md
 schema: 2.0.0
 ---
 
@@ -35,7 +36,7 @@ The id of the team to retrieve the assinged user for.
 ```yaml
 Type: Guid
 Parameter Sets: (All)
-Aliases: 
+Aliases: Id
 
 Required: True
 Position: 0

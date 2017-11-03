@@ -25,11 +25,13 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
     {
         private MetadataRepository _repository = new MetadataRepository();
 
-        [Parameter(Position = 1, Mandatory = true)]
+        [Parameter(Position = 1, Mandatory = true, ValueFromPipelineByPropertyName = true)]
+        [Alias("EntityLogicalName")]
         [ValidateNotNullOrEmpty]
         public string Entity { get; set; }
 
-        [Parameter(Position = 2, Mandatory = true)]
+        [Parameter(Position = 2, Mandatory = true, ValueFromPipelineByPropertyName = true)]
+        [Alias("LogicalName")]
         [ValidateNotNullOrEmpty]
         public string Name { get; set; }
 

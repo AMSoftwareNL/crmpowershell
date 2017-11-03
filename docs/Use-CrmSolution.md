@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Use-CrmSolution.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Use-CrmSolution.md
 schema: 2.0.0
 ---
 
@@ -37,7 +38,7 @@ The unique ID of the CRM solution. Omit this parameter to reset the the default 
 ```yaml
 Type: Guid
 Parameter Sets: (All)
-Aliases: 
+Aliases: Id
 
 Required: False
 Position: 1

@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Set-CrmWebresource.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Set-CrmWebresource.md
 schema: 2.0.0
 ---
 
@@ -14,19 +15,19 @@ Update a webresource.
 ### SetWebresource (Default)
 ```
 Set-CrmWebresource [-Id] <Guid> [-DisplayName <String>] [-Description <String>] [-IsCustomizable <Boolean>]
- [<CommonParameters>]
+ [-PassThru] [<CommonParameters>]
 ```
 
 ### SetWebresourceFromContent
 ```
 Set-CrmWebresource [-Id] <Guid> [-DisplayName <String>] [-Description <String>] [-Content <Byte[]>]
- [-IsCustomizable <Boolean>] [<CommonParameters>]
+ [-IsCustomizable <Boolean>] [-PassThru] [<CommonParameters>]
 ```
 
 ### SetWebresourceFromPath
 ```
 Set-CrmWebresource [-Id] <Guid> [-DisplayName <String>] [-Description <String>] [-LiteralPath <String>]
- [-IsCustomizable <Boolean>] [-Encoding <FileSystemCmdletProviderEncoding>] [<CommonParameters>]
+ [-IsCustomizable <Boolean>] [-PassThru] [-Encoding <FileSystemCmdletProviderEncoding>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -88,7 +89,7 @@ The encoding of the file containing the content for the webresource.
 Type: FileSystemCmdletProviderEncoding
 Parameter Sets: SetWebresourceFromPath
 Aliases: 
-Accepted values: Unknown, String, Unicode, Byte, BigEndianUnicode, UTF8, UTF7, UTF32, Ascii, Default, Oem
+Accepted values: Unknown, String, Unicode, Byte, BigEndianUnicode, UTF8, UTF7, UTF32, Ascii, Default, Oem, BigEndianUTF32
 
 Required: False
 Position: Named
@@ -134,6 +135,21 @@ The path to the file containing the content for the webresource.
 Type: String
 Parameter Sets: SetWebresourceFromPath
 Aliases: PSPath, Path
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -PassThru
+Returns an object that represents the webresource. By default, this cmdlet does not generate any output.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: 
 
 Required: False
 Position: Named

@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Get-CrmPrincipalRoles.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Get-CrmPrincipalRoles.md
 schema: 2.0.0
 ---
 
@@ -35,7 +36,7 @@ The id of a user or team to get the roles for.
 ```yaml
 Type: Guid
 Parameter Sets: (All)
-Aliases: 
+Aliases: Id
 
 Required: True
 Position: 0

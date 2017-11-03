@@ -15,50 +15,43 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-using System;
-using System.ComponentModel;
-using System.Management.Automation;
 using Microsoft.Xrm.Sdk;
+using System;
+using System.Management.Automation;
 
 namespace AMSoftware.Crm.PowerShell.Common.Converters
 {
-    public sealed class EntityConverter : TypeConverter
+    public sealed class EntityConverter : PSTypeConverter
     {
-        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+        public override bool CanConvertFrom(object sourceValue, Type destinationType)
+        {
+            return false;
+        }
+
+        public override bool CanConvertTo(object sourceValue, Type destinationType)
         {
             if (destinationType == typeof(Guid)) return true;
-
-            return base.CanConvertTo(context, destinationType);
+            return false;
         }
 
-        public override object ConvertTo(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, Type destinationType)
+        public override object ConvertFrom(object sourceValue, Type destinationType, IFormatProvider formatProvider, bool ignoreCase)
         {
-            if (value != null && value is Entity && destinationType == typeof(Guid))
+            throw new NotSupportedException();
+        }
+
+        public override object ConvertTo(object sourceValue, Type destinationType, IFormatProvider formatProvider, bool ignoreCase)
+        {
+            if (sourceValue != null && sourceValue is Entity && destinationType == typeof(Guid))
             {
-                return ((Entity)value).Id;
-            }
-            
-            return base.ConvertTo(context, culture, value, destinationType);
-        }
-    }
-
-    public sealed class EntityReferenceConverter : TypeConverter
-    {
-        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
-        {
-            if (destinationType == typeof(Guid)) return true;
-
-            return base.CanConvertTo(context, destinationType);
-        }
-
-        public override object ConvertTo(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, Type destinationType)
-        {
-            if (value != null && value is EntityReference && destinationType == typeof(Guid))
-            {
-                return ((EntityReference)value).Id;
+                return ((Entity)sourceValue).Id;
             }
 
-            return base.ConvertTo(context, culture, value, destinationType);
+            if (sourceValue != null && sourceValue is EntityReference && destinationType == typeof(Guid))
+            {
+                return ((EntityReference)sourceValue).Id;
+            }
+
+            throw new NotSupportedException();
         }
     }
 }

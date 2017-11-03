@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Get-CrmOrganization.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Get-CrmOrganization.md
 schema: 2.0.0
 ---
 
@@ -12,7 +13,7 @@ Retrieve the organizations available in the connected deployment.
 ## SYNTAX
 
 ```
-Get-CrmOrganization [[-Name] <String>] [<CommonParameters>]
+Get-CrmOrganization [[-Name] <String>] [-Exclude <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -29,8 +30,8 @@ Get the organization information for the organization in the connected deploymen
 
 ## PARAMETERS
 
-### -Name
-The unique name, organization service url or friendly name of the organization. The first organization matching the name is returned.
+### -Exclude
+Exclude organizations whose name matches the provided pattern.
 
 ```yaml
 Type: String
@@ -38,7 +39,22 @@ Parameter Sets: (All)
 Aliases: 
 
 Required: False
-Position: 1
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Name
+The unique name, organization service url or friendly name of the organization. The first organization matching the name is returned.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: Include
+
+Required: False
+Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

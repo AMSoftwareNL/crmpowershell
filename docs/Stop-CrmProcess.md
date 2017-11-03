@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Stop-CrmProcess.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Stop-CrmProcess.md
 schema: 2.0.0
 ---
 
@@ -13,12 +14,13 @@ Stop a running asynchronous operation (System Job).
 
 ### StopProcessByAsyncOperation (Default)
 ```
-Stop-CrmProcess [-ASyncOperation] <Guid> [-Force] [-WhatIf] [-Confirm] [<CommonParameters>]
+Stop-CrmProcess [-ASyncOperation] <Guid> [-PassThru] [-Force] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### StopProcessByWorkflow
 ```
-Stop-CrmProcess [-Process] <Guid> [[-Record] <Guid>] [-Force] [-WhatIf] [-Confirm] [<CommonParameters>]
+Stop-CrmProcess [-Process] <Guid> [[-Record] <Guid>] [-PassThru] [-Force] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -50,8 +52,38 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -Confirm
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -Force
 Stops the specified processes without prompting for confirmation.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: 
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -PassThru
+Returns an object that represents the asyncoperation. By default, this cmdlet does not generate any output.
 
 ```yaml
 Type: SwitchParameter
@@ -86,27 +118,12 @@ The id of the record to stop the associated System Jobs for.
 ```yaml
 Type: Guid
 Parameter Sets: StopProcessByWorkflow
-Aliases: 
+Aliases: Id
 
 Required: False
 Position: 5
 Default value: None
 Accept pipeline input: True (ByValue)
-Accept wildcard characters: False
-```
-
-### -Confirm
-Prompts you for confirmation before running the cmdlet.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: cf
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Test-CrmSolution.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Test-CrmSolution.md
 schema: 2.0.0
 ---
 
@@ -11,14 +12,14 @@ Validate a customization solution.
 
 ## SYNTAX
 
-### TestDependenciesSolution
-```
-Test-CrmSolution [[-Solution] <Guid>] [-Dependencies] [<CommonParameters>]
-```
-
 ### TestUninstallSolution
 ```
 Test-CrmSolution [[-Solution] <Guid>] [-Uninstall] [<CommonParameters>]
+```
+
+### TestDependenciesSolution
+```
+Test-CrmSolution [[-Solution] <Guid>] [-Dependencies] [<CommonParameters>]
 ```
 
 ### TestMissingSolution
@@ -96,7 +97,7 @@ The id of the solution to test.
 
 ```yaml
 Type: Guid
-Parameter Sets: TestDependenciesSolution, TestUninstallSolution
+Parameter Sets: TestUninstallSolution, TestDependenciesSolution
 Aliases: 
 
 Required: False

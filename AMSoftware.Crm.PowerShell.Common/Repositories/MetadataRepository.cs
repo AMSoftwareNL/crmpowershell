@@ -28,12 +28,16 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
         #region Entity
         public EntityMetadata GetEntity(string name)
         {
-            OrganizationRequest request = new OrganizationRequest("RetrieveEntity");
-            request.Parameters = new ParameterCollection();
-            request.Parameters.Add("LogicalName", name);
-            request.Parameters.Add("EntityFilters", EntityFilters.Entity);
-            request.Parameters.Add("RetrieveAsIfPublished", true);
-            request.Parameters.Add("MetadataId", default(Guid));
+            OrganizationRequest request = new OrganizationRequest("RetrieveEntity")
+            {
+                Parameters = new ParameterCollection
+                {
+                    { "LogicalName", name },
+                    { "EntityFilters", EntityFilters.Entity },
+                    { "RetrieveAsIfPublished", true },
+                    { "MetadataId", default(Guid) }
+                }
+            };
 
             OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
 
@@ -42,11 +46,15 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
 
         public EntityMetadata GetEntity(Guid metadataId)
         {
-            OrganizationRequest request = new OrganizationRequest("RetrieveEntity");
-            request.Parameters = new ParameterCollection();
-            request.Parameters.Add("EntityFilters", EntityFilters.Entity);
-            request.Parameters.Add("RetrieveAsIfPublished", true);
-            request.Parameters.Add("MetadataId", metadataId);
+            OrganizationRequest request = new OrganizationRequest("RetrieveEntity")
+            {
+                Parameters = new ParameterCollection
+                {
+                    { "EntityFilters", EntityFilters.Entity },
+                    { "RetrieveAsIfPublished", true },
+                    { "MetadataId", metadataId }
+                }
+            };
 
             OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
 
@@ -74,12 +82,16 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
 
         public Guid AddEntity(EntityMetadata entity, AttributeMetadata attribute, bool? hasNotes = null, bool? hasActivites = null)
         {
-            OrganizationRequest request = new OrganizationRequest("CreateEntity");
-            request.Parameters = new ParameterCollection();
-            request.Parameters.Add("Entity", entity);
-            request.Parameters.Add("PrimaryAttribute", attribute);
-            request.Parameters.Add("HasNotes", hasNotes.GetValueOrDefault());
-            request.Parameters.Add("HasActivities", hasActivites.GetValueOrDefault());
+            OrganizationRequest request = new OrganizationRequest("CreateEntity")
+            {
+                Parameters = new ParameterCollection
+                {
+                    { "Entity", entity },
+                    { "PrimaryAttribute", attribute },
+                    { "HasNotes", hasNotes.GetValueOrDefault() },
+                    { "HasActivities", hasActivites.GetValueOrDefault() }
+                }
+            };
 
             if (CrmContext.ActiveSolution != null)
             {
@@ -93,12 +105,16 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
 
         public void UpdateEntity(EntityMetadata entity, bool? hasNotes = null, bool? hasActivites = null)
         {
-            OrganizationRequest request = new OrganizationRequest("UpdateEntity");
-            request.Parameters = new ParameterCollection();
-            request.Parameters.Add("Entity", entity);
-            request.Parameters.Add("HasNotes", hasNotes.GetValueOrDefault());
-            request.Parameters.Add("HasActivities", hasActivites.GetValueOrDefault());
-            request.Parameters.Add("MergeLabels", true);
+            OrganizationRequest request = new OrganizationRequest("UpdateEntity")
+            {
+                Parameters = new ParameterCollection
+                {
+                    { "Entity", entity },
+                    { "HasNotes", hasNotes.GetValueOrDefault() },
+                    { "HasActivities", hasActivites.GetValueOrDefault() },
+                    { "MergeLabels", true }
+                }
+            };
 
             if (CrmContext.ActiveSolution != null)
             {
@@ -110,21 +126,29 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
 
         public void DeleteEntity(string name)
         {
-            OrganizationRequest request = new OrganizationRequest("DeleteEntity");
-            request.Parameters = new ParameterCollection();
-            request.Parameters.Add("LogicalName", name);
+            OrganizationRequest request = new OrganizationRequest("DeleteEntity")
+            {
+                Parameters = new ParameterCollection
+                {
+                    { "LogicalName", name }
+                }
+            };
 
             OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
         }
 
         private EntityMetadata GetEntity(string name, EntityFilters filter)
         {
-            OrganizationRequest request = new OrganizationRequest("RetrieveEntity");
-            request.Parameters = new ParameterCollection();
-            request.Parameters.Add("LogicalName", name);
-            request.Parameters.Add("EntityFilters", filter);
-            request.Parameters.Add("RetrieveAsIfPublished", true);
-            request.Parameters.Add("MetadataId", default(Guid));
+            OrganizationRequest request = new OrganizationRequest("RetrieveEntity")
+            {
+                Parameters = new ParameterCollection
+                {
+                    { "LogicalName", name },
+                    { "EntityFilters", filter },
+                    { "RetrieveAsIfPublished", true },
+                    { "MetadataId", default(Guid) }
+                }
+            };
 
             OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
 
@@ -135,11 +159,15 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
         #region OptionSet
         public OptionSetMetadataBase GetOptionSet(string name)
         {
-            OrganizationRequest request = new OrganizationRequest("RetrieveOptionSet");
-            request.Parameters = new ParameterCollection();
-            request.Parameters.Add("Name", name);
-            request.Parameters.Add("RetrieveAsIfPublished", true);
-            request.Parameters.Add("MetadataId", default(Guid));
+            OrganizationRequest request = new OrganizationRequest("RetrieveOptionSet")
+            {
+                Parameters = new ParameterCollection
+                {
+                    { "Name", name },
+                    { "RetrieveAsIfPublished", true },
+                    { "MetadataId", default(Guid) }
+                }
+            };
 
             OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
 
@@ -148,10 +176,14 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
 
         public OptionSetMetadataBase GetOptionSet(Guid metadataId)
         {
-            OrganizationRequest request = new OrganizationRequest("RetrieveOptionSet");
-            request.Parameters = new ParameterCollection();
-            request.Parameters.Add("RetrieveAsIfPublished", true);
-            request.Parameters.Add("MetadataId", metadataId);
+            OrganizationRequest request = new OrganizationRequest("RetrieveOptionSet")
+            {
+                Parameters = new ParameterCollection
+                {
+                    { "RetrieveAsIfPublished", true },
+                    { "MetadataId", metadataId }
+                }
+            };
 
             OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
 
@@ -160,9 +192,13 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
 
         public IEnumerable<OptionSetMetadataBase> GetOptionSet(bool customOnly, bool excludeManaged)
         {
-            OrganizationRequest request = new OrganizationRequest("RetrieveAllOptionSets");
-            request.Parameters = new ParameterCollection();
-            request.Parameters.Add("RetrieveAsIfPublished", true);
+            OrganizationRequest request = new OrganizationRequest("RetrieveAllOptionSets")
+            {
+                Parameters = new ParameterCollection
+                {
+                    { "RetrieveAsIfPublished", true }
+                }
+            };
 
             OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
             IEnumerable<OptionSetMetadataBase> result = ((OptionSetMetadataBase[])response.Results["OptionSetMetadata"]).Cast<OptionSetMetadataBase>();
@@ -175,9 +211,13 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
 
         public Guid AddOptionSet(OptionSetMetadataBase optionSet)
         {
-            OrganizationRequest request = new OrganizationRequest("CreateOptionSet");
-            request.Parameters = new ParameterCollection();
-            request.Parameters.Add("OptionSet", optionSet);
+            OrganizationRequest request = new OrganizationRequest("CreateOptionSet")
+            {
+                Parameters = new ParameterCollection
+                {
+                    { "OptionSet", optionSet }
+                }
+            };
 
             if (CrmContext.ActiveSolution != null)
             {
@@ -191,10 +231,14 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
 
         public void UpdateOptionSet(OptionSetMetadataBase optionSet)
         {
-            OrganizationRequest request = new OrganizationRequest("UpdateOptionSet");
-            request.Parameters = new ParameterCollection();
-            request.Parameters.Add("OptionSet", optionSet);
-            request.Parameters.Add("MergeLabels", true);
+            OrganizationRequest request = new OrganizationRequest("UpdateOptionSet")
+            {
+                Parameters = new ParameterCollection
+                {
+                    { "OptionSet", optionSet },
+                    { "MergeLabels", true }
+                }
+            };
 
             if (CrmContext.ActiveSolution != null)
             {
@@ -206,19 +250,27 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
 
         public void DeleteOptionSet(string name)
         {
-            OrganizationRequest request = new OrganizationRequest("DeleteOptionSet");
-            request.Parameters = new ParameterCollection();
-            request.Parameters.Add("Name", name);
+            OrganizationRequest request = new OrganizationRequest("DeleteOptionSet")
+            {
+                Parameters = new ParameterCollection
+                {
+                    { "Name", name }
+                }
+            };
 
             OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
         }
 
         public int AddOptionSetValue(string name, string displayName, int? value = null, string description = null)
         {
-            OrganizationRequest request = new OrganizationRequest("InsertOptionValue");
-            request.Parameters = new ParameterCollection();
-            request.Parameters.Add("OptionSetName", name);
-            request.Parameters.Add("Label", new Label(displayName, CrmContext.Language));
+            OrganizationRequest request = new OrganizationRequest("InsertOptionValue")
+            {
+                Parameters = new ParameterCollection
+                {
+                    { "OptionSetName", name },
+                    { "Label", new Label(displayName, CrmContext.Language) }
+                }
+            };
             if (value.HasValue)
             {
                 request.Parameters.Add("Value", value.Value);
@@ -239,11 +291,15 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
 
         public int AddOptionSetValue(string entity, string attribute, string displayName, int? value = null, string description = null)
         {
-            OrganizationRequest request = new OrganizationRequest("InsertOptionValue");
-            request.Parameters = new ParameterCollection();
-            request.Parameters.Add("EntityLogicalName", entity);
-            request.Parameters.Add("AttributeLogicalName", attribute);
-            request.Parameters.Add("Label", new Label(displayName, CrmContext.Language));
+            OrganizationRequest request = new OrganizationRequest("InsertOptionValue")
+            {
+                Parameters = new ParameterCollection
+                {
+                    { "EntityLogicalName", entity },
+                    { "AttributeLogicalName", attribute },
+                    { "Label", new Label(displayName, CrmContext.Language) }
+                }
+            };
             if (value.HasValue)
             {
                 request.Parameters.Add("Value", value.Value);
@@ -264,32 +320,44 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
 
         public void DeleteOptionSetValue(string name, int value)
         {
-            OrganizationRequest request = new OrganizationRequest("DeleteOptionValue");
-            request.Parameters = new ParameterCollection();
-            request.Parameters.Add("OptionSetName", name);
-            request.Parameters.Add("Value", value);
+            OrganizationRequest request = new OrganizationRequest("DeleteOptionValue")
+            {
+                Parameters = new ParameterCollection
+                {
+                    { "OptionSetName", name },
+                    { "Value", value }
+                }
+            };
 
             OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
         }
 
         public void DeleteOptionSetValue(string entity, string attribute, int value)
         {
-            OrganizationRequest request = new OrganizationRequest("DeleteOptionValue");
-            request.Parameters = new ParameterCollection();
-            request.Parameters.Add("EntityLogicalName", entity);
-            request.Parameters.Add("AttributeLogicalName", attribute);
-            request.Parameters.Add("Value", value);
+            OrganizationRequest request = new OrganizationRequest("DeleteOptionValue")
+            {
+                Parameters = new ParameterCollection
+                {
+                    { "EntityLogicalName", entity },
+                    { "AttributeLogicalName", attribute },
+                    { "Value", value }
+                }
+            };
 
             OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
         }
 
         public void UpdateOptionSetValue(string name, int value, string displayName = null, string description = null)
         {
-            OrganizationRequest request = new OrganizationRequest("UpdateOptionValue");
-            request.Parameters = new ParameterCollection();
-            request.Parameters.Add("OptionSetName", name);
-            request.Parameters.Add("Value", value);
-            request.Parameters.Add("MergeLabels", true);
+            OrganizationRequest request = new OrganizationRequest("UpdateOptionValue")
+            {
+                Parameters = new ParameterCollection
+                {
+                    { "OptionSetName", name },
+                    { "Value", value },
+                    { "MergeLabels", true }
+                }
+            };
 
             if (!string.IsNullOrEmpty(displayName))
             {
@@ -310,12 +378,16 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
 
         public void UpdateOptionSetValue(string entity, string attribute, int value, string displayName = null, string description = null)
         {
-            OrganizationRequest request = new OrganizationRequest("UpdateOptionValue");
-            request.Parameters = new ParameterCollection();
-            request.Parameters.Add("EntityLogicalName", entity);
-            request.Parameters.Add("AttributeLogicalName", attribute);
-            request.Parameters.Add("Value", value);
-            request.Parameters.Add("MergeLabels", true);
+            OrganizationRequest request = new OrganizationRequest("UpdateOptionValue")
+            {
+                Parameters = new ParameterCollection
+                {
+                    { "EntityLogicalName", entity },
+                    { "AttributeLogicalName", attribute },
+                    { "Value", value },
+                    { "MergeLabels", true }
+                }
+            };
 
             if (!string.IsNullOrEmpty(displayName))
             {
@@ -338,10 +410,14 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
         #region Attribute
         public AttributeMetadata GetAttribute(Guid id)
         {
-            OrganizationRequest request = new OrganizationRequest("RetrieveAttribute");
-            request.Parameters = new ParameterCollection();
-            request.Parameters.Add("RetrieveAsIfPublished", true);
-            request.Parameters.Add("MetadataId", id);
+            OrganizationRequest request = new OrganizationRequest("RetrieveAttribute")
+            {
+                Parameters = new ParameterCollection
+                {
+                    { "RetrieveAsIfPublished", true },
+                    { "MetadataId", id }
+                }
+            };
 
             OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
 
@@ -350,12 +426,16 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
 
         public AttributeMetadata GetAttribute(string entity, string attribute)
         {
-            OrganizationRequest request = new OrganizationRequest("RetrieveAttribute");
-            request.Parameters = new ParameterCollection();
-            request.Parameters.Add("EntityLogicalName", entity);
-            request.Parameters.Add("LogicalName", attribute);
-            request.Parameters.Add("RetrieveAsIfPublished", true);
-            request.Parameters.Add("MetadataId", default(Guid));
+            OrganizationRequest request = new OrganizationRequest("RetrieveAttribute")
+            {
+                Parameters = new ParameterCollection
+                {
+                    { "EntityLogicalName", entity },
+                    { "LogicalName", attribute },
+                    { "RetrieveAsIfPublished", true },
+                    { "MetadataId", default(Guid) }
+                }
+            };
 
             OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
 
@@ -385,10 +465,14 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
 
         public Guid AddAttribute(string entity, AttributeMetadata attribute)
         {
-            OrganizationRequest request = new OrganizationRequest("CreateAttribute");
-            request.Parameters = new ParameterCollection();
-            request.Parameters.Add("EntityName", entity);
-            request.Parameters.Add("Attribute", attribute);
+            OrganizationRequest request = new OrganizationRequest("CreateAttribute")
+            {
+                Parameters = new ParameterCollection
+                {
+                    { "EntityName", entity },
+                    { "Attribute", attribute }
+                }
+            };
 
             if (CrmContext.ActiveSolution != null)
             {
@@ -401,11 +485,15 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
 
         public void UpdateAttribute(string entity, AttributeMetadata attribute)
         {
-            OrganizationRequest request = new OrganizationRequest("UpdateAttribute");
-            request.Parameters = new ParameterCollection();
-            request.Parameters.Add("EntityName", entity);
-            request.Parameters.Add("Attribute", attribute);
-            request.Parameters.Add("MergeLabels", true);
+            OrganizationRequest request = new OrganizationRequest("UpdateAttribute")
+            {
+                Parameters = new ParameterCollection
+                {
+                    { "EntityName", entity },
+                    { "Attribute", attribute },
+                    { "MergeLabels", true }
+                }
+            };
 
             if (CrmContext.ActiveSolution != null)
             {
@@ -417,10 +505,14 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
 
         public void DeleteAttribute(string entity, string attribute)
         {
-            OrganizationRequest request = new OrganizationRequest("DeleteAttribute");
-            request.Parameters = new ParameterCollection();
-            request.Parameters.Add("EntityLogicalName", entity);
-            request.Parameters.Add("LogicalName", attribute);
+            OrganizationRequest request = new OrganizationRequest("DeleteAttribute")
+            {
+                Parameters = new ParameterCollection
+                {
+                    { "EntityLogicalName", entity },
+                    { "LogicalName", attribute }
+                }
+            };
 
             OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
         }
@@ -429,10 +521,14 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
         #region EntityKey
         public EntityKeyMetadata GetEntityKey(Guid id)
         {
-            OrganizationRequest request = new OrganizationRequest("RetrieveEntityKey");
-            request.Parameters = new ParameterCollection();
-            request.Parameters.Add("RetrieveAsIfPublished", false);
-            request.Parameters.Add("MetadataId", id);
+            OrganizationRequest request = new OrganizationRequest("RetrieveEntityKey")
+            {
+                Parameters = new ParameterCollection
+                {
+                    { "RetrieveAsIfPublished", false },
+                    { "MetadataId", id }
+                }
+            };
 
             OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
 
@@ -441,12 +537,16 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
 
         public EntityKeyMetadata GetEntityKey(string entity, string key)
         {
-            OrganizationRequest request = new OrganizationRequest("RetrieveEntityKey");
-            request.Parameters = new ParameterCollection();
-            request.Parameters.Add("EntityLogicalName", entity);
-            request.Parameters.Add("LogicalName", key);
-            request.Parameters.Add("RetrieveAsIfPublished", false);
-            request.Parameters.Add("MetadataId", default(Guid));
+            OrganizationRequest request = new OrganizationRequest("RetrieveEntityKey")
+            {
+                Parameters = new ParameterCollection
+                {
+                    { "EntityLogicalName", entity },
+                    { "LogicalName", key },
+                    { "RetrieveAsIfPublished", false },
+                    { "MetadataId", default(Guid) }
+                }
+            };
 
             OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
 
@@ -468,10 +568,14 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
 
         public Guid AddEntityKey(string entity, EntityKeyMetadata key)
         {
-            OrganizationRequest request = new OrganizationRequest("CreateEntityKey");
-            request.Parameters = new ParameterCollection();
-            request.Parameters.Add("EntityName", entity);
-            request.Parameters.Add("EntityKey", key);
+            OrganizationRequest request = new OrganizationRequest("CreateEntityKey")
+            {
+                Parameters = new ParameterCollection
+                {
+                    { "EntityName", entity },
+                    { "EntityKey", key }
+                }
+            };
 
             OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
             return (Guid)response.Results["EntityKeyId"];
@@ -479,10 +583,14 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
 
         public void DeleteEntityKey(string entity, string key)
         {
-            OrganizationRequest request = new OrganizationRequest("DeleteEntityKey");
-            request.Parameters = new ParameterCollection();
-            request.Parameters.Add("EntityLogicalName", entity);
-            request.Parameters.Add("Name", key);
+            OrganizationRequest request = new OrganizationRequest("DeleteEntityKey")
+            {
+                Parameters = new ParameterCollection
+                {
+                    { "EntityLogicalName", entity },
+                    { "Name", key }
+                }
+            };
 
             OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
         }
@@ -547,10 +655,14 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
 
         public RelationshipMetadataBase GetRelationship(Guid id)
         {
-            OrganizationRequest request = new OrganizationRequest("RetrieveRelationship");
-            request.Parameters = new ParameterCollection();
-            request.Parameters.Add("MetadataId", id);
-            request.Parameters.Add("RetrieveAsIfPublished", true);
+            OrganizationRequest request = new OrganizationRequest("RetrieveRelationship")
+            {
+                Parameters = new ParameterCollection
+                {
+                    { "MetadataId", id },
+                    { "RetrieveAsIfPublished", true }
+                }
+            };
 
             OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
             return (RelationshipMetadataBase)response.Results["RelationshipMetadata"];
@@ -558,10 +670,14 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
 
         public RelationshipMetadataBase GetRelationship(string name)
         {
-            OrganizationRequest request = new OrganizationRequest("RetrieveRelationship");
-            request.Parameters = new ParameterCollection();
-            request.Parameters.Add("Name", name);
-            request.Parameters.Add("RetrieveAsIfPublished", true);
+            OrganizationRequest request = new OrganizationRequest("RetrieveRelationship")
+            {
+                Parameters = new ParameterCollection
+                {
+                    { "Name", name },
+                    { "RetrieveAsIfPublished", true }
+                }
+            };
 
             OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
             return (RelationshipMetadataBase)response.Results["RelationshipMetadata"];
@@ -578,10 +694,14 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
                     relationship.ReferencingEntity, relationship.ReferencedEntity));
             }
 
-            OrganizationRequest request = new OrganizationRequest("CreateOneToMany");
-            request.Parameters = new ParameterCollection();
-            request.Parameters.Add("OneToManyRelationship", relationship);
-            request.Parameters.Add("Lookup", lookup);
+            OrganizationRequest request = new OrganizationRequest("CreateOneToMany")
+            {
+                Parameters = new ParameterCollection
+                {
+                    { "OneToManyRelationship", relationship },
+                    { "Lookup", lookup }
+                }
+            };
 
             if (CrmContext.ActiveSolution != null)
             {
@@ -603,10 +723,14 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
                     relationship.Entity1LogicalName, relationship.Entity2LogicalName));
             }
 
-            OrganizationRequest request = new OrganizationRequest("CreateManyToMany");
-            request.Parameters = new ParameterCollection();
-            request.Parameters.Add("IntersectEntitySchemaName", intersect);
-            request.Parameters.Add("ManyToManyRelationship", relationship);
+            OrganizationRequest request = new OrganizationRequest("CreateManyToMany")
+            {
+                Parameters = new ParameterCollection
+                {
+                    { "IntersectEntitySchemaName", intersect },
+                    { "ManyToManyRelationship", relationship }
+                }
+            };
 
             if (CrmContext.ActiveSolution != null)
             {
@@ -619,10 +743,14 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
 
         public void UpdateRelationship(RelationshipMetadataBase relationship)
         {
-            OrganizationRequest request = new OrganizationRequest("UpdateRelationship");
-            request.Parameters = new ParameterCollection();
-            request.Parameters.Add("Relationship", relationship);
-            request.Parameters.Add("MergeLabels", true);
+            OrganizationRequest request = new OrganizationRequest("UpdateRelationship")
+            {
+                Parameters = new ParameterCollection
+                {
+                    { "Relationship", relationship },
+                    { "MergeLabels", true }
+                }
+            };
 
             if (CrmContext.ActiveSolution != null)
             {
@@ -634,9 +762,13 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
 
         public void DeleteRelationship(string relationship)
         {
-            OrganizationRequest request = new OrganizationRequest("DeleteRelationship");
-            request.Parameters = new ParameterCollection();
-            request.Parameters.Add("Name", relationship);
+            OrganizationRequest request = new OrganizationRequest("DeleteRelationship")
+            {
+                Parameters = new ParameterCollection
+                {
+                    { "Name", relationship }
+                }
+            };
 
             OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
         }
@@ -696,9 +828,13 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
 
         private bool EligibleForRelationship(string entity, string relationCheck)
         {
-            OrganizationRequest request = new OrganizationRequest(relationCheck);
-            request.Parameters = new ParameterCollection();
-            request.Parameters.Add("EntityName", entity);
+            OrganizationRequest request = new OrganizationRequest(relationCheck)
+            {
+                Parameters = new ParameterCollection
+                {
+                    { "EntityName", entity }
+                }
+            };
 
             OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
 
@@ -709,9 +845,13 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
         #region Managed Property
         public ManagedPropertyMetadata GetManagedProperty(Guid metadataId)
         {
-            OrganizationRequest request = new OrganizationRequest("RetrieveManagedProperty");
-            request.Parameters = new ParameterCollection();
-            request.Parameters.Add("MetadataId", metadataId);
+            OrganizationRequest request = new OrganizationRequest("RetrieveManagedProperty")
+            {
+                Parameters = new ParameterCollection
+                {
+                    { "MetadataId", metadataId }
+                }
+            };
 
             OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
 

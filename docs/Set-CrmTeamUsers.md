@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Set-CrmTeamUsers.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Set-CrmTeamUsers.md
 schema: 2.0.0
 ---
 
@@ -12,7 +13,7 @@ Set the users who are members of team.
 ## SYNTAX
 
 ```
-Set-CrmTeamUsers [-Team] <Guid> [-Users] <Guid[]> [-Overwrite] [<CommonParameters>]
+Set-CrmTeamUsers [-Team] <Guid> [-Users] <Guid[]> [-Overwrite] [-PassThru] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -37,13 +38,28 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -PassThru
+Returns an object that represents the team. By default, this cmdlet does not generate any output.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: 
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -Team
 The id of the team to set the users for.
 
 ```yaml
 Type: Guid
 Parameter Sets: (All)
-Aliases: 
+Aliases: Id
 
 Required: True
 Position: 0

@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Get-CrmUserTeams.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Get-CrmUserTeams.md
 schema: 2.0.0
 ---
 
@@ -12,7 +13,7 @@ Get the teams a user is assinged to.
 ## SYNTAX
 
 ```
-Get-CrmUserTeams [-Team] <Guid> [<CommonParameters>]
+Get-CrmUserTeams [-User] <Guid> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -29,13 +30,13 @@ Get the assinged teams for the user with username 'user1@organization.com'.
 
 ## PARAMETERS
 
-### -Team
-{{Fill Team Description}}
+### -User
+The id of the user to retrieve teams for.
 
 ```yaml
 Type: Guid
 Parameter Sets: (All)
-Aliases: 
+Aliases: Id
 
 Required: True
 Position: 0

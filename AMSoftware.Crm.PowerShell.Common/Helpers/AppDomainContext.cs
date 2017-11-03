@@ -41,9 +41,11 @@ namespace AMSoftware.Crm.PowerShell.Common.Helpers
 			{
 				throw new ArgumentNullException("domainName");
 			}
-			
-            AppDomainSetup appDomainSetup = new AppDomainSetup();
-			appDomainSetup.ApplicationName = domainName + Guid.NewGuid().ToString().GetHashCode().ToString("x");
+
+            AppDomainSetup appDomainSetup = new AppDomainSetup
+            {
+                ApplicationName = domainName + Guid.NewGuid().ToString().GetHashCode().ToString("x")
+            };
 
             string assemblyFile = typeof(TProxy).Assembly.Location;
             //if (string.IsNullOrEmpty(appPathName))

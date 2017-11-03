@@ -16,8 +16,10 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 using System.Management.Automation;
+using System.Linq;
 using AMSoftware.Crm.PowerShell.Common.Repositories;
 using Microsoft.Xrm.Sdk.Discovery;
+using System.Collections.Generic;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Discovery
 {
@@ -27,22 +29,45 @@ namespace AMSoftware.Crm.PowerShell.Commands.Discovery
     {
         private DeploymentRepository _repository = new DeploymentRepository();
 
-        [Parameter(Mandatory = false, Position = 1)]
+        [Parameter(Position = 0)]
+        [Alias("Include")]
         [ValidateNotNullOrEmpty]
+        [SupportsWildcards]
         public string Name { get; set; }
+
+        [Parameter()]
+        [ValidateNotNullOrEmpty]
+        [SupportsWildcards]
+        public string Exclude { get; set; }
 
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
 
-            if (string.IsNullOrEmpty(Name))
+            IEnumerable<OrganizationDetail> result = _repository.GetOrganization();
+            
+            if (!string.IsNullOrWhiteSpace(Name))
             {
-                WriteObject(_repository.GetOrganization(), true);
+                WildcardPattern includePattern = new WildcardPattern(Name, WildcardOptions.IgnoreCase);
+                result = result.Where(o => 
+                    includePattern.IsMatch(o.UniqueName) ||
+                    includePattern.IsMatch(o.FriendlyName) ||
+                    includePattern.IsMatch(o.UrlName)
+                );
             }
-            else
+            if (!string.IsNullOrWhiteSpace(Exclude))
             {
-                WriteObject(_repository.GetOrganization(Name), false);
+                WildcardPattern excludePattern = new WildcardPattern(Exclude, WildcardOptions.IgnoreCase);
+                result = result.Where(o =>
+                    !(excludePattern.IsMatch(o.UniqueName) ||
+                    excludePattern.IsMatch(o.FriendlyName) ||
+                    excludePattern.IsMatch(o.UrlName))
+                );
             }
+
+            result = result.OrderBy(o => o.UrlName);
+
+            WriteObject(result, true);
         }
     }
 }

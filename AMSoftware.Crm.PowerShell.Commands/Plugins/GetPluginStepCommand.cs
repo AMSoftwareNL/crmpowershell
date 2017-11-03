@@ -36,11 +36,11 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 
         private ContentRepository _repository = new ContentRepository();
 
-        [Parameter(Position = 1, Mandatory = true, ParameterSetName = GetPluginStepByIdParameterSet)]
+        [Parameter(Mandatory = true, ParameterSetName = GetPluginStepByIdParameterSet)]
         [ValidateNotNull]
         public Guid Id { get; set; }
 
-        [Parameter(Position = 1, ValueFromPipeline = true, ParameterSetName = GetPluginStepByFilterParameterSet)]
+        [Parameter(Position = 1, ParameterSetName = GetPluginStepByFilterParameterSet, ValueFromPipeline = true)]
         [ValidateNotNullOrEmpty]
         public Guid EventSource { get; set; }
 
@@ -88,8 +88,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
         {
             if (PagingParameters.IncludeTotalCount)
             {
-                double accuracy;
-                int count = _repository.GetRowCount(query, out accuracy);
+                int count = _repository.GetRowCount(query, out double accuracy);
                 WriteObject(PagingParameters.NewTotalCount(Convert.ToUInt64(count), accuracy));
             }
 
@@ -104,13 +103,17 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
             QueryExpression query = new QueryExpression("sdkmessageprocessingstep")
             {
                 ColumnSet = new ColumnSet(true),
+                Orders = {
+                    new OrderExpression("name", OrderType.Ascending),
+                    new OrderExpression("stage", OrderType.Ascending)
+                }
             };
 
             FilterExpression filter = new FilterExpression(LogicalOperator.And);
             if (EventSource != Guid.Empty) filter.AddCondition("eventhandler", ConditionOperator.Equal, EventSource);
             if (Stage != null) filter.AddCondition("stage", ConditionOperator.Equal, (int)Stage);
             if (Mode != null) filter.AddCondition("mode", ConditionOperator.Equal, (int)Mode);
-            if (!IncludeInternalStages.IsPresent) filter.AddCondition("stage", ConditionOperator.In, new int[] { 10, 20, 40 });
+            if (!IncludeInternalStages.IsPresent) filter.AddCondition("stage", ConditionOperator.In, 10, 20, 40);
             if (!IncludeHidden.IsPresent) filter.AddCondition("ishidden", ConditionOperator.Equal, false);
 
             if (!string.IsNullOrWhiteSpace(Message))

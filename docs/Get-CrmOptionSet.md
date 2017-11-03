@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Get-CrmOptionSet.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Get-CrmOptionSet.md
 schema: 2.0.0
 ---
 
@@ -13,17 +14,12 @@ Get the metadata of a global optionset.
 
 ### GetOptionSetByFilter (Default)
 ```
-Get-CrmOptionSet [-Include <String>] [-Exclude <String>] [-CustomOnly] [-ExcludeManaged] [<CommonParameters>]
+Get-CrmOptionSet [[-Name] <String>] [-Exclude <String>] [-CustomOnly] [-ExcludeManaged] [<CommonParameters>]
 ```
 
 ### GetOptionSetById
 ```
 Get-CrmOptionSet [-Id] <Guid> [<CommonParameters>]
-```
-
-### GetOptionSetByName
-```
-Get-CrmOptionSet [-Name] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -91,27 +87,12 @@ The MetadataId of the optionset to retrieve.
 ```yaml
 Type: Guid
 Parameter Sets: GetOptionSetById
-Aliases: 
+Aliases: MetadataId
 
 Required: True
 Position: 1
 Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Include
-Include the metadata for optionsets whose LogicalName matches the provided pattern.
-
-```yaml
-Type: String
-Parameter Sets: GetOptionSetByFilter
-Aliases: 
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
@@ -122,10 +103,10 @@ NOTE: This parameter is case sensitive. i.e. it must match the case of the Name 
 
 ```yaml
 Type: String
-Parameter Sets: GetOptionSetByName
-Aliases: 
+Parameter Sets: GetOptionSetByFilter
+Aliases: Include
 
-Required: True
+Required: False
 Position: 1
 Default value: None
 Accept pipeline input: False

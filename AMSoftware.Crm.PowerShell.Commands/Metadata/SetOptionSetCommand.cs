@@ -23,7 +23,8 @@ using Microsoft.Xrm.Sdk.Metadata;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 {
-    [Cmdlet(VerbsCommon.Set, "OptionSet", HelpUri = HelpUrlConstants.SetOptionSetHelpUrl)]
+    [Cmdlet(VerbsCommon.Set, "OptionSet", HelpUri = HelpUrlConstants.SetOptionSetHelpUrl, DefaultParameterSetName = SetOptionSetByInputObjectParameterSet)]
+    [OutputType(typeof(OptionSetMetadata))]
     public sealed class SetOptionSetCommand : CrmOrganizationCmdlet
     {
         private const string SetOptionSetParameterSet = "SetOptionSet";
@@ -31,9 +32,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 
         private MetadataRepository _repository = new MetadataRepository();
 
-        [Parameter(Position = 1, Mandatory = true, ParameterSetName = SetOptionSetByInputObjectParameterSet)]
+        [Parameter(Position = 1, Mandatory = true, ParameterSetName = SetOptionSetByInputObjectParameterSet, ValueFromPipeline = true)]
+        [Alias("OptionSet")]
         [ValidateNotNull]
-        public OptionSetMetadata OptionSet { get; set; }
+        public OptionSetMetadata InputObject { get; set; }
 
         [Parameter(Position = 1, Mandatory = true, ParameterSetName = SetOptionSetParameterSet)]
         [ValidateNotNullOrEmpty]
@@ -51,6 +53,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         [ValidateNotNull]
         public bool? Customizable { get; set; }
 
+        [Parameter]
+        public SwitchParameter PassThru { get; set; }
+
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
@@ -62,10 +67,18 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
                     {
                         OptionSetMetadataBase internalOptionSet = BuildOptionSet();
                         _repository.UpdateOptionSet(internalOptionSet);
+                        if (PassThru)
+                        {
+                            WriteObject(_repository.GetOptionSet(Name));
+                        }
                     }
                     break;
                 case SetOptionSetByInputObjectParameterSet:
-                    _repository.UpdateOptionSet(OptionSet);
+                    _repository.UpdateOptionSet(InputObject);
+                    if (PassThru)
+                    {
+                        WriteObject(_repository.GetOptionSet(InputObject.MetadataId.Value));
+                    }
                     break;
                 default:
                     break;

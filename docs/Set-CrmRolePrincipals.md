@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Set-CrmRolePrincipals.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Set-CrmRolePrincipals.md
 schema: 2.0.0
 ---
 
@@ -13,7 +14,7 @@ Set the teams or users assigned to a role.
 
 ```
 Set-CrmRolePrincipals [-Role] <Guid> [-PrincipalType] <CrmPrincipalType> -Principals <Guid[]> [-Overwrite]
- [<CommonParameters>]
+ [-PassThru] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -38,15 +39,15 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Principals
-The id of the users or teams to assign to the role.
+### -PassThru
+Returns an object that represents the role. By default, this cmdlet does not generate any output.
 
 ```yaml
-Type: Guid[]
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases: 
 
-Required: True
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -69,13 +70,28 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -Principals
+The id of the users or teams to assign to the role.
+
+```yaml
+Type: Guid[]
+Parameter Sets: (All)
+Aliases: 
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -Role
 The id of the role to assign the principals to.
 
 ```yaml
 Type: Guid
 Parameter Sets: (All)
-Aliases: 
+Aliases: Id
 
 Required: True
 Position: 0

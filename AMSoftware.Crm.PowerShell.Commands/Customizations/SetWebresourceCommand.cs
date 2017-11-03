@@ -59,6 +59,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
         [ValidateNotNull]
         public bool? IsCustomizable { get; set; }
 
+        [Parameter]
+        public SwitchParameter PassThru { get; set; }
+
         public object GetDynamicParameters()
         {
             return _contentParameters;
@@ -111,6 +114,11 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
             }
 
             _repository.Update(webresource);
+
+            if (PassThru)
+            {
+                WriteObject(_repository.Get("webresource", Id));
+            }
         }
     }
 

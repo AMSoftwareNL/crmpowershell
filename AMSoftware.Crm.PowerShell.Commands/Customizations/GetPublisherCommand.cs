@@ -33,14 +33,15 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 
         private ContentRepository _repository = new ContentRepository();
 
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = GetPublisherByIdParameterSet)]
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = GetPublisherByIdParameterSet, ValueFromPipeline = true)]
         [ValidateNotNull]
         public Guid Id { get; set; }
 
-        [Parameter(ParameterSetName = GetAllPublishersParameterSet)]
+        [Parameter(Position = 1, ParameterSetName = GetAllPublishersParameterSet)]
+        [Alias("Include")]
         [ValidateNotNullOrEmpty]
         [SupportsWildcards]
-        public string Include { get; set; }
+        public string Name { get; set; }
 
         [Parameter(ParameterSetName = GetAllPublishersParameterSet)]
         [ValidateNotNullOrEmpty]
@@ -70,15 +71,14 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 
             if (PagingParameters.IncludeTotalCount)
             {
-                double accuracy;
-                int count = _repository.GetRowCount(advancedFilterQuery, out accuracy);
+                int count = _repository.GetRowCount(advancedFilterQuery, out double accuracy);
                 WriteObject(PagingParameters.NewTotalCount(Convert.ToUInt64(count), accuracy));
             }
 
             var result = _repository.Get(advancedFilterQuery, PagingParameters.First, PagingParameters.Skip);
-            if (!string.IsNullOrWhiteSpace(Include))
+            if (!string.IsNullOrWhiteSpace(Name))
             {
-                WildcardPattern includePattern = new WildcardPattern(Include, WildcardOptions.IgnoreCase);
+                WildcardPattern includePattern = new WildcardPattern(Name, WildcardOptions.IgnoreCase);
                 result = result.Where(a => includePattern.IsMatch(a.GetAttributeValue<string>("uniquename")) || includePattern.IsMatch(a.GetAttributeValue<string>("friendlyname")));
             }
             if (!string.IsNullOrWhiteSpace(Exclude))
@@ -90,26 +90,15 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
             WriteObject(result, true);
         }
 
-        private void GetContentByQuery(QueryBase query)
-        {
-            if (PagingParameters.IncludeTotalCount)
-            {
-                double accuracy;
-                int count = _repository.GetRowCount(query, out accuracy);
-                WriteObject(PagingParameters.NewTotalCount(Convert.ToUInt64(count), accuracy));
-            }
-
-            foreach (var item in _repository.Get(query, PagingParameters.First, PagingParameters.Skip))
-            {
-                WriteObject(item);
-            }
-        }
-
         private QueryExpression BuildPublisherByFilterQuery()
         {
             QueryExpression query = new QueryExpression("publisher")
             {
-                ColumnSet = new ColumnSet(true)
+                ColumnSet = new ColumnSet(true),
+                Orders =
+                {
+                    new OrderExpression("uniquename", OrderType.Ascending)
+                }
             };
             
             return query;

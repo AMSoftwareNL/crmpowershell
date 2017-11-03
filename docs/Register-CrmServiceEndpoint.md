@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Register-CrmServiceEndpoint.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Register-CrmServiceEndpoint.md
 schema: 2.0.0
 ---
 
@@ -13,7 +14,7 @@ Register a serviceendpoint.
 
 ```
 Register-CrmServiceEndpoint -Name <String> [-Description <String>] -Namespace <String> -Path <String>
- -Contract <CrmServiceEndpointContract> [-Claim <CrmServiceEndpointUserClaim>] [-Federated]
+ -Contract <CrmServiceEndpointContract> [-Claim <CrmServiceEndpointUserClaim>] [-Federated] [-PassThru]
  [<CommonParameters>]
 ```
 
@@ -110,6 +111,21 @@ Parameter Sets: (All)
 Aliases: 
 
 Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -PassThru
+Returns an object that represents the Service Endpoint. By default, this cmdlet does not generate any output.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: 
+
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False

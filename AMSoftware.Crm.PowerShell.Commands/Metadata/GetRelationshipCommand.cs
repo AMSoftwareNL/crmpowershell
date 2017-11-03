@@ -25,7 +25,7 @@ using Microsoft.Xrm.Sdk.Metadata;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 {
-    [Cmdlet(VerbsCommon.Get, "Relationship", HelpUri = HelpUrlConstants.GetRelationshipHelpUrl)]
+    [Cmdlet(VerbsCommon.Get, "Relationship", HelpUri = HelpUrlConstants.GetRelationshipHelpUrl, DefaultParameterSetName = GetRelationshipByFilterParameterSet)]
     [OutputType(typeof(RelationshipMetadataBase))]
     public sealed class GetRelationshipCommand : CrmOrganizationCmdlet
     {
@@ -39,11 +39,13 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         [ValidateNotNullOrEmpty]
         public string Name { get; set; }
 
-        [Parameter(Position = 1, Mandatory = true, ParameterSetName = GetRelationshipByIdParameterSet)]
+        [Parameter(Position = 1, Mandatory = true, ParameterSetName = GetRelationshipByIdParameterSet, ValueFromPipeline = true)]
+        [Alias("MetadataId")]
         [ValidateNotNull]
         public Guid Id { get; set; }
 
-        [Parameter(Position = 1, ParameterSetName = GetRelationshipByFilterParameterSet)]
+        [Parameter(Position = 1, ParameterSetName = GetRelationshipByFilterParameterSet, ValueFromPipelineByPropertyName = true)]
+        [Alias("EntityLogicalName", "LogicalName")]
         [ValidateNotNullOrEmpty]
         public string Entity { get; set; }
 
@@ -119,6 +121,8 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
                             (!excludePattern.IsMatch(((ManyToManyRelationshipMetadata)r).Entity2LogicalName) && ((ManyToManyRelationshipMetadata)r).Entity1LogicalName.Equals(Entity, StringComparison.InvariantCultureIgnoreCase)))));
                 }
             }
+
+            result = result.OrderBy(r => r.SchemaName);
 
             WriteObject(result, true);
         }

@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Get-CrmPluginAssembly.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Get-CrmPluginAssembly.md
 schema: 2.0.0
 ---
 
@@ -13,19 +14,13 @@ Get plugin assembly.
 
 ### GetAssemblyByFilter (Default)
 ```
-Get-CrmPluginAssembly [-Include <String>] [-Exclude <String>] [-ExcludeManaged] [-IncludeHidden]
+Get-CrmPluginAssembly [[-Name] <String>] [-Exclude <String>] [-ExcludeManaged] [-IncludeHidden]
  [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
 ```
 
 ### GetAssemblyById
 ```
 Get-CrmPluginAssembly [-Id] <Guid> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
-```
-
-### GetAssemblyByName
-```
-Get-CrmPluginAssembly [-Name] <String> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>]
- [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -98,22 +93,7 @@ Aliases:
 Required: True
 Position: 1
 Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Include
-Include assemblies whose name matches the provided pattern.
-
-```yaml
-Type: String
-Parameter Sets: GetAssemblyByFilter
-Aliases: 
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
@@ -154,10 +134,10 @@ The name of the assembly to retrieve.
 
 ```yaml
 Type: String
-Parameter Sets: GetAssemblyByName
-Aliases: 
+Parameter Sets: GetAssemblyByFilter
+Aliases: Include
 
-Required: True
+Required: False
 Position: 1
 Default value: None
 Accept pipeline input: False

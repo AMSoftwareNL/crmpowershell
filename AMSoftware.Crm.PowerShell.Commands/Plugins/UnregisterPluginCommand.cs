@@ -96,8 +96,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
                 return new List<Guid>();
             }
 
-            QueryExpression query = new QueryExpression(entityName);
-            query.ColumnSet = new ColumnSet(new string[] { retrieveAttribute });
+            QueryExpression query = new QueryExpression(entityName)
+            {
+                ColumnSet = new ColumnSet(new string[] { retrieveAttribute })
+            };
 
             ConditionExpression condition = new ConditionExpression(filterAttribute, ConditionOperator.In);
             condition.Values.Clear();
@@ -107,8 +109,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
             List<Guid> list = new List<Guid>();
             foreach (Entity component in repository.Get(query))
             {
-                object referencedAttributeValue;
-                if (component.Attributes.TryGetValue(retrieveAttribute, out referencedAttributeValue))
+                if (component.Attributes.TryGetValue(retrieveAttribute, out object referencedAttributeValue))
                 {
                     Type type = referencedAttributeValue.GetType();
                     if (type == typeof(Guid))

@@ -27,7 +27,8 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
     {
         private ContentRepository _repository = new ContentRepository();
 
-        [Parameter(Mandatory = true, Position = 1)]
+        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
+        [Alias("LCID")]
         [ValidateNotNull]
         public int LocaleId { get; set; }
 

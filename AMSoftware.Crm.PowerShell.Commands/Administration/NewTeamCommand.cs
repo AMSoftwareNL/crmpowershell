@@ -56,6 +56,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         [ValidateNotNull]
         public Guid[] Users { get; set; }
 
+        [Parameter]
+        public SwitchParameter PassThru { get; set; }
+
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
@@ -63,8 +66,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
             Guid[] userIds = Users;
             Guid businessUnitId = BusinessUnit ?? SecurityManagementHelper.GetDefaultBusinessUnitId(_repository);
 
-            Entity newTeam = new Entity("team");
-            newTeam.Attributes = new AttributeCollection();
+            Entity newTeam = new Entity("team")
+            {
+                Attributes = new AttributeCollection()
+            };
             newTeam.Attributes.Add("name", Name);
             newTeam.Attributes.Add("teamtype", new OptionSetValue((int)TeamType));
             newTeam.Attributes.Add("administratorid", new EntityReference("systemuser", Administrator));
@@ -80,7 +85,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
                 SecurityManagementHelper.AddUsersToTeam(_repository, newTeamId, Users);
             }
 
-            WriteObject(_repository.Get("team", newTeamId));
+            if (PassThru)
+            {
+                WriteObject(_repository.Get("team", newTeamId));
+            }
         }
     }
 }

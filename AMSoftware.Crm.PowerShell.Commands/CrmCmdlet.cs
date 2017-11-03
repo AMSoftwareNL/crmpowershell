@@ -107,14 +107,13 @@ namespace AMSoftware.Crm.PowerShell.Commands
             foreach (string path in pathsToProcess)
             {
                 ProviderInfo provider;
-                PSDriveInfo drive;
                 if (expandWildcards)
                 {
                     resolvedPaths.AddRange(this.GetResolvedProviderPathFromPSPath(path, out provider));
                 }
                 else
                 {
-                    resolvedPaths.Add(this.SessionState.Path.GetUnresolvedProviderPathFromPSPath(path, out provider, out drive));
+                    resolvedPaths.Add(this.SessionState.Path.GetUnresolvedProviderPathFromPSPath(path, out provider, out PSDriveInfo drive));
                 }
                 // ensure that this path (or set of paths after wildcard expansion)
                 if (IsFileSystemPath(provider, path) == false)

@@ -60,7 +60,12 @@ namespace AMSoftware.Crm.PowerShell.Common.Helpers
             OptionSetMetadata componentTypeSet = repository.GetOptionSet("componenttype") as OptionSetMetadata;
 
             LabelConverter lc = new LabelConverter();
-            return componentTypeSet.Options.ToDictionary(k => k.Value.GetValueOrDefault(), e => lc.ConvertToString(e.Label));
+            return componentTypeSet.Options.ToDictionary(k => k.Value.GetValueOrDefault(), e => ((string)lc.ConvertTo(e.Label, typeof(string), null, true)).Replace(" ", ""));
+        }
+
+        public static string GetComponentName(OptionSetValue componentType, Guid objectId)
+        {
+            return GetComponentName(componentType.Value, objectId);
         }
 
         public static string GetComponentName(int componentType, Guid objectId)

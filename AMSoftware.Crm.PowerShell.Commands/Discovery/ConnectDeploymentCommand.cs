@@ -16,6 +16,7 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 using System;
+using System.Linq;
 using System.Management.Automation;
 using System.Net;
 using System.Text.RegularExpressions;
@@ -69,7 +70,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Discovery
                     break;
             }
 
-            WriteObject(_repository.GetOrganization(), true);
+            WriteObject(_repository.GetOrganization().OrderBy(o => o.UrlName), true);
         }
 
         private void ConnectOnPremises()
@@ -85,7 +86,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Discovery
                 discoveryUri = new Uri(discoveryUri, OnPremisesDiscoveryServicePath);
             }
 
-            CrmContext.ConnectDeployment(discoveryUri, Credential == null ? CredentialCache.DefaultNetworkCredentials : Credential.GetNetworkCredential());
+            CrmContext.ConnectDeployment(discoveryUri, Credential == null ? CredentialCache.DefaultNetworkCredentials : Credential.GetNetworkCredential(), true);
         }
 
         private void ConnectOnline()

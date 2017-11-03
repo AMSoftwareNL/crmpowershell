@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Export-CrmSolution.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Export-CrmSolution.md
 schema: 2.0.0
 ---
 
@@ -241,7 +242,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[http://crmpowershell.amsoftware.nl/Export-CrmSolution.html](http://crmpowershell.amsoftware.nl/Export-CrmSolution.html)
+[https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Export-CrmSolution.md](https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Export-CrmSolution.md)
 
 [Get-CrmSolution](Get-CrmSolution.md)
 

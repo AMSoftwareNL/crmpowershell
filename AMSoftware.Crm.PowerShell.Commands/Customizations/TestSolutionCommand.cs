@@ -35,8 +35,8 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 
         private ContentRepository _repository = new ContentRepository();
 
-        [Parameter(Position = 1, ValueFromPipeline = true, ParameterSetName = TestUninstallSolutionParameterSet)]
-        [Parameter(Position = 1, ValueFromPipeline = true, ParameterSetName = TestDependenciesSolutionParameterSet)]
+        [Parameter(Position = 1, ParameterSetName = TestUninstallSolutionParameterSet, ValueFromPipeline = true)]
+        [Parameter(Position = 1, ParameterSetName = TestDependenciesSolutionParameterSet, ValueFromPipeline = true)]
         [ValidateNotNull]
         public Guid Solution { get; set; }
 
@@ -58,7 +58,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
             switch (ParameterSetName)
             {
                 case TestUninstallSolutionParameterSet:
-                    string solutionUniqueName1 = SolutionManagementHelper.GetSolutionUniqueName(_repository, Solution, true);
+                    string solutionUniqueName1 = SolutionManagementHelper.GetSolutionUniqueName(_repository, Solution);
                     ExecuteTestUninstall(solutionUniqueName1);
                     break;
                 case TestDependenciesSolutionParameterSet:

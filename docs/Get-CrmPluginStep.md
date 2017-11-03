@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Get-CrmPluginStep.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Get-CrmPluginStep.md
 schema: 2.0.0
 ---
 
@@ -20,7 +21,7 @@ Get-CrmPluginStep [[-EventSource] <Guid>] [-Message <String>] [-Entity <String>]
 
 ### GetPluginStepById
 ```
-Get-CrmPluginStep [-Id] <Guid> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
+Get-CrmPluginStep -Id <Guid> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -91,7 +92,7 @@ Parameter Sets: GetPluginStepById
 Aliases: 
 
 Required: True
-Position: 1
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

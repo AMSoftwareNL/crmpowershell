@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Get-CrmRelationship.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Get-CrmRelationship.md
 schema: 2.0.0
 ---
 
@@ -11,6 +12,12 @@ Get the metadata of a relationship.
 
 ## SYNTAX
 
+### GetRelationshipByFilter (Default)
+```
+Get-CrmRelationship [[-Entity] <String>] [[-RelatedEntity] <String>] [-Include <String>] [-Exclude <String>]
+ [-Type <CrmRelationshipType>] [-CustomOnly] [-ExcludeManaged] [<CommonParameters>]
+```
+
 ### GetRelationshipByName
 ```
 Get-CrmRelationship [-Name] <String> [<CommonParameters>]
@@ -19,12 +26,6 @@ Get-CrmRelationship [-Name] <String> [<CommonParameters>]
 ### GetRelationshipById
 ```
 Get-CrmRelationship [-Id] <Guid> [<CommonParameters>]
-```
-
-### GetRelationshipByFilter
-```
-Get-CrmRelationship [[-Entity] <String>] [[-RelatedEntity] <String>] [-Include <String>] [-Exclude <String>]
- [-Type <CrmRelationshipType>] [-CustomOnly] [-ExcludeManaged] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -64,12 +65,12 @@ NOTE: This parameter is case sensitive. i.e. it must match the case of the Logic
 ```yaml
 Type: String
 Parameter Sets: GetRelationshipByFilter
-Aliases: 
+Aliases: EntityLogicalName, LogicalName
 
 Required: False
 Position: 1
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
@@ -109,12 +110,12 @@ The MetadataId of the relationship to retrieve.
 ```yaml
 Type: Guid
 Parameter Sets: GetRelationshipById
-Aliases: 
+Aliases: MetadataId
 
 Required: True
 Position: 1
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 

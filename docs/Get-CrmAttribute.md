@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Get-CrmAttribute.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Get-CrmAttribute.md
 schema: 2.0.0
 ---
 
@@ -13,18 +14,13 @@ Get the metadata of an attribute.
 
 ### GetAttributesByFilter (Default)
 ```
-Get-CrmAttribute [-Entity] <String> [-Include <String>] [-Exclude <String>] [-CustomOnly] [-ExcludeManaged]
+Get-CrmAttribute [-Entity] <String> [[-Name] <String>] [-Exclude <String>] [-CustomOnly] [-ExcludeManaged]
  [-IncludeLinked] [-AttributeType <String>] [<CommonParameters>]
 ```
 
 ### GetAttributeById
 ```
 Get-CrmAttribute [-Id] <Guid> [<CommonParameters>]
-```
-
-### GetAttributeByName
-```
-Get-CrmAttribute [-Entity] <String> [-Name] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -84,13 +80,13 @@ NOTE: This parameter is case sensitive. i.e. it must match the case of the Logic
 
 ```yaml
 Type: String
-Parameter Sets: GetAttributesByFilter, GetAttributeByName
-Aliases: 
+Parameter Sets: GetAttributesByFilter
+Aliases: EntityLogicalName, LogicalName
 
 Required: True
 Position: 1
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
@@ -130,27 +126,12 @@ The MetadataId of the attribute to retrieve.
 ```yaml
 Type: Guid
 Parameter Sets: GetAttributeById
-Aliases: 
+Aliases: MetadataId
 
 Required: True
 Position: 1
 Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Include
-Include the metadata for attributes whose LogicalName matches the provided pattern.
-
-```yaml
-Type: String
-Parameter Sets: GetAttributesByFilter
-Aliases: 
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
@@ -176,10 +157,10 @@ NOTE: This parameter is case sensitive. i.e. it must match the case of the Logic
 
 ```yaml
 Type: String
-Parameter Sets: GetAttributeByName
-Aliases: 
+Parameter Sets: GetAttributesByFilter
+Aliases: Include
 
-Required: True
+Required: False
 Position: 2
 Default value: None
 Accept pipeline input: False

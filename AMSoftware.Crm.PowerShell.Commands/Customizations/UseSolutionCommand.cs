@@ -20,7 +20,6 @@ using System.Management.Automation;
 using AMSoftware.Crm.PowerShell.Common;
 using AMSoftware.Crm.PowerShell.Common.Helpers;
 using AMSoftware.Crm.PowerShell.Common.Repositories;
-using Microsoft.Xrm.Sdk;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
@@ -30,6 +29,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
         private ContentRepository _repository = new ContentRepository();
 
         [Parameter(Position = 1, ValueFromPipeline = true)]
+        [Alias("Id")]
         [ValidateNotNull]
         public Guid? Solution { get; set; }
 

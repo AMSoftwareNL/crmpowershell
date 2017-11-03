@@ -15,24 +15,21 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-using System;
-using System.Collections.Generic;
-using System.Management.Automation;
-using AMSoftware.Crm.PowerShell.Common;
 using AMSoftware.Crm.PowerShell.Common.Helpers;
 using AMSoftware.Crm.PowerShell.Common.Repositories;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Management.Automation;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
-    [Cmdlet(VerbsCommon.Get, "SolutionComponent", HelpUri = HelpUrlConstants.GetSolutionComponentHelpUrl, SupportsPaging = true, DefaultParameterSetName = GetSolutionComponentSimpleParameterSet)]
+    [Cmdlet(VerbsCommon.Get, "SolutionComponent", HelpUri = HelpUrlConstants.GetSolutionComponentHelpUrl, SupportsPaging = true)]
     [OutputType(typeof(Entity))]
     public sealed class GetSolutionComponentCommand : CrmOrganizationCmdlet
     {
-        private const string GetSolutionComponentSimpleParameterSet = "GetSolutionComponentSimple";
-        private const string GetSolutionComponentAdvancedParameterSet = "GetSolutionComponentAdvanced";
-
         private ContentRepository _repository = new ContentRepository();
 
         private Dictionary<int, string> _validComponentTypes;
@@ -41,13 +38,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
         [ValidateNotNull]
         public Guid Solution { get; set; }
 
-        [Parameter(ParameterSetName = GetSolutionComponentSimpleParameterSet)]
-        [ValidateNotNull]
-        public CrmComponentType? Type { get; set; }
-
-        [Parameter(ParameterSetName = GetSolutionComponentAdvancedParameterSet)]
-        [ValidateNotNull]
-        public int? ComponentType { get; set; }
+        [Parameter(Position = 2)]
+        [Alias("ComponentType")]
+        [ValidateNotNullOrEmpty]
+        public string Type { get; set; }
 
         protected override void BeginProcessing()
         {
@@ -61,34 +55,51 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
             base.ExecuteCmdlet();
 
             string solutionUniqueName = SolutionManagementHelper.GetSolutionUniqueName(_repository, Solution);
-            int? componentTypeValue = null;
 
-            switch (this.ParameterSetName)
+            int? componentTypeValue = null;
+            if (!string.IsNullOrWhiteSpace(Type))
             {
-                case GetSolutionComponentSimpleParameterSet:
-                    componentTypeValue = (int?)Type;
-                    break;
-                case GetSolutionComponentAdvancedParameterSet:
-                    componentTypeValue = ComponentType;
-                    if (componentTypeValue.HasValue && !_validComponentTypes.ContainsKey(componentTypeValue.Value))
-                    {
-                        throw new NotSupportedException(string.Format("ComponentType '{0}' is not supported.", componentTypeValue.Value));
-                    }
-                    break;
-                default:
-                    break;
+                if (int.TryParse(Type, out int typeAsInt) && _validComponentTypes.ContainsKey(typeAsInt))
+                {
+                    componentTypeValue = typeAsInt;
+                }
+                else if (_validComponentTypes.Any(v => v.Value.Equals(Type, StringComparison.InvariantCultureIgnoreCase)))
+                {
+                    componentTypeValue = _validComponentTypes.First(v => v.Value.Equals(Type, StringComparison.InvariantCultureIgnoreCase)).Key;
+                }
+                else
+                {
+                    throw new NotSupportedException(string.Format("ComponentType '{0}' is not supported.", Type));
+                }
             }
 
             QueryExpression query = GetSolutionComponentQuery(Solution, componentTypeValue);
 
             if (PagingParameters.IncludeTotalCount)
             {
-                double accuracy;
-                int count = _repository.GetRowCount(query, out accuracy);
+                int count = _repository.GetRowCount(query, out double accuracy);
                 WriteObject(PagingParameters.NewTotalCount(Convert.ToUInt64(count), accuracy));
             }
 
-            WriteObject(_repository.Get(query, this.PagingParameters.First, this.PagingParameters.Skip), true);
+            IEnumerable<Entity> result = _repository.Get(query, this.PagingParameters.First, this.PagingParameters.Skip);
+
+            var groupedResult = result.GroupBy(k =>
+            {
+                var keyAttribute = k.GetAttributeValue<AliasedValue>("dependency.requiredcomponentobjectid");
+                if (keyAttribute == null)
+                {
+                    return k.GetAttributeValue<Guid>("objectid");
+                }
+                else
+                {
+                    return (Guid)keyAttribute.Value;
+                }
+            });
+
+            foreach (var groupResult in groupedResult)
+            {
+                WriteObject(groupResult.OrderBy(e => e.GetAttributeValue<OptionSetValue>("componenttype").Value), true);
+            }
         }
 
         private QueryExpression GetSolutionComponentQuery(Guid solutionId, int? componentType)
@@ -100,6 +111,21 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
                 {
                     Conditions = {
                         new ConditionExpression("solutionid", ConditionOperator.Equal, solutionId)
+                    }
+                },
+                LinkEntities =
+                {
+                    new LinkEntity("solutioncomponent", "dependency", "objectid", "dependentcomponentobjectid", JoinOperator.LeftOuter)
+                    {
+                        EntityAlias = "dependency",
+                        Columns = new ColumnSet("requiredcomponentobjectid"),
+                        LinkCriteria =
+                        {
+                            Conditions =
+                            {
+                                new ConditionExpression("dependencytype", ConditionOperator.Equal, 1)
+                            }
+                        }
                     }
                 }
             };

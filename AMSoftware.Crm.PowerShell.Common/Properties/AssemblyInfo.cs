@@ -49,6 +49,6 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.2.4.0")]
-[assembly: AssemblyFileVersion("1.2.4.0")]
+[assembly: AssemblyVersion("1.3.0.0")]
+[assembly: AssemblyFileVersion("1.3.0.0")]
 [assembly: InternalsVisibleTo("AMSoftware.Crm.PowerShell.Commands, PublicKey=0024000004800000940000000602000000240000525341310004000001000100c30788ed73a5fb135b7df52d4705f403e21d843dcb5fd5f608903a156250bb607a2b8ff29d29514ea79e5246ca0bde2b529d0b31824f3e9a012ee6af9e8af8c6f96d1bf99e8590fd04d5979ecf532661fe45c698fb7e4f1ef465a1059645d0c2ac65a04c59bfb726907aee6af26ae4a9daf98b0775d228d9fdb9cce37526c6ad")]

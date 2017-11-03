@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Get-CrmUser.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Get-CrmUser.md
 schema: 2.0.0
 ---
 
@@ -13,13 +14,8 @@ Get user from the connected organization.
 
 ### GetAllUsers (Default)
 ```
-Get-CrmUser [-Include <String>] [-Exclude <String>] [-BusinessUnit <Guid>] [-IncludeDisabled]
+Get-CrmUser [[-Name] <String>] [-Exclude <String>] [-BusinessUnit <Guid>] [-IncludeDisabled]
  [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
-```
-
-### GetUserByUserName
-```
-Get-CrmUser [-UserName] <String> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
 ```
 
 ### GetUserById
@@ -97,22 +93,7 @@ Aliases:
 Required: True
 Position: 0
 Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Include
-Include users whose name matches the provided pattern.
-
-```yaml
-Type: String
-Parameter Sets: GetAllUsers
-Aliases: 
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
@@ -148,6 +129,21 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -Name
+Include users whose name matches the provided pattern.
+
+```yaml
+Type: String
+Parameter Sets: GetAllUsers
+Aliases: Include
+
+Required: False
+Position: 0
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -Skip
 Skips (does not return) the specified number of records.
 
@@ -158,21 +154,6 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -UserName
-The username of the user to retrieve.
-
-```yaml
-Type: String
-Parameter Sets: GetUserByUserName
-Aliases: 
-
-Required: True
-Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

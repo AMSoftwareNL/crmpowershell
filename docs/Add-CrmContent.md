@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Add-CrmContent.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Add-CrmContent.md
 schema: 2.0.0
 ---
 
@@ -13,12 +14,12 @@ Add a data record to an entity.
 
 ### AddContentByInputObject (Default)
 ```
-Add-CrmContent [-Record] <Entity> [<CommonParameters>]
+Add-CrmContent [-InputObject] <Entity> [-PassThru] [<CommonParameters>]
 ```
 
 ### AddContent
 ```
-Add-CrmContent [-Entity] <String> [[-Id] <Guid>] [-Attributes] <Hashtable> [<CommonParameters>]
+Add-CrmContent [-Entity] <String> [[-Id] <Guid>] [-Attributes] <Hashtable> [-PassThru] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -80,16 +81,31 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Record
+### -InputObject
 An entity object containing the attributes and values of the record.
 
 ```yaml
 Type: Entity
 Parameter Sets: AddContentByInputObject
-Aliases: 
+Aliases: Record
 
 Required: True
 Position: 1
+Default value: None
+Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -PassThru
+Returns an object that represents the new record. By default, this cmdlet does not generate any output.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: 
+
+Required: False
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

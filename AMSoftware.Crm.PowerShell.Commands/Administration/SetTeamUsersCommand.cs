@@ -15,20 +15,23 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+using AMSoftware.Crm.PowerShell.Common.Helpers;
+using AMSoftware.Crm.PowerShell.Common.Repositories;
+using Microsoft.Xrm.Sdk;
 using System;
 using System.Linq;
 using System.Management.Automation;
-using AMSoftware.Crm.PowerShell.Common.Helpers;
-using AMSoftware.Crm.PowerShell.Common.Repositories;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
     [Cmdlet(VerbsCommon.Set, "TeamUsers", HelpUri = HelpUrlConstants.SetTeamUsersHelpUrl)]
+    [OutputType(typeof(Entity))]
     public sealed class SetTeamUsersCommand : CrmOrganizationCmdlet
     {
         private ContentRepository _repository = new ContentRepository();
 
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+        [Alias("Id")]
         [ValidateNotNull]
         public Guid Team { get; set; }
 
@@ -39,11 +42,14 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         [Parameter]
         public SwitchParameter Overwrite { get; set; }
 
+        [Parameter]
+        public SwitchParameter PassThru { get; set; }
+
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
 
-            Guid[] currentSetIds = SecurityManagementHelper.GetUsersInTeam(_repository, Team).ToArray();
+            Guid[] currentSetIds = SecurityManagementHelper.GetUsersInTeam(_repository, Team).Select(e => e.Id).ToArray();
             Guid[] addSet = Users.Except(currentSetIds).ToArray();
             if (addSet != null && addSet.Length > 0)
             {
@@ -57,6 +63,11 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
                 {
                     SecurityManagementHelper.RemoveUsersFromTeam(_repository, Team, removeSet);
                 }
+            }
+
+            if (PassThru)
+            {
+                WriteObject(_repository.Get("team", Team));
             }
         }
     }

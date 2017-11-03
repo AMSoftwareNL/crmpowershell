@@ -60,6 +60,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         [ValidateNotNull]
         public Guid[] Roles { get; set; }
 
+        [Parameter]
+        public SwitchParameter PassThru { get; set; }
+
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
@@ -67,8 +70,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
             Guid[] roleIds = Roles;
             Guid businessUnitId = BusinessUnit ?? SecurityManagementHelper.GetDefaultBusinessUnitId(_repository);
 
-            Entity newUser = new Entity("systemuser");
-            newUser.Attributes = new AttributeCollection();
+            Entity newUser = new Entity("systemuser")
+            {
+                Attributes = new AttributeCollection()
+            };
             newUser.Attributes.Add("domainname", UserName);
             newUser.Attributes.Add("firstname", Firstname);
             newUser.Attributes.Add("lastname", Lastname);
@@ -79,7 +84,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
             Guid newUserId = _repository.Add(newUser);
             SecurityManagementHelper.LinkPrincipalRoles(_repository, "systemuser", newUserId, "role", roleIds);
 
-            WriteObject(_repository.Get("systemuser", newUserId));
+            if (PassThru)
+            {
+                WriteObject(_repository.Get("systemuser", newUserId));
+            }
         }
     }
 }

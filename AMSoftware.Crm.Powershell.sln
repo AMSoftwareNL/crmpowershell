@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{596F15CE-AC31-4EF0-B3DA-836AF7A58FE0}"
 	ProjectSection(SolutionItems) = preProject
@@ -17,22 +17,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AMSoftware.Crm.PowerShell",
 		AMSoftware.Crm.PowerShell\AMSoftware.Crm.Powershell.Format.ps1xml = AMSoftware.Crm.PowerShell\AMSoftware.Crm.Powershell.Format.ps1xml
 		AMSoftware.Crm.PowerShell\AMSoftware.Crm.Powershell.Types.ps1xml = AMSoftware.Crm.PowerShell\AMSoftware.Crm.Powershell.Types.ps1xml
 		AMSoftware.Crm.PowerShell\AMSoftware.Crm.psd1 = AMSoftware.Crm.PowerShell\AMSoftware.Crm.psd1
-		AMSoftware.Crm.PowerShell\StartupShortcut.ps1 = AMSoftware.Crm.PowerShell\StartupShortcut.ps1
 	EndProjectSection
 EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://tfs.amsoftware.nl/products
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = AMSoftware.Crm.PowerShell.Common\\AMSoftware.Crm.PowerShell.Common.csproj
-		SccProjectName1 = AMSoftware.Crm.PowerShell.Common
-		SccLocalPath1 = AMSoftware.Crm.PowerShell.Common
-		SccProjectUniqueName2 = AMSoftware.Crm.PowerShell.Commands\\AMSoftware.Crm.PowerShell.Commands.csproj
-		SccProjectName2 = AMSoftware.Crm.PowerShell.Commands
-		SccLocalPath2 = AMSoftware.Crm.PowerShell.Commands
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -49,5 +36,20 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4F0F8426-01E9-410A-9CD0-A9E27E5233EA}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs.amsoftware.nl/products
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = AMSoftware.Crm.PowerShell.Common\\AMSoftware.Crm.PowerShell.Common.csproj
+		SccProjectName1 = AMSoftware.Crm.PowerShell.Common
+		SccLocalPath1 = AMSoftware.Crm.PowerShell.Common
+		SccProjectUniqueName2 = AMSoftware.Crm.PowerShell.Commands\\AMSoftware.Crm.PowerShell.Commands.csproj
+		SccProjectName2 = AMSoftware.Crm.PowerShell.Commands
+		SccLocalPath2 = AMSoftware.Crm.PowerShell.Commands
 	EndGlobalSection
 EndGlobal

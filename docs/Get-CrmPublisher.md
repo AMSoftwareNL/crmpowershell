@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Get-CrmPublisher.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Get-CrmPublisher.md
 schema: 2.0.0
 ---
 
@@ -13,8 +14,8 @@ Get a publisher for customizations.
 
 ### GetAllPublishers (Default)
 ```
-Get-CrmPublisher [-Include <String>] [-Exclude <String>] [-IncludeTotalCount] [-Skip <UInt64>]
- [-First <UInt64>] [<CommonParameters>]
+Get-CrmPublisher [[-Name] <String>] [-Exclude <String>] [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>]
+ [<CommonParameters>]
 ```
 
 ### GetPublisherById
@@ -77,22 +78,7 @@ Aliases:
 Required: True
 Position: 1
 Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Include
-Include publishers whose name matches the provided pattern.
-
-```yaml
-Type: String
-Parameter Sets: GetAllPublishers
-Aliases: 
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
@@ -108,6 +94,21 @@ Aliases:
 
 Required: False
 Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Name
+Include publishers whose name matches the provided pattern.
+
+```yaml
+Type: String
+Parameter Sets: GetAllPublishers
+Aliases: Include
+
+Required: False
+Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Get-CrmRole.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Get-CrmRole.md
 schema: 2.0.0
 ---
 
@@ -13,8 +14,8 @@ Get role from the connected organization.
 
 ### GetAllRoles (Default)
 ```
-Get-CrmRole [-Include <String>] [-Exclude <String>] [-BusinessUnit <Guid>] [-IncludeTotalCount]
- [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
+Get-CrmRole [[-Name] <String>] [-Exclude <String>] [-BusinessUnit <Guid>] [-IncludeTotalCount] [-Skip <UInt64>]
+ [-First <UInt64>] [<CommonParameters>]
 ```
 
 ### GetRoleById
@@ -47,7 +48,7 @@ Aliases:
 Required: False
 Position: Named
 Default value: None
-Accept pipeline input: True (ByValue)
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -92,22 +93,7 @@ Aliases:
 Required: True
 Position: 0
 Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Include
-Include roles whose name matches the provided pattern.
-
-```yaml
-Type: String
-Parameter Sets: GetAllRoles
-Aliases: 
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
@@ -123,6 +109,21 @@ Aliases:
 
 Required: False
 Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Name
+Include roles whose name matches the provided pattern.
+
+```yaml
+Type: String
+Parameter Sets: GetAllRoles
+Aliases: Include
+
+Required: False
+Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

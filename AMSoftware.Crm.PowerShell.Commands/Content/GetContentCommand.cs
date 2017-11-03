@@ -43,7 +43,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Content
         [ValidateNotNullOrEmpty]
         public string Entity { get; set; }
 
-        [Parameter(Mandatory = true, Position = 2, ParameterSetName = GetContentForEntityByIdParameterSet)]
+        [Parameter(Mandatory = true, Position = 2, ParameterSetName = GetContentForEntityByIdParameterSet, ValueFromPipeline = true)]
         public Guid Id { get; set; }
 
         [Parameter(Mandatory = true, Position = 2, ParameterSetName = GetContentForEntityByKeysParameterSet)]
@@ -59,16 +59,12 @@ namespace AMSoftware.Crm.PowerShell.Commands.Content
         [ValidateNotNull]
         public Hashtable Order { get; set; }
 
-        [Parameter(ParameterSetName = GetContentForEntityByIdParameterSet)]
-        [Parameter(ParameterSetName = GetContentForEntityByKeysParameterSet)]
-        public Hashtable RelatedEntities { get; set; }
-
         [Parameter(ValueFromRemainingArguments = true, ParameterSetName = GetContentForEntityByIdParameterSet)]
         [Parameter(ValueFromRemainingArguments = true, ParameterSetName = GetContentForEntityByQueryParameterSet)]
         [Parameter(ValueFromRemainingArguments = true, ParameterSetName = GetContentForEntityByKeysParameterSet)]
         public string[] Columns { get; set; }
 
-        [Parameter(Position = 1, Mandatory = true, ParameterSetName = GetContentWithFetchXmlParameterSet)]
+        [Parameter(Position = 1, Mandatory = true, ParameterSetName = GetContentWithFetchXmlParameterSet, ValueFromPipeline = true)]
         [ValidateNotNullOrEmpty]
         public XmlDocument FetchXml { get; set; }
 
@@ -79,10 +75,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Content
             switch (this.ParameterSetName)
             {
                 case GetContentForEntityByIdParameterSet:
-                    WriteObject(_repository.Get(Entity, Id, Columns, RelatedEntities), false);
+                    WriteObject(_repository.Get(Entity, Id, Columns), false);
                     break;
                 case GetContentForEntityByKeysParameterSet:
-                    WriteObject(_repository.Get(Entity, Keys, Columns, RelatedEntities), false);
+                    WriteObject(_repository.Get(Entity, Keys, Columns), false);
                     break;
                 case GetContentForEntityByQueryParameterSet:
                     QueryBase queryFromQuery = null;
@@ -103,14 +99,13 @@ namespace AMSoftware.Crm.PowerShell.Commands.Content
         {
             if (PagingParameters.IncludeTotalCount)
             {
-                double accuracy;
-                int count = _repository.GetRowCount(query, out accuracy);
+                int count = _repository.GetRowCount(query, out double accuracy);
                 WriteObject(PagingParameters.NewTotalCount(Convert.ToUInt64(count), accuracy));
             }
 
             foreach (var item in _repository.Get(query, PagingParameters.First, PagingParameters.Skip))
             {
-                WriteObject(item);
+                WriteObject(new PSObject(item));
             }
         }
 

@@ -33,8 +33,10 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
             ColumnSet columnSet = BuildColumnSet(columns);
             EntityReference reference = new EntityReference(entity, id);
 
-            OrganizationRequest request = new OrganizationRequest("Retrieve");
-            request.Parameters = new ParameterCollection();
+            OrganizationRequest request = new OrganizationRequest("Retrieve")
+            {
+                Parameters = new ParameterCollection()
+            };
             request.Parameters.Add("Target", reference);
             request.Parameters.Add("ColumnSet", columnSet);
 
@@ -45,7 +47,7 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
             return (Entity)response.Results["Entity"];
         }
 
-        public Entity Get(string entity, Hashtable keys, string[] columns = null, Hashtable related = null)
+        public Entity Get(string entity, Hashtable keys, string[] columns = null)
         {
             if (!CrmVersionManager.IsSupported(CrmVersion.CRM2015_1_RTM))
             {
@@ -58,12 +60,12 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
             keysCollection.AddRange(keys.ToEnumerable<string, object>());
             EntityReference reference = new EntityReference(entity, keysCollection);
 
-            OrganizationRequest request = new OrganizationRequest("Retrieve");
-            request.Parameters = new ParameterCollection();
+            OrganizationRequest request = new OrganizationRequest("Retrieve")
+            {
+                Parameters = new ParameterCollection()
+            };
             request.Parameters.Add("Target", reference);
             request.Parameters.Add("ColumnSet", columnSet);
-
-            IncludeRelatedEntitiesInRetrieveRequest(request, related);
 
             OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
 
@@ -111,8 +113,10 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
 
         public Guid Add(Entity entity)
         {
-            OrganizationRequest request = new OrganizationRequest("Create");
-            request.Parameters = new ParameterCollection();
+            OrganizationRequest request = new OrganizationRequest("Create")
+            {
+                Parameters = new ParameterCollection()
+            };
             request.Parameters.Add("Target", entity);
 
             if (CrmContext.ActiveSolution != null)
@@ -126,8 +130,10 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
 
         public Guid Add(string entity, Guid id, Hashtable attributes)
         {
-            Entity newEntity = new Entity(entity);
-            newEntity.Attributes = new AttributeCollection();
+            Entity newEntity = new Entity(entity)
+            {
+                Attributes = new AttributeCollection()
+            };
 
             if (id != Guid.Empty)
             {
@@ -144,8 +150,10 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
 
         public void Update(Entity entity)
         {
-            OrganizationRequest request = new OrganizationRequest("Update");
-            request.Parameters = new ParameterCollection();
+            OrganizationRequest request = new OrganizationRequest("Update")
+            {
+                Parameters = new ParameterCollection()
+            };
             request.Parameters.Add("Target", entity);
 
             if (CrmContext.ActiveSolution != null)
@@ -158,9 +166,11 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
 
         public void Update(string entity, Guid id, Hashtable attributes)
         {
-            Entity newEntity = new Entity(entity);
-            newEntity.Attributes = new AttributeCollection();
-            newEntity.Id = id;
+            Entity newEntity = new Entity(entity)
+            {
+                Attributes = new AttributeCollection(),
+                Id = id
+            };
 
             if (attributes != null)
             {
@@ -172,8 +182,10 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
 
         public void Delete(string entity, Guid id)
         {
-            OrganizationRequest request = new OrganizationRequest("Delete");
-            request.Parameters = new ParameterCollection();
+            OrganizationRequest request = new OrganizationRequest("Delete")
+            {
+                Parameters = new ParameterCollection()
+            };
             request.Parameters.Add("Target", new EntityReference(entity, id));
 
             if (CrmContext.ActiveSolution != null)
@@ -186,8 +198,10 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
 
         public OrganizationResponse Execute(string requestName, Hashtable requestParameters = null)
         {
-            OrganizationRequest request = new OrganizationRequest(requestName);
-            request.Parameters = new ParameterCollection();
+            OrganizationRequest request = new OrganizationRequest(requestName)
+            {
+                Parameters = new ParameterCollection()
+            };
 
             if (requestParameters != null)
             {
@@ -246,7 +260,7 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
         private IEnumerable<Entity> GetByQuery(QueryBase query, int? first = null, int? skip = null)
         {
             int skipRemaining = 0;
-            int firstRemaining = first.HasValue ? first.Value : 0;
+            int firstRemaining = first ?? 0;
 
             PagingInfo pageInfo = BuildPagingInfo(500);
             if (skip.HasValue && skip.Value != 0)
@@ -332,10 +346,12 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
 
         private static PagingInfo BuildPagingInfo(int pageSize)
         {
-            PagingInfo p = new PagingInfo();
-            p.ReturnTotalRecordCount = true;
-            p.PageNumber = 1;
-            p.Count = pageSize;
+            PagingInfo p = new PagingInfo
+            {
+                ReturnTotalRecordCount = true,
+                PageNumber = 1,
+                Count = pageSize
+            };
 
             return p;
         }

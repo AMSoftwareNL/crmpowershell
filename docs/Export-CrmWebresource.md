@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Export-CrmWebresource.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Export-CrmWebresource.md
 schema: 2.0.0
 ---
 
@@ -36,7 +37,7 @@ The encoding to apply to the exported content. If not provided byte encoding is 
 Type: FileSystemCmdletProviderEncoding
 Parameter Sets: (All)
 Aliases: 
-Accepted values: Unknown, String, Unicode, Byte, BigEndianUnicode, UTF8, UTF7, UTF32, Ascii, Default, Oem
+Accepted values: Unknown, String, Unicode, Byte, BigEndianUnicode, UTF8, UTF7, UTF32, Ascii, Default, Oem, BigEndianUTF32
 
 Required: False
 Position: Named

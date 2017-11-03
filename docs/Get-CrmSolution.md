@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Get-CrmSolution.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Get-CrmSolution.md
 schema: 2.0.0
 ---
 
@@ -11,14 +12,10 @@ Get a customizations solution.
 
 ## SYNTAX
 
-### GetSolution (Default)
+### GetAllSolutions (Default)
 ```
-Get-CrmSolution [-ExcludeManaged] [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
-```
-
-### GetSolutionByName
-```
-Get-CrmSolution [-Name] <String> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
+Get-CrmSolution [[-Name] <String>] [-Exclude <String>] [-ExcludeManaged] [-IncludeTotalCount] [-Skip <UInt64>]
+ [-First <UInt64>] [<CommonParameters>]
 ```
 
 ### GetSolutionById
@@ -40,12 +37,27 @@ Get all unmanaged customization solutions.
 
 ## PARAMETERS
 
+### -Exclude
+Exclude solutions whose name matches the provided pattern.
+
+```yaml
+Type: String
+Parameter Sets: GetAllSolutions
+Aliases: 
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -ExcludeManaged
 Exclude solutions marked as managed.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: GetSolution
+Parameter Sets: GetAllSolutions
 Aliases: 
 
 Required: False
@@ -79,9 +91,9 @@ Parameter Sets: GetSolutionById
 Aliases: 
 
 Required: True
-Position: 1
+Position: 0
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
@@ -107,11 +119,11 @@ The unique name or friendly name of the solution to retrieve.
 
 ```yaml
 Type: String
-Parameter Sets: GetSolutionByName
-Aliases: 
+Parameter Sets: GetAllSolutions
+Aliases: Include
 
-Required: True
-Position: 1
+Required: False
+Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

@@ -28,28 +28,24 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
     [OutputType(typeof(Entity))]
     public sealed class GetPluginCommand : CrmOrganizationCmdlet
     {
-        private const string GetPluginByNameParameterSet = "GetPluginByName";
         private const string GetPluginByIdParameterSet = "GetPluginById";
         private const string GetPluginByFilterParameterSet = "GetPluginByFilter";
 
         private ContentRepository _repository = new ContentRepository();
 
-        [Parameter(Position = 1, Mandatory = true, ParameterSetName = GetPluginByIdParameterSet)]
+        [Parameter(Mandatory = true, ParameterSetName = GetPluginByIdParameterSet)]
         [ValidateNotNull]
         public Guid Id { get; set; }
 
-        [Parameter(Position = 1, Mandatory = true, ParameterSetName = GetPluginByNameParameterSet)]
-        [ValidateNotNullOrEmpty]
-        public string Name { get; set; }
-
-        [Parameter(Position = 1, ValueFromPipeline = true, ParameterSetName = GetPluginByFilterParameterSet)]
+        [Parameter(Position = 1, ParameterSetName = GetPluginByFilterParameterSet, ValueFromPipeline = true)]
         [ValidateNotNullOrEmpty]
         public Guid PluginAssembly { get; set; }
 
-        [Parameter(ParameterSetName = GetPluginByFilterParameterSet)]
+        [Parameter(Position = 2, ParameterSetName = GetPluginByFilterParameterSet)]
+        [Alias("Include")]
         [ValidateNotNullOrEmpty]
         [SupportsWildcards]
-        public string Include { get; set; }
+        public string Name { get; set; }
 
         [Parameter(ParameterSetName = GetPluginByFilterParameterSet)]
         [ValidateNotNullOrEmpty]
@@ -62,10 +58,6 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 
             switch (this.ParameterSetName)
             {
-                case GetPluginByNameParameterSet:
-                    QueryExpression nameQuery = BuildPluginByNameQuery();
-                    GetContentByQuery(nameQuery);
-                    break;
                 case GetPluginByIdParameterSet:
                     WriteObject(_repository.Get("plugintype", Id));
                     break;
@@ -83,15 +75,14 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 
             if (PagingParameters.IncludeTotalCount)
             {
-                double accuracy;
-                int count = _repository.GetRowCount(advancedFilterQuery, out accuracy);
+                int count = _repository.GetRowCount(advancedFilterQuery, out double accuracy);
                 WriteObject(PagingParameters.NewTotalCount(Convert.ToUInt64(count), accuracy));
             }
 
             var result = _repository.Get(advancedFilterQuery, PagingParameters.First, PagingParameters.Skip);
-            if (!string.IsNullOrWhiteSpace(Include))
+            if (!string.IsNullOrWhiteSpace(Name))
             {
-                WildcardPattern includePattern = new WildcardPattern(Include, WildcardOptions.IgnoreCase);
+                WildcardPattern includePattern = new WildcardPattern(Name, WildcardOptions.IgnoreCase);
                 result = result.Where(a => includePattern.IsMatch(a.GetAttributeValue<string>("name")) || includePattern.IsMatch(a.GetAttributeValue<string>("friendlyname")) || includePattern.IsMatch(a.GetAttributeValue<string>("typename")));
             }
             if (!string.IsNullOrWhiteSpace(Exclude))
@@ -103,49 +94,16 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
             WriteObject(result, true);
         }
 
-        private void GetContentByQuery(QueryBase query)
-        {
-            if (PagingParameters.IncludeTotalCount)
-            {
-                double accuracy;
-                int count = _repository.GetRowCount(query, out accuracy);
-                WriteObject(PagingParameters.NewTotalCount(Convert.ToUInt64(count), accuracy));
-            }
-
-            foreach (var item in _repository.Get(query, PagingParameters.First, PagingParameters.Skip))
-            {
-                WriteObject(item);
-            }
-        }
-
-        private QueryExpression BuildPluginByNameQuery()
-        {
-            QueryExpression query = new QueryExpression("plugintype")
-            {
-                ColumnSet = new ColumnSet(true),
-                Criteria =
-                {
-                    Filters = {
-                        new FilterExpression(LogicalOperator.Or)
-                        {
-                            Conditions =
-                            {
-                                new ConditionExpression("name", ConditionOperator.Equal, Name),
-                                new ConditionExpression("friendlyname", ConditionOperator.Equal, Name),
-                                new ConditionExpression("typename", ConditionOperator.Equal, Name)
-                            }
-                        }
-                    }
-                }
-            };
-            return query;
-        }
-
         private QueryExpression BuildPluginByFilterQuery()
         {
             QueryExpression query = new QueryExpression("plugintype")
             {
                 ColumnSet = new ColumnSet(true),
+                Orders =
+                {
+                    new OrderExpression("pluginassemblyid", OrderType.Ascending),
+                    new OrderExpression("typename", OrderType.Ascending)
+                }
             };
 
             FilterExpression filter = new FilterExpression(LogicalOperator.And);

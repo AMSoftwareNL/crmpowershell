@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Set-CrmOptionSet.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Set-CrmOptionSet.md
 schema: 2.0.0
 ---
 
@@ -11,15 +12,15 @@ Update a global optionset.
 
 ## SYNTAX
 
-### SetOptionSetByInputObject
+### SetOptionSetByInputObject (Default)
 ```
-Set-CrmOptionSet [-OptionSet] <OptionSetMetadata> [<CommonParameters>]
+Set-CrmOptionSet [-InputObject] <OptionSetMetadata> [-PassThru] [<CommonParameters>]
 ```
 
 ### SetOptionSet
 ```
 Set-CrmOptionSet [-Name] <String> [-DisplayName <String>] [-Description <String>] [-Customizable <Boolean>]
- [<CommonParameters>]
+ [-PassThru] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -74,6 +75,21 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -InputObject
+The updated OptionSetMetadata object for the optionset.
+
+```yaml
+Type: OptionSetMetadata
+Parameter Sets: SetOptionSetByInputObject
+Aliases: OptionSet
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
 ### -Name
 The name of the optionset to update.
 
@@ -89,16 +105,16 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -OptionSet
-The updated OptionSetMetadata object for the optionset.
+### -PassThru
+Returns an object that represents the OptionSetMetadata. By default, this cmdlet does not generate any output.
 
 ```yaml
-Type: OptionSetMetadata
-Parameter Sets: SetOptionSetByInputObject
+Type: SwitchParameter
+Parameter Sets: (All)
 Aliases: 
 
-Required: True
-Position: 1
+Required: False
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

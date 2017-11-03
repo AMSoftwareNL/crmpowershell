@@ -1,18 +1,16 @@
 ---
-Module Name: amsoftware.crm
+Module Name: AMSoftware.Crm
 Module Guid: 1e7f1ebc-e035-4d73-86af-3c07a6a85260
-Download Help Link: http://crmpowershell.amsoftware.nl/
-Help Version: 1.2.4.3
+Download Help Link: https://github.com/AMSoftwareNL/crmpowershell/blob/master/help/
+Help Version: 1.3.0.0
 Locale: en-us
 ---
 
-# amsoftware.crm Module
+# AMSoftware.Crm Module
 ## Description
-PowerShell CmdLet Library for use with Dynamics CRM Organization. Manage Metadata and content, and administer the organization.
-CRM PowerShell Library is a collection of PowerShell Cmdlets for working with Dynamics CRM.
-Connect to your on premises CRM using Windows Authentication, Claims Based Authentication or IFD. Or connect to CRM Online (Dynamics 365) by specifying the Region. List and select an available organization, and you are ready to go.
+PowerShell CmdLet Library for use with Dynamics CRM Organization. Manage Metadata and content, and administer the organization. CRM PowerShell Library is a collection of PowerShell Cmdlets for working with Dynamics CRM. Connect to your on premises CRM using Windows Authentication, Claims Based Authentication or IFD. Or connect to CRM Online (Dynamics 365) by specifying the Region. List and select an available organization, and you are ready to go.
 
-## amsoftware.crm Cmdlets
+## AMSoftware.Crm Cmdlets
 ### [Add-CrmAttribute](Add-CrmAttribute.md)
 Add an attribute to an entity.
 
@@ -115,11 +113,11 @@ Get a plugin.
 ### [Get-CrmPluginAssembly](Get-CrmPluginAssembly.md)
 Get plugin assembly.
 
-### [Get-CrmPluginImage](Get-CrmPluginImage.md)
-{{Fill in the Synopsis}}
-
 ### [Get-CrmPluginStep](Get-CrmPluginStep.md)
 Get SDK Message Processing Step.
+
+### [Get-CrmPluginStepImage](Get-CrmPluginStepImage.md)
+Get SDK Message Processing Step Image.
 
 ### [Get-CrmPrincipalRoles](Get-CrmPrincipalRoles.md)
 Get the roles related to a user or team.
@@ -375,5 +373,4 @@ Set the active language to use in the PowerShell session.
 
 ### [Use-CrmSolution](Use-CrmSolution.md)
 Set the active CRM solution to use in the PowerShell session.
-
 

@@ -27,7 +27,8 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
     {
         private MetadataRepository _repository = new MetadataRepository();
 
-        [Parameter(Mandatory = true, Position = 1)]
+        [Parameter(Mandatory = true, Position = 1, ValueFromPipelineByPropertyName = true)]
+        [Alias("SchemaName")]
         [ValidateNotNullOrEmpty]
         public string Relationship { get; set; }
 

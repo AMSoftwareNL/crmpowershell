@@ -36,7 +36,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
         private string[] _paths;
         private bool _shouldExpandWildcards;
 
-        [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = false, ValueFromPipelineByPropertyName = true, ParameterSetName = ImportTranslationFromLiteralPathParameterSet)]
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = ImportTranslationFromLiteralPathParameterSet, ValueFromPipeline = false, ValueFromPipelineByPropertyName = true)]
         [Alias("PSPath")]
         [ValidateNotNullOrEmpty]
         public string[] LiteralPath
@@ -45,7 +45,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
             set { _paths = value; }
         }
 
-        [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true, ParameterSetName = ImportTranslationFromPathParameterSet)]
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = ImportTranslationFromPathParameterSet, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
         [ValidateNotNullOrEmpty]
         public string[] Path
         {

@@ -23,24 +23,20 @@ using Microsoft.Xrm.Sdk;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
-    [Cmdlet(VerbsCommon.Set, "Owner", HelpUri = HelpUrlConstants.SetOwnerHelpUrl)]
+    [Cmdlet(VerbsCommon.Set, "Owner", HelpUri = HelpUrlConstants.SetOwnerHelpUrl, DefaultParameterSetName = AssignOwnerRecordParameterSet)]
     public sealed class SetOwnerCommand : CrmOrganizationCmdlet
     {
-        private const string AssignOwnerEntityParameterSet = "AssignOwnerEntity";
         private const string AssignOwnerRecordParameterSet = "AssignOwnerRecord";
         private const string ReassignOwnerParameterSet = "ReassignOwner";
 
         private ContentRepository _repository = new ContentRepository();
 
-        [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true, ParameterSetName = AssignOwnerEntityParameterSet)]
-        [ValidateNotNull]
-        public Entity InputObject { get; set; }
-
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = AssignOwnerRecordParameterSet)]
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = AssignOwnerRecordParameterSet, ValueFromPipelineByPropertyName = true)]
+        [Alias("LogicalName")]
         [ValidateNotNullOrEmpty]
         public string Entity { get; set; }
 
-        [Parameter(Mandatory = true, Position = 2, ParameterSetName = AssignOwnerRecordParameterSet)]
+        [Parameter(Mandatory = true, Position = 2, ParameterSetName = AssignOwnerRecordParameterSet, ValueFromPipelineByPropertyName = true)]
         [ValidateNotNull]
         public Guid Id { get; set; }
 
@@ -66,12 +62,6 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
 
             switch (this.ParameterSetName)
             {
-                case AssignOwnerEntityParameterSet:
-                    AssignOwner(
-                        GetPrincipalReference(ToPrincipalType, ToPrincipalId),
-                        new EntityReference(InputObject.LogicalName, InputObject.Id)
-                    );
-                    break;
                 case AssignOwnerRecordParameterSet:
                     AssignOwner(
                         GetPrincipalReference(ToPrincipalType, ToPrincipalId),
@@ -91,8 +81,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
 
         private void AssignOwner(EntityReference owner, EntityReference record)
         {
-            OrganizationRequest request = new OrganizationRequest("Assign");
-            request.Parameters = new ParameterCollection();
+            OrganizationRequest request = new OrganizationRequest("Assign")
+            {
+                Parameters = new ParameterCollection()
+            };
             request.Parameters["Assignee"] = owner;
             request.Parameters["Target"] = record;
 
@@ -101,8 +93,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
 
         private void ReassignOwner(EntityReference fromPrincipal, EntityReference toPrincipal)
         {
-            OrganizationRequest request = new OrganizationRequest("ReassignObjectsOwner");
-            request.Parameters = new ParameterCollection();
+            OrganizationRequest request = new OrganizationRequest("ReassignObjectsOwner")
+            {
+                Parameters = new ParameterCollection()
+            };
             request.Parameters["FromPrincipal"] = fromPrincipal;
             request.Parameters["ToPrincipal"] = toPrincipal;
 

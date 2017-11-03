@@ -33,21 +33,22 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
 
         private ContentRepository _repository = new ContentRepository();
 
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = GetBusinessUnitByIdParameterSet)]
+        [Parameter(Mandatory = true, Position = 0, ParameterSetName = GetBusinessUnitByIdParameterSet, ValueFromPipeline = true)]
         [ValidateNotNull]
         public Guid Id { get; set; }
 
-        [Parameter(ParameterSetName = GetAllBusinessUnitsParameterSet)]
+        [Parameter(ParameterSetName = GetAllBusinessUnitsParameterSet, Position = 0)]
+        [Alias("Include")]
         [ValidateNotNullOrEmpty]
         [SupportsWildcards]
-        public string Include { get; set; }
+        public string Name { get; set; }
 
         [Parameter(ParameterSetName = GetAllBusinessUnitsParameterSet)]
         [ValidateNotNullOrEmpty]
         [SupportsWildcards]
         public string Exclude { get; set; }
 
-        [Parameter(ValueFromPipeline = true, ParameterSetName = GetAllBusinessUnitsParameterSet)]
+        [Parameter(ParameterSetName = GetAllBusinessUnitsParameterSet)]
         [ValidateNotNullOrEmpty]
         public Guid? Parent { get; set; }
 
@@ -74,15 +75,14 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
 
             if (PagingParameters.IncludeTotalCount)
             {
-                double accuracy;
-                int count = _repository.GetRowCount(advancedFilterQuery, out accuracy);
+                int count = _repository.GetRowCount(advancedFilterQuery, out double accuracy);
                 WriteObject(PagingParameters.NewTotalCount(Convert.ToUInt64(count), accuracy));
             }
 
             var result = _repository.Get(advancedFilterQuery, PagingParameters.First, PagingParameters.Skip);
-            if (!string.IsNullOrWhiteSpace(Include))
+            if (!string.IsNullOrWhiteSpace(Name))
             {
-                WildcardPattern includePattern = new WildcardPattern(Include, WildcardOptions.IgnoreCase);
+                WildcardPattern includePattern = new WildcardPattern(Name, WildcardOptions.IgnoreCase);
                 result = result.Where(a => includePattern.IsMatch(a.GetAttributeValue<string>("name")));
             }
             if (!string.IsNullOrWhiteSpace(Exclude))
@@ -94,26 +94,16 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
             WriteObject(result, true);
         }
 
-        private void GetContentByQuery(QueryBase query)
-        {
-            if (PagingParameters.IncludeTotalCount)
-            {
-                double accuracy;
-                int count = _repository.GetRowCount(query, out accuracy);
-                WriteObject(PagingParameters.NewTotalCount(Convert.ToUInt64(count), accuracy));
-            }
-
-            foreach (var item in _repository.Get(query, PagingParameters.First, PagingParameters.Skip))
-            {
-                WriteObject(item);
-            }
-        }
-
         private QueryExpression BuildBusinessUnitByFilterQuery()
         {
             QueryExpression query = new QueryExpression("businessunit")
             {
-                ColumnSet = new ColumnSet(true)
+                ColumnSet = new ColumnSet(true),
+                Orders =
+                {
+                    new OrderExpression("parentbusinessunitid", OrderType.Ascending),
+                    new OrderExpression("name", OrderType.Ascending)
+                }
             };
 
             if (Parent.HasValue && Parent.Value != Guid.Empty)

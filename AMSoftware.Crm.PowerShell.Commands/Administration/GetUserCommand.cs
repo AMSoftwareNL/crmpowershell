@@ -29,23 +29,19 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
     public sealed class GetUserCommand : CrmOrganizationCmdlet
     {
         private const string GetAllUsersParameterSet = "GetAllUsers";
-        private const string GetUserByUserNameParameterSet = "GetUserByUserName";
         private const string GetUserByIdParameterSet = "GetUserById";
 
         private ContentRepository _repository = new ContentRepository();
 
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = GetUserByUserNameParameterSet)]
-        [ValidateNotNullOrEmpty]
-        public string UserName { get; set; }
-
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = GetUserByIdParameterSet)]
+        [Parameter(Mandatory = true, Position = 0, ParameterSetName = GetUserByIdParameterSet, ValueFromPipeline = true)]
         [ValidateNotNull]
         public Guid Id { get; set; }
 
-        [Parameter(ParameterSetName = GetAllUsersParameterSet)]
+        [Parameter(Position = 0, ParameterSetName = GetAllUsersParameterSet)]
+        [Alias("Include")]
         [ValidateNotNullOrEmpty]
         [SupportsWildcards]
-        public string Include { get; set; }
+        public string Name { get; set; }
 
         [Parameter(ParameterSetName = GetAllUsersParameterSet)]
         [ValidateNotNullOrEmpty]
@@ -71,10 +67,6 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
                 case GetUserByIdParameterSet:
                     WriteObject(_repository.Get("systemuser", Id));
                     break;
-                case GetUserByUserNameParameterSet:
-                    QueryExpression nameQuery = BuildUserByNameQuery();
-                    GetContentByQuery(nameQuery);
-                    break;
                 default:
                     break;
             }
@@ -86,15 +78,14 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
             
             if (PagingParameters.IncludeTotalCount)
             {
-                double accuracy;
-                int count = _repository.GetRowCount(advancedFilterQuery, out accuracy);
+                int count = _repository.GetRowCount(advancedFilterQuery, out double accuracy);
                 WriteObject(PagingParameters.NewTotalCount(Convert.ToUInt64(count), accuracy));
             }
 
             var result = _repository.Get(advancedFilterQuery, PagingParameters.First, PagingParameters.Skip);
-            if (!string.IsNullOrWhiteSpace(Include))
+            if (!string.IsNullOrWhiteSpace(Name))
             {
-                WildcardPattern includePattern = new WildcardPattern(Include, WildcardOptions.IgnoreCase);
+                WildcardPattern includePattern = new WildcardPattern(Name, WildcardOptions.IgnoreCase);
                 result = result.Where(a => includePattern.IsMatch(a.GetAttributeValue<string>("fullname")) || includePattern.IsMatch(a.GetAttributeValue<string>("domainname")));
             }
             if (!string.IsNullOrWhiteSpace(Exclude))
@@ -106,42 +97,15 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
             WriteObject(result, true);
         }
 
-        private void GetContentByQuery(QueryBase query)
-        {
-            if (PagingParameters.IncludeTotalCount)
-            {
-                double accuracy;
-                int count = _repository.GetRowCount(query, out accuracy);
-                WriteObject(PagingParameters.NewTotalCount(Convert.ToUInt64(count), accuracy));
-            }
-
-            foreach (var item in _repository.Get(query, PagingParameters.First, PagingParameters.Skip))
-            {
-                WriteObject(item);
-            }
-        }
-
-        private QueryExpression BuildUserByNameQuery()
-        {
-            QueryExpression query = new QueryExpression("systemuser")
-            {
-                ColumnSet = new ColumnSet(true),
-                Criteria =
-                {
-                    Conditions =
-                    {
-                        new ConditionExpression("domainname", ConditionOperator.Equal, UserName),
-                    }
-                }
-            };
-            return query;
-        }
-
         private QueryExpression BuildUserByFilterQuery()
         {
             QueryExpression query = new QueryExpression("systemuser")
             {
-                ColumnSet = new ColumnSet(true)
+                ColumnSet = new ColumnSet(true),
+                Orders =
+                {
+                    new OrderExpression("fullname", OrderType.Ascending)
+                }
             };
 
             if (!IncludeDisabled.ToBool())

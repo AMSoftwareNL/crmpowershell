@@ -25,7 +25,7 @@ using Microsoft.Xrm.Sdk.Metadata;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 {
-    [Cmdlet(VerbsCommon.New, "OptionSet", HelpUri = HelpUrlConstants.NewOptionSetHelpUrl)]
+    [Cmdlet(VerbsCommon.New, "OptionSet", HelpUri = HelpUrlConstants.NewOptionSetHelpUrl, DefaultParameterSetName = NewOptionSetByInputObjectParameterSet)]
     [OutputType(typeof(OptionSetMetadata))]
     public sealed class NewOptionSetCommand : CrmOrganizationCmdlet
     {
@@ -34,9 +34,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 
         private MetadataRepository _repository = new MetadataRepository();
 
-        [Parameter(Position = 1, Mandatory = true, ParameterSetName = NewOptionSetByInputObjectParameterSet)]
+        [Parameter(Position = 1, Mandatory = true, ParameterSetName = NewOptionSetByInputObjectParameterSet, ValueFromPipeline = true)]
+        [Alias("OptionSet")]
         [ValidateNotNull]
-        public OptionSetMetadata OptionSet { get; set; }
+        public OptionSetMetadata InputObject { get; set; }
 
         [Parameter(Position = 1, Mandatory = true, ParameterSetName = NewOptionSetParameterSet)]
         [ValidateNotNullOrEmpty]
@@ -46,7 +47,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         [ValidateNotNullOrEmpty]
         public string DisplayName { get; set; }
 
-        [Parameter(Position = 3, Mandatory = true, ParameterSetName = NewOptionSetParameterSet)]
+        [Parameter(Mandatory = true, ParameterSetName = NewOptionSetParameterSet, ValueFromRemainingArguments = true)]
         [ValidateNotNull]
         public PSOptionSetValue[] Values { get; set; }
 
@@ -58,6 +59,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         [ValidateNotNull]
         public bool? Customizable { get; set; }
 
+        [Parameter]
+        public SwitchParameter PassThru { get; set; }
+
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
@@ -67,11 +71,17 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
                 case NewOptionSetParameterSet:
                     OptionSetMetadata internalOptionset = BuildOptionSet();
                     Guid id1 = _repository.AddOptionSet(internalOptionset);
-                    WriteObject(_repository.GetOptionSet(id1));
+                    if (PassThru)
+                    {
+                        WriteObject(_repository.GetOptionSet(id1));
+                    }
                     break;
                 case NewOptionSetByInputObjectParameterSet:
-                    Guid id2 = _repository.AddOptionSet(OptionSet);
-                    WriteObject(_repository.GetOptionSet(id2));
+                    Guid id2 = _repository.AddOptionSet(InputObject);
+                    if (PassThru)
+                    {
+                        WriteObject(_repository.GetOptionSet(id2));
+                    }
                     break;
                 default:
                     break;

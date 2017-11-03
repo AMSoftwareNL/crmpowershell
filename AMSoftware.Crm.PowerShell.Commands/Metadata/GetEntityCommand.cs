@@ -28,24 +28,21 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
     [OutputType(typeof(EntityMetadata))]
     public sealed class GetEntityCommand : CrmOrganizationCmdlet
     {
-        private const string GetEntityByNameParameterSet = "GetEntityByName";
         private const string GetEntityByIdParameterSet = "GetEntityById";
         private const string GetEntitiesByFilterParameterSet = "GetEntitiesByFilter";
 
         private MetadataRepository _repository = new MetadataRepository();
 
-        [Parameter(Position = 1, Mandatory = true, ParameterSetName = GetEntityByIdParameterSet)]
+        [Parameter(Position = 1, Mandatory = true, ParameterSetName = GetEntityByIdParameterSet, ValueFromPipeline = true)]
+        [Alias("MetadataId")]
         [ValidateNotNull]
         public Guid Id { get; set; }
 
-        [Parameter(Position = 1, Mandatory = true, ParameterSetName = GetEntityByNameParameterSet)]
-        [ValidateNotNullOrEmpty]
-        public string Name { get; set; }
-
-        [Parameter(ParameterSetName = GetEntitiesByFilterParameterSet)]
+        [Parameter(Position = 1, ParameterSetName = GetEntitiesByFilterParameterSet)]
+        [Alias("Include")]
         [ValidateNotNullOrEmpty]
         [SupportsWildcards]
-        public string Include { get; set; }
+        public string Name { get; set; }
 
         [Parameter(ParameterSetName = GetEntitiesByFilterParameterSet)]
         [ValidateNotNullOrEmpty]
@@ -67,17 +64,14 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 
             switch (this.ParameterSetName)
             {
-                case GetEntityByNameParameterSet:
-                    WriteObject(_repository.GetEntity(Name));
-                    break;
                 case GetEntityByIdParameterSet:
                     WriteObject(_repository.GetEntity(Id));
                     break;
                 case GetEntitiesByFilterParameterSet:
                     IEnumerable<EntityMetadata> result = _repository.GetEntity(CustomOnly.ToBool(), ExcludeManaged.ToBool(), IncludeIntersects.ToBool());
-                    if (!string.IsNullOrWhiteSpace(Include))
+                    if (!string.IsNullOrWhiteSpace(Name))
                     {
-                        WildcardPattern includePattern = new WildcardPattern(Include, WildcardOptions.IgnoreCase);
+                        WildcardPattern includePattern = new WildcardPattern(Name, WildcardOptions.IgnoreCase);
                         result = result.Where(e => includePattern.IsMatch(e.LogicalName));
                     }
                     if (!string.IsNullOrWhiteSpace(Exclude))
@@ -85,6 +79,8 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
                         WildcardPattern excludePattern = new WildcardPattern(Exclude, WildcardOptions.IgnoreCase);
                         result = result.Where(e => !excludePattern.IsMatch(e.LogicalName));
                     }
+
+                    result = result.OrderBy(e => e.LogicalName);
 
                     WriteObject(result, true);
 

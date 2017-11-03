@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Set-CrmRelationship.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Set-CrmRelationship.md
 schema: 2.0.0
 ---
 
@@ -11,14 +12,15 @@ Update a relationship.
 
 ## SYNTAX
 
-### SetRelationshipByInputObject
+### SetRelationshipByInputObject (Default)
 ```
-Set-CrmRelationship [-Relationship] <RelationshipMetadataBase> [<CommonParameters>]
+Set-CrmRelationship [-InputObject] <RelationshipMetadataBase> [-PassThru] [<CommonParameters>]
 ```
 
 ### SetRelationship
 ```
-Set-CrmRelationship [-Name] <String> [-AdvancedFind <Boolean>] [-Customizable <Boolean>] [<CommonParameters>]
+Set-CrmRelationship [-Name] <String> [-AdvancedFind <Boolean>] [-Customizable <Boolean>] [-PassThru]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -58,13 +60,28 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -InputObject
+The updated RelationshipMetadata for the relationship.
+
+```yaml
+Type: RelationshipMetadataBase
+Parameter Sets: SetRelationshipByInputObject
+Aliases: Relationship
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
 ### -Name
 The SchemaName of the relationship.
 
 ```yaml
 Type: String
 Parameter Sets: SetRelationship
-Aliases: 
+Aliases: SchemaName
 
 Required: True
 Position: 1
@@ -73,16 +90,16 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Relationship
-The updated RelationshipMetadata for the relationship.
+### -PassThru
+Returns an object that represents the RelationshipMetadata. By default, this cmdlet does not generate any output.
 
 ```yaml
-Type: RelationshipMetadataBase
-Parameter Sets: SetRelationshipByInputObject
+Type: SwitchParameter
+Parameter Sets: (All)
 Aliases: 
 
-Required: True
-Position: 1
+Required: False
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

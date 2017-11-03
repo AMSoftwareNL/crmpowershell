@@ -26,6 +26,7 @@ using Microsoft.Xrm.Sdk.Metadata;
 namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 {
     [Cmdlet(VerbsCommon.Set, "Entity", HelpUri = HelpUrlConstants.SetEntityHelpUrl, DefaultParameterSetName = SetEntityByInputObjectParameterSet)]
+    [OutputType(typeof(EntityMetadata))]
     public sealed class SetEntityCommand : CrmOrganizationCmdlet, IDynamicParameters
     {
         internal const string SetEntityParameterSet = "SetEntity";
@@ -34,9 +35,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         private MetadataRepository _repository = new MetadataRepository();
         private SetEntityDynamicParameters _context;
 
-        [Parameter(Position = 1, Mandatory = true, ParameterSetName = SetEntityByInputObjectParameterSet)]
+        [Parameter(Position = 1, Mandatory = true, ParameterSetName = SetEntityByInputObjectParameterSet, ValueFromPipeline = true)]
+        [Alias("Entity")]
         [ValidateNotNull]
-        public EntityMetadata Entity { get; set; }
+        public EntityMetadata InputObject { get; set; }
 
         [Parameter(Position = 1, Mandatory = true, ParameterSetName = SetEntityParameterSet)]
         [ValidateNotNullOrEmpty]
@@ -58,6 +60,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         [ValidateNotNull]
         public bool? Customizable { get; set; }
 
+        [Parameter]
+        public SwitchParameter PassThru { get; set; }
+
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
@@ -73,9 +78,18 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
                     {
                         _repository.UpdateEntity(internalEntity, _context.HasNotes, _context.HasActivities);
                     }
+
+                    if(PassThru)
+                    {
+                        WriteObject(_repository.GetEntity(Name));
+                    }
                     break;
                 case SetEntityByInputObjectParameterSet:
-                    _repository.UpdateEntity(Entity, null, null);
+                    _repository.UpdateEntity(InputObject, null, null);
+                    if (PassThru)
+                    {
+                        WriteObject(_repository.GetEntity(InputObject.MetadataId.Value));
+                    }
                     break;
                 default:
                     break;

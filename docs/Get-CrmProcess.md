@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Get-CrmProcess.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Get-CrmProcess.md
 schema: 2.0.0
 ---
 
@@ -13,13 +14,8 @@ Get Workflow, Dialog, BusinessRule, Action or BusinessProcessFlow.
 
 ### GetAllProcesses (Default)
 ```
-Get-CrmProcess [[-Entity] <String>] [[-ProcessType] <CrmProcessType>] [-IncludeTotalCount] [-Skip <UInt64>]
- [-First <UInt64>] [<CommonParameters>]
-```
-
-### GetProcessByName
-```
-Get-CrmProcess [-Name] <String> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
+Get-CrmProcess [[-Name] <String>] [-Exclude <String>] [[-Entity] <String>] [[-ProcessType] <CrmProcessType>]
+ [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
 ```
 
 ### GetProcessById
@@ -56,6 +52,21 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -Exclude
+Exclude processes whose name matches the provided pattern.
+
+```yaml
+Type: String
+Parameter Sets: GetAllProcesses
+Aliases: 
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -First
 Specifies the number of records to retrieve from the beginning.
 
@@ -82,7 +93,7 @@ Aliases:
 Required: True
 Position: 0
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
@@ -108,10 +119,10 @@ The name of the process to retrieve.
 
 ```yaml
 Type: String
-Parameter Sets: GetProcessByName
-Aliases: 
+Parameter Sets: GetAllProcesses
+Aliases: Include
 
-Required: True
+Required: False
 Position: 0
 Default value: None
 Accept pipeline input: False

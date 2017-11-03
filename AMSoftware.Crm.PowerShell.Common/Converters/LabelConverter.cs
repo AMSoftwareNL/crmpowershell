@@ -19,24 +19,61 @@ using System;
 using System.ComponentModel;
 using Microsoft.Xrm.Sdk;
 using System.Linq;
+using System.Management.Automation;
 
 namespace AMSoftware.Crm.PowerShell.Common.Converters
 {
-    public sealed class LabelConverter : StringConverter
+    public sealed class LabelConverter : PSTypeConverter
     {
-        public override object ConvertFrom(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value)
+        public override bool CanConvertFrom(object sourceValue, Type destinationType)
         {
-            return new Label((string)base.ConvertFrom(context, culture, value), CrmContext.Language);
+            if (sourceValue == null) return true;
+            if (sourceValue.GetType() == typeof(string)) return true;
+
+            StringConverter sc = new StringConverter();
+            return sc.CanConvertFrom(sourceValue.GetType());
         }
 
-        public override object ConvertTo(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, Type destinationType)
+        public override object ConvertFrom(object sourceValue, Type destinationType, IFormatProvider formatProvider, bool ignoreCase)
         {
-            LocalizedLabel languageLabel = ((Label)value).LocalizedLabels.SingleOrDefault(l => l.LanguageCode == CrmContext.Language);
-            if (languageLabel != null)
+            if (sourceValue == null) return null;
+            if (sourceValue.GetType() == typeof(string)) return new Label((string)sourceValue, CrmContext.Language);
+
+            StringConverter sc = new StringConverter();
+            return new Label((string)sc.ConvertFrom(sourceValue), CrmContext.Language);
+        }
+
+        public override bool CanConvertTo(object sourceValue, Type destinationType)
+        {
+            if (sourceValue == null) return true;
+            if (destinationType == typeof(string)) return true;
+
+            StringConverter sc = new StringConverter();
+            return sc.CanConvertTo(destinationType);
+        }
+
+        public override object ConvertTo(object sourceValue, Type destinationType, IFormatProvider formatProvider, bool ignoreCase)
+        {
+            if (sourceValue == null) return null;
+
+            if (sourceValue is Label labelValue)
             {
-                return base.ConvertTo(context, culture, languageLabel.Label, destinationType);
+                LocalizedLabel languageLabel = labelValue.LocalizedLabels.SingleOrDefault(l => l.LanguageCode == CrmContext.Language);
+                if (languageLabel != null)
+                {
+                    if (destinationType == typeof(string)) return languageLabel.Label;
+                    else
+                    {
+                        StringConverter sc = new StringConverter();
+                        return sc.ConvertTo(languageLabel.Label, destinationType);
+                    }
+                } else
+                {
+                    return null;
+                }
             }
-            return null;
+
+            return new NotSupportedException();
         }
     }
 }

@@ -50,7 +50,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
         [PSDefaultValue(Value = CrmWebresourceType.All)]
         public CrmWebresourceType WebresourceType { get; set; }
 
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = NewWebresourceFromContentParameterSet)]
+        [Parameter(Mandatory = true, ParameterSetName = NewWebresourceFromContentParameterSet, ValueFromPipeline = true)]
         [ValidateNotNull]
         public byte[] Content { get; set; }
 
@@ -63,6 +63,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
         [ValidateNotNull]
         public bool? IsCustomizable { get; set; }
 
+        [Parameter]
+        public SwitchParameter PassThru { get; set; }
+
         public object GetDynamicParameters()
         {
             return _contentParameters;
@@ -72,8 +75,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
         {
             base.ExecuteCmdlet();
 
-            Entity newWebResource = new Entity("webresource");
-            newWebResource.Attributes = new AttributeCollection();
+            Entity newWebResource = new Entity("webresource")
+            {
+                Attributes = new AttributeCollection()
+            };
             newWebResource.Attributes.Add("name", Name);
             newWebResource.Attributes.Add("webresourcetype", new OptionSetValue(GetWebresourceTypeFromEnum(WebresourceType)));
 
@@ -98,7 +103,11 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
             }
 
             Guid newId = _repository.Add(newWebResource);
-            WriteObject(_repository.Get("webresource", newId, null));
+
+            if (PassThru)
+            {
+                WriteObject(_repository.Get("webresource", newId, null));
+            }
         }
 
         private static int GetWebresourceTypeFromEnum(CrmWebresourceType webresourceType)

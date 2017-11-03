@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Get-CrmWebresource.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Get-CrmWebresource.md
 schema: 2.0.0
 ---
 
@@ -11,16 +12,10 @@ Get a webresource.
 
 ## SYNTAX
 
-### GetWebresource (Default)
+### GetAllWebresources (Default)
 ```
-Get-CrmWebresource [-WebresourceType <CrmWebresourceType>] [-ExcludeManaged] [-IncludeTotalCount]
- [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
-```
-
-### GetWebresourceByName
-```
-Get-CrmWebresource [-Name] <String> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>]
- [<CommonParameters>]
+Get-CrmWebresource [[-Name] <String>] [-Exclude <String>] [-WebresourceType <CrmWebresourceType>]
+ [-ExcludeManaged] [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
 ```
 
 ### GetWebresourceById
@@ -42,12 +37,27 @@ Get all JavaScript webresources.
 
 ## PARAMETERS
 
+### -Exclude
+Exclude web resources whose name matches the provided pattern.
+
+```yaml
+Type: String
+Parameter Sets: GetAllWebresources
+Aliases: 
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -ExcludeManaged
 Exclude webresources marked as managed.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: GetWebresource
+Parameter Sets: GetAllWebresources
 Aliases: 
 
 Required: False
@@ -81,9 +91,9 @@ Parameter Sets: GetWebresourceById
 Aliases: 
 
 Required: True
-Position: 1
+Position: 0
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
@@ -109,11 +119,11 @@ The name of the webresource to retrieve.
 
 ```yaml
 Type: String
-Parameter Sets: GetWebresourceByName
-Aliases: 
+Parameter Sets: GetAllWebresources
+Aliases: Include
 
-Required: True
-Position: 1
+Required: False
+Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -139,7 +149,7 @@ The type of webresource to retrieve. If not provided all types are returned.
 
 ```yaml
 Type: CrmWebresourceType
-Parameter Sets: GetWebresource
+Parameter Sets: GetAllWebresources
 Aliases: 
 Accepted values: All, HTML, CSS, JS, XML, PNG, JPG, GIF, XAP, XSL, ICO
 

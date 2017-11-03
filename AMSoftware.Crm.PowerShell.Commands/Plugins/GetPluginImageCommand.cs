@@ -24,24 +24,24 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 {
-    [Cmdlet(VerbsCommon.Get, "PluginImage", HelpUri = HelpUrlConstants.GetPluginImageHelpUrl, SupportsPaging = true, DefaultParameterSetName = GetPluginImageByFilterParameterSet)]
+    [Cmdlet(VerbsCommon.Get, "PluginStepImage", HelpUri = HelpUrlConstants.GetPluginStepImageHelpUrl, SupportsPaging = true, DefaultParameterSetName = GetPluginStepImageByFilterParameterSet)]
     [OutputType(typeof(Entity))]
     public sealed class GetPluginImageCommand : CrmOrganizationCmdlet
     {
-        private const string GetPluginImageByIdParameterSet = "GetPluginImageById";
-        private const string GetPluginImageByFilterParameterSet = "GetPluginIMageByFilter";
+        private const string GetPluginStepImageByIdParameterSet = "GetPluginStepImageById";
+        private const string GetPluginStepImageByFilterParameterSet = "GetPluginStepImageByFilter";
 
         private ContentRepository _repository = new ContentRepository();
 
-        [Parameter(Position = 1, Mandatory = true, ParameterSetName = GetPluginImageByIdParameterSet)]
+        [Parameter(Mandatory = true, ParameterSetName = GetPluginStepImageByIdParameterSet)]
         [ValidateNotNull]
         public Guid Id { get; set; }
 
-        [Parameter(Position = 1, ValueFromPipeline = true, ParameterSetName = GetPluginImageByFilterParameterSet)]
+        [Parameter(Position = 1, ParameterSetName = GetPluginStepImageByFilterParameterSet, ValueFromPipeline = true)]
         [ValidateNotNullOrEmpty]
         public Guid PluginStep { get; set; }
 
-        [Parameter(ParameterSetName = GetPluginImageByFilterParameterSet)]
+        [Parameter(ParameterSetName = GetPluginStepImageByFilterParameterSet)]
         [ValidateNotNull]
         public CrmPluginImageType? ImageType { get; set; }
 
@@ -51,11 +51,11 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 
             switch (this.ParameterSetName)
             {
-                case GetPluginImageByIdParameterSet:
+                case GetPluginStepImageByIdParameterSet:
                     WriteObject(_repository.Get("sdkmessageprocessingstepimage", Id));
                     break;
-                case GetPluginImageByFilterParameterSet:
-                    QueryExpression query = BuildPluginImageByFilterQuery();
+                case GetPluginStepImageByFilterParameterSet:
+                    QueryExpression query = BuildPluginStepImageByFilterQuery();
                     GetContentByQuery(query);
                     break;
                 default:
@@ -67,8 +67,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
         {
             if (PagingParameters.IncludeTotalCount)
             {
-                double accuracy;
-                int count = _repository.GetRowCount(query, out accuracy);
+                int count = _repository.GetRowCount(query, out double accuracy);
                 WriteObject(PagingParameters.NewTotalCount(Convert.ToUInt64(count), accuracy));
             }
 
@@ -78,11 +77,15 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
             }
         }
 
-        private QueryExpression BuildPluginImageByFilterQuery()
+        private QueryExpression BuildPluginStepImageByFilterQuery()
         {
             QueryExpression query = new QueryExpression("sdkmessageprocessingstepimage")
             {
                 ColumnSet = new ColumnSet(true),
+                Orders = {
+                    new OrderExpression("sdkmessageprocessingstepid", OrderType.Ascending),
+                    new OrderExpression("imagetype", OrderType.Ascending)
+                }
             };
 
             FilterExpression filter = new FilterExpression(LogicalOperator.And);

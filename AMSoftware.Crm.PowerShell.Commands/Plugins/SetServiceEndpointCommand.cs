@@ -28,6 +28,7 @@ using Microsoft.Xrm.Sdk.Query;
 namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 {
     [Cmdlet(VerbsCommon.Set, "ServiceEndpoint", HelpUri = HelpUrlConstants.SetServiceEndpointHelpUrl)]
+    [OutputType(typeof(Entity))]
     public sealed class SetServiceEndpointCommand : CrmOrganizationCmdlet
     {
         private ContentRepository _repository = new ContentRepository();
@@ -62,6 +63,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 
         [Parameter]
         public SwitchParameter Federated {get;set;}
+
+        [Parameter]
+        public SwitchParameter PassThru { get; set; }
 
         protected override void ExecuteCmdlet()
         {
@@ -118,6 +122,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
             }
 
             _repository.Update(crmServiceEndpoint);
+            if (PassThru)
+            {
+                WriteObject(_repository.Get("serviceendpoint", Id));
+            }
         }
 
         private static void ValidateNameUnique(ContentRepository repostiory, Guid id, string name)

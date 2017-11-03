@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Get-CrmServiceEndpoint.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Get-CrmServiceEndpoint.md
 schema: 2.0.0
 ---
 
@@ -13,19 +14,13 @@ Get a registered serviceendpoint.
 
 ### GetServiceEndPointByFilter (Default)
 ```
-Get-CrmServiceEndpoint [-Include <String>] [-Exclude <String>] [-IncludeTotalCount] [-Skip <UInt64>]
+Get-CrmServiceEndpoint [[-Name] <String>] [-Exclude <String>] [-IncludeTotalCount] [-Skip <UInt64>]
  [-First <UInt64>] [<CommonParameters>]
 ```
 
 ### GetServiceEndPointById
 ```
 Get-CrmServiceEndpoint [-Id] <Guid> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>]
- [<CommonParameters>]
-```
-
-### GetServiceEndPointByName
-```
-Get-CrmServiceEndpoint [-Name] <String> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>]
  [<CommonParameters>]
 ```
 
@@ -84,22 +79,7 @@ Aliases:
 Required: True
 Position: 1
 Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Include
-Include serviceendpoints whose name matches the provided pattern.
-
-```yaml
-Type: String
-Parameter Sets: GetServiceEndPointByFilter
-Aliases: 
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
@@ -125,10 +105,10 @@ The name of the serviceendpoint to retrieve.
 
 ```yaml
 Type: String
-Parameter Sets: GetServiceEndPointByName
-Aliases: 
+Parameter Sets: GetServiceEndPointByFilter
+Aliases: Include
 
-Required: True
+Required: False
 Position: 1
 Default value: None
 Accept pipeline input: False

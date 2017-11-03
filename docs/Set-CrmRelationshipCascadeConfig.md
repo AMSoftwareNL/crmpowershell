@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Set-CrmRelationshipCascadeConfig.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Set-CrmRelationshipCascadeConfig.md
 schema: 2.0.0
 ---
 
@@ -78,12 +79,12 @@ The SchemaName of the relationship to set the cascade configuration for.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases: SchemaName
 
 Required: True
 Position: 1
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 

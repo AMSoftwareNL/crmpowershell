@@ -15,21 +15,24 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-using System;
-using System.Linq;
-using System.Management.Automation;
 using AMSoftware.Crm.PowerShell.Common;
 using AMSoftware.Crm.PowerShell.Common.Helpers;
 using AMSoftware.Crm.PowerShell.Common.Repositories;
+using Microsoft.Xrm.Sdk;
+using System;
+using System.Linq;
+using System.Management.Automation;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
     [Cmdlet(VerbsCommon.Set, "PrincipalRoles", HelpUri = HelpUrlConstants.SetPrincipalRolesHelpUrl)]
+    [OutputType(typeof(Entity))]
     public sealed class SetPrincipalRolesCommand : CrmOrganizationCmdlet
     {
         private ContentRepository _repository = new ContentRepository();
 
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+        [Alias("Id")]
         [ValidateNotNull]
         public Guid Principal { get; set; }
 
@@ -43,6 +46,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
 
         [Parameter]
         public SwitchParameter Overwrite { get; set; }
+
+        [Parameter]
+        public SwitchParameter PassThru { get; set; }
 
         protected override void ExecuteCmdlet()
         {
@@ -64,7 +70,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
             string secondaryEntityName = "role";
             Guid primaryEntityId = Principal;
             Guid[] secondaryEntityIds = Roles;
-            Guid[] currentSetIds = SecurityManagementHelper.GetRolesForPrincipal(_repository, PrincipalType, Principal).ToArray();
+            Guid[] currentSetIds = SecurityManagementHelper.GetRolesForPrincipal(_repository, PrincipalType, Principal).Select(e => e.Id).ToArray();
 
             Guid[] addSet = secondaryEntityIds.Except(currentSetIds).ToArray();
             if (addSet != null && addSet.Length > 0)
@@ -79,6 +85,11 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
                 {
                     SecurityManagementHelper.UnlinkPrincipalRoles(_repository, primaryEntityName, primaryEntityId, secondaryEntityName, removeSet);
                 }
+            }
+
+            if (PassThru)
+            {
+                WriteObject(_repository.Get(primaryEntityName, primaryEntityId));
             }
         }
     }

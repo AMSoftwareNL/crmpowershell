@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Get-CrmEntityKey.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Get-CrmEntityKey.md
 schema: 2.0.0
 ---
 
@@ -13,18 +14,13 @@ Get entity key metadata for an entity.
 
 ### GetEntityKeysByFilter (Default)
 ```
-Get-CrmEntityKey [-Entity] <String> [-Attributes <String[]>] [-Include <String>] [-Exclude <String>]
- [-ExcludeManaged] [<CommonParameters>]
+Get-CrmEntityKey [-Entity] <String> [[-Name] <String>] [-Exclude <String>] [-ExcludeManaged]
+ [-Attributes <String[]>] [<CommonParameters>]
 ```
 
 ### GetEntityKeyById
 ```
 Get-CrmEntityKey [-Id] <Guid> [<CommonParameters>]
-```
-
-### GetEntityKeyByName
-```
-Get-CrmEntityKey [-Entity] <String> [-Name] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -65,13 +61,13 @@ NOTE: This parameter is case sensitive. i.e. it must match the case of the Logic
 
 ```yaml
 Type: String
-Parameter Sets: GetEntityKeysByFilter, GetEntityKeyByName
-Aliases: 
+Parameter Sets: GetEntityKeysByFilter
+Aliases: LogicalName, EntityLogicalName
 
 Required: True
 Position: 1
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
@@ -111,27 +107,12 @@ The MetadataId of the entity key to retrieve.
 ```yaml
 Type: Guid
 Parameter Sets: GetEntityKeyById
-Aliases: 
+Aliases: MetadataId
 
 Required: True
 Position: 1
 Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Include
-Include the metadata for entitie keys whose LogicalName matches the provided pattern.
-
-```yaml
-Type: String
-Parameter Sets: GetEntityKeysByFilter
-Aliases: 
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
@@ -142,10 +123,10 @@ NOTE: This parameter is case sensitive. i.e. it must match the case of the Logic
 
 ```yaml
 Type: String
-Parameter Sets: GetEntityKeyByName
-Aliases: 
+Parameter Sets: GetEntityKeysByFilter
+Aliases: Include
 
-Required: True
+Required: False
 Position: 2
 Default value: None
 Accept pipeline input: False

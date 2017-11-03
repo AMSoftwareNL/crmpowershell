@@ -84,13 +84,15 @@ namespace AMSoftware.Crm.PowerShell.Common.Helpers
                         pluginAssembly.SdkVersion = new Version(version.Major, version.Minor);
                     }
 
-                    PluginTypeInfo pluginType = new PluginTypeInfo();
-                    pluginType.PluginId = Guid.Empty;
-                    pluginType.Name = exportedType.FullName;
-                    pluginType.TypeName = exportedType.FullName;
-                    pluginType.PluginType = crmPluginType;
-                    pluginType.AssemblyId = pluginAssembly.AssemblyId;
-                    pluginType.Isolatable = isolatable;
+                    PluginTypeInfo pluginType = new PluginTypeInfo
+                    {
+                        PluginId = Guid.Empty,
+                        Name = exportedType.FullName,
+                        TypeName = exportedType.FullName,
+                        PluginType = crmPluginType,
+                        AssemblyId = pluginAssembly.AssemblyId,
+                        Isolatable = isolatable
+                    };
                     if (crmPluginType == CrmPluginType.WorkflowActivity)
                     {
                         pluginType.WorkflowActivityGroupName = PluginManagementHelper.GenerateDefaultGroupName(name.Name, name.Version);
@@ -116,13 +118,15 @@ namespace AMSoftware.Crm.PowerShell.Common.Helpers
             FileInfo fileInfo = new FileInfo(path);
             AssemblyName name = assembly.GetName();
 
-            PluginAssemblyInfo pluginAssembly = new PluginAssemblyInfo(path);
-            pluginAssembly.AssemblyId = Guid.Empty;
-            pluginAssembly.SourceType = CrmAssemblySourceType.Database;
-            pluginAssembly.IsolationMode = CrmAssemblyIsolationMode.Sandbox;
-            pluginAssembly.ServerFileName = fileInfo.Name;
-            pluginAssembly.Name = name.Name;
-            pluginAssembly.Version = name.Version.ToString();
+            PluginAssemblyInfo pluginAssembly = new PluginAssemblyInfo(path)
+            {
+                AssemblyId = Guid.Empty,
+                SourceType = CrmAssemblySourceType.Database,
+                IsolationMode = CrmAssemblyIsolationMode.Sandbox,
+                ServerFileName = fileInfo.Name,
+                Name = name.Name,
+                Version = name.Version.ToString()
+            };
 
             if (name.CultureInfo.LCID == CultureInfo.InvariantCulture.LCID)
             {

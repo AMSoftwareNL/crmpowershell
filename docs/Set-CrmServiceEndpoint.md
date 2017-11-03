@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Set-CrmServiceEndpoint.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Set-CrmServiceEndpoint.md
 schema: 2.0.0
 ---
 
@@ -14,7 +15,7 @@ Update a serviceendpoint.
 ```
 Set-CrmServiceEndpoint [-Id] <Guid> [-Name <String>] [-Description <String>] [-Namespace <String>]
  [-Path <String>] [-Contract <CrmServiceEndpointContract>] [-Claim <CrmServiceEndpointUserClaim>] [-Federated]
- [<CommonParameters>]
+ [-PassThru] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -121,6 +122,21 @@ The namespace for the serviceendpoint.
 
 ```yaml
 Type: String
+Parameter Sets: (All)
+Aliases: 
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -PassThru
+Returns an object that represents the Service Endpoint. By default, this cmdlet does not generate any output.
+
+```yaml
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases: 
 

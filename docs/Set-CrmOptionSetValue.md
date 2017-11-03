@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Set-CrmOptionSetValue.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Set-CrmOptionSetValue.md
 schema: 2.0.0
 ---
 
@@ -36,12 +37,12 @@ The LogicalName of the Attribute to update.
 ```yaml
 Type: String
 Parameter Sets: SetOptionSetValueEntity
-Aliases: 
+Aliases: LogicalName
 
 Required: True
 Position: 2
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
@@ -81,12 +82,12 @@ The LogicalName of the entity to update.
 ```yaml
 Type: String
 Parameter Sets: SetOptionSetValueEntity
-Aliases: 
+Aliases: EntityLogicalName
 
 Required: True
 Position: 1
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
@@ -96,12 +97,12 @@ The name of the global optionset to update.
 ```yaml
 Type: String
 Parameter Sets: SetOptionSetValueGlobal
-Aliases: 
+Aliases: Name
 
 Required: True
 Position: 1
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 

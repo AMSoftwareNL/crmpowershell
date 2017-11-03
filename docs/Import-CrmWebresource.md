@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Import-CrmWebresource.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Import-CrmWebresource.md
 schema: 2.0.0
 ---
 
@@ -13,13 +14,13 @@ Import content for an existing webresource.
 
 ### ImportWebresourceFromValue
 ```
-Import-CrmWebresource [-Id] <Guid> -Value <Byte[]> [<CommonParameters>]
+Import-CrmWebresource [-Id] <Guid> -Value <Byte[]> [-PassThru] [<CommonParameters>]
 ```
 
 ### ImportWebresourceFromPath
 ```
-Import-CrmWebresource [-Id] <Guid> -LiteralPath <String> [-Encoding <FileSystemCmdletProviderEncoding>]
- [<CommonParameters>]
+Import-CrmWebresource [-Id] <Guid> -LiteralPath <String> [-PassThru]
+ [-Encoding <FileSystemCmdletProviderEncoding>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -43,7 +44,7 @@ The encoding to use when reading the file from the filesystem.
 Type: FileSystemCmdletProviderEncoding
 Parameter Sets: ImportWebresourceFromPath
 Aliases: 
-Accepted values: Unknown, String, Unicode, Byte, BigEndianUnicode, UTF8, UTF7, UTF32, Ascii, Default, Oem
+Accepted values: Unknown, String, Unicode, Byte, BigEndianUnicode, UTF8, UTF7, UTF32, Ascii, Default, Oem, BigEndianUTF32
 
 Required: False
 Position: Named
@@ -76,6 +77,21 @@ Parameter Sets: ImportWebresourceFromPath
 Aliases: PSPath, Path
 
 Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -PassThru
+Returns an object that represents the WebResource. By default, this cmdlet does not generate any output.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: 
+
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False

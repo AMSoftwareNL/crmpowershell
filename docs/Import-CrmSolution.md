@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Import-CrmSolution.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Import-CrmSolution.md
 schema: 2.0.0
 ---
 
@@ -36,6 +37,21 @@ PS C:\> Import-CrmSolution -Path c:\temp\product1.zip -ConvertToManaged -Overwri
 Import the solution 'product1.zip' into Dynamics CRM as managed solution and publish the workflows contained in the solution. Overwrite if the solution already exists.
 
 ## PARAMETERS
+
+### -Confirm
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### -ConvertToManaged
 Direct the system to convert any matching unmanaged customizations into your managed solution.
@@ -119,21 +135,6 @@ Whether enforcement of dependencies related to product updates should be skipped
 Type: SwitchParameter
 Parameter Sets: (All)
 Aliases: 
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Confirm
-Prompts you for confirmation before running the cmdlet.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: cf
 
 Required: False
 Position: Named

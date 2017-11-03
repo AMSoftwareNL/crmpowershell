@@ -29,7 +29,8 @@ namespace AMSoftware.Crm.PowerShell.Commands.Discovery
     {
         private DeploymentRepository _repository = new DeploymentRepository();
 
-        [Parameter(Mandatory = true, Position = 1)]
+        [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
+        [Alias("UniqueName", "FriendlyName", "UrlName")]
         [ValidateNotNullOrEmpty]
         public string Name { get; set; }
 

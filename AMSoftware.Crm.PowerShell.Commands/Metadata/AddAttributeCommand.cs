@@ -25,13 +25,44 @@ using Microsoft.Xrm.Sdk.Metadata;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 {
+    [Cmdlet(VerbsCommon.Add, "Attribute", HelpUri = HelpUrlConstants.AddAttributeHelpUrl)]
+    [OutputType(typeof(AttributeMetadata))]
+    public sealed class AddAttributeCommand : CrmOrganizationCmdlet
+    {
+        private MetadataRepository _repository = new MetadataRepository();
+
+        [Parameter(Mandatory = true, Position = 1)]
+        [ValidateNotNullOrEmpty]
+        public string Entity { get; set; }
+
+        [Parameter(Mandatory = true, Position = 2, ValueFromPipeline = true)]
+        [Alias("Attribute")]
+        [ValidateNotNull]
+        public AttributeMetadata InputObject { get; set; }
+
+        [Parameter]
+        public SwitchParameter PassThru { get; set; }
+
+        protected override void ExecuteCmdlet()
+        {
+            base.ExecuteCmdlet();
+
+            Guid id = _repository.AddAttribute(Entity, InputObject);
+            if (PassThru)
+            {
+                WriteObject(_repository.GetAttribute(id));
+            }
+        }
+    }
+
     [OutputType(typeof(AttributeMetadata))]
     public abstract class AddAttributeCommandBase : CrmOrganizationCmdlet, IDynamicParameters
     {
         private MetadataRepository _repository = new MetadataRepository();
         private AddAttributeDynamicParameters _context;
 
-        [Parameter(Mandatory = true, Position = 1)]
+        [Parameter(Mandatory = true, Position = 1, ValueFromPipelineByPropertyName = true)]
+        [Alias("EntityLogicalName", "LogicalName")]
         [ValidateNotNullOrEmpty]
         public string Entity { get; set; }
 
@@ -79,6 +110,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         [ValidateNotNull]
         public string SchemaName { get; set; }
 
+        [Parameter]
+        public SwitchParameter PassThru { get; set; }
+
         public object GetDynamicParameters()
         {
             if (CrmVersionManager.IsSupported(CrmVersion.CRM2016_RTM))
@@ -118,30 +152,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
             }
 
             Guid id = _repository.AddAttribute(Entity, attribute);
-            WriteObject(_repository.GetAttribute(id));
-        }
-    }
-
-    [Cmdlet(VerbsCommon.Add, "Attribute", HelpUri = HelpUrlConstants.AddAttributeHelpUrl)]
-    [OutputType(typeof(AttributeMetadata))]
-    public sealed class AddAttributeCommand : CrmOrganizationCmdlet
-    {
-        private MetadataRepository _repository = new MetadataRepository();
-
-        [Parameter(Mandatory = true, Position = 1)]
-        [ValidateNotNullOrEmpty]
-        public string Entity { get; set; }
-
-        [Parameter(Mandatory = true, Position = 2)]
-        [ValidateNotNull]
-        public AttributeMetadata Attribute { get; set; }
-
-        protected override void ExecuteCmdlet()
-        {
-            base.ExecuteCmdlet();
-
-            Guid id = _repository.AddAttribute(Entity, Attribute);
-            WriteObject(_repository.GetAttribute(id));
+            if (PassThru)
+            {
+                WriteObject(_repository.GetAttribute(id));
+            }
         }
     }
 
@@ -169,9 +183,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         {
             base.ExecuteCmdlet();
 
-            StringAttributeMetadata attribute = new StringAttributeMetadata();
-
-            attribute.ImeMode = ImeMode.Auto;
+            StringAttributeMetadata attribute = new StringAttributeMetadata
+            {
+                ImeMode = ImeMode.Auto
+            };
             if (ImeType == CrmImeType.Active) attribute.ImeMode = ImeMode.Active;
             if (ImeType == CrmImeType.Disabled) attribute.ImeMode = ImeMode.Disabled;
             if (ImeType == CrmImeType.Inactive) attribute.ImeMode = ImeMode.Inactive;
@@ -225,9 +240,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         {
             base.ExecuteCmdlet();
 
-            MemoAttributeMetadata attribute = new MemoAttributeMetadata();
-
-            attribute.ImeMode = ImeMode.Auto;
+            MemoAttributeMetadata attribute = new MemoAttributeMetadata
+            {
+                ImeMode = ImeMode.Auto
+            };
             if (ImeType == CrmImeType.Active) attribute.ImeMode = ImeMode.Active;
             if (ImeType == CrmImeType.Disabled) attribute.ImeMode = ImeMode.Disabled;
             if (ImeType == CrmImeType.Inactive) attribute.ImeMode = ImeMode.Inactive;
@@ -264,9 +280,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         {
             base.ExecuteCmdlet();
 
-            IntegerAttributeMetadata attribute = new IntegerAttributeMetadata();
-
-            attribute.Format = IntegerFormat.None;
+            IntegerAttributeMetadata attribute = new IntegerAttributeMetadata
+            {
+                Format = IntegerFormat.None
+            };
             if (Format == CrmIntegerAttributeFormat.Duration) attribute.Format = IntegerFormat.Duration;
             if (Format == CrmIntegerAttributeFormat.Language) attribute.Format = IntegerFormat.Language;
             if (Format == CrmIntegerAttributeFormat.Locale) attribute.Format = IntegerFormat.Locale;
@@ -320,9 +337,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         {
             base.ExecuteCmdlet();
 
-            DecimalAttributeMetadata attribute = new DecimalAttributeMetadata();
-
-            attribute.ImeMode = ImeMode.Auto;
+            DecimalAttributeMetadata attribute = new DecimalAttributeMetadata
+            {
+                ImeMode = ImeMode.Auto
+            };
             if (ImeType == CrmImeType.Active) attribute.ImeMode = ImeMode.Active;
             if (ImeType == CrmImeType.Disabled) attribute.ImeMode = ImeMode.Disabled;
             if (ImeType == CrmImeType.Inactive) attribute.ImeMode = ImeMode.Inactive;
@@ -366,9 +384,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         {
             base.ExecuteCmdlet();
 
-            DoubleAttributeMetadata attribute = new DoubleAttributeMetadata();
-
-            attribute.ImeMode = ImeMode.Auto;
+            DoubleAttributeMetadata attribute = new DoubleAttributeMetadata
+            {
+                ImeMode = ImeMode.Auto
+            };
             if (ImeType == CrmImeType.Active) attribute.ImeMode = ImeMode.Active;
             if (ImeType == CrmImeType.Disabled) attribute.ImeMode = ImeMode.Disabled;
             if (ImeType == CrmImeType.Inactive) attribute.ImeMode = ImeMode.Inactive;
@@ -417,9 +436,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         {
             base.ExecuteCmdlet();
 
-            MoneyAttributeMetadata attribute = new MoneyAttributeMetadata();
-
-            attribute.ImeMode = ImeMode.Auto;
+            MoneyAttributeMetadata attribute = new MoneyAttributeMetadata
+            {
+                ImeMode = ImeMode.Auto
+            };
             if (ImeType == CrmImeType.Active) attribute.ImeMode = ImeMode.Active;
             if (ImeType == CrmImeType.Disabled) attribute.ImeMode = ImeMode.Disabled;
             if (ImeType == CrmImeType.Inactive) attribute.ImeMode = ImeMode.Inactive;

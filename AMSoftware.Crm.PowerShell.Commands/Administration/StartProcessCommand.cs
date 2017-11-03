@@ -23,7 +23,7 @@ using Microsoft.Xrm.Sdk;
 namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
     [Cmdlet(VerbsLifecycle.Start, "Process", HelpUri = HelpUrlConstants.StartProcessHelpUrl, SupportsShouldProcess = true)]
-    [OutputType(typeof(Guid))]
+    [OutputType(typeof(Entity))]
     public sealed class StartProcessCommand : CrmOrganizationActionCmdlet
     {
         private ContentRepository _repository = new ContentRepository();
@@ -33,8 +33,12 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         public Guid Process { get; set; }
 
         [Parameter(Position = 5, Mandatory = true, ValueFromPipeline = true)]
+        [Alias("Id")]
         [ValidateNotNull]
         public Guid Record { get; set; }
+
+        [Parameter]
+        public SwitchParameter PassThru { get; set; }
 
         protected override void ExecuteCmdlet()
         {
@@ -50,7 +54,12 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
                 request.Parameters["WorkflowId"] = Process;
 
                 OrganizationResponse response = _repository.Execute(request);
-                WriteObject((Guid)response.Results["Id"]);
+
+                if (PassThru)
+                {
+                    Guid asyncId = (Guid)response.Results["Id"];
+                    WriteObject(_repository.Get("asyncoperation", asyncId));
+                }
             });
         }
     }

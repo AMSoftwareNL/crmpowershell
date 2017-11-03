@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Get-CrmContent.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Get-CrmContent.md
 schema: 2.0.0
 ---
 
@@ -19,14 +20,14 @@ Get-CrmContent [-Entity] <String> [[-Query] <Hashtable>] [[-Order] <Hashtable>] 
 
 ### GetContentForEntityById
 ```
-Get-CrmContent [-Entity] <String> [-Id] <Guid> [-RelatedEntities <Hashtable>] [-Columns <String[]>]
- [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
+Get-CrmContent [-Entity] <String> [-Id] <Guid> [-Columns <String[]>] [-IncludeTotalCount] [-Skip <UInt64>]
+ [-First <UInt64>] [<CommonParameters>]
 ```
 
 ### GetContentForEntityByKeys
 ```
-Get-CrmContent [-Entity] <String> [-Keys] <Hashtable> [-RelatedEntities <Hashtable>] [-Columns <String[]>]
- [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
+Get-CrmContent [-Entity] <String> [-Keys] <Hashtable> [-Columns <String[]>] [-IncludeTotalCount]
+ [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
 ```
 
 ### GetContentWithFetchXml
@@ -111,7 +112,7 @@ Aliases:
 Required: True
 Position: 1
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
@@ -143,7 +144,7 @@ Aliases:
 Required: True
 Position: 2
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
@@ -210,21 +211,6 @@ Aliases:
 
 Required: False
 Position: 2
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -RelatedEntities
-A hashtable of entity logicalnames and relationship schemanames describing the related entities to include in the result.
-
-```yaml
-Type: Hashtable
-Parameter Sets: GetContentForEntityById, GetContentForEntityByKeys
-Aliases: 
-
-Required: False
-Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

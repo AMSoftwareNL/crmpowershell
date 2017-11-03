@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Set-CrmAttribute.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Set-CrmAttribute.md
 schema: 2.0.0
 ---
 
@@ -12,7 +13,7 @@ Update an attribute.
 ## SYNTAX
 
 ```
-Set-CrmAttribute [-Entity] <String> [-Attribute] <AttributeMetadata> [<CommonParameters>]
+Set-CrmAttribute [-Entity] <String> [-InputObject] <AttributeMetadata> [-PassThru] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -21,21 +22,6 @@ Update an attribute.
 ## EXAMPLES
 
 ## PARAMETERS
-
-### -Attribute
-The updated AttributeMetadata of the attribute.
-
-```yaml
-Type: AttributeMetadata
-Parameter Sets: (All)
-Aliases: 
-
-Required: True
-Position: 2
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -Entity
 The LogicalName of the entity to update the attribute for.
@@ -47,6 +33,36 @@ Aliases:
 
 Required: True
 Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -InputObject
+The updated AttributeMetadata of the attribute.
+
+```yaml
+Type: AttributeMetadata
+Parameter Sets: (All)
+Aliases: Attribute
+
+Required: True
+Position: 2
+Default value: None
+Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -PassThru
+Returns an object that represents the AttributeMetadata. By default, this cmdlet does not generate any output.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: 
+
+Required: False
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

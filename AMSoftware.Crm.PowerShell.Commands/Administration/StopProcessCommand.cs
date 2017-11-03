@@ -24,6 +24,7 @@ using Microsoft.Xrm.Sdk.Query;
 namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
     [Cmdlet(VerbsLifecycle.Stop, "Process", HelpUri = HelpUrlConstants.StopProcessHelpUrl, ConfirmImpact = ConfirmImpact.High, SupportsShouldProcess = true, DefaultParameterSetName = StopProcessByAsyncOperationParameterSet)]
+    [OutputType(typeof(Entity))]
     public sealed class StopProcessCommand : CrmOrganizationConfirmActionCmdlet
     {
         private const string StopProcessByAsyncOperationParameterSet = "StopProcessByAsyncOperation";
@@ -39,9 +40,13 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         [ValidateNotNull]
         public Guid Process { get; set; }
 
-        [Parameter(Position = 5, Mandatory = false, ValueFromPipeline = true, ParameterSetName = StopProcessByWorkflowParameterSet)]
+        [Parameter(Position = 5, Mandatory = false, ParameterSetName = StopProcessByWorkflowParameterSet, ValueFromPipeline = true)]
+        [Alias("Id")]
         [ValidateNotNull]
         public Guid Record { get; set; }
+
+        [Parameter]
+        public SwitchParameter PassThru { get; set; }
 
         protected override void ExecuteCmdlet()
         {
@@ -73,6 +78,11 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
                     asyncOperation["statuscode"] = new OptionSetValue(32);
 
                     _repository.Update(asyncOperation);
+
+                    if (PassThru)
+                    {
+                        WriteObject(_repository.Get("asyncoperation", asyncOperation.Id));
+                    }
                 });
             }
         }
@@ -91,6 +101,11 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
                         asyncOperation["statuscode"] = new OptionSetValue(32);
 
                         _repository.Update(asyncOperation);
+
+                        if (PassThru)
+                        {
+                            WriteObject(_repository.Get("asyncoperation", asyncOperation.Id));
+                        }
                     });
                 }
             }

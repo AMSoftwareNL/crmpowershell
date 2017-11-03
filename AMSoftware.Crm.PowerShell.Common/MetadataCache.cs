@@ -105,10 +105,14 @@ namespace AMSoftware.Crm.PowerShell.Common
                 LabelQuery = labelFilter
             };
 
-            OrganizationRequest request = new OrganizationRequest("RetrieveMetadataChanges");
-            request.Parameters = new ParameterCollection();
-            request.Parameters.Add("Query", query);
-            request.Parameters.Add("ClientVersionStamp", _timestamp);
+            OrganizationRequest request = new OrganizationRequest("RetrieveMetadataChanges")
+            {
+                Parameters = new ParameterCollection
+                {
+                    { "Query", query },
+                    { "ClientVersionStamp", _timestamp }
+                }
+            };
 
             OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
             return response.Results;
@@ -116,10 +120,14 @@ namespace AMSoftware.Crm.PowerShell.Common
 
         private ParameterCollection GetEntitiesUsingRequestAll()
         {
-            OrganizationRequest request = new OrganizationRequest("RetrieveAllEntities");
-            request.Parameters = new ParameterCollection();
-            request.Parameters.Add("EntityFilters", EntityFilters.Entity | EntityFilters.Privileges);
-            request.Parameters.Add("RetrieveAsIfPublished", true);
+            OrganizationRequest request = new OrganizationRequest("RetrieveAllEntities")
+            {
+                Parameters = new ParameterCollection
+                {
+                    { "EntityFilters", EntityFilters.Entity | EntityFilters.Privileges },
+                    { "RetrieveAsIfPublished", true }
+                }
+            };
 
             OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
             return response.Results;

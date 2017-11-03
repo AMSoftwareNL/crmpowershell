@@ -31,7 +31,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         [ValidateNotNullOrEmpty]
         public string Request { get; set; }
 
-        [Parameter(Mandatory = false, Position = 2)]
+        [Parameter(Mandatory = false, Position = 2, ValueFromPipeline = true)]
         public Hashtable Parameters { get; set; }
 
         protected override void ExecuteCmdlet()

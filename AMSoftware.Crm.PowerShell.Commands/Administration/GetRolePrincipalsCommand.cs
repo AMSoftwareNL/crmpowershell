@@ -16,11 +16,13 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 using System;
+using System.Linq;
 using System.Management.Automation;
 using AMSoftware.Crm.PowerShell.Common;
 using AMSoftware.Crm.PowerShell.Common.Helpers;
 using AMSoftware.Crm.PowerShell.Common.Repositories;
 using Microsoft.Xrm.Sdk;
+using System.Collections.Generic;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
@@ -31,6 +33,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         private ContentRepository _repository = new ContentRepository();
 
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+        [Alias("Id")]
         [ValidateNotNull]
         public Guid Role { get; set; }
 
@@ -38,14 +41,11 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         {
             base.ExecuteCmdlet();
 
-            foreach (var item in SecurityManagementHelper.GetPrincipalsInRole(_repository, CrmPrincipalType.Team, Role))
-            {
-                WriteObject(_repository.Get("team", item));
-            }
-            foreach (var item in SecurityManagementHelper.GetPrincipalsInRole(_repository, CrmPrincipalType.User, Role))
-            {
-                WriteObject(_repository.Get("systemuser", item));
-            }
+            IEnumerable<Entity> teams = SecurityManagementHelper.GetPrincipalsInRole(_repository, CrmPrincipalType.Team, Role);
+            WriteObject(teams, true);
+
+            IEnumerable<Entity> users = SecurityManagementHelper.GetPrincipalsInRole(_repository, CrmPrincipalType.User, Role);
+            WriteObject(users, true);
         }
     }
 }

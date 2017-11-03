@@ -24,6 +24,7 @@ using Microsoft.Xrm.Sdk;
 namespace AMSoftware.Crm.PowerShell.Commands.Content
 {
     [Cmdlet(VerbsCommon.Set, "Content", HelpUri = HelpUrlConstants.SetContentHelpUrl, DefaultParameterSetName = SetContentByInputObjectParameterSet)]
+    [OutputType(typeof(Entity))]
     public sealed class SetContentCommand : CrmOrganizationCmdlet
     {
         private const string SetContentParameterSet = "SetContent";
@@ -31,20 +32,24 @@ namespace AMSoftware.Crm.PowerShell.Commands.Content
 
         private ContentRepository _repository = new ContentRepository();
 
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = SetContentByInputObjectParameterSet)]
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = SetContentByInputObjectParameterSet, ValueFromPipeline = true)]
+        [Alias("Record")]
         [ValidateNotNullOrEmpty]
-        public Entity Record { get; set; }
+        public Entity InputObject { get; set; }
 
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = SetContentParameterSet)]
         [ValidateNotNullOrEmpty]
         public string Entity { get; set; }
 
-        [Parameter(Mandatory = true, Position = 2, ValueFromPipeline = true, ParameterSetName = SetContentParameterSet)]
+        [Parameter(Mandatory = true, Position = 2, ParameterSetName = SetContentParameterSet, ValueFromPipeline = true)]
         public Guid Id { get; set; }
 
         [Parameter(Mandatory = true, Position = 3, ParameterSetName = SetContentParameterSet)]
         [ValidateNotNull]
         public Hashtable Attributes { get; set; }
+
+        [Parameter]
+        public SwitchParameter PassThru { get; set; }
 
         protected override void ExecuteCmdlet()
         {
@@ -54,9 +59,17 @@ namespace AMSoftware.Crm.PowerShell.Commands.Content
             {
                 case SetContentParameterSet:
                     _repository.Update(Entity, Id, Attributes);
+                    if (PassThru)
+                    {
+                        WriteObject(_repository.Get(Entity, Id));
+                    }
                     break;
                 case SetContentByInputObjectParameterSet:
-                    _repository.Update(Record);
+                    _repository.Update(InputObject);
+                    if (PassThru)
+                    {
+                        WriteObject(_repository.Get(InputObject.LogicalName, InputObject.Id));
+                    }
                     break;
                 default:
                     break;

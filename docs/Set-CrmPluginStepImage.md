@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Set-CrmPluginStepImage.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Set-CrmPluginStepImage.md
 schema: 2.0.0
 ---
 
@@ -13,7 +14,7 @@ Update a SDK Message Processing Step image.
 
 ```
 Set-CrmPluginStepImage [-Id] <Guid> [-Name <String>] [-Alias <String>] [-ImageType <CrmPluginStepImageType>]
- [-Attributes <String[]>] [<CommonParameters>]
+ [-Attributes <String[]>] [-PassThru] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -89,6 +90,21 @@ The name for the SDK Message Processing Step image.
 
 ```yaml
 Type: String
+Parameter Sets: (All)
+Aliases: 
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -PassThru
+Returns an object that represents the Plugin Step Image. By default, this cmdlet does not generate any output.
+
+```yaml
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases: 
 

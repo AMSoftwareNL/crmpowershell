@@ -24,6 +24,7 @@ using Microsoft.Xrm.Sdk;
 namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
     [Cmdlet(VerbsData.Import, "Webresource", HelpUri = HelpUrlConstants.ImportWebresourceHelpUrl)]
+    [OutputType(typeof(Entity))]
     public sealed class ImportWebresourceCommand : CrmOrganizationCmdlet, IDynamicParameters
     {
         internal const string ImportWebresourceFromValueParameterSet = "ImportWebresourceFromValue";
@@ -44,6 +45,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
         [Alias("PSPath", "Path")]
         [ValidateNotNullOrEmpty]
         public string LiteralPath { get; set; }
+
+        [Parameter]
+        public SwitchParameter PassThru { get; set; }
 
         public object GetDynamicParameters()
         {
@@ -71,6 +75,11 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
             }
 
             _repository.Update(webresource);
+
+            if (PassThru)
+            {
+                WriteObject(_repository.Get("webresource", Id));
+            }
         }
     }
 

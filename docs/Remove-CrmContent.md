@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Remove-CrmContent.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Remove-CrmContent.md
 schema: 2.0.0
 ---
 
@@ -11,6 +12,12 @@ Remove a data record from an entity.
 
 ## SYNTAX
 
+### RemoveContentByInputObject (Default)
+```
+Remove-CrmContent [-InputObject] <Entity> [-Force] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
+### RemoveContent
 ```
 Remove-CrmContent [-Entity] <String> [-Id] <Guid> [-Force] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
@@ -22,12 +29,27 @@ Remove a data record from an entity.
 
 ## PARAMETERS
 
+### -Confirm
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -Entity
 The LogicalName of the entity to remove the record from.
 
 ```yaml
 Type: String
-Parameter Sets: (All)
+Parameter Sets: RemoveContent
 Aliases: 
 
 Required: True
@@ -57,7 +79,7 @@ The id of the data record to remove.
 
 ```yaml
 Type: Guid
-Parameter Sets: (All)
+Parameter Sets: RemoveContent
 Aliases: 
 
 Required: True
@@ -67,18 +89,18 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -Confirm
-Prompts you for confirmation before running the cmdlet.
+### -InputObject
+The entity object representing the record to remove.
 
 ```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: cf
+Type: Entity
+Parameter Sets: RemoveContentByInputObject
+Aliases: Record
 
-Required: False
-Position: Named
+Required: True
+Position: 1
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 

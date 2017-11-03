@@ -42,7 +42,8 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         [ValidateNotNullOrEmpty]
         public string Entity2 { get; set; }
 
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = AddOneToManyRelationshipParameterSet)]
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = AddOneToManyRelationshipParameterSet, ValueFromPipelineByPropertyName = true)]
+        [Alias("EntityLogicalName", "LogicalName")]
         [ValidateNotNullOrEmpty]
         public string Entity { get; set; }
 
@@ -81,6 +82,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         [Parameter]
         [ValidateNotNull]
         public bool? Customizable { get; set; }
+
+        [Parameter]
+        public SwitchParameter PassThru { get; set; }
 
         protected override void ExecuteCmdlet()
         {
@@ -132,7 +136,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
             lookup.RequiredLevel = new AttributeRequiredLevelManagedProperty(requiredLevel);
 
             Guid result = _repository.AddRelationship(relationship, lookup);
-            WriteObject(_repository.GetRelationship(result));
+            if (PassThru)
+            {
+                WriteObject(_repository.GetRelationship(result));
+            }
         }
 
         private void AddManyToMany()
@@ -147,7 +154,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
             if (Customizable.HasValue) data.IsCustomizable = new BooleanManagedProperty(Customizable.Value);
 
             Guid result = _repository.AddRelationship(data, IntersectName);
-            WriteObject(_repository.GetRelationship(result));
+            if (PassThru)
+            {
+                WriteObject(_repository.GetRelationship(result));
+            }
         }
     }
 
@@ -167,9 +177,8 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         {
             base.SetParametersOnRelationship(relationship);
 
-            if (relationship is OneToManyRelationshipMetadata)
+            if (relationship is OneToManyRelationshipMetadata internalRelationship)
             {
-                OneToManyRelationshipMetadata internalRelationship = (OneToManyRelationshipMetadata)relationship;
                 if (IsHierarchical.HasValue)
                 {
                     if (string.Equals(internalRelationship.ReferencingEntity, internalRelationship.ReferencedEntity, StringComparison.InvariantCultureIgnoreCase))

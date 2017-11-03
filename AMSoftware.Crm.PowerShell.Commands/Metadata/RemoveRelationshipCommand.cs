@@ -28,11 +28,13 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 
         private MetadataRepository _repository = new MetadataRepository();
 
-        [Parameter(Position = 1, Mandatory = true, ParameterSetName = RemoveRelationshipByNameParameterSet)]
+        [Parameter(Position = 1, Mandatory = true, ParameterSetName = RemoveRelationshipByNameParameterSet, ValueFromPipelineByPropertyName = true)]
+        [Alias("SchemaName")]
         [ValidateNotNullOrEmpty]
         public string Name { get; set; }
 
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = RemoveRelationshipByEntityParameterSet)]
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = RemoveRelationshipByEntityParameterSet, ValueFromPipelineByPropertyName = true)]
+        [Alias("EntityLogicalName")]
         [ValidateNotNullOrEmpty]
         public string Entity { get; set; }
 

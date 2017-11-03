@@ -26,101 +26,140 @@ namespace AMSoftware.Crm.PowerShell.Common.Helpers
 {
     internal sealed class SecurityManagementHelper
     {
-        public static IEnumerable<Guid> GetRolesForPrincipal(ContentRepository repository, CrmPrincipalType principalType, Guid principalId)
+        public static IEnumerable<Entity> GetRolesForPrincipal(ContentRepository repository, CrmPrincipalType principalType, Guid principalId)
         {
-            string entityName = null;
+            string linkedEntityName = null;
             string filterAttributeName = null;
 
             switch (principalType)
             {
                 case CrmPrincipalType.User:
-                    entityName = "systemuserroles";
+                    linkedEntityName = "systemuserroles";
                     filterAttributeName = "systemuserid";
                     break;
                 case CrmPrincipalType.Team:
-                    entityName = "teamroles";
+                    linkedEntityName = "teamroles";
                     filterAttributeName = "teamid";
                     break;
                 default:
                     break;
             }
-
-            QueryExpression query = new QueryExpression(entityName)
+            
+            QueryExpression query = new QueryExpression("role")
             {
-                ColumnSet = new ColumnSet("roleid"),
-                Criteria =
+                ColumnSet = new ColumnSet(true),
+                Orders = {
+                    new OrderExpression("name", OrderType.Ascending)
+                },
+                LinkEntities =
                 {
-                    Conditions = {
-                        new ConditionExpression(filterAttributeName, ConditionOperator.Equal, principalId)
+                    new LinkEntity("role", linkedEntityName, "roleid", "roleid", JoinOperator.Inner)
+                    {
+                        LinkCriteria = {
+                            Conditions = {
+                                new ConditionExpression(filterAttributeName, ConditionOperator.Equal, principalId)
+                            }
+                        }
                     }
                 }
             };
 
-            return repository.Get(query).Select(e => e.GetAttributeValue<Guid>("roleid"));
+            return repository.Get(query);
         }
 
-        public static IEnumerable<Guid> GetTeamsForUser(ContentRepository repository, Guid userId)
+        public static IEnumerable<Entity> GetTeamsForUser(ContentRepository repository, Guid userId)
         {
-            QueryExpression query = new QueryExpression("teammembership")
+            QueryExpression query = new QueryExpression("team")
             {
-                ColumnSet = new ColumnSet("teamid"),
-                Criteria = {
-                    Conditions = {
-                        new ConditionExpression("systemuserid", ConditionOperator.Equal, userId)
+                ColumnSet = new ColumnSet(true),
+                Orders = {
+                    new OrderExpression("name", OrderType.Ascending)
+                },
+                LinkEntities =
+                {
+                    new LinkEntity("team", "teammembership", "teamid", "teamid", JoinOperator.Inner)
+                    {
+                        LinkCriteria = {
+                            Conditions = {
+                                new ConditionExpression("systemuserid", ConditionOperator.Equal, userId)
+                            }
+                        }
                     }
                 }
             };
 
-            return repository.Get(query).Select(e => e.GetAttributeValue<Guid>("teamid"));
+            return repository.Get(query);
         }
 
-        public static IEnumerable<Guid> GetPrincipalsInRole(ContentRepository repository, CrmPrincipalType principalType, Guid roleId)
+        public static IEnumerable<Entity> GetPrincipalsInRole(ContentRepository repository, CrmPrincipalType principalType, Guid roleId)
         {
-            string entityName = null;
-            string resultAttributeName = null;
+            string resultEntityName = null;
+            string linkedEntityName = null;
+            string linkedAttributeName = null;
+            string sortAttributeName = null;
 
             switch (principalType)
             {
                 case CrmPrincipalType.User:
-                    entityName = "systemuserroles";
-                    resultAttributeName = "systemuserid";
+                    resultEntityName = "systemuser";
+                    linkedEntityName = "systemuserroles";
+                    linkedAttributeName = "systemuserid";
+                    sortAttributeName = "fullname";
                     break;
                 case CrmPrincipalType.Team:
-                    entityName = "teamroles";
-                    resultAttributeName = "teamid";
+                    resultEntityName = "team";
+                    linkedEntityName = "teamroles";
+                    linkedAttributeName = "teamid";
+                    sortAttributeName = "name";
                     break;
                 default:
                     break;
             }
 
-            QueryExpression query = new QueryExpression(entityName)
+            QueryExpression query = new QueryExpression(resultEntityName)
             {
-                ColumnSet = new ColumnSet(resultAttributeName),
-                Criteria =
+                ColumnSet = new ColumnSet(true),
+                Orders = {
+                    new OrderExpression(sortAttributeName, OrderType.Ascending)
+                },
+                LinkEntities =
                 {
-                    Conditions = {
-                        new ConditionExpression("roleid", ConditionOperator.Equal, roleId)
+                    new LinkEntity(resultEntityName, linkedEntityName, linkedAttributeName, linkedAttributeName, JoinOperator.Inner)
+                    {
+                        LinkCriteria = {
+                            Conditions = {
+                                new ConditionExpression("roleid", ConditionOperator.Equal, roleId)
+                            }
+                        }
                     }
                 }
             };
 
-            return repository.Get(query).Select(e => e.GetAttributeValue<Guid>("systemuserid"));
+            return repository.Get(query);
         }
 
-        public static IEnumerable<Guid> GetUsersInTeam(ContentRepository repository, Guid teamId)
+        public static IEnumerable<Entity> GetUsersInTeam(ContentRepository repository, Guid teamId)
         {
-            QueryExpression query = new QueryExpression("teammembership")
+            QueryExpression query = new QueryExpression("systemuser")
             {
-                ColumnSet = new ColumnSet("systemuserid"),
-                Criteria =
+                ColumnSet = new ColumnSet(true),
+                Orders = {
+                    new OrderExpression("fullname", OrderType.Ascending)
+                },
+                LinkEntities =
                 {
-                    Conditions = {
-                        new ConditionExpression("teamid", ConditionOperator.Equal, teamId)
+                    new LinkEntity("systemuser", "teammembership", "systemuserid", "systemuserid", JoinOperator.Inner)
+                    {
+                        LinkCriteria = {
+                            Conditions = {
+                                new ConditionExpression("teamid", ConditionOperator.Equal, teamId)
+                            }
+                        }
                     }
                 }
             };
 
-            return repository.Get(query).Select(e => e.GetAttributeValue<Guid>("systemuserid"));
+            return repository.Get(query);
         }
 
         public static void LinkPrincipalRoles(ContentRepository repository, string entity, Guid id, string entity2, Guid[] related)
@@ -159,8 +198,10 @@ namespace AMSoftware.Crm.PowerShell.Common.Helpers
 
         public static void AddUsersToTeam(ContentRepository repository, Guid teamId, Guid[] userIds)
         {
-            OrganizationRequest request = new OrganizationRequest("AddMembersTeam");
-            request.Parameters = new ParameterCollection();
+            OrganizationRequest request = new OrganizationRequest("AddMembersTeam")
+            {
+                Parameters = new ParameterCollection()
+            };
             request.Parameters["TeamId"] = teamId;
             request.Parameters["MemberIds"] = userIds;
 
@@ -169,8 +210,10 @@ namespace AMSoftware.Crm.PowerShell.Common.Helpers
 
         public static void RemoveUsersFromTeam(ContentRepository repository, Guid teamId, Guid[] userIds)
         {
-            OrganizationRequest request = new OrganizationRequest("RemoveMembersTeam");
-            request.Parameters = new ParameterCollection();
+            OrganizationRequest request = new OrganizationRequest("RemoveMembersTeam")
+            {
+                Parameters = new ParameterCollection()
+            };
             request.Parameters["TeamId"] = teamId;
             request.Parameters["MemberIds"] = userIds;
 

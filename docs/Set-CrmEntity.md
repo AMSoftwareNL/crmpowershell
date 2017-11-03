@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Set-CrmEntity.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Set-CrmEntity.md
 schema: 2.0.0
 ---
 
@@ -13,13 +14,13 @@ Update an entity.
 
 ### SetEntityByInputObject (Default)
 ```
-Set-CrmEntity [-Entity] <EntityMetadata> [<CommonParameters>]
+Set-CrmEntity [-InputObject] <EntityMetadata> [-PassThru] [<CommonParameters>]
 ```
 
 ### SetEntity
 ```
 Set-CrmEntity [-Name] <String> [-DisplayName <String>] [-DisplayCollectionName <String>]
- [-Description <String>] [-Customizable <Boolean>] [-CanChangeHierarchicalRelationship <Boolean>]
+ [-Description <String>] [-Customizable <Boolean>] [-PassThru] [-CanChangeHierarchicalRelationship <Boolean>]
  [-CanEnableSyncToExternalSearchIndex <Boolean>] [-ChangeTrackingEnabled <Boolean>] [-EntityColor <String>]
  [-EntityHelpUrlEnabled <Boolean>] [-EntityHelpUrl <Uri>] [-IsInteractionCentricEnabled <Boolean>]
  [-IsKnowledgeManagementEnabled <Boolean>] [-IsOfflineInMobileClient <Boolean>]
@@ -236,21 +237,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Entity
-The updated EntityMetadata object for the entity.
-
-```yaml
-Type: EntityMetadata
-Parameter Sets: SetEntityByInputObject
-Aliases: 
-
-Required: True
-Position: 1
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -EntityColor
 The color to be used for this entity in the application.
 
@@ -370,6 +356,21 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -InputObject
+The updated EntityMetadata object for the entity.
+
+```yaml
+Type: EntityMetadata
+Parameter Sets: SetEntityByInputObject
+Aliases: Entity
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
@@ -524,8 +525,6 @@ Accept wildcard characters: False
 ```
 
 ### -IsOfflineInMobileClient
-{{Fill IsOfflineInMobileClient Description}}
-
 ```yaml
 Type: Boolean
 Parameter Sets: SetEntity
@@ -638,6 +637,21 @@ Aliases:
 
 Required: True
 Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -PassThru
+Returns an object that represents the EntityMetadata. By default, this cmdlet does not generate any output.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: 
+
+Required: False
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

@@ -90,6 +90,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
         [Parameter(ValueFromRemainingArguments = true)]
         public string[] Attributes { get; set; }
 
+        [Parameter]
+        public SwitchParameter PassThru { get; set; }
+
         private bool IsServiceEndpoint { get; set; }
         private Entity SdkMessageFilter { get; set; }
         private EntityReference SdkMessage { get; set; }
@@ -158,7 +161,11 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
                 });
             }
 
-            WriteObject(_repository.Add(GenerateCrmEntity(secureConfigId)));
+            Guid newId = _repository.Add(GenerateCrmEntity(secureConfigId));
+            if (PassThru)
+            {
+                WriteObject(_repository.Get("sdkmessageprocessingstep", newId));
+            }
         }
 
         private Entity RetrieveEventSource(Guid eventSourceId)
@@ -224,8 +231,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 
         private Entity GenerateCrmEntity(Guid secureConfigId)
         {
-            Entity crmPluginStep = new Entity("sdkmessageprocessingstep");
-            crmPluginStep.Attributes = new AttributeCollection();
+            Entity crmPluginStep = new Entity("sdkmessageprocessingstep")
+            {
+                Attributes = new AttributeCollection()
+            };
             crmPluginStep.Attributes.Add("asyncautodelete", DeleteAsyncOperation.ToBool());
             crmPluginStep.Attributes.Add("rank", ExecutionOrder ?? 1);
             crmPluginStep.Attributes.Add("description", Description);

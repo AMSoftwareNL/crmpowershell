@@ -28,29 +28,26 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
     [Cmdlet(VerbsCommon.Get, "Attribute", HelpUri = HelpUrlConstants.GetAttributeHelpUrl, DefaultParameterSetName = GetAttributesByFilterParameterSet)]
     public sealed class GetAttributeCommand : CrmOrganizationCmdlet
     {
-        private const string GetAttributeByNameParameterSet = "GetAttributeByName";
         private const string GetAttributeByIdParameterSet = "GetAttributeById";
         private const string GetAttributesByFilterParameterSet = "GetAttributesByFilter";
 
         private MetadataRepository _repository = new MetadataRepository();
 
-        [Parameter(Position = 1, Mandatory = true, ParameterSetName = GetAttributeByIdParameterSet)]
+        [Parameter(Position = 1, Mandatory = true, ParameterSetName = GetAttributeByIdParameterSet, ValueFromPipeline = true)]
+        [Alias("MetadataId")]
         [ValidateNotNull]
         public Guid Id { get; set; }
 
-        [Parameter(Position = 1, Mandatory = true, ParameterSetName = GetAttributeByNameParameterSet)]
-        [Parameter(Position = 1, Mandatory = true, ParameterSetName = GetAttributesByFilterParameterSet)]
+        [Parameter(Position = 1, Mandatory = true, ParameterSetName = GetAttributesByFilterParameterSet, ValueFromPipelineByPropertyName = true)]
+        [Alias("EntityLogicalName", "LogicalName")]
         [ValidateNotNullOrEmpty]
         public string Entity { get; set; }
 
-        [Parameter(Position = 2, Mandatory = true, ParameterSetName = GetAttributeByNameParameterSet)]
-        [ValidateNotNullOrEmpty]
-        public string Name { get; set; }
-
-        [Parameter(ParameterSetName = GetAttributesByFilterParameterSet)]
+        [Parameter(Position = 2, ParameterSetName = GetAttributesByFilterParameterSet)]
+        [Alias("Include")]
         [ValidateNotNullOrEmpty]
         [SupportsWildcards]
-        public string Include { get; set; }
+        public string Name { get; set; }
 
         [Parameter(ParameterSetName = GetAttributesByFilterParameterSet)]
         [ValidateNotNullOrEmpty]
@@ -75,9 +72,6 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 
             switch (this.ParameterSetName)
             {
-                case GetAttributeByNameParameterSet:
-                    WriteObject(_repository.GetAttribute(Entity, Name));
-                    break;
                 case GetAttributeByIdParameterSet:
                     WriteObject(_repository.GetAttribute(Id));
                     break;
@@ -92,9 +86,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         private void GetAttributeByFilter()
         {
             IEnumerable<AttributeMetadata> result = _repository.GetAttribute(Entity, CustomOnly.ToBool(), ExcludeManaged.ToBool(), IncludeLinked.ToBool());
-            if (!string.IsNullOrWhiteSpace(Include))
+            if (!string.IsNullOrWhiteSpace(Name))
             {
-                WildcardPattern includePattern = new WildcardPattern(Include, WildcardOptions.IgnoreCase);
+                WildcardPattern includePattern = new WildcardPattern(Name, WildcardOptions.IgnoreCase);
                 result = result.Where(a => includePattern.IsMatch(a.LogicalName));
             }
             if (!string.IsNullOrWhiteSpace(Exclude))
@@ -120,6 +114,8 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
                     }
                 }
             }
+
+            result = result.OrderBy(a => a.LogicalName);
 
             WriteObject(result, true);
         }

@@ -50,12 +50,17 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
         [ValidateNotNullOrEmpty]
         public string Description { get; set; }
 
+        [Parameter]
+        public SwitchParameter PassThru { get; set; }
+
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
 
-            Entity newSolution = new Entity("solution");
-            newSolution.Attributes = new AttributeCollection();
+            Entity newSolution = new Entity("solution")
+            {
+                Attributes = new AttributeCollection()
+            };
             newSolution.Attributes.Add("uniquename", Name);
             newSolution.Attributes.Add("friendlyname", DisplayName);
             newSolution.Attributes.Add("version", Version);
@@ -67,7 +72,11 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
             }
 
             Guid newSolutionId = _repository.Add(newSolution);
-            WriteObject(_repository.Get("solution", newSolutionId));
+
+            if (PassThru)
+            {
+                WriteObject(_repository.Get("solution", newSolutionId));
+            }
         }
     }
 }

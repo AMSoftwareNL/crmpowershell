@@ -18,29 +18,41 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Management.Automation;
 using AMSoftware.Crm.PowerShell.Common.Repositories;
+using Microsoft.Xrm.Sdk;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Content
 {
-    [Cmdlet(VerbsCommon.Join, "Content", HelpUri = HelpUrlConstants.JoinContentHelpUrl)]
+    [Cmdlet(VerbsCommon.Join, "Content", HelpUri = HelpUrlConstants.JoinContentHelpUrl, DefaultParameterSetName = JoinContentByInputObjectParameterSet)]
     public sealed class JoinContentCommand : CrmOrganizationCmdlet
     {
+        private const string JoinContentParameterSet = "JoinContent";
+        private const string JoinContentByInputObjectParameterSet = "JoinContentByInputObject";
+
         private ContentRepository _repository = new ContentRepository();
 
-        [Parameter(Mandatory = true, Position = 1)]
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = JoinContentByInputObjectParameterSet, ValueFromPipeline = true)]
+        [Alias("Record")]
+        [ValidateNotNullOrEmpty]
+        public Entity InputObject { get; set; }
+
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = JoinContentParameterSet)]
         [ValidateNotNullOrEmpty]
         public string Entity { get; set; }
 
-        [Parameter(Mandatory = true, Position = 2)]
+        [Parameter(Mandatory = true, Position = 2, ParameterSetName = JoinContentParameterSet, ValueFromPipeline = true)]
         public Guid Id { get; set; }
 
-        [Parameter(Mandatory = true, Position = 3)]
+        [Parameter(Mandatory = true, Position = 3, ParameterSetName = JoinContentParameterSet)]
+        [Parameter(Mandatory = true, Position = 3, ParameterSetName = JoinContentByInputObjectParameterSet)]
         [ValidateNotNullOrEmpty]
         public string ToEntity { get; set; }
 
-        [Parameter(Mandatory = true, Position = 4)]
+        [Parameter(Mandatory = true, Position = 4, ParameterSetName = JoinContentParameterSet)]
+        [Parameter(Mandatory = true, Position = 4, ParameterSetName = JoinContentByInputObjectParameterSet)]
         public Guid ToId { get; set; }
 
-        [Parameter]
+        [Parameter(ParameterSetName = JoinContentParameterSet)]
+        [Parameter(ParameterSetName = JoinContentByInputObjectParameterSet)]
         [ValidateNotNullOrEmpty]
         public string Attribute { get; set; }
 
@@ -48,7 +60,17 @@ namespace AMSoftware.Crm.PowerShell.Commands.Content
         {
             base.ExecuteCmdlet();
 
-            _repository.Associate(Entity, Id, ToEntity, ToId, Attribute);
+            switch (this.ParameterSetName)
+            {
+                case JoinContentParameterSet:
+                    _repository.Associate(Entity, Id, ToEntity, ToId, Attribute);
+                    break;
+                case JoinContentByInputObjectParameterSet:
+                    _repository.Associate(InputObject.LogicalName, InputObject.Id, ToEntity, ToId, Attribute);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

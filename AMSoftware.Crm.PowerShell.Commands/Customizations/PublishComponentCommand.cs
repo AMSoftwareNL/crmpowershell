@@ -38,7 +38,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
         [Parameter(ParameterSetName = PublishAllParameterSet)]
         public SwitchParameter All { get; set; }
 
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = PublishSolutionParameterSet)]
+        [Parameter(Mandatory = true, ParameterSetName = PublishSolutionParameterSet, ValueFromPipeline = true)]
         [ValidateNotNullOrEmpty]
         public Guid Solution { get; set; }
 
@@ -150,8 +150,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
                     RecordType = ProgressRecordType.Processing
                 });
 
-                OrganizationRequest request = new OrganizationRequest("PublishXml");
-                request.Parameters = new ParameterCollection();
+                OrganizationRequest request = new OrganizationRequest("PublishXml")
+                {
+                    Parameters = new ParameterCollection()
+                };
                 request.Parameters.Add("ParameterXml", publishXml);
 
                 OrganizationResponse response = _repository.Execute(request);
@@ -211,8 +213,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
                     RecordType = ProgressRecordType.Processing
                 });
 
-                OrganizationRequest request = new OrganizationRequest("PublishXml");
-                request.Parameters = new ParameterCollection();
+                OrganizationRequest request = new OrganizationRequest("PublishXml")
+                {
+                    Parameters = new ParameterCollection()
+                };
                 request.Parameters.Add("ParameterXml", publishXml);
 
                 OrganizationResponse response = _repository.Execute(request);

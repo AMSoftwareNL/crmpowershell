@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Set-CrmContent.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Set-CrmContent.md
 schema: 2.0.0
 ---
 
@@ -13,12 +14,12 @@ Update a data record of an entity.
 
 ### SetContentByInputObject (Default)
 ```
-Set-CrmContent [-Record] <Entity> [<CommonParameters>]
+Set-CrmContent [-InputObject] <Entity> [-PassThru] [<CommonParameters>]
 ```
 
 ### SetContent
 ```
-Set-CrmContent [-Entity] <String> [-Id] <Guid> [-Attributes] <Hashtable> [<CommonParameters>]
+Set-CrmContent [-Entity] <String> [-Id] <Guid> [-Attributes] <Hashtable> [-PassThru] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -80,16 +81,31 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -Record
+### -InputObject
 An entity object containing the attributes and values of the record.
 
 ```yaml
 Type: Entity
 Parameter Sets: SetContentByInputObject
-Aliases: 
+Aliases: Record
 
 Required: True
 Position: 1
+Default value: None
+Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -PassThru
+Returns an object that represents the entity record. By default, this cmdlet does not generate any output.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: 
+
+Required: False
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Management.Automation;
 using AMSoftware.Crm.PowerShell.Common;
 using AMSoftware.Crm.PowerShell.Common.Helpers;
@@ -28,26 +29,21 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
     [Cmdlet(VerbsCommon.Remove, "SolutionComponent", HelpUri = HelpUrlConstants.RemoveSolutionComponentHelpUrl)]
     public sealed class RemoveSolutionComponentCommand : CrmOrganizationCmdlet
     {
-        private const string RemoveSolutionComponentSimpleParameterSet = "RemoveSolutionComponentSimple";
-        private const string RemoveSolutionComponentAdvancedParameterSet = "RemoveSolutionComponentAdvanced";
-
         private ContentRepository _repository = new ContentRepository();
         private Dictionary<int, string> _validComponentTypes;
 
         [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]
-        [ValidateNotNull]
+        [ValidateNotNullOrEmpty]
         public Guid Solution { get; set; }
 
-        [Parameter(Mandatory = true, ParameterSetName = RemoveSolutionComponentSimpleParameterSet)]
-        [ValidateNotNull]
-        public CrmComponentType Type { get; set; }
+        [Parameter(Mandatory = true, Position = 2)]
+        [Alias("ComponentType")]
+        [ValidateNotNullOrEmpty]
+        public string Type { get; set; }
 
-        [Parameter(Mandatory = true, ParameterSetName = RemoveSolutionComponentAdvancedParameterSet)]
-        [ValidateNotNull]
-        public int ComponentType { get; set; }
-
-        [Parameter(Mandatory = true)]
-        [ValidateNotNull]
+        [Parameter(Mandatory = true, Position = 3)]
+        [Alias("ObjectId")]
+        [ValidateNotNullOrEmpty]
         public Guid ComponentId { get; set; }
 
         protected override void BeginProcessing()
@@ -62,30 +58,28 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
             base.ExecuteCmdlet();
 
             string solutionUniqueName = SolutionManagementHelper.GetSolutionUniqueName(_repository, Solution, false);
+
             int componentTypeValue = 0;
-
-            switch (this.ParameterSetName)
+            if (int.TryParse(Type, out int typeAsInt) && _validComponentTypes.ContainsKey(typeAsInt))
             {
-                case RemoveSolutionComponentSimpleParameterSet:
-                    componentTypeValue = (int)Type;
-                    break;
-                case RemoveSolutionComponentAdvancedParameterSet:
-                    componentTypeValue = ComponentType;
-                    break;
-                default:
-                    break;
+                componentTypeValue = typeAsInt;
+            }
+            else if (_validComponentTypes.Any(v => v.Value.Equals(Type, StringComparison.InvariantCultureIgnoreCase)))
+            {
+                componentTypeValue = _validComponentTypes.First(v => v.Value.Equals(Type, StringComparison.InvariantCultureIgnoreCase)).Key;
+            }
+            else
+            {
+                throw new NotSupportedException(string.Format("ComponentType '{0}' is not supported.", Type));
             }
 
-            if (!_validComponentTypes.ContainsKey(componentTypeValue))
+            OrganizationRequest request = new OrganizationRequest("RemoveSolutionComponent")
             {
-                throw new NotSupportedException(string.Format("ComponentType '{0}' is not supported.", componentTypeValue));
-            }
-
-            OrganizationRequest request = new OrganizationRequest("RemoveSolutionComponent");
-            request.Parameters = new ParameterCollection() {
-                { "SolutionUniqueName", solutionUniqueName },
-                {"ComponentType", componentTypeValue },
-                {"ComponentId", ComponentId }
+                Parameters = new ParameterCollection() {
+                    { "SolutionUniqueName", solutionUniqueName },
+                    {"ComponentType", componentTypeValue },
+                    {"ComponentId", ComponentId }
+                }
             };
 
             OrganizationResponse response = _repository.Execute(request);

@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Split-CrmContent.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Split-CrmContent.md
 schema: 2.0.0
 ---
 
@@ -11,6 +12,13 @@ Disassociate one record from another.
 
 ## SYNTAX
 
+### SplitContentByInputObject (Default)
+```
+Split-CrmContent [-InputObject] <Entity> [-FromEntity] <String> [-FromId] <Guid> [-Attribute <String>]
+ [<CommonParameters>]
+```
+
+### SplitContent
 ```
 Split-CrmContent [-Entity] <String> [-Id] <Guid> [-FromEntity] <String> [-FromId] <Guid> [-Attribute <String>]
  [<CommonParameters>]
@@ -54,7 +62,7 @@ The LogicalName of the entity to disassociate.
 
 ```yaml
 Type: String
-Parameter Sets: (All)
+Parameter Sets: SplitContent
 Aliases: 
 
 Required: True
@@ -99,13 +107,28 @@ The id of the record of the entity to disassociate.
 
 ```yaml
 Type: Guid
-Parameter Sets: (All)
+Parameter Sets: SplitContent
 Aliases: 
 
 Required: True
 Position: 2
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -InputObject
+The entity record to disassociate.
+
+```yaml
+Type: Entity
+Parameter Sets: SplitContentByInputObject
+Aliases: Record
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 

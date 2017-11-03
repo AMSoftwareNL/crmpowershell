@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/New-CrmEntity.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/New-CrmEntity.md
 schema: 2.0.0
 ---
 
@@ -13,13 +14,15 @@ Add a new entity.
 
 ### NewEntityByInputObject (Default)
 ```
-New-CrmEntity [-Entity] <EntityMetadata> [-PrimaryAttribute] <StringAttributeMetadata> [<CommonParameters>]
+New-CrmEntity [-InputObject] <EntityMetadata> [-PrimaryAttribute] <StringAttributeMetadata> [-PassThru]
+ [<CommonParameters>]
 ```
 
 ### NewActivity
 ```
 New-CrmEntity [-IsActivity] [-ExcludeFromMenu] [-Name] <String> [-DisplayName] <String>
- -DisplayCollectionName <String> [-Description <String>] [-Customizable <Boolean>] [<CommonParameters>]
+ -DisplayCollectionName <String> [-Description <String>] [-Customizable <Boolean>] [-PassThru]
+ [<CommonParameters>]
 ```
 
 ### NewEntity
@@ -27,7 +30,7 @@ New-CrmEntity [-IsActivity] [-ExcludeFromMenu] [-Name] <String> [-DisplayName] <
 New-CrmEntity [-Name] <String> [-DisplayName] <String> -DisplayCollectionName <String> [-Description <String>]
  [-Owner <CrmEntityOwner>] -AttributeName <String> -AttributeDisplayName <String>
  [-AttributeRequired <CrmRequiredLevel>] [-AttributeLength <Int32>] [-AttributeDescription <String>]
- [-Customizable <Boolean>] [-CanChangeHierarchicalRelationship <Boolean>]
+ [-Customizable <Boolean>] [-PassThru] [-CanChangeHierarchicalRelationship <Boolean>]
  [-CanEnableSyncToExternalSearchIndex <Boolean>] [-ChangeTrackingEnabled <Boolean>] [-EntityColor <String>]
  [-EntityHelpUrlEnabled <Boolean>] [-EntityHelpUrl <Uri>] [-IsInteractionCentricEnabled <Boolean>]
  [-IsKnowledgeManagementEnabled <Boolean>] [-IsOfflineInMobileClient <Boolean>]
@@ -320,21 +323,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Entity
-The EntityMetadata object for the new entity.
-
-```yaml
-Type: EntityMetadata
-Parameter Sets: NewEntityByInputObject
-Aliases: 
-
-Required: True
-Position: 1
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -EntityColor
 The color to be used for this entity in the application.
 
@@ -469,6 +457,21 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -InputObject
+The EntityMetadata object for the new entity.
+
+```yaml
+Type: EntityMetadata
+Parameter Sets: NewEntityByInputObject
+Aliases: Entity
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
@@ -638,8 +641,6 @@ Accept wildcard characters: False
 ```
 
 ### -IsOfflineInMobileClient
-{{Fill IsOfflineInMobileClient Description}}
-
 ```yaml
 Type: Boolean
 Parameter Sets: NewEntity
@@ -765,6 +766,21 @@ Type: CrmEntityOwner
 Parameter Sets: NewEntity
 Aliases: 
 Accepted values: Unknown, User, Organization
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -PassThru
+Returns an object that represents the EntityMetadata. By default, this cmdlet does not generate any output.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: 
 
 Required: False
 Position: Named

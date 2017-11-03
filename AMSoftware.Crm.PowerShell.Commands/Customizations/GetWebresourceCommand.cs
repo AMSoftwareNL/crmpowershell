@@ -16,6 +16,7 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 using System;
+using System.Linq;
 using System.Management.Automation;
 using AMSoftware.Crm.PowerShell.Common;
 using AMSoftware.Crm.PowerShell.Common.Repositories;
@@ -24,29 +25,35 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
-    [Cmdlet(VerbsCommon.Get, "Webresource", HelpUri = HelpUrlConstants.GetWebresourceHelpUrl, SupportsPaging = true, DefaultParameterSetName = GetWebresourceParameterSet)]
+    [Cmdlet(VerbsCommon.Get, "Webresource", HelpUri = HelpUrlConstants.GetWebresourceHelpUrl, SupportsPaging = true, DefaultParameterSetName = GetAllWebresourcesParameterSet)]
     [OutputType(typeof(Entity))]
     public sealed class GetWebresourceCommand : CrmOrganizationCmdlet
     {
-        private const string GetWebresourceParameterSet = "GetWebresource";
+        private const string GetAllWebresourcesParameterSet = "GetAllWebresources";
         private const string GetWebresourceByIdParameterSet = "GetWebresourceById";
-        private const string GetWebresourceByNameParameterSet = "GetWebresourceByName";
 
         private ContentRepository _repository = new ContentRepository();
 
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = GetWebresourceByNameParameterSet)]
-        [ValidateNotNullOrEmpty]
-        public string Name { get; set; }
-
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = GetWebresourceByIdParameterSet)]
+        [Parameter(Mandatory = true, Position = 0, ParameterSetName = GetWebresourceByIdParameterSet, ValueFromPipeline = true)]
         [ValidateNotNull]
         public Guid Id { get; set; }
 
-        [Parameter(ParameterSetName = GetWebresourceParameterSet)]
+        [Parameter(ParameterSetName = GetAllWebresourcesParameterSet, Position = 0)]
+        [Alias("Include")]
+        [ValidateNotNullOrEmpty]
+        [SupportsWildcards]
+        public string Name { get; set; }
+
+        [Parameter(ParameterSetName = GetAllWebresourcesParameterSet)]
+        [ValidateNotNullOrEmpty]
+        [SupportsWildcards]
+        public string Exclude { get; set; }
+
+        [Parameter(ParameterSetName = GetAllWebresourcesParameterSet)]
         [PSDefaultValue(Value = CrmWebresourceType.All)]
         public CrmWebresourceType WebresourceType { get; set; }
 
-        [Parameter(ParameterSetName = GetWebresourceParameterSet)]
+        [Parameter(ParameterSetName = GetAllWebresourcesParameterSet)]
         public SwitchParameter ExcludeManaged { get; set; }
 
         protected override void ExecuteCmdlet()
@@ -55,40 +62,49 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 
             switch (this.ParameterSetName)
             {
-                case GetWebresourceParameterSet:
+                case GetAllWebresourcesParameterSet:
                     GetContentByQuery(BuildWebresourceQuery());
                     break;
                 case GetWebresourceByIdParameterSet:
                     GetContentByQuery(BuildByIdQuery(Id));
-                    break;
-                case GetWebresourceByNameParameterSet:
-                    GetContentByQuery(BuildByNameQuery(Name));
                     break;
                 default:
                     break;
             }
         }
 
-        private void GetContentByQuery(QueryBase query)
+        private void GetContentByQuery(QueryExpression query)
         {
             if (PagingParameters.IncludeTotalCount)
             {
-                double accuracy;
-                int count = _repository.GetRowCount(query, out accuracy);
+                int count = _repository.GetRowCount(query, out double accuracy);
                 WriteObject(PagingParameters.NewTotalCount(Convert.ToUInt64(count), accuracy));
             }
-            
-            foreach (var item in _repository.Get(query, PagingParameters.First, PagingParameters.Skip))
+
+            var result = _repository.Get(query, PagingParameters.First, PagingParameters.Skip);
+            if (!string.IsNullOrWhiteSpace(Name))
             {
-                WriteObject(item);
+                WildcardPattern includePattern = new WildcardPattern(Name, WildcardOptions.IgnoreCase);
+                result = result.Where(a => includePattern.IsMatch(a.GetAttributeValue<string>("name")));
             }
+            if (!string.IsNullOrWhiteSpace(Exclude))
+            {
+                WildcardPattern excludePattern = new WildcardPattern(Exclude, WildcardOptions.IgnoreCase);
+                result = result.Where(a => !(excludePattern.IsMatch(a.GetAttributeValue<string>("name"))));
+            }
+
+            WriteObject(result, true);
         }
 
         private static QueryExpression BuildByIdQuery(Guid id)
         {
             QueryExpression query = new QueryExpression("webresource")
             {
-                ColumnSet = new ColumnSet(true)
+                ColumnSet = new ColumnSet(true),
+                Orders =
+                {
+                    new OrderExpression("name", OrderType.Ascending)
+                }
             };
 
             FilterExpression idFilter = new FilterExpression(LogicalOperator.Or);
@@ -100,27 +116,15 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
             return query;
         }
 
-        private static QueryExpression BuildByNameQuery(string name)
-        {
-            QueryExpression query = new QueryExpression("webresource")
-            {
-                ColumnSet = new ColumnSet(true)
-            };
-
-            FilterExpression nameFilter = new FilterExpression(LogicalOperator.Or);
-            nameFilter.AddCondition(new ConditionExpression("name", ConditionOperator.Equal, name));
-            nameFilter.AddCondition(new ConditionExpression("displayname", ConditionOperator.Equal, name));
-
-            query.Criteria.AddFilter(nameFilter);
-
-            return query;
-        }
-
         private QueryExpression BuildWebresourceQuery()
         {
             QueryExpression query = new QueryExpression("webresource")
             {
-                ColumnSet = new ColumnSet(true)
+                ColumnSet = new ColumnSet(true),
+                Orders =
+                {
+                    new OrderExpression("name", OrderType.Ascending)
+                }
             };
 
             if (ExcludeManaged.ToBool())

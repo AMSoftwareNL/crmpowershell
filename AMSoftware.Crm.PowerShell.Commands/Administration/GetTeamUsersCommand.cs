@@ -30,17 +30,14 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         private ContentRepository _repository = new ContentRepository();
 
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+        [Alias("Id")]
         [ValidateNotNull]
         public Guid Team { get; set; }
 
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
-
-            foreach (var item in SecurityManagementHelper.GetUsersInTeam(_repository, Team))
-            {
-                WriteObject(_repository.Get("systemuser", item));
-            }
+            WriteObject(SecurityManagementHelper.GetUsersInTeam(_repository, Team), true);
         }
     }
 }

@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Add-CrmRelationship.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Add-CrmRelationship.md
 schema: 2.0.0
 ---
 
@@ -14,14 +15,16 @@ Add a relationship.
 ### AddManyToManyRelationship
 ```
 Add-CrmRelationship [-Entity1] <String> [-Entity2] <String> [-Name] <String> [-IntersectName] <String>
- [-AdvancedFind <Boolean>] [-Customizable <Boolean>] [<CommonParameters>]
+ [-AdvancedFind <Boolean>] [-Customizable <Boolean>] [-PassThru] [-IsHierarchical <Boolean>]
+ [<CommonParameters>]
 ```
 
 ### AddOneToManyRelationship
 ```
 Add-CrmRelationship [-Entity] <String> [-ToEntity] <String> [-Name] <String> -AttributeName <String>
  -AttributeDisplayName <String> [-AttributeDescription <String>] [-AttributeRequired <CrmRequiredLevel>]
- [-AdvancedFind <Boolean>] [-Customizable <Boolean>] [<CommonParameters>]
+ [-AdvancedFind <Boolean>] [-Customizable <Boolean>] [-PassThru] [-IsHierarchical <Boolean>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -77,7 +80,7 @@ Accept wildcard characters: False
 ```
 
 ### -AttributeName
-The LogicalName for the lookup attribute
+The LogicalName for the lookup attribute.
 
 ```yaml
 Type: String
@@ -108,7 +111,7 @@ Accept wildcard characters: False
 ```
 
 ### -Customizable
-Whether the relationship is a custom relationship.
+Whether the entity relationship is customizable.
 
 ```yaml
 Type: Boolean
@@ -128,12 +131,12 @@ The entity to add the one-to-many relationship for.
 ```yaml
 Type: String
 Parameter Sets: AddOneToManyRelationship
-Aliases: 
+Aliases: EntityLogicalName, LogicalName
 
 Required: True
 Position: 1
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
@@ -182,6 +185,21 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -IsHierarchical
+Whether this relationship is the designated hierarchical self-referential relationship for this entity.
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases: 
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -Name
 The SchemaName of the relationship.
 
@@ -192,6 +210,21 @@ Aliases:
 
 Required: True
 Position: 3
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -PassThru
+Returns an object that represents the RelationshipMetadata. By default, this cmdlet does not generate any output.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: 
+
+Required: False
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -217,7 +250,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### None
+### System.String
 
 ## OUTPUTS
 
@@ -227,14 +260,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-CrmRelationship](Get-CrmRelationship.md)
+[https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Add-CrmRelationship.md](https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Add-CrmRelationship.md)
 
-[Set-CrmRelationship](Set-CrmRelationship.md)
-
-[Set-CrmRelationshipCascadeConfig](Set-CrmRelationshipCascadeConfig.md)
-
-[Remove-CrmRelationship](Remove-CrmRelationship.md)
-
-[ManyToManyRelationshipMetadata Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.metadata.manytomanyrelationshipmetadata.aspx)
-
-[OneToManyRelationshipMetadata Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.metadata.onetomanyrelationshipmetadata.aspx)

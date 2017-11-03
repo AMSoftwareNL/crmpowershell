@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Set-CrmOptionSetAttribute.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Set-CrmOptionSetAttribute.md
 schema: 2.0.0
 ---
 
@@ -15,7 +16,7 @@ Update an attribute of type OptionSet.
 Set-CrmOptionSetAttribute [-DefaultValue <Int32>] [-Entity] <String> [-Name] <String> [-DisplayName] <String>
  [-Description <String>] [-CanModifyAdditionalSettings <Boolean>] [-IsAuditEnabled <Boolean>]
  [-IsCustomizable <Boolean>] [-IsRenameable <Boolean>] [-IsSecured <Boolean>]
- [-IsValidForAdvancedFind <Boolean>] [-Required <CrmRequiredLevel>] [-SchemaName <String>]
+ [-IsValidForAdvancedFind <Boolean>] [-Required <CrmRequiredLevel>] [-SchemaName <String>] [-PassThru]
  [-IsGlobalFilterEnabled <Boolean>] [-IsSortableEnabled <Boolean>] [<CommonParameters>]
 ```
 
@@ -92,12 +93,12 @@ The LogicalName of the entity containing the attribute.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases: EntityLogicalName, LogicalName
 
 Required: True
 Position: 1
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
@@ -216,6 +217,21 @@ Aliases:
 
 Required: True
 Position: 2
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -PassThru
+Returns an object that represents the PicklistAttribute. By default, this cmdlet does not generate any output.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: 
+
+Required: False
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

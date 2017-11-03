@@ -35,8 +35,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
         {
             base.ExecuteCmdlet();
 
-            OrganizationRequest request = new OrganizationRequest("SetState");
-            request.Parameters = new ParameterCollection();
+            OrganizationRequest request = new OrganizationRequest("SetState")
+            {
+                Parameters = new ParameterCollection()
+            };
             request.Parameters.Add("EntityMoniker", new EntityReference("sdkmessageprocessingstep", Id));
             request.Parameters.Add("State", new OptionSetValue(0));
             request.Parameters.Add("Status", new OptionSetValue(-1));
@@ -58,8 +60,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
         {
             base.ExecuteCmdlet();
 
-            OrganizationRequest request = new OrganizationRequest("SetState");
-            request.Parameters = new ParameterCollection();
+            OrganizationRequest request = new OrganizationRequest("SetState")
+            {
+                Parameters = new ParameterCollection()
+            };
             request.Parameters.Add("EntityMoniker", new EntityReference("sdkmessageprocessingstep", Id));
             request.Parameters.Add("State", new OptionSetValue(1));
             request.Parameters.Add("Status", new OptionSetValue(-1));

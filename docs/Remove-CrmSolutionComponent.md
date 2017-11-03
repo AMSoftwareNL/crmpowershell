@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Remove-CrmSolutionComponent.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Remove-CrmSolutionComponent.md
 schema: 2.0.0
 ---
 
@@ -11,15 +12,8 @@ Remove a component from a customization solution.
 
 ## SYNTAX
 
-### RemoveSolutionComponentSimple
 ```
-Remove-CrmSolutionComponent [-Solution] <Guid> -Type <CrmComponentType> -ComponentId <Guid>
- [<CommonParameters>]
-```
-
-### RemoveSolutionComponentAdvanced
-```
-Remove-CrmSolutionComponent [-Solution] <Guid> -ComponentType <Int32> -ComponentId <Guid> [<CommonParameters>]
+Remove-CrmSolutionComponent [-Solution] <Guid> [-Type] <String> [-ComponentId] <Guid> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -37,25 +31,10 @@ This can be the MetadataId or the id of the record.
 ```yaml
 Type: Guid
 Parameter Sets: (All)
-Aliases: 
+Aliases: ObjectId
 
 Required: True
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ComponentType
-The type of component to remove. Matches a value from the global optionset 'Component Type'(componenttype).
-
-```yaml
-Type: Int32
-Parameter Sets: RemoveSolutionComponentAdvanced
-Aliases: 
-
-Required: True
-Position: Named
+Position: 3
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -80,13 +59,12 @@ Accept wildcard characters: False
 The type of component to remove.
 
 ```yaml
-Type: CrmComponentType
-Parameter Sets: RemoveSolutionComponentSimple
-Aliases: 
-Accepted values: Unknown, Entity, OptionSet, Role, Dashboard, Process, Report, EmailTemplate, ContractTemplate, ArticleTemplate, MailMergeTemplate, Ribbon, WebResource, SiteMap, ConnectionRole, FieldSecurityProfile, SdkAssembly, SdkMessageStep, ServiceEndpoint, RoutingRuleSet, SLA, ConvertRule
+Type: String
+Parameter Sets: (All)
+Aliases: ComponentType
 
 Required: True
-Position: Named
+Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

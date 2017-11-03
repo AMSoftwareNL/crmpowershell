@@ -18,19 +18,54 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.ComponentModel;
 using Microsoft.Xrm.Sdk;
+using System.Management.Automation;
 
 namespace AMSoftware.Crm.PowerShell.Common.Converters
 {
-    public sealed class OptionSetValueConverter : Int32Converter
+    public sealed class OptionSetValueConverter : PSTypeConverter
     {
-        public override object ConvertFrom(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value)
+        public override bool CanConvertFrom(object sourceValue, Type destinationType)
         {
-            return new OptionSetValue((int)base.ConvertFrom(context, culture, value));
+            if (sourceValue == null) return true;
+            if (sourceValue.GetType() == typeof(int)) return true;
+
+            Int32Converter dc = new Int32Converter();
+            return dc.CanConvertFrom(sourceValue.GetType());
         }
 
-        public override object ConvertTo(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, Type destinationType)
+        public override bool CanConvertTo(object sourceValue, Type destinationType)
         {
-            return base.ConvertTo(context, culture, ((OptionSetValue)value).Value, destinationType);
+            if (sourceValue == null) return false;
+            if (destinationType == typeof(int)) return true;
+
+            Int32Converter dc = new Int32Converter();
+            return dc.CanConvertTo(destinationType);
+        }
+
+        public override object ConvertFrom(object sourceValue, Type destinationType, IFormatProvider formatProvider, bool ignoreCase)
+        {
+            if (sourceValue == null) return null;
+            if (sourceValue.GetType() == typeof(int)) return new OptionSetValue((int)sourceValue);
+
+            Int32Converter dc = new Int32Converter();
+            return new OptionSetValue((int)dc.ConvertFrom(sourceValue));
+        }
+
+        public override object ConvertTo(object sourceValue, Type destinationType, IFormatProvider formatProvider, bool ignoreCase)
+        {
+            if (sourceValue == null) throw new NotSupportedException();
+
+            if (sourceValue is OptionSetValue optionsetValue)
+            {
+                if (destinationType == typeof(int)) return optionsetValue.Value;
+                else
+                {
+                    Int32Converter dc = new Int32Converter();
+                    return dc.ConvertTo(optionsetValue.Value, destinationType);
+                }
+            }
+
+            return new NotSupportedException();
         }
     }
 }

@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Test-CrmSolutionComponent.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Test-CrmSolutionComponent.md
 schema: 2.0.0
 ---
 
@@ -26,6 +27,11 @@ Test-CrmSolutionComponent [[-SolutionComponent] <Entity>] [-Dependencies] [<Comm
 Test-CrmSolutionComponent [[-SolutionComponent] <Entity>] [-Required] [<CommonParameters>]
 ```
 
+### TestDeleteSolutionComponent
+```
+Test-CrmSolutionComponent [[-ObjectId] <Guid>] [[-ComponentType] <Int32>] [-Delete] [<CommonParameters>]
+```
+
 ### TestDependenciesSolutionComponent
 ```
 Test-CrmSolutionComponent [[-ObjectId] <Guid>] [[-ComponentType] <Int32>] [-Dependencies] [<CommonParameters>]
@@ -34,11 +40,6 @@ Test-CrmSolutionComponent [[-ObjectId] <Guid>] [[-ComponentType] <Int32>] [-Depe
 ### TestRequiredSolutionComponent
 ```
 Test-CrmSolutionComponent [[-ObjectId] <Guid>] [[-ComponentType] <Int32>] [-Required] [<CommonParameters>]
-```
-
-### TestDeleteSolutionComponent
-```
-Test-CrmSolutionComponent [[-ObjectId] <Guid>] [[-ComponentType] <Int32>] [-Delete] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -61,7 +62,7 @@ The type of component to test. Matches a value from the global optionset 'Compon
 
 ```yaml
 Type: Int32
-Parameter Sets: TestDependenciesSolutionComponent, TestRequiredSolutionComponent, TestDeleteSolutionComponent
+Parameter Sets: TestDeleteSolutionComponent, TestDependenciesSolutionComponent, TestRequiredSolutionComponent
 Aliases: 
 
 Required: False
@@ -108,7 +109,7 @@ This depends on the type of object represented by the solution copmponent. From 
 
 ```yaml
 Type: Guid
-Parameter Sets: TestDependenciesSolutionComponent, TestRequiredSolutionComponent, TestDeleteSolutionComponent
+Parameter Sets: TestDeleteSolutionComponent, TestDependenciesSolutionComponent, TestRequiredSolutionComponent
 Aliases: 
 
 Required: False

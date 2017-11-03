@@ -15,6 +15,7 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.-->
 <Types>
+  <!--Microsoft.Xrm.Sdk.Discovery.OrganizationDetail-->
   <Type>
     <Name>Microsoft.Xrm.Sdk.Discovery.OrganizationDetail</Name>
     <Members>
@@ -30,36 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.-->
       </ScriptProperty>
     </Members>
   </Type>
-  <!-- Managed Property Values-->
-  <Type>
-    <Name>Microsoft.Xrm.Sdk.BooleanManagedProperty</Name>
-    <Members>
-      <ScriptMethod>
-        <Name>ToString</Name>
-        <Script>
-          $this.Value;
-        </Script>
-      </ScriptMethod>
-    </Members>
-    <TypeConverter>
-      <TypeName>AMSoftware.Crm.PowerShell.Common.Converters.ManagedPropertyConverter</TypeName>
-    </TypeConverter>
-  </Type>
-  <Type>
-    <Name>Microsoft.Xrm.Sdk.Metadata.AttributeRequiredLevelManagedProperty</Name>
-    <Members>
-      <ScriptMethod>
-        <Name>ToString</Name>
-        <Script>
-          [System.Enum]::Format($this.Value.GetType(), $this.Value, "F");
-        </Script>
-      </ScriptMethod>
-    </Members>
-    <TypeConverter>
-      <TypeName>AMSoftware.Crm.PowerShell.Common.Converters.ManagedPropertyConverter</TypeName>
-    </TypeConverter>
-  </Type> 
-  <!-- Localized Property Values -->
+  <!-- Microsoft.Xrm.Sdk.Label -->
   <Type>
     <Name>Microsoft.Xrm.Sdk.Label</Name>
     <Members>
@@ -74,42 +46,177 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.-->
     <TypeConverter>
       <TypeName>AMSoftware.Crm.PowerShell.Common.Converters.LabelConverter</TypeName>
     </TypeConverter>
-  </Type>  
-  <!-- Metadata Property Values -->
+  </Type>
+  <!--Microsoft.Xrm.Sdk.Metadata.MetadataBase-->
   <Type>
-    <Name>Microsoft.Xrm.Sdk.Metadata.AttributeTypeDisplayName</Name>
-    <Members>
-      <ScriptMethod>
-        <Name>ToString</Name>
-        <Script>
-          $this.Value
-        </Script>
-      </ScriptMethod>
-    </Members>
+    <Name>Microsoft.Xrm.Sdk.LocalizedLabel</Name>
+    <TypeAdapter>
+      <TypeName>AMSoftware.Crm.PowerShell.Common.PropertyAdapters.MetadataPropertyAdapter</TypeName>
+    </TypeAdapter>
   </Type>
   <Type>
-    <Name>Microsoft.Xrm.Sdk.Metadata.DateTimeBehavior</Name>
-    <Members>
-      <ScriptMethod>
-        <Name>ToString</Name>
-        <Script>
-          $this.Value
-        </Script>
-      </ScriptMethod>
-    </Members>
+    <Name>Microsoft.Xrm.Sdk.Metadata.AttributeMetadata</Name>
+    <TypeAdapter>
+      <TypeName>AMSoftware.Crm.PowerShell.Common.PropertyAdapters.MetadataPropertyAdapter</TypeName>
+    </TypeAdapter>
   </Type>
   <Type>
-    <Name>Microsoft.Xrm.Sdk.Metadata.StringFormatName</Name>
-    <Members>
-      <ScriptMethod>
-        <Name>ToString</Name>
-        <Script>
-          $this.Value
-        </Script>
-      </ScriptMethod>
-    </Members>
+    <Name>Microsoft.Xrm.Sdk.Metadata.BigIntAttributeMetadata</Name>
+    <TypeAdapter>
+      <TypeName>AMSoftware.Crm.PowerShell.Common.PropertyAdapters.MetadataPropertyAdapter</TypeName>
+    </TypeAdapter>
   </Type>
-  <!-- Entity Type Values -->
+  <Type>
+    <Name>Microsoft.Xrm.Sdk.Metadata.BooleanAttributeMetadata</Name>
+    <TypeAdapter>
+      <TypeName>AMSoftware.Crm.PowerShell.Common.PropertyAdapters.MetadataPropertyAdapter</TypeName>
+    </TypeAdapter>
+  </Type>
+  <Type>
+    <Name>Microsoft.Xrm.Sdk.Metadata.DateTimeAttributeMetadata</Name>
+    <TypeAdapter>
+      <TypeName>AMSoftware.Crm.PowerShell.Common.PropertyAdapters.MetadataPropertyAdapter</TypeName>
+    </TypeAdapter>
+  </Type>
+  <Type>
+    <Name>Microsoft.Xrm.Sdk.Metadata.DecimalAttributeMetadata</Name>
+    <TypeAdapter>
+      <TypeName>AMSoftware.Crm.PowerShell.Common.PropertyAdapters.MetadataPropertyAdapter</TypeName>
+    </TypeAdapter>
+  </Type>
+  <Type>
+    <Name>Microsoft.Xrm.Sdk.Metadata.DoubleAttributeMetadata</Name>
+    <TypeAdapter>
+      <TypeName>AMSoftware.Crm.PowerShell.Common.PropertyAdapters.MetadataPropertyAdapter</TypeName>
+    </TypeAdapter>
+  </Type>
+  <Type>
+    <Name>Microsoft.Xrm.Sdk.Metadata.EnumAttributeMetadata</Name>
+    <TypeAdapter>
+      <TypeName>AMSoftware.Crm.PowerShell.Common.PropertyAdapters.MetadataPropertyAdapter</TypeName>
+    </TypeAdapter>
+  </Type>
+  <Type>
+    <Name>Microsoft.Xrm.Sdk.Metadata.ImageAttributeMetadata</Name>
+    <TypeAdapter>
+      <TypeName>AMSoftware.Crm.PowerShell.Common.PropertyAdapters.MetadataPropertyAdapter</TypeName>
+    </TypeAdapter>
+  </Type>
+  <Type>
+    <Name>Microsoft.Xrm.Sdk.Metadata.IntegerAttributeMetadata</Name>
+    <TypeAdapter>
+      <TypeName>AMSoftware.Crm.PowerShell.Common.PropertyAdapters.MetadataPropertyAdapter</TypeName>
+    </TypeAdapter>
+  </Type>
+  <Type>
+    <Name>Microsoft.Xrm.Sdk.Metadata.LookupAttributeMetadata</Name>
+    <TypeAdapter>
+      <TypeName>AMSoftware.Crm.PowerShell.Common.PropertyAdapters.MetadataPropertyAdapter</TypeName>
+    </TypeAdapter>
+  </Type>
+  <Type>
+    <Name>Microsoft.Xrm.Sdk.Metadata.ManagedPropertyAttributeMetadata</Name>
+    <TypeAdapter>
+      <TypeName>AMSoftware.Crm.PowerShell.Common.PropertyAdapters.MetadataPropertyAdapter</TypeName>
+    </TypeAdapter>
+  </Type>
+  <Type>
+    <Name>Microsoft.Xrm.Sdk.Metadata.MemoAttributeMetadata</Name>
+    <TypeAdapter>
+      <TypeName>AMSoftware.Crm.PowerShell.Common.PropertyAdapters.MetadataPropertyAdapter</TypeName>
+    </TypeAdapter>
+  </Type>
+  <Type>
+    <Name>Microsoft.Xrm.Sdk.Metadata.MoneyAttributeMetadata</Name>
+    <TypeAdapter>
+      <TypeName>AMSoftware.Crm.PowerShell.Common.PropertyAdapters.MetadataPropertyAdapter</TypeName>
+    </TypeAdapter>
+  </Type>
+  <Type>
+    <Name>Microsoft.Xrm.Sdk.Metadata.StringAttributeMetadata</Name>
+    <TypeAdapter>
+      <TypeName>AMSoftware.Crm.PowerShell.Common.PropertyAdapters.MetadataPropertyAdapter</TypeName>
+    </TypeAdapter>
+  </Type>
+  <Type>
+    <Name>Microsoft.Xrm.Sdk.Metadata.UniqueIdentifierAttributeMetadata</Name>
+    <TypeAdapter>
+      <TypeName>AMSoftware.Crm.PowerShell.Common.PropertyAdapters.MetadataPropertyAdapter</TypeName>
+    </TypeAdapter>
+  </Type>
+  <Type>
+    <Name>Microsoft.Xrm.Sdk.Metadata.EntityNameAttributeMetadata</Name>
+    <TypeAdapter>
+      <TypeName>AMSoftware.Crm.PowerShell.Common.PropertyAdapters.MetadataPropertyAdapter</TypeName>
+    </TypeAdapter>
+  </Type>
+  <Type>
+    <Name>Microsoft.Xrm.Sdk.Metadata.PicklistAttributeMetadata</Name>
+    <TypeAdapter>
+      <TypeName>AMSoftware.Crm.PowerShell.Common.PropertyAdapters.MetadataPropertyAdapter</TypeName>
+    </TypeAdapter>
+  </Type>
+  <Type>
+    <Name>Microsoft.Xrm.Sdk.Metadata.StateAttributeMetadata</Name>
+    <TypeAdapter>
+      <TypeName>AMSoftware.Crm.PowerShell.Common.PropertyAdapters.MetadataPropertyAdapter</TypeName>
+    </TypeAdapter>
+  </Type>
+  <Type>
+    <Name>Microsoft.Xrm.Sdk.Metadata.StatusAttributeMetadata</Name>
+    <TypeAdapter>
+      <TypeName>AMSoftware.Crm.PowerShell.Common.PropertyAdapters.MetadataPropertyAdapter</TypeName>
+    </TypeAdapter>
+  </Type>
+  <Type>
+    <Name>Microsoft.Xrm.Sdk.Metadata.EntityKeyMetadata</Name>
+    <TypeAdapter>
+      <TypeName>AMSoftware.Crm.PowerShell.Common.PropertyAdapters.MetadataPropertyAdapter</TypeName>
+    </TypeAdapter>
+  </Type>
+  <Type>
+    <Name>Microsoft.Xrm.Sdk.Metadata.EntityMetadata</Name>
+    <TypeAdapter>
+      <TypeName>AMSoftware.Crm.PowerShell.Common.PropertyAdapters.MetadataPropertyAdapter</TypeName>
+    </TypeAdapter>
+  </Type>
+  <Type>
+    <Name>Microsoft.Xrm.Sdk.Metadata.ManagedPropertyMetadata</Name>
+    <TypeAdapter>
+      <TypeName>AMSoftware.Crm.PowerShell.Common.PropertyAdapters.MetadataPropertyAdapter</TypeName>
+    </TypeAdapter>
+  </Type>
+  <Type>
+    <Name>Microsoft.Xrm.Sdk.Metadata.OptionMetadata</Name>
+    <TypeAdapter>
+      <TypeName>AMSoftware.Crm.PowerShell.Common.PropertyAdapters.MetadataPropertyAdapter</TypeName>
+    </TypeAdapter>
+  </Type>
+  <Type>
+    <Name>Microsoft.Xrm.Sdk.Metadata.BooleanOptionSetMetadata</Name>
+    <TypeAdapter>
+      <TypeName>AMSoftware.Crm.PowerShell.Common.PropertyAdapters.MetadataPropertyAdapter</TypeName>
+    </TypeAdapter>
+  </Type>
+  <Type>
+    <Name>Microsoft.Xrm.Sdk.Metadata.OptionSetMetadata</Name>
+    <TypeAdapter>
+      <TypeName>AMSoftware.Crm.PowerShell.Common.PropertyAdapters.MetadataPropertyAdapter</TypeName>
+    </TypeAdapter>
+  </Type>
+  <Type>
+    <Name>Microsoft.Xrm.Sdk.Metadata.ManyToManyRelationshipMetadata</Name>
+    <TypeAdapter>
+      <TypeName>AMSoftware.Crm.PowerShell.Common.PropertyAdapters.MetadataPropertyAdapter</TypeName>
+    </TypeAdapter>
+  </Type>
+  <Type>
+    <Name>Microsoft.Xrm.Sdk.Metadata.OneToManyRelationshipMetadata</Name>
+    <TypeAdapter>
+      <TypeName>AMSoftware.Crm.PowerShell.Common.PropertyAdapters.MetadataPropertyAdapter</TypeName>
+    </TypeAdapter>
+  </Type>
+  <!-- Microsoft.Xrm.Sdk.Entity -->
   <Type>
     <Name>Microsoft.Xrm.Sdk.Entity</Name>
     <TypeAdapter>
@@ -119,63 +226,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.-->
       <TypeName>AMSoftware.Crm.PowerShell.Common.Converters.EntityConverter</TypeName>
     </TypeConverter>
   </Type>
+  <!-- Microsoft.Xrm.Sdk.EntityReference -->
   <Type>
     <Name>Microsoft.Xrm.Sdk.EntityReference</Name>
-    <Members>
-      <ScriptMethod>
-        <Name>ToString</Name>
-        <Script>
-          $this.Id;
-        </Script>
-      </ScriptMethod>
-    </Members>
     <TypeConverter>
-      <TypeName>AMSoftware.Crm.PowerShell.Common.Converters.EntityReferenceConverter</TypeName>
+      <TypeName>AMSoftware.Crm.PowerShell.Common.Converters.EntityConverter</TypeName>
     </TypeConverter>
   </Type>
-  <Type>
-    <Name>Microsoft.Xrm.Sdk.AttributeCollection</Name>
-    <TypeAdapter>
-      <TypeName>AMSoftware.Crm.PowerShell.Common.PropertyAdapters.AttributeCollectionPropertyAdapter</TypeName>
-    </TypeAdapter>
-  </Type>
-  <Type>
-    <Name>Microsoft.Xrm.Sdk.FormattedValueCollection</Name>
-    <TypeAdapter>
-      <TypeName>AMSoftware.Crm.PowerShell.Common.PropertyAdapters.FormattedValueCollectionPropertyAdapter</TypeName>
-    </TypeAdapter>
-  </Type>
-  <!--<Type>
-    <Name>Microsoft.Xrm.Sdk.KeyAttributeCollection</Name>
-    <TypeAdapter>
-      <TypeName>AMSoftware.Crm.PowerShell.Common.PropertyAdapters.KeyAttributeCollectionPropertyAdapter</TypeName>
-    </TypeAdapter>
-  </Type>-->
-  <!-- Attribute Type Values -->
+  <!-- Microsoft.Xrm.Sdk.OptionSetValue -->
   <Type>
     <Name>Microsoft.Xrm.Sdk.OptionSetValue</Name>
-    <Members>
-      <ScriptMethod>
-        <Name>ToString</Name>
-        <Script>
-          $this.Value;
-        </Script>
-      </ScriptMethod>
-    </Members>
     <TypeConverter>
       <TypeName>AMSoftware.Crm.PowerShell.Common.Converters.OptionSetValueConverter</TypeName>
     </TypeConverter>
   </Type>
+  <!-- Microsoft.Xrm.Sdk.Money -->
   <Type>
     <Name>Microsoft.Xrm.Sdk.Money</Name>
-    <Members>
-      <ScriptMethod>
-        <Name>ToString</Name>
-        <Script>
-          $this.Value;
-        </Script>
-      </ScriptMethod>
-    </Members>
     <TypeConverter>
       <TypeName>AMSoftware.Crm.PowerShell.Common.Converters.MoneyConverter</TypeName>
     </TypeConverter>

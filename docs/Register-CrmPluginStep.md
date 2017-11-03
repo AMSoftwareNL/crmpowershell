@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Register-CrmPluginStep.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Register-CrmPluginStep.md
 schema: 2.0.0
 ---
 
@@ -16,7 +17,7 @@ Register-CrmPluginStep [-EventSource] <Guid> [-Message] <String> [[-PrimaryEntit
  [-SecondaryEntity <String>] [-ExecutionOrder <Int32>] [-Name <String>] [-Description <String>]
  -Stage <CrmPluginStepStage> -Mode <CrmPluginStepMode> -Deployment <CrmPluginStepDeployment>
  [-DeleteAsyncOperation] [-UnsecureConfig <String>] [-SecureConfig <String>] [-User <Guid>]
- [-Attributes <String[]>] [<CommonParameters>]
+ [-Attributes <String[]>] [-PassThru] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -153,6 +154,21 @@ The name for the SDK Message Processing Step.
 
 ```yaml
 Type: String
+Parameter Sets: (All)
+Aliases: 
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -PassThru
+Returns an object that represents the Plugin Step. By default, this cmdlet does not generate any output.
+
+```yaml
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases: 
 

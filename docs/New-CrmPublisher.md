@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/New-CrmPublisher.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/New-CrmPublisher.md
 schema: 2.0.0
 ---
 
@@ -13,7 +14,7 @@ Add a new customizations publisher.
 
 ```
 New-CrmPublisher [-Name] <String> -DisplayName <String> -Prefix <String> [-OptionSetValuePrefix <Int32>]
- [-Description <String>] [<CommonParameters>]
+ [-Description <String>] [-PassThru] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -78,6 +79,21 @@ The optionset value prefix for the publisher.
 
 ```yaml
 Type: Int32
+Parameter Sets: (All)
+Aliases: 
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -PassThru
+Returns an object that represents the Solution Publisher. By default, this cmdlet does not generate any output.
+
+```yaml
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases: 
 

@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/New-CrmWebresource.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/New-CrmWebresource.md
 schema: 2.0.0
 ---
 
@@ -14,13 +15,14 @@ Add new new webresource.
 ### NewWebresourceFromContent (Default)
 ```
 New-CrmWebresource [-Name] <String> [-DisplayName <String>] [-Description <String>]
- -WebresourceType <CrmWebresourceType> -Content <Byte[]> [-IsCustomizable <Boolean>] [<CommonParameters>]
+ -WebresourceType <CrmWebresourceType> -Content <Byte[]> [-IsCustomizable <Boolean>] [-PassThru]
+ [<CommonParameters>]
 ```
 
 ### NewWebresourceFromPath
 ```
 New-CrmWebresource [-Name] <String> [-DisplayName <String>] [-Description <String>]
- -WebresourceType <CrmWebresourceType> -LiteralPath <String> [-IsCustomizable <Boolean>]
+ -WebresourceType <CrmWebresourceType> -LiteralPath <String> [-IsCustomizable <Boolean>] [-PassThru]
  [-Encoding <FileSystemCmdletProviderEncoding>] [<CommonParameters>]
 ```
 
@@ -83,7 +85,7 @@ The encoding to use reading the content for the file system.
 Type: FileSystemCmdletProviderEncoding
 Parameter Sets: NewWebresourceFromPath
 Aliases: 
-Accepted values: Unknown, String, Unicode, Byte, BigEndianUnicode, UTF8, UTF7, UTF32, Ascii, Default, Oem
+Accepted values: Unknown, String, Unicode, Byte, BigEndianUnicode, UTF8, UTF7, UTF32, Ascii, Default, Oem, BigEndianUTF32
 
 Required: False
 Position: Named
@@ -132,6 +134,21 @@ Aliases:
 
 Required: True
 Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -PassThru
+Returns an object that represents the WebResource. By default, this cmdlet does not generate any output.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: 
+
+Required: False
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

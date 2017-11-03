@@ -28,6 +28,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         private ContentRepository _repository = new ContentRepository();
 
         [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]
+        [Alias("Id")]
         [ValidateNotNull]
         public Guid User { get; set; }
 
@@ -36,8 +37,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
             base.ExecuteCmdlet();
             ExecuteAction(string.Format("{0}", User), delegate
             {
-                OrganizationRequest request = new OrganizationRequest("RemoveParent");
-                request.Parameters = new ParameterCollection();
+                OrganizationRequest request = new OrganizationRequest("RemoveParent")
+                {
+                    Parameters = new ParameterCollection()
+                };
                 request.Parameters["Target"] = new EntityReference("systemuser", User);
 
                 OrganizationResponse response = _repository.Execute(request);

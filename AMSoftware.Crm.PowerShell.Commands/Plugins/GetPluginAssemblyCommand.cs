@@ -28,24 +28,20 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
     [OutputType(typeof(Entity))]
     public sealed class GetPluginAssemblyCommand : CrmOrganizationCmdlet
     {
-        private const string GetAssemblyByNameParameterSet = "GetAssemblyByName";
         private const string GetAssemblyByIdParameterSet = "GetAssemblyById";
         private const string GetAssemblyByFilterParameterSet = "GetAssemblyByFilter";
 
         private ContentRepository _repository = new ContentRepository();
 
-        [Parameter(Position = 1, Mandatory = true, ParameterSetName = GetAssemblyByIdParameterSet)]
+        [Parameter(Position = 1, Mandatory = true, ParameterSetName = GetAssemblyByIdParameterSet, ValueFromPipeline = true)]
         [ValidateNotNull]
         public Guid Id { get; set; }
 
-        [Parameter(Position = 1, Mandatory = true, ParameterSetName = GetAssemblyByNameParameterSet)]
-        [ValidateNotNullOrEmpty]
-        public string Name { get; set; }
-
-        [Parameter(ParameterSetName = GetAssemblyByFilterParameterSet)]
+        [Parameter(Position = 1, ParameterSetName = GetAssemblyByFilterParameterSet)]
+        [Alias("Include")]
         [ValidateNotNullOrEmpty]
         [SupportsWildcards]
-        public string Include { get; set; }
+        public string Name { get; set; }
 
         [Parameter(ParameterSetName = GetAssemblyByFilterParameterSet)]
         [ValidateNotNullOrEmpty]
@@ -64,10 +60,6 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 
             switch (this.ParameterSetName)
             {
-                case GetAssemblyByNameParameterSet:
-                    QueryExpression nameQuery = BuildAssemblyByNameQuery();
-                    GetContentByQuery(nameQuery);
-                    break;
                 case GetAssemblyByIdParameterSet:
                     WriteObject(_repository.Get("pluginassembly", Id));
                     break;
@@ -85,15 +77,14 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 
             if (PagingParameters.IncludeTotalCount)
             {
-                double accuracy;
-                int count = _repository.GetRowCount(advancedFilterQuery, out accuracy);
+                int count = _repository.GetRowCount(advancedFilterQuery, out double accuracy);
                 WriteObject(PagingParameters.NewTotalCount(Convert.ToUInt64(count), accuracy));
             }
 
             var result = _repository.Get(advancedFilterQuery, PagingParameters.First, PagingParameters.Skip);
-            if (!string.IsNullOrWhiteSpace(Include))
+            if (!string.IsNullOrWhiteSpace(Name))
             {
-                WildcardPattern includePattern = new WildcardPattern(Include, WildcardOptions.IgnoreCase);
+                WildcardPattern includePattern = new WildcardPattern(Name, WildcardOptions.IgnoreCase);
                 result = result.Where(a => includePattern.IsMatch(a.GetAttributeValue<string>("name")));
             }
             if (!string.IsNullOrWhiteSpace(Exclude))
@@ -105,42 +96,15 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
             WriteObject(result, true);
         }
 
-        private void GetContentByQuery(QueryBase query)
-        {
-            if (PagingParameters.IncludeTotalCount)
-            {
-                double accuracy;
-                int count = _repository.GetRowCount(query, out accuracy);
-                WriteObject(PagingParameters.NewTotalCount(Convert.ToUInt64(count), accuracy));
-            }
-
-            foreach (var item in _repository.Get(query, PagingParameters.First, PagingParameters.Skip))
-            {
-                WriteObject(item);
-            }
-        }
-
-        private QueryExpression BuildAssemblyByNameQuery()
-        {
-            QueryExpression query = new QueryExpression("pluginassembly")
-            {
-                ColumnSet = new ColumnSet(true),
-                Criteria =
-                {
-                    Conditions =
-                    {
-                        new ConditionExpression("name", ConditionOperator.Equal, Name),
-                    }
-                }
-            };
-            return query;
-        }
-
         private QueryExpression BuildAssemblyByFilterQuery()
         {
             QueryExpression query = new QueryExpression("pluginassembly")
             {
                 ColumnSet = new ColumnSet(true),
+                Orders =
+                {
+                    new OrderExpression("name", OrderType.Ascending)
+                }
             };
 
             FilterExpression filter = new FilterExpression(LogicalOperator.And);

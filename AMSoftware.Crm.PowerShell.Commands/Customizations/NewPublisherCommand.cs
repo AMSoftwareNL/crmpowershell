@@ -48,6 +48,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
         [ValidateNotNullOrEmpty]
         public string Description { get; set; }
 
+        [Parameter]
+        public SwitchParameter PassThru { get; set; }
+
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
@@ -57,8 +60,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
                 valuePrefix = OptionSetValuePrefix.Value;
             }
 
-            Entity newPublisher = new Entity("publisher");
-            newPublisher.Attributes = new AttributeCollection();
+            Entity newPublisher = new Entity("publisher")
+            {
+                Attributes = new AttributeCollection()
+            };
             newPublisher.Attributes.Add("uniquename", Name);
             newPublisher.Attributes.Add("friendlyname", DisplayName);
             newPublisher.Attributes.Add("customizationprefix", Prefix);
@@ -69,7 +74,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
             }
 
             Guid newPublisherId = _repository.Add(newPublisher);
-            WriteObject(_repository.Get("publisher", newPublisherId));
+            if (PassThru)
+            {
+                WriteObject(_repository.Get("publisher", newPublisherId));
+            }
         }
     }
 }

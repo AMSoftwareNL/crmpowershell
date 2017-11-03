@@ -37,19 +37,28 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         [ValidateNotNullOrEmpty]
         public Guid? BusinessUnit { get; set; }
 
+        [Parameter]
+        public SwitchParameter PassThru { get; set; }
+
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
 
             Guid businessUnitId = BusinessUnit ?? SecurityManagementHelper.GetDefaultBusinessUnitId(_repository);
 
-            Entity newRole = new Entity("role");
-            newRole.Attributes = new AttributeCollection();
+            Entity newRole = new Entity("role")
+            {
+                Attributes = new AttributeCollection()
+            };
             newRole.Attributes.Add("name", Name);
             newRole.Attributes.Add("businessunitid", new EntityReference("businessunit", businessUnitId));
 
             Guid newRoleId = _repository.Add(newRole);
-            WriteObject(_repository.Get("role", newRoleId));
+
+            if (PassThru)
+            {
+                WriteObject(_repository.Get("role", newRoleId));
+            }
         }
     }
 }

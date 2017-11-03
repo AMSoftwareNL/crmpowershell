@@ -15,11 +15,11 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+using AMSoftware.Crm.PowerShell.Common.Repositories;
+using Microsoft.Xrm.Sdk;
 using System;
 using System.Collections;
 using System.Management.Automation;
-using AMSoftware.Crm.PowerShell.Common.Repositories;
-using Microsoft.Xrm.Sdk;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Content
 {
@@ -32,9 +32,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Content
 
         private ContentRepository _repository = new ContentRepository();
 
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = AddContentByInputObjectParameterSet)]
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = AddContentByInputObjectParameterSet, ValueFromPipeline = true)]
+        [Alias("Record")]
         [ValidateNotNullOrEmpty]
-        public Entity Record { get; set; }
+        public Entity InputObject { get; set; }
 
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = AddContentParameterSet)]
         [ValidateNotNullOrEmpty]
@@ -47,6 +48,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Content
         [ValidateNotNull]
         public Hashtable Attributes { get; set; }
 
+        [Parameter]
+        public SwitchParameter PassThru { get; set; }
+
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
@@ -55,11 +59,17 @@ namespace AMSoftware.Crm.PowerShell.Commands.Content
             {
                 case AddContentParameterSet:
                     Guid newId1 = _repository.Add(Entity, Id, Attributes);
-                    WriteObject(_repository.Get(Entity, newId1, null));
+                    if (PassThru)
+                    {
+                        WriteObject(_repository.Get(Entity, newId1, null));
+                    }
                     break;
                 case AddContentByInputObjectParameterSet:
-                    Guid newId2 = _repository.Add(Record);
-                    WriteObject(_repository.Get(Record.LogicalName, newId2, null));
+                    Guid newId2 = _repository.Add(InputObject);
+                    if (PassThru)
+                    {
+                        WriteObject(_repository.Get(InputObject.LogicalName, newId2, null));
+                    }
                     break;
                 default:
                     break;

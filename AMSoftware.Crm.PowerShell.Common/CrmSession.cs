@@ -65,7 +65,7 @@ namespace AMSoftware.Crm.PowerShell.Common
             };
             if (isOnPremises && discoveryServiceManagement.AuthenticationType != AuthenticationProviderType.ActiveDirectory)
             {
-                authCredentials.HomeRealm = discoveryUri;
+                //authCredentials.HomeRealm = discoveryUri;
             }
 
             _tokenCredentials = discoveryServiceManagement.Authenticate(authCredentials);

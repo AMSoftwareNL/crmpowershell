@@ -280,7 +280,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.-->
                 <PropertyName>IsManaged</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
-                <PropertyName>IsCustom</PropertyName>
+                <PropertyName>IsCustomRelationship</PropertyName>
               </TableColumnItem>
             </TableColumnItems>
           </TableRowEntry>
@@ -359,7 +359,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.-->
           <TableRowEntry>
             <TableColumnItems>
               <TableColumnItem>
-                <PropertyName>componenttypename</PropertyName>
+                <PropertyName>componenttype_FormattedValue</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
                 <PropertyName>Id</PropertyName>
@@ -410,7 +410,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.-->
                 <PropertyName>parentbusinessunitid</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
-                <PropertyName>parentbusinessunitidname</PropertyName>
+                <PropertyName>parentbusinessunitid_FormattedValue</PropertyName>
               </TableColumnItem>
             </TableColumnItems>
           </TableRowEntry>
@@ -452,7 +452,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.-->
                 <PropertyName>businessunitid</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
-                <PropertyName>businessunitidname</PropertyName>
+                <PropertyName>businessunitid_FormattedValue</PropertyName>
               </TableColumnItem>
             </TableColumnItems>
           </TableRowEntry>
@@ -487,7 +487,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.-->
           <TableRowEntry>
             <TableColumnItems>
               <TableColumnItem>
-                <PropertyName>categoryname</PropertyName>
+                <PropertyName>category_FormattedValue</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
                 <PropertyName>Id</PropertyName>
@@ -618,7 +618,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.-->
                 <PropertyName>businessunitid</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
-                <PropertyName>businessunitidname</PropertyName>
+                <PropertyName>businessunitid_FormattedValue</PropertyName>
               </TableColumnItem>
             </TableColumnItems>
           </TableRowEntry>
@@ -660,7 +660,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.-->
                 <PropertyName>uniquename</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
-                <PropertyName>publisheridname</PropertyName>
+                <PropertyName>publisherid_FormattedValue</PropertyName>
               </TableColumnItem>
             </TableColumnItems>
           </TableRowEntry>
@@ -695,7 +695,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.-->
                 <PropertyName>Name</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
-                <PropertyName>webresourcetypename</PropertyName>
+                <PropertyName>webresourcetype_FormattedValue</PropertyName>
               </TableColumnItem>
             </TableColumnItems>
           </TableRowEntry>
@@ -734,23 +734,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.-->
           <TableRowEntry>
             <TableColumnItems>
               <TableColumnItem>
-                <PropertyName>requiredcomponenttypename</PropertyName>
+                <PropertyName>requiredcomponenttype_FormattedValue</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
                 <ScriptBlock>
-                  [AMSoftware.Crm.PowerShell.Common.Helpers.SolutionManagementHelper]::GetComponentName($_.requiredcomponenttype, $_.requiredcomponentobjectid);
+                  [AMSoftware.Crm.PowerShell.Commands.Helpers.SolutionManagementHelper]::GetComponentName($_.requiredcomponenttype, $_.requiredcomponentobjectid);
                 </ScriptBlock>
               </TableColumnItem>
               <TableColumnItem>
-                <PropertyName>dependentcomponenttypename</PropertyName>
+                <PropertyName>dependentcomponenttype_FormattedValue</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
                 <ScriptBlock>
-                  [AMSoftware.Crm.PowerShell.Common.Helpers.SolutionManagementHelper]::GetComponentName($_.dependentcomponenttype, $_.dependentcomponentobjectid);
+                  [AMSoftware.Crm.PowerShell.Commands.Helpers.SolutionManagementHelper]::GetComponentName($_.dependentcomponenttype, $_.dependentcomponentobjectid);
                 </ScriptBlock>
               </TableColumnItem>
               <TableColumnItem>
-                <PropertyName>dependencytypename</PropertyName>
+                <PropertyName>dependencytype_FormattedValue</PropertyName>
               </TableColumnItem>
             </TableColumnItems> 
           </TableRowEntry>
@@ -789,10 +789,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.-->
                 <PropertyName>Name</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
-                <PropertyName>isolationmodename</PropertyName>
+                <PropertyName>isolationmode_FormattedValue</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
-                <PropertyName>sourcetypename</PropertyName>
+                <PropertyName>sourcetype_FormattedValue</PropertyName>
               </TableColumnItem>
             </TableColumnItems>
           </TableRowEntry>
@@ -867,10 +867,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.-->
                 <PropertyName>Name</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
-                <PropertyName>sdkmessageidname</PropertyName>
+                <PropertyName>sdkmessageid_FormattedValue</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
-                <PropertyName>stagename</PropertyName>
+                <PropertyName>stage_FormattedValue</PropertyName>
               </TableColumnItem>
             </TableColumnItems>
           </TableRowEntry>
@@ -905,7 +905,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.-->
                 <PropertyName>Name</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
-                <PropertyName>imagetypename</PropertyName>
+                <PropertyName>imagetype_FormattedValue</PropertyName>
               </TableColumnItem>
             </TableColumnItems>
           </TableRowEntry>
@@ -947,7 +947,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.-->
                 <PropertyName>solutionnamespace</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
-                <PropertyName>contractname</PropertyName>
+                <PropertyName>contract_FormattedValue</PropertyName>
               </TableColumnItem>
             </TableColumnItems>
           </TableRowEntry>

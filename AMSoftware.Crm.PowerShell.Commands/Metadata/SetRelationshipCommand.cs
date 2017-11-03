@@ -23,7 +23,8 @@ using Microsoft.Xrm.Sdk.Metadata;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 {
-    [Cmdlet(VerbsCommon.Set, "Relationship", HelpUri = HelpUrlConstants.SetRelationshipHelpUrl)]
+    [Cmdlet(VerbsCommon.Set, "Relationship", HelpUri = HelpUrlConstants.SetRelationshipHelpUrl, DefaultParameterSetName = SetRelationshipByInputObjectParameterSet)]
+    [OutputType(typeof(RelationshipMetadataBase))]
     public sealed class SetRelationshipCommand : CrmOrganizationCmdlet, IDynamicParameters
     {
         private const string SetRelationshipParameterSet = "SetRelationship";
@@ -32,11 +33,13 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         private MetadataRepository _repository = new MetadataRepository();
         private SetRelationshipDynamicParameters _context;
 
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = SetRelationshipByInputObjectParameterSet)]
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = SetRelationshipByInputObjectParameterSet, ValueFromPipeline = true)]
+        [Alias("Relationship")]
         [ValidateNotNull]
-        public RelationshipMetadataBase Relationship { get; set; }
+        public RelationshipMetadataBase InputObject { get; set; }
 
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = SetRelationshipParameterSet)]
+        [Alias("SchemaName")]
         [ValidateNotNullOrEmpty]
         public string Name { get; set; }
 
@@ -47,6 +50,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         [Parameter(ParameterSetName = SetRelationshipParameterSet)]
         [ValidateNotNull]
         public bool? Customizable { get; set; }
+
+        [Parameter]
+        public SwitchParameter PassThru { get; set; }
 
         protected override void ExecuteCmdlet()
         {
@@ -61,10 +67,17 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
                     if (_context != null) _context.SetParametersOnRelationship(internalRelationship);
 
                     _repository.UpdateRelationship(internalRelationship);
-
+                    if (PassThru)
+                    {
+                        WriteObject(_repository.GetRelationship(internalRelationship.MetadataId.Value));
+                    }
                     break;
                 case SetRelationshipByInputObjectParameterSet:
-                    _repository.UpdateRelationship(Relationship);
+                    _repository.UpdateRelationship(InputObject);
+                    if (PassThru)
+                    {
+                        WriteObject(_repository.GetRelationship(InputObject.MetadataId.Value));
+                    }
                     break;
                 default:
                     break;

@@ -34,22 +34,15 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
 
         private ContentRepository _repository = new ContentRepository();
 
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = GetTeamByIdParameterSet)]
+        [Parameter(Mandatory = true, Position = 0, ParameterSetName = GetTeamByIdParameterSet, ValueFromPipeline = true)]
         [ValidateNotNull]
         public Guid Id { get; set; }
 
-        [Parameter(ParameterSetName = GetAllTeamsParameterSet)]
-        [ValidateNotNull]
-        public CrmTeamType? TeamType { get; set; }
-
-        [Parameter(ParameterSetName = GetAllTeamsParameterSet)]
-        [ValidateNotNull]
-        public Guid? Administrator { get; set; }
-
-        [Parameter(ParameterSetName = GetAllTeamsParameterSet)]
+        [Parameter(Position = 0, ParameterSetName = GetAllTeamsParameterSet)]
+        [Alias("Include")]
         [ValidateNotNullOrEmpty]
         [SupportsWildcards]
-        public string Include { get; set; }
+        public string Name { get; set; }
 
         [Parameter(ParameterSetName = GetAllTeamsParameterSet)]
         [ValidateNotNullOrEmpty]
@@ -59,6 +52,14 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         [Parameter(ParameterSetName = GetAllTeamsParameterSet)]
         [ValidateNotNullOrEmpty]
         public Guid? BusinessUnit { get; set; }
+
+        [Parameter(ParameterSetName = GetAllTeamsParameterSet)]
+        [ValidateNotNull]
+        public CrmTeamType? TeamType { get; set; }
+
+        [Parameter(ParameterSetName = GetAllTeamsParameterSet)]
+        [ValidateNotNull]
+        public Guid? Administrator { get; set; }
 
         protected override void ExecuteCmdlet()
         {
@@ -83,15 +84,14 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
             
             if (PagingParameters.IncludeTotalCount)
             {
-                double accuracy;
-                int count = _repository.GetRowCount(advancedFilterQuery, out accuracy);
+                int count = _repository.GetRowCount(advancedFilterQuery, out double accuracy);
                 WriteObject(PagingParameters.NewTotalCount(Convert.ToUInt64(count), accuracy));
             }
 
             var result = _repository.Get(advancedFilterQuery, PagingParameters.First, PagingParameters.Skip);
-            if (!string.IsNullOrWhiteSpace(Include))
+            if (!string.IsNullOrWhiteSpace(Name))
             {
-                WildcardPattern includePattern = new WildcardPattern(Include, WildcardOptions.IgnoreCase);
+                WildcardPattern includePattern = new WildcardPattern(Name, WildcardOptions.IgnoreCase);
                 result = result.Where(a => includePattern.IsMatch(a.GetAttributeValue<string>("name")));
             }
             if (!string.IsNullOrWhiteSpace(Exclude))
@@ -107,7 +107,11 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         {
             QueryExpression query = new QueryExpression("team")
             {
-                ColumnSet = new ColumnSet(true)
+                ColumnSet = new ColumnSet(true),
+                Orders =
+                {
+                    new OrderExpression("name", OrderType.Ascending)
+                }
             };
 
             if (TeamType.HasValue)

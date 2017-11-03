@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Management.Automation;
 using AMSoftware.Crm.PowerShell.Common;
 using AMSoftware.Crm.PowerShell.Common.Helpers;
@@ -28,9 +29,6 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
     [Cmdlet(VerbsCommon.Add, "SolutionComponent", HelpUri = HelpUrlConstants.AddSolutionComponentHelpUrl)]
     public sealed class AddSolutionComponentCommand : CrmOrganizationCmdlet, IDynamicParameters
     {
-        private const string AddSolutionComponentSimpleParameterSet = "AddSolutionComponentSimple";
-        private const string AddSolutionComponentAdvancedParameterSet = "AddSolutionComponentAdvanced";
-
         private ContentRepository _repository = new ContentRepository();
         private AddSolutionComponentDynamicParameters _context;
 
@@ -40,15 +38,12 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
         [ValidateNotNull]
         public Guid Solution { get; set; }
 
-        [Parameter(Mandatory = true, ParameterSetName = AddSolutionComponentSimpleParameterSet)]
-        [ValidateNotNull]
-        public CrmComponentType Type { get; set; }
+        [Parameter(Mandatory = true, Position = 2)]
+        [ValidateNotNullOrEmpty]
+        public string Type { get; set; }
 
-        [Parameter(Mandatory = true, ParameterSetName = AddSolutionComponentAdvancedParameterSet)]
-        [ValidateNotNull]
-        public int ComponentType { get; set; }
-
-        [Parameter(Mandatory = true)]
+        [Parameter(Mandatory = true, Position = 3)]
+        [Alias("ObjectId")]
         [ValidateNotNull]
         public Guid ComponentId { get; set; }
 
@@ -58,7 +53,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
         protected override void BeginProcessing()
         {
             base.BeginProcessing();
-            
+
             _validComponentTypes = new Dictionary<int, string>(SolutionManagementHelper.GetComponentTypes());
         }
 
@@ -67,31 +62,29 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
             base.ExecuteCmdlet();
 
             string solutionUniqueName = SolutionManagementHelper.GetSolutionUniqueName(_repository, Solution, false);
+
             int componentTypeValue = 0;
-
-            switch (this.ParameterSetName)
+            if (int.TryParse(Type, out int typeAsInt) && _validComponentTypes.ContainsKey(typeAsInt))
             {
-                case AddSolutionComponentSimpleParameterSet:
-                    componentTypeValue = (int)Type;
-                    break;
-                case AddSolutionComponentAdvancedParameterSet:
-                    componentTypeValue = ComponentType;
-                    break;
-                default:
-                    break;
+                componentTypeValue = typeAsInt;
+            }
+            else if (_validComponentTypes.Any(v => v.Value.Equals(Type, StringComparison.InvariantCultureIgnoreCase)))
+            {
+                componentTypeValue = _validComponentTypes.First(v => v.Value.Equals(Type, StringComparison.InvariantCultureIgnoreCase)).Key;
+            }
+            else
+            {
+                throw new NotSupportedException(string.Format("ComponentType '{0}' is not supported.", Type));
             }
 
-            if (!_validComponentTypes.ContainsKey(componentTypeValue))
+            OrganizationRequest request = new OrganizationRequest("AddSolutionComponent")
             {
-                throw new NotSupportedException(string.Format("ComponentType '{0}' is not supported.", componentTypeValue));
-            }
-            
-            OrganizationRequest request = new OrganizationRequest("AddSolutionComponent");
-            request.Parameters = new ParameterCollection() {
-                { "SolutionUniqueName", solutionUniqueName },
-                {"ComponentType", componentTypeValue },
-                {"ComponentId", ComponentId },
-                {"AddRequiredComponents", IncludeRequired.ToBool() }
+                Parameters = new ParameterCollection() {
+                    { "SolutionUniqueName", solutionUniqueName },
+                    {"ComponentType", componentTypeValue },
+                    {"ComponentId", ComponentId },
+                    {"AddRequiredComponents", IncludeRequired.ToBool() }
+                }
             };
 
             if (_context != null)

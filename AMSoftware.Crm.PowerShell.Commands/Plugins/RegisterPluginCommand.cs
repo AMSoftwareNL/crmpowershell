@@ -15,16 +15,15 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+using AMSoftware.Crm.PowerShell.Common;
+using AMSoftware.Crm.PowerShell.Common.Helpers;
+using AMSoftware.Crm.PowerShell.Common.Repositories;
+using Microsoft.Xrm.Sdk;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Management.Automation;
-using AMSoftware.Crm.PowerShell.Common;
-using AMSoftware.Crm.PowerShell.Common.Helpers;
-using AMSoftware.Crm.PowerShell.Common.Repositories;
-using Microsoft.Xrm.Sdk;
-using Microsoft.Xrm.Sdk.Query;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 {
@@ -39,7 +38,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
         private string[] _paths;
         private bool _shouldExpandWildcards;
 
-        [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = false, ValueFromPipelineByPropertyName = true, ParameterSetName = RegisterPluginFromLiteralPathParameterSet)]
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = RegisterPluginFromLiteralPathParameterSet, ValueFromPipeline = false, ValueFromPipelineByPropertyName = true)]
         [Alias("PSPath")]
         [ValidateNotNullOrEmpty]
         public string[] LiteralPath
@@ -48,7 +47,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
             set { _paths = value; }
         }
 
-        [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true, ParameterSetName = RegisterPluginFromPathParameterSet)]
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = RegisterPluginFromPathParameterSet, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
         [ValidateNotNullOrEmpty]
         public string[] Path
         {
@@ -78,6 +77,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
         [Parameter(ValueFromRemainingArguments = true)]
         [ValidateNotNull, ValidateLength(1, int.MaxValue)]
         public string[] Plugins { get; set; }
+
+        [Parameter]
+        public SwitchParameter PassThru { get; set; }
 
         protected override void ExecuteCmdlet()
         {
@@ -142,7 +144,11 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
                 {
                     _repository.Update(pluginTypeEntity);
                 }
-                WriteObject(_repository.Get("plugintype", pluginTypeId));
+
+                if (PassThru)
+                {
+                    WriteObject(_repository.Get("plugintype", pluginTypeId));
+                }
             }
         }
 
@@ -174,9 +180,11 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 
         private Entity GenerateCrmEntity(PluginAssemblyInfo assemblyInfo)
         {
-            Entity crmPluginAssembly = new Entity("pluginassembly");
-            crmPluginAssembly.Id = assemblyInfo.AssemblyId;
-            crmPluginAssembly.Attributes = new AttributeCollection();
+            Entity crmPluginAssembly = new Entity("pluginassembly")
+            {
+                Id = assemblyInfo.AssemblyId,
+                Attributes = new AttributeCollection()
+            };
             crmPluginAssembly.Attributes.Add("sourcetype", new OptionSetValue((int)assemblyInfo.SourceType));
             crmPluginAssembly.Attributes.Add("isolationmode", new OptionSetValue((int)assemblyInfo.IsolationMode));
             crmPluginAssembly.Attributes.Add("culture", assemblyInfo.Culture);
@@ -207,9 +215,11 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 
         private Entity GenerateCrmEntity(Guid assemblyId, PluginTypeInfo pluginTypeInfo)
         {
-            Entity crmPluginType = new Entity("plugintype");
-            crmPluginType.Id = pluginTypeInfo.PluginId;
-            crmPluginType.Attributes = new AttributeCollection();
+            Entity crmPluginType = new Entity("plugintype")
+            {
+                Id = pluginTypeInfo.PluginId,
+                Attributes = new AttributeCollection()
+            };
             crmPluginType.Attributes.Add("pluginassemblyid", new EntityReference("pluginassembly", assemblyId));
             crmPluginType.Attributes.Add("typename", pluginTypeInfo.TypeName);
             crmPluginType.Attributes.Add("friendlyname", pluginTypeInfo.TypeName);

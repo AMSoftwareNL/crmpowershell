@@ -60,6 +60,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
         [Parameter]
         public SwitchParameter Federated {get;set;}
 
+        [Parameter]
+        public SwitchParameter PassThru { get; set; }
+
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
@@ -71,7 +74,11 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
             }
             ValidateNameUnique(_repository, Name);
 
-            WriteObject(_repository.Add(GenerateCrmEntity()));
+            Guid newId = _repository.Add(GenerateCrmEntity());
+            if (PassThru)
+            {
+                WriteObject(_repository.Get("serviceendpoint", newId));
+            }
         }
 
         private static void ValidateNameUnique(ContentRepository repostiory, string name)
@@ -88,8 +95,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 
         private Entity GenerateCrmEntity()
         {
-            Entity crmServiceEndpoint = new Entity("serviceendpoint");
-            crmServiceEndpoint.Attributes = new AttributeCollection();
+            Entity crmServiceEndpoint = new Entity("serviceendpoint")
+            {
+                Attributes = new AttributeCollection()
+            };
             crmServiceEndpoint.Attributes.Add("name", Name);
             crmServiceEndpoint.Attributes.Add("solutionnamespace", Namespace);
             crmServiceEndpoint.Attributes.Add("path", Path);

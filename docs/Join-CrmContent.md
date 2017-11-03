@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Join-CrmContent.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Join-CrmContent.md
 schema: 2.0.0
 ---
 
@@ -11,6 +12,13 @@ Associate one record with another.
 
 ## SYNTAX
 
+### JoinContentByInputObject (Default)
+```
+Join-CrmContent [-InputObject] <Entity> [-ToEntity] <String> [-ToId] <Guid> [-Attribute <String>]
+ [<CommonParameters>]
+```
+
+### JoinContent
 ```
 Join-CrmContent [-Entity] <String> [-Id] <Guid> [-ToEntity] <String> [-ToId] <Guid> [-Attribute <String>]
  [<CommonParameters>]
@@ -54,7 +62,7 @@ The LogicalName of the entity to associate.
 
 ```yaml
 Type: String
-Parameter Sets: (All)
+Parameter Sets: JoinContent
 Aliases: 
 
 Required: True
@@ -69,13 +77,28 @@ The id of the record of the entity to associate.
 
 ```yaml
 Type: Guid
-Parameter Sets: (All)
+Parameter Sets: JoinContent
 Aliases: 
 
 Required: True
 Position: 2
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -InputObject
+The entity record of the entity to associate.
+
+```yaml
+Type: Entity
+Parameter Sets: JoinContentByInputObject
+Aliases: Record
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 

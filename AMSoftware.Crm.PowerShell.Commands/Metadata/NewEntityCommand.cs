@@ -42,9 +42,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         [Parameter(ParameterSetName = NewActivityParameterSet)]
         public SwitchParameter ExcludeFromMenu { get; set; }
 
-        [Parameter(Position = 1, Mandatory = true, ParameterSetName = NewEntityByInputObjectParameterSet)]
+        [Parameter(Position = 1, Mandatory = true, ParameterSetName = NewEntityByInputObjectParameterSet, ValueFromPipeline = true)]
+        [Alias("Entity")]
         [ValidateNotNull]
-        public EntityMetadata Entity { get; set; }
+        public EntityMetadata InputObject { get; set; }
 
         [Parameter(Position = 2, Mandatory = true, ParameterSetName = NewEntityByInputObjectParameterSet)]
         [ValidateNotNull]
@@ -103,6 +104,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         [ValidateNotNull]
         public bool? Customizable { get; set; }
 
+        [Parameter]
+        public SwitchParameter PassThru { get; set; }
+
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
@@ -119,14 +123,20 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
                     StringAttributeMetadata internalAttribute = BuildAttribute();
 
                     Guid objectId1 = _repository.AddEntity(internalEntity, internalAttribute, hasNotes, null);
-                    WriteObject(_repository.GetEntity(objectId1));
+                    if (PassThru)
+                    {
+                        WriteObject(_repository.GetEntity(objectId1));
+                    }
 
                     break;
                 case NewEntityByInputObjectParameterSet:
-                    if (Entity.IsActivity.GetValueOrDefault()) hasNotes = true;
+                    if (InputObject.IsActivity.GetValueOrDefault()) hasNotes = true;
 
-                    Guid objectId2 = _repository.AddEntity(Entity, PrimaryAttribute, hasNotes, null);
-                    WriteObject(_repository.GetEntity(objectId2));
+                    Guid objectId2 = _repository.AddEntity(InputObject, PrimaryAttribute, hasNotes, null);
+                    if (PassThru)
+                    {
+                        WriteObject(_repository.GetEntity(objectId2));
+                    }
 
                     break;
                 default:

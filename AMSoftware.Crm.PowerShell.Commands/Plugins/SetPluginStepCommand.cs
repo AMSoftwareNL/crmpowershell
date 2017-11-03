@@ -24,6 +24,7 @@ using Microsoft.Xrm.Sdk;
 namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 {
     [Cmdlet(VerbsCommon.Set, "PluginStep", HelpUri = HelpUrlConstants.SetPluginStepHelpUrl)]
+    [OutputType(typeof(Entity))]
     public sealed class SetPluginStepCommand : CrmOrganizationCmdlet
     {
         private ContentRepository _repository = new ContentRepository();
@@ -74,6 +75,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 
         [Parameter(ValueFromRemainingArguments = true)]
         public string[] Attributes { get; set; }
+
+        [Parameter]
+        public SwitchParameter PassThru { get; set; }
 
         protected override void ExecuteCmdlet()
         {
@@ -205,6 +209,11 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
             if (SecureConfig != null && string.IsNullOrWhiteSpace(SecureConfig) && crmSecureConfigReference != null)
             {
                 _repository.Delete(crmSecureConfigReference.LogicalName, crmSecureConfigReference.Id);
+            }
+
+            if (PassThru)
+            {
+                WriteObject(_repository.Get("sdkmessageprocessingstep", Id));
             }
         }
 

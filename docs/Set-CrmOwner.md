@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Set-CrmOwner.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Set-CrmOwner.md
 schema: 2.0.0
 ---
 
@@ -11,13 +12,7 @@ Update the owner of a record.
 
 ## SYNTAX
 
-### AssignOwnerEntity
-```
-Set-CrmOwner [-InputObject] <Entity> -ToPrincipalType <CrmPrincipalType> -ToPrincipalId <Guid>
- [<CommonParameters>]
-```
-
-### AssignOwnerRecord
+### AssignOwnerRecord (Default)
 ```
 Set-CrmOwner [-Entity] <String> [-Id] <Guid> -ToPrincipalType <CrmPrincipalType> -ToPrincipalId <Guid>
  [<CommonParameters>]
@@ -42,12 +37,12 @@ The LogicalName of the entity.
 ```yaml
 Type: String
 Parameter Sets: AssignOwnerRecord
-Aliases: 
+Aliases: LogicalName
 
 Required: True
 Position: 1
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
@@ -93,22 +88,7 @@ Aliases:
 Required: True
 Position: 2
 Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InputObject
-The Entity object representing the record to update the owner for.
-
-```yaml
-Type: Entity
-Parameter Sets: AssignOwnerEntity
-Aliases: 
-
-Required: True
-Position: 1
-Default value: None
-Accept pipeline input: True (ByValue)
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 

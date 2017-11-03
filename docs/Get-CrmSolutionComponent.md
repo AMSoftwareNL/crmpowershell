@@ -1,6 +1,7 @@
 ---
 external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
-online version: http://crmpowershell.amsoftware.nl/Get-CrmSolutionComponent.html
+Module Name: AMSoftware.Crm
+online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Get-CrmSolutionComponent.md
 schema: 2.0.0
 ---
 
@@ -11,15 +12,8 @@ Get the component in a customizations solution.
 
 ## SYNTAX
 
-### GetSolutionComponentSimple (Default)
 ```
-Get-CrmSolutionComponent [-Solution] <Guid> [-Type <CrmComponentType>] [-IncludeTotalCount] [-Skip <UInt64>]
- [-First <UInt64>] [<CommonParameters>]
-```
-
-### GetSolutionComponentAdvanced
-```
-Get-CrmSolutionComponent [-Solution] <Guid> [-ComponentType <Int32>] [-IncludeTotalCount] [-Skip <UInt64>]
+Get-CrmSolutionComponent [-Solution] <Guid> [[-Type] <String>] [-IncludeTotalCount] [-Skip <UInt64>]
  [-First <UInt64>] [<CommonParameters>]
 ```
 
@@ -36,21 +30,6 @@ PS C:\> Get-CrmSolution 'Product 1' | Get-CrmSolutionComponent -Type Entity
 Get the entities that are part of the 'Product 1' solution.
 
 ## PARAMETERS
-
-### -ComponentType
-The type of component to retrieve. Matches a value from the global optionset 'Component Type'(componenttype).
-
-```yaml
-Type: Int32
-Parameter Sets: GetSolutionComponentAdvanced
-Aliases: 
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -First
 Specifies the number of records to retrieve from the beginning.
@@ -118,13 +97,12 @@ Accept wildcard characters: False
 The type of component to retrieve. 
 
 ```yaml
-Type: CrmComponentType
-Parameter Sets: GetSolutionComponentSimple
-Aliases: 
-Accepted values: Unknown, Entity, OptionSet, Role, Dashboard, Process, Report, EmailTemplate, ContractTemplate, ArticleTemplate, MailMergeTemplate, Ribbon, WebResource, SiteMap, ConnectionRole, FieldSecurityProfile, SdkAssembly, SdkMessageStep, ServiceEndpoint, RoutingRuleSet, SLA, ConvertRule
+Type: String
+Parameter Sets: (All)
+Aliases: ComponentType
 
 Required: False
-Position: Named
+Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

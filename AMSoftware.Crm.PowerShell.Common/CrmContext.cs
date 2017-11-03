@@ -15,15 +15,12 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Discovery;
 using System;
-using System.ComponentModel;
 using System.Management.Automation;
 using System.Net;
 using System.Threading;
-using AMSoftware.Crm.PowerShell.Common.Converters;
-using Microsoft.Xrm.Sdk;
-using Microsoft.Xrm.Sdk.Discovery;
-using Microsoft.Crm.Sdk.Messages;
 
 namespace AMSoftware.Crm.PowerShell.Common
 {
@@ -33,19 +30,14 @@ namespace AMSoftware.Crm.PowerShell.Common
         {
             try
             {
-                TypeDescriptor.AddAttributes(typeof(Microsoft.Xrm.Sdk.Money), new TypeConverterAttribute(typeof(MoneyConverter)));
-                TypeDescriptor.AddAttributes(typeof(Microsoft.Xrm.Sdk.OptionSetValue), new TypeConverterAttribute(typeof(OptionSetValueConverter)));
-                TypeDescriptor.AddAttributes(typeof(Microsoft.Xrm.Sdk.Entity), new TypeConverterAttribute(typeof(EntityConverter)));
-                TypeDescriptor.AddAttributes(typeof(Microsoft.Xrm.Sdk.Label), new TypeConverterAttribute(typeof(LabelConverter)));
-                TypeDescriptor.AddAttributes(typeof(Microsoft.Xrm.Sdk.BooleanManagedProperty), new TypeConverterAttribute(typeof(ManagedPropertyConverter)));
-                TypeDescriptor.AddAttributes(typeof(Microsoft.Xrm.Sdk.Metadata.AttributeRequiredLevel), new TypeConverterAttribute(typeof(ManagedPropertyConverter)));
-
                 var accelerators = typeof(PSObject).Assembly.GetType("System.Management.Automation.TypeAccelerators");
-                accelerators.InvokeMember("Add", System.Reflection.BindingFlags.InvokeMethod, null, null, new object[] { "crmmoney", typeof(Microsoft.Xrm.Sdk.Money) });
-                accelerators.InvokeMember("Add", System.Reflection.BindingFlags.InvokeMethod, null, null, new object[] { "crmoptionsetvalue", typeof(Microsoft.Xrm.Sdk.OptionSetValue) });
-                accelerators.InvokeMember("Add", System.Reflection.BindingFlags.InvokeMethod, null, null, new object[] { "crmlabel", typeof(Microsoft.Xrm.Sdk.Label) });
+                accelerators.InvokeMember("Add", System.Reflection.BindingFlags.InvokeMethod, null, null, new object[] { "crmmoney", typeof(Money) });
+                accelerators.InvokeMember("Add", System.Reflection.BindingFlags.InvokeMethod, null, null, new object[] { "crmoptionsetvalue", typeof(OptionSetValue) });
+                accelerators.InvokeMember("Add", System.Reflection.BindingFlags.InvokeMethod, null, null, new object[] { "crmlabel", typeof(Label) });
             }
-            catch { }
+            catch {
+                
+            }
         }
         
         public static void ConnectDeployment(Uri discoveryUri, NetworkCredential credential, bool isOnPremises = false)

@@ -171,32 +171,6 @@ namespace AMSoftware.Crm.PowerShell.Common
         Access
     }
 
-    public enum CrmComponentType
-    {
-        Unknown = 0,
-        Entity = 1,
-        OptionSet = 9,
-        SiteMap = 62,
-        Ribbon = 50,
-        WebResource = 61,
-        Process = 29,
-        SdkAssembly = 91,
-        SdkMessageStep = 92,
-        ServiceEndpoint = 95,
-        Dashboard = 26,
-        Report = 31,
-        ConnectionRole = 63,
-        ArticleTemplate = 38,
-        ContractTemplate = 37,
-        EmailTemplate = 36,
-        MailMergeTemplate = 39,
-        Role = 20,
-        FieldSecurityProfile = 70,
-        RoutingRuleSet = 150,
-        ConvertRule = 154,
-        SLA = 152
-    }
-
     public enum CrmPluginStepMode
     {
         Synchronous = 0,

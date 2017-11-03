@@ -24,6 +24,7 @@ using Microsoft.Xrm.Sdk;
 namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 {
     [Cmdlet(VerbsCommon.Set, "PluginStepImage", HelpUri = HelpUrlConstants.SetPluginStepImageHelpUrl)]
+    [OutputType(typeof(Entity))]
     public sealed class SetPluginStepImageCommand : CrmOrganizationCmdlet
     {
         private ContentRepository _repository = new ContentRepository();
@@ -46,6 +47,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 
         [Parameter(ValueFromRemainingArguments = true)]
         public string[] Attributes { get; set; }
+
+        [Parameter]
+        public SwitchParameter PassThru { get; set; }
 
         protected override void ExecuteCmdlet()
         {
@@ -83,6 +87,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
             }
 
             _repository.Update(crmPluginStepImage);
+            if (PassThru)
+            {
+                WriteObject(_repository.Get("sdkmessageprocessingstepimage", Id));
+            }
         }
     }
 }
