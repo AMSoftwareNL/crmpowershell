@@ -15,13 +15,13 @@ Import a customizations solution into Dynamics CRM.
 ### ImportSolutionFromPath (Default)
 ```
 Import-CrmSolution [-Path] <String[]> [-ConvertToManaged] [-Overwrite] [-PublishWorkflows] [-SkipDependencies]
- [-WhatIf] [-Confirm] [<CommonParameters>]
+ [-Async] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### ImportSolutionFromLiteralPath
 ```
 Import-CrmSolution [-LiteralPath] <String[]> [-ConvertToManaged] [-Overwrite] [-PublishWorkflows]
- [-SkipDependencies] [-WhatIf] [-Confirm] [<CommonParameters>]
+ [-SkipDependencies] [-Async] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -37,6 +37,21 @@ PS C:\> Import-CrmSolution -Path c:\temp\product1.zip -ConvertToManaged -Overwri
 Import the solution 'product1.zip' into Dynamics CRM as managed solution and publish the workflows contained in the solution. Overwrite if the solution already exists.
 
 ## PARAMETERS
+
+### -Async
+Execute the import of the solution asynchronously. Returns an asyncoperation instead of an importjob.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: 
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### -Confirm
 Prompts you for confirmation before running the cmdlet.

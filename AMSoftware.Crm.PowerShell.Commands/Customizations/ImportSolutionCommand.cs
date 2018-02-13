@@ -19,6 +19,7 @@ using System;
 using System.Collections;
 using System.IO;
 using System.Management.Automation;
+using AMSoftware.Crm.PowerShell.Common;
 using AMSoftware.Crm.PowerShell.Common.Repositories;
 using Microsoft.Xrm.Sdk;
 
@@ -69,6 +70,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
         [Parameter]
         public SwitchParameter SkipDependencies { get; set; }
 
+        [Parameter]
+        public SwitchParameter Async { get; set; }
+
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
@@ -77,20 +81,40 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
             {
                 byte[] content = File.ReadAllBytes(fullPath);
 
-                ExecuteAction(fullPath, delegate
+                if (Async && CrmVersionManager.IsSupported(CrmVersion.CRM2015_RTM))
                 {
-                    Guid importjobid = Guid.NewGuid();
-                    _repository.Execute("ImportSolution", new Hashtable() {
-                        { "CustomizationFile", content },
-                        { "ImportJobId", importjobid },
-                        { "ConvertToManaged", ConvertToManaged.ToBool() },
-                        { "OverwriteUnmanagedCustomizations", Overwrite.ToBool() },
-                        { "PublishWorkflows", PublishWorkflows.ToBool() },
-                        { "SkipProductUpdateDependencies", SkipDependencies.ToBool() }
-                    });
+                    ExecuteAction(fullPath, delegate
+                    {
+                        Guid importjobid = Guid.NewGuid();
+                        OrganizationResponse response = _repository.ExecuteAsync("ImportSolution", new Hashtable() {
+                            { "CustomizationFile", content },
+                            { "ImportJobId", importjobid },
+                            { "ConvertToManaged", ConvertToManaged.ToBool() },
+                            { "OverwriteUnmanagedCustomizations", Overwrite.ToBool() },
+                            { "PublishWorkflows", PublishWorkflows.ToBool() },
+                            { "SkipProductUpdateDependencies", SkipDependencies.ToBool() }
+                        });
 
-                    WriteObject(_repository.Get("importjob", importjobid));
-                });
+                        WriteObject(_repository.Get("asyncoperation", (Guid)response.Results["AsyncJobId"]));
+                    });
+                }
+                else
+                {
+                    ExecuteAction(fullPath, delegate
+                    {
+                        Guid importjobid = Guid.NewGuid();
+                        _repository.Execute("ImportSolution", new Hashtable() {
+                            { "CustomizationFile", content },
+                            { "ImportJobId", importjobid },
+                            { "ConvertToManaged", ConvertToManaged.ToBool() },
+                            { "OverwriteUnmanagedCustomizations", Overwrite.ToBool() },
+                            { "PublishWorkflows", PublishWorkflows.ToBool() },
+                            { "SkipProductUpdateDependencies", SkipDependencies.ToBool() }
+                        });
+
+                        WriteObject(_repository.Get("importjob", importjobid));
+                    });
+                }
             }
         }
     }

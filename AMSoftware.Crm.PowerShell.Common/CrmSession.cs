@@ -23,6 +23,7 @@ using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Client;
 using Microsoft.Xrm.Sdk.Discovery;
 using Microsoft.Xrm.Sdk.Query;
+using Microsoft.Crm.Sdk.Messages;
 
 namespace AMSoftware.Crm.PowerShell.Common
 {
@@ -250,9 +251,9 @@ namespace AMSoftware.Crm.PowerShell.Common
 
         private void InitializeOrganizationInfo()
         {
-            OrganizationRequest whoAmIRequest = new OrganizationRequest("WhoAmI");
-            OrganizationResponse whoAmIResponse = OrganizationProxy.Execute(whoAmIRequest);
-            Guid organizationId = (Guid)whoAmIResponse.Results["OrganizationId"];
+            WhoAmIRequest whoAmIRequest = new WhoAmIRequest();
+            WhoAmIResponse whoAmIResponse = OrganizationProxy.Execute(whoAmIRequest) as WhoAmIResponse;
+            Guid organizationId = whoAmIResponse.OrganizationId;
 
             Entity organizationRow = OrganizationProxy.Retrieve("organization", organizationId, new ColumnSet("languagecode", "localeid"));
             _organizationLanguage = organizationRow.GetAttributeValue<int>("languagecode");

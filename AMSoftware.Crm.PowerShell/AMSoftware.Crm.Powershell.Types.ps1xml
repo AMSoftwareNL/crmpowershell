@@ -34,15 +34,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.-->
   <!-- Microsoft.Xrm.Sdk.Label -->
   <Type>
     <Name>Microsoft.Xrm.Sdk.Label</Name>
-    <Members>
-      <ScriptMethod>
-        <Name>ToString</Name>
-        <Script>
-          $converter = New-Object AMSoftware.Crm.PowerShell.Common.Converters.LabelConverter;
-          return $converter.ConvertToString($this);
-        </Script>
-      </ScriptMethod>
-    </Members>
     <TypeConverter>
       <TypeName>AMSoftware.Crm.PowerShell.Common.Converters.LabelConverter</TypeName>
     </TypeConverter>

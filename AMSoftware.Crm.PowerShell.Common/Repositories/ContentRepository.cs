@@ -217,6 +217,33 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
             return response;
         }
 
+        public OrganizationResponse ExecuteAsync(string requestName, Hashtable requestParameters = null)
+        {
+            OrganizationRequest request = new OrganizationRequest(requestName)
+            {
+                Parameters = new ParameterCollection()
+            };
+
+            if (requestParameters != null)
+            {
+                request.Parameters.AddRange(requestParameters.ToEnumerable<string, object>());
+            }
+
+            return ExecuteAsync(request);
+        }
+
+        public OrganizationResponse ExecuteAsync(OrganizationRequest request)
+        {
+            OrganizationRequest asyncRequest = new OrganizationRequest("ExecuteAsync")
+            {
+                Parameters = new ParameterCollection()
+            };
+            asyncRequest.Parameters.Add("Request", request);
+
+            OrganizationResponse asyncResponse = CrmContext.OrganizationProxy.Execute(request);
+            return asyncResponse;
+        }
+
         public void Associate(string addEntity, Guid addEntityId, string toEntity, Guid toEntityId, string addAttributeHint = null)
         {
             MetadataRepository repository = new MetadataRepository();

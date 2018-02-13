@@ -2,7 +2,7 @@
 Module Name: AMSoftware.Crm
 Module Guid: 1e7f1ebc-e035-4d73-86af-3c07a6a85260
 Download Help Link: http://www.amsoftware.nl/tools/crmpowershell/help/
-Help Version: 1.3.0.0
+Help Version: 1.3.0.2
 Locale: en-us
 ---
 

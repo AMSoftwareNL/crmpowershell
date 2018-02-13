@@ -675,7 +675,8 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
                 Parameters = new ParameterCollection
                 {
                     { "Name", name },
-                    { "RetrieveAsIfPublished", true }
+                    { "RetrieveAsIfPublished", true },
+                    { "MetadataId", Guid.Empty }
                 }
             };
 
