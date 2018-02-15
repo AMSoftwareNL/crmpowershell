@@ -57,6 +57,7 @@ namespace AMSoftware.Crm.PowerShell.Common
 
         private CrmSession(Uri discoveryUri, NetworkCredential credential, bool isOnPremises)
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             IServiceManagement<IDiscoveryService> discoveryServiceManagement = ServiceConfigurationFactory.CreateManagement<IDiscoveryService>(discoveryUri);
             ClientCredentials clientCredentials = InitializeClientCredentials(credential, discoveryServiceManagement);
 
@@ -168,6 +169,8 @@ namespace AMSoftware.Crm.PowerShell.Common
 
         internal void Connect(OrganizationDetail organization)
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
             DisconnectOrganization();
 
             Uri organizationUri = new Uri(organization.Endpoints[EndpointType.OrganizationService], UriKind.Absolute);
