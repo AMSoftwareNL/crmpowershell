@@ -240,7 +240,7 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
             };
             asyncRequest.Parameters.Add("Request", request);
 
-            OrganizationResponse asyncResponse = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse asyncResponse = CrmContext.OrganizationProxy.Execute(asyncRequest);
             return asyncResponse;
         }
 
