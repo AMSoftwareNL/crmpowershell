@@ -23,7 +23,7 @@ using Microsoft.Xrm.Sdk;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
-    [Cmdlet(VerbsCommon.Get, "TeamUsers", HelpUri = HelpUrlConstants.GetTeamUsersHelpUrl)]
+    [Cmdlet(VerbsCommon.Get, "CrmTeamUsers", HelpUri = HelpUrlConstants.GetTeamUsersHelpUrl)]
     [OutputType(typeof(Entity))]
     public sealed class GetTeamUsersCommand : CrmOrganizationCmdlet
     {

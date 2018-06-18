@@ -26,7 +26,7 @@ using Microsoft.Xrm.Sdk;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
-    [Cmdlet(VerbsData.Export, "Solution", HelpUri = HelpUrlConstants.ExportSolutionHelpUrl)]
+    [Cmdlet(VerbsData.Export, "CrmSolution", HelpUri = HelpUrlConstants.ExportSolutionHelpUrl)]
     public sealed class ExportSolutionCommand : CrmOrganizationCmdlet, IDynamicParameters
     {
         private ContentRepository _repository = new ContentRepository();

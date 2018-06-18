@@ -24,50 +24,43 @@ using System.Management.Automation;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
-    [Cmdlet(VerbsCommon.Set, "CrmTeamUsers", HelpUri = HelpUrlConstants.SetTeamUsersHelpUrl)]
-    [OutputType(typeof(Entity))]
-    public sealed class SetTeamUsersCommand : CrmOrganizationCmdlet
+    [Cmdlet(VerbsCommon.Remove, "CrmUserTeams", HelpUri = HelpUrlConstants.RemoveUserTeamsHelpUrl, DefaultParameterSetName = RemoveUserTeamsSelectedParameterSet)]
+    public sealed class RemoveUserTeamsCommand : CrmOrganizationCmdlet
     {
+        private const string RemoveUserTeamsAllParameterSet = "RemoveUserTeamsAll";
+        private const string RemoveUserTeamsSelectedParameterSet = "RemoveUserTeamsSelected";
+
         private ContentRepository _repository = new ContentRepository();
 
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
         [Alias("Id")]
         [ValidateNotNull]
-        public Guid Team { get; set; }
+        public Guid User { get; set; }
 
-        [Parameter(Mandatory = true, Position = 1, ValueFromRemainingArguments = true)]
+        [Parameter(Mandatory = true, Position = 1, ValueFromRemainingArguments = true, ParameterSetName = RemoveUserTeamsSelectedParameterSet)]
         [ValidateNotNull]
-        public Guid[] Users { get; set; }
+        public Guid[] Teams { get; set; }
 
-        [Parameter]
-        public SwitchParameter Overwrite { get; set; }
-
-        [Parameter]
-        public SwitchParameter PassThru { get; set; }
+        [Parameter(Mandatory = true, ParameterSetName = RemoveUserTeamsAllParameterSet)]
+        public SwitchParameter All { get; set; }
 
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
 
-            Guid[] currentSetIds = SecurityManagementHelper.GetUsersInTeam(_repository, Team).Select(e => e.Id).ToArray();
-            Guid[] addSet = Users.Except(currentSetIds).ToArray();
-            if (addSet != null && addSet.Length > 0)
+            Guid[] currentSetIds = SecurityManagementHelper.GetTeamsForUser(_repository, User).Select(e => e.Id).ToArray();
+            Guid[] removeSet = Teams;
+            if (this.ParameterSetName == RemoveUserTeamsAllParameterSet)
             {
-                SecurityManagementHelper.AddUsersToTeam(_repository, Team, addSet);
-            }
-            //Remove associations which are in current and not in new
-            if (Overwrite)
-            {
-                Guid[] removeSet = currentSetIds.Except(Users).ToArray();
-                if (removeSet != null && removeSet.Length > 0)
-                {
-                    SecurityManagementHelper.RemoveUsersFromTeam(_repository, Team, removeSet);
-                }
+                removeSet = currentSetIds;
             }
 
-            if (PassThru)
+            if (removeSet != null && removeSet.Length > 0)
             {
-                WriteObject(_repository.Get("team", Team));
+                foreach (var item in removeSet)
+                {
+                    SecurityManagementHelper.RemoveUsersFromTeam(_repository, item, new Guid[] { User });
+                }
             }
         }
     }

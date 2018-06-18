@@ -26,7 +26,7 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 {
-    [Cmdlet(VerbsLifecycle.Register, "PluginStep", HelpUri = HelpUrlConstants.RegisterPluginStepHelpUrl)]
+    [Cmdlet(VerbsLifecycle.Register, "CrmPluginStep", HelpUri = HelpUrlConstants.RegisterPluginStepHelpUrl)]
     [OutputType(typeof(Entity))]
     public sealed class RegisterPluginStepCommand : CrmOrganizationCmdlet
     {

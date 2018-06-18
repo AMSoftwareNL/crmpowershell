@@ -26,7 +26,7 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
-    [Cmdlet(VerbsData.Publish, "Component", HelpUri = HelpUrlConstants.PublishComponentHelpUrl, DefaultParameterSetName = PublishSolutionParameterSet)]
+    [Cmdlet(VerbsData.Publish, "CrmComponent", HelpUri = HelpUrlConstants.PublishComponentHelpUrl, DefaultParameterSetName = PublishSolutionParameterSet)]
     public sealed class PublishComponentCommand : CrmOrganizationActionCmdlet
     {
         private const string PublishAllParameterSet = "PublishAll";

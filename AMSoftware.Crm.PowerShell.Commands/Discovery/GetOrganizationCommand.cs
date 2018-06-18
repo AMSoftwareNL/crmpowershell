@@ -23,7 +23,7 @@ using System.Collections.Generic;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Discovery
 {
-    [Cmdlet(VerbsCommon.Get, "Organization", HelpUri = HelpUrlConstants.GetOrganizationHelpUrl)]
+    [Cmdlet(VerbsCommon.Get, "CrmOrganization", HelpUri = HelpUrlConstants.GetOrganizationHelpUrl)]
     [OutputType(typeof(OrganizationDetail))]
     public sealed class GetOrganizationCommand : CrmDiscoveryCmdlet
     {

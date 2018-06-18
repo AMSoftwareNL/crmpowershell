@@ -22,7 +22,7 @@ using Microsoft.Xrm.Sdk;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
-    [Cmdlet(VerbsCommon.New, "Publisher", HelpUri = HelpUrlConstants.NewPublisherHelpUrl)]
+    [Cmdlet(VerbsCommon.New, "CrmPublisher", HelpUri = HelpUrlConstants.NewPublisherHelpUrl)]
     [OutputType(typeof(Entity))]
     public sealed class NewPublisherCommand : CrmOrganizationCmdlet
     {

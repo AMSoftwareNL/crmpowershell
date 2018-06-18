@@ -23,7 +23,7 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
-    [Cmdlet(VerbsLifecycle.Stop, "Process", HelpUri = HelpUrlConstants.StopProcessHelpUrl, ConfirmImpact = ConfirmImpact.High, SupportsShouldProcess = true, DefaultParameterSetName = StopProcessByAsyncOperationParameterSet)]
+    [Cmdlet(VerbsLifecycle.Stop, "CrmProcess", HelpUri = HelpUrlConstants.StopProcessHelpUrl, ConfirmImpact = ConfirmImpact.High, SupportsShouldProcess = true, DefaultParameterSetName = StopProcessByAsyncOperationParameterSet)]
     [OutputType(typeof(Entity))]
     public sealed class StopProcessCommand : CrmOrganizationConfirmActionCmdlet
     {

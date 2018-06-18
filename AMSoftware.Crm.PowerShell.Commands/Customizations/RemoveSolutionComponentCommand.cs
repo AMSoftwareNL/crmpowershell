@@ -26,7 +26,7 @@ using Microsoft.Xrm.Sdk;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
-    [Cmdlet(VerbsCommon.Remove, "SolutionComponent", HelpUri = HelpUrlConstants.RemoveSolutionComponentHelpUrl)]
+    [Cmdlet(VerbsCommon.Remove, "CrmSolutionComponent", HelpUri = HelpUrlConstants.RemoveSolutionComponentHelpUrl)]
     public sealed class RemoveSolutionComponentCommand : CrmOrganizationCmdlet
     {
         private ContentRepository _repository = new ContentRepository();

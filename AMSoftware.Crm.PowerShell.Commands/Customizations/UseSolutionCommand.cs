@@ -23,7 +23,7 @@ using AMSoftware.Crm.PowerShell.Common.Repositories;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
-    [Cmdlet(VerbsOther.Use, "Solution", HelpUri = HelpUrlConstants.UseSolutionHelpUrl)]
+    [Cmdlet(VerbsOther.Use, "CrmSolution", HelpUri = HelpUrlConstants.UseSolutionHelpUrl)]
     public sealed class UseSolutionCommand : CrmOrganizationCmdlet
     {
         private ContentRepository _repository = new ContentRepository();

@@ -25,71 +25,60 @@ using System.Management.Automation;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
-    [Cmdlet(VerbsCommon.Set, "CrmRolePrincipals", HelpUri = HelpUrlConstants.SetRolePrincipalsHelpUrl)]
-    [OutputType(typeof(Entity))]
-    public sealed class SetRolePrincipalsCommand : CrmOrganizationCmdlet
+    [Cmdlet(VerbsCommon.Remove, "CrmPrincipalRoles", HelpUri = HelpUrlConstants.RemovePrincipalRolesHelpUrl, DefaultParameterSetName = RemovePrincipalRolesSelectedParameterSet)]
+    public sealed class RemovePrincipalRolesCommand : CrmOrganizationCmdlet
     {
+        private const string RemovePrincipalRolesAllParameterSet = "RemovePrincipalRolesAll";
+        private const string RemovePrincipalRolesSelectedParameterSet = "RemovePrincipalRolesSelected";
+
         private ContentRepository _repository = new ContentRepository();
 
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
         [Alias("Id")]
         [ValidateNotNull]
-        public Guid Role { get; set; }
+        public Guid Principal { get; set; }
 
         [Parameter(Mandatory = true, Position = 1)]
         [ValidateNotNull]
         public CrmPrincipalType PrincipalType { get; set; }
 
-        [Parameter(Mandatory = true, ValueFromRemainingArguments = true)]
+        [Parameter(Mandatory = true, ValueFromRemainingArguments = true, ParameterSetName = RemovePrincipalRolesSelectedParameterSet)]
         [ValidateNotNull]
-        public Guid[] Principals { get; set; }
+        public Guid[] Roles { get; set; }
 
-        [Parameter]
-        public SwitchParameter Overwrite { get; set; }
-
-        [Parameter]
-        public SwitchParameter PassThru { get; set; }
+        [Parameter(Mandatory=true, ParameterSetName = RemovePrincipalRolesAllParameterSet)]
+        public SwitchParameter All { get; set; }
 
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
 
-            string secondaryEntityName = null;
+            string primaryEntityName = null;
             switch (PrincipalType)
             {
                 case CrmPrincipalType.User:
-                    secondaryEntityName = "systemuser";
+                    primaryEntityName = "systemuser";
                     break;
                 case CrmPrincipalType.Team:
-                    secondaryEntityName = "team";
+                    primaryEntityName = "team";
                     break;
                 default:
                     break;
             }
 
-            string primaryEntityName = "role";
-            Guid primaryEntityId = Role;
-            Guid[] secondaryEntityIds = Principals;
-            Guid[] currentSetIds = SecurityManagementHelper.GetPrincipalsInRole(_repository, PrincipalType, Role).Select(e => e.Id).ToArray();
+            string secondaryEntityName = "role";
+            Guid primaryEntityId = Principal;
+            Guid[] currentSetIds = SecurityManagementHelper.GetRolesForPrincipal(_repository, PrincipalType, Principal).Select(e => e.Id).ToArray();
+            Guid[] removeSet = Roles;
 
-            Guid[] addSet = secondaryEntityIds.Except(currentSetIds).ToArray();
-            if (addSet != null && addSet.Length > 0)
+            if (this.ParameterSetName == RemovePrincipalRolesAllParameterSet)
             {
-                SecurityManagementHelper.LinkPrincipalRoles(_repository, primaryEntityName, primaryEntityId, secondaryEntityName, addSet);
-            }
-            //Remove associations which are in current and not in new
-            if (Overwrite)
-            {
-                Guid[] removeSet = currentSetIds.Except(secondaryEntityIds).ToArray();
-                if (removeSet != null && removeSet.Length > 0)
-                {
-                    SecurityManagementHelper.UnlinkPrincipalRoles(_repository, primaryEntityName, primaryEntityId, secondaryEntityName, removeSet);
-                }
+                removeSet = currentSetIds;
             }
 
-            if (PassThru)
+            if (removeSet != null && removeSet.Length > 0)
             {
-                WriteObject(_repository.Get(primaryEntityName, primaryEntityId));
+                SecurityManagementHelper.UnlinkPrincipalRoles(_repository, primaryEntityName, primaryEntityId, secondaryEntityName, removeSet);
             }
         }
     }

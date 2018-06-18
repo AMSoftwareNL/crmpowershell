@@ -22,7 +22,7 @@ using Microsoft.Xrm.Sdk;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
-    [Cmdlet(VerbsLifecycle.Start, "Process", HelpUri = HelpUrlConstants.StartProcessHelpUrl, SupportsShouldProcess = true)]
+    [Cmdlet(VerbsLifecycle.Start, "CrmProcess", HelpUri = HelpUrlConstants.StartProcessHelpUrl, SupportsShouldProcess = true)]
     [OutputType(typeof(Entity))]
     public sealed class StartProcessCommand : CrmOrganizationActionCmdlet
     {

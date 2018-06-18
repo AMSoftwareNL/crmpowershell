@@ -25,7 +25,7 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
-    [Cmdlet(VerbsCommon.Get, "Team", HelpUri = HelpUrlConstants.GetTeamHelpUrl, SupportsPaging = true, DefaultParameterSetName = GetAllTeamsParameterSet)]
+    [Cmdlet(VerbsCommon.Get, "CrmTeam", HelpUri = HelpUrlConstants.GetTeamHelpUrl, SupportsPaging = true, DefaultParameterSetName = GetAllTeamsParameterSet)]
     [OutputType(typeof(Entity))]
     public sealed class GetTeamCommand : CrmOrganizationCmdlet
     {

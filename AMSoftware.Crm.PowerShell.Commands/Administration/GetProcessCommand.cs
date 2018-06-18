@@ -25,7 +25,7 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
-    [Cmdlet(VerbsCommon.Get, "Process", HelpUri = HelpUrlConstants.GetProcessHelpUrl, SupportsPaging = true, DefaultParameterSetName = GetAllProcessesParameterSet)]
+    [Cmdlet(VerbsCommon.Get, "CrmProcess", HelpUri = HelpUrlConstants.GetProcessHelpUrl, SupportsPaging = true, DefaultParameterSetName = GetAllProcessesParameterSet)]
     [OutputType(typeof(Entity))]
     public sealed class GetProcessCommand : CrmOrganizationCmdlet
     {

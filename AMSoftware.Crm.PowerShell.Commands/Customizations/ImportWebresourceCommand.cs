@@ -23,7 +23,7 @@ using Microsoft.Xrm.Sdk;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
-    [Cmdlet(VerbsData.Import, "Webresource", HelpUri = HelpUrlConstants.ImportWebresourceHelpUrl)]
+    [Cmdlet(VerbsData.Import, "CrmWebresource", HelpUri = HelpUrlConstants.ImportWebresourceHelpUrl)]
     [OutputType(typeof(Entity))]
     public sealed class ImportWebresourceCommand : CrmOrganizationCmdlet, IDynamicParameters
     {

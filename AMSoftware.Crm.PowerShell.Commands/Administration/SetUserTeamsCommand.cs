@@ -24,7 +24,7 @@ using System.Management.Automation;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
-    [Cmdlet(VerbsCommon.Set, "UserTeams", HelpUri = HelpUrlConstants.SetUserTeamsHelpUrl)]
+    [Cmdlet(VerbsCommon.Set, "CrmUserTeams", HelpUri = HelpUrlConstants.SetUserTeamsHelpUrl)]
     [OutputType(typeof(Entity))]
     public sealed class SetUserTeamsCommand : CrmOrganizationCmdlet
     {

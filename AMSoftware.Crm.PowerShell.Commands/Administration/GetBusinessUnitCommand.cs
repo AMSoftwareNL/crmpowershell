@@ -24,7 +24,7 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
-    [Cmdlet(VerbsCommon.Get, "BusinessUnit", HelpUri = HelpUrlConstants.GetBusinessUnitHelpUrl, SupportsPaging = true, DefaultParameterSetName = GetAllBusinessUnitsParameterSet)]
+    [Cmdlet(VerbsCommon.Get, "CrmBusinessUnit", HelpUri = HelpUrlConstants.GetBusinessUnitHelpUrl, SupportsPaging = true, DefaultParameterSetName = GetAllBusinessUnitsParameterSet)]
     [OutputType(typeof(Entity))]
     public sealed class GetBusinessUnitCommand : CrmOrganizationCmdlet
     {

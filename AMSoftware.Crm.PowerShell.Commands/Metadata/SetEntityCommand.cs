@@ -25,7 +25,7 @@ using Microsoft.Xrm.Sdk.Metadata;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 {
-    [Cmdlet(VerbsCommon.Set, "Entity", HelpUri = HelpUrlConstants.SetEntityHelpUrl, DefaultParameterSetName = SetEntityByInputObjectParameterSet)]
+    [Cmdlet(VerbsCommon.Set, "CrmEntity", HelpUri = HelpUrlConstants.SetEntityHelpUrl, DefaultParameterSetName = SetEntityByInputObjectParameterSet)]
     [OutputType(typeof(EntityMetadata))]
     public sealed class SetEntityCommand : CrmOrganizationCmdlet, IDynamicParameters
     {

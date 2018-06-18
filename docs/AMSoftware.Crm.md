@@ -2,7 +2,7 @@
 Module Name: AMSoftware.Crm
 Module Guid: 1e7f1ebc-e035-4d73-86af-3c07a6a85260
 Download Help Link: http://www.amsoftware.nl/tools/crmpowershell/help/
-Help Version: 1.3.0.2
+Help Version: 1.4.0.0
 Locale: en-us
 ---
 
@@ -242,14 +242,26 @@ Remove a global optionset.
 ### [Remove-CrmOptionSetValue](Remove-CrmOptionSetValue.md)
 Remove a value from a global optionset or picklist attribute.
 
+### [Remove-CrmPrincipalRoles](Remove-CrmPrincipalRoles.md)
+Remove the roles for a user or team.
+
 ### [Remove-CrmRelationship](Remove-CrmRelationship.md)
 Remove a relationship.
+
+### [Remove-CrmRolePrincipals](Remove-CrmRolePrincipals.md)
+Remove the teams or users assigned to a role.
 
 ### [Remove-CrmSolutionComponent](Remove-CrmSolutionComponent.md)
 Remove a component from a customization solution.
 
+### [Remove-CrmTeamUsers](Remove-CrmTeamUsers.md)
+Remove users from a team.
+
 ### [Remove-CrmUserParent](Remove-CrmUserParent.md)
 Remove the parent for a system user (user) record.
+
+### [Remove-CrmUserTeams](Remove-CrmUserTeams.md)
+Remove the teams a user is a member of.
 
 ### [Remove-CrmWebresource](Remove-CrmWebresource.md)
 Remove a webresource.

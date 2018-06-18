@@ -25,7 +25,7 @@ using System.Management.Automation;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
-    [Cmdlet(VerbsCommon.Set, "PrincipalRoles", HelpUri = HelpUrlConstants.SetPrincipalRolesHelpUrl)]
+    [Cmdlet(VerbsCommon.Set, "CrmPrincipalRoles", HelpUri = HelpUrlConstants.SetPrincipalRolesHelpUrl)]
     [OutputType(typeof(Entity))]
     public sealed class SetPrincipalRolesCommand : CrmOrganizationCmdlet
     {

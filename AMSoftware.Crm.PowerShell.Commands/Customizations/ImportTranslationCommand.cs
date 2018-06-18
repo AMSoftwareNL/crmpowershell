@@ -24,7 +24,7 @@ using Microsoft.Xrm.Sdk;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
-    [Cmdlet(VerbsData.Import, "Translation", HelpUri = HelpUrlConstants.ImportTranslationHelpUrl, SupportsShouldProcess = true, DefaultParameterSetName = ImportTranslationFromPathParameterSet)]
+    [Cmdlet(VerbsData.Import, "CrmTranslation", HelpUri = HelpUrlConstants.ImportTranslationHelpUrl, SupportsShouldProcess = true, DefaultParameterSetName = ImportTranslationFromPathParameterSet)]
     [OutputType(typeof(Entity))]
     public sealed class ImportTranslationCommand : CrmOrganizationActionCmdlet
     {

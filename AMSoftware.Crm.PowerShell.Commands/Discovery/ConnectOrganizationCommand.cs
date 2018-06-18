@@ -23,7 +23,7 @@ using Microsoft.Xrm.Sdk.Discovery;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Discovery
 {
-    [Cmdlet(VerbsCommunications.Connect, "Organization", HelpUri = HelpUrlConstants.ConnectOrganizationHelpUrl)]
+    [Cmdlet(VerbsCommunications.Connect, "CrmOrganization", HelpUri = HelpUrlConstants.ConnectOrganizationHelpUrl)]
     [OutputType(typeof(OrganizationDetail))]
     public sealed class ConnectOrganizationCommand : CrmDiscoveryCmdlet
     {
@@ -45,7 +45,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Discovery
             var org = _repository.GetOrganization(Name);
             if (org == null)
             {
-                base.ThrowTerminatingError(new ErrorRecord(new InvalidOperationException(), "", ErrorCategory.InvalidData, this));
+                base.ThrowTerminatingError(new ErrorRecord(new ItemNotFoundException($"No organization found with name: {Name}"), "", ErrorCategory.ConnectionError, this));
             }
             CrmContext.ConnectOrganization(org);
 

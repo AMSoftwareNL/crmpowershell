@@ -27,7 +27,7 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 {
-    [Cmdlet(VerbsLifecycle.Register, "ServiceEndpoint", HelpUri = HelpUrlConstants.RegisterServiceEndpointHelpUrl)]
+    [Cmdlet(VerbsLifecycle.Register, "CrmServiceEndpoint", HelpUri = HelpUrlConstants.RegisterServiceEndpointHelpUrl)]
     [OutputType(typeof(Entity))]
     public sealed class RegisterServiceEndpointCommand : CrmOrganizationCmdlet
     {

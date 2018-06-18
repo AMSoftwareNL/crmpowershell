@@ -94,6 +94,12 @@ namespace AMSoftware.Crm.PowerShell.Commands
         public const string NewUserHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/New-CrmUser.md";
         public const string RemoveLanguageHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Remove-CrmLanguage.md";
         public const string RemoveUserParentHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Remove-CrmUserParent.md";
+
+        public const string RemovePrincipalRolesHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Remove-CrmPrincipalRoles.md";
+        public const string RemoveRolePrincipalsHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Remove-CrmRolePrincipals.md";
+        public const string RemoveTeamUsersHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Remove-CrmTeamUsers.md";
+        public const string RemoveUserTeamsHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Remove-CrmUserTeams.md";
+
         public const string SetOwnerHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Set-CrmOwner.md";
         public const string SetPrincipalRolesHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Set-CrmPrincipalRoles.md";
         public const string SetRolePrincipalsHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Set-CrmRolePrincipals.md";

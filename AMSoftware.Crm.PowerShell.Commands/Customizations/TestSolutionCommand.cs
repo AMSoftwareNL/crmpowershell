@@ -26,7 +26,7 @@ using Microsoft.Xrm.Sdk;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
-    [Cmdlet(VerbsDiagnostic.Test, "Solution", HelpUri = HelpUrlConstants.TestSolutionHelpUrl)]
+    [Cmdlet(VerbsDiagnostic.Test, "CrmSolution", HelpUri = HelpUrlConstants.TestSolutionHelpUrl)]
     public sealed class TestSolutionCommand : CrmOrganizationCmdlet
     {
         private const string TestUninstallSolutionParameterSet = "TestUninstallSolution";

@@ -22,7 +22,7 @@ using Microsoft.Xrm.Sdk;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Content
 {
-    [Cmdlet(VerbsCommon.Join, "Content", HelpUri = HelpUrlConstants.JoinContentHelpUrl, DefaultParameterSetName = JoinContentByInputObjectParameterSet)]
+    [Cmdlet(VerbsCommon.Join, "CrmContent", HelpUri = HelpUrlConstants.JoinContentHelpUrl, DefaultParameterSetName = JoinContentByInputObjectParameterSet)]
     public sealed class JoinContentCommand : CrmOrganizationCmdlet
     {
         private const string JoinContentParameterSet = "JoinContent";

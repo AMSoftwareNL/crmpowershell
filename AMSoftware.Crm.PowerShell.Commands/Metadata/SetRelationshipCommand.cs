@@ -23,7 +23,7 @@ using Microsoft.Xrm.Sdk.Metadata;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 {
-    [Cmdlet(VerbsCommon.Set, "Relationship", HelpUri = HelpUrlConstants.SetRelationshipHelpUrl, DefaultParameterSetName = SetRelationshipByInputObjectParameterSet)]
+    [Cmdlet(VerbsCommon.Set, "CrmRelationship", HelpUri = HelpUrlConstants.SetRelationshipHelpUrl, DefaultParameterSetName = SetRelationshipByInputObjectParameterSet)]
     [OutputType(typeof(RelationshipMetadataBase))]
     public sealed class SetRelationshipCommand : CrmOrganizationCmdlet, IDynamicParameters
     {

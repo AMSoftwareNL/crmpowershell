@@ -20,7 +20,7 @@ using AMSoftware.Crm.PowerShell.Common.Repositories;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 {
-    [Cmdlet(VerbsCommon.Remove, "OptionSetValue", HelpUri = HelpUrlConstants.RemoveOptionSetValueHelpUrl, SupportsShouldProcess = true, DefaultParameterSetName = RemoveOptionSetValueGlobalParameterSet)]
+    [Cmdlet(VerbsCommon.Remove, "CrmOptionSetValue", HelpUri = HelpUrlConstants.RemoveOptionSetValueHelpUrl, SupportsShouldProcess = true, DefaultParameterSetName = RemoveOptionSetValueGlobalParameterSet)]
     public sealed class RemoveOptionSetValueCommand : CrmOrganizationConfirmActionCmdlet
     {
         private const string RemoveOptionSetValueGlobalParameterSet = "RemoveOptionSetValueGlobal";

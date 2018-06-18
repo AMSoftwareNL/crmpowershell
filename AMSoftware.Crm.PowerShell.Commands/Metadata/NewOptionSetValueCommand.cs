@@ -20,7 +20,7 @@ using AMSoftware.Crm.PowerShell.Commands.Models;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 {
-    [Cmdlet(VerbsCommon.New, "OptionSetValue", HelpUri = HelpUrlConstants.NewOptionSetValueHelpUrl)]
+    [Cmdlet(VerbsCommon.New, "CrmOptionSetValue", HelpUri = HelpUrlConstants.NewOptionSetValueHelpUrl)]
     [OutputType(typeof(PSOptionSetValue))]
     public sealed class NewOptionSetValueCommand : CrmCmdlet
     {

@@ -27,7 +27,7 @@ using System.Management.Automation;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 {
-    [Cmdlet(VerbsLifecycle.Register, "Plugin", HelpUri = HelpUrlConstants.RegisterPluginHelpUrl, DefaultParameterSetName = RegisterPluginFromPathParameterSet)]
+    [Cmdlet(VerbsLifecycle.Register, "CrmPlugin", HelpUri = HelpUrlConstants.RegisterPluginHelpUrl, DefaultParameterSetName = RegisterPluginFromPathParameterSet)]
     [OutputType(typeof(Entity))]
     public sealed class RegisterPluginCommand : CrmOrganizationCmdlet
     {

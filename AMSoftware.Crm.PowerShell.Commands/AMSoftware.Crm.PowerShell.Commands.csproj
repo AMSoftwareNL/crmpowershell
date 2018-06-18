@@ -88,8 +88,12 @@
     <Compile Include="Administration\GetPrincipalRolesCommand.cs" />
     <Compile Include="Administration\RemoveUserParentCommand.cs" />
     <Compile Include="Administration\SetOwnerCommand.cs" />
+    <Compile Include="Administration\RemovePrincipalRolesCommand.cs" />
+    <Compile Include="Administration\RemoveRolePrincipalsCommand.cs" />
+    <Compile Include="Administration\RemoveTeamUsersCommand.cs" />
     <Compile Include="Administration\SetTeamUsersCommand.cs" />
     <Compile Include="Administration\SetRolePrincipalsCommand.cs" />
+    <Compile Include="Administration\RemoveUserTeamsCommand.cs" />
     <Compile Include="Administration\SetUserTeamsCommand.cs" />
     <Compile Include="Administration\SetPrincipalRolesCommand.cs" />
     <Compile Include="Administration\NewUserCommand.cs">

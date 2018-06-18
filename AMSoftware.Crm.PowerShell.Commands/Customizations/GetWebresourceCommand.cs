@@ -25,7 +25,7 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
-    [Cmdlet(VerbsCommon.Get, "Webresource", HelpUri = HelpUrlConstants.GetWebresourceHelpUrl, SupportsPaging = true, DefaultParameterSetName = GetAllWebresourcesParameterSet)]
+    [Cmdlet(VerbsCommon.Get, "CrmWebresource", HelpUri = HelpUrlConstants.GetWebresourceHelpUrl, SupportsPaging = true, DefaultParameterSetName = GetAllWebresourcesParameterSet)]
     [OutputType(typeof(Entity))]
     public sealed class GetWebresourceCommand : CrmOrganizationCmdlet
     {

@@ -27,7 +27,7 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 {
-    [Cmdlet(VerbsCommon.Set, "ServiceEndpoint", HelpUri = HelpUrlConstants.SetServiceEndpointHelpUrl)]
+    [Cmdlet(VerbsCommon.Set, "CrmServiceEndpoint", HelpUri = HelpUrlConstants.SetServiceEndpointHelpUrl)]
     [OutputType(typeof(Entity))]
     public sealed class SetServiceEndpointCommand : CrmOrganizationCmdlet
     {

@@ -26,7 +26,7 @@ using System.Management.Automation;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
-    [Cmdlet(VerbsCommon.Get, "SolutionComponent", HelpUri = HelpUrlConstants.GetSolutionComponentHelpUrl, SupportsPaging = true)]
+    [Cmdlet(VerbsCommon.Get, "CrmSolutionComponent", HelpUri = HelpUrlConstants.GetSolutionComponentHelpUrl, SupportsPaging = true)]
     [OutputType(typeof(Entity))]
     public sealed class GetSolutionComponentCommand : CrmOrganizationCmdlet
     {

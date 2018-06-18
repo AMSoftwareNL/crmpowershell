@@ -25,7 +25,7 @@ using Microsoft.Xrm.Sdk.Metadata;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 {
-    [Cmdlet(VerbsCommon.Get, "Attribute", HelpUri = HelpUrlConstants.GetAttributeHelpUrl, DefaultParameterSetName = GetAttributesByFilterParameterSet)]
+    [Cmdlet(VerbsCommon.Get, "CrmAttribute", HelpUri = HelpUrlConstants.GetAttributeHelpUrl, DefaultParameterSetName = GetAttributesByFilterParameterSet)]
     public sealed class GetAttributeCommand : CrmOrganizationCmdlet
     {
         private const string GetAttributeByIdParameterSet = "GetAttributeById";

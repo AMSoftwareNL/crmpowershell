@@ -23,7 +23,7 @@ using Microsoft.Xrm.Sdk;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 {
-    [Cmdlet(VerbsCommon.Set, "PluginStep", HelpUri = HelpUrlConstants.SetPluginStepHelpUrl)]
+    [Cmdlet(VerbsCommon.Set, "CrmPluginStep", HelpUri = HelpUrlConstants.SetPluginStepHelpUrl)]
     [OutputType(typeof(Entity))]
     public sealed class SetPluginStepCommand : CrmOrganizationCmdlet
     {

@@ -26,7 +26,7 @@ using Microsoft.Xrm.Sdk.Discovery;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Discovery
 {
-    [Cmdlet(VerbsCommunications.Connect, "Deployment", HelpUri = HelpUrlConstants.ConnectDeploymentHelpUrl)]
+    [Cmdlet(VerbsCommunications.Connect, "CrmDeployment", HelpUri = HelpUrlConstants.ConnectDeploymentHelpUrl)]
     [OutputType(typeof(OrganizationDetail))]
     public sealed class ConnectDeploymentCommand : CrmCmdlet
     {

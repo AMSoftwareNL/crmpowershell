@@ -23,7 +23,7 @@ using Microsoft.Xrm.Sdk;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
-    [Cmdlet(VerbsDiagnostic.Test, "SolutionComponent", HelpUri = HelpUrlConstants.TestSolutionComponentHelpUrl)]
+    [Cmdlet(VerbsDiagnostic.Test, "CrmSolutionComponent", HelpUri = HelpUrlConstants.TestSolutionComponentHelpUrl)]
     [OutputType(typeof(Entity))]
     public sealed class TestSolutionComponentCommand : CrmOrganizationCmdlet
     {

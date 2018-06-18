@@ -20,7 +20,7 @@ using AMSoftware.Crm.PowerShell.Common.Repositories;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 {
-    [Cmdlet(VerbsCommon.Remove, "Entity", HelpUri = HelpUrlConstants.RemoveEntityHelpUrl, SupportsShouldProcess = true)]
+    [Cmdlet(VerbsCommon.Remove, "CrmEntity", HelpUri = HelpUrlConstants.RemoveEntityHelpUrl, SupportsShouldProcess = true)]
     public sealed class RemoveEntityCommand : CrmOrganizationConfirmActionCmdlet
     {
         private MetadataRepository _repository = new MetadataRepository();

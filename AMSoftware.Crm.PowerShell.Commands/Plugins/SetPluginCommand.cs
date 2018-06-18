@@ -22,7 +22,7 @@ using System.Management.Automation;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 {
-    [Cmdlet(VerbsCommon.Set, "Plugin", HelpUri = HelpUrlConstants.SetPluginHelpUrl)]
+    [Cmdlet(VerbsCommon.Set, "CrmPlugin", HelpUri = HelpUrlConstants.SetPluginHelpUrl)]
     [OutputType(typeof(Entity))]
     public sealed class SetPluginCommand : CrmOrganizationCmdlet
     {

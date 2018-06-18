@@ -20,7 +20,7 @@ using AMSoftware.Crm.PowerShell.Common.Repositories;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 {
-    [Cmdlet(VerbsCommon.Remove, "Relationship", HelpUri = HelpUrlConstants.RemoveRelationshipHelpUrl, SupportsShouldProcess = true)]
+    [Cmdlet(VerbsCommon.Remove, "CrmRelationship", HelpUri = HelpUrlConstants.RemoveRelationshipHelpUrl, SupportsShouldProcess = true)]
     public sealed class RemoveRelationshipCommand : CrmOrganizationConfirmActionCmdlet
     {
         private const string RemoveRelationshipByNameParameterSet = "RemoveRelationshipByName";

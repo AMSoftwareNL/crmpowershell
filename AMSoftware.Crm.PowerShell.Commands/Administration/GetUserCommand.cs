@@ -24,7 +24,7 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
-    [Cmdlet(VerbsCommon.Get, "User", HelpUri = HelpUrlConstants.GetUserHelpUrl, SupportsPaging = true, DefaultParameterSetName = GetAllUsersParameterSet)]
+    [Cmdlet(VerbsCommon.Get, "CrmUser", HelpUri = HelpUrlConstants.GetUserHelpUrl, SupportsPaging = true, DefaultParameterSetName = GetAllUsersParameterSet)]
     [OutputType(typeof(Entity))]
     public sealed class GetUserCommand : CrmOrganizationCmdlet
     {

@@ -27,7 +27,7 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 {
-    [Cmdlet(VerbsCommon.Get, "PluginStep", HelpUri = HelpUrlConstants.GetPluginStepHelpUrl, SupportsPaging = true, DefaultParameterSetName = GetPluginStepByFilterParameterSet)]
+    [Cmdlet(VerbsCommon.Get, "CrmPluginStep", HelpUri = HelpUrlConstants.GetPluginStepHelpUrl, SupportsPaging = true, DefaultParameterSetName = GetPluginStepByFilterParameterSet)]
     [OutputType(typeof(Entity))]
     public sealed class GetPluginStepCommand : CrmOrganizationCmdlet
     {

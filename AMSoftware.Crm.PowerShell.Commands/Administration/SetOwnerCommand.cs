@@ -23,7 +23,7 @@ using Microsoft.Xrm.Sdk;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
-    [Cmdlet(VerbsCommon.Set, "Owner", HelpUri = HelpUrlConstants.SetOwnerHelpUrl, DefaultParameterSetName = AssignOwnerRecordParameterSet)]
+    [Cmdlet(VerbsCommon.Set, "CrmOwner", HelpUri = HelpUrlConstants.SetOwnerHelpUrl, DefaultParameterSetName = AssignOwnerRecordParameterSet)]
     public sealed class SetOwnerCommand : CrmOrganizationCmdlet
     {
         private const string AssignOwnerRecordParameterSet = "AssignOwnerRecord";

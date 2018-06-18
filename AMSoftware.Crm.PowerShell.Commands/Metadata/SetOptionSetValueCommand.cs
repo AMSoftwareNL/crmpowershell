@@ -22,7 +22,7 @@ using Microsoft.Xrm.Sdk.Metadata;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 {
-    [Cmdlet(VerbsCommon.Set, "OptionSetValue", HelpUri = HelpUrlConstants.SetOptionSetValueHelpUrl, DefaultParameterSetName = SetOptionSetValueGlobalParameterSet)]
+    [Cmdlet(VerbsCommon.Set, "CrmOptionSetValue", HelpUri = HelpUrlConstants.SetOptionSetValueHelpUrl, DefaultParameterSetName = SetOptionSetValueGlobalParameterSet)]
     public sealed class SetOptionSetValueCommand : CrmOrganizationCmdlet
     {
         private const string SetOptionSetValueGlobalParameterSet = "SetOptionSetValueGlobal";
@@ -76,33 +76,11 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 
         private void UpdateGlobalOptionSet()
         {
-            int? newValue = Value;
-            bool isNew = true;
-
-            // Can be new or update
             OptionSetMetadataBase optionSet = _repository.GetOptionSet(OptionSet);
-            if (optionSet is OptionSetMetadata)
+            // Can be new or update
+            if (IsNewOptionSetValue(optionSet, Value))
             {
-                OptionSetMetadata localOptionSet = optionSet as OptionSetMetadata;
-                if (localOptionSet.Options.Any(o => o.Value.Value.Equals(Value.Value)))
-                {
-                    // Existing; Do update
-                    isNew = false;
-                }
-            }
-            else if (optionSet is BooleanOptionSetMetadata)
-            {
-                BooleanOptionSetMetadata localOptionSet = optionSet as BooleanOptionSetMetadata;
-                if (localOptionSet.TrueOption.Value.Equals(Value.Value) || localOptionSet.FalseOption.Value.Equals(Value.Value))
-                {
-                    // Existing; Do update
-                    isNew = false;
-                }
-            }
-
-            if (isNew)
-            {
-                newValue = _repository.AddOptionSetValue(OptionSet, DisplayName, Value, Description);
+                _repository.AddOptionSetValue(OptionSet, DisplayName, Value, Description);
             }
             else
             {
@@ -112,29 +90,55 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 
         private void UpdateEntityOptionSet()
         {
-            int? newValue = Value;
+            AttributeMetadata attribute = _repository.GetAttribute(Entity, Attribute);
 
-            if (!Value.HasValue)
+            // Can be new or update
+            OptionSetMetadataBase attributeOptionSet = null;
+            if (attribute is BooleanAttributeMetadata booleanAttribute)
             {
-                // Must be new
-                newValue = _repository.AddOptionSetValue(Entity, Attribute, DisplayName, Value, Description);
+                attributeOptionSet = booleanAttribute.OptionSet;
+            } else if (attribute is PicklistAttributeMetadata picklistAttribute)
+            {
+                attributeOptionSet = picklistAttribute.OptionSet;
+            }
+
+            if (IsNewOptionSetValue(attributeOptionSet, Value))
+            {
+                _repository.AddOptionSetValue(Entity, Attribute, DisplayName, Value, Description);
             }
             else
             {
-                // Can be new or update
-                PicklistAttributeMetadata optionSetAttribute = (PicklistAttributeMetadata)_repository.GetAttribute(Entity, Attribute);
+                _repository.UpdateOptionSetValue(Entity, Attribute, Value.Value, DisplayName, Description);
+            }
+        }
 
-                if (optionSetAttribute.OptionSet.Options.Any(o => o.Value.Value.Equals(Value.Value)))
+        private static bool IsNewOptionSetValue(OptionSetMetadataBase optionSet, int? lookupValue)
+        {
+            bool isNew = true;
+
+            if (!lookupValue.HasValue)
+            {
+                return true;
+            }
+
+            if (optionSet is OptionSetMetadata picklistOptionSet)
+            {
+                if (picklistOptionSet.Options.Any(o => o.Value.Value.Equals(lookupValue.Value)))
                 {
                     // Existing; Do update
-                    _repository.UpdateOptionSetValue(Entity, Attribute, Value.Value, DisplayName, Description);
-                }
-                else
-                {
-                    // Not existing; Do new
-                    newValue = _repository.AddOptionSetValue(Entity, Attribute, DisplayName, Value, Description);
+                    isNew = false;
                 }
             }
+            else if (optionSet is BooleanOptionSetMetadata booleanOptionSet)
+            {
+                if (booleanOptionSet.TrueOption.Value.Equals(lookupValue.Value) || booleanOptionSet.FalseOption.Value.Equals(lookupValue.Value))
+                {
+                    // Existing; Do update
+                    isNew = false;
+                }
+            }
+
+            return isNew;
         }
     }
 }

@@ -13,8 +13,7 @@ Update an attribute of type Boolean.
 ## SYNTAX
 
 ```
-Set-CrmBooleanAttribute [-DefaultValue <Boolean>] [-TrueValue <PSOptionSetValue>]
- [-FalseValue <PSOptionSetValue>] [-Entity] <String> [-Name] <String> [-DisplayName <String>]
+Set-CrmBooleanAttribute [-DefaultValue <Boolean>] [-Entity] <String> [-Name] <String> [-DisplayName <String>]
  [-Description <String>] [-CanModifyAdditionalSettings <Boolean>] [-IsAuditEnabled <Boolean>]
  [-IsCustomizable <Boolean>] [-IsRenameable <Boolean>] [-IsSecured <Boolean>]
  [-IsValidForAdvancedFind <Boolean>] [-Required <CrmRequiredLevel>] [-PassThru]
@@ -100,21 +99,6 @@ Required: True
 Position: 1
 Default value: None
 Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-### -FalseValue
-OptionSetValue to assign to the false choice of the boolean.
-
-```yaml
-Type: PSOptionSetValue
-Parameter Sets: (All)
-Aliases: 
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -261,21 +245,6 @@ Type: CrmRequiredLevel
 Parameter Sets: (All)
 Aliases: 
 Accepted values: Unknown, Required, Recommended, Optional
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -TrueValue
-OptionSetValue to assign to the true choice of the boolean.
-
-```yaml
-Type: PSOptionSetValue
-Parameter Sets: (All)
-Aliases: 
 
 Required: False
 Position: Named

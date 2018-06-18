@@ -24,7 +24,7 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
-    [Cmdlet(VerbsCommon.Get, "Solution", HelpUri = HelpUrlConstants.GetSolutionHelpUrl, SupportsPaging = true, DefaultParameterSetName = GetAllSolutionsParameterSet)]
+    [Cmdlet(VerbsCommon.Get, "CrmSolution", HelpUri = HelpUrlConstants.GetSolutionHelpUrl, SupportsPaging = true, DefaultParameterSetName = GetAllSolutionsParameterSet)]
     [OutputType(typeof(Entity))]
     public sealed class GetSolutionCommand : CrmOrganizationCmdlet
     {

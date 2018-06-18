@@ -24,7 +24,7 @@ using Microsoft.Xrm.Sdk;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
-    [Cmdlet(VerbsCommon.New, "Webresource", HelpUri = HelpUrlConstants.NewWebresourceHelpUrl, DefaultParameterSetName = NewWebresourceFromContentParameterSet)]
+    [Cmdlet(VerbsCommon.New, "CrmWebresource", HelpUri = HelpUrlConstants.NewWebresourceHelpUrl, DefaultParameterSetName = NewWebresourceFromContentParameterSet)]
     [OutputType(typeof(Entity))]
     public sealed class NewWebresourceCommand : CrmOrganizationCmdlet, IDynamicParameters
     {

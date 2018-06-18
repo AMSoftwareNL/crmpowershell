@@ -24,7 +24,7 @@ using Microsoft.Xrm.Sdk.Metadata;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 {
-    [Cmdlet(VerbsCommon.Add, "Relationship", HelpUri = HelpUrlConstants.AddRelationshipHelpUrl)]
+    [Cmdlet(VerbsCommon.Add, "CrmRelationship", HelpUri = HelpUrlConstants.AddRelationshipHelpUrl)]
     [OutputType(typeof(RelationshipMetadataBase))]
     public sealed class AddRelationshipCommand : CrmOrganizationCmdlet, IDynamicParameters
     {

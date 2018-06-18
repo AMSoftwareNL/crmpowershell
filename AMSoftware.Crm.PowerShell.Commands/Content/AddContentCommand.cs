@@ -23,7 +23,7 @@ using System.Management.Automation;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Content
 {
-    [Cmdlet(VerbsCommon.Add, "Content", HelpUri = HelpUrlConstants.AddContentHelpUrl, DefaultParameterSetName = AddContentByInputObjectParameterSet)]
+    [Cmdlet(VerbsCommon.Add, "CrmContent", HelpUri = HelpUrlConstants.AddContentHelpUrl, DefaultParameterSetName = AddContentByInputObjectParameterSet)]
     [OutputType(typeof(Entity))]
     public sealed class AddContentCommand : CrmOrganizationCmdlet
     {

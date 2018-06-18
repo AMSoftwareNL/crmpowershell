@@ -22,7 +22,7 @@ using Microsoft.Xrm.Sdk;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 {
-    [Cmdlet(VerbsLifecycle.Enable, "PluginStep", HelpUri = HelpUrlConstants.EnablePluginStepHelpUrl)]
+    [Cmdlet(VerbsLifecycle.Enable, "CrmPluginStep", HelpUri = HelpUrlConstants.EnablePluginStepHelpUrl)]
     public sealed class EnablePluginStepCommand : CrmOrganizationCmdlet
     {
         private ContentRepository _repository = new ContentRepository();
@@ -47,7 +47,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
         }
     }
 
-    [Cmdlet(VerbsLifecycle.Disable, "PluginStep", HelpUri = HelpUrlConstants.DisablePluginStepHelpUrl)]
+    [Cmdlet(VerbsLifecycle.Disable, "CrmPluginStep", HelpUri = HelpUrlConstants.DisablePluginStepHelpUrl)]
     public sealed class DisbalePluginStepCommand : CrmOrganizationCmdlet
     {
         private ContentRepository _repository = new ContentRepository();

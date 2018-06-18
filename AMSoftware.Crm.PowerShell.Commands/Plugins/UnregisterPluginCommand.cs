@@ -129,7 +129,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
         }
     }
 
-    [Cmdlet(VerbsLifecycle.Unregister, "PluginAssembly", HelpUri = HelpUrlConstants.UnregisterPluginAssemblyHelpUrl)]
+    [Cmdlet(VerbsLifecycle.Unregister, "CrmPluginAssembly", HelpUri = HelpUrlConstants.UnregisterPluginAssemblyHelpUrl)]
     public sealed class UnregisterPluginAssemblyCommand : UnregisterPluginCommandBase
     {
         protected override PluginComponentType ComponentType
@@ -138,7 +138,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
         }
     }
 
-    [Cmdlet(VerbsLifecycle.Unregister, "ServiceEndpoint", HelpUri = HelpUrlConstants.UnregisterServiceEndpointHelpUrl)]
+    [Cmdlet(VerbsLifecycle.Unregister, "CrmServiceEndpoint", HelpUri = HelpUrlConstants.UnregisterServiceEndpointHelpUrl)]
     public sealed class UnregisterServiceEndpointCommand : UnregisterPluginCommandBase
     {
         protected override PluginComponentType ComponentType
@@ -147,7 +147,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
         }
     }
 
-    [Cmdlet(VerbsLifecycle.Unregister, "Plugin", HelpUri = HelpUrlConstants.UnregisterPluginHelpUrl)]
+    [Cmdlet(VerbsLifecycle.Unregister, "CrmPlugin", HelpUri = HelpUrlConstants.UnregisterPluginHelpUrl)]
     public sealed class UnregisterPluginCommand : UnregisterPluginCommandBase
     {
         protected override PluginComponentType ComponentType
@@ -156,7 +156,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
         }
     }
 
-    [Cmdlet(VerbsLifecycle.Unregister, "PluginStep", HelpUri = HelpUrlConstants.UnregisterPluginStepHelpUrl)]
+    [Cmdlet(VerbsLifecycle.Unregister, "CrmPluginStep", HelpUri = HelpUrlConstants.UnregisterPluginStepHelpUrl)]
     public sealed class UnregisterPluginStepCommand : UnregisterPluginCommandBase
     {
         protected override PluginComponentType ComponentType
@@ -165,7 +165,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
         }
     }
 
-    [Cmdlet(VerbsLifecycle.Unregister, "PluginStepImage", HelpUri = HelpUrlConstants.UnregisterPluginStepImageHelpUrl)]
+    [Cmdlet(VerbsLifecycle.Unregister, "CrmPluginStepImage", HelpUri = HelpUrlConstants.UnregisterPluginStepImageHelpUrl)]
     public sealed class UnregisterPluginStepImageCommand : UnregisterPluginCommandBase
     {
         protected override PluginComponentType ComponentType

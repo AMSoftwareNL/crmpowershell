@@ -26,7 +26,7 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Content
 {
-    [Cmdlet(VerbsCommon.Get, "Content", HelpUri = HelpUrlConstants.GetContentHelpUrl, SupportsPaging = true, DefaultParameterSetName = GetContentForEntityByQueryParameterSet)]
+    [Cmdlet(VerbsCommon.Get, "CrmContent", HelpUri = HelpUrlConstants.GetContentHelpUrl, SupportsPaging = true, DefaultParameterSetName = GetContentForEntityByQueryParameterSet)]
     [OutputType(typeof(Entity))]
     public sealed class GetContentCommand : CrmOrganizationCmdlet
     {

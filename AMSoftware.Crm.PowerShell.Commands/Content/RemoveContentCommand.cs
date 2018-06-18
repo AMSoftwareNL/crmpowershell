@@ -22,7 +22,7 @@ using Microsoft.Xrm.Sdk;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Content
 {
-    [Cmdlet(VerbsCommon.Remove, "Content", HelpUri = HelpUrlConstants.RemoveContentHelpUrl, SupportsShouldProcess = true, DefaultParameterSetName = RemoveContentByInputObjectParameterSet)]
+    [Cmdlet(VerbsCommon.Remove, "CrmContent", HelpUri = HelpUrlConstants.RemoveContentHelpUrl, SupportsShouldProcess = true, DefaultParameterSetName = RemoveContentByInputObjectParameterSet)]
     public sealed class RemoveContentCommand : CrmOrganizationConfirmActionCmdlet
     {
         private const string RemoveContentParameterSet = "RemoveContent";

@@ -24,7 +24,7 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 {
-    [Cmdlet(VerbsCommon.Get, "PluginStepImage", HelpUri = HelpUrlConstants.GetPluginStepImageHelpUrl, SupportsPaging = true, DefaultParameterSetName = GetPluginStepImageByFilterParameterSet)]
+    [Cmdlet(VerbsCommon.Get, "CrmPluginStepImage", HelpUri = HelpUrlConstants.GetPluginStepImageHelpUrl, SupportsPaging = true, DefaultParameterSetName = GetPluginStepImageByFilterParameterSet)]
     [OutputType(typeof(Entity))]
     public sealed class GetPluginImageCommand : CrmOrganizationCmdlet
     {

@@ -25,7 +25,7 @@ using Microsoft.Xrm.Sdk.Metadata;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 {
-    [Cmdlet(VerbsCommon.Get, "Relationship", HelpUri = HelpUrlConstants.GetRelationshipHelpUrl, DefaultParameterSetName = GetRelationshipByFilterParameterSet)]
+    [Cmdlet(VerbsCommon.Get, "CrmRelationship", HelpUri = HelpUrlConstants.GetRelationshipHelpUrl, DefaultParameterSetName = GetRelationshipByFilterParameterSet)]
     [OutputType(typeof(RelationshipMetadataBase))]
     public sealed class GetRelationshipCommand : CrmOrganizationCmdlet
     {

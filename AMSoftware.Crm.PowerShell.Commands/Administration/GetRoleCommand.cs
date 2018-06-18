@@ -24,7 +24,7 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
-    [Cmdlet(VerbsCommon.Get, "Role", HelpUri = HelpUrlConstants.GetRoleHelpUrl, SupportsPaging = true, DefaultParameterSetName = GetAllRolesParameterSet)]
+    [Cmdlet(VerbsCommon.Get, "CrmRole", HelpUri = HelpUrlConstants.GetRoleHelpUrl, SupportsPaging = true, DefaultParameterSetName = GetAllRolesParameterSet)]
     [OutputType(typeof(Entity))]
     public sealed class GetRoleCommand : CrmOrganizationCmdlet
     {

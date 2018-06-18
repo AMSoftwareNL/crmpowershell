@@ -23,7 +23,7 @@ using Microsoft.Xrm.Sdk.Metadata;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 {
-    [Cmdlet(VerbsCommon.Set, "OptionSet", HelpUri = HelpUrlConstants.SetOptionSetHelpUrl, DefaultParameterSetName = SetOptionSetByInputObjectParameterSet)]
+    [Cmdlet(VerbsCommon.Set, "CrmOptionSet", HelpUri = HelpUrlConstants.SetOptionSetHelpUrl, DefaultParameterSetName = SetOptionSetByInputObjectParameterSet)]
     [OutputType(typeof(OptionSetMetadata))]
     public sealed class SetOptionSetCommand : CrmOrganizationCmdlet
     {

@@ -22,7 +22,7 @@ using Microsoft.Xrm.Sdk;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Content
 {
-    [Cmdlet(VerbsCommon.Split, "Content", HelpUri = HelpUrlConstants.SplitContentHelpUrl, DefaultParameterSetName = SplitContentByInputObjectParameterSet)]
+    [Cmdlet(VerbsCommon.Split, "CrmContent", HelpUri = HelpUrlConstants.SplitContentHelpUrl, DefaultParameterSetName = SplitContentByInputObjectParameterSet)]
     public sealed class SplitContentCommand : CrmOrganizationCmdlet
     {
         private const string SplitContentParameterSet = "SplitContent";

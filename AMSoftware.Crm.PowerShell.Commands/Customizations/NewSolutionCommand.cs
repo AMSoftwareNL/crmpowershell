@@ -23,7 +23,7 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
-    [Cmdlet(VerbsCommon.New, "Solution", HelpUri = HelpUrlConstants.NewSolutionHelpUrl)]
+    [Cmdlet(VerbsCommon.New, "CrmSolution", HelpUri = HelpUrlConstants.NewSolutionHelpUrl)]
     [OutputType(typeof(Entity))]
     public sealed class NewSolutionCommand : CrmOrganizationCmdlet
     {

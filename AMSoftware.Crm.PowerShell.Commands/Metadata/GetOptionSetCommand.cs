@@ -24,7 +24,7 @@ using Microsoft.Xrm.Sdk.Metadata;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 {
-    [Cmdlet(VerbsCommon.Get, "OptionSet", HelpUri = HelpUrlConstants.GetOptionSetHelpUrl, DefaultParameterSetName = GetOptionSetByFilterParameterSet)]
+    [Cmdlet(VerbsCommon.Get, "CrmOptionSet", HelpUri = HelpUrlConstants.GetOptionSetHelpUrl, DefaultParameterSetName = GetOptionSetByFilterParameterSet)]
     [OutputType(typeof(OptionSetMetadataBase))]
     public sealed class GetOptionSetCommand : CrmOrganizationCmdlet
     {

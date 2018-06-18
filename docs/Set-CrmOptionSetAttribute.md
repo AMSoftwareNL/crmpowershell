@@ -13,10 +13,10 @@ Update an attribute of type OptionSet.
 ## SYNTAX
 
 ```
-Set-CrmOptionSetAttribute [-DefaultValue <Int32>] [-Entity] <String> [-Name] <String> [-DisplayName] <String>
+Set-CrmOptionSetAttribute [-DefaultValue <Int32>] [-Entity] <String> [-Name] <String> [-DisplayName <String>]
  [-Description <String>] [-CanModifyAdditionalSettings <Boolean>] [-IsAuditEnabled <Boolean>]
  [-IsCustomizable <Boolean>] [-IsRenameable <Boolean>] [-IsSecured <Boolean>]
- [-IsValidForAdvancedFind <Boolean>] [-Required <CrmRequiredLevel>] [-SchemaName <String>] [-PassThru]
+ [-IsValidForAdvancedFind <Boolean>] [-Required <CrmRequiredLevel>] [-PassThru]
  [-IsGlobalFilterEnabled <Boolean>] [-IsSortableEnabled <Boolean>] [<CommonParameters>]
 ```
 
@@ -80,8 +80,8 @@ Type: String
 Parameter Sets: (All)
 Aliases: 
 
-Required: True
-Position: 3
+Required: False
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -93,7 +93,7 @@ The LogicalName of the entity containing the attribute.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: EntityLogicalName, LogicalName
+Aliases: EntityLogicalName
 
 Required: True
 Position: 1
@@ -213,12 +213,12 @@ The LogicalName of the attribute to update.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases: LogicalName
 
 Required: True
 Position: 2
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
@@ -245,21 +245,6 @@ Type: CrmRequiredLevel
 Parameter Sets: (All)
 Aliases: 
 Accepted values: Unknown, Required, Recommended, Optional
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -SchemaName
-The SchemaName for the attribute.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: 
 
 Required: False
 Position: Named

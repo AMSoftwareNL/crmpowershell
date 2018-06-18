@@ -23,7 +23,7 @@ using Microsoft.Xrm.Sdk;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
-    [Cmdlet(VerbsCommon.Get, "Language", HelpUri = HelpUrlConstants.GetLanguageHelpUrl)]
+    [Cmdlet(VerbsCommon.Get, "CrmLanguage", HelpUri = HelpUrlConstants.GetLanguageHelpUrl)]
     [OutputType(typeof(CultureInfo))]
     public sealed class GetLanguageCommand : CrmOrganizationCmdlet
     {

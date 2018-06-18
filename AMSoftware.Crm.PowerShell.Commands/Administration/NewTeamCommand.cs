@@ -26,7 +26,7 @@ using Microsoft.Xrm.Sdk;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
-    [Cmdlet(VerbsCommon.New, "Team", HelpUri = HelpUrlConstants.NewTeamHelpUrl)]
+    [Cmdlet(VerbsCommon.New, "CrmTeam", HelpUri = HelpUrlConstants.NewTeamHelpUrl)]
     [OutputType(typeof(Entity))]
     public sealed class NewTeamCommand : CrmOrganizationCmdlet
     {

@@ -23,7 +23,7 @@ using Microsoft.Xrm.Sdk;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
-    [Cmdlet(VerbsCommon.New, "BusinessUnit", HelpUri = HelpUrlConstants.NewBusinessUnitHelpUrl)]
+    [Cmdlet(VerbsCommon.New, "CrmBusinessUnit", HelpUri = HelpUrlConstants.NewBusinessUnitHelpUrl)]
     [OutputType(typeof(Entity))]
     public sealed class NewBusinessUnitCommand : CrmOrganizationCmdlet
     {

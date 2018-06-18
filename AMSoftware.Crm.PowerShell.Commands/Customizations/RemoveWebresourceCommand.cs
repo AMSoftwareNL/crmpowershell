@@ -21,7 +21,7 @@ using AMSoftware.Crm.PowerShell.Common.Repositories;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
-    [Cmdlet(VerbsCommon.Remove, "Webresource", HelpUri = HelpUrlConstants.RemoveWebresourceHelpUrl, SupportsShouldProcess = true)]
+    [Cmdlet(VerbsCommon.Remove, "CrmWebresource", HelpUri = HelpUrlConstants.RemoveWebresourceHelpUrl, SupportsShouldProcess = true)]
     public sealed class RemoveWebresourceCommand : CrmOrganizationConfirmActionCmdlet
     {
         private ContentRepository _repository = new ContentRepository();

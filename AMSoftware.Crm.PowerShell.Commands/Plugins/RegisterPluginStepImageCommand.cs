@@ -25,7 +25,7 @@ using Microsoft.Xrm.Sdk;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 {
-    [Cmdlet(VerbsLifecycle.Register, "PluginStepImage", HelpUri = HelpUrlConstants.RegisterPluginStepImageHelpUrl)]
+    [Cmdlet(VerbsLifecycle.Register, "CrmPluginStepImage", HelpUri = HelpUrlConstants.RegisterPluginStepImageHelpUrl)]
     [OutputType(typeof(Entity))]
     public sealed class RegisterPluginStepImageCommand : CrmOrganizationCmdlet
     {

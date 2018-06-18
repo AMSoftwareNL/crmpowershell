@@ -23,7 +23,7 @@ using Microsoft.Xrm.Sdk;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Content
 {
-    [Cmdlet(VerbsCommon.Set, "Content", HelpUri = HelpUrlConstants.SetContentHelpUrl, DefaultParameterSetName = SetContentByInputObjectParameterSet)]
+    [Cmdlet(VerbsCommon.Set, "CrmContent", HelpUri = HelpUrlConstants.SetContentHelpUrl, DefaultParameterSetName = SetContentByInputObjectParameterSet)]
     [OutputType(typeof(Entity))]
     public sealed class SetContentCommand : CrmOrganizationCmdlet
     {

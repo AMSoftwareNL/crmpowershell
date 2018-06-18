@@ -25,7 +25,7 @@ using Microsoft.Xrm.Sdk;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
-    [Cmdlet(VerbsData.Import, "Solution", HelpUri = HelpUrlConstants.ImportSolutionHelpUrl, SupportsShouldProcess = true, DefaultParameterSetName = ImportSolutionFromPathParameterSet)]
+    [Cmdlet(VerbsData.Import, "CrmSolution", HelpUri = HelpUrlConstants.ImportSolutionHelpUrl, SupportsShouldProcess = true, DefaultParameterSetName = ImportSolutionFromPathParameterSet)]
     [OutputType(typeof(Entity))]
     public sealed class ImportSolutionCommand : CrmOrganizationActionCmdlet
     {

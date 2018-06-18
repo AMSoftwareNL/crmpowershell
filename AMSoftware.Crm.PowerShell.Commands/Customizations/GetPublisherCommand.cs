@@ -24,7 +24,7 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
-    [Cmdlet(VerbsCommon.Get, "Publisher", HelpUri = HelpUrlConstants.GetPublisherHelpUrl, SupportsPaging = true, DefaultParameterSetName = GetAllPublishersParameterSet)]
+    [Cmdlet(VerbsCommon.Get, "CrmPublisher", HelpUri = HelpUrlConstants.GetPublisherHelpUrl, SupportsPaging = true, DefaultParameterSetName = GetAllPublishersParameterSet)]
     [OutputType(typeof(Entity))]
     public sealed class GetPublisherCommand : CrmOrganizationCmdlet
     {

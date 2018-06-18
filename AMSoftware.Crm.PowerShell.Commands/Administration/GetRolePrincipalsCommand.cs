@@ -26,7 +26,7 @@ using System.Collections.Generic;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
-    [Cmdlet(VerbsCommon.Get, "RolePrincipals", HelpUri = HelpUrlConstants.GetRolePrincipalsHelpUrl)]
+    [Cmdlet(VerbsCommon.Get, "CrmRolePrincipals", HelpUri = HelpUrlConstants.GetRolePrincipalsHelpUrl)]
     [OutputType(typeof(Entity))]
     public sealed class GetRolePrincipalsCommand : CrmOrganizationCmdlet
     {
