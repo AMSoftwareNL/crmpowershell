@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{596F15CE-AC31-4EF0-B3DA-836AF7A58FE0}"
 	ProjectSection(SolutionItems) = preProject
 		AMSoftware.Crm.Powershell.snk = AMSoftware.Crm.Powershell.snk
+		Debug.ps1 = Debug.ps1
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMSoftware.Crm.PowerShell.Common", "AMSoftware.Crm.PowerShell.Common\AMSoftware.Crm.PowerShell.Common.csproj", "{A5D853A6-D872-4EB2-9D90-EE79F02B3469}"
