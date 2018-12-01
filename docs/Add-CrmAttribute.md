@@ -29,7 +29,7 @@ The LogicalName of the entity to add the attribute to.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -59,7 +59,7 @@ Returns an object that represents the AttributeMetadata. By default, this cmdlet
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -74,11 +74,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### None
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Metadata.AttributeMetadata
-
 ## NOTES
 
 ## RELATED LINKS

@@ -33,7 +33,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
         [Alias("Id")]
         [ValidateNotNull]
-        public Guid Team { get; set; }
+        public Guid[] Team { get; set; }
 
         [Parameter(Mandatory = true, Position = 1, ValueFromRemainingArguments = true)]
         [ValidateNotNull]
@@ -49,25 +49,28 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         {
             base.ExecuteCmdlet();
 
-            Guid[] currentSetIds = SecurityManagementHelper.GetUsersInTeam(_repository, Team).Select(e => e.Id).ToArray();
-            Guid[] addSet = Users.Except(currentSetIds).ToArray();
-            if (addSet != null && addSet.Length > 0)
+            foreach (Guid id in Team)
             {
-                SecurityManagementHelper.AddUsersToTeam(_repository, Team, addSet);
-            }
-            //Remove associations which are in current and not in new
-            if (Overwrite)
-            {
-                Guid[] removeSet = currentSetIds.Except(Users).ToArray();
-                if (removeSet != null && removeSet.Length > 0)
+                Guid[] currentSetIds = SecurityManagementHelper.GetUsersInTeam(_repository, id).Select(e => e.Id).ToArray();
+                Guid[] addSet = Users.Except(currentSetIds).ToArray();
+                if (addSet != null && addSet.Length > 0)
                 {
-                    SecurityManagementHelper.RemoveUsersFromTeam(_repository, Team, removeSet);
+                    SecurityManagementHelper.AddUsersToTeam(_repository, id, addSet);
                 }
-            }
+                //Remove associations which are in current and not in new
+                if (Overwrite)
+                {
+                    Guid[] removeSet = currentSetIds.Except(Users).ToArray();
+                    if (removeSet != null && removeSet.Length > 0)
+                    {
+                        SecurityManagementHelper.RemoveUsersFromTeam(_repository, id, removeSet);
+                    }
+                }
 
-            if (PassThru)
-            {
-                WriteObject(_repository.Get("team", Team));
+                if (PassThru)
+                {
+                    WriteObject(_repository.Get("team", id));
+                }
             }
         }
     }

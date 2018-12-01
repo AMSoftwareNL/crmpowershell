@@ -23,6 +23,7 @@ using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Metadata;
 using Microsoft.Xrm.Sdk.Query;
 using Microsoft.Crm.Sdk.Messages;
+using System.Xml.Linq;
 
 namespace AMSoftware.Crm.PowerShell.Common.Repositories
 {
@@ -348,14 +349,25 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
 
         private static void SetQueryPagingInfo(QueryBase query, PagingInfo pageInfo)
         {
-            if (query is QueryExpression)
+            if (query is QueryExpression qe)
             {
-                (query as QueryExpression).PageInfo = pageInfo;
+                qe.PageInfo = pageInfo;
             }
-
-            if (query is QueryByAttribute)
+            else if (query is QueryByAttribute qa)
             {
-                (query as QueryByAttribute).PageInfo = pageInfo;
+                qa.PageInfo = pageInfo;
+            }
+            else if (query is FetchExpression fe)
+            {
+                XDocument fetchXml = XDocument.Parse(fe.Query);
+                fetchXml.Root.SetAttributeValue("returntotalrecordcount", pageInfo.ReturnTotalRecordCount);
+                fetchXml.Root.SetAttributeValue("count", pageInfo.Count);
+                fetchXml.Root.SetAttributeValue("page", pageInfo.PageNumber);
+
+                if (!string.IsNullOrWhiteSpace(pageInfo.PagingCookie)) fetchXml.Root.SetAttributeValue("paging-cookie", pageInfo.PagingCookie);
+                else fetchXml.Root.SetAttributeValue("paging-cookie", pageInfo.PagingCookie);
+
+                fe.Query = fetchXml.ToString();
             }
         }
 

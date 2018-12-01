@@ -31,7 +31,7 @@ The type of claim for the serviceendpoint.
 ```yaml
 Type: CrmServiceEndpointUserClaim
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: None, UserId, UserInfo
 
 Required: False
@@ -47,7 +47,7 @@ The contract for the serviceendpoint.
 ```yaml
 Type: CrmServiceEndpointContract
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: OneWay, Queue, Rest, TwoWay, Topic, PersistentQueue
 
 Required: True
@@ -63,7 +63,7 @@ The description for the serviceendpoint.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -78,7 +78,7 @@ Whether the serviceendpoint is federated.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -93,7 +93,7 @@ The name for the serviceendpoint.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -108,7 +108,7 @@ The namespace for the serviceendpoint.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -123,7 +123,7 @@ Returns an object that represents the Service Endpoint. By default, this cmdlet 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -138,7 +138,7 @@ The path for the serviceendpoint.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -153,11 +153,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### None
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
-
 ## NOTES
 
 ## RELATED LINKS

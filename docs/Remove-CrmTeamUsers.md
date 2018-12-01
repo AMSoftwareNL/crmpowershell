@@ -14,12 +14,12 @@ Remove users from a team.
 
 ### RemoveTeamUsersSelected (Default)
 ```
-Remove-CrmTeamUsers [-Team] <Guid> [-Users] <Guid[]> [<CommonParameters>]
+Remove-CrmTeamUsers [-Team] <Guid[]> [-Users] <Guid[]> [<CommonParameters>]
 ```
 
 ### RemoveTeamUsersAll
 ```
-Remove-CrmTeamUsers [-Team] <Guid> [-All] [<CommonParameters>]
+Remove-CrmTeamUsers [-Team] <Guid[]> [-All] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -35,7 +35,7 @@ Remove all users from the team.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: RemoveTeamUsersAll
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -48,7 +48,7 @@ Accept wildcard characters: False
 The id of the team to remove the users from.
 
 ```yaml
-Type: Guid
+Type: Guid[]
 Parameter Sets: (All)
 Aliases: Id
 
@@ -65,7 +65,7 @@ The id of the users to remove from the team.
 ```yaml
 Type: Guid[]
 Parameter Sets: RemoveTeamUsersSelected
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -85,7 +85,6 @@ System.Guid[]
 ## OUTPUTS
 
 ### System.Object
-
 ## NOTES
 
 ## RELATED LINKS

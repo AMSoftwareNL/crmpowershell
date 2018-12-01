@@ -35,7 +35,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
 
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = GetUserByIdParameterSet, ValueFromPipeline = true)]
         [ValidateNotNull]
-        public Guid Id { get; set; }
+        public Guid[] Id { get; set; }
 
         [Parameter(Position = 0, ParameterSetName = GetAllUsersParameterSet)]
         [Alias("Include")]
@@ -65,7 +65,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
                     GetFilteredContent();
                     break;
                 case GetUserByIdParameterSet:
-                    WriteObject(_repository.Get("systemuser", Id));
+                    foreach (Guid id in Id)
+                    {
+                        WriteObject(_repository.Get("systemuser", id));
+                    }
                     break;
                 default:
                     break;

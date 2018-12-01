@@ -38,7 +38,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
         [Parameter(Position = 1, ParameterSetName = TestUninstallSolutionParameterSet, ValueFromPipeline = true)]
         [Parameter(Position = 1, ParameterSetName = TestDependenciesSolutionParameterSet, ValueFromPipeline = true)]
         [ValidateNotNull]
-        public Guid Solution { get; set; }
+        public Guid[] Solution { get; set; }
 
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = TestMissingSolutionParameterSet)]
         [Alias("PSPath", "Path")]
@@ -58,12 +58,18 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
             switch (ParameterSetName)
             {
                 case TestUninstallSolutionParameterSet:
-                    string solutionUniqueName1 = SolutionManagementHelper.GetSolutionUniqueName(_repository, Solution);
-                    ExecuteTestUninstall(solutionUniqueName1);
+                    foreach (Guid id in Solution)
+                    {
+                        string solutionUniqueName1 = SolutionManagementHelper.GetSolutionUniqueName(_repository, id);
+                        ExecuteTestUninstall(solutionUniqueName1);
+                    }
                     break;
                 case TestDependenciesSolutionParameterSet:
-                    string solutionUniqueName2 = SolutionManagementHelper.GetSolutionUniqueName(_repository, Solution);
-                    ExecuteTestDependencies(solutionUniqueName2);
+                    foreach (Guid id in Solution)
+                    {
+                        string solutionUniqueName2 = SolutionManagementHelper.GetSolutionUniqueName(_repository, id);
+                        ExecuteTestDependencies(solutionUniqueName2);
+                    }
                     break;
                 case TestMissingSolutionParameterSet:
                     byte[] content = File.ReadAllBytes(LiteralPath);

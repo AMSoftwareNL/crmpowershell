@@ -42,7 +42,7 @@ A hashtable containing to attribute LogicalNames and values of the record.
 ```yaml
 Type: Hashtable
 Parameter Sets: AddContent
-Aliases: 
+Aliases:
 
 Required: True
 Position: 3
@@ -57,7 +57,7 @@ The LogicalName of the entity to add the record to.
 ```yaml
 Type: String
 Parameter Sets: AddContent
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -72,7 +72,7 @@ The unique id of the new record.
 ```yaml
 Type: Guid
 Parameter Sets: AddContent
-Aliases: 
+Aliases:
 
 Required: False
 Position: 2
@@ -102,7 +102,7 @@ Returns an object that represents the new record. By default, this cmdlet does n
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -117,11 +117,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### None
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
-
 ## NOTES
 
 ## RELATED LINKS

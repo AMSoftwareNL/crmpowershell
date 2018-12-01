@@ -33,7 +33,7 @@ The LogicalName of the filtering attributes for the SDK Message Processing Step.
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -48,7 +48,7 @@ Set Delete async operation when completed for the SDK Message Processing Step.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -63,7 +63,7 @@ The deployment type for the SDK Message Processing Step.
 ```yaml
 Type: CrmPluginStepDeployment
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: ServerOnly, OfflineOnly, Both
 
 Required: True
@@ -79,7 +79,7 @@ The description for the SDK Message Processing Step.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -94,7 +94,7 @@ The id of the plugin or serviceendpoint for the SDK Message Processing Step.
 ```yaml
 Type: Guid
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -109,7 +109,7 @@ The execution order for the SDK Message Processing Step.
 ```yaml
 Type: Int32
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -124,7 +124,7 @@ The message to register the SDK Message Processing Step for.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 2
@@ -139,7 +139,7 @@ The mode for the SDK Message Processing Step.
 ```yaml
 Type: CrmPluginStepMode
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: Synchronous, Asynchronous
 
 Required: True
@@ -155,7 +155,7 @@ The name for the SDK Message Processing Step.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -170,7 +170,7 @@ Returns an object that represents the Plugin Step. By default, this cmdlet does 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -185,7 +185,7 @@ The primary entity the SDK Message Processing Step is registered for.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 3
@@ -200,7 +200,7 @@ The secondary entity the SDK Message Processing Step is registered for.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -215,7 +215,7 @@ The secure configuration for the SDK Message Processing Step.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -230,7 +230,7 @@ The stage for the SDK Message Processing Step.
 ```yaml
 Type: CrmPluginStepStage
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: PreValidation, PreOperation, PostOperation
 
 Required: True
@@ -246,7 +246,7 @@ The unsecure configuration for the SDK Message Processing Step.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -261,7 +261,7 @@ The id of the user for the SDK Message Processing Step context.
 ```yaml
 Type: Guid
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -276,11 +276,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.Guid
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
-
 ## NOTES
 
 ## RELATED LINKS

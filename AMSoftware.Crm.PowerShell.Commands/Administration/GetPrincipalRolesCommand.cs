@@ -35,17 +35,20 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
         [Alias("Id")]
         [ValidateNotNull]
-        public Guid Principal { get; set; }
+        public Guid[] Principal { get; set; }
 
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
 
-            IEnumerable<Entity> teamRoles = SecurityManagementHelper.GetRolesForPrincipal(_repository, CrmPrincipalType.Team, Principal);
-            WriteObject(teamRoles, true);
+            foreach (Guid id in Principal)
+            {
+                IEnumerable<Entity> teamRoles = SecurityManagementHelper.GetRolesForPrincipal(_repository, CrmPrincipalType.Team, id);
+                WriteObject(teamRoles, true);
 
-            IEnumerable<Entity> userRoles = SecurityManagementHelper.GetRolesForPrincipal(_repository, CrmPrincipalType.User, Principal);
-            WriteObject(userRoles, true);
+                IEnumerable<Entity> userRoles = SecurityManagementHelper.GetRolesForPrincipal(_repository, CrmPrincipalType.User, id);
+                WriteObject(userRoles, true);
+            }
         }
     }
 }

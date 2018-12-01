@@ -19,6 +19,7 @@ using System;
 using System.Drawing;
 using System.Management.Automation;
 using AMSoftware.Crm.PowerShell.Common;
+using AMSoftware.Crm.PowerShell.Common.ArgumentCompleters;
 using AMSoftware.Crm.PowerShell.Common.Repositories;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Metadata;
@@ -41,7 +42,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         public EntityMetadata InputObject { get; set; }
 
         [Parameter(Position = 1, Mandatory = true, ParameterSetName = SetEntityParameterSet)]
+        [Alias("LogicalName")]
         [ValidateNotNullOrEmpty]
+        [ArgumentCompleter(typeof(EntityArgumentCompleter))]
         public string Name { get; set; }
 
         [Parameter(ParameterSetName = SetEntityParameterSet)]

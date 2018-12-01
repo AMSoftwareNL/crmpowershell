@@ -40,7 +40,7 @@ Whether the relationship appears in Advanced Find.
 ```yaml
 Type: Boolean
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -55,7 +55,7 @@ The description for the lookup attribute.
 ```yaml
 Type: String
 Parameter Sets: AddOneToManyRelationship
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -70,7 +70,7 @@ The displayname for the lookup attribute.
 ```yaml
 Type: String
 Parameter Sets: AddOneToManyRelationship
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -85,7 +85,7 @@ The LogicalName for the lookup attribute.
 ```yaml
 Type: String
 Parameter Sets: AddOneToManyRelationship
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -100,7 +100,7 @@ The data entry requirement level enforced for the lookup attribute.
 ```yaml
 Type: CrmRequiredLevel
 Parameter Sets: AddOneToManyRelationship
-Aliases: 
+Aliases:
 Accepted values: Unknown, Required, Recommended, Optional
 
 Required: False
@@ -116,7 +116,7 @@ Whether the entity relationship is customizable.
 ```yaml
 Type: Boolean
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -146,7 +146,7 @@ The entity to add the many-to-many relationship for.
 ```yaml
 Type: String
 Parameter Sets: AddManyToManyRelationship
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -161,7 +161,7 @@ The entity to add the many-to-many relationship for.
 ```yaml
 Type: String
 Parameter Sets: AddManyToManyRelationship
-Aliases: 
+Aliases:
 
 Required: True
 Position: 2
@@ -176,7 +176,7 @@ The LogicalName for the intersect entity to create.
 ```yaml
 Type: String
 Parameter Sets: AddManyToManyRelationship
-Aliases: 
+Aliases:
 
 Required: True
 Position: 4
@@ -191,7 +191,7 @@ Whether this relationship is the designated hierarchical self-referential relati
 ```yaml
 Type: Boolean
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -206,7 +206,7 @@ The SchemaName of the relationship.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 3
@@ -221,7 +221,7 @@ Returns an object that represents the RelationshipMetadata. By default, this cmd
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -236,7 +236,7 @@ The entity to add the one-to-many relationship to.
 ```yaml
 Type: String
 Parameter Sets: AddOneToManyRelationship
-Aliases: 
+Aliases:
 
 Required: True
 Position: 2
@@ -251,11 +251,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.String
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Metadata.RelationshipMetadataBase
-
 ## NOTES
 
 ## RELATED LINKS

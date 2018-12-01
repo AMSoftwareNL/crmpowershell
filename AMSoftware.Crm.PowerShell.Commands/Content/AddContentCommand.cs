@@ -15,6 +15,7 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+using AMSoftware.Crm.PowerShell.Common.ArgumentCompleters;
 using AMSoftware.Crm.PowerShell.Common.Repositories;
 using Microsoft.Xrm.Sdk;
 using System;
@@ -39,6 +40,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Content
 
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = AddContentParameterSet)]
         [ValidateNotNullOrEmpty]
+        [ArgumentCompleter(typeof(EntityArgumentCompleter))]
         public string Entity { get; set; }
 
         [Parameter(Mandatory = false, Position = 2, ParameterSetName = AddContentParameterSet)]

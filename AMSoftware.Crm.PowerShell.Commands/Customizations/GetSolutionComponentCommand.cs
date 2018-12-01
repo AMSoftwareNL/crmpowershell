@@ -36,7 +36,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 
         [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]
         [ValidateNotNull]
-        public Guid Solution { get; set; }
+        public Guid[] Solution { get; set; }
 
         [Parameter(Position = 2)]
         [Alias("ComponentType")]
@@ -54,51 +54,54 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
         {
             base.ExecuteCmdlet();
 
-            string solutionUniqueName = SolutionManagementHelper.GetSolutionUniqueName(_repository, Solution);
-
-            int? componentTypeValue = null;
-            if (!string.IsNullOrWhiteSpace(Type))
+            foreach (Guid id in Solution)
             {
-                if (int.TryParse(Type, out int typeAsInt) && _validComponentTypes.ContainsKey(typeAsInt))
-                {
-                    componentTypeValue = typeAsInt;
-                }
-                else if (_validComponentTypes.Any(v => v.Value.Equals(Type, StringComparison.InvariantCultureIgnoreCase)))
-                {
-                    componentTypeValue = _validComponentTypes.First(v => v.Value.Equals(Type, StringComparison.InvariantCultureIgnoreCase)).Key;
-                }
-                else
-                {
-                    throw new NotSupportedException(string.Format("ComponentType '{0}' is not supported.", Type));
-                }
-            }
+                string solutionUniqueName = SolutionManagementHelper.GetSolutionUniqueName(_repository, id);
 
-            QueryExpression query = GetSolutionComponentQuery(Solution, componentTypeValue);
-
-            if (PagingParameters.IncludeTotalCount)
-            {
-                int count = _repository.GetRowCount(query, out double accuracy);
-                WriteObject(PagingParameters.NewTotalCount(Convert.ToUInt64(count), accuracy));
-            }
-
-            IEnumerable<Entity> result = _repository.Get(query, this.PagingParameters.First, this.PagingParameters.Skip);
-
-            var groupedResult = result.GroupBy(k =>
-            {
-                var keyAttribute = k.GetAttributeValue<AliasedValue>("dependency.requiredcomponentobjectid");
-                if (keyAttribute == null)
+                int? componentTypeValue = null;
+                if (!string.IsNullOrWhiteSpace(Type))
                 {
-                    return k.GetAttributeValue<Guid>("objectid");
+                    if (int.TryParse(Type, out int typeAsInt) && _validComponentTypes.ContainsKey(typeAsInt))
+                    {
+                        componentTypeValue = typeAsInt;
+                    }
+                    else if (_validComponentTypes.Any(v => v.Value.Equals(Type, StringComparison.InvariantCultureIgnoreCase)))
+                    {
+                        componentTypeValue = _validComponentTypes.First(v => v.Value.Equals(Type, StringComparison.InvariantCultureIgnoreCase)).Key;
+                    }
+                    else
+                    {
+                        throw new NotSupportedException(string.Format("ComponentType '{0}' is not supported.", Type));
+                    }
                 }
-                else
-                {
-                    return (Guid)keyAttribute.Value;
-                }
-            });
 
-            foreach (var groupResult in groupedResult)
-            {
-                WriteObject(groupResult.OrderBy(e => e.GetAttributeValue<OptionSetValue>("componenttype").Value), true);
+                QueryExpression query = GetSolutionComponentQuery(id, componentTypeValue);
+
+                if (PagingParameters.IncludeTotalCount)
+                {
+                    int count = _repository.GetRowCount(query, out double accuracy);
+                    WriteObject(PagingParameters.NewTotalCount(Convert.ToUInt64(count), accuracy));
+                }
+
+                IEnumerable<Entity> result = _repository.Get(query, this.PagingParameters.First, this.PagingParameters.Skip);
+
+                var groupedResult = result.GroupBy(k =>
+                {
+                    var keyAttribute = k.GetAttributeValue<AliasedValue>("dependency.requiredcomponentobjectid");
+                    if (keyAttribute == null)
+                    {
+                        return k.GetAttributeValue<Guid>("objectid");
+                    }
+                    else
+                    {
+                        return (Guid)keyAttribute.Value;
+                    }
+                });
+
+                foreach (var groupResult in groupedResult)
+                {
+                    WriteObject(groupResult.OrderBy(e => e.GetAttributeValue<OptionSetValue>("componenttype").Value), true);
+                }
             }
         }
 

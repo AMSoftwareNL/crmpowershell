@@ -30,7 +30,7 @@ The alias for the SDK Message Processing Step image.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -45,7 +45,7 @@ The LogicalName of the filtering attributes for the SDK Message Processing Step 
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -60,7 +60,7 @@ The id of the SDK Message Processing Step image to update.
 ```yaml
 Type: Guid
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -75,7 +75,7 @@ The type of the SDK Message Processing Step image.
 ```yaml
 Type: CrmPluginStepImageType
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: PreImage, PostImage, Both
 
 Required: False
@@ -91,7 +91,7 @@ The name for the SDK Message Processing Step image.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -106,7 +106,7 @@ Returns an object that represents the Plugin Step Image. By default, this cmdlet
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -121,13 +121,10 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.Guid
-
 ### System.String[]
-
 ## OUTPUTS
 
 ### None
-
 ## NOTES
 
 ## RELATED LINKS

@@ -42,7 +42,7 @@ A hashtable containing to attribute LogicalNames and values of the record.
 ```yaml
 Type: Hashtable
 Parameter Sets: SetContent
-Aliases: 
+Aliases:
 
 Required: True
 Position: 3
@@ -57,7 +57,7 @@ The LogicalName of the entity to update the record for.
 ```yaml
 Type: String
 Parameter Sets: SetContent
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -72,7 +72,7 @@ The unique id of the record to update.
 ```yaml
 Type: Guid
 Parameter Sets: SetContent
-Aliases: 
+Aliases:
 
 Required: True
 Position: 2
@@ -102,7 +102,7 @@ Returns an object that represents the entity record. By default, this cmdlet doe
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -117,11 +117,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.Guid
-
 ## OUTPUTS
 
 ### None
-
 ## NOTES
 
 ## RELATED LINKS

@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 using System.Linq;
 using System.Management.Automation;
+using AMSoftware.Crm.PowerShell.Common.ArgumentCompleters;
 using AMSoftware.Crm.PowerShell.Common.Repositories;
 using Microsoft.Xrm.Sdk.Metadata;
 
@@ -33,16 +34,19 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         [Parameter(Position = 1, Mandatory = true, ParameterSetName = SetOptionSetValueGlobalParameterSet,ValueFromPipelineByPropertyName = true)]
         [Alias("Name")]
         [ValidateNotNullOrEmpty]
+        [ArgumentCompleter(typeof(OptionSetArgumentCompleter))]
         public string OptionSet { get; set; }
 
         [Parameter(Position = 1, Mandatory = true, ParameterSetName = SetOptionSetValueEntityParameterSet, ValueFromPipelineByPropertyName = true)]
         [Alias("EntityLogicalName")]
         [ValidateNotNullOrEmpty]
+        [ArgumentCompleter(typeof(EntityArgumentCompleter))]
         public string Entity { get; set; }
 
         [Parameter(Position = 2, Mandatory = true, ParameterSetName = SetOptionSetValueEntityParameterSet, ValueFromPipelineByPropertyName = true)]
         [Alias("LogicalName")]
         [ValidateNotNullOrEmpty]
+        [ArgumentCompleter(typeof(AttributeArgumentCompleter))]
         public string Attribute { get; set; }
 
         [Parameter]

@@ -63,7 +63,7 @@ The type of component to test. Matches a value from the global optionset 'Compon
 ```yaml
 Type: Int32
 Parameter Sets: TestDeleteSolutionComponent, TestDependenciesSolutionComponent, TestRequiredSolutionComponent
-Aliases: 
+Aliases:
 
 Required: False
 Position: 2
@@ -78,7 +78,7 @@ Retrieve a collection of dependency records that describe any solution component
 ```yaml
 Type: SwitchParameter
 Parameter Sets: TestDeleteSolutionComponentEntity, TestDeleteSolutionComponent
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -93,7 +93,7 @@ Retrieves a list dependencies for solution components that directly depend on a 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: TestDependenciesSolutionComponentEntity, TestDependenciesSolutionComponent
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -110,7 +110,7 @@ This depends on the type of object represented by the solution copmponent. From 
 ```yaml
 Type: Guid
 Parameter Sets: TestDeleteSolutionComponent, TestDependenciesSolutionComponent, TestRequiredSolutionComponent
-Aliases: 
+Aliases:
 
 Required: False
 Position: 1
@@ -125,7 +125,7 @@ Retrieve a collection of solution components that are required for a solution co
 ```yaml
 Type: SwitchParameter
 Parameter Sets: TestRequiredSolutionComponentEntity, TestRequiredSolutionComponent
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -140,7 +140,7 @@ A record from the solutioncomponent entity describing the solution component to 
 ```yaml
 Type: Entity
 Parameter Sets: TestDeleteSolutionComponentEntity, TestDependenciesSolutionComponentEntity, TestRequiredSolutionComponentEntity
-Aliases: 
+Aliases:
 
 Required: False
 Position: 1
@@ -155,13 +155,10 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
-
 ### System.Guid
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
-
 ## NOTES
 
 ## RELATED LINKS

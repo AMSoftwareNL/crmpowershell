@@ -13,7 +13,7 @@ Get the users and teams assigned to a role.
 ## SYNTAX
 
 ```
-Get-CrmRolePrincipals [-Role] <Guid> [<CommonParameters>]
+Get-CrmRolePrincipals [-Role] <Guid[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -34,7 +34,7 @@ Get the users and teams assigned to the 'Sales Person' role.
 The id of the role to get the users and teams for.
 
 ```yaml
-Type: Guid
+Type: Guid[]
 Parameter Sets: (All)
 Aliases: Id
 
@@ -51,11 +51,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.Guid
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
-
 ## NOTES
 
 ## RELATED LINKS

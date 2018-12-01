@@ -75,6 +75,10 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArgumentCompleters\EntityKeyArgumentCompleter.cs" />
+    <Compile Include="ArgumentCompleters\OptionSetArgumentCompleter.cs" />
+    <Compile Include="ArgumentCompleters\EntityArgumentCompleter.cs" />
+    <Compile Include="ArgumentCompleters\AttributeArgumentCompleter.cs" />
     <Compile Include="Helpers\AppDomainContext.cs" />
     <Compile Include="Helpers\PluginAssemblyInfo.cs" />
     <Compile Include="Helpers\PluginAssemblyReader.cs" />
@@ -117,7 +121,6 @@
     <None Include="..\AMSoftware.Crm.Powershell.snk">
       <Link>AMSoftware.Crm.Powershell.snk</Link>
     </None>
-    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

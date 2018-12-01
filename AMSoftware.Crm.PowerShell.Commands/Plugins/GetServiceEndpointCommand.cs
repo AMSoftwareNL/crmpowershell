@@ -35,7 +35,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 
         [Parameter(Position = 1, Mandatory = true, ParameterSetName = GetServiceEndpointByIdParameterSet, ValueFromPipeline = true)]
         [ValidateNotNull]
-        public Guid Id { get; set; }
+        public Guid[] Id { get; set; }
 
         [Parameter(Position = 1, ParameterSetName = GetServiceEndpointByFilterParameterSet)]
         [Alias("Include")]
@@ -55,7 +55,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
             switch (this.ParameterSetName)
             {
                 case GetServiceEndpointByIdParameterSet:
-                    WriteObject(_repository.Get("serviceendpoint", Id));
+                    foreach (Guid id in Id)
+                    {
+                        WriteObject(_repository.Get("serviceendpoint", id));
+                    }
                     break;
                 case GetServiceEndpointByFilterParameterSet:
                     GetFilteredContent();

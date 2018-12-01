@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
 using AMSoftware.Crm.PowerShell.Common;
+using AMSoftware.Crm.PowerShell.Common.ArgumentCompleters;
 using AMSoftware.Crm.PowerShell.Common.Repositories;
 using Microsoft.Xrm.Sdk.Metadata;
 
@@ -37,20 +38,23 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 
         [Parameter(Position = 1, Mandatory = true, ParameterSetName = GetRelationshipByNameParameterSet)]
         [ValidateNotNullOrEmpty]
+        [Alias("SchemaName")]
         public string Name { get; set; }
 
         [Parameter(Position = 1, Mandatory = true, ParameterSetName = GetRelationshipByIdParameterSet, ValueFromPipeline = true)]
         [Alias("MetadataId")]
         [ValidateNotNull]
-        public Guid Id { get; set; }
+        public Guid[] Id { get; set; }
 
         [Parameter(Position = 1, ParameterSetName = GetRelationshipByFilterParameterSet, ValueFromPipelineByPropertyName = true)]
         [Alias("EntityLogicalName", "LogicalName")]
         [ValidateNotNullOrEmpty]
+        [ArgumentCompleter(typeof(EntityArgumentCompleter))]
         public string Entity { get; set; }
 
         [Parameter(Position = 2, ParameterSetName = GetRelationshipByFilterParameterSet)]
         [ValidateNotNullOrEmpty]
+        [ArgumentCompleter(typeof(EntityArgumentCompleter))]
         public string RelatedEntity { get; set; }
 
         [Parameter(ParameterSetName = GetRelationshipByFilterParameterSet)]
@@ -83,7 +87,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
                     WriteObject(_repository.GetRelationship(Name));
                     break;
                 case GetRelationshipByIdParameterSet:
-                    WriteObject(_repository.GetRelationship(Id));
+                    foreach (Guid id in Id)
+                    {
+                        WriteObject(_repository.GetRelationship(id));
+                    }
                     break;
                 case GetRelationshipByFilterParameterSet:
                     GetRelationshipByFilter();

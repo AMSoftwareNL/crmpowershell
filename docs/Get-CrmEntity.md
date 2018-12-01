@@ -20,7 +20,7 @@ Get-CrmEntity [[-Name] <String>] [-Exclude <String>] [-CustomOnly] [-ExcludeMana
 
 ### GetEntityById
 ```
-Get-CrmEntity [-Id] <Guid> [<CommonParameters>]
+Get-CrmEntity [-Id] <Guid[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -52,7 +52,7 @@ Retrieve only the metadata for entities that are marked as custom.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: GetEntitiesByFilter
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -67,7 +67,7 @@ Exclude the metadata for entities whose LogicalName matches the provided pattern
 ```yaml
 Type: String
 Parameter Sets: GetEntitiesByFilter
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -82,7 +82,7 @@ Do not retrieve metadata for entities that are marked as managed.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: GetEntitiesByFilter
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -95,7 +95,7 @@ Accept wildcard characters: False
 The MetadataId of the entity to retrieve.
 
 ```yaml
-Type: Guid
+Type: Guid[]
 Parameter Sets: GetEntityById
 Aliases: MetadataId
 
@@ -112,7 +112,7 @@ Include the metadata for entities marked as intersect. These are entities which 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: GetEntitiesByFilter
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -144,11 +144,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### None
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Metadata.EntityMetadata
-
 ## NOTES
 The Name parameter is case sensitive. i.e. it must match the case of the LogicalName exactly.
 

@@ -19,7 +19,7 @@ Get-CrmOptionSet [[-Name] <String>] [-Exclude <String>] [-CustomOnly] [-ExcludeM
 
 ### GetOptionSetById
 ```
-Get-CrmOptionSet [-Id] <Guid> [<CommonParameters>]
+Get-CrmOptionSet [-Id] <Guid[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -42,7 +42,7 @@ Retrieve only the metadata for optionsets that are marked as custom.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: GetOptionSetByFilter
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -57,7 +57,7 @@ Exclude the metadata for optionsets whose Name matches the provided pattern.
 ```yaml
 Type: String
 Parameter Sets: GetOptionSetByFilter
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -72,7 +72,7 @@ Do not retrieve metadata for optionsets that are marked as managed.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: GetOptionSetByFilter
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -85,7 +85,7 @@ Accept wildcard characters: False
 The MetadataId of the optionset to retrieve.
 
 ```yaml
-Type: Guid
+Type: Guid[]
 Parameter Sets: GetOptionSetById
 Aliases: MetadataId
 
@@ -119,11 +119,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### None
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Metadata.OptionSetMetadataBase
-
 ## NOTES
 The Name parameter is case sensitive. i.e. it must match the case of the LogicalName exactly.
 

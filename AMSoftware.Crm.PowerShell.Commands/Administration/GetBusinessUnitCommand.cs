@@ -35,7 +35,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
 
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = GetBusinessUnitByIdParameterSet, ValueFromPipeline = true)]
         [ValidateNotNull]
-        public Guid Id { get; set; }
+        public Guid[] Id { get; set; }
 
         [Parameter(ParameterSetName = GetAllBusinessUnitsParameterSet, Position = 0)]
         [Alias("Include")]
@@ -62,7 +62,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
                     GetFilteredContent();
                     break;
                 case GetBusinessUnitByIdParameterSet:
-                    WriteObject(_repository.Get("businessunit", Id));
+                    foreach (Guid id in Id)
+                    {
+                        WriteObject(_repository.Get("businessunit", id));
+                    }
                     break;
                 default:
                     break;

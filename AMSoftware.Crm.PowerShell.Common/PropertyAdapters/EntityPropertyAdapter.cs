@@ -106,6 +106,28 @@ namespace AMSoftware.Crm.PowerShell.Common.PropertyAdapters
             return resultCollection;
         }
 
+        public override PSAdaptedProperty GetProperty(object baseObject, string propertyName)
+        {
+            PSAdaptedProperty prop = base.GetProperty(baseObject, propertyName);
+
+            if (prop == null && baseObject is Entity internalObject)
+            {
+                MetadataRepository repository = new MetadataRepository();
+                AttributeMetadata attributeMetadata = null;
+                try
+                {
+                    attributeMetadata = repository.GetAttribute(internalObject.LogicalName, propertyName);
+                }
+                catch { }
+
+                if (attributeMetadata != null)
+                {
+                    return new PSAdaptedProperty(attributeMetadata.LogicalName, new EntityAttributePropertyHandler(attributeMetadata.LogicalName));
+                }
+            }
+            return prop;
+        }
+
         private void InitEntityPropertyHandlerCache()
         {
             _entityPropertyHandlerCache = new Dictionary<string, IAdaptedPropertyHandler<Entity>>();

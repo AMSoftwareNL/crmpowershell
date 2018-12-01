@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 using System;
 using System.Management.Automation;
+using AMSoftware.Crm.PowerShell.Common.ArgumentCompleters;
 using AMSoftware.Crm.PowerShell.Common.Repositories;
 using Microsoft.Xrm.Sdk;
 
@@ -33,14 +34,15 @@ namespace AMSoftware.Crm.PowerShell.Commands.Content
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = RemoveContentByInputObjectParameterSet, ValueFromPipeline = true)]
         [Alias("Record")]
         [ValidateNotNullOrEmpty]
-        public Entity InputObject { get; set; }
+        public Entity[] InputObject { get; set; }
 
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = RemoveContentParameterSet)]
         [ValidateNotNullOrEmpty]
+        [ArgumentCompleter(typeof(EntityArgumentCompleter))]
         public string Entity { get; set; }
 
         [Parameter(Mandatory = true, Position = 2, ParameterSetName = RemoveContentParameterSet, ValueFromPipeline = true)]
-        public Guid Id { get; set; }
+        public Guid[] Id { get; set; }
 
         protected override void ExecuteCmdlet()
         {
@@ -49,16 +51,22 @@ namespace AMSoftware.Crm.PowerShell.Commands.Content
             switch (this.ParameterSetName)
             {
                 case RemoveContentParameterSet:
-                    ExecuteAction(string.Format("{0}: {1}", Entity, Id), delegate
+                    foreach (Guid id in Id)
                     {
-                        _repository.Delete(Entity, Id);
-                    });
+                        ExecuteAction(string.Format("{0}: {1}", Entity, Id), delegate
+                        {
+                            _repository.Delete(Entity, id);
+                        });
+                    }
                     break;
                 case RemoveContentByInputObjectParameterSet:
-                    ExecuteAction(string.Format("{0}: {1}", InputObject.LogicalName, InputObject.Id), delegate
+                    foreach (Entity input in InputObject)
                     {
-                        _repository.Delete(InputObject.LogicalName, InputObject.Id);
-                    });
+                        ExecuteAction(string.Format("{0}: {1}", input.LogicalName, input.Id), delegate
+                        {
+                            _repository.Delete(input.LogicalName, input.Id);
+                        });
+                    }
                     break;
                 default:
                     break;

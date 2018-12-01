@@ -34,7 +34,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
         [Alias("Id")]
         [ValidateNotNull]
-        public Guid Principal { get; set; }
+        public Guid[] Principal { get; set; }
 
         [Parameter(Mandatory = true, Position = 1)]
         [ValidateNotNull]
@@ -68,28 +68,32 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
             }
 
             string secondaryEntityName = "role";
-            Guid primaryEntityId = Principal;
-            Guid[] secondaryEntityIds = Roles;
-            Guid[] currentSetIds = SecurityManagementHelper.GetRolesForPrincipal(_repository, PrincipalType, Principal).Select(e => e.Id).ToArray();
 
-            Guid[] addSet = secondaryEntityIds.Except(currentSetIds).ToArray();
-            if (addSet != null && addSet.Length > 0)
+            foreach (Guid principalId in Principal)
             {
-                SecurityManagementHelper.LinkPrincipalRoles(_repository, primaryEntityName, primaryEntityId, secondaryEntityName, addSet);
-            }
-            //Remove associations which are in current and not in new
-            if (Overwrite)
-            {
-                Guid[] removeSet = currentSetIds.Except(secondaryEntityIds).ToArray();
-                if (removeSet != null && removeSet.Length > 0)
+                Guid primaryEntityId = principalId;
+                Guid[] secondaryEntityIds = Roles;
+                Guid[] currentSetIds = SecurityManagementHelper.GetRolesForPrincipal(_repository, PrincipalType, principalId).Select(e => e.Id).ToArray();
+
+                Guid[] addSet = secondaryEntityIds.Except(currentSetIds).ToArray();
+                if (addSet != null && addSet.Length > 0)
                 {
-                    SecurityManagementHelper.UnlinkPrincipalRoles(_repository, primaryEntityName, primaryEntityId, secondaryEntityName, removeSet);
+                    SecurityManagementHelper.LinkPrincipalRoles(_repository, primaryEntityName, primaryEntityId, secondaryEntityName, addSet);
                 }
-            }
+                //Remove associations which are in current and not in new
+                if (Overwrite)
+                {
+                    Guid[] removeSet = currentSetIds.Except(secondaryEntityIds).ToArray();
+                    if (removeSet != null && removeSet.Length > 0)
+                    {
+                        SecurityManagementHelper.UnlinkPrincipalRoles(_repository, primaryEntityName, primaryEntityId, secondaryEntityName, removeSet);
+                    }
+                }
 
-            if (PassThru)
-            {
-                WriteObject(_repository.Get(primaryEntityName, primaryEntityId));
+                if (PassThru)
+                {
+                    WriteObject(_repository.Get(primaryEntityName, primaryEntityId));
+                }
             }
         }
     }

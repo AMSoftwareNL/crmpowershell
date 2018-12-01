@@ -20,7 +20,8 @@ Get-CrmPluginAssembly [[-Name] <String>] [-Exclude <String>] [-ExcludeManaged] [
 
 ### GetAssemblyById
 ```
-Get-CrmPluginAssembly [-Id] <Guid> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
+Get-CrmPluginAssembly [-Id] <Guid[]> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -43,7 +44,7 @@ Exclude assemblies whose name matches the provided pattern.
 ```yaml
 Type: String
 Parameter Sets: GetAssemblyByFilter
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -58,7 +59,7 @@ Exclude assemblies marked as managed.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: GetAssemblyByFilter
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -73,7 +74,7 @@ Specifies the number of records to retrieve from the beginning.
 ```yaml
 Type: UInt64
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -86,9 +87,9 @@ Accept wildcard characters: False
 The id of the assembly to retrieve.
 
 ```yaml
-Type: Guid
+Type: Guid[]
 Parameter Sets: GetAssemblyById
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -103,7 +104,7 @@ Include assemblies marked as hidden.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: GetAssemblyByFilter
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -120,7 +121,7 @@ Because of the limitations of Dynamics CRM, the total count is only returned acc
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -150,7 +151,7 @@ Skips (does not return) the specified number of records.
 ```yaml
 Type: UInt64
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -165,11 +166,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### None
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
-
 ## NOTES
 
 ## RELATED LINKS

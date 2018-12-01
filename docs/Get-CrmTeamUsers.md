@@ -13,7 +13,7 @@ Get the users assinged to a team.
 ## SYNTAX
 
 ```
-Get-CrmTeamUsers [-Team] <Guid> [<CommonParameters>]
+Get-CrmTeamUsers [-Team] <Guid[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -34,7 +34,7 @@ Get the users from the team 'Sales'.
 The id of the team to retrieve the assinged user for.
 
 ```yaml
-Type: Guid
+Type: Guid[]
 Parameter Sets: (All)
 Aliases: Id
 
@@ -51,11 +51,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.Guid
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
-
 ## NOTES
 
 ## RELATED LINKS

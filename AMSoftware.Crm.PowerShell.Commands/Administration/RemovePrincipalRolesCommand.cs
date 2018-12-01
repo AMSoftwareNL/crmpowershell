@@ -18,7 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using AMSoftware.Crm.PowerShell.Common;
 using AMSoftware.Crm.PowerShell.Common.Helpers;
 using AMSoftware.Crm.PowerShell.Common.Repositories;
-using Microsoft.Xrm.Sdk;
 using System;
 using System.Linq;
 using System.Management.Automation;
@@ -36,7 +35,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
         [Alias("Id")]
         [ValidateNotNull]
-        public Guid Principal { get; set; }
+        public Guid[] Principal { get; set; }
 
         [Parameter(Mandatory = true, Position = 1)]
         [ValidateNotNull]
@@ -67,18 +66,22 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
             }
 
             string secondaryEntityName = "role";
-            Guid primaryEntityId = Principal;
-            Guid[] currentSetIds = SecurityManagementHelper.GetRolesForPrincipal(_repository, PrincipalType, Principal).Select(e => e.Id).ToArray();
-            Guid[] removeSet = Roles;
 
-            if (this.ParameterSetName == RemovePrincipalRolesAllParameterSet)
+            foreach (Guid id in Principal)
             {
-                removeSet = currentSetIds;
-            }
+                Guid primaryEntityId = id;
+                Guid[] currentSetIds = SecurityManagementHelper.GetRolesForPrincipal(_repository, PrincipalType, id).Select(e => e.Id).ToArray();
+                Guid[] removeSet = Roles;
 
-            if (removeSet != null && removeSet.Length > 0)
-            {
-                SecurityManagementHelper.UnlinkPrincipalRoles(_repository, primaryEntityName, primaryEntityId, secondaryEntityName, removeSet);
+                if (this.ParameterSetName == RemovePrincipalRolesAllParameterSet)
+                {
+                    removeSet = currentSetIds;
+                }
+
+                if (removeSet != null && removeSet.Length > 0)
+                {
+                    SecurityManagementHelper.UnlinkPrincipalRoles(_repository, primaryEntityName, primaryEntityId, secondaryEntityName, removeSet);
+                }
             }
         }
     }

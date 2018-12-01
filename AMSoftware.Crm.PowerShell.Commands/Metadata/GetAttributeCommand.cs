@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
 using AMSoftware.Crm.PowerShell.Common;
+using AMSoftware.Crm.PowerShell.Common.ArgumentCompleters;
 using AMSoftware.Crm.PowerShell.Common.Repositories;
 using Microsoft.Xrm.Sdk.Metadata;
 
@@ -36,22 +37,25 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         [Parameter(Position = 1, Mandatory = true, ParameterSetName = GetAttributeByIdParameterSet, ValueFromPipeline = true)]
         [Alias("MetadataId")]
         [ValidateNotNull]
-        public Guid Id { get; set; }
+        public Guid[] Id { get; set; }
 
         [Parameter(Position = 1, Mandatory = true, ParameterSetName = GetAttributesByFilterParameterSet, ValueFromPipelineByPropertyName = true)]
         [Alias("EntityLogicalName", "LogicalName")]
         [ValidateNotNullOrEmpty]
+        [ArgumentCompleter(typeof(EntityArgumentCompleter))]
         public string Entity { get; set; }
 
         [Parameter(Position = 2, ParameterSetName = GetAttributesByFilterParameterSet)]
         [Alias("Include")]
         [ValidateNotNullOrEmpty]
         [SupportsWildcards]
+        [ArgumentCompleter(typeof(AttributeArgumentCompleter))]
         public string Name { get; set; }
 
         [Parameter(ParameterSetName = GetAttributesByFilterParameterSet)]
         [ValidateNotNullOrEmpty]
         [SupportsWildcards]
+        [ArgumentCompleter(typeof(AttributeArgumentCompleter))]
         public string Exclude { get; set; }
 
         [Parameter(ParameterSetName = GetAttributesByFilterParameterSet)]
@@ -73,7 +77,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
             switch (this.ParameterSetName)
             {
                 case GetAttributeByIdParameterSet:
-                    WriteObject(_repository.GetAttribute(Id));
+                    foreach (Guid id in Id)
+                    {
+                        WriteObject(_repository.GetAttribute(id));
+                    }
                     break;
                 case GetAttributesByFilterParameterSet:
                     GetAttributeByFilter();

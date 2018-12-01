@@ -20,7 +20,7 @@ Get-CrmServiceEndpoint [[-Name] <String>] [-Exclude <String>] [-IncludeTotalCoun
 
 ### GetServiceEndPointById
 ```
-Get-CrmServiceEndpoint [-Id] <Guid> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>]
+Get-CrmServiceEndpoint [-Id] <Guid[]> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>]
  [<CommonParameters>]
 ```
 
@@ -44,7 +44,7 @@ Exclude serviceendpoints whose name matches the provided pattern.
 ```yaml
 Type: String
 Parameter Sets: GetServiceEndPointByFilter
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -59,7 +59,7 @@ Specifies the number of records to retrieve from the beginning.
 ```yaml
 Type: UInt64
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -72,9 +72,9 @@ Accept wildcard characters: False
 The id of the serviceendpoint to retrieve.
 
 ```yaml
-Type: Guid
+Type: Guid[]
 Parameter Sets: GetServiceEndPointById
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -91,7 +91,7 @@ Because of the limitations of Dynamics CRM, the total count is only returned acc
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -121,7 +121,7 @@ Skips (does not return) the specified number of records.
 ```yaml
 Type: UInt64
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -136,11 +136,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### None
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
-
 ## NOTES
 
 ## RELATED LINKS

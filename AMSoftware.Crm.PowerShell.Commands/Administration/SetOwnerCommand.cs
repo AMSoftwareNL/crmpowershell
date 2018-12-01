@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Management.Automation;
 using AMSoftware.Crm.PowerShell.Common;
+using AMSoftware.Crm.PowerShell.Common.ArgumentCompleters;
 using AMSoftware.Crm.PowerShell.Common.Repositories;
 using Microsoft.Xrm.Sdk;
 
@@ -34,6 +35,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = AssignOwnerRecordParameterSet, ValueFromPipelineByPropertyName = true)]
         [Alias("LogicalName")]
         [ValidateNotNullOrEmpty]
+        [ArgumentCompleter(typeof(EntityArgumentCompleter))]
         public string Entity { get; set; }
 
         [Parameter(Mandatory = true, Position = 2, ParameterSetName = AssignOwnerRecordParameterSet, ValueFromPipelineByPropertyName = true)]

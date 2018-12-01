@@ -53,7 +53,7 @@ The credentials to authenticate with the deployment.
 ```yaml
 Type: PSCredential
 Parameter Sets: ConnectOnline
-Aliases: 
+Aliases:
 
 Required: True
 Position: 2
@@ -65,7 +65,7 @@ Accept wildcard characters: False
 ```yaml
 Type: PSCredential
 Parameter Sets: ConnectOnPremises
-Aliases: 
+Aliases:
 
 Required: False
 Position: 2
@@ -80,7 +80,7 @@ The URL of the Dynamics CRM Discovery Services. Provide the full URL or just the
 ```yaml
 Type: Uri
 Parameter Sets: ConnectOnPremises
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -95,7 +95,7 @@ The region of Dynamics 365 to connect to. Region must be provided as 'crm[0..9]'
 ```yaml
 Type: String
 Parameter Sets: ConnectOnline
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -110,11 +110,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### None
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Discovery.OrganizationDetail
-
 ## NOTES
 For on premises deployments the following form of authetnication are supported: Windows Authentication, Claims Based Authentication (CBA) and Internet Facing Deployment (IFD).
 

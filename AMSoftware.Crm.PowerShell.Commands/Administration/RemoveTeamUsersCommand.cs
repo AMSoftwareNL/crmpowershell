@@ -35,7 +35,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
         [Alias("Id")]
         [ValidateNotNull]
-        public Guid Team { get; set; }
+        public Guid[] Team { get; set; }
 
         [Parameter(Mandatory = true, Position = 1, ValueFromRemainingArguments = true, ParameterSetName = RemoveTeamUsersSelectedParameterSet)]
         [ValidateNotNull]
@@ -48,16 +48,19 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         {
             base.ExecuteCmdlet();
 
-            Guid[] currentSetIds = SecurityManagementHelper.GetUsersInTeam(_repository, Team).Select(e => e.Id).ToArray();
-            Guid[] removeSet = Users;
-            if (this.ParameterSetName == RemoveTeamUsersAllParameterSet)
+            foreach (Guid id in Team)
             {
-                removeSet = currentSetIds;
-            }
+                Guid[] currentSetIds = SecurityManagementHelper.GetUsersInTeam(_repository, id).Select(e => e.Id).ToArray();
+                Guid[] removeSet = Users;
+                if (this.ParameterSetName == RemoveTeamUsersAllParameterSet)
+                {
+                    removeSet = currentSetIds;
+                }
 
-            if (removeSet != null && removeSet.Length > 0)
-            {
-                SecurityManagementHelper.RemoveUsersFromTeam(_repository, Team, removeSet);
+                if (removeSet != null && removeSet.Length > 0)
+                {
+                    SecurityManagementHelper.RemoveUsersFromTeam(_repository, id, removeSet);
+                }
             }
         }
     }

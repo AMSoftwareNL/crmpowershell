@@ -32,12 +32,16 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
         [Alias("Id")]
         [ValidateNotNull]
-        public Guid User { get; set; }
+        public Guid[] User { get; set; }
 
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
-            WriteObject(SecurityManagementHelper.GetTeamsForUser(_repository, User), true);
+
+            foreach (Guid id in User)
+            {
+                WriteObject(SecurityManagementHelper.GetTeamsForUser(_repository, id), true);
+            }
         }
     }
 }

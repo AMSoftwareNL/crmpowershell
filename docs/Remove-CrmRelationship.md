@@ -38,7 +38,7 @@ This is only required if the relationship cannot be uniquely determined for both
 ```yaml
 Type: String
 Parameter Sets: RemoveRelationshipByEntity
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -83,7 +83,7 @@ Executes the action without prompting for confirmation.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -98,7 +98,7 @@ The LogicalName of the entity to remove the relationship from.
 ```yaml
 Type: String
 Parameter Sets: RemoveRelationshipByEntity
-Aliases: 
+Aliases:
 
 Required: True
 Position: 2
@@ -144,11 +144,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### None
-
 ## OUTPUTS
 
 ### None
-
 ## NOTES
 
 ## RELATED LINKS

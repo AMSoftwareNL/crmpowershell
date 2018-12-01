@@ -13,7 +13,7 @@ Unregister a SDK Messgae Processing Step.
 ## SYNTAX
 
 ```
-Unregister-CrmPluginStep [-Id] <Guid> [-Force] [<CommonParameters>]
+Unregister-CrmPluginStep [-Id] <Guid[]> [-Force] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -29,7 +29,7 @@ Executes the action without prompting for confirmation.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -42,9 +42,9 @@ Accept wildcard characters: False
 The id of the SDK Messgae Processing Step to unregister.
 
 ```yaml
-Type: Guid
+Type: Guid[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -59,11 +59,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.Guid
-
 ## OUTPUTS
 
 ### System.Object
-
 ## NOTES
 
 ## RELATED LINKS

@@ -35,7 +35,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         [Parameter(Position = 5, Mandatory = true, ValueFromPipeline = true)]
         [Alias("Id")]
         [ValidateNotNull]
-        public Guid Record { get; set; }
+        public Guid[] Record { get; set; }
 
         [Parameter]
         public SwitchParameter PassThru { get; set; }
@@ -44,23 +44,26 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         {
             base.ExecuteCmdlet();
 
-            ExecuteAction(Record.ToString(), Process.ToString(), delegate
+            foreach (Guid id in Record)
             {
-                OrganizationRequest request = new OrganizationRequest()
+                ExecuteAction(id.ToString(), Process.ToString(), delegate
                 {
-                    RequestName = "ExecuteWorkflow"
-                };
-                request.Parameters["EntityId"] = Record;
-                request.Parameters["WorkflowId"] = Process;
+                    OrganizationRequest request = new OrganizationRequest()
+                    {
+                        RequestName = "ExecuteWorkflow"
+                    };
+                    request.Parameters["EntityId"] = id;
+                    request.Parameters["WorkflowId"] = Process;
 
-                OrganizationResponse response = _repository.Execute(request);
+                    OrganizationResponse response = _repository.Execute(request);
 
-                if (PassThru)
-                {
-                    Guid asyncId = (Guid)response.Results["Id"];
-                    WriteObject(_repository.Get("asyncoperation", asyncId));
-                }
-            });
+                    if (PassThru)
+                    {
+                        Guid asyncId = (Guid)response.Results["Id"];
+                        WriteObject(_repository.Get("asyncoperation", asyncId));
+                    }
+                });
+            }
         }
     }
 }

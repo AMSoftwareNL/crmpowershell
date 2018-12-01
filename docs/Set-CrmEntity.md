@@ -48,7 +48,7 @@ Whether to automatically move records to the owner's default queue when a record
 ```yaml
 Type: Boolean
 Parameter Sets: SetEntity
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -63,7 +63,7 @@ Whether the hierarchical state of entity relationships included in your managed 
 ```yaml
 Type: Boolean
 Parameter Sets: SetEntity
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -78,7 +78,7 @@ Whether additional attributes can be added to the entity.
 ```yaml
 Type: Boolean
 Parameter Sets: SetEntity
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -93,7 +93,7 @@ Whether new charts can be created for the entity.
 ```yaml
 Type: Boolean
 Parameter Sets: SetEntity
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -108,7 +108,7 @@ Whether new forms can be created for the entity.
 ```yaml
 Type: Boolean
 Parameter Sets: SetEntity
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -123,7 +123,7 @@ Whether new views can be created for the entity.
 ```yaml
 Type: Boolean
 Parameter Sets: SetEntity
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -138,7 +138,7 @@ Whether this entity can be enabled for relevance search when customizing a manag
 ```yaml
 Type: Boolean
 Parameter Sets: SetEntity
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -153,7 +153,7 @@ Whether any other entity properties not represented by a managed property can be
 ```yaml
 Type: Boolean
 Parameter Sets: SetEntity
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -168,7 +168,7 @@ Whether change tracking is enabled for an entity or not.
 ```yaml
 Type: Boolean
 Parameter Sets: SetEntity
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -183,7 +183,7 @@ Whether the entity is customizable.
 ```yaml
 Type: Boolean
 Parameter Sets: SetEntity
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -198,7 +198,7 @@ The label containing the description for the entity.
 ```yaml
 Type: String
 Parameter Sets: SetEntity
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -213,7 +213,7 @@ The label containing the plural display name for the entity.
 ```yaml
 Type: String
 Parameter Sets: SetEntity
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -228,7 +228,7 @@ The label containing the display name for the entity.
 ```yaml
 Type: String
 Parameter Sets: SetEntity
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -245,7 +245,7 @@ Any string matching a color in System.Drawing.Color.
 ```yaml
 Type: String
 Parameter Sets: SetEntity
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -260,7 +260,7 @@ The URL of the resource to display help content for this entity.
 ```yaml
 Type: Uri
 Parameter Sets: SetEntity
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -275,7 +275,7 @@ Whether the entity supports custom help content.
 ```yaml
 Type: Boolean
 Parameter Sets: SetEntity
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -290,7 +290,7 @@ Whether a custom entity is created that has a special relationship to activity e
 ```yaml
 Type: Boolean
 Parameter Sets: SetEntity
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -305,7 +305,7 @@ Whether the custom entity that is created has a special relationship to the anno
 ```yaml
 Type: Boolean
 Parameter Sets: SetEntity
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -320,7 +320,7 @@ The name of the image web resource for the large icon for the entity.
 ```yaml
 Type: String
 Parameter Sets: SetEntity
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -335,7 +335,7 @@ The name of the image web resource for the medium icon for the entity.
 ```yaml
 Type: String
 Parameter Sets: SetEntity
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -350,7 +350,7 @@ The name of the image web resource for the small icon for the entity.
 ```yaml
 Type: String
 Parameter Sets: SetEntity
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -380,7 +380,7 @@ Whether the email messages can be sent to an email address stored in a record of
 ```yaml
 Type: Boolean
 Parameter Sets: SetEntity
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -395,7 +395,7 @@ Whether auditing has been enabled for the entity.
 ```yaml
 Type: Boolean
 Parameter Sets: SetEntity
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -410,7 +410,7 @@ Whether the entity is available offline.
 ```yaml
 Type: Boolean
 Parameter Sets: SetEntity
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -425,7 +425,7 @@ Whether connections are enabled for this entity.
 ```yaml
 Type: Boolean
 Parameter Sets: SetEntity
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -440,7 +440,7 @@ Whether document management is enabled.
 ```yaml
 Type: Boolean
 Parameter Sets: SetEntity
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -455,7 +455,7 @@ Whether duplicate detection is enabled.
 ```yaml
 Type: Boolean
 Parameter Sets: SetEntity
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -470,7 +470,7 @@ Whether the entity is enabled for interactive experience.
 ```yaml
 Type: Boolean
 Parameter Sets: SetEntity
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -485,7 +485,7 @@ Whether Parature knowledge management integration is enabled for the entity.
 ```yaml
 Type: Boolean
 Parameter Sets: SetEntity
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -500,7 +500,7 @@ Whether mail merge is enabled for this entity.
 ```yaml
 Type: Boolean
 Parameter Sets: SetEntity
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -515,7 +515,7 @@ Whether entity mapping is available for the entity.
 ```yaml
 Type: Boolean
 Parameter Sets: SetEntity
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -528,7 +528,7 @@ Accept wildcard characters: False
 ```yaml
 Type: Boolean
 Parameter Sets: SetEntity
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -543,7 +543,7 @@ Whether OneNote integration is enabled for the entity.
 ```yaml
 Type: Boolean
 Parameter Sets: SetEntity
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -558,7 +558,7 @@ Whether optimistic concurrency is enabled for the entity.
 ```yaml
 Type: Boolean
 Parameter Sets: SetEntity
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -573,7 +573,7 @@ Whether the entity DisplayName and DisplayCollectionName can be changed by editi
 ```yaml
 Type: Boolean
 Parameter Sets: SetEntity
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -588,7 +588,7 @@ If the entity is enabled for service level agreements (SLAs).
 ```yaml
 Type: Boolean
 Parameter Sets: SetEntity
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -603,7 +603,7 @@ Whether the entity is enabled for queues.
 ```yaml
 Type: Boolean
 Parameter Sets: SetEntity
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -618,7 +618,7 @@ Whether Microsoft Dynamics 365 for phones users can see data for this entity.
 ```yaml
 Type: Boolean
 Parameter Sets: SetEntity
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -633,7 +633,7 @@ The LogicalName of the entity to update.
 ```yaml
 Type: String
 Parameter Sets: SetEntity
-Aliases: 
+Aliases: LogicalName
 
 Required: True
 Position: 1
@@ -648,7 +648,7 @@ Returns an object that represents the EntityMetadata. By default, this cmdlet do
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -663,7 +663,7 @@ Whether this entity is searchable in relevance search.
 ```yaml
 Type: Boolean
 Parameter Sets: SetEntity
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -678,11 +678,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### None
-
 ## OUTPUTS
 
 ### None
-
 ## NOTES
 
 ## RELATED LINKS

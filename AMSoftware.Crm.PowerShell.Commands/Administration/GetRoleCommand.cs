@@ -35,7 +35,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
 
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = GetRoleByIdParameterSet, ValueFromPipeline = true)]
         [ValidateNotNull]
-        public Guid Id { get; set; }
+        public Guid[] Id { get; set; }
 
         [Parameter(Position = 0, ParameterSetName = GetAllRolesParameterSet)]
         [Alias("Include")]
@@ -62,7 +62,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
                     GetFilteredContent();
                     break;
                 case GetRoleByIdParameterSet:
-                    WriteObject(_repository.Get("role", Id));
+                    foreach (Guid id in Id)
+                    {
+                        WriteObject(_repository.Get("role", id));
+                    }
                     break;
                 default:
                     break;

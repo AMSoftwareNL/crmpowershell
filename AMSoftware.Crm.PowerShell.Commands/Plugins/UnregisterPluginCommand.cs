@@ -42,7 +42,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 
         [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]
         [ValidateNotNullOrEmpty]
-        public Guid Id { get; set; }
+        public Guid[] Id { get; set; }
 
         protected abstract PluginComponentType ComponentType { get; }
 
@@ -60,22 +60,25 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
         {
             base.ExecuteCmdlet();
 
-            _components[ComponentType].Add(Id);
+            foreach (Guid id in Id)
+            {
+                _components[ComponentType].Add(id);
 
-            //Add child components to list
-            _components[PluginComponentType.PluginType].AddRange(RetrieveReferencedIds(_repository, "plugintype", "plugintypeid", "pluginassemblyid", _components[PluginComponentType.PluginAssembly]));
-            _components[PluginComponentType.PluginStep].AddRange(RetrieveReferencedIds(_repository, "sdkmessageprocessingstep", "sdkmessageprocessingstepid", "plugintypeid", _components[PluginComponentType.PluginType]));
-            _components[PluginComponentType.PluginStep].AddRange(RetrieveReferencedIds(_repository, "sdkmessageprocessingstep", "sdkmessageprocessingstepid", "eventhandler", _components[PluginComponentType.ServiceEndpoint]));
-            _components[PluginComponentType.PluginStepSecureConfig].AddRange(RetrieveReferencedIds(_repository, "sdkmessageprocessingstep", "sdkmessageprocessingstepsecureconfigid", "sdkmessageprocessingstepid", _components[PluginComponentType.PluginStep]));
-            _components[PluginComponentType.PluginImage].AddRange(RetrieveReferencedIds(_repository, "sdkmessageprocessingstepimage", "sdkmessageprocessingstepimageid", "sdkmessageprocessingstepid", _components[PluginComponentType.PluginStep]));
+                //Add child components to list
+                _components[PluginComponentType.PluginType].AddRange(RetrieveReferencedIds(_repository, "plugintype", "plugintypeid", "pluginassemblyid", _components[PluginComponentType.PluginAssembly]));
+                _components[PluginComponentType.PluginStep].AddRange(RetrieveReferencedIds(_repository, "sdkmessageprocessingstep", "sdkmessageprocessingstepid", "plugintypeid", _components[PluginComponentType.PluginType]));
+                _components[PluginComponentType.PluginStep].AddRange(RetrieveReferencedIds(_repository, "sdkmessageprocessingstep", "sdkmessageprocessingstepid", "eventhandler", _components[PluginComponentType.ServiceEndpoint]));
+                _components[PluginComponentType.PluginStepSecureConfig].AddRange(RetrieveReferencedIds(_repository, "sdkmessageprocessingstep", "sdkmessageprocessingstepsecureconfigid", "sdkmessageprocessingstepid", _components[PluginComponentType.PluginStep]));
+                _components[PluginComponentType.PluginImage].AddRange(RetrieveReferencedIds(_repository, "sdkmessageprocessingstepimage", "sdkmessageprocessingstepimageid", "sdkmessageprocessingstepid", _components[PluginComponentType.PluginStep]));
 
-            //Remove components in list
-            UnregisterComponents("sdkmessageprocessingstepimage", _components[PluginComponentType.PluginImage]);
-            UnregisterComponents("sdkmessageprocessingstep", _components[PluginComponentType.PluginStep]);
-            UnregisterComponents("sdkmessageprocessingstepsecureconfig", _components[PluginComponentType.PluginStepSecureConfig]);
-            UnregisterComponents("plugintype", _components[PluginComponentType.PluginType]);
-            UnregisterComponents("pluginassembly", _components[PluginComponentType.PluginAssembly]);
-            UnregisterComponents("serviceendpoint", _components[PluginComponentType.ServiceEndpoint]);
+                //Remove components in list
+                UnregisterComponents("sdkmessageprocessingstepimage", _components[PluginComponentType.PluginImage]);
+                UnregisterComponents("sdkmessageprocessingstep", _components[PluginComponentType.PluginStep]);
+                UnregisterComponents("sdkmessageprocessingstepsecureconfig", _components[PluginComponentType.PluginStepSecureConfig]);
+                UnregisterComponents("plugintype", _components[PluginComponentType.PluginType]);
+                UnregisterComponents("pluginassembly", _components[PluginComponentType.PluginAssembly]);
+                UnregisterComponents("serviceendpoint", _components[PluginComponentType.ServiceEndpoint]);
+            }
         }
 
         private void UnregisterComponents(string logicalName, IEnumerable<Guid> ids)

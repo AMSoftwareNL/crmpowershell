@@ -13,7 +13,7 @@ Set the roles for a user or team.
 ## SYNTAX
 
 ```
-Set-CrmPrincipalRoles [-Principal] <Guid> [-PrincipalType] <CrmPrincipalType> -Roles <Guid[]> [-Overwrite]
+Set-CrmPrincipalRoles [-Principal] <Guid[]> [-PrincipalType] <CrmPrincipalType> -Roles <Guid[]> [-Overwrite]
  [-PassThru] [<CommonParameters>]
 ```
 
@@ -30,7 +30,7 @@ Overwrite the existing roles for the user or team. If omitted the roles will be 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -45,7 +45,7 @@ Returns an object that represents the principal (User or Team). By default, this
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -58,7 +58,7 @@ Accept wildcard characters: False
 The id of the user or team to set the roles for.
 
 ```yaml
-Type: Guid
+Type: Guid[]
 Parameter Sets: (All)
 Aliases: Id
 
@@ -75,7 +75,7 @@ The type of principal to set the roles for.
 ```yaml
 Type: CrmPrincipalType
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: User, Team
 
 Required: True
@@ -91,7 +91,7 @@ The id of the roles to assigned to the user or team.
 ```yaml
 Type: Guid[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -106,11 +106,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.Guid
-
 ## OUTPUTS
 
 ### None
-
 ## NOTES
 
 ## RELATED LINKS

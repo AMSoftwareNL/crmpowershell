@@ -20,7 +20,7 @@ Get-CrmUser [[-Name] <String>] [-Exclude <String>] [-BusinessUnit <Guid>] [-Incl
 
 ### GetUserById
 ```
-Get-CrmUser [-Id] <Guid> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
+Get-CrmUser [-Id] <Guid[]> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -43,7 +43,7 @@ The id of a business unit to retrieve the related users for.
 ```yaml
 Type: Guid
 Parameter Sets: GetAllUsers
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -58,7 +58,7 @@ Exclude users whose name matches the provided pattern.
 ```yaml
 Type: String
 Parameter Sets: GetAllUsers
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -73,7 +73,7 @@ Specifies the number of records to retrieve from the beginning.
 ```yaml
 Type: UInt64
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -86,9 +86,9 @@ Accept wildcard characters: False
 The id of the user to retrieve.
 
 ```yaml
-Type: Guid
+Type: Guid[]
 Parameter Sets: GetUserById
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -103,7 +103,7 @@ Include inactive users in the result.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: GetAllUsers
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -120,7 +120,7 @@ Because of the limitations of Dynamics CRM, the total count is only returned acc
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -150,7 +150,7 @@ Skips (does not return) the specified number of records.
 ```yaml
 Type: UInt64
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -165,11 +165,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### None
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
-
 ## NOTES
 
 ## RELATED LINKS

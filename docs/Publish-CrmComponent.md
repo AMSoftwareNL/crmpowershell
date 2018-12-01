@@ -48,7 +48,7 @@ Publish all customizations in the organization.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: PublishAll
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -65,7 +65,7 @@ The id must match id for records in the entity 'systemform'.
 ```yaml
 Type: Guid[]
 Parameter Sets: PublishComponents
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -80,7 +80,7 @@ The LogicalName of entities to publish.
 ```yaml
 Type: String[]
 Parameter Sets: PublishComponents
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -95,7 +95,7 @@ The name of global optionsets to publish.
 ```yaml
 Type: String[]
 Parameter Sets: PublishComponents
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -110,7 +110,7 @@ Include the ribbon in publishing.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: PublishComponents
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -125,7 +125,7 @@ Publish the sitemap.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: PublishComponents
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -140,7 +140,7 @@ The id of the solution containing the components to publish.
 ```yaml
 Type: Guid
 Parameter Sets: PublishSolution
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -157,7 +157,7 @@ The id must match id for records in the entity 'webresource'.
 ```yaml
 Type: Guid[]
 Parameter Sets: PublishComponents
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -172,11 +172,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.Guid
-
 ## OUTPUTS
 
 ### None
-
 ## NOTES
 
 ## RELATED LINKS

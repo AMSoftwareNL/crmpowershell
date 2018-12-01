@@ -14,12 +14,12 @@ Validate a customization solution.
 
 ### TestUninstallSolution
 ```
-Test-CrmSolution [[-Solution] <Guid>] [-Uninstall] [<CommonParameters>]
+Test-CrmSolution [[-Solution] <Guid[]>] [-Uninstall] [<CommonParameters>]
 ```
 
 ### TestDependenciesSolution
 ```
-Test-CrmSolution [[-Solution] <Guid>] [-Dependencies] [<CommonParameters>]
+Test-CrmSolution [[-Solution] <Guid[]>] [-Dependencies] [<CommonParameters>]
 ```
 
 ### TestMissingSolution
@@ -68,7 +68,7 @@ Retrieve any required solution components that are not included in the solution.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: TestDependenciesSolution
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -96,9 +96,9 @@ Accept wildcard characters: False
 The id of the solution to test.
 
 ```yaml
-Type: Guid
+Type: Guid[]
 Parameter Sets: TestUninstallSolution, TestDependenciesSolution
-Aliases: 
+Aliases:
 
 Required: False
 Position: 1
@@ -113,7 +113,7 @@ Retrieve a list of the solution component dependencies that can prevent you from
 ```yaml
 Type: SwitchParameter
 Parameter Sets: TestUninstallSolution
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -128,11 +128,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.Guid
-
 ## OUTPUTS
 
 ### System.Object
-
 ## NOTES
 
 ## RELATED LINKS

@@ -33,7 +33,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
         [Alias("Id")]
         [ValidateNotNull]
-        public Guid User { get; set; }
+        public Guid[] User { get; set; }
 
         [Parameter(Mandatory = true, Position = 1, ValueFromRemainingArguments = true)]
         [ValidateNotNull]
@@ -48,33 +48,35 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
-
-            Guid[] currentSetIds = SecurityManagementHelper.GetTeamsForUser(_repository, User).Select(e => e.Id).ToArray();
-
-            Guid[] addSet = Teams.Except(currentSetIds).ToArray();
-            if (addSet != null && addSet.Length > 0)
+            foreach (Guid id in User)
             {
-                foreach (var item in addSet)
+                Guid[] currentSetIds = SecurityManagementHelper.GetTeamsForUser(_repository, id).Select(e => e.Id).ToArray();
+
+                Guid[] addSet = Teams.Except(currentSetIds).ToArray();
+                if (addSet != null && addSet.Length > 0)
                 {
-                    SecurityManagementHelper.AddUsersToTeam(_repository, item, new Guid[] { User });
-                }
-            }
-            //Remove associations which are in current and not in new
-            if (Overwrite)
-            {
-                Guid[] removeSet = currentSetIds.Except(Teams).ToArray();
-                if (removeSet != null && removeSet.Length > 0)
-                {
-                    foreach (var item in removeSet)
+                    foreach (var item in addSet)
                     {
-                        SecurityManagementHelper.RemoveUsersFromTeam(_repository, item, new Guid[] { User });
+                        SecurityManagementHelper.AddUsersToTeam(_repository, item, new Guid[] { id });
                     }
                 }
-            }
+                //Remove associations which are in current and not in new
+                if (Overwrite)
+                {
+                    Guid[] removeSet = currentSetIds.Except(Teams).ToArray();
+                    if (removeSet != null && removeSet.Length > 0)
+                    {
+                        foreach (var item in removeSet)
+                        {
+                            SecurityManagementHelper.RemoveUsersFromTeam(_repository, item, new Guid[] { id });
+                        }
+                    }
+                }
 
-            if (PassThru)
-            {
-                WriteObject(_repository.Get("systemuser", User));
+                if (PassThru)
+                {
+                    WriteObject(_repository.Get("systemuser", id));
+                }
             }
         }
     }

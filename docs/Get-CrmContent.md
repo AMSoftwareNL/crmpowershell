@@ -20,7 +20,7 @@ Get-CrmContent [-Entity] <String> [[-Query] <Hashtable>] [[-Order] <Hashtable>] 
 
 ### GetContentForEntityById
 ```
-Get-CrmContent [-Entity] <String> [-Id] <Guid> [-Columns <String[]>] [-IncludeTotalCount] [-Skip <UInt64>]
+Get-CrmContent [-Entity] <String> [-Id] <Guid[]> [-Columns <String[]>] [-IncludeTotalCount] [-Skip <UInt64>]
  [-First <UInt64>] [<CommonParameters>]
 ```
 
@@ -75,7 +75,7 @@ NOTE: This parameter is case sensitive. i.e. it must match the case of the Logic
 ```yaml
 Type: String[]
 Parameter Sets: GetContentForEntityByQuery, GetContentForEntityById, GetContentForEntityByKeys
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -92,7 +92,7 @@ NOTE: This parameter is case sensitive. i.e. it must match the case of the Logic
 ```yaml
 Type: String
 Parameter Sets: GetContentForEntityByQuery, GetContentForEntityById, GetContentForEntityByKeys
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -107,7 +107,7 @@ The XmlDocument containing a FecthXML query.
 ```yaml
 Type: XmlDocument
 Parameter Sets: GetContentWithFetchXml
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -122,7 +122,7 @@ Specifies the number of records to retrieve from the beginning.
 ```yaml
 Type: UInt64
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -137,9 +137,9 @@ The Id of the record to retrieve.
 This can be an Entity object or EntityReference object. These will be converted to Guid as required.
 
 ```yaml
-Type: Guid
+Type: Guid[]
 Parameter Sets: GetContentForEntityById
-Aliases: 
+Aliases:
 
 Required: True
 Position: 2
@@ -156,7 +156,7 @@ Because of the limitations of Dynamics CRM, the total count is only returned acc
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -171,7 +171,7 @@ A hashtable of attribute logicalnames and values which match an entity key. The 
 ```yaml
 Type: Hashtable
 Parameter Sets: GetContentForEntityByKeys
-Aliases: 
+Aliases:
 
 Required: True
 Position: 2
@@ -192,7 +192,7 @@ Valid values for the sort order are:
 ```yaml
 Type: Hashtable
 Parameter Sets: GetContentForEntityByQuery
-Aliases: 
+Aliases:
 
 Required: False
 Position: 3
@@ -207,7 +207,7 @@ A hashtable of attribute logicalnames and values to filter the results.
 ```yaml
 Type: Hashtable
 Parameter Sets: GetContentForEntityByQuery
-Aliases: 
+Aliases:
 
 Required: False
 Position: 2
@@ -222,7 +222,7 @@ Skips (does not return) the specified number of records.
 ```yaml
 Type: UInt64
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -237,11 +237,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### None
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
-
 ## NOTES
 Referenced LogicalNames and SchemaNames are case sensitive. i.e. These must match the case of the LogicalName or SchemaName exactly.
 

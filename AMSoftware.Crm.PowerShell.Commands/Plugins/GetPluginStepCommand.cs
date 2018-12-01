@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
 using AMSoftware.Crm.PowerShell.Common;
+using AMSoftware.Crm.PowerShell.Common.ArgumentCompleters;
 using AMSoftware.Crm.PowerShell.Common.Helpers;
 using AMSoftware.Crm.PowerShell.Common.Repositories;
 using Microsoft.Xrm.Sdk;
@@ -50,6 +51,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 
         [Parameter(ParameterSetName = GetPluginStepByFilterParameterSet)]
         [ValidateNotNullOrEmpty]
+        [ArgumentCompleter(typeof(EntityArgumentCompleter))]
         public string Entity { get; set; }
 
         [Parameter(ParameterSetName = GetPluginStepByFilterParameterSet)]

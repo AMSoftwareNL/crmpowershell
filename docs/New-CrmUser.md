@@ -30,7 +30,7 @@ The type of access for the user.
 ```yaml
 Type: CrmUserAccessMode
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: ReadWrite, Admin, Read, Support, NonInteractive, DelegatedAdmin
 
 Required: False
@@ -46,7 +46,7 @@ The id of the business unit the user is associated with.
 ```yaml
 Type: Guid
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -61,7 +61,7 @@ The firstname of the user.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -76,7 +76,7 @@ The lastname of the user.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 2
@@ -91,7 +91,7 @@ The type of license for the user.
 ```yaml
 Type: CrmUserClientLicense
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: Pro, Admin, Basic, DevicePro, DeviceBasic, Essential, DeviceEssential, Enterprise, DeviceEnterprise, Sales, Service, FieldService, ProjectService
 
 Required: False
@@ -107,7 +107,7 @@ Returns an object that represents the User. By default, this cmdlet does not gen
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -122,7 +122,7 @@ The id of the roles the user will be assigned to.
 ```yaml
 Type: Guid[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -137,7 +137,7 @@ The username of the user.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -152,11 +152,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.Guid[]
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
-
 ## NOTES
 
 ## RELATED LINKS

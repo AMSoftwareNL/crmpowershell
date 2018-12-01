@@ -16,6 +16,7 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 using System.Management.Automation;
+using AMSoftware.Crm.PowerShell.Common.ArgumentCompleters;
 using AMSoftware.Crm.PowerShell.Common.Repositories;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Metadata
@@ -27,6 +28,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 
         [Parameter(Position = 1, Mandatory = true, ValueFromPipelineByPropertyName = true)]
         [ValidateNotNullOrEmpty]
+        [ArgumentCompleter(typeof(OptionSetArgumentCompleter))]
         public string Name { get; set; }
 
         protected override void ExecuteCmdlet()

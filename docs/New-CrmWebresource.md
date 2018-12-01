@@ -39,7 +39,7 @@ The content for the webresource.
 ```yaml
 Type: Byte[]
 Parameter Sets: NewWebresourceFromContent
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -54,7 +54,7 @@ The description for the webresource.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -69,7 +69,7 @@ The displayname for the webresource.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -84,7 +84,7 @@ The encoding to use reading the content for the file system.
 ```yaml
 Type: FileSystemCmdletProviderEncoding
 Parameter Sets: NewWebresourceFromPath
-Aliases: 
+Aliases:
 Accepted values: Unknown, String, Unicode, Byte, BigEndianUnicode, UTF8, UTF7, UTF32, Ascii, Default, Oem, BigEndianUTF32
 
 Required: False
@@ -100,7 +100,7 @@ Whether the webresource is customizable.
 ```yaml
 Type: Boolean
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -130,7 +130,7 @@ The name for the webresource.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -145,7 +145,7 @@ Returns an object that represents the WebResource. By default, this cmdlet does 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -160,7 +160,7 @@ The type of the webresource.
 ```yaml
 Type: CrmWebresourceType
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: All, HTML, CSS, JS, XML, PNG, JPG, GIF, XAP, XSL, ICO
 
 Required: True
@@ -176,11 +176,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.Byte[]
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
-
 ## NOTES
 
 ## RELATED LINKS

@@ -13,7 +13,7 @@ Set the users who are members of team.
 ## SYNTAX
 
 ```
-Set-CrmTeamUsers [-Team] <Guid> [-Users] <Guid[]> [-Overwrite] [-PassThru] [<CommonParameters>]
+Set-CrmTeamUsers [-Team] <Guid[]> [-Users] <Guid[]> [-Overwrite] [-PassThru] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -29,7 +29,7 @@ Overwrite the current users for the team. If omitted the existing and new users 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -44,7 +44,7 @@ Returns an object that represents the team. By default, this cmdlet does not gen
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -57,7 +57,7 @@ Accept wildcard characters: False
 The id of the team to set the users for.
 
 ```yaml
-Type: Guid
+Type: Guid[]
 Parameter Sets: (All)
 Aliases: Id
 
@@ -74,7 +74,7 @@ The id of the users to set as members of the team.
 ```yaml
 Type: Guid[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -94,7 +94,6 @@ System.Guid[]
 ## OUTPUTS
 
 ### System.Object
-
 ## NOTES
 
 ## RELATED LINKS

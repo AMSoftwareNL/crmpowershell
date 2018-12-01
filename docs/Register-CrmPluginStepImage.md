@@ -31,7 +31,7 @@ The alias for the SDK Message Processing Step image.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -46,7 +46,7 @@ The LogicalName of the filtering attributes for the SDK Message Processing Step 
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -61,7 +61,7 @@ The type of the SDK Message Processing Step image.
 ```yaml
 Type: CrmPluginStepImageType
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: PreImage, PostImage, Both
 
 Required: True
@@ -79,7 +79,7 @@ Only needed for Messages supporting multiple properties as the trigger. Can be o
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -94,7 +94,7 @@ The name for the SDK Message Processing Step image.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 2
@@ -109,7 +109,7 @@ Returns an object that represents the Plugin Step Image. By default, this cmdlet
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -124,7 +124,7 @@ The id of the SDK Message Processing Step to register the SDK Message Processing
 ```yaml
 Type: Guid
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -139,13 +139,10 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.Guid
-
 ### System.String[]
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
-
 ## NOTES
 
 ## RELATED LINKS

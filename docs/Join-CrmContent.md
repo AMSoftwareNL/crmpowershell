@@ -48,7 +48,7 @@ If the relationship between the entity and target entity is unique this paramete
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -63,7 +63,7 @@ The LogicalName of the entity to associate.
 ```yaml
 Type: String
 Parameter Sets: JoinContent
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -78,7 +78,7 @@ The id of the record of the entity to associate.
 ```yaml
 Type: Guid
 Parameter Sets: JoinContent
-Aliases: 
+Aliases:
 
 Required: True
 Position: 2
@@ -108,7 +108,7 @@ The LogicalName of the entity associate the record with.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 3
@@ -123,7 +123,7 @@ The id of the record of the entity to associate the record with.
 ```yaml
 Type: Guid
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 4
@@ -138,11 +138,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### None
-
 ## OUTPUTS
 
 ### None
-
 ## NOTES
 
 ## RELATED LINKS

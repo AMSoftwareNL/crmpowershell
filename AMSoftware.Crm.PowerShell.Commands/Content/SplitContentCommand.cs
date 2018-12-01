@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 using System;
 using System.Management.Automation;
+using AMSoftware.Crm.PowerShell.Common.ArgumentCompleters;
 using AMSoftware.Crm.PowerShell.Common.Repositories;
 using Microsoft.Xrm.Sdk;
 
@@ -37,6 +38,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Content
 
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = SplitContentParameterSet)]
         [ValidateNotNullOrEmpty]
+        [ArgumentCompleter(typeof(EntityArgumentCompleter))]
         public string Entity { get; set; }
 
         [Parameter(Mandatory = true, Position = 2, ParameterSetName = SplitContentParameterSet, ValueFromPipeline = true)]
@@ -45,6 +47,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Content
         [Parameter(Mandatory = true, Position = 3, ParameterSetName = SplitContentParameterSet)]
         [Parameter(Mandatory = true, Position = 3, ParameterSetName = SplitContentByInputObjectParameterSet)]
         [ValidateNotNullOrEmpty]
+        [ArgumentCompleter(typeof(EntityArgumentCompleter))]
         public string FromEntity { get; set; }
 
         [Parameter(Mandatory = true, Position = 4, ParameterSetName = SplitContentParameterSet)]
@@ -54,6 +57,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Content
         [Parameter(ParameterSetName = SplitContentParameterSet)]
         [Parameter(ParameterSetName = SplitContentByInputObjectParameterSet)]
         [ValidateNotNullOrEmpty]
+        [ArgumentCompleter(typeof(AttributeArgumentCompleter))]
         public string Attribute { get; set; }
 
         protected override void ExecuteCmdlet()

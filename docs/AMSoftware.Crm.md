@@ -2,7 +2,7 @@
 Module Name: AMSoftware.Crm
 Module Guid: 1e7f1ebc-e035-4d73-86af-3c07a6a85260
 Download Help Link: http://www.amsoftware.nl/tools/crmpowershell/help/
-Help Version: 1.4.0.0
+Help Version: 1.4.1.0
 Locale: en-us
 ---
 
@@ -95,8 +95,8 @@ Retrieve data records from an entity.
 ### [Get-CrmEntity](Get-CrmEntity.md)
 Get the metadata of an entity.
 
-### [Get-CrmEntityKey](Get-CrmEntityKey.md)
-Get entity key metadata for an entity.
+### [Get-CrmEntity](Get-CrmEntity.md)
+Get the metadata of an entity.
 
 ### [Get-CrmLanguage](Get-CrmLanguage.md)
 Get the language of the connected organization.

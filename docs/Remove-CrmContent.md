@@ -14,12 +14,12 @@ Remove a data record from an entity.
 
 ### RemoveContentByInputObject (Default)
 ```
-Remove-CrmContent [-InputObject] <Entity> [-Force] [-WhatIf] [-Confirm] [<CommonParameters>]
+Remove-CrmContent [-InputObject] <Entity[]> [-Force] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### RemoveContent
 ```
-Remove-CrmContent [-Entity] <String> [-Id] <Guid> [-Force] [-WhatIf] [-Confirm] [<CommonParameters>]
+Remove-CrmContent [-Entity] <String> [-Id] <Guid[]> [-Force] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -50,7 +50,7 @@ The LogicalName of the entity to remove the record from.
 ```yaml
 Type: String
 Parameter Sets: RemoveContent
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -65,7 +65,7 @@ Executes the action without prompting for confirmation.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -78,9 +78,9 @@ Accept wildcard characters: False
 The id of the data record to remove.
 
 ```yaml
-Type: Guid
+Type: Guid[]
 Parameter Sets: RemoveContent
-Aliases: 
+Aliases:
 
 Required: True
 Position: 2
@@ -93,7 +93,7 @@ Accept wildcard characters: False
 The entity object representing the record to remove.
 
 ```yaml
-Type: Entity
+Type: Entity[]
 Parameter Sets: RemoveContentByInputObject
 Aliases: Record
 
@@ -126,11 +126,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.Guid
-
 ## OUTPUTS
 
 ### None
-
 ## NOTES
 
 ## RELATED LINKS

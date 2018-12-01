@@ -36,7 +36,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = GetWebresourceByIdParameterSet, ValueFromPipeline = true)]
         [ValidateNotNull]
-        public Guid Id { get; set; }
+        public Guid[] Id { get; set; }
 
         [Parameter(ParameterSetName = GetAllWebresourcesParameterSet, Position = 0)]
         [Alias("Include")]
@@ -66,7 +66,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
                     GetContentByQuery(BuildWebresourceQuery());
                     break;
                 case GetWebresourceByIdParameterSet:
-                    GetContentByQuery(BuildByIdQuery(Id));
+                    foreach (Guid id in Id)
+                    {
+                        GetContentByQuery(BuildByIdQuery(id));
+                    }
                     break;
                 default:
                     break;

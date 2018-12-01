@@ -20,7 +20,7 @@ Get-CrmTeam [[-Name] <String>] [-Exclude <String>] [-BusinessUnit <Guid>] [-Team
 
 ### GetTeamById
 ```
-Get-CrmTeam [-Id] <Guid> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
+Get-CrmTeam [-Id] <Guid[]> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -43,7 +43,7 @@ The id of the user who is administrator of the team.
 ```yaml
 Type: Guid
 Parameter Sets: GetAllTeams
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -58,7 +58,7 @@ The id of the business unit the team is related to.
 ```yaml
 Type: Guid
 Parameter Sets: GetAllTeams
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -73,7 +73,7 @@ Exclude teams whose name matches the provided pattern.
 ```yaml
 Type: String
 Parameter Sets: GetAllTeams
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -88,7 +88,7 @@ Specifies the number of records to retrieve from the beginning.
 ```yaml
 Type: UInt64
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -101,9 +101,9 @@ Accept wildcard characters: False
 The id of the team to retrieve.
 
 ```yaml
-Type: Guid
+Type: Guid[]
 Parameter Sets: GetTeamById
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -120,7 +120,7 @@ Because of the limitations of Dynamics CRM, the total count is only returned acc
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -150,7 +150,7 @@ Skips (does not return) the specified number of records.
 ```yaml
 Type: UInt64
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -165,7 +165,7 @@ The type of team to retrieve. If not provide all types of teams will be returned
 ```yaml
 Type: CrmTeamType
 Parameter Sets: GetAllTeams
-Aliases: 
+Aliases:
 Accepted values: Owner, Access
 
 Required: False
@@ -181,11 +181,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### None
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
-
 ## NOTES
 
 ## RELATED LINKS

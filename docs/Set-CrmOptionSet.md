@@ -36,7 +36,7 @@ Whether the optionset is customizable.
 ```yaml
 Type: Boolean
 Parameter Sets: SetOptionSet
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -51,7 +51,7 @@ The description for the optionset.
 ```yaml
 Type: String
 Parameter Sets: SetOptionSet
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -66,7 +66,7 @@ The displayname for the optionset.
 ```yaml
 Type: String
 Parameter Sets: SetOptionSet
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -96,7 +96,7 @@ The name of the optionset to update.
 ```yaml
 Type: String
 Parameter Sets: SetOptionSet
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -111,7 +111,7 @@ Returns an object that represents the OptionSetMetadata. By default, this cmdlet
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -126,11 +126,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### None
-
 ## OUTPUTS
 
 ### None
-
 ## NOTES
 
 ## RELATED LINKS

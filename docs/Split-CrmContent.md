@@ -48,7 +48,7 @@ If the relationship between the entity and target entity is unique this paramete
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -63,7 +63,7 @@ The LogicalName of the entity to disassociate.
 ```yaml
 Type: String
 Parameter Sets: SplitContent
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -78,7 +78,7 @@ The LogicalName of the entity disassociate the record from.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 3
@@ -93,7 +93,7 @@ The id of the record of the entity to disassociate the record from.
 ```yaml
 Type: Guid
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 4
@@ -108,7 +108,7 @@ The id of the record of the entity to disassociate.
 ```yaml
 Type: Guid
 Parameter Sets: SplitContent
-Aliases: 
+Aliases:
 
 Required: True
 Position: 2
@@ -138,11 +138,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### None
-
 ## OUTPUTS
 
 ### None
-
 ## NOTES
 
 ## RELATED LINKS

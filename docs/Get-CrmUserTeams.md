@@ -13,7 +13,7 @@ Get the teams a user is assinged to.
 ## SYNTAX
 
 ```
-Get-CrmUserTeams [-User] <Guid> [<CommonParameters>]
+Get-CrmUserTeams [-User] <Guid[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -34,7 +34,7 @@ Get the assinged teams for the user with username 'user1@organization.com'.
 The id of the user to retrieve teams for.
 
 ```yaml
-Type: Guid
+Type: Guid[]
 Parameter Sets: (All)
 Aliases: Id
 
@@ -51,11 +51,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.Guid
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
-
 ## NOTES
 
 ## RELATED LINKS

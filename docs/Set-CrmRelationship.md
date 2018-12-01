@@ -36,7 +36,7 @@ Whether the relationship appears in Advanced Find.
 ```yaml
 Type: Boolean
 Parameter Sets: SetRelationship
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -51,7 +51,7 @@ Whether the relationship is a custom relationship.
 ```yaml
 Type: Boolean
 Parameter Sets: SetRelationship
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -96,7 +96,7 @@ Returns an object that represents the RelationshipMetadata. By default, this cmd
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -111,11 +111,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### None
-
 ## OUTPUTS
 
 ### None
-
 ## NOTES
 
 ## RELATED LINKS

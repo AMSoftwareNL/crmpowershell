@@ -20,7 +20,7 @@ Get-CrmBusinessUnit [[-Name] <String>] [-Exclude <String>] [-Parent <Guid>] [-In
 
 ### GetBusinessUnitById
 ```
-Get-CrmBusinessUnit [-Id] <Guid> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
+Get-CrmBusinessUnit [-Id] <Guid[]> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -43,7 +43,7 @@ Exclude business units whose name matches the provided pattern.
 ```yaml
 Type: String
 Parameter Sets: GetAllBusinessUnits
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -58,7 +58,7 @@ Specifies the number of objects to select from the beginning.
 ```yaml
 Type: UInt64
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -71,9 +71,9 @@ Accept wildcard characters: False
 The id of the business unit.
 
 ```yaml
-Type: Guid
+Type: Guid[]
 Parameter Sets: GetBusinessUnitById
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -90,7 +90,7 @@ Because of the limitations of Dynamics CRM, the total count is only returned acc
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -120,7 +120,7 @@ The id of the parent business unit. When included only direct children of this b
 ```yaml
 Type: Guid
 Parameter Sets: GetAllBusinessUnits
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -135,7 +135,7 @@ Skips (does not return) the specified number of records.
 ```yaml
 Type: UInt64
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -150,11 +150,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.Guid
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
-
 ## NOTES
 
 ## RELATED LINKS

@@ -19,6 +19,7 @@ using System;
 using System.Management.Automation;
 using AMSoftware.Crm.PowerShell.Commands.Models;
 using AMSoftware.Crm.PowerShell.Common;
+using AMSoftware.Crm.PowerShell.Common.ArgumentCompleters;
 using AMSoftware.Crm.PowerShell.Common.Repositories;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Metadata;
@@ -33,6 +34,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 
         [Parameter(Mandatory = true, Position = 1)]
         [ValidateNotNullOrEmpty]
+        [ArgumentCompleter(typeof(EntityArgumentCompleter))]
         public string Entity { get; set; }
 
         [Parameter(Mandatory = true, Position = 2, ValueFromPipeline = true)]
@@ -64,6 +66,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         [Parameter(Mandatory = true, Position = 1, ValueFromPipelineByPropertyName = true)]
         [Alias("EntityLogicalName", "LogicalName")]
         [ValidateNotNullOrEmpty]
+        [ArgumentCompleter(typeof(EntityArgumentCompleter))]
         public string Entity { get; set; }
 
         [Parameter(Mandatory = true, Position = 2)]

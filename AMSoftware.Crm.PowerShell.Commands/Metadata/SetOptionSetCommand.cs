@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 using System.Management.Automation;
 using AMSoftware.Crm.PowerShell.Common;
+using AMSoftware.Crm.PowerShell.Common.ArgumentCompleters;
 using AMSoftware.Crm.PowerShell.Common.Repositories;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Metadata;
@@ -39,6 +40,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 
         [Parameter(Position = 1, Mandatory = true, ParameterSetName = SetOptionSetParameterSet)]
         [ValidateNotNullOrEmpty]
+        [ArgumentCompleter(typeof(OptionSetArgumentCompleter))]
         public string Name { get; set; }
 
         [Parameter(ParameterSetName = SetOptionSetParameterSet)]

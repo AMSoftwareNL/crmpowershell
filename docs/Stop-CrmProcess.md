@@ -43,7 +43,7 @@ The id of the System Job to stop.
 ```yaml
 Type: Guid
 Parameter Sets: StopProcessByAsyncOperation
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -73,7 +73,7 @@ Stops the specified processes without prompting for confirmation.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -88,7 +88,7 @@ Returns an object that represents the asyncoperation. By default, this cmdlet do
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -103,7 +103,7 @@ The id of the process (workflow) to stop all associated System Jobs for.
 ```yaml
 Type: Guid
 Parameter Sets: StopProcessByWorkflow
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -149,11 +149,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.Guid
-
 ## OUTPUTS
 
 ### None
-
 ## NOTES
 
 ## RELATED LINKS

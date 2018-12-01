@@ -72,7 +72,7 @@ The path to the file containing the translations.
 ```yaml
 Type: String[]
 Parameter Sets: ImportTranslationFromPath
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -103,11 +103,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.String[]
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
-
 ## NOTES
 
 ## RELATED LINKS

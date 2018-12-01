@@ -19,6 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
+using AMSoftware.Crm.PowerShell.Common.ArgumentCompleters;
 using AMSoftware.Crm.PowerShell.Common.Repositories;
 using Microsoft.Xrm.Sdk.Metadata;
 
@@ -36,17 +37,19 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         [Parameter(Position = 1, Mandatory = true, ParameterSetName = GetOptionSetByIdParameterSet, ValueFromPipeline = true)]
         [Alias("MetadataId")]
         [ValidateNotNull]
-        public Guid Id { get; set; }
+        public Guid[] Id { get; set; }
 
         [Parameter(Position = 1, ParameterSetName = GetOptionSetByFilterParameterSet)]
         [Alias("Include")]
         [ValidateNotNullOrEmpty]
         [SupportsWildcards]
+        [ArgumentCompleter(typeof(OptionSetArgumentCompleter))]
         public string Name { get; set; }
 
         [Parameter(ParameterSetName = GetOptionSetByFilterParameterSet)]
         [ValidateNotNullOrEmpty]
         [SupportsWildcards]
+        [ArgumentCompleter(typeof(OptionSetArgumentCompleter))]
         public string Exclude { get; set; }
 
         [Parameter(ParameterSetName = GetOptionSetByFilterParameterSet)]
@@ -62,7 +65,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
             switch (this.ParameterSetName)
             {
                 case GetOptionSetByIdParameterSet:
-                    WriteObject(_repository.GetOptionSet(Id));
+                    foreach (Guid id in Id)
+                    {
+                        WriteObject(_repository.GetOptionSet(id));
+                    }
                     break;
                 case GetOptionSetByFilterParameterSet:
                     IEnumerable<OptionSetMetadataBase> result = _repository.GetOptionSet(CustomOnly.ToBool(), ExcludeManaged.ToBool());

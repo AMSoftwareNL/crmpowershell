@@ -44,7 +44,7 @@ The LogicalName of the entity the SDK Message Processing Step is registered on.
 ```yaml
 Type: String
 Parameter Sets: GetPluginStepByFilter
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -59,7 +59,7 @@ The plugin or serviceendpoint the SDK Message Processing Step is registered on.
 ```yaml
 Type: Guid
 Parameter Sets: GetPluginStepByFilter
-Aliases: 
+Aliases:
 
 Required: False
 Position: 1
@@ -74,7 +74,7 @@ Specifies the number of records to retrieve from the beginning.
 ```yaml
 Type: UInt64
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -89,7 +89,7 @@ The id of the SDK Message Processing Step to retrieve.
 ```yaml
 Type: Guid
 Parameter Sets: GetPluginStepById
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -104,7 +104,7 @@ Include SDK Message Processing Steps marked as hidden.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: GetPluginStepByFilter
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -119,7 +119,7 @@ Include SDK Message Processing Steps registered on internal stages.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: GetPluginStepByFilter
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -134,7 +134,7 @@ Include SDK Message Processing Steps whose name matches the provided pattern.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -149,7 +149,7 @@ The name of the message the SDK Message Processing Step is registered on.
 ```yaml
 Type: String
 Parameter Sets: GetPluginStepByFilter
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -164,7 +164,7 @@ The mode of the SDK Message Processing Step to retrieve. If not provided all mod
 ```yaml
 Type: CrmPluginStepMode
 Parameter Sets: GetPluginStepByFilter
-Aliases: 
+Aliases:
 Accepted values: Synchronous, Asynchronous
 
 Required: False
@@ -180,7 +180,7 @@ Skips (does not return) the specified number of records.
 ```yaml
 Type: UInt64
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -195,7 +195,7 @@ The stage of the SDK Message Processing Step to retrieve. If not provided all st
 ```yaml
 Type: CrmPluginStepStage
 Parameter Sets: GetPluginStepByFilter
-Aliases: 
+Aliases:
 Accepted values: PreValidation, PreOperation, PostOperation
 
 Required: False
@@ -211,11 +211,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.Guid
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
-
 ## NOTES
 
 ## RELATED LINKS

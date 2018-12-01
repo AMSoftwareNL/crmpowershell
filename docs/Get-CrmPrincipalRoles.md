@@ -13,7 +13,7 @@ Get the roles related to a user or team.
 ## SYNTAX
 
 ```
-Get-CrmPrincipalRoles [-Principal] <Guid> [<CommonParameters>]
+Get-CrmPrincipalRoles [-Principal] <Guid[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -34,7 +34,7 @@ Get the roles for the team 'Sales Team'.
 The id of a user or team to get the roles for.
 
 ```yaml
-Type: Guid
+Type: Guid[]
 Parameter Sets: (All)
 Aliases: Id
 
@@ -51,11 +51,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.Guid
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
-
 ## NOTES
 
 ## RELATED LINKS

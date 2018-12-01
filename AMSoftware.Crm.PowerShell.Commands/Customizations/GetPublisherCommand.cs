@@ -35,7 +35,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = GetPublisherByIdParameterSet, ValueFromPipeline = true)]
         [ValidateNotNull]
-        public Guid Id { get; set; }
+        public Guid[] Id { get; set; }
 
         [Parameter(Position = 1, ParameterSetName = GetAllPublishersParameterSet)]
         [Alias("Include")]
@@ -58,7 +58,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
                     GetFilteredContent();
                     break;
                 case GetPublisherByIdParameterSet:
-                    WriteObject(_repository.Get("publisher", Id));
+                    foreach (Guid id in Id)
+                    {
+                        WriteObject(_repository.Get("publisher", id));
+                    }
                     break;
                 default:
                     break;

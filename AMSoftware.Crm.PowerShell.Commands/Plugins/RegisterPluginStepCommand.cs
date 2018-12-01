@@ -19,6 +19,7 @@ using System;
 using System.Linq;
 using System.Management.Automation;
 using AMSoftware.Crm.PowerShell.Common;
+using AMSoftware.Crm.PowerShell.Common.ArgumentCompleters;
 using AMSoftware.Crm.PowerShell.Common.Helpers;
 using AMSoftware.Crm.PowerShell.Common.Repositories;
 using Microsoft.Xrm.Sdk;
@@ -42,10 +43,12 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 
         [Parameter(Position = 3)]
         [ValidateNotNullOrEmpty]
+        [ArgumentCompleter(typeof(EntityArgumentCompleter))]
         public string PrimaryEntity { get; set; }
 
         [Parameter]
         [ValidateNotNullOrEmpty]
+        [ArgumentCompleter(typeof(EntityArgumentCompleter))]
         public string SecondaryEntity { get; set; }
 
         [Parameter]
@@ -88,6 +91,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
         public Guid User { get; set; }
 
         [Parameter(ValueFromRemainingArguments = true)]
+        [ArgumentCompleter(typeof(AttributeArgumentCompleter))]
         public string[] Attributes { get; set; }
 
         [Parameter]

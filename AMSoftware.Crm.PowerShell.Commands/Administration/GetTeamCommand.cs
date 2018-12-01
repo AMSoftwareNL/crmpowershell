@@ -36,7 +36,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
 
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = GetTeamByIdParameterSet, ValueFromPipeline = true)]
         [ValidateNotNull]
-        public Guid Id { get; set; }
+        public Guid[] Id { get; set; }
 
         [Parameter(Position = 0, ParameterSetName = GetAllTeamsParameterSet)]
         [Alias("Include")]
@@ -71,7 +71,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
                     GetFilteredContent();
                     break;
                 case GetTeamByIdParameterSet:
-                    WriteObject(_repository.Get("team", Id));
+                    foreach (Guid id in Id)
+                    {
+                        WriteObject(_repository.Get("team", id));
+                    }
                     break;
                 default:
                     break;

@@ -135,8 +135,8 @@
     <Compile Include="Metadata\AddAttributeCommand.cs" />
     <Compile Include="Metadata\GetEntityKeyCommand.cs" />
     <Compile Include="Metadata\RemoveEntityKeyCommand.cs" />
-    <Compile Include="Metadata\SetRelationshipCommand.cs" />
     <Compile Include="Metadata\SetRelationshipCascadeConfigCommand.cs" />
+    <Compile Include="Metadata\SetRelationshipCommand.cs" />
     <Compile Include="Metadata\NewEntityCommand.cs" />
     <Compile Include="Metadata\NewOptionSetCommand.cs" />
     <Compile Include="Metadata\AddRelationshipCommand.cs" />
@@ -186,7 +186,6 @@
     <None Include="..\AMSoftware.Crm.Powershell.snk">
       <Link>AMSoftware.Crm.Powershell.snk</Link>
     </None>
-    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -199,6 +198,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy "$(SolutionDir)AMSoftware.Crm.PowerShell\*.*" "$(TargetDir)" /Y
+copy "$(SolutionDir)debug.ps1" "$(TargetDir)" /Y
 del "$(TargetDir)*.xml" /F /Q</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

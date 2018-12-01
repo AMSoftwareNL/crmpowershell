@@ -34,7 +34,7 @@ The behavior of the attribute.
 ```yaml
 Type: CrmDateTimeBehavior
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: UserSettings, DateOnly, TimeZoneIndependent
 
 Required: False
@@ -50,7 +50,7 @@ Whether the date and time behavior can be changed for the attribute.
 ```yaml
 Type: Boolean
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -65,7 +65,7 @@ Whether any settings not controlled by managed properties can be changed.
 ```yaml
 Type: Boolean
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -80,7 +80,7 @@ The description of the attribute.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -95,7 +95,7 @@ The display name for the attribute.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -125,7 +125,7 @@ The date/time display format.
 ```yaml
 Type: CrmDateTimeAttributeFormat
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: DateOnly, DateAndTime
 
 Required: False
@@ -141,7 +141,7 @@ The input method editor (IME) mode for the attribute.
 ```yaml
 Type: CrmImeType
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: Auto, Active, Disabled, Inactive
 
 Required: False
@@ -157,7 +157,7 @@ Whether the attribute is enabled for auditing.
 ```yaml
 Type: Boolean
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -172,7 +172,7 @@ Whether the attribute is a custom attribute.
 ```yaml
 Type: Boolean
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -187,7 +187,7 @@ Whether the attribute is enabled for global filtering.
 ```yaml
 Type: Boolean
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -202,7 +202,7 @@ Whether the attribute display name can be changed.
 ```yaml
 Type: Boolean
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -217,7 +217,7 @@ Whether the attribute is secured for field-level security.
 ```yaml
 Type: Boolean
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -232,7 +232,7 @@ Whether the attribute is sortable.
 ```yaml
 Type: Boolean
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -247,7 +247,7 @@ Whether the attribute appears in Advanced Find.
 ```yaml
 Type: Boolean
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -277,7 +277,7 @@ Returns an object that represents the DateTimeAttributeMetadata. By default, thi
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -292,7 +292,7 @@ The data entry requirement level enforced for the attribute.
 ```yaml
 Type: CrmRequiredLevel
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: Unknown, Required, Recommended, Optional
 
 Required: False
@@ -308,11 +308,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### None
-
 ## OUTPUTS
 
 ### None
-
 ## NOTES
 
 ## RELATED LINKS

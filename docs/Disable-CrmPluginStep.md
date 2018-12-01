@@ -13,7 +13,7 @@ Disable a SDK Message Processing Step.
 ## SYNTAX
 
 ```
-Disable-CrmPluginStep [-Id] <Guid> [<CommonParameters>]
+Disable-CrmPluginStep [-Id] <Guid[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -32,9 +32,9 @@ PS C:\> Disable-CrmPluginStep -Id 'BD1D1AF1-D43F-4B00-96DC-979DC0709CDE'
 The id of the SDK Message Processing Step to disable.
 
 ```yaml
-Type: Guid
+Type: Guid[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -49,11 +49,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.Guid
-
 ## OUTPUTS
 
 ### None
-
 ## NOTES
 
 ## RELATED LINKS

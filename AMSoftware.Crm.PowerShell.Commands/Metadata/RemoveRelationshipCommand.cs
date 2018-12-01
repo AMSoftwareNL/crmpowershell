@@ -16,6 +16,7 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 using System.Management.Automation;
+using AMSoftware.Crm.PowerShell.Common.ArgumentCompleters;
 using AMSoftware.Crm.PowerShell.Common.Repositories;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Metadata
@@ -36,14 +37,17 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = RemoveRelationshipByEntityParameterSet, ValueFromPipelineByPropertyName = true)]
         [Alias("EntityLogicalName")]
         [ValidateNotNullOrEmpty]
+        [ArgumentCompleter(typeof(EntityArgumentCompleter))]
         public string Entity { get; set; }
 
         [Parameter(Mandatory = true, Position = 2, ParameterSetName = RemoveRelationshipByEntityParameterSet)]
         [ValidateNotNullOrEmpty]
+        [ArgumentCompleter(typeof(EntityArgumentCompleter))]
         public string FromEntity { get; set; }
 
         [Parameter(ParameterSetName = RemoveRelationshipByEntityParameterSet)]
         [ValidateNotNullOrEmpty]
+        [ArgumentCompleter(typeof(AttributeArgumentCompleter))]
         public string Attribute { get; set; }
 
         protected override void ExecuteCmdlet()

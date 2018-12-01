@@ -22,6 +22,7 @@ using AMSoftware.Crm.PowerShell.Common;
 using AMSoftware.Crm.PowerShell.Common.Repositories;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
+using AMSoftware.Crm.PowerShell.Common.ArgumentCompleters;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
@@ -36,7 +37,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
 
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = GetProcessByIdParameterSet, ValueFromPipeline = true)]
         [ValidateNotNull]
-        public Guid Id { get; set; }
+        public Guid[] Id { get; set; }
 
         [Parameter(Mandatory = false, Position = 0, ParameterSetName = GetAllProcessesParameterSet)]
         [Alias("Include")]
@@ -51,6 +52,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
 
         [Parameter(Mandatory = false, Position = 10, ParameterSetName = GetAllProcessesParameterSet)]
         [ValidateNotNullOrEmpty]
+        [ArgumentCompleter(typeof(EntityArgumentCompleter))]
         public string Entity { get; set; }
 
         [Parameter(Mandatory = false, Position = 30, ParameterSetName = GetAllProcessesParameterSet)]
@@ -64,7 +66,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
             switch (this.ParameterSetName)
             {
                 case GetProcessByIdParameterSet:
-                    WriteObject(_repository.Get("workflow", Id));
+                    foreach (Guid id in Id)
+                    {
+                        WriteObject(_repository.Get("workflow", id));
+                    }
                     break;
                 case GetAllProcessesParameterSet:
                     GetFilteredContent();

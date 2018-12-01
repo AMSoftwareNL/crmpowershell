@@ -49,11 +49,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### None
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Discovery.OrganizationDetail
-
 ## NOTES
 
 ## RELATED LINKS

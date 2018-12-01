@@ -52,7 +52,7 @@ The id of the current user or team.
 ```yaml
 Type: Guid
 Parameter Sets: ReassignOwner
-Aliases: 
+Aliases:
 
 Required: True
 Position: 2
@@ -67,7 +67,7 @@ The team of principal of the current owner.
 ```yaml
 Type: CrmPrincipalType
 Parameter Sets: ReassignOwner
-Aliases: 
+Aliases:
 Accepted values: User, Team
 
 Required: True
@@ -83,7 +83,7 @@ The id of the record to update the owner for.
 ```yaml
 Type: Guid
 Parameter Sets: AssignOwnerRecord
-Aliases: 
+Aliases:
 
 Required: True
 Position: 2
@@ -98,7 +98,7 @@ The id of the team or user of the new owner.
 ```yaml
 Type: Guid
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -113,7 +113,7 @@ The type of principal of the new owner.
 ```yaml
 Type: CrmPrincipalType
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: User, Team
 
 Required: True
@@ -129,11 +129,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
-
 ## OUTPUTS
 
 ### None
-
 ## NOTES
 
 ## RELATED LINKS

@@ -25,7 +25,7 @@ Get-CrmRelationship [-Name] <String> [<CommonParameters>]
 
 ### GetRelationshipById
 ```
-Get-CrmRelationship [-Id] <Guid> [<CommonParameters>]
+Get-CrmRelationship [-Id] <Guid[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -48,7 +48,7 @@ Retrieve only the metadata for relationships that are marked as custom.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: GetRelationshipByFilter
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -80,7 +80,7 @@ Exclude the metadata for relationships whose SchemaName matches the provided pat
 ```yaml
 Type: String
 Parameter Sets: GetRelationshipByFilter
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -95,7 +95,7 @@ Do not retrieve metadata for relationships that are marked as managed.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: GetRelationshipByFilter
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -108,7 +108,7 @@ Accept wildcard characters: False
 The MetadataId of the relationship to retrieve.
 
 ```yaml
-Type: Guid
+Type: Guid[]
 Parameter Sets: GetRelationshipById
 Aliases: MetadataId
 
@@ -125,7 +125,7 @@ Include the metadata for relationships whose SchemaName matches the provided pat
 ```yaml
 Type: String
 Parameter Sets: GetRelationshipByFilter
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -142,7 +142,7 @@ NOTE: This parameter is case sensitive. i.e. it must match the case of the Schem
 ```yaml
 Type: String
 Parameter Sets: GetRelationshipByName
-Aliases: 
+Aliases: SchemaName
 
 Required: True
 Position: 1
@@ -157,7 +157,7 @@ The LogicalName of the related entity participating in the relationship to retri
 ```yaml
 Type: String
 Parameter Sets: GetRelationshipByFilter
-Aliases: 
+Aliases:
 
 Required: False
 Position: 2
@@ -180,7 +180,7 @@ Accepted values are:
 ```yaml
 Type: CrmRelationshipType
 Parameter Sets: GetRelationshipByFilter
-Aliases: 
+Aliases:
 Accepted values: All, OneToMany, ManyToMany
 
 Required: False
@@ -196,11 +196,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### None
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Metadata.RelationshipMetadataBase
-
 ## NOTES
 The Entity, RelatedEntity and Name parameters are case sensitive. i.e. these must match the case of the LogicalName or SchemaName exactly.
 

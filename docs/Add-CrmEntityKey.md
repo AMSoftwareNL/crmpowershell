@@ -43,7 +43,7 @@ The LogicalName of the attributes for the key.
 ```yaml
 Type: String[]
 Parameter Sets: AddEntityKey
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -58,7 +58,7 @@ The displayname for the key.
 ```yaml
 Type: String
 Parameter Sets: AddEntityKey
-Aliases: 
+Aliases:
 
 Required: True
 Position: 3
@@ -115,7 +115,7 @@ The name for the key.
 ```yaml
 Type: String
 Parameter Sets: AddEntityKey
-Aliases: 
+Aliases:
 
 Required: True
 Position: 2
@@ -130,7 +130,7 @@ Returns an object that represents the EntityKeyMetadata. By default, this cmdlet
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -145,7 +145,7 @@ The SchemaName for the key. If omitted the Name will be used as the SchemaName.
 ```yaml
 Type: String
 Parameter Sets: AddEntityKey
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -160,11 +160,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### None
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Metadata.EntityKeyMetadata
-
 ## NOTES
 
 ## RELATED LINKS

@@ -30,21 +30,24 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]
         [Alias("Id")]
         [ValidateNotNull]
-        public Guid User { get; set; }
+        public Guid[] User { get; set; }
 
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
-            ExecuteAction(string.Format("{0}", User), delegate
+            foreach (Guid id in User)
             {
-                OrganizationRequest request = new OrganizationRequest("RemoveParent")
+                ExecuteAction(string.Format("{0}", User), delegate
                 {
-                    Parameters = new ParameterCollection()
-                };
-                request.Parameters["Target"] = new EntityReference("systemuser", User);
+                    OrganizationRequest request = new OrganizationRequest("RemoveParent")
+                    {
+                        Parameters = new ParameterCollection()
+                    };
+                    request.Parameters["Target"] = new EntityReference("systemuser", id);
 
-                OrganizationResponse response = _repository.Execute(request);
-            });
+                    OrganizationResponse response = _repository.Execute(request);
+                });
+            }
         }
     }
 }

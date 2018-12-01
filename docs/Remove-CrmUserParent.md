@@ -13,7 +13,7 @@ Remove the parent for a system user (user) record.
 ## SYNTAX
 
 ```
-Remove-CrmUserParent [-User] <Guid> [-WhatIf] [-Confirm] [<CommonParameters>]
+Remove-CrmUserParent [-User] <Guid[]> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -42,7 +42,7 @@ Accept wildcard characters: False
 The id of the user to remove the parent for.
 
 ```yaml
-Type: Guid
+Type: Guid[]
 Parameter Sets: (All)
 Aliases: Id
 
@@ -75,11 +75,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.Guid
-
 ## OUTPUTS
 
 ### None
-
 ## NOTES
 
 ## RELATED LINKS

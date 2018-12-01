@@ -13,7 +13,7 @@ Set the teams a user is a member of.
 ## SYNTAX
 
 ```
-Set-CrmUserTeams [-User] <Guid> [-Teams] <Guid[]> [-Overwrite] [-PassThru] [<CommonParameters>]
+Set-CrmUserTeams [-User] <Guid[]> [-Teams] <Guid[]> [-Overwrite] [-PassThru] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -29,7 +29,7 @@ Overwrite the current teams for the user. If omitted the existing and new teams 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -44,7 +44,7 @@ Returns an object that represents the user. By default, this cmdlet does not gen
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -59,7 +59,7 @@ The id of the teams the user is a member of.
 ```yaml
 Type: Guid[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -72,7 +72,7 @@ Accept wildcard characters: False
 The id of the user to set the teams for.
 
 ```yaml
-Type: Guid
+Type: Guid[]
 Parameter Sets: (All)
 Aliases: Id
 
@@ -89,11 +89,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.Guid
-
 ## OUTPUTS
 
 ### None
-
 ## NOTES
 
 ## RELATED LINKS

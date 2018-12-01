@@ -13,7 +13,7 @@ Execute a workflow.
 ## SYNTAX
 
 ```
-Start-CrmProcess [-Process] <Guid> [-Record] <Guid> [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
+Start-CrmProcess [-Process] <Guid> [-Record] <Guid[]> [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -53,7 +53,7 @@ Returns an object that represents the asyncoperation. By default, this cmdlet do
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -68,7 +68,7 @@ The id of the workflow (process) to execute.
 ```yaml
 Type: Guid
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -83,7 +83,7 @@ the ID of the record on which the workflow executes.
 The entity is determined by the entity the workflow is associated with.
 
 ```yaml
-Type: Guid
+Type: Guid[]
 Parameter Sets: (All)
 Aliases: Id
 
@@ -116,11 +116,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.Guid
-
 ## OUTPUTS
 
 ### System.Guid
-
 ## NOTES
 
 ## RELATED LINKS

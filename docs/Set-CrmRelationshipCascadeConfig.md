@@ -31,7 +31,7 @@ The referenced entity record owner is changed.
 ```yaml
 Type: CrmCascadeType
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: None, Cascade, Active, UserOwned, RemoveLink, Restrict
 
 Required: False
@@ -47,7 +47,7 @@ The referenced entity record is deleted.
 ```yaml
 Type: CrmCascadeType
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: None, Cascade, Active, UserOwned, RemoveLink, Restrict
 
 Required: False
@@ -63,7 +63,7 @@ The record is merged with another record.
 ```yaml
 Type: CrmCascadeType
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: None, Cascade, Active, UserOwned, RemoveLink, Restrict
 
 Required: False
@@ -94,7 +94,7 @@ The value of the referencing attribute in a parental relationship changes.
 ```yaml
 Type: CrmCascadeType
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: None, Cascade, Active, UserOwned, RemoveLink, Restrict
 
 Required: False
@@ -110,7 +110,7 @@ The referenced entity record is shared with another user.
 ```yaml
 Type: CrmCascadeType
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: None, Cascade, Active, UserOwned, RemoveLink, Restrict
 
 Required: False
@@ -126,7 +126,7 @@ Sharing is removed for the referenced entity record.
 ```yaml
 Type: CrmCascadeType
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: None, Cascade, Active, UserOwned, RemoveLink, Restrict
 
 Required: False
@@ -142,11 +142,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### None
-
 ## OUTPUTS
 
 ### System.Object
-
 ## NOTES
 
 ## RELATED LINKS

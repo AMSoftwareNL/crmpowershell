@@ -35,7 +35,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = GetSolutionByIdParameterSet, ValueFromPipeline = true)]
         [ValidateNotNull]
-        public Guid Id { get; set; }
+        public Guid[] Id { get; set; }
 
         [Parameter(ParameterSetName = GetAllSolutionsParameterSet, Position = 0)]
         [Alias("Include")]
@@ -61,7 +61,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
                     GetFilteredContent();
                     break;
                 case GetSolutionByIdParameterSet:
-                    WriteObject(_repository.Get("solution", Id, null));
+                    foreach (Guid id in Id)
+                    {
+                        WriteObject(_repository.Get("solution", id, null));
+                    }
                     break;
                 default:
                     break;

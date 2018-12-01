@@ -29,21 +29,23 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 
         [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]
         [ValidateNotNullOrEmpty]
-        public Guid Id { get; set; }
+        public Guid[] Id { get; set; }
 
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
-
-            OrganizationRequest request = new OrganizationRequest("SetState")
+            foreach (Guid id in Id)
             {
-                Parameters = new ParameterCollection()
-            };
-            request.Parameters.Add("EntityMoniker", new EntityReference("sdkmessageprocessingstep", Id));
-            request.Parameters.Add("State", new OptionSetValue(0));
-            request.Parameters.Add("Status", new OptionSetValue(-1));
+                OrganizationRequest request = new OrganizationRequest("SetState")
+                {
+                    Parameters = new ParameterCollection()
+                };
+                request.Parameters.Add("EntityMoniker", new EntityReference("sdkmessageprocessingstep", id));
+                request.Parameters.Add("State", new OptionSetValue(0));
+                request.Parameters.Add("Status", new OptionSetValue(-1));
 
-            _repository.Execute(request);
+                _repository.Execute(request);
+            }
         }
     }
 
@@ -54,21 +56,24 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 
         [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]
         [ValidateNotNullOrEmpty]
-        public Guid Id { get; set; }
+        public Guid[] Id { get; set; }
 
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
 
-            OrganizationRequest request = new OrganizationRequest("SetState")
+            foreach (Guid id in Id)
             {
-                Parameters = new ParameterCollection()
-            };
-            request.Parameters.Add("EntityMoniker", new EntityReference("sdkmessageprocessingstep", Id));
-            request.Parameters.Add("State", new OptionSetValue(1));
-            request.Parameters.Add("Status", new OptionSetValue(-1));
+                OrganizationRequest request = new OrganizationRequest("SetState")
+                {
+                    Parameters = new ParameterCollection()
+                };
+                request.Parameters.Add("EntityMoniker", new EntityReference("sdkmessageprocessingstep", id));
+                request.Parameters.Add("State", new OptionSetValue(1));
+                request.Parameters.Add("Status", new OptionSetValue(-1));
 
-            _repository.Execute(request);
+                _repository.Execute(request);
+            }
         }
     }
 }

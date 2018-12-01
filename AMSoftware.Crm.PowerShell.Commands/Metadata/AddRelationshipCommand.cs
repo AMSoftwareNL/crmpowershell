@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Management.Automation;
 using AMSoftware.Crm.PowerShell.Common;
+using AMSoftware.Crm.PowerShell.Common.ArgumentCompleters;
 using AMSoftware.Crm.PowerShell.Common.Repositories;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Metadata;
@@ -36,19 +37,23 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = AddManyToManyRelationsipParameterSet)]
         [ValidateNotNullOrEmpty]
+        [ArgumentCompleter(typeof(EntityArgumentCompleter))]
         public string Entity1 { get; set; }
 
         [Parameter(Mandatory = true, Position = 2, ParameterSetName = AddManyToManyRelationsipParameterSet)]
         [ValidateNotNullOrEmpty]
+        [ArgumentCompleter(typeof(EntityArgumentCompleter))]
         public string Entity2 { get; set; }
 
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = AddOneToManyRelationshipParameterSet, ValueFromPipelineByPropertyName = true)]
         [Alias("EntityLogicalName", "LogicalName")]
         [ValidateNotNullOrEmpty]
+        [ArgumentCompleter(typeof(EntityArgumentCompleter))]
         public string Entity { get; set; }
 
         [Parameter(Mandatory = true, Position = 2, ParameterSetName = AddOneToManyRelationshipParameterSet)]
         [ValidateNotNullOrEmpty]
+        [ArgumentCompleter(typeof(EntityArgumentCompleter))]
         public string ToEntity { get; set; }
 
         [Parameter(Mandatory = true, Position = 3)]

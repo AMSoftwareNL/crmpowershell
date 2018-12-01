@@ -39,7 +39,7 @@ The location to store the plugin assembly.
 ```yaml
 Type: CrmAssemblySourceType
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: Database, Disk, GAC
 
 Required: False
@@ -55,7 +55,7 @@ The description for the plugin.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -70,7 +70,7 @@ Executes the action without prompting for confirmation.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -85,7 +85,7 @@ The isolation mode for the plugin assembly.
 ```yaml
 Type: CrmAssemblyIsolationMode
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: None, Sandbox
 
 Required: False
@@ -116,7 +116,7 @@ Returns an object that represents the Plugin. By default, this cmdlet does not g
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -131,7 +131,7 @@ The path to the plugin assembly.
 ```yaml
 Type: String[]
 Parameter Sets: RegisterPluginFromPath
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -146,7 +146,7 @@ The names of the plugins to register from the assembly.
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -161,11 +161,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.String[]
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
-
 ## NOTES
 
 ## RELATED LINKS

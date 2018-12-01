@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
 using System.Xml;
+using AMSoftware.Crm.PowerShell.Common.ArgumentCompleters;
 using AMSoftware.Crm.PowerShell.Common.Repositories;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
@@ -45,6 +46,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
         [Parameter(ParameterSetName = PublishComponentsParameterSet)]
         [ValidateNotNull]
         [ValidateCount(1, int.MaxValue)]
+        [ArgumentCompleter(typeof(EntityArgumentCompleter))]
         public string[] Entities { get; set; }
 
         [Parameter(ParameterSetName = PublishComponentsParameterSet)]
@@ -55,6 +57,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
         [Parameter(ParameterSetName = PublishComponentsParameterSet)]
         [ValidateNotNull]
         [ValidateCount(1, int.MaxValue)]
+        [ArgumentCompleter(typeof(OptionSetArgumentCompleter))]
         public string[] Optionsets { get; set; }
 
         [Parameter(ParameterSetName = PublishComponentsParameterSet)]

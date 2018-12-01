@@ -20,7 +20,7 @@ Get-CrmAttribute [-Entity] <String> [[-Name] <String>] [-Exclude <String>] [-Cus
 
 ### GetAttributeById
 ```
-Get-CrmAttribute [-Id] <Guid> [<CommonParameters>]
+Get-CrmAttribute [-Id] <Guid[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -49,7 +49,7 @@ Accepted values are:
 ```yaml
 Type: String
 Parameter Sets: GetAttributesByFilter
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -64,7 +64,7 @@ Retrieve only the metadata for attributes that are marked as custom.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: GetAttributesByFilter
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -96,7 +96,7 @@ Exclude the metadata for attributes whose LogicalName matches the provided patte
 ```yaml
 Type: String
 Parameter Sets: GetAttributesByFilter
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -111,7 +111,7 @@ Do not retrieve metadata for attributes that are marked as managed.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: GetAttributesByFilter
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -124,7 +124,7 @@ Accept wildcard characters: False
 The MetadataId of the attribute to retrieve.
 
 ```yaml
-Type: Guid
+Type: Guid[]
 Parameter Sets: GetAttributeById
 Aliases: MetadataId
 
@@ -141,7 +141,7 @@ Include metadata for attributes marked as linked attributes. This are attributes
 ```yaml
 Type: SwitchParameter
 Parameter Sets: GetAttributesByFilter
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -173,11 +173,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### None
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Metadata.AttributeMetadata
-
 ## NOTES
 The Entity and Name parameters are case sensitive. i.e. these must match the case of the LogicalName exactly.
 

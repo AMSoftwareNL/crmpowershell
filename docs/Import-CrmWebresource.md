@@ -43,7 +43,7 @@ The encoding to use when reading the file from the filesystem.
 ```yaml
 Type: FileSystemCmdletProviderEncoding
 Parameter Sets: ImportWebresourceFromPath
-Aliases: 
+Aliases:
 Accepted values: Unknown, String, Unicode, Byte, BigEndianUnicode, UTF8, UTF7, UTF32, Ascii, Default, Oem, BigEndianUTF32
 
 Required: False
@@ -59,7 +59,7 @@ The id of the webresource to import the content for.
 ```yaml
 Type: Guid
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -89,7 +89,7 @@ Returns an object that represents the WebResource. By default, this cmdlet does 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -104,7 +104,7 @@ A byte-array containing the content for the webresource to import.
 ```yaml
 Type: Byte[]
 Parameter Sets: ImportWebresourceFromValue
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -119,11 +119,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.Guid
-
 ## OUTPUTS
 
 ### None
-
 ## NOTES
 
 ## RELATED LINKS

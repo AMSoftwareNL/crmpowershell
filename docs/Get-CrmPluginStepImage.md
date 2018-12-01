@@ -43,7 +43,7 @@ Specifies the number of records to retrieve from the beginning.
 ```yaml
 Type: UInt64
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -58,7 +58,7 @@ The id of the SDK Message Processing Step image to retrieve.
 ```yaml
 Type: Guid
 Parameter Sets: GetPluginStepImageById
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -73,7 +73,7 @@ The type of SDK Message Procesing Step image to retrieve. If not specified all i
 ```yaml
 Type: CrmPluginImageType
 Parameter Sets: GetPluginStepImageByFilter
-Aliases: 
+Aliases:
 Accepted values: PreImage, PostImage
 
 Required: False
@@ -91,7 +91,7 @@ Because of the limitations of Dynamics CRM, the total count is only returned acc
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -106,7 +106,7 @@ The id of the SDK Message Processing Step to retrieve images for.
 ```yaml
 Type: Guid
 Parameter Sets: GetPluginStepImageByFilter
-Aliases: 
+Aliases:
 
 Required: False
 Position: 1
@@ -121,7 +121,7 @@ Skips (does not return) the specified number of records.
 ```yaml
 Type: UInt64
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -136,11 +136,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.Guid
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
-
 ## NOTES
 
 ## RELATED LINKS

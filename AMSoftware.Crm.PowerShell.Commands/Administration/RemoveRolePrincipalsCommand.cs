@@ -18,7 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using AMSoftware.Crm.PowerShell.Common;
 using AMSoftware.Crm.PowerShell.Common.Helpers;
 using AMSoftware.Crm.PowerShell.Common.Repositories;
-using Microsoft.Xrm.Sdk;
 using System;
 using System.Linq;
 using System.Management.Automation;
@@ -36,7 +35,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
         [Alias("Id")]
         [ValidateNotNull]
-        public Guid Role { get; set; }
+        public Guid[] Role { get; set; }
 
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = RemoveRolePrincipalsSelectedParameterSet)]
         [Parameter(Mandatory = false, Position = 1, ParameterSetName = RemoveRolePrincipalsAllParameterSet)]
@@ -69,18 +68,21 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
 
         private void RemoveRolePrincipalsAll()
         {
-            switch (PrincipalType)
+            foreach (Guid roleId in Role)
             {
-                case CrmPrincipalType.User:
-                    RemoveRoleUsersAll();
-                    break;
-                case CrmPrincipalType.Team:
-                    RemoveRoleTeamsAll();
-                    break;
-                default:
-                    RemoveRoleUsersAll();
-                    RemoveRoleTeamsAll();
-                    break;
+                switch (PrincipalType)
+                {
+                    case CrmPrincipalType.User:
+                        RemoveRoleUsersAll(roleId);
+                        break;
+                    case CrmPrincipalType.Team:
+                        RemoveRoleTeamsAll(roleId);
+                        break;
+                    default:
+                        RemoveRoleUsersAll(roleId);
+                        RemoveRoleTeamsAll(roleId);
+                        break;
+                }
             }
         }
 
@@ -100,24 +102,27 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
             }
 
             string primaryEntityName = "role";
-            Guid primaryEntityId = Role;
-            Guid[] secondaryEntityIds = Principals;
-            Guid[] currentSetIds = SecurityManagementHelper.GetPrincipalsInRole(_repository, PrincipalType.Value, Role).Select(e => e.Id).ToArray();
-            Guid[] removeSet = secondaryEntityIds.Intersect(currentSetIds).ToArray();
-
-            if (removeSet != null && removeSet.Length > 0)
+            foreach (Guid roleId in Role)
             {
-                SecurityManagementHelper.UnlinkPrincipalRoles(_repository, primaryEntityName, primaryEntityId, secondaryEntityName, removeSet);
+                Guid primaryEntityId = roleId;
+                Guid[] secondaryEntityIds = Principals;
+                Guid[] currentSetIds = SecurityManagementHelper.GetPrincipalsInRole(_repository, PrincipalType.Value, roleId).Select(e => e.Id).ToArray();
+                Guid[] removeSet = secondaryEntityIds.Intersect(currentSetIds).ToArray();
+
+                if (removeSet != null && removeSet.Length > 0)
+                {
+                    SecurityManagementHelper.UnlinkPrincipalRoles(_repository, primaryEntityName, primaryEntityId, secondaryEntityName, removeSet);
+                }
             }
         }
 
-        private void RemoveRoleUsersAll()
+        private void RemoveRoleUsersAll(Guid roleId)
         {
             string secondaryEntityName = "systemuser";
             string primaryEntityName = "role";
-            Guid primaryEntityId = Role;
+            Guid primaryEntityId = roleId;
             Guid[] secondaryEntityIds = Principals;
-            Guid[] currentSetIds = SecurityManagementHelper.GetPrincipalsInRole(_repository, PrincipalType.Value, Role).Select(e => e.Id).ToArray();
+            Guid[] currentSetIds = SecurityManagementHelper.GetPrincipalsInRole(_repository, PrincipalType.Value, roleId).Select(e => e.Id).ToArray();
             Guid[] removeSet = secondaryEntityIds.Intersect(currentSetIds).ToArray();
 
             if (removeSet != null && removeSet.Length > 0)
@@ -126,13 +131,13 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
             }
         }
 
-        private void RemoveRoleTeamsAll()
+        private void RemoveRoleTeamsAll(Guid roleId)
         {
             string secondaryEntityName = "team";
             string primaryEntityName = "role";
-            Guid primaryEntityId = Role;
+            Guid primaryEntityId = roleId;
             Guid[] secondaryEntityIds = Principals;
-            Guid[] currentSetIds = SecurityManagementHelper.GetPrincipalsInRole(_repository, PrincipalType.Value, Role).Select(e => e.Id).ToArray();
+            Guid[] currentSetIds = SecurityManagementHelper.GetPrincipalsInRole(_repository, PrincipalType.Value, roleId).Select(e => e.Id).ToArray();
             Guid[] removeSet = secondaryEntityIds.Intersect(currentSetIds).ToArray();
 
             if (removeSet != null && removeSet.Length > 0)

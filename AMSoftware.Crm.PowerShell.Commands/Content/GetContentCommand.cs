@@ -20,6 +20,7 @@ using System.Collections;
 using System.Management.Automation;
 using System.Xml;
 using AMSoftware.Crm.PowerShell.Common;
+using AMSoftware.Crm.PowerShell.Common.ArgumentCompleters;
 using AMSoftware.Crm.PowerShell.Common.Repositories;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
@@ -41,10 +42,11 @@ namespace AMSoftware.Crm.PowerShell.Commands.Content
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = GetContentForEntityByQueryParameterSet)]
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = GetContentForEntityByKeysParameterSet)]
         [ValidateNotNullOrEmpty]
+        [ArgumentCompleter(typeof(EntityArgumentCompleter))]
         public string Entity { get; set; }
 
         [Parameter(Mandatory = true, Position = 2, ParameterSetName = GetContentForEntityByIdParameterSet, ValueFromPipeline = true)]
-        public Guid Id { get; set; }
+        public Guid[] Id { get; set; }
 
         [Parameter(Mandatory = true, Position = 2, ParameterSetName = GetContentForEntityByKeysParameterSet)]
         public Hashtable Keys { get; set; }
@@ -75,7 +77,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Content
             switch (this.ParameterSetName)
             {
                 case GetContentForEntityByIdParameterSet:
-                    WriteObject(_repository.Get(Entity, Id, Columns), false);
+                    foreach (Guid id in Id)
+                    {
+                        WriteObject(_repository.Get(Entity, id, Columns), false);
+                    }
                     break;
                 case GetContentForEntityByKeysParameterSet:
                     WriteObject(_repository.Get(Entity, Keys, Columns), false);
@@ -87,7 +92,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Content
                     GetContentByQuery(queryFromQuery);
                     break;
                 case GetContentWithFetchXmlParameterSet:
-                    QueryExpression queryFromFetch = BuildQueryExpression(FetchXml.OuterXml);
+                    FetchExpression queryFromFetch = new FetchExpression(FetchXml.OuterXml);
                     GetContentByQuery(queryFromFetch);
                     break;
                 default:
@@ -151,19 +156,6 @@ namespace AMSoftware.Crm.PowerShell.Commands.Content
             }
 
             return query;
-        }
-
-        private QueryExpression BuildQueryExpression(string fetchXml)
-        {
-            OrganizationRequest request = new OrganizationRequest()
-            {
-                RequestName = "FetchXmlToQueryExpression"
-            };
-            request.Parameters["FetchXml"] = fetchXml;
-
-            OrganizationResponse response = _repository.Execute(request);
-
-            return (QueryExpression)response.Results["Query"];
         }
 
         private ColumnSet BuildColumnSet(string[] columns)

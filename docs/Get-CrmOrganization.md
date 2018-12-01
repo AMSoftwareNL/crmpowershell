@@ -36,7 +36,7 @@ Exclude organizations whose name matches the provided pattern.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -66,11 +66,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### None
-
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Discovery.OrganizationDetail
-
 ## NOTES
 
 ## RELATED LINKS
