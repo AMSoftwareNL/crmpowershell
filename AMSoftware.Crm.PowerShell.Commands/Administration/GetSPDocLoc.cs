@@ -13,15 +13,17 @@ using System.Threading.Tasks;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
-    [Cmdlet(VerbsCommon.Get, "CrmSPDocLoc", HelpUri = HelpUrlConstants.GetRoleHelpUrl, SupportsPaging = true, DefaultParameterSetName = "")]
-    [OutputType(typeof(Entity))]
+    [Cmdlet(VerbsCommon.Get, "CrmSPDocLoc", HelpUri = HelpUrlConstants.GetSPDoclLocHelpUrl, SupportsPaging = true, DefaultParameterSetName = "")]
+    [OutputType(typeof(RetrieveAbsoluteAndSiteCollectionUrlResponse))]
     public class GetSPDocLoc :CrmCmdlet
     {
-        [Parameter(Mandatory = true)]
+        [Parameter(Mandatory = true, Position = 0)]
+        [ValidateNotNullOrEmpty]
         public Guid[] Id { get; set; }
 
         [ArgumentCompleter(typeof(EntityArgumentCompleter))]
         [Parameter]
+        [ValidateNotNullOrEmpty]
         public string Entity { get; set; }
         private ContentRepository _repository = new ContentRepository();
         protected override void ExecuteCmdlet()
