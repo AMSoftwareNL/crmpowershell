@@ -146,6 +146,6 @@ namespace AMSoftware.Crm.PowerShell.Commands
         public const string UnregisterPluginStepImageHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Unregister-CrmPluginStepImage.md";
         public const string EnablePluginStepHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Enable-CrmPluginStep.md";
         public const string DisablePluginStepHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Disable-CrmPluginStep.md";
-        public const string GetSPDoclLocHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Get-CRMSPDocLoc.md";
+        public const string GetSPDocumentLocationHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Get-CrmSPDocumentLocation.md";
     }
 }

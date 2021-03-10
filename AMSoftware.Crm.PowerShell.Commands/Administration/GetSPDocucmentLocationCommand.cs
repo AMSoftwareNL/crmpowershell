@@ -13,45 +13,53 @@ using System.Threading.Tasks;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
-    [Cmdlet(VerbsCommon.Get, "CrmSPDocLoc", HelpUri = HelpUrlConstants.GetSPDoclLocHelpUrl, SupportsPaging = true, DefaultParameterSetName = "")]
+    [Cmdlet(VerbsCommon.Get, "CrmSPDocumentLocation", HelpUri = HelpUrlConstants.GetSPDocumentLocationHelpUrl, SupportsPaging = true, DefaultParameterSetName = GetBySharePointDocumentLocationId)]
     [OutputType(typeof(RetrieveAbsoluteAndSiteCollectionUrlResponse))]
     public class GetSPDocucmentLocationCommand : CrmOrganizationCmdlet
     {
-        [Parameter(Mandatory = true, Position = 0)]
-        [ValidateNotNullOrEmpty]
-        public Guid[] Id { get; set; }
+        private const string GetBySharePointDocumentLocationId = "GetBySharePointDocumentLocationId";
 
-        [ArgumentCompleter(typeof(EntityArgumentCompleter))]
-        [Parameter]
+        [Parameter(Mandatory = true, Position = 0,ParameterSetName = GetBySharePointDocumentLocationId)]
         [ValidateNotNullOrEmpty]
-        public string Entity { get; set; }
+        [Alias("Id")]
+        public Guid[] SharePointDocumentLocationId { get; set; }
+
+        private const string GetByRegardingObjectId = "GetByRegardingObjectId";
+
+        [Parameter(Mandatory = true, Position = 0, ParameterSetName = GetByRegardingObjectId)]
+        [ValidateNotNullOrEmpty]
+        public Guid[] RegardingObjectId { get; set; }
+
         private ContentRepository _repository = new ContentRepository();
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
-            if (String.IsNullOrEmpty(Entity))
-            {
-                foreach (var id in Id)
-                {
-                    RetrieveUrlById(id);
-                }
 
-            }
-            else
+            switch (this.ParameterSetName)
             {
-                foreach (var id in Id)
-                {
-                    QueryByAttribute query = new QueryByAttribute("sharepointdocumentlocation");
-                    query.AddAttributeValue("regardingobjectid", id);
-                    var doclocresult = _repository.Get(query);
-                    foreach (var docloc in doclocresult)
+                case GetBySharePointDocumentLocationId:
                     {
-                        RetrieveUrlById(docloc.Id);
+                        foreach (var id in SharePointDocumentLocationId)
+                        {
+                            RetrieveUrlById(id);
+                        }
+                        break;
                     }
-                }
-                
+                case GetByRegardingObjectId:
+                    {
+                        foreach (var id in RegardingObjectId)
+                        {
+                            QueryByAttribute query = new QueryByAttribute("sharepointdocumentlocation");
+                            query.AddAttributeValue("regardingobjectid", id);
+                            var doclocresult = _repository.Get(query);
+                            foreach (var docloc in doclocresult)
+                            {
+                                RetrieveUrlById(docloc.Id);
+                            }
+                        }
+                        break;
+                    }
             }
-            
         }
 
         private void RetrieveUrlById(Guid id)
