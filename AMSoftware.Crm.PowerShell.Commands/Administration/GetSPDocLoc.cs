@@ -15,7 +15,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
     [Cmdlet(VerbsCommon.Get, "CrmSPDocLoc", HelpUri = HelpUrlConstants.GetRoleHelpUrl, SupportsPaging = true, DefaultParameterSetName = "")]
     [OutputType(typeof(Entity))]
-    public class GetSPDocLoc :CrmCmdlet
+    public class GetSPDocucmentLocationCommand :CrmOrganizationCmdlet
     {
         [Parameter(Mandatory = true)]
         public Guid[] Id { get; set; }
