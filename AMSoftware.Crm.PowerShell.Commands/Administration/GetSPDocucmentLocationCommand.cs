@@ -15,7 +15,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
 {
     [Cmdlet(VerbsCommon.Get, "CrmSPDocLoc", HelpUri = HelpUrlConstants.GetSPDoclLocHelpUrl, SupportsPaging = true, DefaultParameterSetName = "")]
     [OutputType(typeof(RetrieveAbsoluteAndSiteCollectionUrlResponse))]
-    public class GetSPDocLoc :CrmCmdlet
+    public class GetSPDocucmentLocationCommand : CrmOrganizationCmdlet
     {
         [Parameter(Mandatory = true, Position = 0)]
         [ValidateNotNullOrEmpty]
