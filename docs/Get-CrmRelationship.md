@@ -196,10 +196,13 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.Guid[]
+
 ### System.String
+
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Metadata.RelationshipMetadataBase
+
 ## NOTES
 The Entity, RelatedEntity and Name parameters are case sensitive. i.e. these must match the case of the LogicalName or SchemaName exactly.
 

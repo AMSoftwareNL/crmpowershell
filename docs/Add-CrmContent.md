@@ -117,9 +117,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
+
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
+
 ## NOTES
 
 ## RELATED LINKS

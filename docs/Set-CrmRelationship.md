@@ -111,9 +111,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### Microsoft.Xrm.Sdk.Metadata.RelationshipMetadataBase
+
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Metadata.RelationshipMetadataBase
+
 ## NOTES
 
 ## RELATED LINKS

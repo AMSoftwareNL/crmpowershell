@@ -237,11 +237,15 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.Guid[]
+
 ### System.String[]
+
 ### System.Xml.XmlDocument
+
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
+
 ## NOTES
 Referenced LogicalNames and SchemaNames are case sensitive. i.e. These must match the case of the LogicalName or SchemaName exactly.
 

@@ -160,9 +160,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.Byte[]
+
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
+
 ## NOTES
 
 ## RELATED LINKS

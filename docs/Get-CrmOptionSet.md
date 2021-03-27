@@ -119,9 +119,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.Guid[]
+
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Metadata.OptionSetMetadataBase
+
 ## NOTES
 The Name parameter is case sensitive. i.e. it must match the case of the LogicalName exactly.
 

@@ -52,7 +52,7 @@ The type of principal to remove.
 Type: CrmPrincipalType
 Parameter Sets: RemoveRolePrincipalsSelected
 Aliases:
-Accepted values: User, Team, User, Team, User, Team, User, Team
+Accepted values: User, Team
 
 Required: True
 Position: 1
@@ -65,7 +65,7 @@ Accept wildcard characters: False
 Type: CrmPrincipalType
 Parameter Sets: RemoveRolePrincipalsAll
 Aliases:
-Accepted values: User, Team, User, Team, User, Team, User, Team
+Accepted values: User, Team
 
 Required: False
 Position: 1
@@ -110,6 +110,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.Guid[]
+
 ## OUTPUTS
 
 ### System.Object

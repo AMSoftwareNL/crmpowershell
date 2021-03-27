@@ -141,10 +141,13 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### Microsoft.Xrm.Sdk.Metadata.OptionSetMetadata
+
 ### AMSoftware.Crm.PowerShell.Commands.Models.PSOptionSetValue[]
+
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Metadata.OptionSetMetadata
+
 ## NOTES
 
 ## RELATED LINKS

@@ -61,6 +61,21 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -FormattedValues
+Include the formatted values in the response. Adds the header 'Prefer: odata.include-annotations="OData.Community.Display.V1.FormattedValue"'
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -Method
 HTTPMethod of the request. If not included GET is used.
 
@@ -92,30 +107,17 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -FormattedValues
-Include the formatted values in the response. Adds the header 'Prefer: odata.include-annotations="OData.Community.Display.V1.FormattedValue"'
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### System.Object
+
 ## OUTPUTS
 
-### System.Object
+### System.String
+
 ## NOTES
 
 ## RELATED LINKS

@@ -139,10 +139,13 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.Guid
+
 ### System.String[]
+
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Entity
+
 ## NOTES
 
 ## RELATED LINKS

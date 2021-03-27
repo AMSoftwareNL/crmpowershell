@@ -160,10 +160,13 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.String
+
 ### Microsoft.Xrm.Sdk.Metadata.EntityKeyMetadata
+
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Metadata.EntityKeyMetadata
+
 ## NOTES
 
 ## RELATED LINKS

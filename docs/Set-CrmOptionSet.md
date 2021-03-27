@@ -126,9 +126,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### Microsoft.Xrm.Sdk.Metadata.OptionSetMetadata
+
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Metadata.OptionSetMetadata
+
 ## NOTES
 
 ## RELATED LINKS
