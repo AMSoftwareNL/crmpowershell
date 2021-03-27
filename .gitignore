@@ -12,3 +12,4 @@ sign.bat
 /bin
 /obj
 /packages
+/.vs

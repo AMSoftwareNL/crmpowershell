@@ -32,7 +32,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
         private const string ImportSolutionFromLiteralPathParameterSet = "ImportSolutionFromLiteralPath";
         private const string ImportSolutionFromPathParameterSet = "ImportSolutionFromPath";
 
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         private string[] _paths;
         private bool _shouldExpandWildcards;

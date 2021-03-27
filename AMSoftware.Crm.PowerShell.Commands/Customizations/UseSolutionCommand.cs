@@ -26,7 +26,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
     [Cmdlet(VerbsOther.Use, "CrmSolution", HelpUri = HelpUrlConstants.UseSolutionHelpUrl)]
     public sealed class UseSolutionCommand : CrmOrganizationCmdlet
     {
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         [Parameter(Position = 1, ValueFromPipeline = true)]
         [Alias("Id")]
@@ -39,11 +39,11 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 
             if (Solution.HasValue && Solution.Value != Guid.Empty)
             {
-                CrmContext.ActiveSolution = SolutionManagementHelper.GetSolutionUniqueName(_repository, Solution.Value, false);
+                CrmContext.Session.ActiveSolutionName = SolutionManagementHelper.GetSolutionUniqueName(_repository, Solution.Value, false);
             }
             else
             {
-                CrmContext.ActiveSolution = null;
+                CrmContext.Session.ActiveSolutionName = null;
             }
         }
     }

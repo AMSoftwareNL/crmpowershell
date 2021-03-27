@@ -41,14 +41,14 @@ namespace AMSoftware.Crm.PowerShell.Common.Converters
 
         public override object ConvertTo(object sourceValue, Type destinationType, IFormatProvider formatProvider, bool ignoreCase)
         {
-            if (sourceValue != null && sourceValue is Entity && destinationType == typeof(Guid))
+            if (sourceValue != null && sourceValue is Entity entityValue && destinationType == typeof(Guid))
             {
-                return ((Entity)sourceValue).Id;
+                return entityValue.Id;
             }
 
-            if (sourceValue != null && sourceValue is EntityReference && destinationType == typeof(Guid))
+            if (sourceValue != null && sourceValue is EntityReference entityReferenceValue && destinationType == typeof(Guid))
             {
-                return ((EntityReference)sourceValue).Id;
+                return entityReferenceValue.Id;
             }
 
             throw new NotSupportedException();

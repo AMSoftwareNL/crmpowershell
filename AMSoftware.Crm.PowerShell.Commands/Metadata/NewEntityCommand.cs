@@ -33,7 +33,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         internal const string NewEntityByInputObjectParameterSet = "NewEntityByInputObject";
         internal const string NewActivityParameterSet = "NewActivity";
 
-        private MetadataRepository _repository = new MetadataRepository();
+        private readonly MetadataRepository _repository = new MetadataRepository();
         private NewEntityDynamicParameters _context;
 
         [Parameter(ParameterSetName = NewActivityParameterSet)]
@@ -157,8 +157,8 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
                 attribute.SchemaName = AttributeName;
                 attribute.RequiredLevel = new AttributeRequiredLevelManagedProperty(requiredLevel);
                 attribute.MaxLength = AttributeLength ?? 100;
-                attribute.DisplayName = new Label(AttributeDisplayName, CrmContext.Language);
-                attribute.Description = new Label(AttributeDescription ?? string.Empty, CrmContext.Language);
+                attribute.DisplayName = new Label(AttributeDisplayName, CrmContext.Session.Language);
+                attribute.Description = new Label(AttributeDescription ?? string.Empty, CrmContext.Session.Language);
                 attribute.Format = StringFormat.Text;
             }
             else
@@ -178,9 +178,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
             EntityMetadata entity = new EntityMetadata()
             {
                 SchemaName = Name,
-                DisplayName = new Label(DisplayName, CrmContext.Language),
-                DisplayCollectionName = new Label(DisplayCollectionName, CrmContext.Language),
-                Description = new Label(Description ?? string.Empty, CrmContext.Language),
+                DisplayName = new Label(DisplayName, CrmContext.Session.Language),
+                DisplayCollectionName = new Label(DisplayCollectionName, CrmContext.Session.Language),
+                Description = new Label(Description ?? string.Empty, CrmContext.Session.Language),
                 OwnershipType = ownerType,
                 IsActivity = IsActivity.ToBool()
             };

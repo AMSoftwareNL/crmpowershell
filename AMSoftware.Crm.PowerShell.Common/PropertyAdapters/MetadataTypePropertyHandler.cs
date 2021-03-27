@@ -36,7 +36,7 @@ namespace AMSoftware.Crm.PowerShell.Common.PropertyAdapters
                 case Label l:
                     return new PSCrmObject<Label, string>(l, v =>
                     {
-                        var languageLabel = v.LocalizedLabels.SingleOrDefault(i => i.LanguageCode == CrmContext.Language);
+                        var languageLabel = v.LocalizedLabels.SingleOrDefault(i => i.LanguageCode == CrmContext.Session.Language);
                         if (languageLabel != null)
                         {
                             return languageLabel.Label;

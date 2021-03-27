@@ -31,7 +31,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
     [OutputType(typeof(Entity))]
     public sealed class RegisterPluginStepCommand : CrmOrganizationCmdlet
     {
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         [Parameter(Mandatory=true, Position = 1, ValueFromPipeline = true)]
         [ValidateNotNullOrEmpty]
@@ -144,7 +144,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
                 throw new Exception("Only asynchronous Steps are supported for Service Endpoint plug-ins.");
             }
 
-            string generatedDescription = string.Empty;
+            string generatedDescription;
             if (IsServiceEndpoint)
             {
                 generatedDescription = PluginManagementHelper.GenerateStepDescription(crmEventSource.GetAttributeValue<string>("name"), Message, PrimaryEntity, SecondaryEntity);

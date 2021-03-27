@@ -31,7 +31,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
         private const string GetAssemblyByIdParameterSet = "GetAssemblyById";
         private const string GetAssemblyByFilterParameterSet = "GetAssemblyByFilter";
 
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         [Parameter(Position = 1, Mandatory = true, ParameterSetName = GetAssemblyByIdParameterSet, ValueFromPipeline = true)]
         [ValidateNotNull]

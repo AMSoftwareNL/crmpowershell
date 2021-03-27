@@ -16,11 +16,10 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 using Microsoft.Xrm.Sdk;
-using Microsoft.Xrm.Sdk.Discovery;
+using Microsoft.Xrm.Tooling.Connector;
 using System;
 using System.Management.Automation;
 using System.Net;
-using System.Threading;
 
 namespace AMSoftware.Crm.PowerShell.Common
 {
@@ -38,92 +37,28 @@ namespace AMSoftware.Crm.PowerShell.Common
             catch {
                 
             }
-        }
-        
-        public static void ConnectDeployment(Uri discoveryUri, NetworkCredential credential, bool isOnPremises = false)
-        {
-            CrmSession.Connect(discoveryUri, credential, isOnPremises);
+
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
         }
 
-        public static void ConnectOrganization(OrganizationDetail organization)
+        public static void Connect(CrmServiceClient connection)
         {
-            Session.Connect(organization);
+
+            Session = new CrmSession(connection);
+        }
+
+        public static void Disconnect()
+        {
+            if (Session != null)
+            {
+                Session.Dispose();
+            }
         }
 
         public static CrmSession Session
         {
-            get
-            {
-                return CrmSession.Current;
-            }
-        }
-
-        public static IDiscoveryService DiscoveryProxy
-        {
-            get
-            {
-                if (Session == null) return null;
-                return Session.DiscoveryProxy;
-            }
-        }
-
-        public static IOrganizationService OrganizationProxy
-        {
-            get
-            {
-                if (Session == null) return null;
-                return Session.OrganizationProxy;
-            }
-        }
-
-        internal static MetadataCache Cache
-        {
-            get
-            {
-                if (Session == null) return null;
-                return Session.OrganizationCache;
-            }
-        }
-
-        public static int Language
-        {
-            get
-            {
-                if (Session == null) return Thread.CurrentThread.CurrentCulture.LCID;
-                return Session.Language;
-            }
-            set
-            {
-                if (Session != null && Session.OrganizationProxy != null)
-                {
-                    Session.Language = value;
-                }
-            }
-        }
-
-        public static string ActiveSolution
-        {
-            get
-            {
-                if (Session == null) return null;
-                return Session.ActiveSolutionName;
-            }
-            set
-            {
-                if (Session != null && Session.OrganizationProxy != null)
-                {
-                    Session.ActiveSolutionName = value;
-                }
-            }
-        }
-
-        internal static Version Version
-        {
-            get
-            {
-                if (Session == null) return null;
-                return Session.Version;
-            }
+            get;
+            private set;
         }
     }
 }

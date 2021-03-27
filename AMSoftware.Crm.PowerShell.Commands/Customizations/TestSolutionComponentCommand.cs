@@ -35,7 +35,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
         private const string TestDependenciesSolutionComponentParameterSet = "TestDependenciesSolutionComponent";
         private const string TestRequriedSolutionComponentParameterSet = "TestRequiredSolutionComponent";
 
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         [Parameter(Position = 1, ValueFromPipeline = true, ParameterSetName = TestDeleteSolutionComponentEntityParameterSet)]
         [Parameter(Position = 1, ValueFromPipeline = true, ParameterSetName = TestDependenciesSolutionComponentEntityParameterSet)]

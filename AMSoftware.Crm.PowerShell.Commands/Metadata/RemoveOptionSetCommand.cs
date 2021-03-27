@@ -24,7 +24,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
     [Cmdlet(VerbsCommon.Remove, "CrmOptionSet", HelpUri = HelpUrlConstants.RemoveOptionSetHelpUrl, SupportsShouldProcess = true)]
     public sealed class RemoveOptionSetCommand : CrmOrganizationConfirmActionCmdlet
     {
-        private MetadataRepository _repository = new MetadataRepository();
+        private readonly MetadataRepository _repository = new MetadataRepository();
 
         [Parameter(Position = 1, Mandatory = true, ValueFromPipelineByPropertyName = true)]
         [ValidateNotNullOrEmpty]

@@ -70,10 +70,10 @@ namespace AMSoftware.Crm.PowerShell.Common.Helpers
 
         public static string GetComponentName(int componentType, Guid objectId)
         {
-            MetadataRepository mdr = new MetadataRepository();
+            string componentLogicalName;
+            string primaryNameAttribute;
 
-            string componentLogicalName = null;
-            string primaryNameAttribute = null;
+            MetadataRepository mdr = new MetadataRepository();
 
             switch (componentType)
             {

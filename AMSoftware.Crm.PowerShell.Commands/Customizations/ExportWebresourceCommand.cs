@@ -19,25 +19,21 @@ using System;
 using System.Management.Automation;
 using System.Text;
 using AMSoftware.Crm.PowerShell.Common.Repositories;
-using Microsoft.PowerShell.Commands;
 using Microsoft.Xrm.Sdk;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
     [Cmdlet(VerbsData.Export, "CrmWebresource", HelpUri = HelpUrlConstants.ExportWebresourceHelpUrl)]
-    public sealed class ExportWebresourceCommand : CrmOrganizationCmdlet, IDynamicParameters
+    public sealed class ExportWebresourceCommand : CrmOrganizationCmdlet
     {
-        private ContentRepository _repository = new ContentRepository();
-        private ExportWebresourceDynamicParameters _contentParameters = new ExportWebresourceDynamicParameters();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]
         [ValidateNotNull]
         public Guid Id { get; set; }
 
-        public object GetDynamicParameters()
-        {
-            return _contentParameters;
-        }
+        [Parameter(Mandatory = false)]
+        public SwitchParameter AsBytes { get; set; }
 
         protected override void ExecuteCmdlet()
         {
@@ -47,30 +43,14 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
             string contentAsBase64 = webresource.GetAttributeValue<string>("content");
             byte[] contentAsBytes = Convert.FromBase64String(contentAsBase64);
 
-            if (_contentParameters.UsingByteEncoding)
+            if (AsBytes.ToBool())
             {
                 WriteObject(contentAsBytes);
             }
             else
             {
-                Encoding e = _contentParameters.EncodingType;
+                Encoding e = Encoding.UTF8;
                 WriteObject(e.GetString(contentAsBytes));
-            }
-        }
-    }
-
-    public sealed class ExportWebresourceDynamicParameters : FileContentDynamicsParameters
-    {
-        [Parameter]
-        public FileSystemCmdletProviderEncoding Encoding
-        {
-            get
-            {
-                return base.streamType;
-            }
-            set
-            {
-                base.streamType = value;
             }
         }
     }

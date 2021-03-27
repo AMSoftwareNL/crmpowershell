@@ -30,7 +30,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
     [OutputType(typeof(AttributeMetadata))]
     public sealed class SetAttributeCommand : CrmOrganizationCmdlet
     {
-        private MetadataRepository _repository = new MetadataRepository();
+        private readonly MetadataRepository _repository = new MetadataRepository();
 
         [Parameter(Mandatory = true, Position = 1)]
         [ValidateNotNullOrEmpty]
@@ -59,7 +59,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 
     public abstract class SetAttributeCommandBase : CrmOrganizationCmdlet, IDynamicParameters
     {
-        private MetadataRepository _repository = new MetadataRepository();
+        private readonly MetadataRepository _repository = new MetadataRepository();
         private SetAttributeDynamicParameters _context;
 
         protected AttributeMetadata _attribute;
@@ -138,8 +138,8 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         protected void WriteAttribute(AttributeMetadata attribute)
         {
             attribute.LogicalName = Name;
-            if (!string.IsNullOrWhiteSpace(DisplayName)) attribute.DisplayName = new Label(DisplayName, CrmContext.Language);
-            if (Description != null) attribute.Description = new Label(Description, CrmContext.Language);
+            if (!string.IsNullOrWhiteSpace(DisplayName)) attribute.DisplayName = new Label(DisplayName, CrmContext.Session.Language);
+            if (Description != null) attribute.Description = new Label(Description, CrmContext.Session.Language);
 
             if (Required.HasValue)
             {

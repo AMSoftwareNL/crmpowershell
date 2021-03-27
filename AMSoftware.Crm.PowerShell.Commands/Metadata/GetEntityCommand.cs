@@ -32,7 +32,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         private const string GetEntityByIdParameterSet = "GetEntityById";
         private const string GetEntitiesByFilterParameterSet = "GetEntitiesByFilter";
 
-        private MetadataRepository _repository = new MetadataRepository();
+        private readonly MetadataRepository _repository = new MetadataRepository();
 
         [Parameter(Position = 1, Mandatory = true, ParameterSetName = GetEntityByIdParameterSet, ValueFromPipeline = true)]
         [Alias("MetadataId")]

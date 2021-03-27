@@ -1,5 +1,5 @@
 ---
-external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
+external help file: AMSoftware.Crm.PowerShell.Commands.dll-Help.xml
 Module Name: AMSoftware.Crm
 online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/New-CrmOptionSet.md
 schema: 2.0.0
@@ -136,11 +136,12 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
-### None
+### Microsoft.Xrm.Sdk.Metadata.OptionSetMetadata
+### AMSoftware.Crm.PowerShell.Commands.Models.PSOptionSetValue[]
 ## OUTPUTS
 
 ### Microsoft.Xrm.Sdk.Metadata.OptionSetMetadata

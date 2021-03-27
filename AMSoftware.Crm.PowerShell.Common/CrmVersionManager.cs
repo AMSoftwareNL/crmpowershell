@@ -61,12 +61,20 @@ namespace AMSoftware.Crm.PowerShell.Common
         CRM2016_RTM,
         CRM2016_UR01,
         CRM2016_1_RTM,
-        CRM2016_2_RTM
+        CRM2016_2_RTM,
+        CRM2016_2_UR01,
+        CRM2016_2_UR02,
+        CRM2016_2_UR03,
+        CRM365_RTM,
+        CRM365_UR01,
+        CRM365_UR02,
+        CRM365_1_RTM,
+        CRM365_2_RTM
     }
 
     internal static class CrmVersionManager
     {
-        private static Version _sdkVersion;
+        private static readonly Version _sdkVersion;
 
         static CrmVersionManager()
         {
@@ -98,7 +106,7 @@ namespace AMSoftware.Crm.PowerShell.Common
 
         public static bool IsSupported(CrmVersion requiredVersion)
         {
-            var orgVersion = CrmContext.Version;
+            var orgVersion = CrmContext.Session.Version;
             var orgVersionEnum = GetCrmVersionConstant(orgVersion);
             var sdkVersionEnum = GetSdkVersionConstant(_sdkVersion);
 
@@ -163,6 +171,14 @@ namespace AMSoftware.Crm.PowerShell.Common
                     { CrmVersion.CRM2016_UR01, new Version("8.0.1.0079") },
                     { CrmVersion.CRM2016_1_RTM, new Version("8.1.0.0362") },
                     { CrmVersion.CRM2016_2_RTM, new Version("8.2.0.0773") },
+                    { CrmVersion.CRM2016_2_UR01, new Version( "8.2.1.0176") },
+                    { CrmVersion.CRM2016_2_UR02, new Version( "8.2.2.0113") },
+                    { CrmVersion.CRM2016_2_UR03, new Version( "8.2.3.0006") },
+                    { CrmVersion.CRM365_RTM, new Version( "9.0.0.2072") },
+                    { CrmVersion.CRM365_UR01, new Version( "9.0.1.0127") },
+                    { CrmVersion.CRM365_UR02, new Version( "9.0.2.0054") },
+                    { CrmVersion.CRM365_1_RTM, new Version( "9.1.0.0036") },
+                    { CrmVersion.CRM365_2_RTM, new Version( "9.2.20122.00101") },
                };
             }
         }
@@ -208,7 +224,15 @@ namespace AMSoftware.Crm.PowerShell.Common
                     { CrmVersion.CRM2016_RTM, new Version("8.0.0") },
                     { CrmVersion.CRM2016_UR01, new Version("8.0.1") },
                     { CrmVersion.CRM2016_1_RTM, new Version("8.1.0") },
-                    { CrmVersion.CRM2016_2_RTM, new Version("8.2.0") }
+                    { CrmVersion.CRM2016_2_RTM, new Version("8.2.0") },
+                    { CrmVersion.CRM2016_2_UR01, new Version( "8.2.1") },
+                    { CrmVersion.CRM2016_2_UR02, new Version( "8.2.2.0113") },
+                    { CrmVersion.CRM2016_2_UR03, new Version( "8.2.3.0006") },
+                    { CrmVersion.CRM365_RTM, new Version( "9.0.0.5") },
+                    { CrmVersion.CRM365_UR01, new Version( "9.0.1.0") },
+                    { CrmVersion.CRM365_UR02, new Version( "9.0.2.3") },
+                    { CrmVersion.CRM365_1_RTM, new Version( "9.0.2.18") },
+                    { CrmVersion.CRM365_2_RTM, new Version( "9.0.2.32") },
                 };
             }
         }

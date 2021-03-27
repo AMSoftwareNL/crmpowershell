@@ -33,7 +33,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         private const string GetAllProcessesParameterSet = "GetAllProcesses";
         private const string GetProcessByIdParameterSet = "GetProcessById";
 
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = GetProcessByIdParameterSet, ValueFromPipeline = true)]
         [ValidateNotNull]

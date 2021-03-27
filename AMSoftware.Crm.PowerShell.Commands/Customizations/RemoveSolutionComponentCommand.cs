@@ -29,7 +29,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
     [Cmdlet(VerbsCommon.Remove, "CrmSolutionComponent", HelpUri = HelpUrlConstants.RemoveSolutionComponentHelpUrl)]
     public sealed class RemoveSolutionComponentCommand : CrmOrganizationCmdlet
     {
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
         private Dictionary<int, string> _validComponentTypes;
 
         [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]

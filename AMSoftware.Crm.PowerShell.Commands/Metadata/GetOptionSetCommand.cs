@@ -32,7 +32,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         private const string GetOptionSetByIdParameterSet = "GetOptionSetById";
         private const string GetOptionSetByFilterParameterSet = "GetOptionSetByFilter";
 
-        private MetadataRepository _repository = new MetadataRepository();
+        private readonly MetadataRepository _repository = new MetadataRepository();
 
         [Parameter(Position = 1, Mandatory = true, ParameterSetName = GetOptionSetByIdParameterSet, ValueFromPipeline = true)]
         [Alias("MetadataId")]

@@ -36,7 +36,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Content
         private const string GetContentForEntityByQueryParameterSet = "GetContentForEntityByQuery";
         private const string GetContentWithFetchXmlParameterSet = "GetContentWithFetchXml";
 
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = GetContentForEntityByIdParameterSet)]
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = GetContentForEntityByQueryParameterSet)]
@@ -86,7 +86,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Content
                     WriteObject(_repository.Get(Entity, Keys, Columns), false);
                     break;
                 case GetContentForEntityByQueryParameterSet:
-                    QueryBase queryFromQuery = null;
+                    QueryBase queryFromQuery;
                     if (Query == null || Query.Count == 0) queryFromQuery = BuildQueryExpression(Entity, Columns, Order);
                     else queryFromQuery = BuildQueryByAttribute(Entity, Columns, Query, Order);
                     GetContentByQuery(queryFromQuery);

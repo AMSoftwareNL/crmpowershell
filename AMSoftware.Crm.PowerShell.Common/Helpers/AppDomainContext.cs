@@ -92,7 +92,7 @@ namespace AMSoftware.Crm.PowerShell.Common.Helpers
 					Trace.WriteLine(ex.Message);
 				}
 				_domain = null;
-				Proxy = default(TProxy);
+				Proxy = default;
 			}
 			if (disposing)
 			{

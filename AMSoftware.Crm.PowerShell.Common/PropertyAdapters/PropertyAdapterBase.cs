@@ -103,9 +103,9 @@ namespace AMSoftware.Crm.PowerShell.Common.PropertyAdapters
                 if (adaptedProperty.Tag is IAdaptedPropertyHandler<T> propHandler)
                 {
                     object internalValue = value;
-                    if (value is PSObject)
+                    if (value is PSObject objectValue)
                     {
-                        internalValue = ((PSObject)value).BaseObject;
+                        internalValue = objectValue.BaseObject;
                     }
 
                     propHandler.SetValue(internalObject, internalValue);

@@ -30,7 +30,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
     [OutputType(typeof(Entity))]
     public sealed class GetRolePrincipalsCommand : CrmOrganizationCmdlet
     {
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
         [Alias("Id")]

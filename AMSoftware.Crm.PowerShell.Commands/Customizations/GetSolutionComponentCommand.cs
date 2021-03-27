@@ -30,7 +30,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
     [OutputType(typeof(Entity))]
     public sealed class GetSolutionComponentCommand : CrmOrganizationCmdlet
     {
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         private Dictionary<int, string> _validComponentTypes;
 

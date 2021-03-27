@@ -31,7 +31,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
         private const string GetAllPublishersParameterSet = "GetAllPublishers";
         private const string GetPublisherByIdParameterSet = "GetPublisherById";
 
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = GetPublisherByIdParameterSet, ValueFromPipeline = true)]
         [ValidateNotNull]

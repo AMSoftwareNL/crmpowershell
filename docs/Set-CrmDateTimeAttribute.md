@@ -1,5 +1,5 @@
 ---
-external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
+external help file: AMSoftware.Crm.PowerShell.Commands.dll-Help.xml
 Module Name: AMSoftware.Crm
 online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Set-CrmDateTimeAttribute.md
 schema: 2.0.0
@@ -17,8 +17,7 @@ Set-CrmDateTimeAttribute [-Format <CrmDateTimeAttributeFormat>] [-ImeType <CrmIm
  [-CanChangeBehavior <Boolean>] [-Behavior <CrmDateTimeBehavior>] [-Entity] <String> [-Name] <String>
  [-DisplayName <String>] [-Description <String>] [-CanModifyAdditionalSettings <Boolean>]
  [-IsAuditEnabled <Boolean>] [-IsCustomizable <Boolean>] [-IsRenameable <Boolean>] [-IsSecured <Boolean>]
- [-IsValidForAdvancedFind <Boolean>] [-Required <CrmRequiredLevel>] [-PassThru]
- [-IsGlobalFilterEnabled <Boolean>] [-IsSortableEnabled <Boolean>] [<CommonParameters>]
+ [-IsValidForAdvancedFind <Boolean>] [-Required <CrmRequiredLevel>] [-PassThru] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -181,21 +180,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -IsGlobalFilterEnabled
-Whether the attribute is enabled for global filtering.
-
-```yaml
-Type: Boolean
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -IsRenameable
 Whether the attribute display name can be changed.
 
@@ -213,21 +197,6 @@ Accept wildcard characters: False
 
 ### -IsSecured
 Whether the attribute is secured for field-level security.
-
-```yaml
-Type: Boolean
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -IsSortableEnabled
-Whether the attribute is sortable.
 
 ```yaml
 Type: Boolean
@@ -303,14 +272,14 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
-### None
+### System.String
 ## OUTPUTS
 
-### None
+### Microsoft.Xrm.Sdk.Metadata.DateTimeAttributeMetadata
 ## NOTES
 
 ## RELATED LINKS

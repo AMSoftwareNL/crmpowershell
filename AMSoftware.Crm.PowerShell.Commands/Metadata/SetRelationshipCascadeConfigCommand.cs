@@ -25,7 +25,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
     [Cmdlet(VerbsCommon.Set, "CrmRelationshipCascadeConfig", HelpUri = HelpUrlConstants.SetRelationshipCascadeConfigHelpUrl)]
     public sealed class SetRelationshipCascadeConfigCommand : CrmOrganizationCmdlet
     {
-        private MetadataRepository _repository = new MetadataRepository();
+        private readonly MetadataRepository _repository = new MetadataRepository();
 
         [Parameter(Mandatory = true, Position = 1, ValueFromPipelineByPropertyName = true)]
         [Alias("SchemaName")]

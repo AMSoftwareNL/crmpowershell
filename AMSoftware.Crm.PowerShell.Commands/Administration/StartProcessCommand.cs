@@ -26,7 +26,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
     [OutputType(typeof(Entity))]
     public sealed class StartProcessCommand : CrmOrganizationActionCmdlet
     {
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         [Parameter(Position = 1, Mandatory = true)]
         [ValidateNotNull]

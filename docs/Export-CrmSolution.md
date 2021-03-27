@@ -1,5 +1,5 @@
 ---
-external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
+external help file: AMSoftware.Crm.PowerShell.Commands.dll-Help.xml
 Module Name: AMSoftware.Crm
 online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Export-CrmSolution.md
 schema: 2.0.0
@@ -15,7 +15,7 @@ Export a customization solution.
 ```
 Export-CrmSolution [-Id] <Guid> [-Path] <String> [-Managed] [-AutoNumberingSettings] [-CalendarSettings]
  [-CustomizationSettings] [-EmailTrackingSettings] [-GeneralSettings] [-IsvConfig] [-MarketingSettings]
- [-OutlookSynchronizationSettings] [-RelationshipRoles] [-Target <String>] [<CommonParameters>]
+ [-OutlookSynchronizationSettings] [-RelationshipRoles] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -212,30 +212,15 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Target
-Sets the version that the exported solution will support.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### System.Guid
 ## OUTPUTS
 
-### None
+### System.Object
 ## NOTES
 
 ## RELATED LINKS

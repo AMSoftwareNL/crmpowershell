@@ -27,7 +27,7 @@ namespace AMSoftware.Crm.PowerShell.Common.PropertyAdapters
 {
     public sealed class MetadataPropertyAdapter : PropertyAdapterBase<MetadataBase>
     {
-        private Dictionary<Type, Dictionary<string, IAdaptedPropertyHandler<MetadataBase>>> _propertyHandlerCaches = new Dictionary<Type, Dictionary<string, IAdaptedPropertyHandler<MetadataBase>>>();
+        private readonly Dictionary<Type, Dictionary<string, IAdaptedPropertyHandler<MetadataBase>>> _propertyHandlerCaches = new Dictionary<Type, Dictionary<string, IAdaptedPropertyHandler<MetadataBase>>>();
 
         protected override Collection<PSAdaptedProperty> GetAdaptedProperties(MetadataBase internalObject)
         {

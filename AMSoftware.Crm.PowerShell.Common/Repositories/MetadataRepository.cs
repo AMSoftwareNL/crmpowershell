@@ -39,7 +39,7 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
                 }
             };
 
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
 
             return (EntityMetadata)response.Results["EntityMetadata"];
         }
@@ -56,14 +56,14 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
                 }
             };
 
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
 
             return (EntityMetadata)response.Results["EntityMetadata"];
         }
 
         public IEnumerable<EntityMetadata> GetEntity(bool customOnly, bool excludeManaged, bool includeIntersects)
         {
-            IEnumerable<EntityMetadata> result = CrmContext.Cache.GetEntities();
+            IEnumerable<EntityMetadata> result = CrmContext.Session.OrganizationCache.GetEntities();
             if (customOnly)
             {
                 result = result.Where(e => e.IsCustomEntity == true);
@@ -93,12 +93,12 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
                 }
             };
 
-            if (CrmContext.ActiveSolution != null)
+            if (CrmContext.Session.ActiveSolutionName != null)
             {
-                request.Parameters.Add("SolutionUniqueName", CrmContext.ActiveSolution);
+                request.Parameters.Add("SolutionUniqueName", CrmContext.Session.ActiveSolutionName);
             }
 
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
 
             return (Guid)response.Results["EntityId"];
         }
@@ -116,12 +116,12 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
                 }
             };
 
-            if (CrmContext.ActiveSolution != null)
+            if (CrmContext.Session.ActiveSolutionName != null)
             {
-                request.Parameters.Add("SolutionUniqueName", CrmContext.ActiveSolution);
+                request.Parameters.Add("SolutionUniqueName", CrmContext.Session.ActiveSolutionName);
             }
 
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
         }
 
         public void DeleteEntity(string name)
@@ -134,7 +134,7 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
                 }
             };
 
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
         }
 
         private EntityMetadata GetEntity(string name, EntityFilters filter)
@@ -150,7 +150,7 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
                 }
             };
 
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
 
             return (EntityMetadata)response.Results["EntityMetadata"];
         }
@@ -169,7 +169,7 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
                 }
             };
 
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
 
             return (OptionSetMetadataBase)response.Results["OptionSetMetadata"];
         }
@@ -185,7 +185,7 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
                 }
             };
 
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
 
             return (OptionSetMetadataBase)response.Results["OptionSetMetadata"];
         }
@@ -200,7 +200,7 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
                 }
             };
 
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
             IEnumerable<OptionSetMetadataBase> result = ((OptionSetMetadataBase[])response.Results["OptionSetMetadata"]).Cast<OptionSetMetadataBase>();
             result = result
                 .Where(e => e.IsCustomOptionSet == customOnly || customOnly == false)              // include if custom, or customOnly not active
@@ -219,12 +219,12 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
                 }
             };
 
-            if (CrmContext.ActiveSolution != null)
+            if (CrmContext.Session.ActiveSolutionName != null)
             {
-                request.Parameters.Add("SolutionUniqueName", CrmContext.ActiveSolution);
+                request.Parameters.Add("SolutionUniqueName", CrmContext.Session.ActiveSolutionName);
             }
 
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
 
             return (Guid)response.Results["OptionSetId"];
         }
@@ -240,12 +240,12 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
                 }
             };
 
-            if (CrmContext.ActiveSolution != null)
+            if (CrmContext.Session.ActiveSolutionName != null)
             {
-                request.Parameters.Add("SolutionUniqueName", CrmContext.ActiveSolution);
+                request.Parameters.Add("SolutionUniqueName", CrmContext.Session.ActiveSolutionName);
             }
 
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
         }
 
         public void DeleteOptionSet(string name)
@@ -258,7 +258,7 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
                 }
             };
 
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
         }
 
         public int AddOptionSetValue(string name, string displayName, int? value = null, string description = null)
@@ -268,7 +268,7 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
                 Parameters = new ParameterCollection
                 {
                     { "OptionSetName", name },
-                    { "Label", new Label(displayName, CrmContext.Language) }
+                    { "Label", new Label(displayName, CrmContext.Session.Language) }
                 }
             };
             if (value.HasValue)
@@ -277,15 +277,15 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
             }
             if (description != null)
             {
-                request.Parameters.Add("Description", new Label(description, CrmContext.Language));
+                request.Parameters.Add("Description", new Label(description, CrmContext.Session.Language));
             }
 
-            if (CrmContext.ActiveSolution != null)
+            if (CrmContext.Session.ActiveSolutionName != null)
             {
-                request.Parameters.Add("SolutionUniqueName", CrmContext.ActiveSolution);
+                request.Parameters.Add("SolutionUniqueName", CrmContext.Session.ActiveSolutionName);
             }
 
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
             return (int)response.Results["NewOptionValue"];
         }
 
@@ -297,7 +297,7 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
                 {
                     { "EntityLogicalName", entity },
                     { "AttributeLogicalName", attribute },
-                    { "Label", new Label(displayName, CrmContext.Language) }
+                    { "Label", new Label(displayName, CrmContext.Session.Language) }
                 }
             };
             if (value.HasValue)
@@ -306,15 +306,15 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
             }
             if (description != null)
             {
-                request.Parameters.Add("Description", new Label(description, CrmContext.Language));
+                request.Parameters.Add("Description", new Label(description, CrmContext.Session.Language));
             }
 
-            if (CrmContext.ActiveSolution != null)
+            if (CrmContext.Session.ActiveSolutionName != null)
             {
-                request.Parameters.Add("SolutionUniqueName", CrmContext.ActiveSolution);
+                request.Parameters.Add("SolutionUniqueName", CrmContext.Session.ActiveSolutionName);
             }
 
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
             return (int)response.Results["NewOptionValue"];
         }
 
@@ -329,7 +329,7 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
                 }
             };
 
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
         }
 
         public void DeleteOptionSetValue(string entity, string attribute, int value)
@@ -344,7 +344,7 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
                 }
             };
 
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
         }
 
         public void UpdateOptionSetValue(string name, int value, string displayName = null, string description = null)
@@ -361,19 +361,19 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
 
             if (!string.IsNullOrEmpty(displayName))
             {
-                request.Parameters.Add("Label", new Label(displayName, CrmContext.Language));
+                request.Parameters.Add("Label", new Label(displayName, CrmContext.Session.Language));
             }
             if (description != null)
             {
-                request.Parameters.Add("Description", new Label(description, CrmContext.Language));
+                request.Parameters.Add("Description", new Label(description, CrmContext.Session.Language));
             }
 
-            if (CrmContext.ActiveSolution != null)
+            if (CrmContext.Session.ActiveSolutionName != null)
             {
-                request.Parameters.Add("SolutionUniqueName", CrmContext.ActiveSolution);
+                request.Parameters.Add("SolutionUniqueName", CrmContext.Session.ActiveSolutionName);
             }
 
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
         }
 
         public void UpdateOptionSetValue(string entity, string attribute, int value, string displayName = null, string description = null)
@@ -391,19 +391,19 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
 
             if (!string.IsNullOrEmpty(displayName))
             {
-                request.Parameters.Add("Label", new Label(displayName, CrmContext.Language));
+                request.Parameters.Add("Label", new Label(displayName, CrmContext.Session.Language));
             }
             if (description != null)
             {
-                request.Parameters.Add("Description", new Label(description, CrmContext.Language));
+                request.Parameters.Add("Description", new Label(description, CrmContext.Session.Language));
             }
 
-            if (CrmContext.ActiveSolution != null)
+            if (CrmContext.Session.ActiveSolutionName != null)
             {
-                request.Parameters.Add("SolutionUniqueName", CrmContext.ActiveSolution);
+                request.Parameters.Add("SolutionUniqueName", CrmContext.Session.ActiveSolutionName);
             }
 
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
         }
         #endregion
 
@@ -419,7 +419,7 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
                 }
             };
 
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
 
             return (AttributeMetadata)response.Results["AttributeMetadata"];
         }
@@ -437,7 +437,7 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
                 }
             };
 
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
 
             return (AttributeMetadata)response.Results["AttributeMetadata"];
         }
@@ -474,12 +474,12 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
                 }
             };
 
-            if (CrmContext.ActiveSolution != null)
+            if (CrmContext.Session.ActiveSolutionName != null)
             {
-                request.Parameters.Add("SolutionUniqueName", CrmContext.ActiveSolution);
+                request.Parameters.Add("SolutionUniqueName", CrmContext.Session.ActiveSolutionName);
             }
 
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
             return (Guid)response.Results["AttributeId"];
         }
 
@@ -495,12 +495,12 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
                 }
             };
 
-            if (CrmContext.ActiveSolution != null)
+            if (CrmContext.Session.ActiveSolutionName != null)
             {
-                request.Parameters.Add("SolutionUniqueName", CrmContext.ActiveSolution);
+                request.Parameters.Add("SolutionUniqueName", CrmContext.Session.ActiveSolutionName);
             }
 
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
         }
 
         public void DeleteAttribute(string entity, string attribute)
@@ -514,7 +514,7 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
                 }
             };
 
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
         }
         #endregion
 
@@ -530,7 +530,7 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
                 }
             };
 
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
 
             return (EntityKeyMetadata)response.Results["EntityKeyMetadata"];
         }
@@ -548,7 +548,7 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
                 }
             };
 
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
 
             return (EntityKeyMetadata)response.Results["EntityKeyMetadata"];
         }
@@ -577,7 +577,7 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
                 }
             };
 
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
             return (Guid)response.Results["EntityKeyId"];
         }
 
@@ -592,7 +592,7 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
                 }
             };
 
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
         }
         #endregion
 
@@ -664,7 +664,7 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
                 }
             };
 
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
             return (RelationshipMetadataBase)response.Results["RelationshipMetadata"];
         }
 
@@ -680,7 +680,7 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
                 }
             };
 
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
             return (RelationshipMetadataBase)response.Results["RelationshipMetadata"];
         }
 
@@ -704,12 +704,12 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
                 }
             };
 
-            if (CrmContext.ActiveSolution != null)
+            if (CrmContext.Session.ActiveSolutionName != null)
             {
-                request.Parameters.Add("SolutionUniqueName", CrmContext.ActiveSolution);
+                request.Parameters.Add("SolutionUniqueName", CrmContext.Session.ActiveSolutionName);
             }
 
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
             return (Guid)response.Results["RelationshipId"];
         }
 
@@ -733,12 +733,12 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
                 }
             };
 
-            if (CrmContext.ActiveSolution != null)
+            if (CrmContext.Session.ActiveSolutionName != null)
             {
-                request.Parameters.Add("SolutionUniqueName", CrmContext.ActiveSolution);
+                request.Parameters.Add("SolutionUniqueName", CrmContext.Session.ActiveSolutionName);
             }
 
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
             return (Guid)response.Results["ManyToManyRelationshipId"];
         }
 
@@ -753,12 +753,12 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
                 }
             };
 
-            if (CrmContext.ActiveSolution != null)
+            if (CrmContext.Session.ActiveSolutionName != null)
             {
-                request.Parameters.Add("SolutionUniqueName", CrmContext.ActiveSolution);
+                request.Parameters.Add("SolutionUniqueName", CrmContext.Session.ActiveSolutionName);
             }
 
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
         }
 
         public void DeleteRelationship(string relationship)
@@ -771,7 +771,7 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
                 }
             };
 
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
         }
 
         public void DeleteRelationship(string entity, string fromEntity, string attributeHint = null)
@@ -837,7 +837,7 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
                 }
             };
 
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
 
             return (bool)response.Results[relationCheck];
         }
@@ -854,7 +854,7 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
                 }
             };
 
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
 
             return (ManagedPropertyMetadata)response.Results["ManagedPropertyMetadata"];
         }

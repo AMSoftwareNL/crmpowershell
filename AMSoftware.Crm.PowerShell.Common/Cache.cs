@@ -29,7 +29,7 @@ namespace AMSoftware.Crm.PowerShell.Common
 
     internal sealed class Cache<TValue> : IEnumerable<TValue>, AMSoftware.Crm.PowerShell.Common.ICache<TValue>
     {
-        private Dictionary<string, CacheItem> _store = new Dictionary<string, CacheItem>();
+        private readonly Dictionary<string, CacheItem> _store = new Dictionary<string, CacheItem>();
 
         public void Add(string key, TValue value)
         {
@@ -63,19 +63,18 @@ namespace AMSoftware.Crm.PowerShell.Common
                 return result;
             }
 
-            return default(TValue);
+            return default;
         }
 
         public bool TryGetValue(string key, out TValue value)
         {
             if (_store.ContainsKey(key))
             {
-                CacheItem item = _store[key];
                 value = _store[key].Value;
                 return true;
             }
 
-            value = default(TValue);
+            value = default;
             return false;
         }
 

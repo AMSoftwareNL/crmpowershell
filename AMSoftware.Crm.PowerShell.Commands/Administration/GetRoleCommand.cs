@@ -31,7 +31,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         private const string GetAllRolesParameterSet = "GetAllRoles";
         private const string GetRoleByIdParameterSet = "GetRoleById";
 
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = GetRoleByIdParameterSet, ValueFromPipeline = true)]
         [ValidateNotNull]

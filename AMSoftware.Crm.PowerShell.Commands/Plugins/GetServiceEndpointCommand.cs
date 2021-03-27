@@ -31,7 +31,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
         private const string GetServiceEndpointByIdParameterSet = "GetServiceEndPointById";
         private const string GetServiceEndpointByFilterParameterSet = "GetServiceEndPointByFilter";
 
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         [Parameter(Position = 1, Mandatory = true, ParameterSetName = GetServiceEndpointByIdParameterSet, ValueFromPipeline = true)]
         [ValidateNotNull]

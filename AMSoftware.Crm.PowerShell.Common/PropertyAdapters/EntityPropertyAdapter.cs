@@ -31,7 +31,7 @@ namespace AMSoftware.Crm.PowerShell.Common.PropertyAdapters
     public sealed class EntityPropertyAdapter : PropertyAdapterBase<Entity>
     {
         private Dictionary<string, IAdaptedPropertyHandler<Entity>> _entityPropertyHandlerCache = null;
-        private Cache<string> _entityPrimaryNameCache = new Cache<string>();
+        private readonly Cache<string> _entityPrimaryNameCache = new Cache<string>();
 
         public override Collection<string> GetTypeNameHierarchy(object baseObject)
         {

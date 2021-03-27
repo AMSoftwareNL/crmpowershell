@@ -22,7 +22,7 @@ namespace AMSoftware.Crm.PowerShell.Common.PropertyAdapters
 {
     internal class MemberTypePropertyHandler<T> : IAdaptedPropertyHandler<T>
     {
-        private PropertyInfo _propertyInfo;
+        private readonly PropertyInfo _propertyInfo;
 
         public MemberTypePropertyHandler(PropertyInfo propertyInfo)
         {

@@ -37,10 +37,10 @@ namespace AMSoftware.Crm.PowerShell.Common.Converters
         public override object ConvertFrom(object sourceValue, Type destinationType, IFormatProvider formatProvider, bool ignoreCase)
         {
             if (sourceValue == null) return null;
-            if (sourceValue.GetType() == typeof(string)) return new Label((string)sourceValue, CrmContext.Language);
+            if (sourceValue.GetType() == typeof(string)) return new Label((string)sourceValue, CrmContext.Session.Language);
 
             StringConverter sc = new StringConverter();
-            return new Label((string)sc.ConvertFrom(sourceValue), CrmContext.Language);
+            return new Label((string)sc.ConvertFrom(sourceValue), CrmContext.Session.Language);
         }
 
         public override bool CanConvertTo(object sourceValue, Type destinationType)
@@ -58,7 +58,7 @@ namespace AMSoftware.Crm.PowerShell.Common.Converters
 
             if (sourceValue is Label labelValue)
             {
-                LocalizedLabel languageLabel = labelValue.LocalizedLabels.SingleOrDefault(l => l.LanguageCode == CrmContext.Language);
+                LocalizedLabel languageLabel = labelValue.LocalizedLabels.SingleOrDefault(l => l.LanguageCode == CrmContext.Session.Language);
                 if (languageLabel != null)
                 {
                     if (destinationType == typeof(string)) return languageLabel.Label;

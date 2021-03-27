@@ -29,7 +29,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Content
         private const string JoinContentParameterSet = "JoinContent";
         private const string JoinContentByInputObjectParameterSet = "JoinContentByInputObject";
 
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = JoinContentByInputObjectParameterSet, ValueFromPipeline = true)]
         [Alias("Record")]

@@ -22,7 +22,7 @@ namespace AMSoftware.Crm.PowerShell.Common.PropertyAdapters
 {
     internal class EntityRefAttributePropertyHandler : IAdaptedPropertyHandler<Entity>
     {
-        private string _attributeName;
+        private readonly string _attributeName;
 
         public EntityRefAttributePropertyHandler(string attributeName)
         {

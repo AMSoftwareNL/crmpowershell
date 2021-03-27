@@ -31,7 +31,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         private const string GetAllUsersParameterSet = "GetAllUsers";
         private const string GetUserByIdParameterSet = "GetUserById";
 
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = GetUserByIdParameterSet, ValueFromPipeline = true)]
         [ValidateNotNull]

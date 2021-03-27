@@ -32,7 +32,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         private const string AddOneToManyRelationshipParameterSet = "AddOneToManyRelationship";
         private const string AddManyToManyRelationsipParameterSet = "AddManyToManyRelationship";
 
-        private MetadataRepository _repository = new MetadataRepository();
+        private readonly MetadataRepository _repository = new MetadataRepository();
         private AddRelationshipDynamicParameters _context;
 
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = AddManyToManyRelationsipParameterSet)]
@@ -131,8 +131,8 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
             LookupAttributeMetadata lookup = new LookupAttributeMetadata
             {
                 SchemaName = AttributeName,
-                DisplayName = new Label(AttributeDisplayName, CrmContext.Language),
-                Description = new Label(AttributeDescription ?? string.Empty, CrmContext.Language)
+                DisplayName = new Label(AttributeDisplayName, CrmContext.Session.Language),
+                Description = new Label(AttributeDescription ?? string.Empty, CrmContext.Session.Language)
             };
             AttributeRequiredLevel requiredLevel = AttributeRequiredLevel.ApplicationRequired;
             if (AttributeRequired == CrmRequiredLevel.Required) requiredLevel = AttributeRequiredLevel.ApplicationRequired;

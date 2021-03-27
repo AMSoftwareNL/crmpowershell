@@ -30,7 +30,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         private const string StopProcessByAsyncOperationParameterSet = "StopProcessByAsyncOperation";
         private const string StopProcessByWorkflowParameterSet = "StopProcessByWorkflow";
 
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         [Parameter(Position = 1, Mandatory = true, ParameterSetName = StopProcessByAsyncOperationParameterSet)]
         [ValidateNotNull]

@@ -31,7 +31,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         private const string GetAllBusinessUnitsParameterSet = "GetAllBusinessUnits";
         private const string GetBusinessUnitByIdParameterSet = "GetBusinessUnitById";
 
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = GetBusinessUnitByIdParameterSet, ValueFromPipeline = true)]
         [ValidateNotNull]

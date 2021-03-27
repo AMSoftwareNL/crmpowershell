@@ -31,7 +31,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Content
         private const string SetContentParameterSet = "SetContent";
         private const string SetContentByInputObjectParameterSet = "SetContentByInputObject";
 
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = SetContentByInputObjectParameterSet, ValueFromPipeline = true)]
         [Alias("Record")]

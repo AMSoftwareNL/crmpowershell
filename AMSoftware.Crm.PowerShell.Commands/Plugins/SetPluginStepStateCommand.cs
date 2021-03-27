@@ -25,7 +25,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
     [Cmdlet(VerbsLifecycle.Enable, "CrmPluginStep", HelpUri = HelpUrlConstants.EnablePluginStepHelpUrl)]
     public sealed class EnablePluginStepCommand : CrmOrganizationCmdlet
     {
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]
         [ValidateNotNullOrEmpty]
@@ -52,7 +52,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
     [Cmdlet(VerbsLifecycle.Disable, "CrmPluginStep", HelpUri = HelpUrlConstants.DisablePluginStepHelpUrl)]
     public sealed class DisbalePluginStepCommand : CrmOrganizationCmdlet
     {
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]
         [ValidateNotNullOrEmpty]

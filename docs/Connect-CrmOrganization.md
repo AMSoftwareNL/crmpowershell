@@ -1,5 +1,5 @@
 ---
-external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
+external help file: AMSoftware.Crm.PowerShell.Commands.dll-Help.xml
 Module Name: AMSoftware.Crm
 online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Connect-CrmOrganization.md
 schema: 2.0.0
@@ -8,43 +8,75 @@ schema: 2.0.0
 # Connect-CrmOrganization
 
 ## SYNOPSIS
-Connect to a specific organization in the connected deployment.
+Connect to a Dataverse environment.
 
 ## SYNTAX
 
+### Connectionstring (Default)
 ```
-Connect-CrmOrganization [-Name] <String> [<CommonParameters>]
+Connect-CrmOrganization [-Connectionstring] <String> [<CommonParameters>]
+```
+
+### Connection
+```
+Connect-CrmOrganization [-Connection] <CrmServiceClient> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Connect to a specific organization in the connected deployment. This will set the organization as the active organization in the PowerShell session, until connection to another Deployment or Organization.
+Connect to a Dataverse environment.
+
+Use the Microsoft.Xrm.Tooling.CrmConnector.PowerShell module to connect to an environment. Supply the connection to this Cmdlet.
+
+Provide a connectionstring to an environment. See [Use connection strings in XRM tooling to connect to Microsoft Dataverse](https://docs.microsoft.com/en-us/powerapps/developer/data-platform/xrm-tooling/use-connection-strings-xrm-tooling-connect) 
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> Connect-CrmOrganization -Name amsoftwarecrm
+PS C:\> Install-Module 'Microsoft.Xrm.Tooling.CrmConnector.PowerShell'
+PS C:\> $connection = Get-CrmConnection -InteractiveMode
+PS C:\> Connect-CrmOrganization -Connection $connection
+```
+
+### Example 2
+```
+PS C:\> Connect-CrmOrganization -Connectionstring 'AuthType=Office365;Username=jsmith@contoso.onmicrosoft.com;Password=passcode;Url=https://contoso.crm.dynamics.com'
 ```
 
 ## PARAMETERS
 
-### -Name
-The unique name or friendly name of the organization to connect to.
+### -Connection
+CrmServiceClient object from Get-CrmOrganization.
 
 ```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: UniqueName, FriendlyName, UrlName
+Type: CrmServiceClient
+Parameter Sets: Connection
+Aliases:
 
 Required: True
 Position: 1
 Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Connectionstring
+Connectionstring to connect using the CrmServiceClient. See [Use connection strings in XRM tooling to connect to Microsoft Dataverse](https://docs.microsoft.com/en-us/powerapps/developer/data-platform/xrm-tooling/use-connection-strings-xrm-tooling-connect) 
+
+```yaml
+Type: String
+Parameter Sets: Connectionstring
+Aliases:
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -56,8 +88,10 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Connect-CrmDeployment](Connect-CrmDeployment.md)
-
-[Get-CrmOrganization](Get-CrmOrganization.md)
-
 [OrganizationDetail Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.organization.organizationdetail.aspx)
+
+[Use connection strings in XRM tooling to connect to Microsoft Dataverse](https://docs.microsoft.com/en-us/powerapps/developer/data-platform/xrm-tooling/use-connection-strings-xrm-tooling-connect) 
+
+[Microsoft.Xrm.Tooling.CrmConnector.PowerShell](https://docs.microsoft.com/en-us/powershell/module/microsoft.xrm.tooling.crmconnector.powershell)
+
+[PowerShell Gallery: Microsoft.Xrm.Tooling.CrmConnector.PowerShell](https://www.powershellgallery.com/packages/Microsoft.Xrm.Tooling.CrmConnector.PowerShell)

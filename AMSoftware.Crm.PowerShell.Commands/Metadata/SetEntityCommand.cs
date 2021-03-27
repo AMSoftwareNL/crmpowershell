@@ -33,7 +33,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         internal const string SetEntityParameterSet = "SetEntity";
         internal const string SetEntityByInputObjectParameterSet = "SetEntityByInputObject";
 
-        private MetadataRepository _repository = new MetadataRepository();
+        private readonly MetadataRepository _repository = new MetadataRepository();
         private SetEntityDynamicParameters _context;
 
         [Parameter(Position = 1, Mandatory = true, ParameterSetName = SetEntityByInputObjectParameterSet, ValueFromPipeline = true)]
@@ -106,9 +106,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
                 LogicalName = Name
             };
 
-            if (!string.IsNullOrWhiteSpace(DisplayName)) entity.DisplayName = new Label(DisplayName, CrmContext.Language);
-            if (!string.IsNullOrWhiteSpace(DisplayCollectionName)) entity.DisplayCollectionName = new Label(DisplayCollectionName, CrmContext.Language);
-            if (Description != null) entity.Description = new Label(Description ?? string.Empty, CrmContext.Language);
+            if (!string.IsNullOrWhiteSpace(DisplayName)) entity.DisplayName = new Label(DisplayName, CrmContext.Session.Language);
+            if (!string.IsNullOrWhiteSpace(DisplayCollectionName)) entity.DisplayCollectionName = new Label(DisplayCollectionName, CrmContext.Session.Language);
+            if (Description != null) entity.Description = new Label(Description ?? string.Empty, CrmContext.Session.Language);
             if (Customizable.HasValue) entity.IsCustomizable = new BooleanManagedProperty(Customizable.Value);
 
             if (_context != null)

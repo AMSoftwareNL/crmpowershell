@@ -30,7 +30,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         private const string AssignOwnerRecordParameterSet = "AssignOwnerRecord";
         private const string ReassignOwnerParameterSet = "ReassignOwner";
 
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = AssignOwnerRecordParameterSet, ValueFromPipelineByPropertyName = true)]
         [Alias("LogicalName")]

@@ -32,7 +32,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         private const string NewOptionSetParameterSet = "NewOptionSet";
         private const string NewOptionSetByInputObjectParameterSet = "NewOptionSetByInputObject";
 
-        private MetadataRepository _repository = new MetadataRepository();
+        private readonly MetadataRepository _repository = new MetadataRepository();
 
         [Parameter(Position = 1, Mandatory = true, ParameterSetName = NewOptionSetByInputObjectParameterSet, ValueFromPipeline = true)]
         [Alias("OptionSet")]
@@ -93,17 +93,17 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
             OptionSetMetadata optionset = new OptionSetMetadata()
             {
                 Name = Name,
-                DisplayName = new Label(DisplayName, CrmContext.Language),
-                Description = new Label(Description ?? string.Empty, CrmContext.Language),
+                DisplayName = new Label(DisplayName, CrmContext.Session.Language),
+                Description = new Label(Description ?? string.Empty, CrmContext.Session.Language),
                 OptionSetType = OptionSetType.Picklist
             };
             if (Customizable.HasValue) optionset.IsCustomizable = new BooleanManagedProperty(Customizable.Value);
 
             foreach (var item in Values)
             {
-                OptionMetadata option = new OptionMetadata(new Label(item.DisplayName, CrmContext.Language), item.Value)
+                OptionMetadata option = new OptionMetadata(new Label(item.DisplayName, CrmContext.Session.Language), item.Value)
                 {
-                    Description = new Label(item.Description ?? string.Empty, CrmContext.Language)
+                    Description = new Label(item.Description ?? string.Empty, CrmContext.Session.Language)
                 };
                 optionset.Options.Add(option);
             }

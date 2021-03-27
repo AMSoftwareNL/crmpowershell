@@ -34,7 +34,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
         private const string PublishSolutionParameterSet = "PublishSolution";
         private const string PublishComponentsParameterSet = "PublishComponents";
 
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         [Parameter(ParameterSetName = PublishAllParameterSet)]
         public SwitchParameter All { get; set; }

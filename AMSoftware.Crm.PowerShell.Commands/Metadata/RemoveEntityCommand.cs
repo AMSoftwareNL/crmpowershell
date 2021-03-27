@@ -24,7 +24,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
     [Cmdlet(VerbsCommon.Remove, "CrmEntity", HelpUri = HelpUrlConstants.RemoveEntityHelpUrl, SupportsShouldProcess = true)]
     public sealed class RemoveEntityCommand : CrmOrganizationConfirmActionCmdlet
     {
-        private MetadataRepository _repository = new MetadataRepository();
+        private readonly MetadataRepository _repository = new MetadataRepository();
 
         [Parameter(Position = 1, Mandatory = true, ValueFromPipelineByPropertyName = true)]
         [Alias("EntityLogicalName", "LogicalName")]

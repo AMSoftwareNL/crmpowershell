@@ -1,5 +1,5 @@
 ---
-external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
+external help file: AMSoftware.Crm.PowerShell.Commands.dll-Help.xml
 Module Name: AMSoftware.Crm
 online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Add-CrmRelationship.md
 schema: 2.0.0
@@ -15,16 +15,14 @@ Add a relationship.
 ### AddManyToManyRelationship
 ```
 Add-CrmRelationship [-Entity1] <String> [-Entity2] <String> [-Name] <String> [-IntersectName] <String>
- [-AdvancedFind <Boolean>] [-Customizable <Boolean>] [-PassThru] [-IsHierarchical <Boolean>]
- [<CommonParameters>]
+ [-AdvancedFind <Boolean>] [-Customizable <Boolean>] [-PassThru] [<CommonParameters>]
 ```
 
 ### AddOneToManyRelationship
 ```
 Add-CrmRelationship [-Entity] <String> [-ToEntity] <String> [-Name] <String> -AttributeName <String>
  -AttributeDisplayName <String> [-AttributeDescription <String>] [-AttributeRequired <CrmRequiredLevel>]
- [-AdvancedFind <Boolean>] [-Customizable <Boolean>] [-PassThru] [-IsHierarchical <Boolean>]
- [<CommonParameters>]
+ [-AdvancedFind <Boolean>] [-Customizable <Boolean>] [-PassThru] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -185,21 +183,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -IsHierarchical
-Whether this relationship is the designated hierarchical self-referential relationship for this entity.
-
-```yaml
-Type: Boolean
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Name
 The SchemaName of the relationship.
 
@@ -246,7 +229,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

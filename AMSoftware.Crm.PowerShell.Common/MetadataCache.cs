@@ -15,13 +15,12 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Metadata;
 using Microsoft.Xrm.Sdk.Metadata.Query;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AMSoftware.Crm.PowerShell.Common
 {
@@ -48,7 +47,7 @@ namespace AMSoftware.Crm.PowerShell.Common
                 if (_timestamp == null) return false;
 
                 OrganizationRequest request = new OrganizationRequest("RetrieveTimestamp");
-                OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+                OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
                 string result = (string)response.Results["Timestamp"];
 
                 return string.Equals(_timestamp, result, StringComparison.InvariantCultureIgnoreCase);
@@ -97,7 +96,7 @@ namespace AMSoftware.Crm.PowerShell.Common
         private ParameterCollection GetEntityUsingMetadataQuery()
         {
             LabelQueryExpression labelFilter = new LabelQueryExpression();
-            labelFilter.FilterLanguages.Add(CrmContext.Language);
+            labelFilter.FilterLanguages.Add(CrmContext.Session.Language);
 
             EntityQueryExpression query = new EntityQueryExpression()
             {
@@ -114,7 +113,7 @@ namespace AMSoftware.Crm.PowerShell.Common
                 }
             };
 
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
             return response.Results;
         }
 
@@ -129,7 +128,7 @@ namespace AMSoftware.Crm.PowerShell.Common
                 }
             };
 
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
             return response.Results;
         }
     }

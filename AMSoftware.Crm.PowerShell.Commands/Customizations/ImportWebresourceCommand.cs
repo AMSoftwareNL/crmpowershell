@@ -16,7 +16,9 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 using System;
+using System.IO;
 using System.Management.Automation;
+using System.Management.Automation.Provider;
 using AMSoftware.Crm.PowerShell.Common.Repositories;
 using Microsoft.PowerShell.Commands;
 using Microsoft.Xrm.Sdk;
@@ -25,13 +27,12 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
     [Cmdlet(VerbsData.Import, "CrmWebresource", HelpUri = HelpUrlConstants.ImportWebresourceHelpUrl)]
     [OutputType(typeof(Entity))]
-    public sealed class ImportWebresourceCommand : CrmOrganizationCmdlet, IDynamicParameters
+    public sealed class ImportWebresourceCommand : CrmOrganizationCmdlet
     {
         internal const string ImportWebresourceFromValueParameterSet = "ImportWebresourceFromValue";
         internal const string ImportWebresourceFromPathParameterSet = "ImportWebresourceFromPath";
 
-        private ContentRepository _repository = new ContentRepository();
-        private ImportWebresourceDynamicParameters _contentParameters = new ImportWebresourceDynamicParameters();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]
         [ValidateNotNull]
@@ -49,11 +50,6 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
         [Parameter]
         public SwitchParameter PassThru { get; set; }
 
-        public object GetDynamicParameters()
-        {
-            return _contentParameters;
-        }
-
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
@@ -67,8 +63,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
                     webresource.Attributes["content"] = contentAsBase64;
                     break;
                 case ImportWebresourceFromPathParameterSet:
-                    FileContentReaderWriter fcrw = new FileContentReaderWriter(LiteralPath, _contentParameters.EncodingType, _contentParameters.UsingByteEncoding);
-                    byte[] fileAsBytes = fcrw.ReadAsBytes();
+                    byte[] fileAsBytes = File.ReadAllBytes(LiteralPath);
                     string fileContentAsBase64 = Convert.ToBase64String(fileAsBytes);
                     webresource.Attributes["content"] = fileContentAsBase64;
                     break;
@@ -79,23 +74,6 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
             if (PassThru)
             {
                 WriteObject(_repository.Get("webresource", Id));
-            }
-        }
-    }
-
-    public class ImportWebresourceDynamicParameters : FileContentDynamicsParameters
-    {
-
-        [Parameter(ParameterSetName = ImportWebresourceCommand.ImportWebresourceFromPathParameterSet)]
-        public FileSystemCmdletProviderEncoding Encoding
-        {
-            get
-            {
-                return base.streamType;
-            }
-            set
-            {
-                base.streamType = value;
             }
         }
     }

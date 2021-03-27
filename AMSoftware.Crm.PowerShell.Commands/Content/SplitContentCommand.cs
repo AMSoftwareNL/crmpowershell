@@ -29,7 +29,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Content
         private const string SplitContentParameterSet = "SplitContent";
         private const string SplitContentByInputObjectParameterSet = "SplitContentByInputObject";
 
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = SplitContentByInputObjectParameterSet, ValueFromPipeline = true)]
         [Alias("Record")]

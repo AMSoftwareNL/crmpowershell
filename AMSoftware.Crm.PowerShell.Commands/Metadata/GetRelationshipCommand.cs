@@ -34,7 +34,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         private const string GetRelationshipByIdParameterSet = "GetRelationshipById";
         private const string GetRelationshipByFilterParameterSet = "GetRelationshipByFilter";
 
-        private MetadataRepository _repository = new MetadataRepository();
+        private readonly MetadataRepository _repository = new MetadataRepository();
 
         [Parameter(Position = 1, Mandatory = true, ParameterSetName = GetRelationshipByNameParameterSet)]
         [ValidateNotNullOrEmpty]

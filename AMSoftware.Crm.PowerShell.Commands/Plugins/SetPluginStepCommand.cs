@@ -27,7 +27,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
     [OutputType(typeof(Entity))]
     public sealed class SetPluginStepCommand : CrmOrganizationCmdlet
     {
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]
         [ValidateNotNullOrEmpty]

@@ -25,7 +25,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
     [Cmdlet(VerbsCommon.Remove, "CrmUserParent", HelpUri = HelpUrlConstants.RemoveUserParentHelpUrl, SupportsShouldProcess = true)]
     public sealed class RemoveUserParentCommand : CrmOrganizationActionCmdlet
     {
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]
         [Alias("Id")]

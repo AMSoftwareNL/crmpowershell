@@ -27,7 +27,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
     [OutputType(typeof(CultureInfo))]
     public sealed class GetLanguageCommand : CrmOrganizationCmdlet
     {
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         [Parameter]
         public SwitchParameter All { get; set; }

@@ -21,7 +21,7 @@ namespace AMSoftware.Crm.PowerShell.Common.PropertyAdapters
 {
     internal class FunctionPropertyHandler<TInput, TResult> : IAdaptedPropertyHandler<TInput>
     {
-        private Func<TInput, TResult> _getFunction;
+        private readonly Func<TInput, TResult> _getFunction;
 
         public FunctionPropertyHandler(Func<TInput, TResult> getFunction)
         {

@@ -27,8 +27,6 @@ namespace AMSoftware.Crm.PowerShell.Common
     {
         public static IEnumerable<KeyValuePair<TKey, TValue>> ToEnumerable<TKey, TValue>(this Hashtable table)
         {
-            Dictionary<TKey, TValue> result = new Dictionary<TKey, TValue>();
-
             foreach (var key in table.Keys)
             {
                 if (key == null) throw new NullReferenceException("Key cannot be null");
@@ -43,22 +41,22 @@ namespace AMSoftware.Crm.PowerShell.Common
 
         private static T ConvertValue<T>(object value)
         {
-            if (value == null) return default(T);
+            if (value == null) return default;
 
-            object objectValue = value;
+            object internalValue = value;
 
-            if (value is PSObject)
+            if (value is PSObject objectValue)
             {
-                objectValue = ((PSObject)value).BaseObject;
+                internalValue = objectValue.BaseObject;
             }
 
             if (typeof(T).IsEnum)
             {
                 EnumConverter ec = new EnumConverter(typeof(T));
-                objectValue = ec.ConvertFrom(value);
+                internalValue = ec.ConvertFrom(value);
             }
 
-            return (T)objectValue;
+            return (T)internalValue;
         }
     }
 }

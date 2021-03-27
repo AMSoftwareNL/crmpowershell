@@ -15,129 +15,37 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-using System;
-using System.Net;
-using System.ServiceModel.Description;
-using System.Threading;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Client;
-using Microsoft.Xrm.Sdk.Discovery;
 using Microsoft.Xrm.Sdk.Query;
-using Microsoft.Crm.Sdk.Messages;
+using Microsoft.Xrm.Tooling.Connector;
+using System;
+using System.Threading;
 
 namespace AMSoftware.Crm.PowerShell.Common
 {
     internal sealed class CrmSession : IDisposable
     {
-        private AuthenticationCredentials _tokenCredentials;
         private bool _disposed = false;
 
-        private int _organizationLanguage;
+        private readonly CrmServiceClient _client;
+        private readonly int _organizationLanguage;
         private int _sessionLanguage;
 
-        #region Singleton
-        private static CrmSession _session;
-        internal static CrmSession Current
+        internal CrmSession(CrmServiceClient client)
         {
-            get { return _session; }
-        }
+            _client = client;
 
-        internal static CrmSession Connect(Uri discoveryUri, NetworkCredential credential, bool isOnPremises)
-        {
-            if (_session != null)
-            {
-                _session.Dispose();
-                _session = null;
-            }
+            OrganizationProxy = (IOrganizationService)client;
 
-            _session = new CrmSession(discoveryUri, credential, isOnPremises);
-            return _session;
-        }
-        #endregion
+            Entity organizationRow = OrganizationProxy.Retrieve("organization", _client.ConnectedOrgId, new ColumnSet("languagecode", "localeid"));
+            _organizationLanguage = organizationRow.GetAttributeValue<int>("languagecode");
+            Language = _organizationLanguage;
+            LocaleId = organizationRow.GetAttributeValue<int>("localeid");
 
-        private CrmSession(Uri discoveryUri, NetworkCredential credential, bool isOnPremises)
-        {
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-            IServiceManagement<IDiscoveryService> discoveryServiceManagement = ServiceConfigurationFactory.CreateManagement<IDiscoveryService>(discoveryUri);
-            ClientCredentials clientCredentials = InitializeClientCredentials(credential, discoveryServiceManagement);
-
-            AuthenticationCredentials authCredentials = new AuthenticationCredentials()
-            {
-                ClientCredentials = clientCredentials
-            };
-            if (isOnPremises && discoveryServiceManagement.AuthenticationType != AuthenticationProviderType.ActiveDirectory)
-            {
-                //authCredentials.HomeRealm = discoveryUri;
-            }
-
-            _tokenCredentials = discoveryServiceManagement.Authenticate(authCredentials);
-
-            DiscoveryProxy = GetService<IDiscoveryService>(discoveryServiceManagement, _tokenCredentials);
-        }
-
-        private static ClientCredentials InitializeClientCredentials(NetworkCredential credential, IServiceManagement<IDiscoveryService> discoveryServiceManagement)
-        {
-            ClientCredentials clientCredentials = new ClientCredentials();
-            if (discoveryServiceManagement.AuthenticationType == AuthenticationProviderType.ActiveDirectory)
-            {
-                clientCredentials.Windows.ClientCredential = credential;
-            }
-            else
-            {
-                if (!string.IsNullOrWhiteSpace(credential.Domain))
-                {
-                    clientCredentials.UserName.UserName = string.Format("{0}\\{1}", credential.Domain, credential.UserName);
-                }
-                else
-                {
-                    clientCredentials.UserName.UserName = credential.UserName;
-                }
-                clientCredentials.UserName.Password = credential.Password;
-            }
-            return clientCredentials;
-        }
-
-        private static TService GetService<TService>(IServiceManagement<TService> serviceManagement, AuthenticationCredentials tokenCredentials)
-            where TService : class
-        {
-            Type classType = null;
-            if (typeof(TService) == typeof(IOrganizationService))
-            {
-                classType = typeof(ManagedTokenOrganizationServiceProxy);
-            }
-            else
-            {
-                classType = typeof(ManagedTokenDiscoveryServiceProxy);
-            }
-
-            if (serviceManagement.AuthenticationType != AuthenticationProviderType.ActiveDirectory)
-            {
-                return (TService)classType
-                .GetConstructor(new Type[] 
-                    { 
-                        typeof(IServiceManagement<TService>), 
-                        typeof(SecurityTokenResponse) 
-                    })
-                .Invoke(new object[] 
-                    { 
-                        serviceManagement, 
-                        tokenCredentials.SecurityTokenResponse 
-                    });
-            }
-            else
-            {
-                return (TService)classType
-                .GetConstructor(new Type[] 
-                   { 
-                       typeof(IServiceManagement<TService>), 
-                       typeof(ClientCredentials)
-                   })
-               .Invoke(new object[] 
-                   { 
-                       serviceManagement, 
-                       tokenCredentials.ClientCredentials 
-                   });
-            }
+            OrganizationCache = new MetadataCache();
+            Version = _client.ConnectedOrgVersion;
+            ActiveSolutionName = null;
         }
 
         #region IDisposable
@@ -153,8 +61,7 @@ namespace AMSoftware.Crm.PowerShell.Common
             {
                 if (disposing)
                 {
-                    if (DiscoveryProxy != null) ((DiscoveryServiceProxy)DiscoveryProxy).Dispose();
-                    if (OrganizationProxy != null) ((OrganizationServiceProxy)OrganizationProxy).Dispose();
+                    //if (_client != null) _client.Dispose();
                 }
                 // There are no unmanaged resources to release, but if we add them, they need to be released here.
             }
@@ -167,41 +74,9 @@ namespace AMSoftware.Crm.PowerShell.Common
         }
         #endregion
 
-        internal void Connect(OrganizationDetail organization)
-        {
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+        internal IOrganizationService OrganizationProxy { get; }
 
-            DisconnectOrganization();
-
-            Uri organizationUri = new Uri(organization.Endpoints[EndpointType.OrganizationService], UriKind.Absolute);
-            IServiceManagement<IOrganizationService> organizationServiceManagement = 
-                ServiceConfigurationFactory.CreateManagement<IOrganizationService>(organizationUri);
-            OrganizationProxy = GetService<IOrganizationService>(organizationServiceManagement, _tokenCredentials);
-
-            OrganizationCache = new MetadataCache();
-            InitializeOrganizationInfo();
-
-            Version = new Version(organization.OrganizationVersion);
-            ActiveSolutionName = null;
-        }
-
-        private void DisconnectOrganization()
-        {
-            OrganizationCache = null;
-            if (OrganizationProxy != null) ((OrganizationServiceProxy)OrganizationProxy).Dispose();
-        }
-
-        internal IDiscoveryService DiscoveryProxy
-        {
-            get;
-            private set;
-        }
-
-        internal IOrganizationService OrganizationProxy
-        {
-            get;
-            private set;
-        }
+        internal CrmServiceClient Client => _client;
 
         internal MetadataCache OrganizationCache
         {
@@ -250,18 +125,6 @@ namespace AMSoftware.Crm.PowerShell.Common
         {
             get;
             set;
-        }
-
-        private void InitializeOrganizationInfo()
-        {
-            WhoAmIRequest whoAmIRequest = new WhoAmIRequest();
-            WhoAmIResponse whoAmIResponse = OrganizationProxy.Execute(whoAmIRequest) as WhoAmIResponse;
-            Guid organizationId = whoAmIResponse.OrganizationId;
-
-            Entity organizationRow = OrganizationProxy.Retrieve("organization", organizationId, new ColumnSet("languagecode", "localeid"));
-            _organizationLanguage = organizationRow.GetAttributeValue<int>("languagecode");
-            Language = _organizationLanguage;
-            LocaleId = organizationRow.GetAttributeValue<int>("localeid");
         }
     }
 }

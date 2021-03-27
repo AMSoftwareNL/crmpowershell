@@ -31,7 +31,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
     [OutputType(typeof(Entity))]
     public sealed class RegisterServiceEndpointCommand : CrmOrganizationCmdlet
     {
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         [Parameter(Mandatory = true)]
         [ValidateNotNullOrEmpty]

@@ -30,7 +30,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
     [OutputType(typeof(AttributeMetadata))]
     public sealed class AddAttributeCommand : CrmOrganizationCmdlet
     {
-        private MetadataRepository _repository = new MetadataRepository();
+        private readonly MetadataRepository _repository = new MetadataRepository();
 
         [Parameter(Mandatory = true, Position = 1)]
         [ValidateNotNullOrEmpty]
@@ -60,7 +60,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
     [OutputType(typeof(AttributeMetadata))]
     public abstract class AddAttributeCommandBase : CrmOrganizationCmdlet, IDynamicParameters
     {
-        private MetadataRepository _repository = new MetadataRepository();
+        private readonly MetadataRepository _repository = new MetadataRepository();
         private AddAttributeDynamicParameters _context;
 
         [Parameter(Mandatory = true, Position = 1, ValueFromPipelineByPropertyName = true)]
@@ -132,8 +132,8 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         protected void WriteAttribute(AttributeMetadata attribute)
         {
             attribute.LogicalName = Name;
-            attribute.DisplayName = new Label(DisplayName, CrmContext.Language);
-            attribute.Description = new Label(Description ?? string.Empty, CrmContext.Language);
+            attribute.DisplayName = new Label(DisplayName, CrmContext.Session.Language);
+            attribute.Description = new Label(Description ?? string.Empty, CrmContext.Session.Language);
 
             AttributeRequiredLevel requiredLevel = AttributeRequiredLevel.ApplicationRequired;
             if (Required == CrmRequiredLevel.Required) requiredLevel = AttributeRequiredLevel.ApplicationRequired;
@@ -536,8 +536,8 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
                 OptionSet = new BooleanOptionSetMetadata()
             };
             if (this.DefaultValue.HasValue) attribute.DefaultValue = DefaultValue.Value;
-            if (this.TrueValue != null) attribute.OptionSet.TrueOption = new OptionMetadata(new Label(TrueValue.DisplayName, CrmContext.Language), TrueValue.Value);
-            if (this.FalseValue != null) attribute.OptionSet.FalseOption = new OptionMetadata(new Label(FalseValue.DisplayName, CrmContext.Language), FalseValue.Value);
+            if (this.TrueValue != null) attribute.OptionSet.TrueOption = new OptionMetadata(new Label(TrueValue.DisplayName, CrmContext.Session.Language), TrueValue.Value);
+            if (this.FalseValue != null) attribute.OptionSet.FalseOption = new OptionMetadata(new Label(FalseValue.DisplayName, CrmContext.Session.Language), FalseValue.Value);
 
             WriteAttribute(attribute);
         }
@@ -578,17 +578,18 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
                     };
                     foreach (PSOptionSetValue item in Values)
                     {
-                        OptionMetadata option = new OptionMetadata(new Label(item.DisplayName, CrmContext.Language), item.Value);
+                        OptionMetadata option = new OptionMetadata(new Label(item.DisplayName, CrmContext.Session.Language), item.Value);
                         attribute.OptionSet.Options.Add(option);
                     }
                     break;
                 case AddOptionSetExistingParameterSet:
                     MetadataRepository repository = new MetadataRepository();
-                    OptionSetMetadata optionset = repository.GetOptionSet(OptionSet) as OptionSetMetadata;
-                    if (optionset != null && optionset.IsGlobal.GetValueOrDefault()) {
+                    if (repository.GetOptionSet(OptionSet) is OptionSetMetadata optionset && optionset.IsGlobal.GetValueOrDefault())
+                    {
                         attribute.OptionSet = optionset;
                         attribute.OptionSet.Options.Clear();
-                    } else
+                    }
+                    else
                     {
                         throw new Exception($"No global optionset found with name: {OptionSet}");
                     }

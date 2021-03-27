@@ -43,7 +43,7 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
 
             IncludeRelatedEntitiesInRetrieveRequest(request, related);
 
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
 
             return (Entity)response.Results["Entity"];
         }
@@ -68,7 +68,7 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
             request.Parameters.Add("Target", reference);
             request.Parameters.Add("ColumnSet", columnSet);
 
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
 
             return (Entity)response.Results["Entity"];
         }
@@ -107,7 +107,7 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
             PagingInfo pageInfo = BuildPagingInfo(1);
             SetQueryPagingInfo(query, pageInfo);
 
-            EntityCollection tempCollection = CrmContext.OrganizationProxy.RetrieveMultiple(query);
+            EntityCollection tempCollection = CrmContext.Session.OrganizationProxy.RetrieveMultiple(query);
             accuracy = tempCollection.TotalRecordCountLimitExceeded ? 0.5 : 1.0;
             return tempCollection.TotalRecordCount;
         }
@@ -120,12 +120,12 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
             };
             request.Parameters.Add("Target", entity);
 
-            if (CrmContext.ActiveSolution != null)
+            if (CrmContext.Session.ActiveSolutionName != null)
             {
-                request.Parameters.Add("SolutionUniqueName", CrmContext.ActiveSolution);
+                request.Parameters.Add("SolutionUniqueName", CrmContext.Session.ActiveSolutionName);
             }
 
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
             return (Guid)response.Results["id"];
         }
 
@@ -157,12 +157,12 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
             };
             request.Parameters.Add("Target", entity);
 
-            if (CrmContext.ActiveSolution != null)
+            if (CrmContext.Session.ActiveSolutionName != null)
             {
-                request.Parameters.Add("SolutionUniqueName", CrmContext.ActiveSolution);
+                request.Parameters.Add("SolutionUniqueName", CrmContext.Session.ActiveSolutionName);
             }
 
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
         }
 
         public void Update(string entity, Guid id, Hashtable attributes)
@@ -189,12 +189,12 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
             };
             request.Parameters.Add("Target", new EntityReference(entity, id));
 
-            if (CrmContext.ActiveSolution != null)
+            if (CrmContext.Session.ActiveSolutionName != null)
             {
-                request.Parameters.Add("SolutionUniqueName", CrmContext.ActiveSolution);
+                request.Parameters.Add("SolutionUniqueName", CrmContext.Session.ActiveSolutionName);
             }
 
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
         }
 
         public OrganizationResponse Execute(string requestName, Hashtable requestParameters = null)
@@ -214,7 +214,7 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
 
         public OrganizationResponse Execute(OrganizationRequest request)
         {
-            OrganizationResponse response = CrmContext.OrganizationProxy.Execute(request);
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
             return response;
         }
 
@@ -241,7 +241,7 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
             };
             asyncRequest.Parameters.Add("Request", request);
 
-            OrganizationResponse asyncResponse = CrmContext.OrganizationProxy.Execute(asyncRequest);
+            OrganizationResponse asyncResponse = CrmContext.Session.OrganizationProxy.Execute(asyncRequest);
             return asyncResponse;
         }
 
@@ -255,14 +255,14 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
                 throw new KeyNotFoundException(string.Format("No (unique) relationship from {0} to {1}", addEntity, toEntity));
             }
 
-            CrmContext.OrganizationProxy.Associate(toEntity, toEntityId, new Relationship(relationship.SchemaName), new EntityReferenceCollection() {
+            CrmContext.Session.OrganizationProxy.Associate(toEntity, toEntityId, new Relationship(relationship.SchemaName), new EntityReferenceCollection() {
                 new EntityReference(addEntity, addEntityId)
             });
         }
 
         public void Associate(string entityName, Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities)
         {
-            CrmContext.OrganizationProxy.Associate(entityName, entityId, relationship, relatedEntities);
+            CrmContext.Session.OrganizationProxy.Associate(entityName, entityId, relationship, relatedEntities);
         }
 
         public void Disassociate(string addEntity, Guid addEntityId, string toEntity, Guid toEntityId, string addAttributeHint = null)
@@ -275,14 +275,14 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
                 throw new KeyNotFoundException(string.Format("No (unique) relationship from {0} to {1}", addEntity, toEntity));
             }
 
-            CrmContext.OrganizationProxy.Disassociate(toEntity, toEntityId, new Relationship(relationship.SchemaName), new EntityReferenceCollection() {
+            CrmContext.Session.OrganizationProxy.Disassociate(toEntity, toEntityId, new Relationship(relationship.SchemaName), new EntityReferenceCollection() {
                 new EntityReference(addEntity, addEntityId)
             });
         }
 
         public void Disassociate(string entityName, Guid entityId, Relationship relationship, EntityReferenceCollection relatedEntities)
         {
-            CrmContext.OrganizationProxy.Disassociate(entityName, entityId, relationship, relatedEntities);
+            CrmContext.Session.OrganizationProxy.Disassociate(entityName, entityId, relationship, relatedEntities);
         }
 
         private IEnumerable<Entity> GetByQuery(QueryBase query, int? first = null, int? skip = null)
@@ -300,7 +300,7 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
             bool isCompleted = false;
             do
             {
-                EntityCollection tempCollection = CrmContext.OrganizationProxy.RetrieveMultiple(query);
+                EntityCollection tempCollection = CrmContext.Session.OrganizationProxy.RetrieveMultiple(query);
                 if (tempCollection != null && tempCollection.Entities != null && tempCollection.Entities.Count != 0)
                 {
                     int resultCount = tempCollection.Entities.Count;

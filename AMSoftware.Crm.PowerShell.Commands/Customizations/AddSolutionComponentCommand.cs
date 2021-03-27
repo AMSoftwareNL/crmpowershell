@@ -15,23 +15,21 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Management.Automation;
-using System.Management.Automation.Language;
 using AMSoftware.Crm.PowerShell.Common;
 using AMSoftware.Crm.PowerShell.Common.Helpers;
 using AMSoftware.Crm.PowerShell.Common.Repositories;
 using Microsoft.Xrm.Sdk;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Management.Automation;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
     [Cmdlet(VerbsCommon.Add, "CrmSolutionComponent", HelpUri = HelpUrlConstants.AddSolutionComponentHelpUrl)]
     public sealed class AddSolutionComponentCommand : CrmOrganizationCmdlet, IDynamicParameters
     {
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
         private AddSolutionComponentDynamicParameters _context;
 
         private Dictionary<int, string> _validComponentTypes;
@@ -132,30 +130,4 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
             request.Parameters.Add("IncludedComponentSettingsValues", ExcludeMetadata.ToBool() ? new string[] { } : null);
         }
     }
-
-    //public class ResourceTypeArgumentCompleter : IArgumentCompleter
-    //{
-    //    public IEnumerable<CompletionResult> CompleteArgument(string commandName, string parameterName, string wordToComplete, CommandAst commandAst, IDictionary fakeBoundParameters)
-    //    {
-    //        if (fakeBoundParameters == null)
-    //        {
-    //            throw new ArgumentNullException("fakeBoundParameters");
-    //        }
-
-    //        IEnumerable<KeyValuePair<int, string>> validComponentTypes = new Dictionary<int, string>(SolutionManagementHelper.GetComponentTypes());
-
-    //        if (!string.IsNullOrWhiteSpace(wordToComplete))
-    //        {
-    //            validComponentTypes = validComponentTypes.Where(k =>
-    //                k.Key.ToString().StartsWith(wordToComplete, StringComparison.InvariantCultureIgnoreCase) ||
-    //                k.Value.StartsWith(wordToComplete, StringComparison.InvariantCultureIgnoreCase));
-    //        }
-
-    //        var textResult = from type in validComponentTypes
-    //                         orderby type.Value
-    //                         select new CompletionResult(type.Value, type.Value, CompletionResultType.Text, type.Value);
-
-    //        return textResult;
-    //    }
-    //}
 }

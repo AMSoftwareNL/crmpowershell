@@ -27,7 +27,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         private const string RemoveRelationshipByNameParameterSet = "RemoveRelationshipByName";
         private const string RemoveRelationshipByEntityParameterSet = "RemoveRelationshipByEntity";
 
-        private MetadataRepository _repository = new MetadataRepository();
+        private readonly MetadataRepository _repository = new MetadataRepository();
 
         [Parameter(Position = 1, Mandatory = true, ParameterSetName = RemoveRelationshipByNameParameterSet, ValueFromPipelineByPropertyName = true)]
         [Alias("SchemaName")]

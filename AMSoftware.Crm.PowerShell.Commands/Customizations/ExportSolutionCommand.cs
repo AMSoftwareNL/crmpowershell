@@ -29,7 +29,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
     [Cmdlet(VerbsData.Export, "CrmSolution", HelpUri = HelpUrlConstants.ExportSolutionHelpUrl)]
     public sealed class ExportSolutionCommand : CrmOrganizationCmdlet, IDynamicParameters
     {
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
         private ExportSolutionDynamicParameters _context;
 
         [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]

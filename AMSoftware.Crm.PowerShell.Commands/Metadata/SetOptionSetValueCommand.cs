@@ -29,7 +29,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         private const string SetOptionSetValueGlobalParameterSet = "SetOptionSetValueGlobal";
         private const string SetOptionSetValueEntityParameterSet = "SetOptionSetValueEntity";
 
-        private MetadataRepository _repository = new MetadataRepository();
+        private readonly MetadataRepository _repository = new MetadataRepository();
 
         [Parameter(Position = 1, Mandatory = true, ParameterSetName = SetOptionSetValueGlobalParameterSet,ValueFromPipelineByPropertyName = true)]
         [Alias("Name")]

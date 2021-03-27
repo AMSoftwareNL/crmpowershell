@@ -27,8 +27,6 @@ namespace AMSoftware.Crm.PowerShell.Commands
     [Cmdlet(VerbsOther.Use, "CrmLanguage", HelpUri = HelpUrlConstants.UseLanguageHelpUrl)]
     public sealed class UseLanguageCommand : CrmOrganizationCmdlet
     {
-        private ContentRepository _repository = new ContentRepository();
-
         [Parameter(Position = 1, ValueFromPipeline = true)]
         [ValidateNotNull]
         public int? Language { get; set; }
@@ -39,11 +37,11 @@ namespace AMSoftware.Crm.PowerShell.Commands
 
             if (Language.HasValue && Language.Value != 0)
             {
-                CrmContext.Language = Language.Value;
+                CrmContext.Session.Language = Language.Value;
             }
             else
             {
-                CrmContext.Language = 0;
+                CrmContext.Session.Language = 0;
             }
         }
     }

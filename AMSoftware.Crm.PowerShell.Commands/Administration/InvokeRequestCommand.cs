@@ -25,7 +25,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
     [Cmdlet(VerbsLifecycle.Invoke, "CrmRequest", HelpUri = HelpUrlConstants.InvokeRequestHelpUrl)]
     public sealed class InvokeRequestCommand : CrmOrganizationCmdlet
     {
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         [Parameter(Mandatory = true, Position = 1)]
         [ValidateNotNullOrEmpty]

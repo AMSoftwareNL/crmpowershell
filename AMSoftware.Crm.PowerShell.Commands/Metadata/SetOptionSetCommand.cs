@@ -31,7 +31,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         private const string SetOptionSetParameterSet = "SetOptionSet";
         private const string SetOptionSetByInputObjectParameterSet = "SetOptionSetByInputObject";
 
-        private MetadataRepository _repository = new MetadataRepository();
+        private readonly MetadataRepository _repository = new MetadataRepository();
 
         [Parameter(Position = 1, Mandatory = true, ParameterSetName = SetOptionSetByInputObjectParameterSet, ValueFromPipeline = true)]
         [Alias("OptionSet")]
@@ -91,8 +91,8 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         {
             // There is something to update;
             OptionSetMetadataBase optionSet = _repository.GetOptionSet(Name);
-            if (DisplayName != null) optionSet.DisplayName = new Label(DisplayName, CrmContext.Language);
-            if (Description != null) optionSet.Description = new Label(Description ?? string.Empty, CrmContext.Language);
+            if (DisplayName != null) optionSet.DisplayName = new Label(DisplayName, CrmContext.Session.Language);
+            if (Description != null) optionSet.Description = new Label(Description ?? string.Empty, CrmContext.Session.Language);
             if (Customizable.HasValue) optionSet.IsCustomizable = new BooleanManagedProperty(Customizable.Value);
             return optionSet;
         }

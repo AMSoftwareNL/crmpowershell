@@ -32,7 +32,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         private const string GetAllTeamsParameterSet = "GetAllTeams";
         private const string GetTeamByIdParameterSet = "GetTeamById";
 
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = GetTeamByIdParameterSet, ValueFromPipeline = true)]
         [ValidateNotNull]

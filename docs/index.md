@@ -1,18 +1,16 @@
 ---
-Module Name: amsoftware.crm
+Module Name: AMSoftware.Crm
 Module Guid: 1e7f1ebc-e035-4d73-86af-3c07a6a85260
-Download Help Link: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/
-Help Version: 1.2.4.2
+Download Help Link: http://www.amsoftware.nl/tools/crmpowershell/help/
+Help Version: 2.0.0.0
 Locale: en-us
 ---
 
-# amsoftware.crm Module
+# AMSoftware.Crm Module
 ## Description
-PowerShell CmdLet Library for use with Dynamics CRM Organization. Manage Metadata and content, and administer the organization.
-CRM PowerShell Library is a collection of PowerShell Cmdlets for working with Dynamics CRM.
-Connect to your on premises CRM using Windows Authentication, Claims Based Authentication or IFD. Or connect to CRM Online (Dynamics 365) by specifying the Region. List and select an available organization, and you are ready to go.
+Manage Power Platform Dataverse metadata and content, and administer the environment. Use on-premises and online.
 
-## amsoftware.crm Cmdlets
+## AMSoftware.Crm Cmdlets
 ### [Add-CrmAttribute](Add-CrmAttribute.md)
 Add an attribute to an entity.
 
@@ -64,11 +62,8 @@ Add a component to a customization solution.
 ### [Add-CrmStringAttribute](Add-CrmStringAttribute.md)
 Add an attribute of type String.
 
-### [Connect-CrmDeployment](Connect-CrmDeployment.md)
-Connect and authenticate to a Dynamics CRM deployment.
-
 ### [Connect-CrmOrganization](Connect-CrmOrganization.md)
-Connect to a specific organization in the connected deployment.
+Connect to a Dataverse environment.
 
 ### [Disable-CrmPluginStep](Disable-CrmPluginStep.md)
 Disable a SDK Message Processing Step.
@@ -97,8 +92,8 @@ Retrieve data records from an entity.
 ### [Get-CrmEntity](Get-CrmEntity.md)
 Get the metadata of an entity.
 
-### [Get-CrmEntityKey](Get-CrmEntityKey.md)
-Get entity key metadata for an entity.
+### [Get-CrmEntity](Get-CrmEntity.md)
+Get the metadata of an entity.
 
 ### [Get-CrmLanguage](Get-CrmLanguage.md)
 Get the language of the connected organization.
@@ -106,20 +101,17 @@ Get the language of the connected organization.
 ### [Get-CrmOptionSet](Get-CrmOptionSet.md)
 Get the metadata of a global optionset.
 
-### [Get-CrmOrganization](Get-CrmOrganization.md)
-Retrieve the organizations available in the connected deployment.
-
 ### [Get-CrmPlugin](Get-CrmPlugin.md)
 Get a plugin.
 
 ### [Get-CrmPluginAssembly](Get-CrmPluginAssembly.md)
 Get plugin assembly.
 
-### [Get-CrmPluginStepImage](Get-CrmPluginStepImage.md)
-Get SDK Message Processing Step Image.
-
 ### [Get-CrmPluginStep](Get-CrmPluginStep.md)
 Get SDK Message Processing Step.
+
+### [Get-CrmPluginStepImage](Get-CrmPluginStepImage.md)
+Get SDK Message Processing Step Image.
 
 ### [Get-CrmPrincipalRoles](Get-CrmPrincipalRoles.md)
 Get the roles related to a user or team.
@@ -148,6 +140,9 @@ Get a customizations solution.
 ### [Get-CrmSolutionComponent](Get-CrmSolutionComponent.md)
 Get the component in a customizations solution.
 
+### [Get-CrmSPDocumentLocation](Get-CrmSPDocumentLocation.md)
+Retrieve SharePoint Document locations
+
 ### [Get-CrmTeam](Get-CrmTeam.md)
 Get team from the connected organization.
 
@@ -174,6 +169,9 @@ Import content for an existing webresource.
 
 ### [Invoke-CrmRequest](Invoke-CrmRequest.md)
 Execute any Dynamics CRM request.
+
+### [Invoke-CrmWebApiRequest](Invoke-CrmWebApiRequest.md)
+Invoke the WebAPI
 
 ### [Join-CrmContent](Join-CrmContent.md)
 Associate one record with another.
@@ -244,14 +242,26 @@ Remove a global optionset.
 ### [Remove-CrmOptionSetValue](Remove-CrmOptionSetValue.md)
 Remove a value from a global optionset or picklist attribute.
 
+### [Remove-CrmPrincipalRoles](Remove-CrmPrincipalRoles.md)
+Remove the roles for a user or team.
+
 ### [Remove-CrmRelationship](Remove-CrmRelationship.md)
 Remove a relationship.
+
+### [Remove-CrmRolePrincipals](Remove-CrmRolePrincipals.md)
+Remove the teams or users assigned to a role.
 
 ### [Remove-CrmSolutionComponent](Remove-CrmSolutionComponent.md)
 Remove a component from a customization solution.
 
+### [Remove-CrmTeamUsers](Remove-CrmTeamUsers.md)
+Remove users from a team.
+
 ### [Remove-CrmUserParent](Remove-CrmUserParent.md)
 Remove the parent for a system user (user) record.
+
+### [Remove-CrmUserTeams](Remove-CrmUserTeams.md)
+Remove the teams a user is a member of.
 
 ### [Remove-CrmWebresource](Remove-CrmWebresource.md)
 Remove a webresource.

@@ -37,8 +37,8 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
             PluginImage
         }
 
-        private ContentRepository _repository = new ContentRepository();
-        private Dictionary<PluginComponentType, List<Guid>> _components = new Dictionary<PluginComponentType, List<Guid>>();
+        private readonly ContentRepository _repository = new ContentRepository();
+        private readonly Dictionary<PluginComponentType, List<Guid>> _components = new Dictionary<PluginComponentType, List<Guid>>();
 
         [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]
         [ValidateNotNullOrEmpty]

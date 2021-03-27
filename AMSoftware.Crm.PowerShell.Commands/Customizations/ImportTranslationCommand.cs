@@ -31,7 +31,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
         private const string ImportTranslationFromLiteralPathParameterSet = "ImportTranslationFromLiteralPath";
         private const string ImportTranslationFromPathParameterSet = "ImportTranslationFromPath";
 
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         private string[] _paths;
         private bool _shouldExpandWildcards;

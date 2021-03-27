@@ -31,7 +31,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
         private const string GetAllSolutionsParameterSet = "GetAllSolutions";
         private const string GetSolutionByIdParameterSet = "GetSolutionById";
 
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = GetSolutionByIdParameterSet, ValueFromPipeline = true)]
         [ValidateNotNull]

@@ -35,7 +35,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
         private const string GetPluginStepByIdParameterSet = "GetPluginStepById";
         private const string GetPluginStepByFilterParameterSet = "GetPluginStepByFilter";
 
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         [Parameter(Mandatory = true, ParameterSetName = GetPluginStepByIdParameterSet)]
         [ValidateNotNull]

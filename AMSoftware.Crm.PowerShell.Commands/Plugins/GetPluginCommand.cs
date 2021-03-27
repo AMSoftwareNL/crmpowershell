@@ -31,7 +31,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
         private const string GetPluginByIdParameterSet = "GetPluginById";
         private const string GetPluginByFilterParameterSet = "GetPluginByFilter";
 
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         [Parameter(Mandatory = true, ParameterSetName = GetPluginByIdParameterSet)]
         [ValidateNotNull]

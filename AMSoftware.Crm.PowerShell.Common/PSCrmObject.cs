@@ -17,13 +17,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 using System;
 using System.Management.Automation;
-using System.Runtime.Serialization;
 
 namespace AMSoftware.Crm.PowerShell.Common
 {
     public class PSCrmObject<TInput, TDisplay> : PSObject
     {
-        private Func<TInput, TDisplay> _toStringSelector;
+        private readonly Func<TInput, TDisplay> _toStringSelector;
 
         public PSCrmObject(TInput obj, Func<TInput, TDisplay> toStringSelector) : base(obj)
         {

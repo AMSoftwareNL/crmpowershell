@@ -26,7 +26,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
     [OutputType(typeof(Entity))]
     public sealed class NewPublisherCommand : CrmOrganizationCmdlet
     {
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         [Parameter(Mandatory = true, Position = 0)]
         [ValidateNotNullOrEmpty]

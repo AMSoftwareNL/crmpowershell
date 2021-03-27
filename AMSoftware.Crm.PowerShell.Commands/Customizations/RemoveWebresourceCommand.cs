@@ -24,7 +24,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
     [Cmdlet(VerbsCommon.Remove, "CrmWebresource", HelpUri = HelpUrlConstants.RemoveWebresourceHelpUrl, SupportsShouldProcess = true)]
     public sealed class RemoveWebresourceCommand : CrmOrganizationConfirmActionCmdlet
     {
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]
         public Guid Id { get; set; }

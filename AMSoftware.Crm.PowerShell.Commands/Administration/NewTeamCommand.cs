@@ -28,7 +28,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
     [OutputType(typeof(Entity))]
     public sealed class NewTeamCommand : CrmOrganizationCmdlet
     {
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         [Parameter(Mandatory = true, Position = 0)]
         [ValidateNotNullOrEmpty]
@@ -61,7 +61,6 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         {
             base.ExecuteCmdlet();
 
-            Guid[] userIds = Users;
             Guid businessUnitId = BusinessUnit ?? SecurityManagementHelper.GetDefaultBusinessUnitId(_repository);
 
             Entity newTeam = new Entity("team")

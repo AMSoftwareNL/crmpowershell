@@ -2,13 +2,13 @@
 Module Name: AMSoftware.Crm
 Module Guid: 1e7f1ebc-e035-4d73-86af-3c07a6a85260
 Download Help Link: http://www.amsoftware.nl/tools/crmpowershell/help/
-Help Version: 1.4.1.0
+Help Version: 2.0.0.0
 Locale: en-us
 ---
 
 # AMSoftware.Crm Module
 ## Description
-PowerShell CmdLet Library for use with Dynamics CRM Organization. Manage Metadata and content, and administer the organization. CRM PowerShell Library is a collection of PowerShell Cmdlets for working with Dynamics CRM. Connect to your on premises CRM using Windows Authentication, Claims Based Authentication or IFD. Or connect to CRM Online (Dynamics 365) by specifying the Region. List and select an available organization, and you are ready to go.
+Manage Power Platform Dataverse metadata and content, and administer the environment. Use on-premises and online.
 
 ## AMSoftware.Crm Cmdlets
 ### [Add-CrmAttribute](Add-CrmAttribute.md)
@@ -62,11 +62,8 @@ Add a component to a customization solution.
 ### [Add-CrmStringAttribute](Add-CrmStringAttribute.md)
 Add an attribute of type String.
 
-### [Connect-CrmDeployment](Connect-CrmDeployment.md)
-Connect and authenticate to a Dynamics CRM deployment.
-
 ### [Connect-CrmOrganization](Connect-CrmOrganization.md)
-Connect to a specific organization in the connected deployment.
+Connect to a Dataverse environment.
 
 ### [Disable-CrmPluginStep](Disable-CrmPluginStep.md)
 Disable a SDK Message Processing Step.
@@ -103,9 +100,6 @@ Get the language of the connected organization.
 
 ### [Get-CrmOptionSet](Get-CrmOptionSet.md)
 Get the metadata of a global optionset.
-
-### [Get-CrmOrganization](Get-CrmOrganization.md)
-Retrieve the organizations available in the connected deployment.
 
 ### [Get-CrmPlugin](Get-CrmPlugin.md)
 Get a plugin.
@@ -146,6 +140,9 @@ Get a customizations solution.
 ### [Get-CrmSolutionComponent](Get-CrmSolutionComponent.md)
 Get the component in a customizations solution.
 
+### [Get-CrmSPDocumentLocation](Get-CrmSPDocumentLocation.md)
+Retrieve SharePoint Document locations
+
 ### [Get-CrmTeam](Get-CrmTeam.md)
 Get team from the connected organization.
 
@@ -172,6 +169,9 @@ Import content for an existing webresource.
 
 ### [Invoke-CrmRequest](Invoke-CrmRequest.md)
 Execute any Dynamics CRM request.
+
+### [Invoke-CrmWebApiRequest](Invoke-CrmWebApiRequest.md)
+Invoke the WebAPI
 
 ### [Join-CrmContent](Join-CrmContent.md)
 Associate one record with another.

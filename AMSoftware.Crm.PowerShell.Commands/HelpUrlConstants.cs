@@ -20,9 +20,7 @@ namespace AMSoftware.Crm.PowerShell.Commands
     internal static class HelpUrlConstants
     {
         public const string UseLanguageHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Use-CrmLanguage.md";
-        public const string ConnectDeploymentHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Connect-CrmDeployment.md";
         public const string ConnectOrganizationHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Connect-CrmOrganization.md";
-        public const string GetOrganizationHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Get-CrmOrganization.md";
         public const string AddAttributeHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Add-CrmAttribute.md";
         public const string AddBigIntAttributeHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Add-CrmBigIntAttribute.md";
         public const string AddBooleanAttributeHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Add-CrmBooleanAttribute.md";
@@ -88,6 +86,7 @@ namespace AMSoftware.Crm.PowerShell.Commands
         public const string GetUserTeamsHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Get-CrmUserTeams.md";
         public const string ImportTranslationHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Import-CrmTranslation.md";
         public const string InvokeRequestHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Invoke-CrmRequest.md";
+        public const string InvokeWebApiRequestHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Invoke-CrmWebApiRequest.md";
         public const string NewBusinessUnitHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/New-CrmBusinessUnit.md";
         public const string NewRoleHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/New-CrmRole.md";
         public const string NewTeamHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/New-CrmTeam.md";

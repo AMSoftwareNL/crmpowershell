@@ -30,7 +30,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         private const string RemoveTeamUsersAllParameterSet = "RemoveTeamUsersAll";
         private const string RemoveTeamUsersSelectedParameterSet = "RemoveTeamUsersSelected";
 
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
         [Alias("Id")]

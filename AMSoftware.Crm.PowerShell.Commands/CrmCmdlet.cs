@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Management.Automation;
 using AMSoftware.Crm.PowerShell.Common;
 using Microsoft.PowerShell.Commands;
@@ -106,52 +107,28 @@ namespace AMSoftware.Crm.PowerShell.Commands
 
             foreach (string path in pathsToProcess)
             {
-                ProviderInfo provider;
                 if (expandWildcards)
                 {
-                    resolvedPaths.AddRange(this.GetResolvedProviderPathFromPSPath(path, out provider));
+                    Collection<string> resolvedProviderPaths = this.GetResolvedProviderPathFromPSPath(path, out ProviderInfo provider);
+                    if (provider.ImplementingType != typeof(FileSystemProvider))
+                    {
+                        ArgumentException ex = new ArgumentException(path + " does not resolve to a path on the FileSystem provider.");
+                        ErrorRecord error = new ErrorRecord(ex, "InvalidProvider", ErrorCategory.InvalidArgument, path);
+
+                        this.WriteError(error);
+                    }
+                    else
+                    {
+                        resolvedPaths.AddRange(resolvedProviderPaths);
+                    }
                 }
                 else
                 {
-                    resolvedPaths.Add(this.SessionState.Path.GetUnresolvedProviderPathFromPSPath(path, out provider, out PSDriveInfo drive));
-                }
-                // ensure that this path (or set of paths after wildcard expansion)
-                if (IsFileSystemPath(provider, path) == false)
-                {
-                    continue;
+                    resolvedPaths.Add(this.GetUnresolvedProviderPathFromPSPath(path));
                 }
             }
 
             return resolvedPaths.ToArray();
-        }
-
-        private bool IsFileSystemPath(ProviderInfo provider, string path)
-        {
-            bool isFileSystem = true;
-            // check that this provider is the filesystem
-            if (provider.ImplementingType != typeof(FileSystemProvider))
-            {
-                ArgumentException ex = new ArgumentException(path + " does not resolve to a path on the FileSystem provider.");
-                ErrorRecord error = new ErrorRecord(ex, "InvalidProvider", ErrorCategory.InvalidArgument, path);
-
-                this.WriteError(error);
-                
-                isFileSystem = false;
-            }
-            return isFileSystem;
-        }
-    }
-
-    public abstract class CrmDiscoveryCmdlet : CrmCmdlet
-    {
-        protected override void BeginProcessing()
-        {
-            if (CrmContext.DiscoveryProxy == null)
-            {
-                ThrowTerminatingError(new ErrorRecord(new Exception("Not connected with a CRM Deployment. Run Connect-CrmDeployment."), string.Empty, ErrorCategory.ConnectionError, null));
-            }
-
-            base.BeginProcessing();
         }
     }
 
@@ -159,24 +136,19 @@ namespace AMSoftware.Crm.PowerShell.Commands
     {
         protected override void BeginProcessing()
         {
-            if (CrmContext.DiscoveryProxy == null)
-            {
-                ThrowTerminatingError(new ErrorRecord(new Exception("Not connected with a CRM Deployment. Run Connect-CrmDeployment."), string.Empty, ErrorCategory.ConnectionError, null));
-            }
-
-            if (CrmContext.OrganizationProxy == null)
+            if (CrmContext.Session.OrganizationProxy == null)
             {
                 ThrowTerminatingError(new ErrorRecord(new Exception("Not connected with a CRM Organization. Run Connect-CrmOrganization."), string.Empty, ErrorCategory.ConnectionError, null));
             }
 
             base.BeginProcessing();
 
-            if (!string.IsNullOrEmpty(CrmContext.ActiveSolution))
+            if (!string.IsNullOrEmpty(CrmContext.Session.ActiveSolutionName))
             {
-                this.WriteDebugWithTimestamp(string.Format("Applying solution '{0}' to processing.", CrmContext.ActiveSolution));
+                this.WriteDebugWithTimestamp(string.Format("Applying solution '{0}' to processing.", CrmContext.Session.ActiveSolutionName));
             }
 
-            this.WriteDebugWithTimestamp(string.Format("Applying language '{0}' to processing.", CrmContext.Language));
+            this.WriteDebugWithTimestamp(string.Format("Applying language '{0}' to processing.", CrmContext.Session.Language));
         }
     }
 

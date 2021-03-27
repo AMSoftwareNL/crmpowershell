@@ -30,7 +30,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         private const string SetRelationshipParameterSet = "SetRelationship";
         private const string SetRelationshipByInputObjectParameterSet = "SetRelationshipByInputObject";
 
-        private MetadataRepository _repository = new MetadataRepository();
+        private readonly MetadataRepository _repository = new MetadataRepository();
         private SetRelationshipDynamicParameters _context;
 
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = SetRelationshipByInputObjectParameterSet, ValueFromPipeline = true)]
@@ -118,7 +118,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         {
             base.SetParametersOnRelationship(relationship);
 
+#pragma warning disable IDE0038 // Use pattern matching
             if (relationship is OneToManyRelationshipMetadata)
+#pragma warning restore IDE0038 // Use pattern matching
             {
                 if (IsHierarchical.HasValue) ((OneToManyRelationshipMetadata)relationship).IsHierarchical = IsHierarchical.Value;
             }

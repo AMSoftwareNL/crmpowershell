@@ -31,7 +31,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
         private const string GetPluginStepImageByIdParameterSet = "GetPluginStepImageById";
         private const string GetPluginStepImageByFilterParameterSet = "GetPluginStepImageByFilter";
 
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         [Parameter(Mandatory = true, ParameterSetName = GetPluginStepImageByIdParameterSet)]
         [ValidateNotNull]

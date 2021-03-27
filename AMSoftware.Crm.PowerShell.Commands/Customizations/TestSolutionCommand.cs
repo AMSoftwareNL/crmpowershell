@@ -33,7 +33,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
         private const string TestDependenciesSolutionParameterSet = "TestDependenciesSolution";
         private const string TestMissingSolutionParameterSet = "TestMissingSolution";
 
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         [Parameter(Position = 1, ParameterSetName = TestUninstallSolutionParameterSet, ValueFromPipeline = true)]
         [Parameter(Position = 1, ParameterSetName = TestDependenciesSolutionParameterSet, ValueFromPipeline = true)]

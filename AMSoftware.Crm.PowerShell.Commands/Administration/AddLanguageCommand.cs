@@ -25,7 +25,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
     [Cmdlet(VerbsCommon.Add, "CrmLanguage", HelpUri = HelpUrlConstants.AddLanguageHelpUrl, ConfirmImpact = ConfirmImpact.High, SupportsShouldProcess = true)]
     public sealed class AddLanguageCommand : CrmOrganizationConfirmActionCmdlet
     {
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         [Parameter(Mandatory = true, Position = 1)]
         [ValidateNotNull]

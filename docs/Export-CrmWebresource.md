@@ -1,5 +1,5 @@
 ---
-external help file: AMSoftware.Crm.Powershell.Commands.dll-Help.xml
+external help file: AMSoftware.Crm.PowerShell.Commands.dll-Help.xml
 Module Name: AMSoftware.Crm
 online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Export-CrmWebresource.md
 schema: 2.0.0
@@ -13,7 +13,7 @@ Export the content of a webresource to the pipeline.
 ## SYNTAX
 
 ```
-Export-CrmWebresource [-Id] <Guid> [-Encoding <FileSystemCmdletProviderEncoding>] [<CommonParameters>]
+Export-CrmWebresource [-Id] <Guid> [-AsBytes] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -30,14 +30,13 @@ Export the content of all JavaScript webresource to the pipeline.
 
 ## PARAMETERS
 
-### -Encoding
-The encoding to apply to the exported content. If not provided byte encoding is used.
+### -AsBytes
+{{ Fill AsBytes Description }}
 
 ```yaml
-Type: FileSystemCmdletProviderEncoding
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
-Accepted values: Unknown, String, Unicode, Byte, BigEndianUnicode, UTF8, UTF7, UTF32, Ascii, Default, Oem, BigEndianUTF32
 
 Required: False
 Position: Named
@@ -62,7 +61,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

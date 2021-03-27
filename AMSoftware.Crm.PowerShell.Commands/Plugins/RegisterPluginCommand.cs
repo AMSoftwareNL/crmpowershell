@@ -34,9 +34,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
         private const string RegisterPluginFromLiteralPathParameterSet = "RegisterPluginFromLiteralPath";
         private const string RegisterPluginFromPathParameterSet = "RegisterPluginFromPath";
 
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
         private string[] _paths;
-        private bool _shouldExpandWildcards;
+        private bool _shouldExpandWildcards = false;
 
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = RegisterPluginFromLiteralPathParameterSet, ValueFromPipeline = false, ValueFromPipelineByPropertyName = true)]
         [Alias("PSPath")]

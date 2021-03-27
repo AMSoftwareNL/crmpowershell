@@ -28,7 +28,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
     [Cmdlet(VerbsData.Export, "CrmTranslation", HelpUri = HelpUrlConstants.ExportTranslationHelpUrl)]
     public sealed class ExportTranslationCommand : CrmOrganizationCmdlet
     {
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]
         [ValidateNotNull]

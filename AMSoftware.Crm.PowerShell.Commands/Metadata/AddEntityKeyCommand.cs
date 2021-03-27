@@ -32,7 +32,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         private const string AddEntityKeyParameterSet = "AddEntityKey";
         private const string AddEntityKeyByInputObjectParameterSet = "AddEntityKeyByInputObject";
 
-        private MetadataRepository _repository = new MetadataRepository();
+        private readonly MetadataRepository _repository = new MetadataRepository();
 
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = AddEntityKeyByInputObjectParameterSet)]
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = AddEntityKeyParameterSet, ValueFromPipelineByPropertyName = true)]
@@ -78,7 +78,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
                     {
                         LogicalName = Name,
                         SchemaName = Name,
-                        DisplayName = new Label(DisplayName, CrmContext.Language)
+                        DisplayName = new Label(DisplayName, CrmContext.Session.Language)
                     };
                     key.KeyAttributes = Attributes;
                     if (!string.IsNullOrWhiteSpace(SchemaName)) key.SchemaName = SchemaName;

@@ -29,7 +29,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Content
         private const string RemoveContentParameterSet = "RemoveContent";
         private const string RemoveContentByInputObjectParameterSet = "RemoveContentByInputObject";
 
-        private ContentRepository _repository = new ContentRepository();
+        private readonly ContentRepository _repository = new ContentRepository();
 
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = RemoveContentByInputObjectParameterSet, ValueFromPipeline = true)]
         [Alias("Record")]

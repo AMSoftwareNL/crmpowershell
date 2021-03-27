@@ -30,11 +30,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Helpers
 
         public static string GetComponentName(int componentType, Guid objectId)
         {
+            string componentLogicalName;
+            string primaryNameAttribute;
+
             MetadataRepository mdr = new MetadataRepository();
-
-            string componentLogicalName = null;
-            string primaryNameAttribute = null;
-
             switch (componentType)
             {
                 case 1:  //Entity

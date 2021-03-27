@@ -22,7 +22,7 @@ namespace AMSoftware.Crm.PowerShell.Common.PropertyAdapters
 {
     internal class FormattedValuePropertyHandler : IAdaptedPropertyHandler<Entity>
     {
-        private string _formattedValueName;
+        private readonly string _formattedValueName;
 
         public FormattedValuePropertyHandler(string formattedValueName)
         {
