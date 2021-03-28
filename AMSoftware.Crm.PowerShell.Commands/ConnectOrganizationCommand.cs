@@ -42,28 +42,27 @@ namespace AMSoftware.Crm.PowerShell.Commands
         {
             base.ExecuteCmdlet();
 
-            if (Connection == null)
+            try
             {
-                try
+                if (!string.IsNullOrWhiteSpace(Connectionstring))
                 {
                     Connection = new CrmServiceClient(Connectionstring);
-
-                    if (Connection != null && Connection.IsReady)
-                    {
-                        CrmContext.Connect(Connection);
-                        WriteObject(Connection.OrganizationDetail);
-                    }
-                    else
-                    {
-                        throw new Exception(Connection.LastCrmError, Connection.LastCrmException);
-                    }
                 }
-                catch {
-                    throw;
+
+                if (Connection != null && Connection.IsReady)
+                {
+                    CrmContext.Connect(Connection);
+                    WriteObject(Connection.OrganizationDetail);
+                }
+                else
+                {
+                    throw new Exception(Connection.LastCrmError, Connection.LastCrmException);
                 }
             }
-
-            
+            catch
+            {
+                throw;
+            }
         }
     }
 }

@@ -25,6 +25,8 @@ namespace AMSoftware.Crm.PowerShell.Common
 {
     internal static class CrmContext
     {
+        private static CrmSession _session = null;
+
         static CrmContext()
         {
             try
@@ -34,8 +36,9 @@ namespace AMSoftware.Crm.PowerShell.Common
                 accelerators.InvokeMember("Add", System.Reflection.BindingFlags.InvokeMethod, null, null, new object[] { "crmoptionsetvalue", typeof(OptionSetValue) });
                 accelerators.InvokeMember("Add", System.Reflection.BindingFlags.InvokeMethod, null, null, new object[] { "crmlabel", typeof(Label) });
             }
-            catch {
-                
+            catch
+            {
+
             }
 
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
@@ -43,8 +46,14 @@ namespace AMSoftware.Crm.PowerShell.Common
 
         public static void Connect(CrmServiceClient connection)
         {
-
-            Session = new CrmSession(connection);
+            if (connection != null && connection.IsReady)
+            {
+                Session = new CrmSession(connection);
+            }
+            else
+            {
+                throw new Exception("Invalid connection");
+            }
         }
 
         public static void Disconnect()
@@ -57,8 +66,21 @@ namespace AMSoftware.Crm.PowerShell.Common
 
         public static CrmSession Session
         {
-            get;
-            private set;
+            get
+            {
+                if (_session != null && _session.Client != null && _session.Client.IsReady)
+                {
+                    return _session;
+                }
+                else
+                {
+                    throw new Exception("Session is not available or not connected. Use Connect-CrmOrganization to connect.");
+                }
+            }
+            private set
+            {
+                _session = value;
+            }
         }
     }
 }
