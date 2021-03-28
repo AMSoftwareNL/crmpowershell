@@ -2,13 +2,12 @@
 
 **Project Description**
 
-PowerShell CmdLet Library for use with Dynamics CRM Organization.
+PowerShell CmdLet Library for use with Power Platform Dataverse and Dynamics 365 environments.
 Manage Metadata and content, and administer the organization. 
 
+CRM PowerShell Library is a collection of PowerShell Cmdlets for working with Power Platform Dataverse and Dynamics 365 environments. 
 
-CRM PowerShell Library is a collection of PowerShell Cmdlets for working with Dynamics CRM. 
-
-Connect to your on premises CRM using Windows Authentication, Claims Based Authentication or IFD. Or connect to CRM Online (Dynamics 365) by specifying the Region. List and select an available organization, and you are ready to go.
+Connect to your on-premises environment, or Power Platform Dataverse and Dynamics 365 environment in the Cloud.
 
 **Work with Metadata**
 
@@ -32,41 +31,50 @@ Register, update and unregister plugins, steps, images and serviceendpoints.
 
 **Supported Version**
 
-The library uses the Dynamics CRM SDK for interaction with Dynamics CRM. Dynamics CRM 2011 and up are supported.
+The library uses the Micrsoft Dynamics 365 SDK and Microsoft XRM Tooling Connector. So the library supports all versions Microsoft is currently supporting.
 Parameters for the Cmdlets are automatically updated based on the Organization and loaded SDK version.
 
 ## Getting Started
 
-To get started using the PowerShell with Dynamics CRM:
-
-Download the latest release (https://github.com/AMSoftwareNL/crmpowershell/releases) and run 
-
-```Import-Module AMSoftware.Crm.psd1```
-
-**OR**
+To get started using the PowerShell:
 
 Install the latest version from the PowerShell Gallery (https://www.powershellgallery.com/packages/AMSoftware.Crm/)
 
-```Install-Module AMSoftware.Crm```
+``` powershell
+Install-Module AMSoftware.Crm
+```
 
-### Connect to Dynamics CRM
+**OR**
 
-To connect with Dynamics CRM use `Connect-CrmDeployment` and `Connect-CrmOrganization`.
+Download the latest release (https://github.com/AMSoftwareNL/crmpowershell/releases) and run 
 
-**Online**
+``` powershell
+Import-Module AMSoftware.Crm.psd1
+```
 
-```Connect-CrmDeployment -Region crm4 -Credential (Get-Credential)```
+### Connect to environment
 
-**On Premises**
+Use the Microsoft.Xrm.Tooling.CrmConnector.PowerShell module to connect to an environment, or supply a connectionstring to Connect-CrmOrganization.
 
-```Connect-CrmDeployment -DiscoveryUrl 'https://crm.organization.com'```
+To provide a connectionstring to an environment see [Use connection strings in XRM tooling to connect to Microsoft Dataverse](https://docs.microsoft.com/en-us/powerapps/developer/data-platform/xrm-tooling/use-connection-strings-xrm-tooling-connect) 
 
-**NOTE:** If no credentails are provided the current Windows Credentials are used. Add `-Credential (Get-Credential)` to provide other credentials.
+``` powershell
+Install-Module 'Microsoft.Xrm.Tooling.CrmConnector.PowerShell'
+$connection = Get-CrmConnection -InteractiveMode
+Connect-CrmOrganization -Connection $connection
+```
 
-Now you can connect to the organization using `Connect-CrmOrganization`.
+``` powershell
+Connect-CrmOrganization -Connectionstring 'AuthType=Office365;Username=jsmith@contoso.onmicrosoft.com;Password=passcode;Url=https://contoso.crm.dynamics.com'
+```
 
-```Connect-CrmOrganization -Name 'mycrmorg'```
+[Use connection strings in XRM tooling to connect to Microsoft Dataverse](https://docs.microsoft.com/en-us/powerapps/developer/data-platform/xrm-tooling/use-connection-strings-xrm-tooling-connect) 
 
-**NOTE:** Name can by the uniquename, the displayname, or the weburl of the organization.
+[Microsoft.Xrm.Tooling.CrmConnector.PowerShell](https://docs.microsoft.com/en-us/powershell/module/microsoft.xrm.tooling.crmconnector.powershell)
 
-The get all the available commands use `Get-Command -Module 'AMSoftware.Crm'`.
+[PowerShell Gallery: Microsoft.Xrm.Tooling.CrmConnector.PowerShell](https://www.powershellgallery.com/packages/Microsoft.Xrm.Tooling.CrmConnector.PowerShell)
+
+### Cmdlet overview
+
+The get all the available commands use `Get-Command -Module 'AMSoftware.Crm'`. Or go to the online documentation [here](https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/index.md).
+
