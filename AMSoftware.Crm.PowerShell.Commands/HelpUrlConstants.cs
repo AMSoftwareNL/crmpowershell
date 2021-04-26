@@ -146,5 +146,13 @@ namespace AMSoftware.Crm.PowerShell.Commands
         public const string EnablePluginStepHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Enable-CrmPluginStep.md";
         public const string DisablePluginStepHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Disable-CrmPluginStep.md";
         public const string GetSPDocumentLocationHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Get-CrmSPDocumentLocation.md";
+
+        public const string GetEnvironmentVariableHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Get-CrmEnvironmentVariable.md";
+        public const string GetEnvironmentVariableValueHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Get-CrmEnvironmentVariableValue.md";
+        public const string RemoveEnvironmentVariableHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Remove-CrmEnvironmentVariable.md";
+        public const string RemoveEnvironmentVariableValueHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Remove-CrmEnvironmentVariableValue.md";
+        public const string NewEnvironmentVariableHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/New-CrmEnvironmentVariable.md";
+        public const string SetEnvironmentVariableHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Set-CrmEnvironmentVariable.md";
+
     }
 }

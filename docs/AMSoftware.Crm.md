@@ -95,6 +95,12 @@ Get the metadata of an entity.
 ### [Get-CrmEntity](Get-CrmEntity.md)
 Get the metadata of an entity.
 
+### [Get-CrmEnvironmentVariable](Get-CrmEnvironmentVariable.md)
+{{ Fill in the Synopsis }}
+
+### [Get-CrmEnvironmentVariableValue](Get-CrmEnvironmentVariableValue.md)
+{{ Fill in the Synopsis }}
+
 ### [Get-CrmLanguage](Get-CrmLanguage.md)
 Get the language of the connected organization.
 
@@ -232,6 +238,12 @@ Remove an entity.
 
 ### [Remove-CrmEntityKey](Remove-CrmEntityKey.md)
 Remove a key from an entity.
+
+### [Remove-CrmEnvironmentVariable](Remove-CrmEnvironmentVariable.md)
+{{ Fill in the Synopsis }}
+
+### [Remove-CrmEnvironmentVariableValue](Remove-CrmEnvironmentVariableValue.md)
+{{ Fill in the Synopsis }}
 
 ### [Remove-CrmLanguage](Remove-CrmLanguage.md)
 Deprovision a language.

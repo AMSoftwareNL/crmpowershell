@@ -1,4 +1,4 @@
-Import-Module '.\AMSoftware.Crm.PowerShell.Commands\bin\Release\AMSoftware.Crm.psd1'
+Import-Module '.\AMSoftware.Crm.PowerShell.Commands\bin\Debug\AMSoftware.Crm.psd1'
 Update-MarkdownHelp -Path '.\docs\' -AlphabeticParamsOrder -UseFullTypeName -UpdateInputOutput -Force
 Update-MarkdownHelpModule '.\docs\' -RefreshModulePage
 
