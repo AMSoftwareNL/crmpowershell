@@ -237,13 +237,32 @@ namespace AMSoftware.Crm.PowerShell.Common
         Rest,
         TwoWay,
         Topic,
-        PersistentQueue
+        PersistentQueue,
+        EventHub,
+        Webhook
     }
 
     public enum CrmServiceEndpointConnectionMode
     {
         Normal = 1,
         Federated
+    }
+
+    public enum CrmServiceEndpointAuthType
+    {
+        ACS = 1,
+        SASKey,
+        SASToken,
+        WebhookKey,
+        HttpHeader,
+        HttpQueryString
+    }
+
+    public enum CrmServiceEndpointMessageFormat
+    {
+        DOTNETBinary = 1,
+        JSON,
+        XML
     }
 
     public enum CrmEnvironmentVariableType

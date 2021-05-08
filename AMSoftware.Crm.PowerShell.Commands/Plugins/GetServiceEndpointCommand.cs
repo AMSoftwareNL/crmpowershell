@@ -25,6 +25,7 @@ using Microsoft.Xrm.Sdk.Query;
 namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 {
     [Cmdlet(VerbsCommon.Get, "CrmServiceEndpoint", HelpUri = HelpUrlConstants.GetServiceEndpointHelpUrl, SupportsPaging = true, DefaultParameterSetName = GetServiceEndpointByFilterParameterSet)]
+    [Alias("Get-CrmWebhook")]
     [OutputType(typeof(Entity))]
     public sealed class GetServiceEndpointCommand : CrmOrganizationCmdlet
     {

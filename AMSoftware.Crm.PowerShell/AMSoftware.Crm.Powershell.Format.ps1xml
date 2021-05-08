@@ -923,11 +923,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.-->
             <Width>36</Width>
           </TableColumnHeader>
           <TableColumnHeader>
-            <Width>40</Width>
-          </TableColumnHeader>
-          <TableColumnHeader>
-            <Label>Namespace</Label>
-            <Width>25</Width>
+            <Width>60</Width>
           </TableColumnHeader>
           <TableColumnHeader>
             <Label>Contract</Label>
@@ -942,9 +938,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.-->
               </TableColumnItem>
               <TableColumnItem>
                 <PropertyName>Name</PropertyName>
-              </TableColumnItem>
-              <TableColumnItem>
-                <PropertyName>solutionnamespace</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
                 <PropertyName>contract_FormattedValue</PropertyName>

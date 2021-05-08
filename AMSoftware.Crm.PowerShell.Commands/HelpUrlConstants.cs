@@ -133,7 +133,7 @@ namespace AMSoftware.Crm.PowerShell.Commands
         public const string RegisterPluginHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Register-CrmPlugin.md";
         public const string SetPluginHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Set-CrmPlugin.md";
         public const string RegisterServiceEndpointHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Register-CrmServiceEndpoint.md";
-        public const string SetServiceEndpointHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Set-CrmServiceEndpoint.md";
+        public const string RegisterWebhookHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Register-CrmWebhook.md";
         public const string RegisterPluginStepHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Register-CrmPluginStep.md";
         public const string SetPluginStepHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Set-CrmPluginStep.md";
         public const string RegisterPluginStepImageHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Register-CrmPluginStepImage.md";

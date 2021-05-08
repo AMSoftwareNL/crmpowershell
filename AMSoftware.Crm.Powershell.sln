@@ -1,11 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27004.2006
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{596F15CE-AC31-4EF0-B3DA-836AF7A58FE0}"
 	ProjectSection(SolutionItems) = preProject
 		AMSoftware.Crm.Powershell.snk = AMSoftware.Crm.Powershell.snk
+		BuildHelp.ps1 = BuildHelp.ps1
 		Debug.ps1 = Debug.ps1
 	EndProjectSection
 EndProject
@@ -40,17 +41,5 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4F0F8426-01E9-410A-9CD0-A9E27E5233EA}
-	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://tfs.amsoftware.nl/products
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = AMSoftware.Crm.PowerShell.Common\\AMSoftware.Crm.PowerShell.Common.csproj
-		SccProjectName1 = AMSoftware.Crm.PowerShell.Common
-		SccLocalPath1 = AMSoftware.Crm.PowerShell.Common
-		SccProjectUniqueName2 = AMSoftware.Crm.PowerShell.Commands\\AMSoftware.Crm.PowerShell.Commands.csproj
-		SccProjectName2 = AMSoftware.Crm.PowerShell.Commands
-		SccLocalPath2 = AMSoftware.Crm.PowerShell.Commands
 	EndGlobalSection
 EndGlobal

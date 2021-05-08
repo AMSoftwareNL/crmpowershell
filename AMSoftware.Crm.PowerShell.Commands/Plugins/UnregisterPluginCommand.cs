@@ -40,7 +40,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
         private readonly ContentRepository _repository = new ContentRepository();
         private readonly Dictionary<PluginComponentType, List<Guid>> _components = new Dictionary<PluginComponentType, List<Guid>>();
 
-        [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]
+        [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
         [ValidateNotNullOrEmpty]
         public Guid[] Id { get; set; }
 
@@ -142,6 +142,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
     }
 
     [Cmdlet(VerbsLifecycle.Unregister, "CrmServiceEndpoint", HelpUri = HelpUrlConstants.UnregisterServiceEndpointHelpUrl)]
+    [Alias("Unregister-CrmWebhook")]
     public sealed class UnregisterServiceEndpointCommand : UnregisterPluginCommandBase
     {
         protected override PluginComponentType ComponentType

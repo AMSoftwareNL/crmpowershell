@@ -347,9 +347,6 @@ Set the cascading behavior for a relationship.
 ### [Set-CrmRolePrincipals](Set-CrmRolePrincipals.md)
 Set the teams or users assigned to a role.
 
-### [Set-CrmServiceEndpoint](Set-CrmServiceEndpoint.md)
-Update a serviceendpoint.
-
 ### [Set-CrmStringAttribute](Set-CrmStringAttribute.md)
 Update an attribute of type String.
 

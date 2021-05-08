@@ -12,10 +12,34 @@ Register a serviceendpoint.
 
 ## SYNTAX
 
+### RelayEndpointWithToken
 ```
-Register-CrmServiceEndpoint -Name <String> [-Description <String>] -Namespace <String> -Path <String>
- -Contract <CrmServiceEndpointContract> [-Claim <CrmServiceEndpointUserClaim>] [-Federated] [-PassThru]
- [<CommonParameters>]
+Register-CrmServiceEndpoint [-Id <Guid>] [-Name] <String> [-Endpoint] <String> [-EndpointPathOrName] <String>
+ [-Description <String>] -RelayContract <CrmServiceEndpointContract> -SASToken <String> -SASKey <String>
+ [-Claim <CrmServiceEndpointUserClaim>] [-PassThru] [<CommonParameters>]
+```
+
+### RelayEndpointWithKey
+```
+Register-CrmServiceEndpoint [-Id <Guid>] [-Name] <String> [-Endpoint] <String> [-EndpointPathOrName] <String>
+ [-Description <String>] -RelayContract <CrmServiceEndpointContract> -SASKeyName <String>
+ [-Claim <CrmServiceEndpointUserClaim>] [-PassThru] [<CommonParameters>]
+```
+
+### QueueuEndpointWithToken
+```
+Register-CrmServiceEndpoint [-Id <Guid>] [-Name] <String> [-Endpoint] <String> [-EndpointPathOrName] <String>
+ [-Description <String>] -QueueContract <CrmServiceEndpointContract>
+ [-MessageFormat <CrmServiceEndpointMessageFormat>] -SASToken <String> -SASKey <String>
+ [-Claim <CrmServiceEndpointUserClaim>] [-PassThru] [<CommonParameters>]
+```
+
+### QueueuEndpointWithKey
+```
+Register-CrmServiceEndpoint [-Id <Guid>] [-Name] <String> [-Endpoint] <String> [-EndpointPathOrName] <String>
+ [-Description <String>] -QueueContract <CrmServiceEndpointContract>
+ [-MessageFormat <CrmServiceEndpointMessageFormat>] -SASKeyName <String> [-Claim <CrmServiceEndpointUserClaim>]
+ [-PassThru] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -31,26 +55,10 @@ The type of claim for the serviceendpoint.
 ```yaml
 Type: CrmServiceEndpointUserClaim
 Parameter Sets: (All)
-Aliases:
+Aliases: UserInformation
 Accepted values: None, UserId, UserInfo
 
 Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Contract
-The contract for the serviceendpoint.
-
-```yaml
-Type: CrmServiceEndpointContract
-Parameter Sets: (All)
-Aliases:
-Accepted values: OneWay, Queue, Rest, TwoWay, Topic, PersistentQueue
-
-Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -72,13 +80,59 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Federated
-Whether the serviceendpoint is federated.
+### -Endpoint
+{{ Fill Endpoint Description }}
 
 ```yaml
-Type: SwitchParameter
+Type: String
+Parameter Sets: (All)
+Aliases: NamespaceAddress, Namespace
+
+Required: True
+Position: 2
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -EndpointPathOrName
+{{ Fill EndpointPathOrName Description }}
+
+```yaml
+Type: String
 Parameter Sets: (All)
 Aliases:
+
+Required: True
+Position: 3
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Id
+{{ Fill Id Description }}
+
+```yaml
+Type: Guid
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -MessageFormat
+{{ Fill MessageFormat Description }}
+
+```yaml
+Type: CrmServiceEndpointMessageFormat
+Parameter Sets: QueueuEndpointWithToken, QueueuEndpointWithKey
+Aliases:
+Accepted values: DOTNETBinary, JSON, XML
 
 Required: False
 Position: Named
@@ -96,22 +150,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Namespace
-The namespace for the serviceendpoint.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: Named
+Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -132,12 +171,74 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Path
-The path for the serviceendpoint.
+### -QueueContract
+{{ Fill QueueContract Description }}
+
+```yaml
+Type: CrmServiceEndpointContract
+Parameter Sets: QueueuEndpointWithToken, QueueuEndpointWithKey
+Aliases:
+Accepted values: Queue, Topic, Eventhub
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -RelayContract
+{{ Fill RelayContract Description }}
+
+```yaml
+Type: CrmServiceEndpointContract
+Parameter Sets: RelayEndpointWithToken, RelayEndpointWithKey
+Aliases:
+Accepted values: Oneway, Twoway, Rest
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -SASKey
+{{ Fill SASKey Description }}
 
 ```yaml
 Type: String
-Parameter Sets: (All)
+Parameter Sets: RelayEndpointWithToken, QueueuEndpointWithToken
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -SASKeyName
+{{ Fill SASKeyName Description }}
+
+```yaml
+Type: String
+Parameter Sets: RelayEndpointWithKey, QueueuEndpointWithKey
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -SASToken
+{{ Fill SASToken Description }}
+
+```yaml
+Type: String
+Parameter Sets: RelayEndpointWithToken, QueueuEndpointWithToken
 Aliases:
 
 Required: True
@@ -152,7 +253,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### None
+### System.Guid
 
 ## OUTPUTS
 

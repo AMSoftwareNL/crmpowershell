@@ -167,7 +167,7 @@
     <Compile Include="Content\RemoveContentCommand.cs" />
     <Compile Include="Content\SetContentCommand.cs" />
     <Compile Include="Administration\StartProcessCommand.cs" />
-    <Compile Include="Plugins\SetServiceEndpointCommand.cs" />
+    <Compile Include="Plugins\RegisterWebhookCommand.cs" />
     <Compile Include="Plugins\RegisterServiceEndpointCommand.cs" />
     <Compile Include="Plugins\UnregisterPluginCommand.cs" />
     <Compile Include="Plugins\SetPluginStepStateCommand.cs" />
