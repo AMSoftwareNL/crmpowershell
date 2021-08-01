@@ -14,14 +14,14 @@ Associate one record with another.
 
 ### JoinContentByInputObject (Default)
 ```
-Join-CrmContent [-InputObject] <Entity> [-ToEntity] <String> [-ToId] <Guid> [-Attribute <String>]
+Join-CrmContent [-InputObject] <Entity> [-ToEntity] <String> [-ToId] <Guid> [-Attribute <String>] [-AsBatch]
  [<CommonParameters>]
 ```
 
 ### JoinContent
 ```
 Join-CrmContent [-Entity] <String> [-Id] <Guid> [-ToEntity] <String> [-ToId] <Guid> [-Attribute <String>]
- [<CommonParameters>]
+ [-AsBatch] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -40,13 +40,29 @@ Associate the specified contact with the specified account for attribute 'primar
 
 ## PARAMETERS
 
+### -AsBatch
+Execute the request as part of a batch (ExecuteMultiple or ExecuteTransaction). 
+See Start-CrmBatch, Stop-CrmBatch and Submit-CrmBatch.
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -Attribute
 The LogicalName of the attribute on the target entity to set the association for.
 
 If the relationship between the entity and target entity is unique this parameter is not required. 
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -61,7 +77,7 @@ Accept wildcard characters: False
 The LogicalName of the entity to associate.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: JoinContent
 Aliases:
 
@@ -76,7 +92,7 @@ Accept wildcard characters: False
 The id of the record of the entity to associate.
 
 ```yaml
-Type: Guid
+Type: System.Guid
 Parameter Sets: JoinContent
 Aliases:
 
@@ -91,7 +107,7 @@ Accept wildcard characters: False
 The entity record of the entity to associate.
 
 ```yaml
-Type: Entity
+Type: Microsoft.Xrm.Sdk.Entity
 Parameter Sets: JoinContentByInputObject
 Aliases: Record
 
@@ -106,7 +122,7 @@ Accept wildcard characters: False
 The LogicalName of the entity associate the record with.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -121,7 +137,7 @@ Accept wildcard characters: False
 The id of the record of the entity to associate the record with.
 
 ```yaml
-Type: Guid
+Type: System.Guid
 Parameter Sets: (All)
 Aliases:
 

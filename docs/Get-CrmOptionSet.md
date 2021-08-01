@@ -40,7 +40,7 @@ Get all global optionsets with the labels and values of the options.
 Retrieve only the metadata for optionsets that are marked as custom.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: GetOptionSetByFilter
 Aliases:
 
@@ -55,7 +55,7 @@ Accept wildcard characters: False
 Exclude the metadata for optionsets whose Name matches the provided pattern.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetOptionSetByFilter
 Aliases:
 
@@ -63,14 +63,14 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: False
+Accept wildcard characters: True
 ```
 
 ### -ExcludeManaged
 Do not retrieve metadata for optionsets that are marked as managed.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: GetOptionSetByFilter
 Aliases:
 
@@ -85,7 +85,7 @@ Accept wildcard characters: False
 The MetadataId of the optionset to retrieve.
 
 ```yaml
-Type: Guid[]
+Type: System.Guid[]
 Parameter Sets: GetOptionSetById
 Aliases: MetadataId
 
@@ -102,7 +102,7 @@ The Name of the optionset to retrieve the metadata for.
 NOTE: This parameter is case sensitive. i.e. it must match the case of the Name exactly.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetOptionSetByFilter
 Aliases: Include
 
@@ -110,7 +110,7 @@ Required: False
 Position: 1
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: False
+Accept wildcard characters: True
 ```
 
 ### CommonParameters
@@ -149,6 +149,6 @@ The Name parameter is case sensitive. i.e. it must match the case of the Logical
 
 [Remove-CrmOptionSetValue](Remove-CrmOptionSetValue.md)
 
-[OptionSetMetadata Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.metadata.optionsetmetadata.aspx)
+[OptionSetMetadata Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.metadata.optionsetmetadata)
 
-[BooleanOptionSetMetadata Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.metadata.booleanoptionsetmetadata.aspx)
+[BooleanOptionSetMetadata Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.metadata.booleanoptionsetmetadata)

@@ -107,7 +107,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
             };
 
             FilterExpression filter = new FilterExpression(LogicalOperator.And);
-            if (PluginAssembly != Guid.Empty) filter.AddCondition("pluginassemblyid", ConditionOperator.Equal, PluginAssembly);
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(PluginAssembly))) filter.AddCondition("pluginassemblyid", ConditionOperator.Equal, PluginAssembly);
 
             if (filter.Conditions.Count > 0)
             {

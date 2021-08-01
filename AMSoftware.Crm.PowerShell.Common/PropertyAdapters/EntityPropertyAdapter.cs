@@ -15,7 +15,6 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-using AMSoftware.Crm.PowerShell.Common.Helpers;
 using AMSoftware.Crm.PowerShell.Common.Repositories;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Metadata;
@@ -30,24 +29,65 @@ namespace AMSoftware.Crm.PowerShell.Common.PropertyAdapters
 {
     public sealed class EntityPropertyAdapter : PropertyAdapterBase<Entity>
     {
-        private Dictionary<string, IAdaptedPropertyHandler<Entity>> _entityPropertyHandlerCache = null;
-        private readonly Cache<string> _entityPrimaryNameCache = new Cache<string>();
+        List<PSAdaptedProperty> _typeProperties = new List<PSAdaptedProperty>();
 
-        public override Collection<string> GetTypeNameHierarchy(object baseObject)
+        public EntityPropertyAdapter()
         {
-            if (baseObject is Entity internalObject)
-            {
-                Collection<string> typeHierarchy = base.GetTypeNameHierarchy(baseObject);
-                typeHierarchy.Insert(0, string.Format("{0}+{1}", internalObject.GetType().FullName, internalObject.LogicalName));
+            _typeProperties = new List<PSAdaptedProperty>();
 
-                return typeHierarchy;
+            Type entityType = typeof(Entity);
+            PropertyInfo[] entityProperties = entityType.GetProperties();
+
+            string[] excludedProperties = { "EntityState", "ExtensionData", "FormattedValues", "Item",
+                "LazyFileAttributeKey","LazyFileAttributeValue","LazyFileSizeAttributeKey","LazyFileSizeAttributeValue", "HasLazyFileAttribute"
+            };
+            foreach (var property in entityProperties)
+            {
+                if (!excludedProperties.Contains(property.Name))
+                {
+                    _typeProperties.Add(new PSAdaptedProperty(property.Name, new MemberTypePropertyHandler<Entity>(property)));
+                }
             }
-            return base.GetTypeNameHierarchy(baseObject);
         }
 
         protected override Collection<PSAdaptedProperty> GetAdaptedProperties(Entity internalObject)
         {
+            MetadataRepository repository = new MetadataRepository();
+            EntityMetadata entityMetadata = repository.GetEntity(internalObject.LogicalName);
+
+            var resultCollection = new List<PSAdaptedProperty>(_typeProperties);
+
+            PropertyInfo formattedValuesPropertyInfo = typeof(Entity).GetProperty(nameof(Entity.FormattedValues));
+            resultCollection.Add(new PSAdaptedProperty("State", new ReadonlyDataCollectionPropertyHandler<Entity, string, string>(formattedValuesPropertyInfo, "statecode")));
+            resultCollection.Add(new PSAdaptedProperty("Status", new ReadonlyDataCollectionPropertyHandler<Entity, string, string>(formattedValuesPropertyInfo, "statuscode")));
+
+            string primaryNameLogicalName = entityMetadata.PrimaryNameAttribute;
+            if (!string.IsNullOrWhiteSpace(primaryNameLogicalName))
+            {
+                resultCollection.Add(new PSAdaptedProperty("Name", new EntityAttributePropertyHandler(primaryNameLogicalName)));
+            }
+            resultCollection = resultCollection.OrderBy(p => p.Name, StringComparer.OrdinalIgnoreCase).ToList();
+
             List<PSAdaptedProperty> properties = new List<PSAdaptedProperty>();
+            #region Metadata Attributes
+            foreach (var attribute in entityMetadata.Attributes)
+            {
+                if (attribute.AttributeTypeName == AttributeTypeDisplayName.VirtualType) continue;
+                if (!string.IsNullOrWhiteSpace(attribute.AttributeOf)) continue;
+                if (attribute.IsValidForRead == false) continue;
+
+                string key = attribute.LogicalName;
+                properties.Add(new PSAdaptedProperty(key, new EntityAttributePropertyHandler(key)));
+                if (attribute.AttributeTypeName == AttributeTypeDisplayName.CustomerType ||
+                    attribute.AttributeTypeName == AttributeTypeDisplayName.LookupType ||
+                    attribute.AttributeTypeName == AttributeTypeDisplayName.OwnerType)
+                {
+                    properties.Add(new PSAdaptedProperty(string.Format("{0}_Entity", key), new EntityRefAttributePropertyHandler(key)));
+                }
+            }
+            #endregion
+
+            #region Aliased Attributes
             foreach (var key in internalObject.Attributes.Keys)
             {
                 if (internalObject.Attributes[key] != null && internalObject.Attributes[key] is AliasedValue)
@@ -61,40 +101,22 @@ namespace AMSoftware.Crm.PowerShell.Common.PropertyAdapters
                         properties.Add(new PSAdaptedProperty(string.Format("{0}_Entity", aliassedKey), new EntityRefAttributePropertyHandler(key)));
                     }
                 }
-                else
-                {
-                    properties.Add(new PSAdaptedProperty(key, new EntityAttributePropertyHandler(key)));
-                    if (internalObject.Attributes[key] != null && internalObject.Attributes[key] is EntityReference)
-                    {
-                        properties.Add(new PSAdaptedProperty(string.Format("{0}_Entity", key), new EntityRefAttributePropertyHandler(key)));
-                    }
-                }
             }
+            #endregion
 
+            #region FormattedValues
             foreach (var key in internalObject.FormattedValues.Keys)
             {
-                properties.Add(new PSAdaptedProperty(string.Format("{0}_FormattedValue", key.Replace('.', '_')), new FormattedValuePropertyHandler(key)));
+                if (internalObject.FormattedValues[key] != null)
+                {
+                    properties.Add(
+                        new PSAdaptedProperty(string.Format("{0}_FormattedValue", key.Replace('.', '_')), 
+                            new ReadonlyDataCollectionPropertyHandler<Entity, string, string>(
+                                formattedValuesPropertyInfo, key)));
+                }
             }
-
-            if (_entityPropertyHandlerCache == null)
-            {
-                InitEntityPropertyHandlerCache();
-            }
-
-            List<PSAdaptedProperty> typeProperties = new List<PSAdaptedProperty>();
-            PSAdaptedProperty nameProperty = GetPrimaryNameProperty(internalObject);
-            if (nameProperty != null)
-            {
-                typeProperties.Add(nameProperty);
-            }
-
-            foreach (var item in _entityPropertyHandlerCache)
-            {
-                typeProperties.Add(new PSAdaptedProperty(item.Key, item.Value));
-            }
-            typeProperties = typeProperties.OrderBy(p => p.Name, StringComparer.OrdinalIgnoreCase).ToList();
-
-            var resultCollection = new Collection<PSAdaptedProperty>(typeProperties);
+            #endregion
+       
             foreach (var prop in properties.OrderBy(p => p.Name, StringComparer.OrdinalIgnoreCase))
             {
                 if (!resultCollection.Any(p => p.Name.Equals(prop.Name, StringComparison.OrdinalIgnoreCase)))
@@ -103,95 +125,19 @@ namespace AMSoftware.Crm.PowerShell.Common.PropertyAdapters
                 }
             }
 
-            return resultCollection;
+            return new Collection<PSAdaptedProperty>(resultCollection);
         }
 
-        public override PSAdaptedProperty GetProperty(object baseObject, string propertyName)
+        public override Collection<string> GetTypeNameHierarchy(object baseObject)
         {
-            PSAdaptedProperty prop = base.GetProperty(baseObject, propertyName);
-
-            if (prop == null && baseObject is Entity internalObject)
+            if (baseObject is Entity internalObject)
             {
-                MetadataRepository repository = new MetadataRepository();
-                AttributeMetadata attributeMetadata = null;
-                try
-                {
-                    attributeMetadata = repository.GetAttribute(internalObject.LogicalName, propertyName);
-                }
-                catch { }
+                Collection<string> typeHierarchy = base.GetTypeNameHierarchy(baseObject);
+                typeHierarchy.Insert(0, string.Format("{0}+{1}", internalObject.GetType().FullName, internalObject.LogicalName));
 
-                if (attributeMetadata != null)
-                {
-                    return new PSAdaptedProperty(attributeMetadata.LogicalName, new EntityAttributePropertyHandler(attributeMetadata.LogicalName));
-                }
+                return typeHierarchy;
             }
-            return prop;
-        }
-
-        private void InitEntityPropertyHandlerCache()
-        {
-            _entityPropertyHandlerCache = new Dictionary<string, IAdaptedPropertyHandler<Entity>>();
-
-            Type entityType = typeof(Entity);
-            PropertyInfo[] entityProperties = entityType.GetProperties();
-
-            string[] excludedProperties = { "Attributes", "EntityState", "ExtensionData", "FormattedValues", "Item", "KeyAttributes", "RelatedEntities" };
-            foreach (var property in entityProperties)
-            {
-                if (!excludedProperties.Contains(property.Name))
-                {
-                    _entityPropertyHandlerCache.Add(property.Name, new MemberTypePropertyHandler<Entity>(property));
-                }
-            }
-
-            _entityPropertyHandlerCache.Add("State", new FormattedValuePropertyHandler("statecode"));
-            _entityPropertyHandlerCache.Add("Status", new FormattedValuePropertyHandler("statuscode"));
-        }
-
-        private PSAdaptedProperty GetPrimaryNameProperty(Entity internalObject)
-        {
-            if (internalObject.LogicalName.Equals("solutioncomponent", StringComparison.InvariantCultureIgnoreCase))
-            {
-                return new PSAdaptedProperty("Name", new FunctionPropertyHandler<Entity, string>(GetSolutionComponentName));
-            }
-
-            string primaryNameAttribute = GetPrimaryNameAttribute(internalObject);
-            if (!string.IsNullOrWhiteSpace(primaryNameAttribute))
-            {
-                return new PSAdaptedProperty("Name", new EntityAttributePropertyHandler(primaryNameAttribute));
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        private string GetPrimaryNameAttribute(Entity internalObject)
-        {
-            if (!_entityPrimaryNameCache.TryGetValue(internalObject.LogicalName, out string primaryNameAttribute))
-            {
-                MetadataRepository repository = new MetadataRepository();
-                EntityMetadata entityMetadata = repository.GetEntity(internalObject.LogicalName);
-                if (entityMetadata != null && !string.IsNullOrWhiteSpace(entityMetadata.PrimaryNameAttribute))
-                {
-                    primaryNameAttribute = entityMetadata.PrimaryNameAttribute;
-                }
-                else
-                {
-                    primaryNameAttribute = null;
-                }
-                _entityPrimaryNameCache.Add(internalObject.LogicalName, primaryNameAttribute);
-            }
-
-            return primaryNameAttribute;
-        }
-
-        private string GetSolutionComponentName(Entity baseObject)
-        {
-            OptionSetValue componentType = baseObject.GetAttributeValue<OptionSetValue>("componenttype");
-            Guid objectId = baseObject.GetAttributeValue<Guid>("objectid");
-
-            return SolutionManagementHelper.GetComponentName(componentType.Value, objectId);
+            return base.GetTypeNameHierarchy(baseObject);
         }
     }
 }

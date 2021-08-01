@@ -41,7 +41,7 @@ Update a webresource.
 The content for the webresource.
 
 ```yaml
-Type: Byte[]
+Type: System.Byte[]
 Parameter Sets: SetWebresourceFromContent
 Aliases:
 
@@ -56,7 +56,7 @@ Accept wildcard characters: False
 The description for the webresource.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -71,7 +71,7 @@ Accept wildcard characters: False
 The displayname for the webresource.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -86,7 +86,7 @@ Accept wildcard characters: False
 The id of the webresource to update.
 
 ```yaml
-Type: Guid
+Type: System.Guid
 Parameter Sets: (All)
 Aliases:
 
@@ -101,7 +101,7 @@ Accept wildcard characters: False
 Whether the webresource is customizable.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -116,7 +116,7 @@ Accept wildcard characters: False
 The path to the file containing the content for the webresource.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: SetWebresourceFromPath
 Aliases: PSPath, Path
 
@@ -131,7 +131,7 @@ Accept wildcard characters: False
 Returns an object that represents the webresource. By default, this cmdlet does not generate any output.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -167,4 +167,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 [Remove-CrmWebresource](Remove-CrmWebresource.md)
 
-[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)
+[Entity Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.entity)

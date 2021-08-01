@@ -31,7 +31,7 @@ Register a SDK Message Processing Step.
 The LogicalName of the filtering attributes for the SDK Message Processing Step.
 
 ```yaml
-Type: String[]
+Type: System.String[]
 Parameter Sets: (All)
 Aliases:
 
@@ -46,7 +46,7 @@ Accept wildcard characters: False
 Set Delete async operation when completed for the SDK Message Processing Step.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -61,7 +61,7 @@ Accept wildcard characters: False
 The deployment type for the SDK Message Processing Step.
 
 ```yaml
-Type: CrmPluginStepDeployment
+Type: AMSoftware.Crm.PowerShell.Common.CrmPluginStepDeployment
 Parameter Sets: (All)
 Aliases:
 Accepted values: ServerOnly, OfflineOnly, Both
@@ -77,7 +77,7 @@ Accept wildcard characters: False
 The description for the SDK Message Processing Step.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -92,7 +92,7 @@ Accept wildcard characters: False
 The id of the plugin or serviceendpoint for the SDK Message Processing Step.
 
 ```yaml
-Type: Guid
+Type: System.Guid
 Parameter Sets: (All)
 Aliases:
 
@@ -107,7 +107,7 @@ Accept wildcard characters: False
 The execution order for the SDK Message Processing Step.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -122,7 +122,7 @@ Accept wildcard characters: False
 The message to register the SDK Message Processing Step for.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -137,7 +137,7 @@ Accept wildcard characters: False
 The mode for the SDK Message Processing Step.
 
 ```yaml
-Type: CrmPluginStepMode
+Type: AMSoftware.Crm.PowerShell.Common.CrmPluginStepMode
 Parameter Sets: (All)
 Aliases:
 Accepted values: Synchronous, Asynchronous
@@ -153,7 +153,7 @@ Accept wildcard characters: False
 The name for the SDK Message Processing Step.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -168,7 +168,7 @@ Accept wildcard characters: False
 Returns an object that represents the Plugin Step. By default, this cmdlet does not generate any output.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -183,7 +183,7 @@ Accept wildcard characters: False
 The primary entity the SDK Message Processing Step is registered for.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -198,7 +198,7 @@ Accept wildcard characters: False
 The secondary entity the SDK Message Processing Step is registered for.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -213,7 +213,7 @@ Accept wildcard characters: False
 The secure configuration for the SDK Message Processing Step.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -228,7 +228,7 @@ Accept wildcard characters: False
 The stage for the SDK Message Processing Step.
 
 ```yaml
-Type: CrmPluginStepStage
+Type: AMSoftware.Crm.PowerShell.Common.CrmPluginStepStage
 Parameter Sets: (All)
 Aliases:
 Accepted values: PreValidation, PreOperation, PostOperation
@@ -244,7 +244,7 @@ Accept wildcard characters: False
 The unsecure configuration for the SDK Message Processing Step.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -259,7 +259,7 @@ Accept wildcard characters: False
 The id of the user for the SDK Message Processing Step context.
 
 ```yaml
-Type: Guid
+Type: System.Guid
 Parameter Sets: (All)
 Aliases:
 
@@ -297,4 +297,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 [Unregister-CrmPluginStep](Unregister-CrmPluginStep.md)
 
-[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)
+[Entity Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.entity)

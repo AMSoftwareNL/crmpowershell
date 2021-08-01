@@ -43,7 +43,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 
         [Parameter]
         [ValidateNotNull]
-        public CrmPluginStepImageType? ImageType { get; set; }
+        public CrmPluginStepImageType ImageType { get; set; }
 
         [Parameter(ValueFromRemainingArguments = true)]
         public string[] Attributes { get; set; }
@@ -56,24 +56,24 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
             base.ExecuteCmdlet();
 
             Entity crmPluginStepImage = _repository.Get("sdkmessageprocessingstepimage", Id);
-            if (!string.IsNullOrWhiteSpace(Name))
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(Name)))
             {
                 if (crmPluginStepImage.Contains("name")) crmPluginStepImage.Attributes["name"] = Name;
                 else crmPluginStepImage.Attributes.Add("name", Name);
             }
-            if (!string.IsNullOrWhiteSpace(Alias))
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(Alias)))
             {
                 if (crmPluginStepImage.Contains("entityalias")) crmPluginStepImage.Attributes["entityalias"] = Alias;
                 else crmPluginStepImage.Attributes.Add("entityalias", Alias);
             }
-            if (ImageType != null)
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(ImageType)))
             {
                 if (crmPluginStepImage.Contains("imagetype")) crmPluginStepImage.Attributes["imagetype"] = new OptionSetValue((int)ImageType);
                 else crmPluginStepImage.Attributes.Add("imagetype", new OptionSetValue((int)ImageType));
             }
-            if (Attributes != null)
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(Attributes)))
             {
-                if (Attributes.Length != 0)
+                if (Attributes != null && Attributes.Length != 0)
                 {
                     string filteringAttributes = string.Join(",", Attributes);
                     if (crmPluginStepImage.Contains("attributes")) crmPluginStepImage.Attributes["attributes"] = filteringAttributes;

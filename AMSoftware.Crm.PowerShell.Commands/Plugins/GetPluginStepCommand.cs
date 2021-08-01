@@ -56,11 +56,11 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 
         [Parameter(ParameterSetName = GetPluginStepByFilterParameterSet)]
         [ValidateNotNull]
-        public CrmPluginStepStage? Stage { get; set; }
+        public CrmPluginStepStage Stage { get; set; }
 
         [Parameter(ParameterSetName = GetPluginStepByFilterParameterSet)]
         [ValidateNotNull]
-        public CrmPluginStepMode? Mode { get; set; }
+        public CrmPluginStepMode Mode { get; set; }
 
         [Parameter(ParameterSetName = GetPluginStepByFilterParameterSet)]
         public SwitchParameter IncludeInternalStages { get; set; }
@@ -112,18 +112,18 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
             };
 
             FilterExpression filter = new FilterExpression(LogicalOperator.And);
-            if (EventSource != Guid.Empty) filter.AddCondition("eventhandler", ConditionOperator.Equal, EventSource);
-            if (Stage != null) filter.AddCondition("stage", ConditionOperator.Equal, (int)Stage);
-            if (Mode != null) filter.AddCondition("mode", ConditionOperator.Equal, (int)Mode);
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(EventSource))) filter.AddCondition("eventhandler", ConditionOperator.Equal, EventSource);
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(Stage))) filter.AddCondition("stage", ConditionOperator.Equal, (int)Stage);
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(Mode))) filter.AddCondition("mode", ConditionOperator.Equal, (int)Mode);
             if (!IncludeInternalStages.IsPresent) filter.AddCondition("stage", ConditionOperator.In, 10, 20, 40);
             if (!IncludeHidden.IsPresent) filter.AddCondition("ishidden", ConditionOperator.Equal, false);
 
-            if (!string.IsNullOrWhiteSpace(Message))
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(Message)))
             {
                 Guid messageId = PluginManagementHelper.GetSdkMessageId(_repository, Message);
                 filter.AddCondition("sdkmessageid", ConditionOperator.Equal, messageId);
             }
-            if (!string.IsNullOrWhiteSpace(Entity))
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(Entity)))
             {
                 IEnumerable<Guid> filterIds = PluginManagementHelper.GetSdkMessageFilterIds(_repository, Entity);
                 filter.Conditions.Add(new ConditionExpression("sdkmessagefilterid", ConditionOperator.In, filterIds.ToArray()));

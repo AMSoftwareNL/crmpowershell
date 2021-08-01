@@ -42,7 +42,7 @@ Get registered plugin assemblies, excluding assemblies marked as managed.
 Exclude assemblies whose name matches the provided pattern.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetAssemblyByFilter
 Aliases:
 
@@ -50,30 +50,15 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: False
+Accept wildcard characters: True
 ```
 
 ### -ExcludeManaged
 Exclude assemblies marked as managed.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: GetAssemblyByFilter
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -First
-Specifies the number of records to retrieve from the beginning.
-
-```yaml
-Type: UInt64
-Parameter Sets: (All)
 Aliases:
 
 Required: False
@@ -87,7 +72,7 @@ Accept wildcard characters: False
 The id of the assembly to retrieve.
 
 ```yaml
-Type: Guid[]
+Type: System.Guid[]
 Parameter Sets: GetAssemblyById
 Aliases:
 
@@ -102,25 +87,8 @@ Accept wildcard characters: False
 Include assemblies marked as hidden.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: GetAssemblyByFilter
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -IncludeTotalCount
-Return the total count (and accuracy) of the number of records before returning the result.
-
-Because of the limitations of Dynamics CRM, the total count is only returned accurate when the result is limited to 5000 items.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
 Aliases:
 
 Required: False
@@ -134,12 +102,29 @@ Accept wildcard characters: False
 The name of the assembly to retrieve.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetAssemblyByFilter
 Aliases: Include
 
 Required: False
 Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: True
+```
+
+### -IncludeTotalCount
+Return the total count (and accuracy) of the number of records before returning the result.
+
+Because of the limitations of Dynamics CRM, the total count is only returned accurate when the result is limited to 5000 items.
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -149,7 +134,22 @@ Accept wildcard characters: False
 Skips (does not return) the specified number of records.
 
 ```yaml
-Type: UInt64
+Type: System.UInt64
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -First
+Specifies the number of records to retrieve from the beginning.
+
+```yaml
+Type: System.UInt64
 Parameter Sets: (All)
 Aliases:
 
@@ -183,4 +183,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 [Unregister-CrmPluginAssembly](Unregister-CrmPluginAssembly.md)
 
-[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)
+[Entity Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.entity)

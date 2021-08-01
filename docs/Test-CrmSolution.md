@@ -66,7 +66,7 @@ Retrieve a list of missing components in the target organization.
 Retrieve any required solution components that are not included in the solution.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: TestDependenciesSolution
 Aliases:
 
@@ -81,7 +81,7 @@ Accept wildcard characters: False
 The path to the solution file to test against the organization.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: TestMissingSolution
 Aliases: PSPath, Path
 
@@ -96,7 +96,7 @@ Accept wildcard characters: False
 The id of the solution to test.
 
 ```yaml
-Type: Guid[]
+Type: System.Guid[]
 Parameter Sets: TestUninstallSolution, TestDependenciesSolution
 Aliases:
 
@@ -111,7 +111,7 @@ Accept wildcard characters: False
 Retrieve a list of the solution component dependencies that can prevent you from uninstalling a managed solution.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: TestUninstallSolution
 Aliases:
 
@@ -146,4 +146,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 [Use-CrmSolution](Use-CrmSolution.md)
 
-[MissingComponent Class](https://msdn.microsoft.com/library/microsoft.crm.sdk.messages.missingcomponent.aspx)
+[MissingComponent Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.crm.sdk.messages.missingcomponent)

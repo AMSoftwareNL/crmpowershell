@@ -18,9 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Management.Automation;
 using AMSoftware.Crm.PowerShell.Common;
-using AMSoftware.Crm.PowerShell.Common.Helpers;
-using AMSoftware.Crm.PowerShell.Common.Repositories;
-using Microsoft.Xrm.Sdk;
 
 namespace AMSoftware.Crm.PowerShell.Commands
 {
@@ -29,15 +26,15 @@ namespace AMSoftware.Crm.PowerShell.Commands
     {
         [Parameter(Position = 1, ValueFromPipeline = true)]
         [ValidateNotNull]
-        public int? Language { get; set; }
+        public int Language { get; set; }
 
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
 
-            if (Language.HasValue && Language.Value != 0)
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(Language)))
             {
-                CrmContext.Session.Language = Language.Value;
+                CrmContext.Session.Language = Language;
             }
             else
             {

@@ -36,19 +36,19 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         [Alias("Id")]
         public Guid[] EnvironmentVariableId { get; set; }
 
-        [Parameter(Mandatory = false)]
+        [Parameter()]
         [ValidateNotNullOrEmpty]
         public string DisplayName { get; set; }
 
-        [Parameter(Mandatory = false)]
+        [Parameter()]
         [ValidateNotNullOrEmpty]
         public string Description { get; set; }
 
-        [Parameter(Mandatory = false)]
+        [Parameter()]
         [ValidateNotNullOrEmpty]
         public object DefaultValue { get; set; }
 
-        [Parameter(Mandatory = false)]
+        [Parameter()]
         [ValidateNotNullOrEmpty]
         public object Value { get; set; }
 
@@ -66,23 +66,19 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
                     Attributes = new AttributeCollection()
                 };
 
-                if (!string.IsNullOrWhiteSpace(DisplayName))
+                if (this.MyInvocation.BoundParameters.ContainsKey(nameof(DisplayName)))
                     updatedEnvironmentVariable.Attributes.Add("displayname", DisplayName);
-                if (!string.IsNullOrWhiteSpace(Description))
+                if (this.MyInvocation.BoundParameters.ContainsKey(nameof(Description)))
                     updatedEnvironmentVariable.Attributes.Add("description", Description);
-                if (DefaultValue != null)
+                if (this.MyInvocation.BoundParameters.ContainsKey(nameof(DefaultValue)))
                     updatedEnvironmentVariable.Attributes.Add("defaultvalue", DefaultValue);
 
                 if (updatedEnvironmentVariable.Attributes.Count != 0)
                 {
                     _repository.Update(updatedEnvironmentVariable);
                 }
-                if (PassThru)
-                {
-                    WriteObject(_repository.Get("environmentvariabledefinition", id));
-                }
 
-                if (Value != null)
+                if (this.MyInvocation.BoundParameters.ContainsKey(nameof(Value)))
                 {
                     QueryExpression query = new QueryExpression("environmentvariablevalue")
                     {
@@ -110,6 +106,11 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
                         values.Attributes["value"] = Value;
                         _repository.Update(values);
                     }
+                }
+
+                if (PassThru)
+                {
+                    WriteObject(_repository.Get("environmentvariabledefinition", id));
                 }
             }
         }

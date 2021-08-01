@@ -61,11 +61,11 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 
         [Parameter]
         [ValidateNotNull]
-        public CrmAssemblyIsolationMode? IsolationMode { get; set; }
+        public CrmAssemblyIsolationMode IsolationMode { get; set; }
 
         [Parameter]
         [ValidateNotNull]
-        public CrmAssemblySourceType? AssemblyLocation { get; set; }
+        public CrmAssemblySourceType AssemblyLocation { get; set; }
 
         [Parameter]
         [ValidateNotNull]
@@ -96,12 +96,13 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
             PluginAssemblyInfo assemblyInfo = PluginManagementHelper.RetrievePluginAssemblyInfo(path);
             PluginManagementHelper.RefreshFromExistingAssembly(_repository, assemblyInfo);
 
-            assemblyInfo.SourceType = AssemblyLocation ?? CrmAssemblySourceType.Database;
-            assemblyInfo.IsolationMode = IsolationMode ?? CrmAssemblyIsolationMode.Sandbox;
-            if (Description != null)
+            assemblyInfo.SourceType = this.MyInvocation.BoundParameters.ContainsKey(nameof(AssemblyLocation)) ? AssemblyLocation : CrmAssemblySourceType.Database;
+            assemblyInfo.IsolationMode = this.MyInvocation.BoundParameters.ContainsKey(nameof(IsolationMode)) ? IsolationMode : CrmAssemblyIsolationMode.Sandbox;
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(Description)))
             {
                 assemblyInfo.Description = Description;
             }
+
             if (assemblyInfo.AssemblyId != Guid.Empty && Force.ToBool() != true)
             {
                 throw new Exception(string.Format("Assembly '{0}' is already registered. Use Force to overwrite the assembly.", assemblyInfo.Name));

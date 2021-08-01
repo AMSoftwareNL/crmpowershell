@@ -36,26 +36,11 @@ Import the translations from 'product1-translations.zip'.
 
 ## PARAMETERS
 
-### -Confirm
-Prompts you for confirmation before running the cmdlet.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: cf
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -LiteralPath
 The path to the file containing the translations.
 
 ```yaml
-Type: String[]
+Type: System.String[]
 Parameter Sets: ImportTranslationFromLiteralPath
 Aliases: PSPath
 
@@ -70,7 +55,7 @@ Accept wildcard characters: False
 The path to the file containing the translations.
 
 ```yaml
-Type: String[]
+Type: System.String[]
 Parameter Sets: ImportTranslationFromPath
 Aliases:
 
@@ -81,12 +66,27 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Confirm
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -WhatIf
 Shows what would happen if the cmdlet runs.
 The cmdlet is not run.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases: wi
 
@@ -114,4 +114,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 [Export-CrmTranslation](Export-CrmTranslation.md)
 
-[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)
+[Entity Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.entity)

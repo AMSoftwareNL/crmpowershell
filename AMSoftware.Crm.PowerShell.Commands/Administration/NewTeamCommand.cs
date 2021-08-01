@@ -44,7 +44,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
 
         [Parameter(ValueFromPipeline = true)]
         [ValidateNotNullOrEmpty]
-        public Guid? BusinessUnit { get; set; }
+        public Guid BusinessUnit { get; set; }
 
         [Parameter]
         [ValidateNotNullOrEmpty]
@@ -61,7 +61,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         {
             base.ExecuteCmdlet();
 
-            Guid businessUnitId = BusinessUnit ?? SecurityManagementHelper.GetDefaultBusinessUnitId(_repository);
+            Guid businessUnitId = this.MyInvocation.BoundParameters.ContainsKey(nameof(BusinessUnit)) ? BusinessUnit : SecurityManagementHelper.GetDefaultBusinessUnitId(_repository);
 
             Entity newTeam = new Entity("team")
             {
@@ -71,12 +71,14 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
             newTeam.Attributes.Add("teamtype", new OptionSetValue((int)TeamType));
             newTeam.Attributes.Add("administratorid", new EntityReference("systemuser", Administrator));
             newTeam.Attributes.Add("businessunitid", new EntityReference("businessunit", businessUnitId));
+
             if (!string.IsNullOrWhiteSpace(Description))
             {
                 newTeam.Attributes.Add("description", Description);
             }
 
             Guid newTeamId = _repository.Add(newTeam);
+
             if (Users != null && Users.Length != 0)
             {
                 SecurityManagementHelper.AddUsersToTeam(_repository, newTeamId, Users);

@@ -43,7 +43,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 
         [Parameter(ParameterSetName = GetPluginStepImageByFilterParameterSet)]
         [ValidateNotNull]
-        public CrmPluginImageType? ImageType { get; set; }
+        public CrmPluginImageType ImageType { get; set; }
 
         protected override void ExecuteCmdlet()
         {
@@ -89,8 +89,8 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
             };
 
             FilterExpression filter = new FilterExpression(LogicalOperator.And);
-            if (PluginStep != Guid.Empty) filter.AddCondition("sdkmessageprocessingstepid", ConditionOperator.Equal, PluginStep);
-            if (ImageType != null) filter.AddCondition("imagetype", ConditionOperator.Equal, (int)ImageType);
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(PluginStep))) filter.AddCondition("sdkmessageprocessingstepid", ConditionOperator.Equal, PluginStep);
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(ImageType))) filter.AddCondition("imagetype", ConditionOperator.Equal, (int)ImageType);
 
             if (filter.Conditions.Count > 0)
             {

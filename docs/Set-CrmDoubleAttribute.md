@@ -14,10 +14,11 @@ Update an attribute of type Double.
 
 ```
 Set-CrmDoubleAttribute [-ImeType <CrmImeType>] [-MaxValue <Double>] [-MinValue <Double>] [-Precision <Int32>]
- [-Entity] <String> [-Name] <String> [-DisplayName <String>] [-Description <String>]
+ [-Entity] <String> [-Name] <String> [-DisplayName <String>] [-Description <String>] [-ExternalName <String>]
  [-CanModifyAdditionalSettings <Boolean>] [-IsAuditEnabled <Boolean>] [-IsCustomizable <Boolean>]
  [-IsRenameable <Boolean>] [-IsSecured <Boolean>] [-IsValidForAdvancedFind <Boolean>]
- [-Required <CrmRequiredLevel>] [-PassThru] [<CommonParameters>]
+ [-Required <CrmRequiredLevel>] [-IsGlobalFilterEnabled <Boolean>] [-IsSortableEnabled <Boolean>] [-PassThru]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -31,7 +32,7 @@ Update an attribute of type Double.
 Whether any settings not controlled by managed properties can be changed.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -46,7 +47,7 @@ Accept wildcard characters: False
 The description of the attribute.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -61,7 +62,7 @@ Accept wildcard characters: False
 The display name for the attribute.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -76,7 +77,7 @@ Accept wildcard characters: False
 The LogicalName of the entity containing the attribute.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases: EntityLogicalName
 
@@ -87,11 +88,26 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
+### -ExternalName
+The ExternalName when used in a Virtual Entity
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -ImeType
 The input method editor (IME) mode for the attribute.
 
 ```yaml
-Type: CrmImeType
+Type: AMSoftware.Crm.PowerShell.Common.CrmImeType
 Parameter Sets: (All)
 Aliases:
 Accepted values: Auto, Active, Disabled, Inactive
@@ -107,7 +123,7 @@ Accept wildcard characters: False
 Whether the attribute is enabled for auditing.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -122,7 +138,22 @@ Accept wildcard characters: False
 Whether the attribute is a custom attribute.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -IsGlobalFilterEnabled
+Determines whether this column appears as an available filter when using interactive experiences dashboards.
+
+```yaml
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -137,7 +168,7 @@ Accept wildcard characters: False
 Whether the attribute display name can be changed.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -152,7 +183,22 @@ Accept wildcard characters: False
 Whether the attribute is secured for field-level security.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -IsSortableEnabled
+Determines whether data can be sorted by this column when using interactive experience dashboards.
+
+```yaml
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -167,7 +213,7 @@ Accept wildcard characters: False
 Whether the attribute appears in Advanced Find.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -182,7 +228,7 @@ Accept wildcard characters: False
 The maximum value for the attribute.
 
 ```yaml
-Type: Double
+Type: System.Double
 Parameter Sets: (All)
 Aliases:
 
@@ -197,7 +243,7 @@ Accept wildcard characters: False
 The minimum value for the attribute.
 
 ```yaml
-Type: Double
+Type: System.Double
 Parameter Sets: (All)
 Aliases:
 
@@ -212,7 +258,7 @@ Accept wildcard characters: False
 The LogicalName of the attribute to update.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases: LogicalName
 
@@ -227,7 +273,7 @@ Accept wildcard characters: False
 Returns an object that represents the DoubleAttributeMetadata. By default, this cmdlet does not generate any output.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -242,7 +288,7 @@ Accept wildcard characters: False
 The precision for the attribute.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -257,7 +303,7 @@ Accept wildcard characters: False
 The data entry requirement level enforced for the attribute.
 
 ```yaml
-Type: CrmRequiredLevel
+Type: AMSoftware.Crm.PowerShell.Common.CrmRequiredLevel
 Parameter Sets: (All)
 Aliases:
 Accepted values: Unknown, Required, Recommended, Optional
@@ -304,4 +350,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 [Set-CrmStringAttribute](Set-CrmStringAttribute.md)
 
-[DoubleAttributeMetadata Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.metadata.doubleattributemetadata.aspx)
+[DoubleAttributeMetadata Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.metadata.doubleattributemetadata)

@@ -34,8 +34,23 @@ Remove the teams or users assigned to a role.
 Remove all principals from the role. Provide PrincipalType to only remove principals of the specifiec type.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: RemoveRolePrincipalsAll
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Principals
+The id of the users or teams to remove from the role.
+
+```yaml
+Type: System.Guid[]
+Parameter Sets: RemoveRolePrincipalsSelected
 Aliases:
 
 Required: True
@@ -49,7 +64,7 @@ Accept wildcard characters: False
 The type of principal to remove.
 
 ```yaml
-Type: CrmPrincipalType
+Type: AMSoftware.Crm.PowerShell.Common.CrmPrincipalType
 Parameter Sets: RemoveRolePrincipalsSelected
 Aliases:
 Accepted values: User, Team
@@ -62,7 +77,7 @@ Accept wildcard characters: False
 ```
 
 ```yaml
-Type: CrmPrincipalType
+Type: AMSoftware.Crm.PowerShell.Common.CrmPrincipalType
 Parameter Sets: RemoveRolePrincipalsAll
 Aliases:
 Accepted values: User, Team
@@ -74,26 +89,11 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Principals
-The id of the users or teams to remove from the role.
-
-```yaml
-Type: Guid[]
-Parameter Sets: RemoveRolePrincipalsSelected
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Role
 The id of the role to remove the principals from.
 
 ```yaml
-Type: Guid[]
+Type: System.Guid[]
 Parameter Sets: (All)
 Aliases: Id
 

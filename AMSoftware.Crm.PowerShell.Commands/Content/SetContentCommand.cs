@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Collections;
 using System.Management.Automation;
+using AMSoftware.Crm.PowerShell.Common;
 using AMSoftware.Crm.PowerShell.Common.ArgumentCompleters;
 using AMSoftware.Crm.PowerShell.Common.Repositories;
 using Microsoft.Xrm.Sdk;
@@ -53,24 +54,46 @@ namespace AMSoftware.Crm.PowerShell.Commands.Content
         [Parameter]
         public SwitchParameter PassThru { get; set; }
 
+        [Parameter]
+        public SwitchParameter AsBatch { get; set; }
+
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
 
+            if (AsBatch.ToBool() && !CrmContext.Session.BatchActive)
+            {
+                throw new InvalidOperationException("No active batch to use.");
+            }
+
             switch (this.ParameterSetName)
             {
                 case SetContentParameterSet:
-                    _repository.Update(Entity, Id, Attributes);
-                    if (PassThru)
+                    if (AsBatch.ToBool())
                     {
-                        WriteObject(_repository.Get(Entity, Id));
+                        CrmContext.Session.BatchRequestCollection.Add(_repository.UpdateRequest(Entity, Id, Attributes));
+                    }
+                    else
+                    {
+                        _repository.Update(Entity, Id, Attributes);
+                        if (PassThru)
+                        {
+                            WriteObject(_repository.Get(Entity, Id));
+                        }
                     }
                     break;
                 case SetContentByInputObjectParameterSet:
-                    _repository.Update(InputObject);
-                    if (PassThru)
+                    if (AsBatch.ToBool())
                     {
-                        WriteObject(_repository.Get(InputObject.LogicalName, InputObject.Id));
+                        CrmContext.Session.BatchRequestCollection.Add(_repository.UpdateRequest(InputObject));
+                    }
+                    else
+                    {
+                        _repository.Update(InputObject);
+                        if (PassThru)
+                        {
+                            WriteObject(_repository.Get(InputObject.LogicalName, InputObject.Id));
+                        }
                     }
                     break;
                 default:

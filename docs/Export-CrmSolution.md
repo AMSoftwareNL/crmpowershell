@@ -15,7 +15,7 @@ Export a customization solution.
 ```
 Export-CrmSolution [-Id] <Guid> [-Path] <String> [-Managed] [-AutoNumberingSettings] [-CalendarSettings]
  [-CustomizationSettings] [-EmailTrackingSettings] [-GeneralSettings] [-IsvConfig] [-MarketingSettings]
- [-OutlookSynchronizationSettings] [-RelationshipRoles] [<CommonParameters>]
+ [-OutlookSynchronizationSettings] [-RelationshipRoles] [-Target <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -36,7 +36,7 @@ Export the solution 'Product 1' as a managed solution to 'product1.zip'.
 Include auto-numbering settings in the exported solution.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -51,7 +51,7 @@ Accept wildcard characters: False
 Include calendar settings in the exported solution.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -66,7 +66,7 @@ Accept wildcard characters: False
 Include customization settings in the exported solution.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -81,7 +81,7 @@ Accept wildcard characters: False
 Include email tracking settings in the exported solution.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -96,7 +96,7 @@ Accept wildcard characters: False
 Include general settings in the exported solution.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -111,7 +111,7 @@ Accept wildcard characters: False
 The id of the solution to export.
 
 ```yaml
-Type: Guid
+Type: System.Guid
 Parameter Sets: (All)
 Aliases:
 
@@ -126,7 +126,7 @@ Accept wildcard characters: False
 Include ISV configuration in the exported solution.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -141,7 +141,7 @@ Accept wildcard characters: False
 Export as managed solution
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -156,7 +156,7 @@ Accept wildcard characters: False
 Include marketing settings in the exported solution.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -171,7 +171,7 @@ Accept wildcard characters: False
 Include Outlook synchronization settings in the exported solution.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -186,7 +186,7 @@ Accept wildcard characters: False
 The file ystem path to export the solution to. This must include to filename.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -201,7 +201,22 @@ Accept wildcard characters: False
 Include relationship roles in the exported solution.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Target
+Value indicating the version that the exported solution will support
+
+```yaml
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 

@@ -106,20 +106,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 
             if (!string.IsNullOrWhiteSpace(AttributeType))
             {
-                if (CrmVersionManager.IsSupported(CrmVersion.CRM2013_RTM))
-                {
-                    string attributeTypeName = AttributeType;
-                    if (!attributeTypeName.EndsWith("Type", StringComparison.InvariantCultureIgnoreCase)) attributeTypeName = string.Format("{0}Type", attributeTypeName);
-                    result = result.Where(a => a.AttributeTypeName == attributeTypeName);
-                }
-                else
-                {
-                    AttributeTypeCode typeCode = AttributeTypeCode.String;
-                    if (Enum.TryParse<AttributeTypeCode>(AttributeType, true, out typeCode))
-                    {
-                        result = result.Where(a => a.AttributeType == typeCode);
-                    }
-                }
+                string attributeTypeName = AttributeType;
+                if (!attributeTypeName.EndsWith("Type", StringComparison.InvariantCultureIgnoreCase)) attributeTypeName = string.Format("{0}Type", attributeTypeName);
+                result = result.Where(a => a.AttributeTypeName == attributeTypeName);
             }
 
             result = result.OrderBy(a => a.LogicalName);

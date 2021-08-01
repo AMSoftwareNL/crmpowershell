@@ -41,7 +41,7 @@ Get all unmanaged customization solutions.
 Exclude solutions whose name matches the provided pattern.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetAllSolutions
 Aliases:
 
@@ -49,30 +49,15 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: False
+Accept wildcard characters: True
 ```
 
 ### -ExcludeManaged
 Exclude solutions marked as managed.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: GetAllSolutions
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -First
-Specifies the number of records to retrieve from the beginning.
-
-```yaml
-Type: UInt64
-Parameter Sets: (All)
 Aliases:
 
 Required: False
@@ -86,7 +71,7 @@ Accept wildcard characters: False
 The id of the solution to retrieve.
 
 ```yaml
-Type: Guid[]
+Type: System.Guid[]
 Parameter Sets: GetSolutionById
 Aliases:
 
@@ -97,13 +82,28 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
+### -Name
+The unique name or friendly name of the solution to retrieve.
+
+```yaml
+Type: System.String
+Parameter Sets: GetAllSolutions
+Aliases: Include
+
+Required: False
+Position: 0
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: True
+```
+
 ### -IncludeTotalCount
 Return the total count (and accuracy) of the number of records before returning the result.
 
 Because of the limitations of Dynamics CRM, the total count is only returned accurate when the result is limited to 5000 items.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -114,26 +114,26 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Name
-The unique name or friendly name of the solution to retrieve.
+### -Skip
+Skips (does not return) the specified number of records.
 
 ```yaml
-Type: String
-Parameter Sets: GetAllSolutions
-Aliases: Include
+Type: System.UInt64
+Parameter Sets: (All)
+Aliases:
 
 Required: False
-Position: 0
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Skip
-Skips (does not return) the specified number of records.
+### -First
+Specifies the number of records to retrieve from the beginning.
 
 ```yaml
-Type: UInt64
+Type: System.UInt64
 Parameter Sets: (All)
 Aliases:
 
@@ -171,4 +171,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 [Get-CrmSolutionComponent](Get-CrmSolutionComponent.md)
 
-[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)
+[Entity Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.entity)

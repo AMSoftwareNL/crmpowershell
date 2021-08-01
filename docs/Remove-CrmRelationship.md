@@ -36,24 +36,9 @@ The LogicalName of the attribute on the entity to remove the lookup from.
 This is only required if the relationship cannot be uniquely determined for both entities.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: RemoveRelationshipByEntity
 Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Confirm
-Prompts you for confirmation before running the cmdlet.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: cf
 
 Required: False
 Position: Named
@@ -66,7 +51,7 @@ Accept wildcard characters: False
 The LogicalName of the entity to remove to relationship for.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: RemoveRelationshipByEntity
 Aliases: EntityLogicalName
 
@@ -81,7 +66,7 @@ Accept wildcard characters: False
 Executes the action without prompting for confirmation.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -96,7 +81,7 @@ Accept wildcard characters: False
 The LogicalName of the entity to remove the relationship from.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: RemoveRelationshipByEntity
 Aliases:
 
@@ -111,7 +96,7 @@ Accept wildcard characters: False
 The SchemaName of the relationship to remove.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: RemoveRelationshipByName
 Aliases: SchemaName
 
@@ -122,12 +107,27 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
+### -Confirm
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -WhatIf
 Shows what would happen if the cmdlet runs.
 The cmdlet is not run.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases: wi
 

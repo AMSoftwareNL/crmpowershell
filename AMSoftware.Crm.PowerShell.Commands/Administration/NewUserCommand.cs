@@ -52,7 +52,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
 
         [Parameter(ValueFromPipeline = true)]
         [ValidateNotNullOrEmpty]
-        public Guid? BusinessUnit { get; set; }
+        public Guid BusinessUnit { get; set; }
 
         [Parameter(ValueFromRemainingArguments = true)]
         [ValidateNotNull]
@@ -66,7 +66,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
             base.ExecuteCmdlet();
 
             Guid[] roleIds = Roles;
-            Guid businessUnitId = BusinessUnit ?? SecurityManagementHelper.GetDefaultBusinessUnitId(_repository);
+            Guid businessUnitId = this.MyInvocation.BoundParameters.ContainsKey(nameof(BusinessUnit)) ? BusinessUnit : SecurityManagementHelper.GetDefaultBusinessUnitId(_repository);
 
             Entity newUser = new Entity("systemuser")
             {
@@ -80,7 +80,10 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
             newUser.Attributes.Add("businessunitid", new EntityReference("businessunit", businessUnitId));
 
             Guid newUserId = _repository.Add(newUser);
-            SecurityManagementHelper.LinkPrincipalRoles(_repository, "systemuser", newUserId, "role", roleIds);
+            if (roleIds != null && roleIds.Length != 0)
+            {
+                SecurityManagementHelper.LinkPrincipalRoles(_repository, "systemuser", newUserId, "role", roleIds);
+            }
 
             if (PassThru)
             {

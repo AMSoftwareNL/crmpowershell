@@ -38,30 +38,39 @@ namespace AMSoftware.Crm.PowerShell.Commands
         [ValidateNotNull]
         public CrmServiceClient Connection { get; set; }
 
+        [Parameter]
+        public SwitchParameter InitializeMetadataCache { get; set; }
+
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
 
-            try
+            if (this.ParameterSetName == ConnectionstringParameterSet)
             {
-                if (!string.IsNullOrWhiteSpace(Connectionstring))
+                try
                 {
                     Connection = new CrmServiceClient(Connectionstring);
                 }
-
-                if (Connection != null && Connection.IsReady)
+                catch (Exception ex)
                 {
-                    CrmContext.Connect(Connection);
+                    throw new Exception("Error connecting with provided connectionstring.", ex);
+                }
+            }
+
+            if (Connection != null)
+            {
+                if (Connection.IsReady)
+                {
+                    CrmContext.Connect(Connection, InitializeMetadataCache);
                     WriteObject(Connection.OrganizationDetail);
                 }
                 else
                 {
                     throw new Exception(Connection.LastCrmError, Connection.LastCrmException);
                 }
-            }
-            catch
+            } else
             {
-                throw;
+                throw new ArgumentNullException(nameof(Connection), "Invalid Connection (null).");
             }
         }
     }

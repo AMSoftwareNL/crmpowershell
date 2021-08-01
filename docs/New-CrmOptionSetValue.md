@@ -27,7 +27,7 @@ Create a new OptionSetValue to use with optionsets.
 The description for the optionset value.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -42,7 +42,7 @@ Accept wildcard characters: False
 The displayname for the optionset value.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -57,7 +57,7 @@ Accept wildcard characters: False
 The value for the optionset value.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 

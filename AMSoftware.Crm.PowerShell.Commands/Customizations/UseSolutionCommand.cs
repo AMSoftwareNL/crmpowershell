@@ -31,19 +31,25 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
         [Parameter(Position = 1, ValueFromPipeline = true)]
         [Alias("Id")]
         [ValidateNotNull]
-        public Guid? Solution { get; set; }
+        public Guid Solution { get; set; }
 
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
 
-            if (Solution.HasValue && Solution.Value != Guid.Empty)
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(Solution)) && Solution != Guid.Empty)
             {
-                CrmContext.Session.ActiveSolutionName = SolutionManagementHelper.GetSolutionUniqueName(_repository, Solution.Value, false);
+                string solutionName = SolutionManagementHelper.GetSolutionUniqueName(_repository, Solution, false);
+                if (!string.IsNullOrWhiteSpace(solutionName))
+                {
+                    CrmContext.Session.ActiveSolutionName = solutionName;
+                    CrmContext.Session.ActiveSolutionId = Solution;
+                }
             }
             else
             {
                 CrmContext.Session.ActiveSolutionName = null;
+                CrmContext.Session.ActiveSolutionId = Guid.Empty;
             }
         }
     }

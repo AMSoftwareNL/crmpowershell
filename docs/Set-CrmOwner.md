@@ -35,7 +35,7 @@ Update the owner of a record. This can be a user or a team.
 The LogicalName of the entity.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: AssignOwnerRecord
 Aliases: LogicalName
 
@@ -50,7 +50,7 @@ Accept wildcard characters: False
 The id of the current user or team.
 
 ```yaml
-Type: Guid
+Type: System.Guid
 Parameter Sets: ReassignOwner
 Aliases:
 
@@ -65,7 +65,7 @@ Accept wildcard characters: False
 The team of principal of the current owner.
 
 ```yaml
-Type: CrmPrincipalType
+Type: AMSoftware.Crm.PowerShell.Common.CrmPrincipalType
 Parameter Sets: ReassignOwner
 Aliases:
 Accepted values: User, Team
@@ -81,7 +81,7 @@ Accept wildcard characters: False
 The id of the record to update the owner for.
 
 ```yaml
-Type: Guid
+Type: System.Guid
 Parameter Sets: AssignOwnerRecord
 Aliases:
 
@@ -96,7 +96,7 @@ Accept wildcard characters: False
 The id of the team or user of the new owner.
 
 ```yaml
-Type: Guid
+Type: System.Guid
 Parameter Sets: (All)
 Aliases:
 
@@ -111,7 +111,7 @@ Accept wildcard characters: False
 The type of principal of the new owner.
 
 ```yaml
-Type: CrmPrincipalType
+Type: AMSoftware.Crm.PowerShell.Common.CrmPrincipalType
 Parameter Sets: (All)
 Aliases:
 Accepted values: User, Team
@@ -139,4 +139,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)
+[Entity Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.entity)

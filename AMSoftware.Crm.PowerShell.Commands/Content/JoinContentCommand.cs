@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 using System;
 using System.Management.Automation;
+using AMSoftware.Crm.PowerShell.Common;
 using AMSoftware.Crm.PowerShell.Common.ArgumentCompleters;
 using AMSoftware.Crm.PowerShell.Common.Repositories;
 using Microsoft.Xrm.Sdk;
@@ -60,17 +61,39 @@ namespace AMSoftware.Crm.PowerShell.Commands.Content
         [ArgumentCompleter(typeof(AttributeArgumentCompleter))]
         public string Attribute { get; set; }
 
+        [Parameter]
+        public SwitchParameter AsBatch { get; set; }
+
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
 
+            if (AsBatch.ToBool() && !CrmContext.Session.BatchActive)
+            {
+                throw new InvalidOperationException("No active batch to use.");
+            }
+
             switch (this.ParameterSetName)
             {
                 case JoinContentParameterSet:
-                    _repository.Associate(Entity, Id, ToEntity, ToId, Attribute);
+                    if (AsBatch.ToBool())
+                    {
+                        CrmContext.Session.BatchRequestCollection.Add(_repository.AssociateRequest(Entity, Id, ToEntity, ToId, Attribute));
+                    }
+                    else
+                    {
+                        _repository.Associate(Entity, Id, ToEntity, ToId, Attribute);
+                    }
                     break;
                 case JoinContentByInputObjectParameterSet:
-                    _repository.Associate(InputObject.LogicalName, InputObject.Id, ToEntity, ToId, Attribute);
+                    if (AsBatch.ToBool())
+                    {
+                        CrmContext.Session.BatchRequestCollection.Add(_repository.AssociateRequest(InputObject.LogicalName, InputObject.Id, ToEntity, ToId, Attribute));
+                    }
+                    else
+                    {
+                        _repository.Associate(InputObject.LogicalName, InputObject.Id, ToEntity, ToId, Attribute);
+                    }
                     break;
                 default:
                     break;

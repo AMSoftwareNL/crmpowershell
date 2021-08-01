@@ -28,7 +28,7 @@ Set the roles for a user or team.
 Overwrite the existing roles for the user or team. If omitted the roles will be merged.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -43,7 +43,7 @@ Accept wildcard characters: False
 Returns an object that represents the principal (User or Team). By default, this cmdlet does not generate any output.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -58,7 +58,7 @@ Accept wildcard characters: False
 The id of the user or team to set the roles for.
 
 ```yaml
-Type: Guid[]
+Type: System.Guid[]
 Parameter Sets: (All)
 Aliases: Id
 
@@ -73,7 +73,7 @@ Accept wildcard characters: False
 The type of principal to set the roles for.
 
 ```yaml
-Type: CrmPrincipalType
+Type: AMSoftware.Crm.PowerShell.Common.CrmPrincipalType
 Parameter Sets: (All)
 Aliases:
 Accepted values: User, Team
@@ -89,7 +89,7 @@ Accept wildcard characters: False
 The id of the roles to assigned to the user or team.
 
 ```yaml
-Type: Guid[]
+Type: System.Guid[]
 Parameter Sets: (All)
 Aliases:
 

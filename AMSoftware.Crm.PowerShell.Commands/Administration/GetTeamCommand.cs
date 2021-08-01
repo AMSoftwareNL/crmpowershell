@@ -51,15 +51,15 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
 
         [Parameter(ParameterSetName = GetAllTeamsParameterSet)]
         [ValidateNotNullOrEmpty]
-        public Guid? BusinessUnit { get; set; }
+        public Guid BusinessUnit { get; set; }
 
         [Parameter(ParameterSetName = GetAllTeamsParameterSet)]
         [ValidateNotNull]
-        public CrmTeamType? TeamType { get; set; }
+        public CrmTeamType TeamType { get; set; }
 
         [Parameter(ParameterSetName = GetAllTeamsParameterSet)]
         [ValidateNotNull]
-        public Guid? Administrator { get; set; }
+        public Guid Administrator { get; set; }
 
         protected override void ExecuteCmdlet()
         {
@@ -117,19 +117,19 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
                 }
             };
 
-            if (TeamType.HasValue)
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(TeamType)))
             {
                 query.Criteria.AddCondition("teamtype", ConditionOperator.Equal, (int)TeamType);
             }
 
-            if (Administrator.HasValue)
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(Administrator)) && Administrator != Guid.Empty)
             {
                 query.Criteria.AddCondition("administratorid", ConditionOperator.Equal, Administrator);
             }
 
-            if (BusinessUnit.HasValue && BusinessUnit.Value != Guid.Empty)
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(BusinessUnit)) && BusinessUnit != Guid.Empty)
             {
-                query.Criteria.AddCondition("businessunitid", ConditionOperator.Equal, BusinessUnit.Value);
+                query.Criteria.AddCondition("businessunitid", ConditionOperator.Equal, BusinessUnit);
             }
 
             return query;

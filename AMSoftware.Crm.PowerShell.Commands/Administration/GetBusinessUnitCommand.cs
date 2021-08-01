@@ -50,7 +50,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
 
         [Parameter(ParameterSetName = GetAllBusinessUnitsParameterSet)]
         [ValidateNotNullOrEmpty]
-        public Guid? Parent { get; set; }
+        public Guid Parent { get; set; }
 
         protected override void ExecuteCmdlet()
         {
@@ -109,9 +109,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
                 }
             };
 
-            if (Parent.HasValue && Parent.Value != Guid.Empty)
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(Parent)))
             {
-                query.Criteria.AddCondition("parentbusinessunitid", ConditionOperator.Equal, Parent.Value);
+                query.Criteria.AddCondition("parentbusinessunitid", ConditionOperator.Equal, Parent);
             }
 
             return query;

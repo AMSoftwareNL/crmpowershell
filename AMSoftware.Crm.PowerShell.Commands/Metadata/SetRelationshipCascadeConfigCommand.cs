@@ -33,40 +33,41 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         public string Relationship { get; set; }
 
         [Parameter]
-        public CrmCascadeType? Assign  { get; set; }
+        public CrmCascadeType Assign  { get; set; }
         
         [Parameter]
-        public CrmCascadeType? Delete  { get; set; }
+        public CrmCascadeType Delete  { get; set; }
         
         [Parameter]
-        public CrmCascadeType? Merge  { get; set; }
+        public CrmCascadeType Merge  { get; set; }
         
         [Parameter]
-        public CrmCascadeType? Reparent  { get; set; }
+        public CrmCascadeType Reparent  { get; set; }
         
         [Parameter]
-        public CrmCascadeType? Share  { get; set; }
+        public CrmCascadeType Share  { get; set; }
         
         [Parameter]
-        public CrmCascadeType? Unshare  { get; set; }
+        public CrmCascadeType Unshare  { get; set; }
 
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
 
-            CascadeConfiguration config = new CascadeConfiguration();
-            if (Assign.HasValue) config.Assign = ToCrmEnum(Assign.Value);
-            if (Delete.HasValue) config.Delete = ToCrmEnum(Delete.Value);
-            if (Merge.HasValue) config.Merge = ToCrmEnum(Merge.Value);
-            if (Reparent.HasValue) config.Reparent = ToCrmEnum(Reparent.Value);
-            if (Share.HasValue) config.Share = ToCrmEnum(Share.Value);
-            if (Unshare.HasValue) config.Unshare = ToCrmEnum(Unshare.Value);
+            OneToManyRelationshipMetadata relationship = (OneToManyRelationshipMetadata)_repository.GetRelationship(Relationship);
 
-            OneToManyRelationshipMetadata relationship = new OneToManyRelationshipMetadata()
-            {
-                SchemaName = Relationship,
-                CascadeConfiguration = config
-            };
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(Assign)))
+                relationship.CascadeConfiguration.Assign = ToCrmEnum(Assign);
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(Delete)))
+                relationship.CascadeConfiguration.Delete = ToCrmEnum(Delete);
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(Merge)))
+                relationship.CascadeConfiguration.Merge = ToCrmEnum(Merge);
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(Reparent)))
+                relationship.CascadeConfiguration.Reparent = ToCrmEnum(Reparent);
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(Share)))
+                relationship.CascadeConfiguration.Share = ToCrmEnum(Share);
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(Unshare)))
+                relationship.CascadeConfiguration.Unshare = ToCrmEnum(Unshare);
 
             _repository.UpdateRelationship(relationship);
         }

@@ -34,7 +34,7 @@ Update a global optionset.
 Whether the optionset is customizable. 
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: SetOptionSet
 Aliases:
 
@@ -49,7 +49,7 @@ Accept wildcard characters: False
 The description for the optionset.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: SetOptionSet
 Aliases:
 
@@ -64,7 +64,7 @@ Accept wildcard characters: False
 The displayname for the optionset.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: SetOptionSet
 Aliases:
 
@@ -79,7 +79,7 @@ Accept wildcard characters: False
 The updated OptionSetMetadata object for the optionset.
 
 ```yaml
-Type: OptionSetMetadata
+Type: Microsoft.Xrm.Sdk.Metadata.OptionSetMetadata
 Parameter Sets: SetOptionSetByInputObject
 Aliases: OptionSet
 
@@ -94,7 +94,7 @@ Accept wildcard characters: False
 The name of the optionset to update.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: SetOptionSet
 Aliases:
 
@@ -109,7 +109,7 @@ Accept wildcard characters: False
 Returns an object that represents the OptionSetMetadata. By default, this cmdlet does not generate any output.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -147,4 +147,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 [Set-CrmOptionSetValue](Set-CrmOptionSetValue.md)
 
-[OptionSetMetadata Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.metadata.optionsetmetadata.aspx)
+[OptionSetMetadata Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.metadata.optionsetmetadata)

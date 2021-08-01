@@ -28,56 +28,83 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
         #region Entity
         public EntityMetadata GetEntity(string name)
         {
-            OrganizationRequest request = new OrganizationRequest("RetrieveEntity")
+            if (CrmContext.Session.UseMetadataCache)
             {
-                Parameters = new ParameterCollection
+                return CrmContext.Session.OrganizationCache.GetEntities()
+                    .FirstOrDefault(e => e.LogicalName.Equals(name, StringComparison.InvariantCulture));
+            }
+            else
+            {
+                OrganizationRequest request = new OrganizationRequest("RetrieveEntity")
                 {
-                    { "LogicalName", name },
-                    { "EntityFilters", EntityFilters.Entity },
-                    { "RetrieveAsIfPublished", true },
-                    { "MetadataId", default(Guid) }
-                }
-            };
+                    Parameters = new ParameterCollection
+                    {
+                        { "LogicalName", name },
+                        { "EntityFilters", EntityFilters.Entity },
+                        { "RetrieveAsIfPublished", true },
+                        { "MetadataId", default(Guid) }
+                    }
+                };
 
-            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
+                OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
 
-            return (EntityMetadata)response.Results["EntityMetadata"];
+                return (EntityMetadata)response.Results["EntityMetadata"];
+            }
         }
 
         public EntityMetadata GetEntity(Guid metadataId)
         {
-            OrganizationRequest request = new OrganizationRequest("RetrieveEntity")
+            if (CrmContext.Session.UseMetadataCache)
             {
-                Parameters = new ParameterCollection
+                return CrmContext.Session.OrganizationCache.GetEntities()
+                .FirstOrDefault(e => e.MetadataId == metadataId);
+            }
+            else
+            {
+                OrganizationRequest request = new OrganizationRequest("RetrieveEntity")
                 {
-                    { "EntityFilters", EntityFilters.Entity },
-                    { "RetrieveAsIfPublished", true },
-                    { "MetadataId", metadataId }
-                }
-            };
+                    Parameters = new ParameterCollection
+                    {
+                        { "EntityFilters", EntityFilters.Entity },
+                        { "RetrieveAsIfPublished", true },
+                        { "MetadataId", metadataId }
+                    }
+                };
 
-            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
+                OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
 
-            return (EntityMetadata)response.Results["EntityMetadata"];
+                return (EntityMetadata)response.Results["EntityMetadata"];
+            }
         }
 
-        public IEnumerable<EntityMetadata> GetEntity(bool customOnly, bool excludeManaged, bool includeIntersects)
+        public EntityMetadata GetEntity(int objectTypeCode)
         {
-            IEnumerable<EntityMetadata> result = CrmContext.Session.OrganizationCache.GetEntities();
-            if (customOnly)
-            {
-                result = result.Where(e => e.IsCustomEntity == true);
-            }
-            if (excludeManaged)
-            {
-                result = result.Where(e => e.IsManaged != true);
-            }
-            if (!includeIntersects)
-            {
-                result = result.Where(e => e.IsIntersect != true);
-            }
+            IEnumerable<EntityMetadata> entitiesData = GetEntity();
 
-            return result;
+            return entitiesData.FirstOrDefault(e => e.ObjectTypeCode == objectTypeCode);
+        }
+
+        public IEnumerable<EntityMetadata> GetEntity()
+        {
+            if (CrmContext.Session.UseMetadataCache)
+            {
+                return CrmContext.Session.OrganizationCache.GetEntities();
+            }
+            else
+            {
+                OrganizationRequest request = new OrganizationRequest("RetrieveAllEntities")
+                {
+                    Parameters = new ParameterCollection
+                    {
+                        { "EntityFilters", EntityFilters.Entity },
+                        { "RetrieveAsIfPublished", true }
+                    }
+                };
+
+                OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
+
+                return (EntityMetadata[])response.Results["EntityMetadata"];
+            }
         }
 
         public Guid AddEntity(EntityMetadata entity, AttributeMetadata attribute, bool? hasNotes = null, bool? hasActivites = null)
@@ -410,41 +437,70 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
         #region Attribute
         public AttributeMetadata GetAttribute(Guid id)
         {
-            OrganizationRequest request = new OrganizationRequest("RetrieveAttribute")
+            if (CrmContext.Session.UseMetadataCache)
             {
-                Parameters = new ParameterCollection
+                return CrmContext.Session.OrganizationCache.GetEntities()
+                    .SelectMany(e => e.Attributes)
+                    .FirstOrDefault(a => a.MetadataId == id);
+            }
+            else
+            {
+                OrganizationRequest request = new OrganizationRequest("RetrieveAttribute")
                 {
-                    { "RetrieveAsIfPublished", true },
-                    { "MetadataId", id }
-                }
-            };
+                    Parameters = new ParameterCollection
+                    {
+                        { "RetrieveAsIfPublished", true },
+                        { "MetadataId", id }
+                    }
+                };
 
-            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
+                OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
 
-            return (AttributeMetadata)response.Results["AttributeMetadata"];
+                return (AttributeMetadata)response.Results["AttributeMetadata"];
+            }
         }
 
         public AttributeMetadata GetAttribute(string entity, string attribute)
         {
-            OrganizationRequest request = new OrganizationRequest("RetrieveAttribute")
+            if (CrmContext.Session.UseMetadataCache)
             {
-                Parameters = new ParameterCollection
+                EntityMetadata entityData = GetEntity(entity);
+                if (entityData == null) return null;
+
+                return entityData.Attributes.FirstOrDefault(a => a.LogicalName.Equals(attribute, StringComparison.InvariantCulture));
+            }
+            else
+            {
+                OrganizationRequest request = new OrganizationRequest("RetrieveAttribute")
                 {
-                    { "EntityLogicalName", entity },
-                    { "LogicalName", attribute },
-                    { "RetrieveAsIfPublished", true },
-                    { "MetadataId", default(Guid) }
-                }
-            };
+                    Parameters = new ParameterCollection
+                    {
+                        { "EntityLogicalName", entity },
+                        { "LogicalName", attribute },
+                        { "RetrieveAsIfPublished", true },
+                        { "MetadataId", default(Guid) }
+                    }
+                };
 
-            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
+                OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
 
-            return (AttributeMetadata)response.Results["AttributeMetadata"];
+                return (AttributeMetadata)response.Results["AttributeMetadata"];
+            }
         }
 
         public IEnumerable<AttributeMetadata> GetAttribute(string entity, bool customOnly, bool excludeManaged, bool includeLinked)
         {
-            EntityMetadata entityData = GetEntity(entity, EntityFilters.Attributes);
+            EntityMetadata entityData = null;
+            if (CrmContext.Session.UseMetadataCache)
+            {
+                entityData = GetEntity(entity);
+                if (entityData == null) return null;
+            }
+            else
+            {
+                entityData = GetEntity(entity, EntityFilters.Attributes);
+                if (entityData == null) return null;
+            }
 
             IEnumerable<AttributeMetadata> result = entityData.Attributes.AsEnumerable<AttributeMetadata>();
             if (customOnly)
@@ -521,41 +577,70 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
         #region EntityKey
         public EntityKeyMetadata GetEntityKey(Guid id)
         {
-            OrganizationRequest request = new OrganizationRequest("RetrieveEntityKey")
+            if (CrmContext.Session.UseMetadataCache)
             {
-                Parameters = new ParameterCollection
+                return CrmContext.Session.OrganizationCache.GetEntities()
+                .SelectMany(e => e.Keys)
+                .FirstOrDefault(k => k.MetadataId == id);
+            }
+            else
+            {
+                OrganizationRequest request = new OrganizationRequest("RetrieveEntityKey")
                 {
-                    { "RetrieveAsIfPublished", false },
-                    { "MetadataId", id }
-                }
-            };
+                    Parameters = new ParameterCollection
+                    {
+                        { "RetrieveAsIfPublished", false },
+                        { "MetadataId", id }
+                    }
+                };
 
-            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
+                OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
 
-            return (EntityKeyMetadata)response.Results["EntityKeyMetadata"];
+                return (EntityKeyMetadata)response.Results["EntityKeyMetadata"];
+            }
         }
 
         public EntityKeyMetadata GetEntityKey(string entity, string key)
         {
-            OrganizationRequest request = new OrganizationRequest("RetrieveEntityKey")
+            if (CrmContext.Session.UseMetadataCache)
             {
-                Parameters = new ParameterCollection
+                EntityMetadata entityData = GetEntity(entity);
+                if (entityData == null) return null;
+
+                return entityData.Keys.FirstOrDefault(k => k.LogicalName.Equals(key, StringComparison.InvariantCulture));
+            }
+            else
+            {
+                OrganizationRequest request = new OrganizationRequest("RetrieveEntityKey")
                 {
-                    { "EntityLogicalName", entity },
-                    { "LogicalName", key },
-                    { "RetrieveAsIfPublished", false },
-                    { "MetadataId", default(Guid) }
-                }
-            };
+                    Parameters = new ParameterCollection
+                    {
+                        { "EntityLogicalName", entity },
+                        { "LogicalName", key },
+                        { "RetrieveAsIfPublished", false },
+                        { "MetadataId", default(Guid) }
+                    }
+                };
 
-            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
+                OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
 
-            return (EntityKeyMetadata)response.Results["EntityKeyMetadata"];
+                return (EntityKeyMetadata)response.Results["EntityKeyMetadata"];
+            }
         }
 
         public IEnumerable<EntityKeyMetadata> GetEntityKey(string entity, bool excludeManaged)
         {
-            EntityMetadata entityData = GetEntity(entity, EntityFilters.Attributes);
+            EntityMetadata entityData = null;
+            if (CrmContext.Session.UseMetadataCache)
+            {
+                entityData = GetEntity(entity);
+                if (entityData == null) return null;
+            }
+            else
+            {
+                entityData = GetEntity(entity, EntityFilters.All);
+                if (entityData == null) return null;
+            }
 
             IEnumerable<EntityKeyMetadata> result = entityData.Keys.AsEnumerable<EntityKeyMetadata>();
             if (excludeManaged)
@@ -599,7 +684,17 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
         #region Relationship
         public IEnumerable<RelationshipMetadataBase> GetRelationship(string entity, string relatedEntity, CrmRelationshipType relationshipType, bool customOnly, bool excludeManaged)
         {
-            EntityMetadata entityData = GetEntity(entity, EntityFilters.Relationships);
+            EntityMetadata entityData = null;
+            if (CrmContext.Session.UseMetadataCache)
+            {
+                entityData = GetEntity(entity);
+            }
+            else
+            {
+                entityData = GetEntity(entity, EntityFilters.Relationships);
+            }
+            if (entityData == null) return null;
+
             List<RelationshipMetadataBase> resultAsList = new List<RelationshipMetadataBase>();
 
             if (string.IsNullOrWhiteSpace(relatedEntity))
@@ -655,41 +750,92 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
 
         public RelationshipMetadataBase GetRelationship(Guid id)
         {
-            OrganizationRequest request = new OrganizationRequest("RetrieveRelationship")
+            if (CrmContext.Session.UseMetadataCache)
             {
-                Parameters = new ParameterCollection
-                {
-                    { "MetadataId", id },
-                    { "RetrieveAsIfPublished", true }
-                }
-            };
+                var entities = CrmContext.Session.OrganizationCache.GetEntities();
 
-            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
-            return (RelationshipMetadataBase)response.Results["RelationshipMetadata"];
+                var relationship = entities
+                    .SelectMany(e => e.OneToManyRelationships)
+                    .FirstOrDefault<RelationshipMetadataBase>(r => r.MetadataId == id);
+
+                if (relationship == null)
+                {
+                    relationship = entities
+                    .SelectMany(e => e.ManyToOneRelationships)
+                    .FirstOrDefault<RelationshipMetadataBase>(r => r.MetadataId == id);
+                }
+
+                if (relationship == null)
+                {
+                    relationship = entities
+                    .SelectMany(e => e.ManyToManyRelationships)
+                    .FirstOrDefault<RelationshipMetadataBase>(r => r.MetadataId == id);
+                }
+
+                return relationship;
+            }
+            else
+            {
+                OrganizationRequest request = new OrganizationRequest("RetrieveRelationship")
+                {
+                    Parameters = new ParameterCollection
+                    {
+                        { "MetadataId", id },
+                        { "RetrieveAsIfPublished", true }
+                    }
+                };
+
+                OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
+                return (RelationshipMetadataBase)response.Results["RelationshipMetadata"];
+            }
         }
 
         public RelationshipMetadataBase GetRelationship(string name)
         {
-            OrganizationRequest request = new OrganizationRequest("RetrieveRelationship")
+            if (CrmContext.Session.UseMetadataCache)
             {
-                Parameters = new ParameterCollection
-                {
-                    { "Name", name },
-                    { "RetrieveAsIfPublished", true },
-                    { "MetadataId", Guid.Empty }
-                }
-            };
+                var entities = CrmContext.Session.OrganizationCache.GetEntities();
 
-            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
-            return (RelationshipMetadataBase)response.Results["RelationshipMetadata"];
+                var relationship = entities
+                    .SelectMany(e => e.OneToManyRelationships)
+                    .FirstOrDefault<RelationshipMetadataBase>(r => r.SchemaName.Equals(name, StringComparison.InvariantCulture));
+
+                if (relationship == null)
+                {
+                    relationship = entities
+                    .SelectMany(e => e.ManyToOneRelationships)
+                    .FirstOrDefault<RelationshipMetadataBase>(r => r.SchemaName.Equals(name, StringComparison.InvariantCulture));
+                }
+
+                if (relationship == null)
+                {
+                    relationship = entities
+                    .SelectMany(e => e.ManyToManyRelationships)
+                    .FirstOrDefault<RelationshipMetadataBase>(r => r.SchemaName.Equals(name, StringComparison.InvariantCulture));
+                }
+
+                return relationship;
+            }
+            else
+            {
+                OrganizationRequest request = new OrganizationRequest("RetrieveRelationship")
+                {
+                    Parameters = new ParameterCollection
+                    {
+                        { "Name", name },
+                        { "RetrieveAsIfPublished", true },
+                        { "MetadataId", Guid.Empty }
+                    }
+                };
+
+                OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
+                return (RelationshipMetadataBase)response.Results["RelationshipMetadata"];
+            }
         }
 
         public Guid AddRelationship(OneToManyRelationshipMetadata relationship, LookupAttributeMetadata lookup)
         {
-            bool isReferencingEligible = EligibleForRelationship(relationship.ReferencingEntity, "CanBeReferencing");
-            bool isReferencedEligible = EligibleForRelationship(relationship.ReferencedEntity, "CanBeReferenced");
-
-            if (!(isReferencedEligible && isReferencingEligible))
+            if (!IsOneToManyRelationshipEligible(relationship))
             {
                 throw new Exception(string.Format("One-to-Many relationship between '{0}' and '{1}' is not allowed.",
                     relationship.ReferencingEntity, relationship.ReferencedEntity));
@@ -711,6 +857,48 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
 
             OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
             return (Guid)response.Results["RelationshipId"];
+        }
+
+        public Guid AddPolymorphicRelationship(OneToManyRelationshipMetadata relationship, LookupAttributeMetadata lookup)
+        {
+            if (!IsOneToManyRelationshipEligible(relationship))
+            {
+                throw new Exception(string.Format("One-to-Many relationship between '{0}' and '{1}' is not allowed.",
+                    relationship.ReferencingEntity, relationship.ReferencedEntity));
+            }
+
+            AttributeMetadata existingLookupAttribute = null;
+            try
+            {
+                existingLookupAttribute = GetAttribute(relationship.ReferencingEntity, lookup.LogicalName);
+            }
+            catch { }
+
+            if (existingLookupAttribute == null)
+            {
+                // Lookup Attribute doesn't exist yet. Create new Polymorphic Lookup Attribute
+                OrganizationRequest request = new OrganizationRequest("CreatePolymorphicLookupAttribute")
+                {
+                    Parameters = new ParameterCollection
+                {
+                    { "OneToManyRelationships", new OneToManyRelationshipMetadata[] { relationship } },
+                    { "Lookup", lookup }
+                }
+                };
+
+                if (CrmContext.Session.ActiveSolutionName != null)
+                {
+                    request.Parameters.Add("SolutionUniqueName", CrmContext.Session.ActiveSolutionName);
+                }
+
+                OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
+                return ((Guid[])response.Results["RelationshipIds"]).First();
+            }
+            else
+            {
+                // Add relationship to existing Lookup
+                return AddRelationship(relationship, (LookupAttributeMetadata)existingLookupAttribute);
+            }
         }
 
         public Guid AddRelationship(ManyToManyRelationshipMetadata relationship, string intersect)
@@ -840,6 +1028,14 @@ namespace AMSoftware.Crm.PowerShell.Common.Repositories
             OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
 
             return (bool)response.Results[relationCheck];
+        }
+
+        private bool IsOneToManyRelationshipEligible(OneToManyRelationshipMetadata relationship)
+        {
+            bool isReferencingEligible = EligibleForRelationship(relationship.ReferencingEntity, "CanBeReferencing");
+            bool isReferencedEligible = EligibleForRelationship(relationship.ReferencedEntity, "CanBeReferenced");
+
+            return isReferencedEligible && isReferencingEligible;
         }
         #endregion
 

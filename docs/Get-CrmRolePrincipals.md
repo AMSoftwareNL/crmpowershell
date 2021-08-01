@@ -34,7 +34,7 @@ Get the users and teams assigned to the 'Sales Person' role.
 The id of the role to get the users and teams for.
 
 ```yaml
-Type: Guid[]
+Type: System.Guid[]
 Parameter Sets: (All)
 Aliases: Id
 
@@ -64,4 +64,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 [Get-CrmRole](Get-CrmRole.md)
 
-[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)
+[Entity Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.entity)

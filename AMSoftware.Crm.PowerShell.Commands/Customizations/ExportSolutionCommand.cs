@@ -15,22 +15,20 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+using AMSoftware.Crm.PowerShell.Common.Helpers;
+using AMSoftware.Crm.PowerShell.Common.Repositories;
+using Microsoft.Xrm.Sdk;
 using System;
 using System.Collections;
 using System.IO;
 using System.Management.Automation;
-using AMSoftware.Crm.PowerShell.Common;
-using AMSoftware.Crm.PowerShell.Common.Helpers;
-using AMSoftware.Crm.PowerShell.Common.Repositories;
-using Microsoft.Xrm.Sdk;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
     [Cmdlet(VerbsData.Export, "CrmSolution", HelpUri = HelpUrlConstants.ExportSolutionHelpUrl)]
-    public sealed class ExportSolutionCommand : CrmOrganizationCmdlet, IDynamicParameters
+    public sealed class ExportSolutionCommand : CrmOrganizationCmdlet
     {
         private readonly ContentRepository _repository = new ContentRepository();
-        private ExportSolutionDynamicParameters _context;
 
         [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]
         [ValidateNotNull]
@@ -70,6 +68,11 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
         [Parameter]
         public SwitchParameter RelationshipRoles { get; set; }
 
+        [Parameter]
+        [ValidateNotNull]
+        [ValidatePattern(@"^\d+(\.\d+){1,3}$")]
+        public string Target { get; set; }
+
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
@@ -89,49 +92,14 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
                 { "Managed", Managed.ToBool() }
             };
 
-            if (_context != null)
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(Target)))
             {
-                _context.SetParametersOnRequest(requestParameters);
+                requestParameters.Add("TargetVersion", Target);
             }
 
             OrganizationResponse response = _repository.Execute("ExportSolution", requestParameters);
 
             File.WriteAllBytes(Path, (byte[])response.Results["ExportSolutionFile"]);
-        }
-
-        public object GetDynamicParameters()
-        {
-            if (CrmVersionManager.IsSupported(CrmVersion.CRM2015_RTM))
-            {
-                _context = new ExportSolutionDynamicParameters2015();
-            }
-
-            return _context;
-        }
-    }
-
-    public abstract class ExportSolutionDynamicParameters
-    {
-        internal protected virtual void SetParametersOnRequest(Hashtable requestParameters)
-        {
-        }
-    }
-
-    public sealed class ExportSolutionDynamicParameters2015 : ExportSolutionDynamicParameters
-    {
-        [Parameter]
-        [ValidateNotNull]
-        [ValidatePattern(@"^\d+(\.\d+){1,3}$")]
-        public string Target { get; set; }
-
-        protected internal override void SetParametersOnRequest(Hashtable requestParameters)
-        {
-            base.SetParametersOnRequest(requestParameters);
-
-            if (!string.IsNullOrWhiteSpace(Target))
-            {
-                requestParameters.Add("TargetVersion", Target);
-            }
         }
     }
 }

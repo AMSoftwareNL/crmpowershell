@@ -16,7 +16,9 @@ Add an attribute of type BigInt.
 Add-CrmBigIntAttribute [-Entity] <String> [-Name] <String> [-DisplayName] <String> [-Description <String>]
  [-CanModifyAdditionalSettings <Boolean>] [-IsAuditEnabled <Boolean>] [-IsCustomizable <Boolean>]
  [-IsRenameable <Boolean>] [-IsSecured <Boolean>] [-IsValidForAdvancedFind <Boolean>]
- [-Required <CrmRequiredLevel>] [-SchemaName <String>] [-PassThru] [<CommonParameters>]
+ [-Required <CrmRequiredLevel>] [-SchemaName <String>] [-ExternalName <String>]
+ [-IsGlobalFilterEnabled <Boolean>] [-IsSortableEnabled <Boolean>] [-IsDataSourceSecret] [-PassThru]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -30,7 +32,7 @@ Add an attribute of type BigInt.
 Whether any settings not controlled by managed properties can be changed.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -45,7 +47,7 @@ Accept wildcard characters: False
 The description of the attribute.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -60,7 +62,7 @@ Accept wildcard characters: False
 The display name for the attribute.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -75,7 +77,7 @@ Accept wildcard characters: False
 The LogicalName of the entity to add the attribute to.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases: EntityLogicalName, LogicalName
 
@@ -86,11 +88,26 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
+### -ExternalName
+The ExternalName when used in a Virtual Entity
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -IsAuditEnabled
 Whether the attribute is enabled for auditing.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -105,7 +122,37 @@ Accept wildcard characters: False
 Whether the attribute is a custom attribute.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -IsDataSourceSecret
+Indicates whether the field contains sensitive information. Only applies to Attribute in DataSource Entities
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -IsGlobalFilterEnabled
+Determines whether this column appears as an available filter when using interactive experiences dashboards.
+
+```yaml
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -120,7 +167,7 @@ Accept wildcard characters: False
 Whether the attribute display name can be changed.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -135,7 +182,22 @@ Accept wildcard characters: False
 Whether the attribute is secured for field-level security.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -IsSortableEnabled
+Determines whether data can be sorted by this column when using interactive experience dashboards.
+
+```yaml
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -150,7 +212,7 @@ Accept wildcard characters: False
 Whether the attribute appears in Advanced Find.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -165,7 +227,7 @@ Accept wildcard characters: False
 The LogicalName for the attribute.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -180,7 +242,7 @@ Accept wildcard characters: False
 Returns an object that represents the BigIntAttributeMetadata. By default, this cmdlet does not generate any output.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -195,7 +257,7 @@ Accept wildcard characters: False
 The data entry requirement level enforced for the attribute.
 
 ```yaml
-Type: CrmRequiredLevel
+Type: AMSoftware.Crm.PowerShell.Common.CrmRequiredLevel
 Parameter Sets: (All)
 Aliases:
 Accepted values: Unknown, Required, Recommended, Optional
@@ -211,7 +273,7 @@ Accept wildcard characters: False
 The SchemaName for the attribute. If omitted the Name will be used as the SchemaName.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -257,4 +319,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 [Add-CrmStringAttribute](Add-CrmStringAttribute.md)
 
-[BigIntAttributeMetadata Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.metadata.bigintattributemetadata.aspx)
+[BigIntAttributeMetadata Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.metadata.bigintattributemetadata)

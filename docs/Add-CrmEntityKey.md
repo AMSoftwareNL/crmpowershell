@@ -41,7 +41,7 @@ Add accountnumber as unique key on account.
 The LogicalName of the attributes for the key.
 
 ```yaml
-Type: String[]
+Type: System.String[]
 Parameter Sets: AddEntityKey
 Aliases:
 
@@ -56,7 +56,7 @@ Accept wildcard characters: False
 The displayname for the key.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: AddEntityKey
 Aliases:
 
@@ -71,7 +71,7 @@ Accept wildcard characters: False
 The LogicalName of the entity the add the key to.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: AddEntityKeyByInputObject
 Aliases: EntityLogicalName, LogicalName
 
@@ -83,7 +83,7 @@ Accept wildcard characters: False
 ```
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: AddEntityKey
 Aliases: EntityLogicalName, LogicalName
 
@@ -98,7 +98,7 @@ Accept wildcard characters: False
 The EntityKeyMetadata of the key to add.
 
 ```yaml
-Type: EntityKeyMetadata
+Type: Microsoft.Xrm.Sdk.Metadata.EntityKeyMetadata
 Parameter Sets: AddEntityKeyByInputObject
 Aliases: EntityKey
 
@@ -113,7 +113,7 @@ Accept wildcard characters: False
 The name for the key.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: AddEntityKey
 Aliases:
 
@@ -128,7 +128,7 @@ Accept wildcard characters: False
 Returns an object that represents the EntityKeyMetadata. By default, this cmdlet does not generate any output.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -143,7 +143,7 @@ Accept wildcard characters: False
 The SchemaName for the key. If omitted the Name will be used as the SchemaName.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: AddEntityKey
 Aliases:
 
@@ -175,4 +175,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 [Remove-CrmEntityKey](Remove-CrmEntityKey.md)
 
-[EntityMetadata Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.metadata.entitymetadata.aspx)
+[EntityMetadata Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.metadata.entitymetadata)

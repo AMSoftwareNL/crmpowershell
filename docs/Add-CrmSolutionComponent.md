@@ -14,7 +14,7 @@ Add a component to a customization solution.
 
 ```
 Add-CrmSolutionComponent [-Solution] <Guid> [-Type] <String> [-ComponentId] <Guid> [-IncludeRequired]
- [<CommonParameters>]
+ [-ExcludeSubComponents] [-ExcludeMetadata] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,7 +28,7 @@ Add a component to a customization solution.
 The id of the component to add.
 
 ```yaml
-Type: Guid
+Type: System.Guid
 Parameter Sets: (All)
 Aliases: ObjectId
 
@@ -39,11 +39,41 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -ExcludeMetadata
+Specifies if the component is added to the solution with its metadata
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ExcludeSubComponents
+Indicates whether the subcomponents should be included
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -IncludeRequired
 Whether other solution components that are required by the solution component that you are adding should also be added to the unmanaged solution.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -58,7 +88,7 @@ Accept wildcard characters: False
 The id of the solution to add the component to.
 
 ```yaml
-Type: Guid
+Type: System.Guid
 Parameter Sets: (All)
 Aliases:
 
@@ -73,7 +103,7 @@ Accept wildcard characters: False
 The type of component to add.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 

@@ -46,7 +46,7 @@ Publish customization for the entities 'account' and 'contact'.
 Publish all customizations in the organization.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: PublishAll
 Aliases:
 
@@ -63,7 +63,7 @@ The id of the dashboards to publish.
 The id must match id for records in the entity 'systemform'.
 
 ```yaml
-Type: Guid[]
+Type: System.Guid[]
 Parameter Sets: PublishComponents
 Aliases:
 
@@ -78,7 +78,7 @@ Accept wildcard characters: False
 The LogicalName of entities to publish.
 
 ```yaml
-Type: String[]
+Type: System.String[]
 Parameter Sets: PublishComponents
 Aliases:
 
@@ -93,7 +93,7 @@ Accept wildcard characters: False
 The name of global optionsets to publish.
 
 ```yaml
-Type: String[]
+Type: System.String[]
 Parameter Sets: PublishComponents
 Aliases:
 
@@ -108,7 +108,7 @@ Accept wildcard characters: False
 Include the ribbon in publishing.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: PublishComponents
 Aliases:
 
@@ -123,7 +123,7 @@ Accept wildcard characters: False
 Publish the sitemap.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: PublishComponents
 Aliases:
 
@@ -138,7 +138,7 @@ Accept wildcard characters: False
 The id of the solution containing the components to publish.
 
 ```yaml
-Type: Guid
+Type: System.Guid
 Parameter Sets: PublishSolution
 Aliases:
 
@@ -155,7 +155,7 @@ The id of the webresources to publish.
 The id must match id for records in the entity 'webresource'.
 
 ```yaml
-Type: Guid[]
+Type: System.Guid[]
 Parameter Sets: PublishComponents
 Aliases:
 

@@ -38,9 +38,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         public Guid[] Role { get; set; }
 
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = RemoveRolePrincipalsSelectedParameterSet)]
-        [Parameter(Mandatory = false, Position = 1, ParameterSetName = RemoveRolePrincipalsAllParameterSet)]
+        [Parameter(Position = 1, ParameterSetName = RemoveRolePrincipalsAllParameterSet)]
         [ValidateNotNull]
-        public CrmPrincipalType? PrincipalType { get; set; }
+        public CrmPrincipalType PrincipalType { get; set; }
 
         [Parameter(Mandatory = true, ValueFromRemainingArguments = true, ParameterSetName = RemoveRolePrincipalsSelectedParameterSet)]
         [ValidateNotNull]
@@ -70,19 +70,26 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         {
             foreach (Guid roleId in Role)
             {
-                switch (PrincipalType)
+                if (this.MyInvocation.BoundParameters.ContainsKey(nameof(PrincipalType)))
                 {
-                    case CrmPrincipalType.User:
-                        RemoveRoleUsersAll(roleId);
-                        break;
-                    case CrmPrincipalType.Team:
-                        RemoveRoleTeamsAll(roleId);
-                        break;
-                    default:
-                        RemoveRoleUsersAll(roleId);
-                        RemoveRoleTeamsAll(roleId);
-                        break;
+                    switch (PrincipalType)
+                    {
+                        case CrmPrincipalType.User:
+                            RemoveRoleUsersAll(roleId);
+                            break;
+                        case CrmPrincipalType.Team:
+                            RemoveRoleTeamsAll(roleId);
+                            break;
+                        default:
+                            break;
+                    }
                 }
+                else
+                {
+                    RemoveRoleUsersAll(roleId);
+                    RemoveRoleTeamsAll(roleId);
+                }
+
             }
         }
 
@@ -106,7 +113,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
             {
                 Guid primaryEntityId = roleId;
                 Guid[] secondaryEntityIds = Principals;
-                Guid[] currentSetIds = SecurityManagementHelper.GetPrincipalsInRole(_repository, PrincipalType.Value, roleId).Select(e => e.Id).ToArray();
+                Guid[] currentSetIds = SecurityManagementHelper.GetPrincipalsInRole(_repository, PrincipalType, roleId).Select(e => e.Id).ToArray();
                 Guid[] removeSet = secondaryEntityIds.Intersect(currentSetIds).ToArray();
 
                 if (removeSet != null && removeSet.Length > 0)
@@ -122,7 +129,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
             string primaryEntityName = "role";
             Guid primaryEntityId = roleId;
             Guid[] secondaryEntityIds = Principals;
-            Guid[] currentSetIds = SecurityManagementHelper.GetPrincipalsInRole(_repository, PrincipalType.Value, roleId).Select(e => e.Id).ToArray();
+            Guid[] currentSetIds = SecurityManagementHelper.GetPrincipalsInRole(_repository, PrincipalType, roleId).Select(e => e.Id).ToArray();
             Guid[] removeSet = secondaryEntityIds.Intersect(currentSetIds).ToArray();
 
             if (removeSet != null && removeSet.Length > 0)
@@ -137,7 +144,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
             string primaryEntityName = "role";
             Guid primaryEntityId = roleId;
             Guid[] secondaryEntityIds = Principals;
-            Guid[] currentSetIds = SecurityManagementHelper.GetPrincipalsInRole(_repository, PrincipalType.Value, roleId).Select(e => e.Id).ToArray();
+            Guid[] currentSetIds = SecurityManagementHelper.GetPrincipalsInRole(_repository, PrincipalType, roleId).Select(e => e.Id).ToArray();
             Guid[] removeSet = secondaryEntityIds.Intersect(currentSetIds).ToArray();
 
             if (removeSet != null && removeSet.Length > 0)

@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-CrmEnvironmentVariableValue
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Get the value of an environment variable
 
 ## SYNTAX
 
@@ -17,24 +17,17 @@ Get-CrmEnvironmentVariableValue [-EnvironmentVariableId] <Guid[]> [<CommonParame
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Get the value of an environment variable
 
 ## EXAMPLES
-
-### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -EnvironmentVariableId
-{{ Fill EnvironmentVariableId Description }}
+Id of the environment variable to get the value for
 
 ```yaml
-Type: Guid[]
+Type: System.Guid[]
 Parameter Sets: (All)
 Aliases: Id
 

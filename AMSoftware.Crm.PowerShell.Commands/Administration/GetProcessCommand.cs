@@ -39,7 +39,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         [ValidateNotNull]
         public Guid[] Id { get; set; }
 
-        [Parameter(Mandatory = false, Position = 0, ParameterSetName = GetAllProcessesParameterSet)]
+        [Parameter(Position = 0, ParameterSetName = GetAllProcessesParameterSet)]
         [Alias("Include")]
         [ValidateNotNullOrEmpty]
         [SupportsWildcards]
@@ -50,14 +50,14 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         [SupportsWildcards]
         public string Exclude { get; set; }
 
-        [Parameter(Mandatory = false, Position = 10, ParameterSetName = GetAllProcessesParameterSet)]
+        [Parameter(Position = 10, ParameterSetName = GetAllProcessesParameterSet)]
         [ValidateNotNullOrEmpty]
         [ArgumentCompleter(typeof(EntityArgumentCompleter))]
         public string Entity { get; set; }
 
-        [Parameter(Mandatory = false, Position = 30, ParameterSetName = GetAllProcessesParameterSet)]
+        [Parameter(Position = 30, ParameterSetName = GetAllProcessesParameterSet)]
         [PSDefaultValue(Value = CrmProcessType.All)]
-        public CrmProcessType? ProcessType { get; set; }
+        public CrmProcessType ProcessType { get; set; }
 
         protected override void ExecuteCmdlet()
         {
@@ -118,7 +118,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
             FilterExpression filter = new FilterExpression(LogicalOperator.And);
             if (!string.IsNullOrWhiteSpace(Entity)) filter.AddCondition("primaryentity", ConditionOperator.Equal, Entity);
 
-            if (ProcessType.HasValue && ProcessType.Value != CrmProcessType.All) filter.AddCondition("category", ConditionOperator.Equal, (int)ProcessType.Value);
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(ProcessType)) && ProcessType != CrmProcessType.All) filter.AddCondition("category", ConditionOperator.Equal, (int)ProcessType);
 
             if (filter.Conditions.Count > 0)
             {

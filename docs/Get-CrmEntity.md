@@ -15,12 +15,17 @@ Get the metadata of an entity.
 ### GetEntitiesByFilter (Default)
 ```
 Get-CrmEntity [[-Name] <String>] [-Exclude <String>] [-CustomOnly] [-ExcludeManaged] [-IncludeIntersects]
- [<CommonParameters>]
+ [-VirtualOnly] [-DataSourcesOnly] [<CommonParameters>]
 ```
 
 ### GetEntityById
 ```
 Get-CrmEntity [-Id] <Guid[]> [<CommonParameters>]
+```
+
+### GetEntityByEtc
+```
+Get-CrmEntity [-EntityTypeCode] <Int32> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -50,12 +55,42 @@ Get the metadata of all entities with 'account' in the LogicalName. Retrieve onl
 Retrieve only the metadata for entities that are marked as custom.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: GetEntitiesByFilter
 Aliases:
 
 Required: False
 Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -DataSourcesOnly
+Only include DataSource Entities in de results
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: GetEntitiesByFilter
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -EntityTypeCode
+Entity Type Code of the Entity to return
+
+```yaml
+Type: System.Int32
+Parameter Sets: GetEntityByEtc
+Aliases: ObjectTypeCode
+
+Required: True
+Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -65,7 +100,7 @@ Accept wildcard characters: False
 Exclude the metadata for entities whose LogicalName matches the provided pattern.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetEntitiesByFilter
 Aliases:
 
@@ -73,14 +108,14 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: False
+Accept wildcard characters: True
 ```
 
 ### -ExcludeManaged
 Do not retrieve metadata for entities that are marked as managed.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: GetEntitiesByFilter
 Aliases:
 
@@ -95,7 +130,7 @@ Accept wildcard characters: False
 The MetadataId of the entity to retrieve.
 
 ```yaml
-Type: Guid[]
+Type: System.Guid[]
 Parameter Sets: GetEntityById
 Aliases: MetadataId
 
@@ -110,7 +145,7 @@ Accept wildcard characters: False
 Include the metadata for entities marked as intersect. These are entities which are created by Dynamics CRM to support N:N relationships.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: GetEntitiesByFilter
 Aliases:
 
@@ -127,12 +162,27 @@ The LogicalName of the entity to retrieve the metadata for.
 NOTE: This parameter is case sensitive. i.e. it must match the case of the LogicalName exactly.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetEntitiesByFilter
 Aliases: Include
 
 Required: False
 Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: True
+```
+
+### -VirtualOnly
+Only include Virtual Entities in de results
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: GetEntitiesByFilter
+Aliases:
+
+Required: False
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -168,4 +218,4 @@ The Name parameter is case sensitive. i.e. it must match the case of the Logical
 
 [Remove-CrmEntity](Remove-CrmEntity.md)
 
-[EntityMetadata Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.metadata.entitymetadata.aspx)
+[EntityMetadata Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.metadata.entitymetadata)

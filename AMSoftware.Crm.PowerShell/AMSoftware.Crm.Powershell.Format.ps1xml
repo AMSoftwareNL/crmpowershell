@@ -352,6 +352,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.-->
             <Width>36</Width>
           </TableColumnHeader>
           <TableColumnHeader>
+            <Label>Is Metadata</Label>
             <Width>24</Width>
           </TableColumnHeader>
         </TableHeaders>
@@ -368,7 +369,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.-->
                 <PropertyName>objectid</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
-                <PropertyName>Name</PropertyName>
+                <PropertyName>ismetadata</PropertyName>
               </TableColumnItem>
             </TableColumnItems>
           </TableRowEntry>
@@ -1020,6 +1021,69 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.-->
               </TableColumnItem>
               <TableColumnItem>
                 <PropertyName>value</PropertyName>
+              </TableColumnItem>
+            </TableColumnItems>
+          </TableRowEntry>
+        </TableRowEntries>
+      </TableControl>
+    </View>
+    <View>
+      <Name>Microsoft.Xrm.Sdk.Entity+DataProvider</Name>
+      <ViewSelectedBy>
+        <TypeName>Microsoft.Xrm.Sdk.Entity+entitydataprovider</TypeName>
+      </ViewSelectedBy>
+      <TableControl>
+        <TableHeaders>
+          <TableColumnHeader>
+            <Width>36</Width>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Width>25</Width>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>RetrievePlugin</Label>
+            <Width>36</Width>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>RetrieveMultiplePlugin</Label>
+            <Width>36</Width>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>CreatePlugin</Label>
+            <Width>36</Width>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>UpdatePlugin</Label>
+            <Width>36</Width>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>DeletePlugin</Label>
+            <Width>36</Width>
+          </TableColumnHeader>
+        </TableHeaders>
+        <TableRowEntries>
+          <TableRowEntry>
+            <TableColumnItems>
+              <TableColumnItem>
+                <PropertyName>Id</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>Name</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>retrieveplugin</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>retrievemultipleplugin</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>createplugin</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>updateplugin</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>deleteplugin</PropertyName>
               </TableColumnItem>
             </TableColumnItems>
           </TableRowEntry>

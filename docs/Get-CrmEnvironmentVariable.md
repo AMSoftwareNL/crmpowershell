@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-CrmEnvironmentVariable
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Get an environment variable
 
 ## SYNTAX
 
@@ -25,24 +25,17 @@ Get-CrmEnvironmentVariable [-Id] <Guid[]> [-IncludeTotalCount] [-Skip <UInt64>] 
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Get an environment variable
 
 ## EXAMPLES
-
-### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -Exclude
-{{ Fill Exclude Description }}
+Exclude environments variables whose name matches the provided pattern.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetAllEnvironmentVariables
 Aliases:
 
@@ -53,27 +46,11 @@ Accept pipeline input: False
 Accept wildcard characters: True
 ```
 
-### -First
-Gets only the specified number of objects.
-Enter the number of objects to get.
-
-```yaml
-Type: UInt64
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Id
-{{ Fill Id Description }}
+The id of the environment variable to retrieve.
 
 ```yaml
-Type: Guid[]
+Type: System.Guid[]
 Parameter Sets: GetEnvironmentVariableById
 Aliases:
 
@@ -84,28 +61,11 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -IncludeTotalCount
-Reports the total number of objects in the data set (an integer) followed by the selected objects.
-If the cmdlet cannot determine the total count, it displays "Unknown total count." The integer has an Accuracy property that indicates the reliability of the total count value.
-The value of Accuracy ranges from 0.0 to 1.0 where 0.0 means that the cmdlet could not count the objects, 1.0 means that the count is exact, and a value between 0.0 and 1.0 indicates an increasingly reliable estimate.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Name
-{{ Fill Name Description }}
+The name of the environment variable to retrieve.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetAllEnvironmentVariables
 Aliases: Include
 
@@ -116,27 +76,11 @@ Accept pipeline input: False
 Accept wildcard characters: True
 ```
 
-### -Skip
-Ignores the specified number of objects and then gets the remaining objects.
-Enter the number of objects to skip.
-
-```yaml
-Type: UInt64
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -SolutionId
-{{ Fill SolutionId Description }}
+Return environment variables included in the solution
 
 ```yaml
-Type: Guid
+Type: System.Guid
 Parameter Sets: GetAllEnvironmentVariables
 Aliases:
 
@@ -148,13 +92,62 @@ Accept wildcard characters: False
 ```
 
 ### -VariableType
-{{ Fill VariableType Description }}
+The value type of the environment variable to retrieve
 
 ```yaml
-Type: CrmEnvironmentVariableType
+Type: AMSoftware.Crm.PowerShell.Common.CrmEnvironmentVariableType
 Parameter Sets: GetAllEnvironmentVariables
 Aliases:
 Accepted values: All, String, Number, Boolean, JSON, DataSource
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -IncludeTotalCount
+Reports the total number of objects in the data set (an integer) followed by the selected objects.
+If the cmdlet cannot determine the total count, it displays "Unknown total count." The integer has an Accuracy property that indicates the reliability of the total count value.
+The value of Accuracy ranges from 0.0 to 1.0 where 0.0 means that the cmdlet could not count the objects, 1.0 means that the count is exact, and a value between 0.0 and 1.0 indicates an increasingly reliable estimate.
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Skip
+Ignores the specified number of objects and then gets the remaining objects.
+Enter the number of objects to skip.
+
+```yaml
+Type: System.UInt64
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -First
+Gets only the specified number of objects.
+Enter the number of objects to get.
+
+```yaml
+Type: System.UInt64
+Parameter Sets: (All)
+Aliases:
 
 Required: False
 Position: Named

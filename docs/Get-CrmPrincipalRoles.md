@@ -34,7 +34,7 @@ Get the roles for the team 'Sales Team'.
 The id of a user or team to get the roles for.
 
 ```yaml
-Type: Guid[]
+Type: System.Guid[]
 Parameter Sets: (All)
 Aliases: Id
 
@@ -68,4 +68,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 [Get-CrmRolePrincipals](Get-CrmRolePrincipals.md)
 
-[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)
+[Entity Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.entity)

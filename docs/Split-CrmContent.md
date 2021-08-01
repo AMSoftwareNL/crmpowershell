@@ -15,13 +15,13 @@ Disassociate one record from another.
 ### SplitContentByInputObject (Default)
 ```
 Split-CrmContent [-InputObject] <Entity> [-FromEntity] <String> [-FromId] <Guid> [-Attribute <String>]
- [<CommonParameters>]
+ [-AsBatch] [<CommonParameters>]
 ```
 
 ### SplitContent
 ```
 Split-CrmContent [-Entity] <String> [-Id] <Guid> [-FromEntity] <String> [-FromId] <Guid> [-Attribute <String>]
- [<CommonParameters>]
+ [-AsBatch] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -40,13 +40,29 @@ Disassociate the specified contact from the specified account for attribute 'pri
 
 ## PARAMETERS
 
+### -AsBatch
+Execute the request as part of a batch (ExecuteMultiple or ExecuteTransaction). 
+See Start-CrmBatch, Stop-CrmBatch and Submit-CrmBatch.
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -Attribute
 The LogicalName of the attribute on the target entity to clear the association for.
 
 If the relationship between the entity and target entity is unique this parameter is not required.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -61,7 +77,7 @@ Accept wildcard characters: False
 The LogicalName of the entity to disassociate.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: SplitContent
 Aliases:
 
@@ -76,7 +92,7 @@ Accept wildcard characters: False
 The LogicalName of the entity disassociate the record from.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -91,7 +107,7 @@ Accept wildcard characters: False
 The id of the record of the entity to disassociate the record from.
 
 ```yaml
-Type: Guid
+Type: System.Guid
 Parameter Sets: (All)
 Aliases:
 
@@ -106,7 +122,7 @@ Accept wildcard characters: False
 The id of the record of the entity to disassociate.
 
 ```yaml
-Type: Guid
+Type: System.Guid
 Parameter Sets: SplitContent
 Aliases:
 
@@ -121,7 +137,7 @@ Accept wildcard characters: False
 The entity record to disassociate.
 
 ```yaml
-Type: Entity
+Type: Microsoft.Xrm.Sdk.Entity
 Parameter Sets: SplitContentByInputObject
 Aliases: Record
 

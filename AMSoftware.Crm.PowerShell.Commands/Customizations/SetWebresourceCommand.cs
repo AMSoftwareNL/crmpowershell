@@ -57,7 +57,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 
         [Parameter]
         [ValidateNotNull]
-        public bool? IsCustomizable { get; set; }
+        public bool IsCustomizable { get; set; }
 
         [Parameter]
         public SwitchParameter PassThru { get; set; }
@@ -66,9 +66,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
         {
             base.ExecuteCmdlet();
 
-            Entity webresource = _repository.Get("webresource", Id, null);
+            Entity webresource = _repository.Get("webresource", Id);
 
-            if (!string.IsNullOrWhiteSpace(DisplayName))
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(DisplayName)))
             {
                 if (webresource.Contains("displayname"))
                     webresource.Attributes["displayname"] = DisplayName;
@@ -76,7 +76,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
                     webresource.Attributes.Add("displayname", DisplayName);
             }
 
-            if (!string.IsNullOrWhiteSpace(Description))
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(Description)))
             {
                 if (webresource.Contains("description"))
                     webresource.Attributes["description"] = Description;
@@ -84,12 +84,12 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
                     webresource.Attributes.Add("description", Description);
             }
 
-            if (IsCustomizable.HasValue)
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(IsCustomizable)))
             {
                 if (webresource.Contains("iscustomizable"))
-                    webresource.Attributes["iscustomizable"] = IsCustomizable.Value;
+                    webresource.Attributes["iscustomizable"] = IsCustomizable;
                 else
-                    webresource.Attributes.Add("iscustomizable", IsCustomizable.Value);
+                    webresource.Attributes.Add("iscustomizable", IsCustomizable);
             }
 
             switch (this.ParameterSetName)

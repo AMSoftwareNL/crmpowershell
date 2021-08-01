@@ -30,6 +30,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
     public sealed class GetEntityCommand : CrmOrganizationCmdlet
     {
         private const string GetEntityByIdParameterSet = "GetEntityById";
+        private const string GetEntityByEtcParameterSet = "GetEntityByEtc";
         private const string GetEntitiesByFilterParameterSet = "GetEntitiesByFilter";
 
         private readonly MetadataRepository _repository = new MetadataRepository();
@@ -38,6 +39,11 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         [Alias("MetadataId")]
         [ValidateNotNull]
         public Guid[] Id { get; set; }
+
+        [Parameter(Position = 1, Mandatory = true, ParameterSetName = GetEntityByEtcParameterSet)]
+        [Alias("ObjectTypeCode")]
+        [ValidateNotNull]
+        public int EntityTypeCode { get; set; }
 
         [Parameter(Position = 1, ParameterSetName = GetEntitiesByFilterParameterSet)]
         [Alias("Include")]
@@ -51,7 +57,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         [SupportsWildcards]
         [ArgumentCompleter(typeof(EntityArgumentCompleter))]
         public string Exclude { get; set; }
-        
+
         [Parameter(ParameterSetName = GetEntitiesByFilterParameterSet)]
         public SwitchParameter CustomOnly { get; set; }
 
@@ -60,6 +66,13 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 
         [Parameter(ParameterSetName = GetEntitiesByFilterParameterSet)]
         public SwitchParameter IncludeIntersects { get; set; }
+
+        [Parameter(ParameterSetName = GetEntitiesByFilterParameterSet)]
+        public SwitchParameter VirtualOnly { get; set; }
+
+
+        [Parameter(ParameterSetName = GetEntitiesByFilterParameterSet)]
+        public SwitchParameter DataSourcesOnly { get; set; }
 
         protected override void ExecuteCmdlet()
         {
@@ -73,8 +86,18 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
                         WriteObject(_repository.GetEntity(id));
                     }
                     break;
+                case GetEntityByEtcParameterSet:
+                    WriteObject(_repository.GetEntity(EntityTypeCode));
+                    break;
                 case GetEntitiesByFilterParameterSet:
-                    IEnumerable<EntityMetadata> result = _repository.GetEntity(CustomOnly.ToBool(), ExcludeManaged.ToBool(), IncludeIntersects.ToBool());
+                    IEnumerable<EntityMetadata> result = _repository.GetEntity();
+
+                    if (CustomOnly.ToBool()) result = result.Where(e => e.IsCustomEntity == true);
+                    if (VirtualOnly.ToBool()) result = result.Where(e => e.DataProviderId != null);
+                    if (DataSourcesOnly.ToBool()) result = result.Where(e => e.DataProviderId == new Guid("b2112a7e-b26c-42f7-9b63-9a809a9d716f"));  //JSON Converter Provider
+                    if (ExcludeManaged.ToBool()) result = result.Where(e => e.IsManaged != true);
+                    if (!IncludeIntersects.ToBool()) result = result.Where(e => e.IsIntersect != true);
+
                     if (!string.IsNullOrWhiteSpace(Name))
                     {
                         WildcardPattern includePattern = new WildcardPattern(Name, WildcardOptions.IgnoreCase);
@@ -86,7 +109,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
                         result = result.Where(e => !excludePattern.IsMatch(e.LogicalName));
                     }
 
-                    result = result.OrderBy(e => e.LogicalName);
+                    result = result.OrderBy(e => e.LogicalName).ToList();
 
                     WriteObject(result, true);
 

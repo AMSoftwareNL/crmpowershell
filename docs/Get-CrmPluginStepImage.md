@@ -37,26 +37,11 @@ Get post images for the specified SDK Message Processing Step.
 
 ## PARAMETERS
 
-### -First
-Specifies the number of records to retrieve from the beginning.
-
-```yaml
-Type: UInt64
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Id
 The id of the SDK Message Processing Step image to retrieve.
 
 ```yaml
-Type: Guid
+Type: System.Guid
 Parameter Sets: GetPluginStepImageById
 Aliases:
 
@@ -71,27 +56,10 @@ Accept wildcard characters: False
 The type of SDK Message Procesing Step image to retrieve. If not specified all image types are retrieved.
 
 ```yaml
-Type: CrmPluginImageType
+Type: AMSoftware.Crm.PowerShell.Common.CrmPluginImageType
 Parameter Sets: GetPluginStepImageByFilter
 Aliases:
 Accepted values: PreImage, PostImage
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -IncludeTotalCount
-Return the total count (and accuracy) of the number of records before returning the result.
-
-Because of the limitations of Dynamics CRM, the total count is only returned accurate when the result is limited to 5000 items.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
 
 Required: False
 Position: Named
@@ -104,7 +72,7 @@ Accept wildcard characters: False
 The id of the SDK Message Processing Step to retrieve images for.
 
 ```yaml
-Type: Guid
+Type: System.Guid
 Parameter Sets: GetPluginStepImageByFilter
 Aliases:
 
@@ -115,11 +83,43 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
+### -IncludeTotalCount
+Return the total count (and accuracy) of the number of records before returning the result.
+
+Because of the limitations of Dynamics CRM, the total count is only returned accurate when the result is limited to 5000 items.
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -Skip
 Skips (does not return) the specified number of records.
 
 ```yaml
-Type: UInt64
+Type: System.UInt64
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -First
+Specifies the number of records to retrieve from the beginning.
+
+```yaml
+Type: System.UInt64
 Parameter Sets: (All)
 Aliases:
 
@@ -153,4 +153,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 [Get-CrmPluginStep](Get-CrmPluginStep.md)
 
-[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)
+[Entity Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.entity)

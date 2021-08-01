@@ -28,80 +28,61 @@ namespace AMSoftware.Crm.PowerShell.Common
     {
         private Cache<EntityMetadata> _entities = new Cache<EntityMetadata>();
         private string _timestamp = null;
-        private DateTime? _lastUpdated = null;
+
+        public MetadataCache(bool initialize = false)
+        {
+            if (initialize) UpdateCache();
+        }
 
         public IEnumerable<EntityMetadata> GetEntities()
         {
-            if (!IsCacheValid())
-            {
-                UpdateCache();
-            }
-
             return _entities;
         }
 
         private bool IsCacheValid()
         {
-            if (CrmVersionManager.IsSupported(CrmVersion.CRM2011_UR12))
-            {
-                if (_timestamp == null) return false;
+            if (_timestamp == null) return false;
 
-                OrganizationRequest request = new OrganizationRequest("RetrieveTimestamp");
-                OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
-                string result = (string)response.Results["Timestamp"];
+            OrganizationRequest request = new OrganizationRequest("RetrieveTimestamp");
+            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
+            string result = (string)response.Results["Timestamp"];
 
-                return string.Equals(_timestamp, result, StringComparison.InvariantCultureIgnoreCase);
-            }
-            else
-            {
-                if (_lastUpdated == null) return false;
-
-                return (DateTime.UtcNow - _lastUpdated).Value.TotalMinutes < 10.0;
-            }
+            return string.Equals(_timestamp, result, StringComparison.InvariantCultureIgnoreCase);
         }
 
-        private void UpdateCache()
+        internal void UpdateCache()
         {
-            if (CrmVersionManager.IsSupported(CrmVersion.CRM2011_UR12))
+            if (IsCacheValid()) return;
+
+            ParameterCollection result = GetEntityUsingMetadataQuery();
+            foreach (var item in (EntityMetadataCollection)result["EntityMetadata"])
             {
-                ParameterCollection result = GetEntityUsingMetadataQuery();
-                foreach (var item in (EntityMetadataCollection)result["EntityMetadata"])
+                if (item.HasChanged == null || item.HasChanged == true)
                 {
                     _entities.Add(item.LogicalName, item);
                 }
-                var deleted = (DeletedMetadataCollection)result["DeletedMetadata"];
-                if (deleted != null && deleted.Keys.Contains(DeletedMetadataFilters.Entity))
-                {
-                    foreach (var item in deleted[DeletedMetadataFilters.Entity])
-                    {
-                        _entities.Remove(_entities.Single(e => e.MetadataId == item).LogicalName);
-                    }
-                }
-
-                _timestamp = (string)result["ServerVersionStamp"];
             }
-            else
+            var deleted = (DeletedMetadataCollection)result["DeletedMetadata"];
+            if (deleted != null && deleted.Keys.Contains(DeletedMetadataFilters.Entity))
             {
-                IEnumerable<EntityMetadata> result = (EntityMetadata[])GetEntitiesUsingRequestAll()["EntityMetadata"];
-                _entities = new Cache<EntityMetadata>();
-                foreach (var item in result)
+                foreach (var item in deleted[DeletedMetadataFilters.Entity])
                 {
-                    _entities.Add(item.LogicalName, item);
+                    _entities.Remove(_entities.Single(e => e.MetadataId == item).LogicalName);
                 }
-
-                _lastUpdated = DateTime.UtcNow;
             }
+
+            _timestamp = (string)result["ServerVersionStamp"];
         }
 
         private ParameterCollection GetEntityUsingMetadataQuery()
         {
-            LabelQueryExpression labelFilter = new LabelQueryExpression();
-            labelFilter.FilterLanguages.Add(CrmContext.Session.Language);
-
             EntityQueryExpression query = new EntityQueryExpression()
             {
                 Properties = new MetadataPropertiesExpression() { AllProperties = true },
-                LabelQuery = labelFilter
+                LabelQuery = new LabelQueryExpression()
+                {
+                    MissingLabelBehavior = 1
+                }
             };
 
             OrganizationRequest request = new OrganizationRequest("RetrieveMetadataChanges")
@@ -109,22 +90,8 @@ namespace AMSoftware.Crm.PowerShell.Common
                 Parameters = new ParameterCollection
                 {
                     { "Query", query },
-                    { "ClientVersionStamp", _timestamp }
-                }
-            };
-
-            OrganizationResponse response = CrmContext.Session.OrganizationProxy.Execute(request);
-            return response.Results;
-        }
-
-        private ParameterCollection GetEntitiesUsingRequestAll()
-        {
-            OrganizationRequest request = new OrganizationRequest("RetrieveAllEntities")
-            {
-                Parameters = new ParameterCollection
-                {
-                    { "EntityFilters", EntityFilters.Entity | EntityFilters.Privileges },
-                    { "RetrieveAsIfPublished", true }
+                    { "ClientVersionStamp", _timestamp },
+                    { "DeletedMetadataFilters", DeletedMetadataFilters.All }
                 }
             };
 

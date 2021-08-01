@@ -15,24 +15,24 @@ Retrieve data records from an entity.
 ### GetContentForEntityByQuery (Default)
 ```
 Get-CrmContent [-Entity] <String> [[-Query] <Hashtable>] [[-Order] <Hashtable>] [-Columns <String[]>]
- [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
+ [-AsBatch] [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
 ```
 
 ### GetContentForEntityById
 ```
-Get-CrmContent [-Entity] <String> [-Id] <Guid[]> [-Columns <String[]>] [-IncludeTotalCount] [-Skip <UInt64>]
- [-First <UInt64>] [<CommonParameters>]
+Get-CrmContent [-Entity] <String> [-Id] <Guid[]> [-Columns <String[]>] [-AsBatch] [-IncludeTotalCount]
+ [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
 ```
 
 ### GetContentForEntityByKeys
 ```
-Get-CrmContent [-Entity] <String> [-Keys] <Hashtable> [-Columns <String[]>] [-IncludeTotalCount]
+Get-CrmContent [-Entity] <String> [-Keys] <Hashtable> [-Columns <String[]>] [-AsBatch] [-IncludeTotalCount]
  [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
 ```
 
 ### GetContentWithFetchXml
 ```
-Get-CrmContent [-FetchXml] <XmlDocument> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>]
+Get-CrmContent [-FetchXml] <XmlDocument> [-AsBatch] [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>]
  [<CommonParameters>]
 ```
 
@@ -67,13 +67,29 @@ Retrieve records based on a FetchXML query stored in fetch.xml.
 
 ## PARAMETERS
 
+### -AsBatch
+Execute the request as part of a batch (ExecuteMultiple or ExecuteTransaction). 
+See Start-CrmBatch, Stop-CrmBatch and Submit-CrmBatch.
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -Columns
 The logicalnames of the attributes to include in the result.
 
 NOTE: This parameter is case sensitive. i.e. it must match the case of the LogicalName exactly.
 
 ```yaml
-Type: String[]
+Type: System.String[]
 Parameter Sets: GetContentForEntityByQuery, GetContentForEntityById, GetContentForEntityByKeys
 Aliases:
 
@@ -90,7 +106,7 @@ The logicalname of the entity to retrieve the records from.
 NOTE: This parameter is case sensitive. i.e. it must match the case of the LogicalName exactly.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetContentForEntityByQuery, GetContentForEntityById, GetContentForEntityByKeys
 Aliases:
 
@@ -105,7 +121,7 @@ Accept wildcard characters: False
 The XmlDocument containing a FecthXML query.
 
 ```yaml
-Type: XmlDocument
+Type: System.Xml.XmlDocument
 Parameter Sets: GetContentWithFetchXml
 Aliases:
 
@@ -116,28 +132,13 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -First
-Specifies the number of records to retrieve from the beginning.
-
-```yaml
-Type: UInt64
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Id
 The Id of the record to retrieve. 
 
 This can be an Entity object or EntityReference object. These will be converted to Guid as required.
 
 ```yaml
-Type: Guid[]
+Type: System.Guid[]
 Parameter Sets: GetContentForEntityById
 Aliases:
 
@@ -148,28 +149,11 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -IncludeTotalCount
-Return the total count (and accuracy) of the number of records before returning the result.
-
-Because of the limitations of Dynamics CRM, the total count is only returned accurate when the result is limited to 5000 items.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Keys
 A hashtable of attribute logicalnames and values which match an entity key. The record is retrieved using the unique key.
 
 ```yaml
-Type: Hashtable
+Type: System.Collections.Hashtable
 Parameter Sets: GetContentForEntityByKeys
 Aliases:
 
@@ -190,7 +174,7 @@ Valid values for the sort order are:
  -- Decending : Sort the attribute decending.
 
 ```yaml
-Type: Hashtable
+Type: System.Collections.Hashtable
 Parameter Sets: GetContentForEntityByQuery
 Aliases:
 
@@ -205,7 +189,7 @@ Accept wildcard characters: False
 A hashtable of attribute logicalnames and values to filter the results. 
 
 ```yaml
-Type: Hashtable
+Type: System.Collections.Hashtable
 Parameter Sets: GetContentForEntityByQuery
 Aliases:
 
@@ -216,11 +200,43 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -IncludeTotalCount
+Return the total count (and accuracy) of the number of records before returning the result.
+
+Because of the limitations of Dynamics CRM, the total count is only returned accurate when the result is limited to 5000 items.
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -Skip
 Skips (does not return) the specified number of records.
 
 ```yaml
-Type: UInt64
+Type: System.UInt64
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -First
+Specifies the number of records to retrieve from the beginning.
+
+```yaml
+Type: System.UInt64
 Parameter Sets: (All)
 Aliases:
 
@@ -261,4 +277,4 @@ Referenced LogicalNames and SchemaNames are case sensitive. i.e. These must matc
 
 [Remove-CrmContent](Remove-CrmContent.md)
 
-[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)
+[Entity Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.entity)

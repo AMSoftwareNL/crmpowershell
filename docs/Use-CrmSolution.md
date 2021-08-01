@@ -36,7 +36,7 @@ Set the active CRM solution of the session to the solution with ID '155f4747-2c3
 The unique ID of the CRM solution. Omit this parameter to reset the the default (base) solution.
 
 ```yaml
-Type: Guid
+Type: System.Guid
 Parameter Sets: (All)
 Aliases: Id
 
@@ -52,7 +52,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### System.Nullable`1[[System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
+### System.Guid
 
 ## OUTPUTS
 

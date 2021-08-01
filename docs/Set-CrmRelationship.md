@@ -19,8 +19,8 @@ Set-CrmRelationship [-InputObject] <RelationshipMetadataBase> [-PassThru] [<Comm
 
 ### SetRelationship
 ```
-Set-CrmRelationship [-Name] <String> [-AdvancedFind <Boolean>] [-Customizable <Boolean>] [-PassThru]
- [<CommonParameters>]
+Set-CrmRelationship [-Name] <String> [-AdvancedFind <Boolean>] [-IsHierarchical <Boolean>]
+ [-Customizable <Boolean>] [-PassThru] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -34,7 +34,7 @@ Update a relationship.
 Whether the relationship appears in Advanced Find.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: SetRelationship
 Aliases:
 
@@ -49,7 +49,7 @@ Accept wildcard characters: False
 Whether the relationship is a custom relationship.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: SetRelationship
 Aliases:
 
@@ -64,7 +64,7 @@ Accept wildcard characters: False
 The updated RelationshipMetadata for the relationship.
 
 ```yaml
-Type: RelationshipMetadataBase
+Type: Microsoft.Xrm.Sdk.Metadata.RelationshipMetadataBase
 Parameter Sets: SetRelationshipByInputObject
 Aliases: Relationship
 
@@ -75,11 +75,26 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
+### -IsHierarchical
+Whether this relationship is the designated hierarchical self-referential relationship for this entity
+
+```yaml
+Type: System.Boolean
+Parameter Sets: SetRelationship
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -Name
 The SchemaName of the relationship.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: SetRelationship
 Aliases: SchemaName
 
@@ -94,7 +109,7 @@ Accept wildcard characters: False
 Returns an object that represents the RelationshipMetadata. By default, this cmdlet does not generate any output.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -128,6 +143,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 [Remove-CrmRelationship](Remove-CrmRelationship.md)
 
-[ManyToManyRelationshipMetadata Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.metadata.manytomanyrelationshipmetadata.aspx)
+[ManyToManyRelationshipMetadata Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.metadata.manytomanyrelationshipmetadata)
 
-[OneToManyRelationshipMetadata Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.metadata.onetomanyrelationshipmetadata.aspx)
+[OneToManyRelationshipMetadata Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.metadata.onetomanyrelationshipmetadata)

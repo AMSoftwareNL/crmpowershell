@@ -14,12 +14,13 @@ Remove a data record from an entity.
 
 ### RemoveContentByInputObject (Default)
 ```
-Remove-CrmContent [-InputObject] <Entity[]> [-Force] [-WhatIf] [-Confirm] [<CommonParameters>]
+Remove-CrmContent [-InputObject] <Entity[]> [-AsBatch] [-Force] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### RemoveContent
 ```
-Remove-CrmContent [-Entity] <String> [-Id] <Guid[]> [-Force] [-WhatIf] [-Confirm] [<CommonParameters>]
+Remove-CrmContent [-Entity] <String> [-Id] <Guid[]> [-AsBatch] [-Force] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -29,13 +30,14 @@ Remove a data record from an entity.
 
 ## PARAMETERS
 
-### -Confirm
-Prompts you for confirmation before running the cmdlet.
+### -AsBatch
+Execute the request as part of a batch (ExecuteMultiple or ExecuteTransaction). 
+See Start-CrmBatch, Stop-CrmBatch and Submit-CrmBatch.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
-Aliases: cf
+Aliases:
 
 Required: False
 Position: Named
@@ -48,7 +50,7 @@ Accept wildcard characters: False
 The LogicalName of the entity to remove the record from.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: RemoveContent
 Aliases:
 
@@ -63,7 +65,7 @@ Accept wildcard characters: False
 Executes the action without prompting for confirmation.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -78,7 +80,7 @@ Accept wildcard characters: False
 The id of the data record to remove.
 
 ```yaml
-Type: Guid[]
+Type: System.Guid[]
 Parameter Sets: RemoveContent
 Aliases:
 
@@ -93,7 +95,7 @@ Accept wildcard characters: False
 The entity object representing the record to remove.
 
 ```yaml
-Type: Entity[]
+Type: Microsoft.Xrm.Sdk.Entity[]
 Parameter Sets: RemoveContentByInputObject
 Aliases: Record
 
@@ -104,12 +106,27 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
+### -Confirm
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -WhatIf
 Shows what would happen if the cmdlet runs.
 The cmdlet is not run.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases: wi
 

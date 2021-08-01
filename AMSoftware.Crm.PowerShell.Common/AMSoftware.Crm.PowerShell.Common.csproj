@@ -90,8 +90,10 @@
     <Compile Include="Helpers\SolutionManagementHelper.cs" />
     <Compile Include="PropertyAdapters\EntityAliassedAttributePropertyHandler.cs" />
     <Compile Include="PropertyAdapters\EntityAttributePropertyHandler.cs" />
+    <Compile Include="PropertyAdapters\OrganizationRequestPropertyAdapter.cs" />
+    <Compile Include="PropertyAdapters\OrganizationResponsePropertyAdapter.cs" />
     <Compile Include="PropertyAdapters\EntityRefAttributePropertyHandler.cs" />
-    <Compile Include="PropertyAdapters\FormattedValuePropertyHandler.cs" />
+    <Compile Include="PropertyAdapters\ReadonlyDataCollectionPropertyHandler.cs" />
     <Compile Include="PropertyAdapters\MetadataTypePropertyHandler.cs" />
     <Compile Include="PropertyAdapters\PropertyAdapterBase.cs" />
     <Compile Include="PropertyAdapters\MetadataPropertyAdapter.cs" />
@@ -107,7 +109,6 @@
     <Compile Include="Converters\LabelConverter.cs" />
     <Compile Include="Converters\MoneyConverter.cs" />
     <Compile Include="Converters\OptionSetValueConverter.cs" />
-    <Compile Include="CrmVersionManager.cs" />
     <Compile Include="Cache.cs" />
     <Compile Include="Repositories\MetadataRepository.cs" />
     <Compile Include="MetadataCache.cs" />
@@ -124,7 +125,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CrmSdk.XrmTooling.CoreAssembly">
-      <Version>9.1.0.68</Version>
+      <Version>9.1.0.79</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.PowerShell.5.ReferenceAssemblies">
       <Version>1.1.0</Version>

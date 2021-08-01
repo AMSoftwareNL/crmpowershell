@@ -28,7 +28,7 @@ Set the teams or users assigned to a role.
 Overwrite the existing users and teams assigned to the role. If omitted the users and teams will be merged.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -43,7 +43,7 @@ Accept wildcard characters: False
 Returns an object that represents the role. By default, this cmdlet does not generate any output.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -54,11 +54,26 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -Principals
+The id of the users or teams to assign to the role.
+
+```yaml
+Type: System.Guid[]
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -PrincipalType
 The type of principal to assign.
 
 ```yaml
-Type: CrmPrincipalType
+Type: AMSoftware.Crm.PowerShell.Common.CrmPrincipalType
 Parameter Sets: (All)
 Aliases:
 Accepted values: User, Team
@@ -70,26 +85,11 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Principals
-The id of the users or teams to assign to the role.
-
-```yaml
-Type: Guid[]
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Role
 The id of the role to assign the principals to.
 
 ```yaml
-Type: Guid[]
+Type: System.Guid[]
 Parameter Sets: (All)
 Aliases: Id
 

@@ -37,7 +37,7 @@ Register a plugin and assembly.
 The location to store the plugin assembly.
 
 ```yaml
-Type: CrmAssemblySourceType
+Type: AMSoftware.Crm.PowerShell.Common.CrmAssemblySourceType
 Parameter Sets: (All)
 Aliases:
 Accepted values: Database, Disk, GAC
@@ -53,7 +53,7 @@ Accept wildcard characters: False
 The description for the plugin.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -68,7 +68,7 @@ Accept wildcard characters: False
 Executes the action without prompting for confirmation.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -83,7 +83,7 @@ Accept wildcard characters: False
 The isolation mode for the plugin assembly.
 
 ```yaml
-Type: CrmAssemblyIsolationMode
+Type: AMSoftware.Crm.PowerShell.Common.CrmAssemblyIsolationMode
 Parameter Sets: (All)
 Aliases:
 Accepted values: None, Sandbox
@@ -99,7 +99,7 @@ Accept wildcard characters: False
 The path to the plugin assembly.
 
 ```yaml
-Type: String[]
+Type: System.String[]
 Parameter Sets: RegisterPluginFromLiteralPath
 Aliases: PSPath
 
@@ -114,7 +114,7 @@ Accept wildcard characters: False
 Returns an object that represents the Plugin. By default, this cmdlet does not generate any output.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -129,7 +129,7 @@ Accept wildcard characters: False
 The path to the plugin assembly.
 
 ```yaml
-Type: String[]
+Type: System.String[]
 Parameter Sets: RegisterPluginFromPath
 Aliases:
 
@@ -144,7 +144,7 @@ Accept wildcard characters: False
 The names of the plugins to register from the assembly.
 
 ```yaml
-Type: String[]
+Type: System.String[]
 Parameter Sets: (All)
 Aliases:
 
@@ -180,4 +180,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 [Unregister-CrmPluginAssembly](Unregister-CrmPluginAssembly.md)
 
-[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)
+[Entity Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.entity)

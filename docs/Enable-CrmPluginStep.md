@@ -32,7 +32,7 @@ PS C:\> Enable-CrmPluginStep -Id 'BD1D1AF1-D43F-4B00-96DC-979DC0709CDE'
 The id of the SDK Message Processing Step to enable.
 
 ```yaml
-Type: Guid[]
+Type: System.Guid[]
 Parameter Sets: (All)
 Aliases:
 

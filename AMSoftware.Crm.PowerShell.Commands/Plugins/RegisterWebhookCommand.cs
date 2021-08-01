@@ -38,7 +38,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 
         private readonly ContentRepository _repository = new ContentRepository();
 
-        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
+        [Parameter(ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
         [ValidateNotNullOrEmpty]
         public Guid Id { get; set; }
 
@@ -73,7 +73,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
             ValidateNameUnique(_repository, Name, Id);
 
             Entity serviceEndpointEntity = GenerateCrmEntity();
-            if (Id != Guid.Empty)
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(Id)))
             {
                 serviceEndpointEntity.Id = Id;
                 _repository.Update(serviceEndpointEntity);

@@ -5,83 +5,82 @@ online version: https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/G
 schema: 2.0.0
 ---
 
-# Get-CrmEntity
+# Get-CrmEntityKey
 
 ## SYNOPSIS
-Get the metadata of an entity.
+Get Keys for Entity
 
 ## SYNTAX
 
-### GetEntitiesByFilter (Default)
+### GetEntityKeysByFilter (Default)
 ```
-Get-CrmEntity [[-Name] <String>] [-Exclude <String>] [-CustomOnly] [-ExcludeManaged] [-IncludeIntersects]
- [<CommonParameters>]
+Get-CrmEntityKey [-Entity] <String> [[-Name] <String>] [-Exclude <String>] [-ExcludeManaged]
+ [-Attributes <String[]>] [<CommonParameters>]
 ```
 
-### GetEntityById
+### GetEntityKeyById
 ```
-Get-CrmEntity [-Id] <Guid[]> [<CommonParameters>]
+Get-CrmEntityKey [-Id] <Guid[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Get the metadata of an entity. 
-
-The first time retrieving the metadata will take some time. In consecutive calls the performance will improve as the metadata will be cached in the session. For Dynamics CRM 2011 Rollup 12 and later the cache will be automatically updated as required based on metadata changes. Before Dynamics CRM 2011 Rollup 12 the cache will be updated after 5 minutes. To force and update of the cache reconnect to the organization.
+Get Keys for Entity
 
 ## EXAMPLES
 
-### Example 1
-```
-PS C:\> Get-CrmEntity -Name account
-```
-
-Get the metadata of the entity 'account'.
-
-### Example 2
-```
-PS C:\> Get-CrmEntity -Include '*account*' -CustomOnly -ExcludeManaged
-```
-
-Get the metadata of all entities with 'account' in the LogicalName. Retrieve only custom entities, that are not managed.
-
 ## PARAMETERS
 
-### -CustomOnly
-Retrieve only the metadata for entities that are marked as custom.
+### -Attributes
+Return keys containing the provided Attributes.
 
 ```yaml
-Type: SwitchParameter
-Parameter Sets: GetEntitiesByFilter
+Type: System.String[]
+Parameter Sets: GetEntityKeysByFilter
 Aliases:
 
 Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Entity
+The LogicalName of the Entity to return the Keys for.
+
+```yaml
+Type: System.String
+Parameter Sets: GetEntityKeysByFilter
+Aliases: LogicalName, EntityLogicalName
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
 ### -Exclude
-Exclude the metadata for entities whose LogicalName matches the provided pattern.
+Keys to exclude
 
 ```yaml
-Type: String
-Parameter Sets: GetEntitiesByFilter
+Type: System.String
+Parameter Sets: GetEntityKeysByFilter
 Aliases:
 
 Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: False
+Accept wildcard characters: True
 ```
 
 ### -ExcludeManaged
-Do not retrieve metadata for entities that are marked as managed.
+Exclude any managed Keys
 
 ```yaml
-Type: SwitchParameter
-Parameter Sets: GetEntitiesByFilter
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: GetEntityKeysByFilter
 Aliases:
 
 Required: False
@@ -92,11 +91,11 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-The MetadataId of the entity to retrieve.
+Id of the Key to return
 
 ```yaml
-Type: Guid[]
-Parameter Sets: GetEntityById
+Type: System.Guid[]
+Parameter Sets: GetEntityKeyById
 Aliases: MetadataId
 
 Required: True
@@ -106,36 +105,19 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -IncludeIntersects
-Include the metadata for entities marked as intersect. These are entities which are created by Dynamics CRM to support N:N relationships.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: GetEntitiesByFilter
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Name
-The LogicalName of the entity to retrieve the metadata for.
-
-NOTE: This parameter is case sensitive. i.e. it must match the case of the LogicalName exactly.
+Name of the Key to return
 
 ```yaml
-Type: String
-Parameter Sets: GetEntitiesByFilter
+Type: System.String
+Parameter Sets: GetEntityKeysByFilter
 Aliases: Include
 
 Required: False
-Position: 1
+Position: 2
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: False
+Accept wildcard characters: True
 ```
 
 ### CommonParameters
@@ -145,27 +127,17 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### System.Guid[]
 
+### System.String
+
+### System.String[]
+
 ## OUTPUTS
 
-### Microsoft.Xrm.Sdk.Metadata.EntityMetadata
+### Microsoft.Xrm.Sdk.Metadata.EntityKeyMetadata
 
 ## NOTES
-The Name parameter is case sensitive. i.e. it must match the case of the LogicalName exactly.
 
 ## RELATED LINKS
 
-[Get-CrmAttribute](Get-CrmAttribute.md)
+[https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Get-CrmEntityKey.md](https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Get-CrmEntityKey.md)
 
-[Get-CrmEntityKey](Get-CrmEntityKey.md)
-
-[Get-CrmOptionSet](Get-CrmOptionSet.md)
-
-[Get-CrmRelationship](Get-CrmRelationship.md)
-
-[New-CrmEntity](New-CrmEntity.md)
-
-[Set-CrmEntity](Set-CrmEntity.md)
-
-[Remove-CrmEntity](Remove-CrmEntity.md)
-
-[EntityMetadata Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.metadata.entitymetadata.aspx)

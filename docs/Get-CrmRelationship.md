@@ -46,7 +46,7 @@ Get the metadata for the one-to-many relationships between the entities 'account
 Retrieve only the metadata for relationships that are marked as custom.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: GetRelationshipByFilter
 Aliases:
 
@@ -63,7 +63,7 @@ The LogicalName of the entity to retrieve relationship metadata for.
 NOTE: This parameter is case sensitive. i.e. it must match the case of the LogicalName exactly.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetRelationshipByFilter
 Aliases: EntityLogicalName, LogicalName
 
@@ -78,7 +78,7 @@ Accept wildcard characters: False
 Exclude the metadata for relationships whose SchemaName matches the provided pattern.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetRelationshipByFilter
 Aliases:
 
@@ -86,14 +86,14 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: False
+Accept wildcard characters: True
 ```
 
 ### -ExcludeManaged
 Do not retrieve metadata for relationships that are marked as managed.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: GetRelationshipByFilter
 Aliases:
 
@@ -108,7 +108,7 @@ Accept wildcard characters: False
 The MetadataId of the relationship to retrieve.
 
 ```yaml
-Type: Guid[]
+Type: System.Guid[]
 Parameter Sets: GetRelationshipById
 Aliases: MetadataId
 
@@ -123,7 +123,7 @@ Accept wildcard characters: False
 Include the metadata for relationships whose SchemaName matches the provided pattern.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetRelationshipByFilter
 Aliases:
 
@@ -131,7 +131,7 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: False
+Accept wildcard characters: True
 ```
 
 ### -Name
@@ -140,7 +140,7 @@ The SchemaName of the relationship to retrieve the metadata for.
 NOTE: This parameter is case sensitive. i.e. it must match the case of the SchemaName exactly.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetRelationshipByName
 Aliases: SchemaName
 
@@ -155,7 +155,7 @@ Accept wildcard characters: False
 The LogicalName of the related entity participating in the relationship to retrieve the metadata for.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetRelationshipByFilter
 Aliases:
 
@@ -178,7 +178,7 @@ Accepted values are:
  -- ManyTOMany : Only retrieve the metadata for many-to-many relationships.
 
 ```yaml
-Type: CrmRelationshipType
+Type: AMSoftware.Crm.PowerShell.Common.CrmRelationshipType
 Parameter Sets: GetRelationshipByFilter
 Aliases:
 Accepted values: All, OneToMany, ManyToMany
@@ -224,6 +224,6 @@ The Entity, RelatedEntity and Name parameters are case sensitive. i.e. these mus
 
 [Remove-CrmRelationship](Remove-CrmRelationship.md)
 
-[ManyToManyRelationshipMetadata Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.metadata.manytomanyrelationshipmetadata.aspx)
+[ManyToManyRelationshipMetadata Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.metadata.manytomanyrelationshipmetadata)
 
-[OneToManyRelationshipMetadata Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.metadata.onetomanyrelationshipmetadata.aspx)
+[OneToManyRelationshipMetadata Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.metadata.onetomanyrelationshipmetadata)

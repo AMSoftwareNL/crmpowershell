@@ -1,8 +1,8 @@
 ---
 Module Name: AMSoftware.Crm
 Module Guid: 1e7f1ebc-e035-4d73-86af-3c07a6a85260
-Download Help Link: http://www.amsoftware.nl/tools/crmpowershell/help/
-Help Version: 2.0.0.0
+Download Help Link: 
+Help Version: 2.1.0.0
 Locale: en-us
 ---
 
@@ -89,17 +89,20 @@ Get a Business Unit.
 ### [Get-CrmContent](Get-CrmContent.md)
 Retrieve data records from an entity.
 
-### [Get-CrmEntity](Get-CrmEntity.md)
-Get the metadata of an entity.
+### [Get-CrmDataProvider](Get-CrmDataProvider.md)
+Get a registered data provider.
 
 ### [Get-CrmEntity](Get-CrmEntity.md)
 Get the metadata of an entity.
+
+### [Get-CrmEntityKey](Get-CrmEntityKey.md)
+Get Keys for Entity
 
 ### [Get-CrmEnvironmentVariable](Get-CrmEnvironmentVariable.md)
-{{ Fill in the Synopsis }}
+Get an environment variable
 
 ### [Get-CrmEnvironmentVariableValue](Get-CrmEnvironmentVariableValue.md)
-{{ Fill in the Synopsis }}
+Get the value of an environment variable
 
 ### [Get-CrmLanguage](Get-CrmLanguage.md)
 Get the language of the connected organization.
@@ -188,6 +191,9 @@ Add a new business unit.
 ### [New-CrmEntity](New-CrmEntity.md)
 Add a new entity.
 
+### [New-CrmEnvironmentVariable](New-CrmEnvironmentVariable.md)
+Create a new environment variable
+
 ### [New-CrmOptionSet](New-CrmOptionSet.md)
 Add a new global optionset.
 
@@ -215,6 +221,9 @@ Add new new webresource.
 ### [Publish-CrmComponent](Publish-CrmComponent.md)
 Publish customization components.
 
+### [Register-CrmDataProvider](Register-CrmDataProvider.md)
+Register a new Data Provider
+
 ### [Register-CrmPlugin](Register-CrmPlugin.md)
 Register a plugin and assembly.
 
@@ -226,6 +235,9 @@ Register a SDK Message Processing Step image.
 
 ### [Register-CrmServiceEndpoint](Register-CrmServiceEndpoint.md)
 Register a serviceendpoint.
+
+### [Register-CrmWebhook](Register-CrmWebhook.md)
+Register a WebHook
 
 ### [Remove-CrmAttribute](Remove-CrmAttribute.md)
 Remove an attribute from an entity.
@@ -240,10 +252,10 @@ Remove an entity.
 Remove a key from an entity.
 
 ### [Remove-CrmEnvironmentVariable](Remove-CrmEnvironmentVariable.md)
-{{ Fill in the Synopsis }}
+Remove an environment variable
 
 ### [Remove-CrmEnvironmentVariableValue](Remove-CrmEnvironmentVariableValue.md)
-{{ Fill in the Synopsis }}
+Clear the value of an environment variable
 
 ### [Remove-CrmLanguage](Remove-CrmLanguage.md)
 Deprovision a language.
@@ -290,6 +302,9 @@ Update an attribute of type Boolean.
 ### [Set-CrmContent](Set-CrmContent.md)
 Update a data record of an entity.
 
+### [Set-CrmDataProvider](Set-CrmDataProvider.md)
+Update a registered Data Provider
+
 ### [Set-CrmDateTimeAttribute](Set-CrmDateTimeAttribute.md)
 Update an attribute of type DateTime.
 
@@ -301,6 +316,9 @@ Update an attribute of type Double.
 
 ### [Set-CrmEntity](Set-CrmEntity.md)
 Update an entity.
+
+### [Set-CrmEnvironmentVariable](Set-CrmEnvironmentVariable.md)
+Update an environement variable
 
 ### [Set-CrmImageAttribute](Set-CrmImageAttribute.md)
 Update an attribute of type Image.
@@ -347,6 +365,9 @@ Set the cascading behavior for a relationship.
 ### [Set-CrmRolePrincipals](Set-CrmRolePrincipals.md)
 Set the teams or users assigned to a role.
 
+### [Set-CrmSession](Set-CrmSession.md)
+Set properties on the active session
+
 ### [Set-CrmStringAttribute](Set-CrmStringAttribute.md)
 Update an attribute of type String.
 
@@ -362,17 +383,29 @@ Update a webresource.
 ### [Split-CrmContent](Split-CrmContent.md)
 Disassociate one record from another.
 
+### [Start-CrmBatch](Start-CrmBatch.md)
+Start the collection of organization requests to execute as a batch.
+
 ### [Start-CrmProcess](Start-CrmProcess.md)
 Execute a workflow.
 
+### [Stop-CrmBatch](Stop-CrmBatch.md)
+Stop the collection of organization requests to execute as a batch.
+
 ### [Stop-CrmProcess](Stop-CrmProcess.md)
 Stop a running asynchronous operation (System Job).
+
+### [Submit-CrmBatch](Submit-CrmBatch.md)
+Execute the active batch request against Dataverse.
 
 ### [Test-CrmSolution](Test-CrmSolution.md)
 Validate a customization solution.
 
 ### [Test-CrmSolutionComponent](Test-CrmSolutionComponent.md)
 Validate a component in a solution.
+
+### [Unregister-CrmDataProvider](Unregister-CrmDataProvider.md)
+Remove a registered Data Provider
 
 ### [Unregister-CrmPlugin](Unregister-CrmPlugin.md)
 Unregister a plugin.

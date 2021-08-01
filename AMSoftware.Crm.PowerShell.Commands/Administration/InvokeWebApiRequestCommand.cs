@@ -32,22 +32,22 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         [ValidateNotNullOrEmpty]
         public Uri Url { get; set; }
 
-        [Parameter(Mandatory = false)]
+        [Parameter()]
         [ValidateNotNullOrEmpty]
         [PSDefaultValue(Value = "Get")]
         [ValidateSet("Get", "Post", "Put", "Delete", "Patch", IgnoreCase = true)]
         public string Method { get; set; }
 
-        [Parameter(Mandatory = false, ValueFromPipeline = true)]
+        [Parameter(ValueFromPipeline = true)]
         [ValidateNotNullOrEmpty]
         public object Body { get; set; }
 
-        [Parameter(Mandatory = false)]
+        [Parameter()]
         [ValidateNotNullOrEmpty]
         [PSDefaultValue(Value = "application/json")]
         public string ContentType { get; set; }
 
-        [Parameter(Mandatory = false)]
+        [Parameter()]
         public SwitchParameter FormattedValues { get; set; }
 
         protected override void ExecuteCmdlet()

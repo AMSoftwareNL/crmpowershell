@@ -41,7 +41,7 @@ Gets the user matching username 'user1@organization.com'.
 The id of a business unit to retrieve the related users for.
 
 ```yaml
-Type: Guid
+Type: System.Guid
 Parameter Sets: GetAllUsers
 Aliases:
 
@@ -56,7 +56,7 @@ Accept wildcard characters: False
 Exclude users whose name matches the provided pattern.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetAllUsers
 Aliases:
 
@@ -64,29 +64,14 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -First
-Specifies the number of records to retrieve from the beginning.
-
-```yaml
-Type: UInt64
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
+Accept wildcard characters: True
 ```
 
 ### -Id
 The id of the user to retrieve.
 
 ```yaml
-Type: Guid[]
+Type: System.Guid[]
 Parameter Sets: GetUserById
 Aliases:
 
@@ -101,25 +86,8 @@ Accept wildcard characters: False
 Include inactive users in the result.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: GetAllUsers
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -IncludeTotalCount
-Return the total count (and accuracy) of the number of records before returning the result.
-
-Because of the limitations of Dynamics CRM, the total count is only returned accurate when the result is limited to 5000 items
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
 Aliases:
 
 Required: False
@@ -133,12 +101,29 @@ Accept wildcard characters: False
 Include users whose name matches the provided pattern.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetAllUsers
 Aliases: Include
 
 Required: False
 Position: 0
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: True
+```
+
+### -IncludeTotalCount
+Return the total count (and accuracy) of the number of records before returning the result.
+
+Because of the limitations of Dynamics CRM, the total count is only returned accurate when the result is limited to 5000 items
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -148,7 +133,22 @@ Accept wildcard characters: False
 Skips (does not return) the specified number of records.
 
 ```yaml
-Type: UInt64
+Type: System.UInt64
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -First
+Specifies the number of records to retrieve from the beginning.
+
+```yaml
+Type: System.UInt64
 Parameter Sets: (All)
 Aliases:
 
@@ -186,4 +186,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 [Set-CrmUserTeams](Set-CrmUserTeams.md)
 
-[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)
+[Entity Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.entity)

@@ -29,7 +29,7 @@ Register a SDK Message Processing Step image.
 The alias for the SDK Message Processing Step image.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -44,7 +44,7 @@ Accept wildcard characters: False
 The LogicalName of the filtering attributes for the SDK Message Processing Step image.
 
 ```yaml
-Type: String[]
+Type: System.String[]
 Parameter Sets: (All)
 Aliases:
 
@@ -59,7 +59,7 @@ Accept wildcard characters: False
 The type of the SDK Message Processing Step image.
 
 ```yaml
-Type: CrmPluginStepImageType
+Type: AMSoftware.Crm.PowerShell.Common.CrmPluginStepImageType
 Parameter Sets: (All)
 Aliases:
 Accepted values: PreImage, PostImage, Both
@@ -77,7 +77,7 @@ The property name for the SDK Message Processing Step image.
 Only needed for Messages supporting multiple properties as the trigger. Can be omitted in most cases.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -92,7 +92,7 @@ Accept wildcard characters: False
 The name for the SDK Message Processing Step image.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -107,7 +107,7 @@ Accept wildcard characters: False
 Returns an object that represents the Plugin Step Image. By default, this cmdlet does not generate any output.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -122,7 +122,7 @@ Accept wildcard characters: False
 The id of the SDK Message Processing Step to register the SDK Message Processing Step image for.
 
 ```yaml
-Type: Guid
+Type: System.Guid
 Parameter Sets: (All)
 Aliases:
 
@@ -156,4 +156,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 [Unregister-CrmPluginStepImage](Unregister-CrmPluginStepImage.md)
 
-[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)
+[Entity Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.entity)

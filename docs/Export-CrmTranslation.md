@@ -34,7 +34,7 @@ Export the translation of solution 'product1'.
 The file system path to export to translations to. This must include the filename.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -49,7 +49,7 @@ Accept wildcard characters: False
 The id of the solution to export the translations for.
 
 ```yaml
-Type: Guid
+Type: System.Guid
 Parameter Sets: (All)
 Aliases:
 

@@ -8,7 +8,7 @@ schema: 2.0.0
 # Register-CrmWebhook
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Register a WebHook
 
 ## SYNTAX
 
@@ -31,24 +31,17 @@ Register-CrmWebhook [-Id <Guid>] [-Name] <String> [-Endpoint] <String> -Headers 
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Register a WebHook
 
 ## EXAMPLES
-
-### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -Endpoint
-{{ Fill Endpoint Description }}
+Endpoint URI of the WebHook
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -60,10 +53,10 @@ Accept wildcard characters: False
 ```
 
 ### -Headers
-{{ Fill Headers Description }}
+Key Value pairs of Headers to include in the WebHook request
 
 ```yaml
-Type: Hashtable
+Type: System.Collections.Hashtable
 Parameter Sets: RegisterWebhookWithHeaderAuth
 Aliases:
 
@@ -75,10 +68,10 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{ Fill Id Description }}
+If provided the Id an existing WebHook to update
 
 ```yaml
-Type: Guid
+Type: System.Guid
 Parameter Sets: (All)
 Aliases:
 
@@ -90,10 +83,10 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{ Fill Name Description }}
+Name of the WebHook
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -105,10 +98,10 @@ Accept wildcard characters: False
 ```
 
 ### -PassThru
-{{ Fill PassThru Description }}
+Return the resulting WebHook registration to the pipeline
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -120,10 +113,10 @@ Accept wildcard characters: False
 ```
 
 ### -Querystring
-{{ Fill Querystring Description }}
+Key Value pairs of querystring parameters to include in the WebHook request
 
 ```yaml
-Type: Hashtable
+Type: System.Collections.Hashtable
 Parameter Sets: RegisterWebhookWithQuerystringAuth
 Aliases:
 
@@ -135,10 +128,10 @@ Accept wildcard characters: False
 ```
 
 ### -WebhookKey
-{{ Fill WebhookKey Description }}
+Key value for the WebHookKey Authorization Type
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: RegisterWebhookWithKeyAuth
 Aliases:
 

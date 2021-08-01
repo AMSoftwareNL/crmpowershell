@@ -13,7 +13,7 @@ Execute any Dynamics CRM request.
 ## SYNTAX
 
 ```
-Invoke-CrmRequest [-Request] <String> [[-Parameters] <Hashtable>] [<CommonParameters>]
+Invoke-CrmRequest [-Request] <String> [[-Parameters] <Hashtable>] [-AsBatch] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -30,11 +30,27 @@ Executes the WhoAmI request.
 
 ## PARAMETERS
 
+### -AsBatch
+Execute the request as part of a batch (ExecuteMultiple or ExecuteTransaction). 
+See Start-CrmBatch, Stop-CrmBatch and Submit-CrmBatch.
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -Parameters
 A hashtable of parameter names and values to pass to the request.
 
 ```yaml
-Type: Hashtable
+Type: System.Collections.Hashtable
 Parameter Sets: (All)
 Aliases:
 
@@ -49,7 +65,7 @@ Accept wildcard characters: False
 The name of the request to execute.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 

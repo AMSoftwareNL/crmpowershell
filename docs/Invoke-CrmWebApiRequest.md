@@ -35,7 +35,7 @@ Retrieve all accounts directly through the WebAPI. Include the formatted values.
 The body for the request. Ignored if the request is a GET. If Body is a string it is passed on to the request directly. IF the Body is an object it is serialized to a JSON string which is passed on to the request.
 
 ```yaml
-Type: Object
+Type: System.Object
 Parameter Sets: (All)
 Aliases:
 
@@ -50,7 +50,7 @@ Accept wildcard characters: False
 ContentType of the request. if not included application/json is used.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -65,7 +65,7 @@ Accept wildcard characters: False
 Include the formatted values in the response. Adds the header 'Prefer: odata.include-annotations="OData.Community.Display.V1.FormattedValue"'
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -80,7 +80,7 @@ Accept wildcard characters: False
 HTTPMethod of the request. If not included GET is used.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 Accepted values: Get, Post, Put, Delete, Patch
@@ -96,7 +96,7 @@ Accept wildcard characters: False
 URI relative to the WebAPI base URI to execute.
 
 ```yaml
-Type: Uri
+Type: System.Uri
 Parameter Sets: (All)
 Aliases:
 

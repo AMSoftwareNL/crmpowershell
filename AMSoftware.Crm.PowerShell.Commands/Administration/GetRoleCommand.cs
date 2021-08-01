@@ -50,7 +50,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
 
         [Parameter(ParameterSetName = GetAllRolesParameterSet)]
         [ValidateNotNullOrEmpty]
-        public Guid? BusinessUnit { get; set; }
+        public Guid BusinessUnit { get; set; }
 
         protected override void ExecuteCmdlet()
         {
@@ -108,9 +108,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
                 }
             };
 
-            if (BusinessUnit.HasValue && BusinessUnit.Value != Guid.Empty)
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(BusinessUnit)) && BusinessUnit != Guid.Empty)
             {
-                query.Criteria.AddCondition("businessunitid", ConditionOperator.Equal, BusinessUnit.Value);
+                query.Criteria.AddCondition("businessunitid", ConditionOperator.Equal, BusinessUnit);
             }
 
             return query;

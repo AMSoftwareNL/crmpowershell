@@ -42,7 +42,7 @@ Get SDK Message Processing Steps from assembly 'amsoftware.plugins' registered f
 The LogicalName of the entity the SDK Message Processing Step is registered on.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetPluginStepByFilter
 Aliases:
 
@@ -57,7 +57,7 @@ Accept wildcard characters: False
 The plugin or serviceendpoint the SDK Message Processing Step is registered on.
 
 ```yaml
-Type: Guid
+Type: System.Guid
 Parameter Sets: GetPluginStepByFilter
 Aliases:
 
@@ -68,26 +68,11 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -First
-Specifies the number of records to retrieve from the beginning.
-
-```yaml
-Type: UInt64
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Id
 The id of the SDK Message Processing Step to retrieve.
 
 ```yaml
-Type: Guid
+Type: System.Guid
 Parameter Sets: GetPluginStepById
 Aliases:
 
@@ -102,7 +87,7 @@ Accept wildcard characters: False
 Include SDK Message Processing Steps marked as hidden.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: GetPluginStepByFilter
 Aliases:
 
@@ -117,23 +102,8 @@ Accept wildcard characters: False
 Include SDK Message Processing Steps registered on internal stages.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: GetPluginStepByFilter
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -IncludeTotalCount
-Include SDK Message Processing Steps whose name matches the provided pattern.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
 Aliases:
 
 Required: False
@@ -147,7 +117,7 @@ Accept wildcard characters: False
 The name of the message the SDK Message Processing Step is registered on.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetPluginStepByFilter
 Aliases:
 
@@ -162,25 +132,10 @@ Accept wildcard characters: False
 The mode of the SDK Message Processing Step to retrieve. If not provided all modes are returned.
 
 ```yaml
-Type: CrmPluginStepMode
+Type: AMSoftware.Crm.PowerShell.Common.CrmPluginStepMode
 Parameter Sets: GetPluginStepByFilter
 Aliases:
 Accepted values: Synchronous, Asynchronous
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Skip
-Skips (does not return) the specified number of records.
-
-```yaml
-Type: UInt64
-Parameter Sets: (All)
-Aliases:
 
 Required: False
 Position: Named
@@ -193,10 +148,55 @@ Accept wildcard characters: False
 The stage of the SDK Message Processing Step to retrieve. If not provided all stages are returned.
 
 ```yaml
-Type: CrmPluginStepStage
+Type: AMSoftware.Crm.PowerShell.Common.CrmPluginStepStage
 Parameter Sets: GetPluginStepByFilter
 Aliases:
 Accepted values: PreValidation, PreOperation, PostOperation
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -IncludeTotalCount
+Include SDK Message Processing Steps whose name matches the provided pattern.
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Skip
+Skips (does not return) the specified number of records.
+
+```yaml
+Type: System.UInt64
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -First
+Specifies the number of records to retrieve from the beginning.
+
+```yaml
+Type: System.UInt64
+Parameter Sets: (All)
+Aliases:
 
 Required: False
 Position: Named
@@ -230,4 +230,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 [Unregister-CrmPluginStep](Unregister-CrmPluginStep.md)
 
-[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)
+[Entity Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.entity)

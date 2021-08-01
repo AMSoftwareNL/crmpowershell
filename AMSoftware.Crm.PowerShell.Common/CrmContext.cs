@@ -44,11 +44,13 @@ namespace AMSoftware.Crm.PowerShell.Common
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
         }
 
-        public static void Connect(CrmServiceClient connection)
+        public static void Connect(CrmServiceClient connection, bool initializeCache = false)
         {
             if (connection != null && connection.IsReady)
             {
                 Session = new CrmSession(connection);
+                if (initializeCache)
+                    Session.OrganizationCache.UpdateCache();
             }
             else
             {

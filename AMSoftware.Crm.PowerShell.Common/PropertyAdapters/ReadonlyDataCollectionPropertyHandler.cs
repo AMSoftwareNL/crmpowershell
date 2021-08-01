@@ -17,21 +17,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 using Microsoft.Xrm.Sdk;
 using System;
+using System.Reflection;
 
 namespace AMSoftware.Crm.PowerShell.Common.PropertyAdapters
 {
-    internal class FormattedValuePropertyHandler : IAdaptedPropertyHandler<Entity>
+    internal class ReadonlyDataCollectionPropertyHandler<TObject, TKey, TValue> : IAdaptedPropertyHandler<TObject>
     {
-        private readonly string _formattedValueName;
+        private readonly TKey _key;
+        private readonly PropertyInfo _collectionPropertyInfo;
 
-        public FormattedValuePropertyHandler(string formattedValueName)
+        public ReadonlyDataCollectionPropertyHandler(PropertyInfo collectionPropertyInfo, TKey key)
         {
-            _formattedValueName = formattedValueName;
+            _collectionPropertyInfo = collectionPropertyInfo;
+            _key = key;
         }
 
         public virtual string TypeName
         {
-            get { return typeof(string).FullName; }
+            get { return typeof(TValue).FullName; }
         }
 
         public virtual bool IsSettable
@@ -44,14 +47,19 @@ namespace AMSoftware.Crm.PowerShell.Common.PropertyAdapters
             get { return true; }
         }
 
-        public virtual object GetValue(Entity baseObject)
+        public virtual object GetValue(TObject baseObject)
         {
-            baseObject.FormattedValues.TryGetValue(_formattedValueName, out string result);
+            DataCollection<TKey, TValue> collection = _collectionPropertyInfo.GetValue(baseObject) as DataCollection<TKey, TValue>;
+            if (collection != null)
+            {
+                collection.TryGetValue(_key, out TValue result);
+                return result;
+            }
 
-            return result;
+            return null;
         }
 
-        public virtual void SetValue(Entity baseObject, object value)
+        public virtual void SetValue(TObject baseObject, object value)
         {
             throw new NotSupportedException();
         }

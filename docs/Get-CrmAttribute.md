@@ -47,7 +47,7 @@ Accepted values are:
  -- Any string matching a member name of the AttributeTypeCode enumeration (Microsoft.Xrm.Sdk.Metadata.AttributeTypeCode)
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetAttributesByFilter
 Aliases:
 
@@ -62,7 +62,7 @@ Accept wildcard characters: False
 Retrieve only the metadata for attributes that are marked as custom.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: GetAttributesByFilter
 Aliases:
 
@@ -79,7 +79,7 @@ The LogicalName of the entity to retrieve attribute metadata for.
 NOTE: This parameter is case sensitive. i.e. it must match the case of the LogicalName exactly.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetAttributesByFilter
 Aliases: EntityLogicalName, LogicalName
 
@@ -94,7 +94,7 @@ Accept wildcard characters: False
 Exclude the metadata for attributes whose LogicalName matches the provided pattern.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetAttributesByFilter
 Aliases:
 
@@ -102,14 +102,14 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: False
+Accept wildcard characters: True
 ```
 
 ### -ExcludeManaged
 Do not retrieve metadata for attributes that are marked as managed.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: GetAttributesByFilter
 Aliases:
 
@@ -124,7 +124,7 @@ Accept wildcard characters: False
 The MetadataId of the attribute to retrieve.
 
 ```yaml
-Type: Guid[]
+Type: System.Guid[]
 Parameter Sets: GetAttributeById
 Aliases: MetadataId
 
@@ -139,7 +139,7 @@ Accept wildcard characters: False
 Include metadata for attributes marked as linked attributes. This are attributes automatically added by Dynamics CRM to store data of related entities.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: GetAttributesByFilter
 Aliases:
 
@@ -156,7 +156,7 @@ The LogicalName of the attribute to retrieve the metadata for.
 NOTE: This parameter is case sensitive. i.e. it must match the case of the LogicalName exactly.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetAttributesByFilter
 Aliases: Include
 
@@ -164,7 +164,7 @@ Required: False
 Position: 2
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: False
+Accept wildcard characters: True
 ```
 
 ### CommonParameters
@@ -198,8 +198,8 @@ The Entity and Name parameters are case sensitive. i.e. these must match the cas
 
 [Remove-CrmAttribute](Remove-CrmAttribute.md)
 
-[AttributeMetadata Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.metadata.attributemetadata.aspx)
+[AttributeMetadata Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.metadata.attributemetadata)
 
-[AttributeTypeDisplayName Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.metadata.attributetypedisplayname.aspx)
+[AttributeTypeDisplayName Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.metadata.attributetypedisplayname)
 
-[AttributeTypeCode Enumeration](https://msdn.microsoft.com/library/microsoft.xrm.sdk.metadata.attributetypecode.aspx)
+[AttributeTypeCode Enumeration](https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.metadata.attributetypecode)

@@ -32,7 +32,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
         [ValidateNotNull]
         public Guid Id { get; set; }
 
-        [Parameter(Mandatory = false)]
+        [Parameter()]
         public SwitchParameter AsBytes { get; set; }
 
         protected override void ExecuteCmdlet()

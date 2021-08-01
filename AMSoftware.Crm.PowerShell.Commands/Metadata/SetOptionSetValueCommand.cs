@@ -51,7 +51,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 
         [Parameter]
         [ValidateNotNull]
-        public int? Value { get; set; }
+        public int Value { get; set; }
 
         [Parameter]
         [ValidateNotNullOrEmpty]
@@ -81,14 +81,19 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         private void UpdateGlobalOptionSet()
         {
             OptionSetMetadataBase optionSet = _repository.GetOptionSet(OptionSet);
+
+            int? changedValue = null;
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(Value)))
+                changedValue = Value;
+
             // Can be new or update
-            if (IsNewOptionSetValue(optionSet, Value))
+            if (IsNewOptionSetValue(optionSet, changedValue))
             {
-                _repository.AddOptionSetValue(OptionSet, DisplayName, Value, Description);
+                _repository.AddOptionSetValue(OptionSet, DisplayName, changedValue, Description);
             }
             else
             {
-                _repository.UpdateOptionSetValue(OptionSet, Value.Value, DisplayName, Description);
+                _repository.UpdateOptionSetValue(OptionSet, changedValue.Value, DisplayName, Description);
             }
         }
 
@@ -106,13 +111,17 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
                 attributeOptionSet = picklistAttribute.OptionSet;
             }
 
+            int? changedValue = null;
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(Value)))
+                changedValue = Value;
+
             if (IsNewOptionSetValue(attributeOptionSet, Value))
             {
-                _repository.AddOptionSetValue(Entity, Attribute, DisplayName, Value, Description);
+                _repository.AddOptionSetValue(Entity, Attribute, DisplayName, changedValue, Description);
             }
             else
             {
-                _repository.UpdateOptionSetValue(Entity, Attribute, Value.Value, DisplayName, Description);
+                _repository.UpdateOptionSetValue(Entity, Attribute, changedValue.Value, DisplayName, Description);
             }
         }
 

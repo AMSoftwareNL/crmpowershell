@@ -27,7 +27,7 @@ Set the users who are members of team.
 Overwrite the current users for the team. If omitted the existing and new users will be merged.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -42,7 +42,7 @@ Accept wildcard characters: False
 Returns an object that represents the team. By default, this cmdlet does not generate any output.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -57,7 +57,7 @@ Accept wildcard characters: False
 The id of the team to set the users for.
 
 ```yaml
-Type: Guid[]
+Type: System.Guid[]
 Parameter Sets: (All)
 Aliases: Id
 
@@ -72,7 +72,7 @@ Accept wildcard characters: False
 The id of the users to set as members of the team.
 
 ```yaml
-Type: Guid[]
+Type: System.Guid[]
 Parameter Sets: (All)
 Aliases:
 

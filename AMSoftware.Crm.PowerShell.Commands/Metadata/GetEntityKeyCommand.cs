@@ -15,14 +15,13 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+using AMSoftware.Crm.PowerShell.Common.ArgumentCompleters;
+using AMSoftware.Crm.PowerShell.Common.Repositories;
+using Microsoft.Xrm.Sdk.Metadata;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
-using AMSoftware.Crm.PowerShell.Common;
-using AMSoftware.Crm.PowerShell.Common.ArgumentCompleters;
-using AMSoftware.Crm.PowerShell.Common.Repositories;
-using Microsoft.Xrm.Sdk.Metadata;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 {
@@ -65,18 +64,8 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         [Parameter(ParameterSetName = GetEntityKeysByFilterParameterSet, ValueFromRemainingArguments = true)]
         [ValidateNotNull]
         [ValidateCount(1, int.MaxValue)]
-        [ArgumentCompleter(typeof(Attribute))]
+        [ArgumentCompleter(typeof(AttributeArgumentCompleter))]
         public string[] Attributes { get; set; }
-
-        protected override void BeginProcessing()
-        {
-            base.BeginProcessing();
-
-            if (!CrmVersionManager.IsSupported(CrmVersion.CRM2015_1_RTM))
-            {
-                throw new NotSupportedException("Entity Keys are not supported in this version of Dynamics CRM or the SDK.");
-            }
-        }
 
         protected override void ExecuteCmdlet()
         {

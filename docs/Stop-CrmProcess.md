@@ -41,7 +41,7 @@ Stop any System Job associated to the sepcified process and record.
 The id of the System Job to stop.
 
 ```yaml
-Type: Guid
+Type: System.Guid
 Parameter Sets: StopProcessByAsyncOperation
 Aliases:
 
@@ -52,26 +52,11 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Confirm
-Prompts you for confirmation before running the cmdlet.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: cf
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Force
 Stops the specified processes without prompting for confirmation.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -86,7 +71,7 @@ Accept wildcard characters: False
 Returns an object that represents the asyncoperation. By default, this cmdlet does not generate any output.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -101,7 +86,7 @@ Accept wildcard characters: False
 The id of the process (workflow) to stop all associated System Jobs for.
 
 ```yaml
-Type: Guid
+Type: System.Guid
 Parameter Sets: StopProcessByWorkflow
 Aliases:
 
@@ -116,7 +101,7 @@ Accept wildcard characters: False
 The id of the record to stop the associated System Jobs for.
 
 ```yaml
-Type: Guid
+Type: System.Guid
 Parameter Sets: StopProcessByWorkflow
 Aliases: Id
 
@@ -127,12 +112,27 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
+### -Confirm
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -WhatIf
 Shows what would happen if the cmdlet runs.
 The cmdlet is not run.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases: wi
 

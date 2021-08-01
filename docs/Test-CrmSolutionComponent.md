@@ -61,7 +61,7 @@ The following validations can be applied:
 The type of component to test. Matches a value from the global optionset 'Component Type'(componenttype).
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: TestDeleteSolutionComponent, TestDependenciesSolutionComponent, TestRequiredSolutionComponent
 Aliases:
 
@@ -76,7 +76,7 @@ Accept wildcard characters: False
 Retrieve a collection of dependency records that describe any solution components that would prevent a solution component from being deleted.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: TestDeleteSolutionComponentEntity, TestDeleteSolutionComponent
 Aliases:
 
@@ -91,7 +91,7 @@ Accept wildcard characters: False
 Retrieves a list dependencies for solution components that directly depend on a solution component. 
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: TestDependenciesSolutionComponentEntity, TestDependenciesSolutionComponent
 Aliases:
 
@@ -108,7 +108,7 @@ The id of the object in the solution to test.
 This depends on the type of object represented by the solution copmponent. From metadata items the id is the Metadata Id, for other items it is the id of the record.
 
 ```yaml
-Type: Guid
+Type: System.Guid
 Parameter Sets: TestDeleteSolutionComponent, TestDependenciesSolutionComponent, TestRequiredSolutionComponent
 Aliases:
 
@@ -123,7 +123,7 @@ Accept wildcard characters: False
 Retrieve a collection of solution components that are required for a solution component.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: TestRequiredSolutionComponentEntity, TestRequiredSolutionComponent
 Aliases:
 
@@ -138,7 +138,7 @@ Accept wildcard characters: False
 A record from the solutioncomponent entity describing the solution component to validate.
 
 ```yaml
-Type: Entity
+Type: Microsoft.Xrm.Sdk.Entity
 Parameter Sets: TestDeleteSolutionComponentEntity, TestDependenciesSolutionComponentEntity, TestRequiredSolutionComponentEntity
 Aliases:
 
@@ -172,4 +172,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 [Remove-CrmSolutionComponent](Remove-CrmSolutionComponent.md)
 
-[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)
+[Entity Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.entity)

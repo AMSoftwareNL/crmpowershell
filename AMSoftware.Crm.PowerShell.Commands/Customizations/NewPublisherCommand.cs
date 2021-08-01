@@ -42,7 +42,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 
         [Parameter]
         [ValidateRange(10000, 99999)]
-        public int? OptionSetValuePrefix { get; set; }
+        public int OptionSetValuePrefix { get; set; }
 
         [Parameter]
         [ValidateNotNullOrEmpty]
@@ -56,8 +56,8 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
             base.ExecuteCmdlet();
 
             int valuePrefix = new Random().Next(10000, 99999);
-            if (OptionSetValuePrefix.HasValue) {
-                valuePrefix = OptionSetValuePrefix.Value;
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(OptionSetValuePrefix))) {
+                valuePrefix = OptionSetValuePrefix;
             }
 
             Entity newPublisher = new Entity("publisher")

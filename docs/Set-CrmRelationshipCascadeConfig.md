@@ -29,7 +29,7 @@ Set the cascading behavior for a relationship.
 The referenced entity record owner is changed.
 
 ```yaml
-Type: CrmCascadeType
+Type: AMSoftware.Crm.PowerShell.Common.CrmCascadeType
 Parameter Sets: (All)
 Aliases:
 Accepted values: None, Cascade, Active, UserOwned, RemoveLink, Restrict
@@ -45,7 +45,7 @@ Accept wildcard characters: False
 The referenced entity record is deleted.
 
 ```yaml
-Type: CrmCascadeType
+Type: AMSoftware.Crm.PowerShell.Common.CrmCascadeType
 Parameter Sets: (All)
 Aliases:
 Accepted values: None, Cascade, Active, UserOwned, RemoveLink, Restrict
@@ -61,7 +61,7 @@ Accept wildcard characters: False
 The record is merged with another record.
 
 ```yaml
-Type: CrmCascadeType
+Type: AMSoftware.Crm.PowerShell.Common.CrmCascadeType
 Parameter Sets: (All)
 Aliases:
 Accepted values: None, Cascade, Active, UserOwned, RemoveLink, Restrict
@@ -77,7 +77,7 @@ Accept wildcard characters: False
 The SchemaName of the relationship to set the cascade configuration for.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases: SchemaName
 
@@ -92,7 +92,7 @@ Accept wildcard characters: False
 The value of the referencing attribute in a parental relationship changes.
 
 ```yaml
-Type: CrmCascadeType
+Type: AMSoftware.Crm.PowerShell.Common.CrmCascadeType
 Parameter Sets: (All)
 Aliases:
 Accepted values: None, Cascade, Active, UserOwned, RemoveLink, Restrict
@@ -108,7 +108,7 @@ Accept wildcard characters: False
 The referenced entity record is shared with another user.
 
 ```yaml
-Type: CrmCascadeType
+Type: AMSoftware.Crm.PowerShell.Common.CrmCascadeType
 Parameter Sets: (All)
 Aliases:
 Accepted values: None, Cascade, Active, UserOwned, RemoveLink, Restrict
@@ -124,7 +124,7 @@ Accept wildcard characters: False
 Sharing is removed for the referenced entity record.
 
 ```yaml
-Type: CrmCascadeType
+Type: AMSoftware.Crm.PowerShell.Common.CrmCascadeType
 Parameter Sets: (All)
 Aliases:
 Accepted values: None, Cascade, Active, UserOwned, RemoveLink, Restrict
@@ -154,4 +154,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 [Set-CrmRelationship](Set-CrmRelationship.md)
 
-[CascadeConfiguration Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.metadata.cascadeconfiguration.aspx)
+[CascadeConfiguration Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.metadata.cascadeconfiguration)

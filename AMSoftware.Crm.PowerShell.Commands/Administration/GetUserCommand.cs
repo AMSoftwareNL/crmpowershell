@@ -50,7 +50,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
 
         [Parameter(ParameterSetName = GetAllUsersParameterSet)]
         [ValidateNotNullOrEmpty]
-        public Guid? BusinessUnit { get; set; }
+        public Guid BusinessUnit { get; set; }
 
         [Parameter(ParameterSetName = GetAllUsersParameterSet)]
         public SwitchParameter IncludeDisabled { get; set; }
@@ -116,9 +116,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
                 query.Criteria.AddCondition("isdisabled", ConditionOperator.Equal, false);
             }
 
-            if (BusinessUnit.HasValue && BusinessUnit.Value != Guid.Empty)
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(BusinessUnit)) && BusinessUnit != Guid.Empty)
             {
-                query.Criteria.AddCondition("businessunitid", ConditionOperator.Equal, BusinessUnit.Value);
+                query.Criteria.AddCondition("businessunitid", ConditionOperator.Equal, BusinessUnit);
             }
 
             return query;

@@ -15,9 +15,12 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+using System;
 using System.Management.Automation;
+using AMSoftware.Crm.PowerShell.Commands.Helpers;
 using AMSoftware.Crm.PowerShell.Common.ArgumentCompleters;
 using AMSoftware.Crm.PowerShell.Common.Repositories;
+using Microsoft.Xrm.Sdk.Metadata;
 
 namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 {
@@ -25,6 +28,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
     public sealed class RemoveEntityCommand : CrmOrganizationConfirmActionCmdlet
     {
         private readonly MetadataRepository _repository = new MetadataRepository();
+        private readonly ContentRepository _contentRepository = new ContentRepository();
 
         [Parameter(Position = 1, Mandatory = true, ValueFromPipelineByPropertyName = true)]
         [Alias("EntityLogicalName", "LogicalName")]
@@ -38,6 +42,20 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 
             ExecuteAction(Name, delegate
             {
+                EntityMetadata entity = _repository.GetEntity(Name);
+
+                // Is DataSource Entity
+                if (entity.DataProviderId != null && entity.DataProviderId == new Guid("b2112a7e-b26c-42f7-9b63-9a809a9d716f"))
+                {
+                    Guid? dataProviderId = EntitiesHelper.GetVirtualDataProvider(_contentRepository, Name);
+                    // Found DataProvider
+                    if (dataProviderId != null && dataProviderId != Guid.Empty)
+                    {
+                        // Delete DataProvider Related to DataSource entity
+                        _contentRepository.Delete("entitydataprovider", dataProviderId.Value);
+                    }
+                }
+
                 _repository.DeleteEntity(Name);
             });
         }

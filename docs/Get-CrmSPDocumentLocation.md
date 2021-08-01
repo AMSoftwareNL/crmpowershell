@@ -48,7 +48,7 @@ Retrieve the document locations for a specific entity.
 Id of a Sharepoint Document location entity.
 
 ```yaml
-Type: Guid[]
+Type: System.Guid[]
 Parameter Sets: GetBySharePointDocumentLocationId
 Aliases:
 
@@ -63,7 +63,7 @@ Accept wildcard characters: False
 Id of an entity to retrieve SharePoint Document location for.
 
 ```yaml
-Type: Guid[]
+Type: System.Guid[]
 Parameter Sets: GetByRegardingObjectId
 Aliases:
 

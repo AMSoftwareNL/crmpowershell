@@ -53,7 +53,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 
         [Parameter(ParameterSetName = SetOptionSetParameterSet)]
         [ValidateNotNull]
-        public bool? Customizable { get; set; }
+        public bool Customizable { get; set; }
 
         [Parameter]
         public SwitchParameter PassThru { get; set; }
@@ -65,14 +65,11 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
             switch (this.ParameterSetName)
             {
                 case SetOptionSetParameterSet:
-                    if (DisplayName != null || Description != null || Customizable.HasValue)
+                    OptionSetMetadataBase internalOptionSet = BuildOptionSet();
+                    _repository.UpdateOptionSet(internalOptionSet);
+                    if (PassThru)
                     {
-                        OptionSetMetadataBase internalOptionSet = BuildOptionSet();
-                        _repository.UpdateOptionSet(internalOptionSet);
-                        if (PassThru)
-                        {
-                            WriteObject(_repository.GetOptionSet(Name));
-                        }
+                        WriteObject(_repository.GetOptionSet(Name));
                     }
                     break;
                 case SetOptionSetByInputObjectParameterSet:
@@ -91,9 +88,14 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         {
             // There is something to update;
             OptionSetMetadataBase optionSet = _repository.GetOptionSet(Name);
-            if (DisplayName != null) optionSet.DisplayName = new Label(DisplayName, CrmContext.Session.Language);
-            if (Description != null) optionSet.Description = new Label(Description ?? string.Empty, CrmContext.Session.Language);
-            if (Customizable.HasValue) optionSet.IsCustomizable = new BooleanManagedProperty(Customizable.Value);
+
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(DisplayName)))
+                optionSet.DisplayName = new Label(DisplayName, CrmContext.Session.Language);
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(Description)))
+                optionSet.Description = new Label(Description ?? string.Empty, CrmContext.Session.Language);
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(Customizable)))
+                optionSet.IsCustomizable = new BooleanManagedProperty(Customizable);
+
             return optionSet;
         }
     }

@@ -29,7 +29,7 @@ The id of the component to remove.
 This can be the MetadataId or the id of the record.
 
 ```yaml
-Type: Guid
+Type: System.Guid
 Parameter Sets: (All)
 Aliases: ObjectId
 
@@ -44,7 +44,7 @@ Accept wildcard characters: False
 The id of the solution to remove the component from.
 
 ```yaml
-Type: Guid
+Type: System.Guid
 Parameter Sets: (All)
 Aliases:
 
@@ -59,7 +59,7 @@ Accept wildcard characters: False
 The type of component to remove.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases: ComponentType
 

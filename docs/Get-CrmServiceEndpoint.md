@@ -42,7 +42,7 @@ Retrieve the serviceendpoint named 'AMSoftware.AzureServiceBus'.
 Exclude serviceendpoints whose name matches the provided pattern.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetServiceEndPointByFilter
 Aliases:
 
@@ -53,26 +53,11 @@ Accept pipeline input: False
 Accept wildcard characters: True
 ```
 
-### -First
-Specifies the number of records to retrieve from the beginning.
-
-```yaml
-Type: UInt64
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Id
 The id of the serviceendpoint to retrieve.
 
 ```yaml
-Type: Guid[]
+Type: System.Guid[]
 Parameter Sets: GetServiceEndPointById
 Aliases:
 
@@ -83,28 +68,11 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -IncludeTotalCount
-Return the total count (and accuracy) of the number of records before returning the result.
-
-Because of the limitations of Dynamics CRM, the total count is only returned accurate when the result is limited to 5000 items.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Name
 The name of the serviceendpoint to retrieve.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetServiceEndPointByFilter
 Aliases: Include
 
@@ -115,11 +83,43 @@ Accept pipeline input: False
 Accept wildcard characters: True
 ```
 
+### -IncludeTotalCount
+Return the total count (and accuracy) of the number of records before returning the result.
+
+Because of the limitations of Dynamics CRM, the total count is only returned accurate when the result is limited to 5000 items.
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -Skip
 Skips (does not return) the specified number of records.
 
 ```yaml
-Type: UInt64
+Type: System.UInt64
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -First
+Specifies the number of records to retrieve from the beginning.
+
+```yaml
+Type: System.UInt64
 Parameter Sets: (All)
 Aliases:
 
@@ -151,4 +151,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 [Unregister-CrmServiceEndpoint](Unregister-CrmServiceEndpoint.md)
 
-[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)
+[Entity Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.entity)

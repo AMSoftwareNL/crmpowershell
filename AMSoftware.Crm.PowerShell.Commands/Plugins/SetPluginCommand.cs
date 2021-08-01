@@ -56,27 +56,27 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
             base.ExecuteCmdlet();
 
             Entity crmPluginType = _repository.Get("plugintype", Id);
-            if (!string.IsNullOrWhiteSpace(Name))
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(Name)))
             {
                 if (crmPluginType.Contains("name")) crmPluginType.Attributes["name"] = Name;
                 else crmPluginType.Attributes.Add("name", Name);
             }
-            if (!string.IsNullOrWhiteSpace(FriendlyName))
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(FriendlyName)))
             {
                 if (crmPluginType.Contains("friendlyname")) crmPluginType.Attributes["friendlyname"] = FriendlyName;
                 else crmPluginType.Attributes.Add("friendlyname", FriendlyName);
             }
-            if (Description != null)
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(Description)))
             {
-                string description = string.IsNullOrWhiteSpace(Description) ? null : Description;
-                if (crmPluginType.Contains("description")) crmPluginType.Attributes["description"] = description;
-                else crmPluginType.Attributes.Add("description", description);
+                if (crmPluginType.Contains("description")) crmPluginType.Attributes["description"] = Description;
+                else crmPluginType.Attributes.Add("description", Description);
             }
-            if (WorkflowActivityGroupName != null && crmPluginType.Contains("isworkflowactivity") && crmPluginType.GetAttributeValue<bool>("isworkflowactivity") == true)
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(WorkflowActivityGroupName)) && 
+                crmPluginType.Contains("isworkflowactivity") && 
+                crmPluginType.GetAttributeValue<bool>("isworkflowactivity") == true)
             {
-                string groupName = string.IsNullOrWhiteSpace(WorkflowActivityGroupName) ? null : WorkflowActivityGroupName;
-                if (crmPluginType.Contains("workflowactivitygroupname")) crmPluginType.Attributes["workflowactivitygroupname"] = groupName;
-                else crmPluginType.Attributes.Add("workflowactivitygroupname", groupName);
+                if (crmPluginType.Contains("workflowactivitygroupname")) crmPluginType.Attributes["workflowactivitygroupname"] = WorkflowActivityGroupName;
+                else crmPluginType.Attributes.Add("workflowactivitygroupname", WorkflowActivityGroupName);
             }
 
             _repository.Update(crmPluginType);

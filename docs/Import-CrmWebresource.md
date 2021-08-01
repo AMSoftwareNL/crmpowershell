@@ -40,7 +40,7 @@ Import the content from NewAccount.js into the specified webresource.
 The id of the webresource to import the content for.
 
 ```yaml
-Type: Guid
+Type: System.Guid
 Parameter Sets: (All)
 Aliases:
 
@@ -55,7 +55,7 @@ Accept wildcard characters: False
 The path to the file containing the content for the webresource.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: ImportWebresourceFromPath
 Aliases: PSPath, Path
 
@@ -70,7 +70,7 @@ Accept wildcard characters: False
 Returns an object that represents the WebResource. By default, this cmdlet does not generate any output.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -85,7 +85,7 @@ Accept wildcard characters: False
 A byte-array containing the content for the webresource to import.
 
 ```yaml
-Type: Byte[]
+Type: System.Byte[]
 Parameter Sets: ImportWebresourceFromValue
 Aliases:
 

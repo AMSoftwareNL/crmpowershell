@@ -35,7 +35,7 @@ Remove a value from a global optionset or picklist attribute.
 The LogicalName of the picklist attribute to remove the value from.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: RemoveOptionSetValueEntity
 Aliases: LogicalName
 
@@ -46,26 +46,11 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
-### -Confirm
-Prompts you for confirmation before running the cmdlet.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: cf
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Entity
 The LogicalName of the entity containing the picklist attribute.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: RemoveOptionSetValueEntity
 Aliases: EntityLogicalName
 
@@ -80,7 +65,7 @@ Accept wildcard characters: False
 Executes the action without prompting for confirmation.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -95,7 +80,7 @@ Accept wildcard characters: False
 The name of the global optionset the remove the value from.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: RemoveOptionSetValueGlobal
 Aliases: Name
 
@@ -110,7 +95,7 @@ Accept wildcard characters: False
 The number representing the value to remove.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -121,12 +106,27 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -Confirm
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -WhatIf
 Shows what would happen if the cmdlet runs.
 The cmdlet is not run.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases: wi
 

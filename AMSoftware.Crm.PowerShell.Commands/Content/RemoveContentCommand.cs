@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 using System;
 using System.Management.Automation;
+using AMSoftware.Crm.PowerShell.Common;
 using AMSoftware.Crm.PowerShell.Common.ArgumentCompleters;
 using AMSoftware.Crm.PowerShell.Common.Repositories;
 using Microsoft.Xrm.Sdk;
@@ -44,28 +45,50 @@ namespace AMSoftware.Crm.PowerShell.Commands.Content
         [Parameter(Mandatory = true, Position = 2, ParameterSetName = RemoveContentParameterSet, ValueFromPipeline = true)]
         public Guid[] Id { get; set; }
 
+        [Parameter]
+        public SwitchParameter AsBatch { get; set; }
+
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
+
+            if (AsBatch.ToBool() && !CrmContext.Session.BatchActive)
+            {
+                throw new InvalidOperationException("No active batch to use.");
+            }
 
             switch (this.ParameterSetName)
             {
                 case RemoveContentParameterSet:
                     foreach (Guid id in Id)
                     {
-                        ExecuteAction(string.Format("{0}: {1}", Entity, Id), delegate
+                        if (AsBatch.ToBool())
                         {
-                            _repository.Delete(Entity, id);
-                        });
+                            CrmContext.Session.BatchRequestCollection.Add(_repository.DeleteRequest(Entity, id));
+                        }
+                        else
+                        {
+                            ExecuteAction(string.Format("{0}: {1}", Entity, Id), delegate
+                            {
+                                _repository.Delete(Entity, id);
+                            });
+                        }
                     }
                     break;
                 case RemoveContentByInputObjectParameterSet:
                     foreach (Entity input in InputObject)
                     {
-                        ExecuteAction(string.Format("{0}: {1}", input.LogicalName, input.Id), delegate
+                        if (AsBatch.ToBool())
                         {
-                            _repository.Delete(input.LogicalName, input.Id);
-                        });
+                            CrmContext.Session.BatchRequestCollection.Add(_repository.DeleteRequest(input.LogicalName, input.Id));
+                        }
+                        else
+                        {
+                            ExecuteAction(string.Format("{0}: {1}", input.LogicalName, input.Id), delegate
+                            {
+                                _repository.Delete(input.LogicalName, input.Id);
+                            });
+                        }
                     }
                     break;
                 default:

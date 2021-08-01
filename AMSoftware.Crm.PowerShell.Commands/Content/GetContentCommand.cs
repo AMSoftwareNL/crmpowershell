@@ -51,12 +51,12 @@ namespace AMSoftware.Crm.PowerShell.Commands.Content
         [Parameter(Mandatory = true, Position = 2, ParameterSetName = GetContentForEntityByKeysParameterSet)]
         public Hashtable Keys { get; set; }
 
-        [Parameter(Mandatory = false, Position = 2, ParameterSetName = GetContentForEntityByQueryParameterSet)]
+        [Parameter(Position = 2, ParameterSetName = GetContentForEntityByQueryParameterSet)]
         [ValidateCount(1, int.MaxValue)]
         [ValidateNotNull]
         public Hashtable Query { get; set; }
 
-        [Parameter(Mandatory = false, Position = 3, ParameterSetName = GetContentForEntityByQueryParameterSet)]
+        [Parameter(Position = 3, ParameterSetName = GetContentForEntityByQueryParameterSet)]
         [ValidateCount(1, int.MaxValue)]
         [ValidateNotNull]
         public Hashtable Order { get; set; }
@@ -70,30 +70,69 @@ namespace AMSoftware.Crm.PowerShell.Commands.Content
         [ValidateNotNullOrEmpty]
         public XmlDocument FetchXml { get; set; }
 
+        [Parameter]
+        public SwitchParameter AsBatch { get; set; }
+
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
+
+            if (AsBatch.ToBool() && !CrmContext.Session.BatchActive)
+            {
+                throw new InvalidOperationException("No active batch to use.");
+            }
 
             switch (this.ParameterSetName)
             {
                 case GetContentForEntityByIdParameterSet:
                     foreach (Guid id in Id)
                     {
-                        WriteObject(_repository.Get(Entity, id, Columns), false);
+                        if (AsBatch.ToBool())
+                        {
+                            CrmContext.Session.BatchRequestCollection.Add(_repository.GetRequest(Entity, id, Columns));
+                        }
+                        else
+                        {
+                            WriteObject(_repository.Get(Entity, id, Columns), false);
+                        }
                     }
                     break;
                 case GetContentForEntityByKeysParameterSet:
-                    WriteObject(_repository.Get(Entity, Keys, Columns), false);
+                    if (AsBatch.ToBool())
+                    {
+                        CrmContext.Session.BatchRequestCollection.Add(_repository.GetRequest(Entity, Keys, Columns));
+                    }
+                    else
+                    {
+                        WriteObject(_repository.Get(Entity, Keys, Columns), false);
+                    }
                     break;
                 case GetContentForEntityByQueryParameterSet:
                     QueryBase queryFromQuery;
                     if (Query == null || Query.Count == 0) queryFromQuery = BuildQueryExpression(Entity, Columns, Order);
                     else queryFromQuery = BuildQueryByAttribute(Entity, Columns, Query, Order);
-                    GetContentByQuery(queryFromQuery);
+
+                    if (AsBatch.ToBool())
+                    {
+                        CrmContext.Session.BatchRequestCollection.Add(_repository.GetRequest(queryFromQuery));
+                    }
+                    else
+                    {
+                        GetContentByQuery(queryFromQuery);
+                    }
+                    
                     break;
                 case GetContentWithFetchXmlParameterSet:
                     FetchExpression queryFromFetch = new FetchExpression(FetchXml.OuterXml);
-                    GetContentByQuery(queryFromFetch);
+
+                    if (AsBatch.ToBool())
+                    {
+                        CrmContext.Session.BatchRequestCollection.Add(_repository.GetRequest(queryFromFetch));
+                    }
+                    else
+                    {
+                        GetContentByQuery(queryFromFetch);
+                    }
                     break;
                 default:
                     break;

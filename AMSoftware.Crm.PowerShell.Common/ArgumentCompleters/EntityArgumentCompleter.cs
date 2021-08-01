@@ -36,7 +36,7 @@ namespace AMSoftware.Crm.PowerShell.Common.ArgumentCompleters
             IEnumerable<EntityMetadata> entitiesMetadatas = null;
             try
             {
-                entitiesMetadatas = repository.GetEntity(false, false, true);
+                entitiesMetadatas = repository.GetEntity();
             }
             catch { }
 

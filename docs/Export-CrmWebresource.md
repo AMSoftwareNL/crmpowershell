@@ -31,10 +31,10 @@ Export the content of all JavaScript webresource to the pipeline.
 ## PARAMETERS
 
 ### -AsBytes
-{{ Fill AsBytes Description }}
+Return the content of the WebResource as a byte-array
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -49,7 +49,7 @@ Accept wildcard characters: False
 The id of the webresource to export.
 
 ```yaml
-Type: Guid
+Type: System.Guid
 Parameter Sets: (All)
 Aliases:
 

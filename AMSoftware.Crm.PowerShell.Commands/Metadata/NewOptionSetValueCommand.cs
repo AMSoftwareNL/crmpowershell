@@ -28,11 +28,11 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         [ValidateNotNullOrEmpty]
         public string DisplayName { get; set; }
 
-        [Parameter(Position = 2, Mandatory = false)]
+        [Parameter(Position = 2)]
         [ValidateRange(0, int.MaxValue)]
-        public int? Value { get; set; }
+        public int Value { get; set; }
 
-        [Parameter(Position = 3, Mandatory = false)]
+        [Parameter(Position = 3)]
         [ValidateNotNull]
         public string Description { get; set; }
 
@@ -40,12 +40,23 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         {
             base.ExecuteCmdlet();
 
-            WriteObject(new PSOptionSetValue()
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(Value)))
             {
-                Value = Value,
-                DisplayName = DisplayName,
-                Description = Description
-            });
+                WriteObject(new PSOptionSetValue()
+                {
+                    Value = Value,
+                    DisplayName = DisplayName,
+                    Description = Description
+                });
+            } else
+            {
+                WriteObject(new PSOptionSetValue()
+                {
+                    Value = null,
+                    DisplayName = DisplayName,
+                    Description = Description
+                });
+            }
         }
     }
 }

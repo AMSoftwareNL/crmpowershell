@@ -14,12 +14,13 @@ Update a data record of an entity.
 
 ### SetContentByInputObject (Default)
 ```
-Set-CrmContent [-InputObject] <Entity> [-PassThru] [<CommonParameters>]
+Set-CrmContent [-InputObject] <Entity> [-PassThru] [-AsBatch] [<CommonParameters>]
 ```
 
 ### SetContent
 ```
-Set-CrmContent [-Entity] <String> [-Id] <Guid> [-Attributes] <Hashtable> [-PassThru] [<CommonParameters>]
+Set-CrmContent [-Entity] <String> [-Id] <Guid> [-Attributes] <Hashtable> [-PassThru] [-AsBatch]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -36,11 +37,27 @@ Update a record for an account.
 
 ## PARAMETERS
 
+### -AsBatch
+Execute the request as part of a batch (ExecuteMultiple or ExecuteTransaction). 
+See Start-CrmBatch, Stop-CrmBatch and Submit-CrmBatch.
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -Attributes
 A hashtable containing to attribute LogicalNames and values of the record.
 
 ```yaml
-Type: Hashtable
+Type: System.Collections.Hashtable
 Parameter Sets: SetContent
 Aliases:
 
@@ -55,7 +72,7 @@ Accept wildcard characters: False
 The LogicalName of the entity to update the record for.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: SetContent
 Aliases:
 
@@ -70,7 +87,7 @@ Accept wildcard characters: False
 The unique id of the record to update.
 
 ```yaml
-Type: Guid
+Type: System.Guid
 Parameter Sets: SetContent
 Aliases:
 
@@ -85,7 +102,7 @@ Accept wildcard characters: False
 An entity object containing the attributes and values of the record.
 
 ```yaml
-Type: Entity
+Type: Microsoft.Xrm.Sdk.Entity
 Parameter Sets: SetContentByInputObject
 Aliases: Record
 
@@ -100,7 +117,7 @@ Accept wildcard characters: False
 Returns an object that represents the entity record. By default, this cmdlet does not generate any output.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -138,4 +155,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 [Split-CrmContent](Split-CrmContent.md)
 
-[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)
+[Entity Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.entity)

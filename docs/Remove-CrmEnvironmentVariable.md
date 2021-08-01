@@ -8,7 +8,7 @@ schema: 2.0.0
 # Remove-CrmEnvironmentVariable
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Remove an environment variable
 
 ## SYNTAX
 
@@ -17,24 +17,17 @@ Remove-CrmEnvironmentVariable [-EnvironmentVariableId] <Guid[]> [-Force] [<Commo
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Remove an environment variable
 
 ## EXAMPLES
-
-### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -EnvironmentVariableId
-{{ Fill EnvironmentVariableId Description }}
+Id of the environment variable to remove
 
 ```yaml
-Type: Guid[]
+Type: System.Guid[]
 Parameter Sets: (All)
 Aliases: Id
 
@@ -46,10 +39,10 @@ Accept wildcard characters: False
 ```
 
 ### -Force
-{{ Fill Force Description }}
+Executes the action without prompting for confirmation.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 

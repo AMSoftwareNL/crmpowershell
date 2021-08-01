@@ -37,7 +37,7 @@ Add new new webresource.
 The content for the webresource.
 
 ```yaml
-Type: Byte[]
+Type: System.Byte[]
 Parameter Sets: NewWebresourceFromContent
 Aliases:
 
@@ -52,7 +52,7 @@ Accept wildcard characters: False
 The description for the webresource.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -67,7 +67,7 @@ Accept wildcard characters: False
 The displayname for the webresource.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -82,7 +82,7 @@ Accept wildcard characters: False
 Whether the webresource is customizable.
 
 ```yaml
-Type: Boolean
+Type: System.Nullable`1[System.Boolean]
 Parameter Sets: (All)
 Aliases:
 
@@ -97,7 +97,7 @@ Accept wildcard characters: False
 The path to a file the get the content of the webresource from.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: NewWebresourceFromPath
 Aliases: PSPath, Path
 
@@ -112,7 +112,7 @@ Accept wildcard characters: False
 The name for the webresource.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -127,7 +127,7 @@ Accept wildcard characters: False
 Returns an object that represents the WebResource. By default, this cmdlet does not generate any output.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -142,7 +142,7 @@ Accept wildcard characters: False
 The type of the webresource.
 
 ```yaml
-Type: CrmWebresourceType
+Type: AMSoftware.Crm.PowerShell.Common.CrmWebresourceType
 Parameter Sets: (All)
 Aliases:
 Accepted values: All, HTML, CSS, JS, XML, PNG, JPG, GIF, XAP, XSL, ICO
@@ -179,4 +179,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 [Set-CrmWebresource](Set-CrmWebresource.md)
 
-[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)
+[Entity Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.entity)

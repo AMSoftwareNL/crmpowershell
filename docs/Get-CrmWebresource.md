@@ -41,7 +41,7 @@ Get all JavaScript webresources.
 Exclude web resources whose name matches the provided pattern.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetAllWebresources
 Aliases:
 
@@ -49,30 +49,15 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: False
+Accept wildcard characters: True
 ```
 
 ### -ExcludeManaged
 Exclude webresources marked as managed.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: GetAllWebresources
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -First
-Specifies the number of records to retrieve from the beginning.
-
-```yaml
-Type: UInt64
-Parameter Sets: (All)
 Aliases:
 
 Required: False
@@ -86,7 +71,7 @@ Accept wildcard characters: False
 The id of the webresource to retrieve.
 
 ```yaml
-Type: Guid[]
+Type: System.Guid[]
 Parameter Sets: GetWebresourceById
 Aliases:
 
@@ -97,15 +82,29 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -IncludeTotalCount
-Return the total count (and accuracy) of the number of records before returning the result.
-
-Because of the limitations of Dynamics CRM, the total count is only returned accurate when the result is limited to 5000 items.
+### -Name
+The name of the webresource to retrieve.
 
 ```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
+Type: System.String
+Parameter Sets: GetAllWebresources
+Aliases: Include
+
+Required: False
+Position: 0
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: True
+```
+
+### -WebresourceType
+The type of webresource to retrieve. If not provided all types are returned.
+
+```yaml
+Type: AMSoftware.Crm.PowerShell.Common.CrmWebresourceType
+Parameter Sets: GetAllWebresources
 Aliases:
+Accepted values: All, HTML, CSS, JS, XML, PNG, JPG, GIF, XAP, XSL, ICO
 
 Required: False
 Position: Named
@@ -114,16 +113,18 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Name
-The name of the webresource to retrieve.
+### -IncludeTotalCount
+Return the total count (and accuracy) of the number of records before returning the result.
+
+Because of the limitations of Dynamics CRM, the total count is only returned accurate when the result is limited to 5000 items.
 
 ```yaml
-Type: String
-Parameter Sets: GetAllWebresources
-Aliases: Include
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: (All)
+Aliases:
 
 Required: False
-Position: 0
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -133,7 +134,7 @@ Accept wildcard characters: False
 Skips (does not return) the specified number of records.
 
 ```yaml
-Type: UInt64
+Type: System.UInt64
 Parameter Sets: (All)
 Aliases:
 
@@ -144,14 +145,13 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -WebresourceType
-The type of webresource to retrieve. If not provided all types are returned.
+### -First
+Specifies the number of records to retrieve from the beginning.
 
 ```yaml
-Type: CrmWebresourceType
-Parameter Sets: GetAllWebresources
+Type: System.UInt64
+Parameter Sets: (All)
 Aliases:
-Accepted values: All, HTML, CSS, JS, XML, PNG, JPG, GIF, XAP, XSL, ICO
 
 Required: False
 Position: Named
@@ -185,4 +185,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 [Set-CrmWebresource](Set-CrmWebresource.md)
 
-[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)
+[Entity Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.entity)

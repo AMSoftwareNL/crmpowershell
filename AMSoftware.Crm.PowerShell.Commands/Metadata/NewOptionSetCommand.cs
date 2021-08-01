@@ -51,13 +51,13 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         [ValidateNotNull]
         public PSOptionSetValue[] Values { get; set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = NewOptionSetParameterSet)]
+        [Parameter(ParameterSetName = NewOptionSetParameterSet)]
         [ValidateNotNull]
         public string Description { get; set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = NewOptionSetParameterSet)]
+        [Parameter(ParameterSetName = NewOptionSetParameterSet)]
         [ValidateNotNull]
-        public bool? Customizable { get; set; }
+        public bool Customizable { get; set; }
 
         [Parameter]
         public SwitchParameter PassThru { get; set; }
@@ -97,7 +97,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
                 Description = new Label(Description ?? string.Empty, CrmContext.Session.Language),
                 OptionSetType = OptionSetType.Picklist
             };
-            if (Customizable.HasValue) optionset.IsCustomizable = new BooleanManagedProperty(Customizable.Value);
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(Customizable))) optionset.IsCustomizable = new BooleanManagedProperty(Customizable);
 
             foreach (var item in Values)
             {

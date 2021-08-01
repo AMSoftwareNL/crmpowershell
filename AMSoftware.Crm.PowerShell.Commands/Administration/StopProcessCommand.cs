@@ -40,7 +40,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         [ValidateNotNull]
         public Guid Process { get; set; }
 
-        [Parameter(Position = 5, Mandatory = false, ParameterSetName = StopProcessByWorkflowParameterSet, ValueFromPipeline = true)]
+        [Parameter(Position = 5, ParameterSetName = StopProcessByWorkflowParameterSet, ValueFromPipeline = true)]
         [Alias("Id")]
         [ValidateNotNull]
         public Guid Record { get; set; }

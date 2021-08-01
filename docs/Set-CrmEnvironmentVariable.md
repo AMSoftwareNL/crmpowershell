@@ -8,7 +8,7 @@ schema: 2.0.0
 # Set-CrmEnvironmentVariable
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Update an environement variable
 
 ## SYNTAX
 
@@ -18,24 +18,17 @@ Set-CrmEnvironmentVariable [-EnvironmentVariableId] <Guid[]> [-DisplayName <Stri
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Update an environement variable, including the value of the environment variable
 
 ## EXAMPLES
-
-### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -DefaultValue
-{{ Fill DefaultValue Description }}
+The default value of the environment variable
 
 ```yaml
-Type: Object
+Type: System.Object
 Parameter Sets: (All)
 Aliases:
 
@@ -47,10 +40,10 @@ Accept wildcard characters: False
 ```
 
 ### -Description
-{{ Fill Description Description }}
+The description of the environment variable
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -62,10 +55,10 @@ Accept wildcard characters: False
 ```
 
 ### -DisplayName
-{{ Fill DisplayName Description }}
+the displayname of the environment variable
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -77,10 +70,10 @@ Accept wildcard characters: False
 ```
 
 ### -EnvironmentVariableId
-{{ Fill EnvironmentVariableId Description }}
+The Id of the environment variable to update
 
 ```yaml
-Type: Guid[]
+Type: System.Guid[]
 Parameter Sets: (All)
 Aliases: Id
 
@@ -92,10 +85,10 @@ Accept wildcard characters: False
 ```
 
 ### -PassThru
-{{ Fill PassThru Description }}
+Return the resulting environment variable to the pipeline
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -107,10 +100,10 @@ Accept wildcard characters: False
 ```
 
 ### -Value
-{{ Fill Value Description }}
+The value of the environment variable
 
 ```yaml
-Type: Object
+Type: System.Object
 Parameter Sets: (All)
 Aliases:
 

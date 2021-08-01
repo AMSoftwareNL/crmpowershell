@@ -15,14 +15,14 @@ Register a serviceendpoint.
 ### RelayEndpointWithToken
 ```
 Register-CrmServiceEndpoint [-Id <Guid>] [-Name] <String> [-Endpoint] <String> [-EndpointPathOrName] <String>
- [-Description <String>] -RelayContract <CrmServiceEndpointContract> -SASToken <String> -SASKey <String>
+ [-Description <String>] -RelayContract <CrmServiceEndpointContract> -SASToken <String>
  [-Claim <CrmServiceEndpointUserClaim>] [-PassThru] [<CommonParameters>]
 ```
 
 ### RelayEndpointWithKey
 ```
 Register-CrmServiceEndpoint [-Id <Guid>] [-Name] <String> [-Endpoint] <String> [-EndpointPathOrName] <String>
- [-Description <String>] -RelayContract <CrmServiceEndpointContract> -SASKeyName <String>
+ [-Description <String>] -RelayContract <CrmServiceEndpointContract> -SASKeyName <String> -SASKey <String>
  [-Claim <CrmServiceEndpointUserClaim>] [-PassThru] [<CommonParameters>]
 ```
 
@@ -30,16 +30,16 @@ Register-CrmServiceEndpoint [-Id <Guid>] [-Name] <String> [-Endpoint] <String> [
 ```
 Register-CrmServiceEndpoint [-Id <Guid>] [-Name] <String> [-Endpoint] <String> [-EndpointPathOrName] <String>
  [-Description <String>] -QueueContract <CrmServiceEndpointContract>
- [-MessageFormat <CrmServiceEndpointMessageFormat>] -SASToken <String> -SASKey <String>
- [-Claim <CrmServiceEndpointUserClaim>] [-PassThru] [<CommonParameters>]
+ [-MessageFormat <CrmServiceEndpointMessageFormat>] -SASToken <String> [-Claim <CrmServiceEndpointUserClaim>]
+ [-PassThru] [<CommonParameters>]
 ```
 
 ### QueueuEndpointWithKey
 ```
 Register-CrmServiceEndpoint [-Id <Guid>] [-Name] <String> [-Endpoint] <String> [-EndpointPathOrName] <String>
  [-Description <String>] -QueueContract <CrmServiceEndpointContract>
- [-MessageFormat <CrmServiceEndpointMessageFormat>] -SASKeyName <String> [-Claim <CrmServiceEndpointUserClaim>]
- [-PassThru] [<CommonParameters>]
+ [-MessageFormat <CrmServiceEndpointMessageFormat>] -SASKeyName <String> -SASKey <String>
+ [-Claim <CrmServiceEndpointUserClaim>] [-PassThru] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -53,7 +53,7 @@ Register a serviceendpoint.
 The type of claim for the serviceendpoint.
 
 ```yaml
-Type: CrmServiceEndpointUserClaim
+Type: AMSoftware.Crm.PowerShell.Common.CrmServiceEndpointUserClaim
 Parameter Sets: (All)
 Aliases: UserInformation
 Accepted values: None, UserId, UserInfo
@@ -69,7 +69,7 @@ Accept wildcard characters: False
 The description for the serviceendpoint.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -81,10 +81,10 @@ Accept wildcard characters: False
 ```
 
 ### -Endpoint
-{{ Fill Endpoint Description }}
+The Endpoint URI of the service endpoint. URI depends on the type of service endpoint. Can be an Azure ServiceBus namespace URI, of a HTTP endpoint.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases: NamespaceAddress, Namespace
 
@@ -96,10 +96,10 @@ Accept wildcard characters: False
 ```
 
 ### -EndpointPathOrName
-{{ Fill EndpointPathOrName Description }}
+Name or Path specifier for the service endpoint. The name of the Topic or Queue, etc.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -111,10 +111,10 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{ Fill Id Description }}
+If provided the Id of an existing Service Endpoint to update
 
 ```yaml
-Type: Guid
+Type: System.Guid
 Parameter Sets: (All)
 Aliases:
 
@@ -126,10 +126,10 @@ Accept wildcard characters: False
 ```
 
 ### -MessageFormat
-{{ Fill MessageFormat Description }}
+The format of the messages send to an Azure ServiceBus.
 
 ```yaml
-Type: CrmServiceEndpointMessageFormat
+Type: AMSoftware.Crm.PowerShell.Common.CrmServiceEndpointMessageFormat
 Parameter Sets: QueueuEndpointWithToken, QueueuEndpointWithKey
 Aliases:
 Accepted values: DOTNETBinary, JSON, XML
@@ -145,7 +145,7 @@ Accept wildcard characters: False
 The name for the serviceendpoint.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -160,7 +160,7 @@ Accept wildcard characters: False
 Returns an object that represents the Service Endpoint. By default, this cmdlet does not generate any output.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -172,10 +172,10 @@ Accept wildcard characters: False
 ```
 
 ### -QueueContract
-{{ Fill QueueContract Description }}
+The type of async messaging contract to use.
 
 ```yaml
-Type: CrmServiceEndpointContract
+Type: AMSoftware.Crm.PowerShell.Common.CrmServiceEndpointContract
 Parameter Sets: QueueuEndpointWithToken, QueueuEndpointWithKey
 Aliases:
 Accepted values: Queue, Topic, Eventhub
@@ -188,10 +188,11 @@ Accept wildcard characters: False
 ```
 
 ### -RelayContract
-{{ Fill RelayContract Description }}
+The type of async relay contract to use.
+
 
 ```yaml
-Type: CrmServiceEndpointContract
+Type: AMSoftware.Crm.PowerShell.Common.CrmServiceEndpointContract
 Parameter Sets: RelayEndpointWithToken, RelayEndpointWithKey
 Aliases:
 Accepted values: Oneway, Twoway, Rest
@@ -204,11 +205,11 @@ Accept wildcard characters: False
 ```
 
 ### -SASKey
-{{ Fill SASKey Description }}
+The SASKey value to use with SASKey Authorization type
 
 ```yaml
-Type: String
-Parameter Sets: RelayEndpointWithToken, QueueuEndpointWithToken
+Type: System.String
+Parameter Sets: RelayEndpointWithKey, QueueuEndpointWithKey
 Aliases:
 
 Required: True
@@ -219,10 +220,10 @@ Accept wildcard characters: False
 ```
 
 ### -SASKeyName
-{{ Fill SASKeyName Description }}
+The SASKey name to use with SASKey Authorization type
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: RelayEndpointWithKey, QueueuEndpointWithKey
 Aliases:
 
@@ -234,10 +235,10 @@ Accept wildcard characters: False
 ```
 
 ### -SASToken
-{{ Fill SASToken Description }}
+The SASToken value to use with SASToken Authorization type
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: RelayEndpointWithToken, QueueuEndpointWithToken
 Aliases:
 
@@ -269,4 +270,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 [Unregister-CrmServiceEndpoint](Unregister-CrmServiceEndpoint.md)
 
-[Entity Class](https://msdn.microsoft.com/en-us/library/microsoft.xrm.sdk.entity.aspx)
+[Entity Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.entity)

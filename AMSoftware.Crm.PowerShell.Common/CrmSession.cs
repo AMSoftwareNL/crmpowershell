@@ -43,9 +43,11 @@ namespace AMSoftware.Crm.PowerShell.Common
             Language = _organizationLanguage;
             LocaleId = organizationRow.GetAttributeValue<int>("localeid");
 
-            OrganizationCache = new MetadataCache();
             Version = _client.ConnectedOrgVersion;
             ActiveSolutionName = null;
+
+            UseMetadataCache = true;
+            OrganizationCache = new MetadataCache();
         }
 
         #region IDisposable
@@ -126,5 +128,40 @@ namespace AMSoftware.Crm.PowerShell.Common
             get;
             set;
         }
+
+        internal Guid ActiveSolutionId
+        {
+            get;
+            set;
+        }
+        
+        internal bool UseMetadataCache { 
+            get; 
+            set; 
+        }
+        
+        internal bool BatchActive {
+            get {
+                return BatchRequestCollection != null;
+            }
+            set
+            {
+                if (value)
+                {
+                    if (!BatchActive)
+                    {
+                        BatchRequestCollection = new OrganizationRequestCollection();
+                    } else
+                    {
+                        throw new InvalidOperationException("Active batch detected. Cannot start new batch.");
+                    }
+                } else
+                {
+                    BatchRequestCollection = null;
+                }
+            }
+        }
+
+        internal OrganizationRequestCollection BatchRequestCollection { get; private set; }
     }
 }

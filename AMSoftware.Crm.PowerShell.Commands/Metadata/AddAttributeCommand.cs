@@ -58,10 +58,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
     }
 
     [OutputType(typeof(AttributeMetadata))]
-    public abstract class AddAttributeCommandBase : CrmOrganizationCmdlet, IDynamicParameters
+    public abstract class AddAttributeCommandBase : CrmOrganizationCmdlet
     {
         private readonly MetadataRepository _repository = new MetadataRepository();
-        private AddAttributeDynamicParameters _context;
 
         [Parameter(Mandatory = true, Position = 1, ValueFromPipelineByPropertyName = true)]
         [Alias("EntityLogicalName", "LogicalName")]
@@ -83,27 +82,27 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 
         [Parameter]
         [ValidateNotNull]
-        public bool? CanModifyAdditionalSettings { get; set; }
+        public bool CanModifyAdditionalSettings { get; set; }
 
         [Parameter]
         [ValidateNotNull]
-        public bool? IsAuditEnabled { get; set; }
+        public bool IsAuditEnabled { get; set; }
 
         [Parameter]
         [ValidateNotNull]
-        public bool? IsCustomizable { get; set; }
+        public bool IsCustomizable { get; set; }
 
         [Parameter]
         [ValidateNotNull]
-        public bool? IsRenameable { get; set; }
+        public bool IsRenameable { get; set; }
 
         [Parameter]
         [ValidateNotNull]
-        public bool? IsSecured { get; set; }
+        public bool IsSecured { get; set; }
 
         [Parameter]
         [ValidateNotNull]
-        public bool? IsValidForAdvancedFind { get; set; }
+        public bool IsValidForAdvancedFind { get; set; }
 
         [Parameter]
         [PSDefaultValue(Value = CrmRequiredLevel.Required)]
@@ -114,24 +113,27 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         public string SchemaName { get; set; }
 
         [Parameter]
-        public SwitchParameter PassThru { get; set; }
+        [ValidateNotNull]
+        public string ExternalName { get; set; }
 
-        public object GetDynamicParameters()
-        {
-            if (CrmVersionManager.IsSupported(CrmVersion.CRM2016_RTM))
-            {
-                _context = new AddAttributeDynamicParameters2016();
-            }
-            else
-            {
-                _context = null;
-            }
-            return _context;
-        }
+        [Parameter]
+        [ValidateNotNull]
+        public bool IsGlobalFilterEnabled { get; set; }
+
+        [Parameter]
+        [ValidateNotNull]
+        public bool IsSortableEnabled { get; set; }
+
+        [Parameter]
+        public SwitchParameter IsDataSourceSecret { get; set; }
+
+        [Parameter]
+        public SwitchParameter PassThru { get; set; }
 
         protected void WriteAttribute(AttributeMetadata attribute)
         {
             attribute.LogicalName = Name;
+            attribute.SchemaName = !string.IsNullOrWhiteSpace(SchemaName) ? SchemaName : Name;
             attribute.DisplayName = new Label(DisplayName, CrmContext.Session.Language);
             attribute.Description = new Label(Description ?? string.Empty, CrmContext.Session.Language);
 
@@ -141,24 +143,28 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
             if (Required == CrmRequiredLevel.Optional) requiredLevel = AttributeRequiredLevel.None;
             attribute.RequiredLevel = new AttributeRequiredLevelManagedProperty(requiredLevel);
 
-            if (CanModifyAdditionalSettings.HasValue) attribute.CanModifyAdditionalSettings = new BooleanManagedProperty(CanModifyAdditionalSettings.Value);
-            if (IsAuditEnabled.HasValue) attribute.IsAuditEnabled = new BooleanManagedProperty(IsAuditEnabled.Value);
-            if (IsCustomizable.HasValue) attribute.IsCustomizable = new BooleanManagedProperty(IsCustomizable.Value);
-            if (IsRenameable.HasValue) attribute.IsRenameable = new BooleanManagedProperty(IsRenameable.Value);
-            if (IsSecured.HasValue) attribute.IsSecured = IsSecured.Value;
-            if (IsValidForAdvancedFind.HasValue) attribute.IsValidForAdvancedFind = new BooleanManagedProperty(IsValidForAdvancedFind.Value);
-            if (!string.IsNullOrWhiteSpace(SchemaName))
-            {
-                attribute.SchemaName = SchemaName;
-            } else
-            {
-                attribute.SchemaName = Name;
-            }
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(CanModifyAdditionalSettings))) 
+                attribute.CanModifyAdditionalSettings = new BooleanManagedProperty(CanModifyAdditionalSettings);
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(IsAuditEnabled))) 
+                attribute.IsAuditEnabled = new BooleanManagedProperty(IsAuditEnabled);
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(IsCustomizable))) 
+                attribute.IsCustomizable = new BooleanManagedProperty(IsCustomizable);
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(IsRenameable))) 
+                attribute.IsRenameable = new BooleanManagedProperty(IsRenameable);
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(IsSecured))) 
+                attribute.IsSecured = IsSecured;
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(IsValidForAdvancedFind))) 
+                attribute.IsValidForAdvancedFind = new BooleanManagedProperty(IsValidForAdvancedFind);
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(IsGlobalFilterEnabled))) 
+                attribute.IsGlobalFilterEnabled = new BooleanManagedProperty(IsGlobalFilterEnabled);
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(IsSortableEnabled))) 
+                attribute.IsSortableEnabled = new BooleanManagedProperty(IsSortableEnabled);
 
-            if (_context != null)
-            {
-                _context.SetParametersOnAttribute(attribute);
-            }
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(IsDataSourceSecret))) 
+                attribute.IsDataSourceSecret = IsDataSourceSecret.ToBool();
+
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(ExternalName)) && !string.IsNullOrWhiteSpace(ExternalName))
+                attribute.ExternalName = ExternalName;
 
             Guid id = _repository.AddAttribute(Entity, attribute);
             if (PassThru)
@@ -186,45 +192,62 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         [ValidateRange(StringAttributeMetadata.MinSupportedLength, StringAttributeMetadata.MaxSupportedLength)]
         [ValidateNotNull]
         [PSDefaultValue(Value = 100)]
-        public int? Length { get; set; }
+        public int Length { get; set; }
 
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
 
-            StringAttributeMetadata attribute = new StringAttributeMetadata
-            {
-                ImeMode = ImeMode.Auto
-            };
-            if (ImeType == CrmImeType.Active) attribute.ImeMode = ImeMode.Active;
-            if (ImeType == CrmImeType.Disabled) attribute.ImeMode = ImeMode.Disabled;
-            if (ImeType == CrmImeType.Inactive) attribute.ImeMode = ImeMode.Inactive;
+            StringAttributeMetadata attribute = new StringAttributeMetadata();
 
-            if (CrmVersionManager.IsSupported(CrmVersion.CRM2013_RTM))
+            switch (ImeType)
             {
-                attribute.FormatName = StringFormatName.Text;
-                if (Format == CrmStringAttributeFormat.Email) attribute.FormatName = StringFormatName.Email;
-                if (Format == CrmStringAttributeFormat.Phone) attribute.FormatName = StringFormatName.Phone;
-                if (Format == CrmStringAttributeFormat.PhoneticGuide) attribute.FormatName = StringFormatName.PhoneticGuide;
-                if (Format == CrmStringAttributeFormat.TextArea) attribute.FormatName = StringFormatName.TextArea;
-                if (Format == CrmStringAttributeFormat.TickerSymbol) attribute.FormatName = StringFormatName.TickerSymbol;
-                if (Format == CrmStringAttributeFormat.Url) attribute.FormatName = StringFormatName.Url;
-                if (Format == CrmStringAttributeFormat.VersionNumber) attribute.FormatName = StringFormatName.VersionNumber;
-            }
-            else
-            {
-                attribute.Format = StringFormat.Text;
-                if (Format == CrmStringAttributeFormat.Email) attribute.Format = StringFormat.Email;
-                if (Format == CrmStringAttributeFormat.Phone) attribute.Format = StringFormat.Phone;
-                if (Format == CrmStringAttributeFormat.PhoneticGuide) attribute.Format = StringFormat.PhoneticGuide;
-                if (Format == CrmStringAttributeFormat.TextArea) attribute.Format = StringFormat.TextArea;
-                if (Format == CrmStringAttributeFormat.TickerSymbol) attribute.Format = StringFormat.TickerSymbol;
-                if (Format == CrmStringAttributeFormat.Url) attribute.Format = StringFormat.Url;
-                if (Format == CrmStringAttributeFormat.VersionNumber) attribute.Format = StringFormat.VersionNumber;
+                case CrmImeType.Active:
+                    attribute.ImeMode = ImeMode.Active;
+                    break;
+                case CrmImeType.Disabled:
+                    attribute.ImeMode = ImeMode.Disabled;
+                    break;
+                case CrmImeType.Inactive:
+                    attribute.ImeMode = ImeMode.Inactive;
+                    break;
+                default:
+                    attribute.ImeMode = ImeMode.Auto;
+                    break;
             }
 
-            if (Length.HasValue) attribute.MaxLength = Length.Value;
-            else attribute.MaxLength = 100;
+            switch (Format)
+            {
+                case CrmStringAttributeFormat.Email:
+                    attribute.FormatName = StringFormatName.Email;
+                    break;
+                case CrmStringAttributeFormat.Phone:
+                    attribute.FormatName = StringFormatName.Phone;
+                    break;
+                case CrmStringAttributeFormat.PhoneticGuide:
+                    attribute.FormatName = StringFormatName.PhoneticGuide;
+                    break;
+                case CrmStringAttributeFormat.TextArea:
+                    attribute.FormatName = StringFormatName.TextArea;
+                    break;
+                case CrmStringAttributeFormat.TickerSymbol:
+                    attribute.FormatName = StringFormatName.TickerSymbol;
+                    break;
+                case CrmStringAttributeFormat.Url:
+                    attribute.FormatName = StringFormatName.Url;
+                    break;
+                case CrmStringAttributeFormat.VersionNumber:
+                    attribute.FormatName = StringFormatName.VersionNumber;
+                    break;
+                default:
+                    attribute.FormatName = StringFormatName.Text;
+                    break;
+            }
+
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(Length))) 
+                attribute.MaxLength = Length;
+            else 
+                attribute.MaxLength = 100;
 
             WriteAttribute(attribute);
         }
@@ -243,22 +266,33 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         [ValidateRange(MemoAttributeMetadata.MinSupportedLength, MemoAttributeMetadata.MaxSupportedLength)]
         [ValidateNotNull]
         [PSDefaultValue(Value = 100)]
-        public int? Length { get; set; }
+        public int Length { get; set; }
 
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
 
-            MemoAttributeMetadata attribute = new MemoAttributeMetadata
+            MemoAttributeMetadata attribute = new MemoAttributeMetadata();
+            switch (ImeType)
             {
-                ImeMode = ImeMode.Auto
-            };
-            if (ImeType == CrmImeType.Active) attribute.ImeMode = ImeMode.Active;
-            if (ImeType == CrmImeType.Disabled) attribute.ImeMode = ImeMode.Disabled;
-            if (ImeType == CrmImeType.Inactive) attribute.ImeMode = ImeMode.Inactive;
+                case CrmImeType.Active:
+                    attribute.ImeMode = ImeMode.Active;
+                    break;
+                case CrmImeType.Disabled:
+                    attribute.ImeMode = ImeMode.Disabled;
+                    break;
+                case CrmImeType.Inactive:
+                    attribute.ImeMode = ImeMode.Inactive;
+                    break;
+                default:
+                    attribute.ImeMode = ImeMode.Auto;
+                    break;
+            }
 
-            if (Length.HasValue) attribute.MaxLength = Length.Value;
-            else attribute.MaxLength = 100;
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(Length)))
+                attribute.MaxLength = Length;
+            else
+                attribute.MaxLength = 100;
 
             WriteAttribute(attribute);
         }
@@ -277,29 +311,43 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         [ValidateRange(int.MinValue, int.MaxValue)]
         [ValidateNotNull]
         [PSDefaultValue(Value = int.MaxValue)]
-        public int? MaxValue { get; set; }
+        public int MaxValue { get; set; }
 
         [Parameter]
         [ValidateRange(int.MinValue, int.MaxValue)]
         [ValidateNotNull]
         [PSDefaultValue(Value = int.MinValue)]
-        public int? MinValue { get; set; }
+        public int MinValue { get; set; }
 
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
 
-            IntegerAttributeMetadata attribute = new IntegerAttributeMetadata
-            {
-                Format = IntegerFormat.None
-            };
-            if (Format == CrmIntegerAttributeFormat.Duration) attribute.Format = IntegerFormat.Duration;
-            if (Format == CrmIntegerAttributeFormat.Language) attribute.Format = IntegerFormat.Language;
-            if (Format == CrmIntegerAttributeFormat.Locale) attribute.Format = IntegerFormat.Locale;
-            if (Format == CrmIntegerAttributeFormat.TimeZone) attribute.Format = IntegerFormat.TimeZone;
+            IntegerAttributeMetadata attribute = new IntegerAttributeMetadata();
 
-            if (MaxValue.HasValue) attribute.MaxValue = MaxValue.Value;
-            if (MinValue.HasValue) attribute.MinValue = MinValue.Value;
+            switch (Format)
+            {
+                case CrmIntegerAttributeFormat.Duration:
+                    attribute.Format = IntegerFormat.Duration;
+                    break;
+                case CrmIntegerAttributeFormat.Language:
+                    attribute.Format = IntegerFormat.Language;
+                    break;
+                case CrmIntegerAttributeFormat.Locale:
+                    attribute.Format = IntegerFormat.Locale;
+                    break;
+                case CrmIntegerAttributeFormat.TimeZone:
+                    attribute.Format = IntegerFormat.TimeZone;
+                    break;
+                default:
+                    attribute.Format = IntegerFormat.None;
+                    break;
+            }
+           
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(MaxValue))) 
+                attribute.MaxValue = MaxValue;
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(MinValue)))
+                attribute.MinValue = MinValue;
 
             WriteAttribute(attribute);
         }
@@ -330,33 +378,48 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 
         [Parameter]
         [ValidateNotNull]
-        public decimal? MaxValue { get; set; }
+        public decimal MaxValue { get; set; }
 
         [Parameter]
         [ValidateNotNull]
-        public decimal? MinValue { get; set; }
+        public decimal MinValue { get; set; }
 
         [Parameter]
         [ValidateRange(1, 10)]
         [ValidateNotNull]
         [PSDefaultValue(Value = 2)]
-        public int? Precision { get; set; }
+        public int Precision { get; set; }
 
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
 
-            DecimalAttributeMetadata attribute = new DecimalAttributeMetadata
-            {
-                ImeMode = ImeMode.Auto
-            };
-            if (ImeType == CrmImeType.Active) attribute.ImeMode = ImeMode.Active;
-            if (ImeType == CrmImeType.Disabled) attribute.ImeMode = ImeMode.Disabled;
-            if (ImeType == CrmImeType.Inactive) attribute.ImeMode = ImeMode.Inactive;
+            DecimalAttributeMetadata attribute = new DecimalAttributeMetadata();
 
-            if (MaxValue.HasValue) attribute.MaxValue = MaxValue.Value;
-            if (MinValue.HasValue) attribute.MinValue = MinValue.Value;
-            if (Precision.HasValue) attribute.Precision = Precision.Value;
+            switch (ImeType)
+            {
+                case CrmImeType.Active:
+                    attribute.ImeMode = ImeMode.Active;
+                    break;
+                case CrmImeType.Disabled:
+                    attribute.ImeMode = ImeMode.Disabled;
+                    break;
+                case CrmImeType.Inactive:
+                    attribute.ImeMode = ImeMode.Inactive;
+                    break;
+                default:
+                    attribute.ImeMode = ImeMode.Auto;
+                    break;
+            }
+
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(MaxValue))) 
+                attribute.MaxValue = MaxValue;
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(MinValue))) 
+                attribute.MinValue = MinValue;
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(Precision)))
+                attribute.Precision = Precision;
+            else
+                attribute.Precision = 2;
 
             WriteAttribute(attribute);
         }
@@ -375,35 +438,50 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         [ValidateRange(double.MinValue, double.MaxValue)]
         [ValidateNotNull]
         [PSDefaultValue(Value = double.MaxValue)]
-        public double? MaxValue { get; set; }
+        public double MaxValue { get; set; }
 
         [Parameter]
         [ValidateRange(double.MinValue, double.MaxValue)]
         [ValidateNotNull]
         [PSDefaultValue(Value = double.MinValue)]
-        public double? MinValue { get; set; }
+        public double MinValue { get; set; }
 
         [Parameter]
         [ValidateRange(1, 10)]
         [ValidateNotNull]
         [PSDefaultValue(Value = 2)]
-        public int? Precision { get; set; }
+        public int Precision { get; set; }
 
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
 
-            DoubleAttributeMetadata attribute = new DoubleAttributeMetadata
-            {
-                ImeMode = ImeMode.Auto
-            };
-            if (ImeType == CrmImeType.Active) attribute.ImeMode = ImeMode.Active;
-            if (ImeType == CrmImeType.Disabled) attribute.ImeMode = ImeMode.Disabled;
-            if (ImeType == CrmImeType.Inactive) attribute.ImeMode = ImeMode.Inactive;
+            DoubleAttributeMetadata attribute = new DoubleAttributeMetadata();
 
-            if (MaxValue.HasValue) attribute.MaxValue = MaxValue.Value;
-            if (MinValue.HasValue) attribute.MinValue = MinValue.Value;
-            if (Precision.HasValue) attribute.Precision = Precision.Value;
+            switch (ImeType)
+            {
+                case CrmImeType.Active:
+                    attribute.ImeMode = ImeMode.Active;
+                    break;
+                case CrmImeType.Disabled:
+                    attribute.ImeMode = ImeMode.Disabled;
+                    break;
+                case CrmImeType.Inactive:
+                    attribute.ImeMode = ImeMode.Inactive;
+                    break;
+                default:
+                    attribute.ImeMode = ImeMode.Auto;
+                    break;
+            }
+
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(MaxValue))) 
+                attribute.MaxValue = MaxValue;
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(MinValue))) 
+                attribute.MinValue = MinValue;
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(Precision)))
+                attribute.Precision = Precision;
+            else
+                attribute.Precision = 2;
 
             WriteAttribute(attribute);
         }
@@ -422,19 +500,19 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         [ValidateRange(double.MinValue, double.MaxValue)]
         [ValidateNotNull]
         [PSDefaultValue(Value = 1000000000)]
-        public double? MaxValue { get; set; }
+        public double MaxValue { get; set; }
 
         [Parameter]
         [ValidateRange(double.MinValue, double.MaxValue)]
         [ValidateNotNull]
         [PSDefaultValue(Value = 0)]
-        public double? MinValue { get; set; }
+        public double MinValue { get; set; }
 
         [Parameter]
         [ValidateRange(1, 10)]
         [ValidateNotNull]
         [PSDefaultValue(Value = 2)]
-        public int? Precision { get; set; }
+        public int Precision { get; set; }
 
         [Parameter]
         [ValidateNotNull]
@@ -445,19 +523,32 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
         {
             base.ExecuteCmdlet();
 
-            MoneyAttributeMetadata attribute = new MoneyAttributeMetadata
+            MoneyAttributeMetadata attribute = new MoneyAttributeMetadata();
+            switch (ImeType)
             {
-                ImeMode = ImeMode.Auto
-            };
-            if (ImeType == CrmImeType.Active) attribute.ImeMode = ImeMode.Active;
-            if (ImeType == CrmImeType.Disabled) attribute.ImeMode = ImeMode.Disabled;
-            if (ImeType == CrmImeType.Inactive) attribute.ImeMode = ImeMode.Inactive;
+                case CrmImeType.Active:
+                    attribute.ImeMode = ImeMode.Active;
+                    break;
+                case CrmImeType.Disabled:
+                    attribute.ImeMode = ImeMode.Disabled;
+                    break;
+                case CrmImeType.Inactive:
+                    attribute.ImeMode = ImeMode.Inactive;
+                    break;
+                default:
+                    attribute.ImeMode = ImeMode.Auto;
+                    break;
+            }
 
-            if (MaxValue.HasValue) attribute.MaxValue = MaxValue.Value;
-            if (MinValue.HasValue) attribute.MinValue = MinValue.Value;
-            if (Precision.HasValue) attribute.Precision = Precision.Value;
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(MaxValue))) 
+                attribute.MaxValue = MaxValue;
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(MinValue))) 
+                attribute.MinValue = MinValue;
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(Precision)))
+                attribute.Precision = Precision;
+            else 
+                attribute.Precision = 2;
 
-            attribute.PrecisionSource = 0;
             if (PrecisionType == CrmMoneyPrecisionType.OrganizationPricing) attribute.PrecisionSource = 1;
             if (PrecisionType == CrmMoneyPrecisionType.Currency) attribute.PrecisionSource = 2;
 
@@ -481,7 +572,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 
         [Parameter]
         [ValidateNotNull]
-        public bool? CanChangeBehavior { get; set; }
+        public bool CanChangeBehavior { get; set; }
 
         [Parameter]
         [ValidateNotNull]
@@ -493,12 +584,24 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
             base.ExecuteCmdlet();
 
             DateTimeAttributeMetadata attribute = new DateTimeAttributeMetadata();
-            if (CanChangeBehavior.HasValue) attribute.CanChangeDateTimeBehavior = new BooleanManagedProperty(CanChangeBehavior.Value);
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(CanChangeBehavior))) 
+                attribute.CanChangeDateTimeBehavior = new BooleanManagedProperty(CanChangeBehavior);
 
-            attribute.ImeMode = ImeMode.Auto;
-            if (ImeType == CrmImeType.Active) attribute.ImeMode = ImeMode.Active;
-            if (ImeType == CrmImeType.Disabled) attribute.ImeMode = ImeMode.Disabled;
-            if (ImeType == CrmImeType.Inactive) attribute.ImeMode = ImeMode.Inactive;
+            switch (ImeType)
+            {
+                case CrmImeType.Active:
+                    attribute.ImeMode = ImeMode.Active;
+                    break;
+                case CrmImeType.Disabled:
+                    attribute.ImeMode = ImeMode.Disabled;
+                    break;
+                case CrmImeType.Inactive:
+                    attribute.ImeMode = ImeMode.Inactive;
+                    break;
+                default:
+                    attribute.ImeMode = ImeMode.Auto;
+                    break;
+            }
 
             attribute.Format = DateTimeFormat.DateAndTime;
             if (Format == CrmDateTimeAttributeFormat.DateOnly) attribute.Format = DateTimeFormat.DateOnly;
@@ -517,7 +620,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
     {
         [Parameter]
         [ValidateNotNull]
-        public bool? DefaultValue { get; set; }
+        public bool DefaultValue { get; set; }
 
         [Parameter]
         [ValidateNotNull]
@@ -535,9 +638,13 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
             {
                 OptionSet = new BooleanOptionSetMetadata()
             };
-            if (this.DefaultValue.HasValue) attribute.DefaultValue = DefaultValue.Value;
-            if (this.TrueValue != null) attribute.OptionSet.TrueOption = new OptionMetadata(new Label(TrueValue.DisplayName, CrmContext.Session.Language), TrueValue.Value);
-            if (this.FalseValue != null) attribute.OptionSet.FalseOption = new OptionMetadata(new Label(FalseValue.DisplayName, CrmContext.Session.Language), FalseValue.Value);
+
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(DefaultValue))) 
+                attribute.DefaultValue = DefaultValue;
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(TrueValue))) 
+                attribute.OptionSet.TrueOption = new OptionMetadata(new Label(TrueValue.DisplayName, CrmContext.Session.Language), TrueValue.Value);
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(FalseValue))) 
+                attribute.OptionSet.FalseOption = new OptionMetadata(new Label(FalseValue.DisplayName, CrmContext.Session.Language), FalseValue.Value);
 
             WriteAttribute(attribute);
         }
@@ -552,7 +659,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 
         [Parameter(ParameterSetName = AddOptionSetNewParameterSet)]
         [ValidateNotNull]
-        public int? DefaultValue { get; set; }
+        public int DefaultValue { get; set; }
 
         [Parameter(ParameterSetName = AddOptionSetNewParameterSet)]
         [ValidateNotNull]
@@ -567,7 +674,8 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
             base.ExecuteCmdlet();
 
             PicklistAttributeMetadata attribute = new PicklistAttributeMetadata();
-            if (DefaultValue.HasValue) attribute.DefaultFormValue = DefaultValue;
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(DefaultValue))) 
+                attribute.DefaultFormValue = DefaultValue;
 
             switch (this.ParameterSetName)
             {
@@ -606,48 +714,12 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
     [OutputType(typeof(ImageAttributeMetadata))]
     public sealed class AddImageAttributeCommand : AddAttributeCommandBase
     {
-        protected override void BeginProcessing()
-        {
-            base.BeginProcessing();
-
-            if (!CrmVersionManager.IsSupported(CrmVersion.CRM2013_RTM))
-            {
-                throw new NotSupportedException();
-            }
-        }
-
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
 
             ImageAttributeMetadata attribute = new ImageAttributeMetadata();
             WriteAttribute(attribute);
-        }
-    }
-
-    public abstract class AddAttributeDynamicParameters
-    {
-        internal protected virtual void SetParametersOnAttribute(AttributeMetadata attribute)
-        {
-        }
-    }
-
-    public sealed class AddAttributeDynamicParameters2016 : AddAttributeDynamicParameters
-    {
-        [Parameter]
-        [ValidateNotNull]
-        public bool? IsGlobalFilterEnabled { get; set; }
-
-        [Parameter]
-        [ValidateNotNull]
-        public bool? IsSortableEnabled { get; set; }
-
-        protected internal override void SetParametersOnAttribute(AttributeMetadata attribute)
-        {
-            base.SetParametersOnAttribute(attribute);
-
-            if (IsGlobalFilterEnabled.HasValue) attribute.IsGlobalFilterEnabled = new BooleanManagedProperty(IsGlobalFilterEnabled.Value);
-            if (IsSortableEnabled.HasValue) attribute.IsSortableEnabled = new BooleanManagedProperty(IsSortableEnabled.Value);
         }
     }
 }

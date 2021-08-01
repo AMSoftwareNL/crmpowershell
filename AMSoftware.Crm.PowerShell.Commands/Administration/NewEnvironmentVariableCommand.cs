@@ -37,7 +37,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         [ValidateNotNullOrEmpty]
         public string DisplayName { get; set; }
 
-        [Parameter(Mandatory = false)]
+        [Parameter()]
         [ValidateNotNullOrEmpty]
         public string Description { get; set; }
 
@@ -45,11 +45,11 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         [ValidateNotNullOrEmpty]
         public CrmEnvironmentVariableType VariableType { get; set; }
 
-        [Parameter(Mandatory = false)]
+        [Parameter()]
         [ValidateNotNullOrEmpty]
         public object DefaultValue { get; set; }
 
-        [Parameter(Mandatory = false)]
+        [Parameter()]
         [ValidateNotNullOrEmpty]
         public object Value { get; set; }
 
@@ -97,10 +97,6 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
             }
 
             Guid newEnvironmentVariableId = _repository.Add(newEnvironmentVariable);
-            if (PassThru)
-            {
-                WriteObject(_repository.Get("environmentvariabledefinition", newEnvironmentVariableId));
-            }
 
             if (Value != null)
             {
@@ -111,6 +107,11 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
                 newEnvironmentVariableValue.Attributes.Add("environmentvariabledefinitionid", new EntityReference("environmentvariabledefinition", newEnvironmentVariableId));
                 newEnvironmentVariableValue.Attributes.Add("value", Value);
                 _repository.Add(newEnvironmentVariableValue);
+            }
+
+            if (PassThru)
+            {
+                WriteObject(_repository.Get("environmentvariabledefinition", newEnvironmentVariableId));
             }
         }
     }

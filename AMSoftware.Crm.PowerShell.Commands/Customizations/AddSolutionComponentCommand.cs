@@ -27,10 +27,9 @@ using System.Management.Automation;
 namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 {
     [Cmdlet(VerbsCommon.Add, "CrmSolutionComponent", HelpUri = HelpUrlConstants.AddSolutionComponentHelpUrl)]
-    public sealed class AddSolutionComponentCommand : CrmOrganizationCmdlet, IDynamicParameters
+    public sealed class AddSolutionComponentCommand : CrmOrganizationCmdlet
     {
         private readonly ContentRepository _repository = new ContentRepository();
-        private AddSolutionComponentDynamicParameters _context;
 
         private Dictionary<int, string> _validComponentTypes;
 
@@ -40,7 +39,6 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 
         [Parameter(Mandatory = true, Position = 2)]
         [ValidateNotNullOrEmpty]
-        //[ArgumentCompleter(typeof(ResourceTypeArgumentCompleter))]
         public string Type { get; set; }
 
         [Parameter(Mandatory = true, Position = 3)]
@@ -50,6 +48,12 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
 
         [Parameter]
         public SwitchParameter IncludeRequired { get; set; }
+
+        [Parameter]
+        public SwitchParameter ExcludeSubComponents { get; set; }
+
+        [Parameter]
+        public SwitchParameter ExcludeMetadata { get; set; }
 
         protected override void BeginProcessing()
         {
@@ -82,52 +86,15 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
             {
                 Parameters = new ParameterCollection() {
                     { "SolutionUniqueName", solutionUniqueName },
-                    {"ComponentType", componentTypeValue },
-                    {"ComponentId", ComponentId },
-                    {"AddRequiredComponents", IncludeRequired.ToBool() }
+                    { "ComponentType", componentTypeValue },
+                    { "ComponentId", ComponentId },
+                    { "AddRequiredComponents", IncludeRequired.ToBool() },
+                    { "DoNotIncludeSubcomponents", ExcludeSubComponents.ToBool() },
+                    { "IncludedComponentSettingsValues", ExcludeMetadata.ToBool() ? new string[] { } : null }
                 }
             };
 
-            if (_context != null)
-            {
-                _context.SetParametersOnRequest(request);
-            }
-
             OrganizationResponse response = _repository.Execute(request); // id
-        }
-
-        public object GetDynamicParameters()
-        {
-            if (CrmVersionManager.IsSupported(CrmVersion.CRM2016_RTM))
-            {
-                _context = new AddSolutionComponentDynamicParameters2016();
-            }
-
-            return _context;
-        }
-    }
-
-    public abstract class AddSolutionComponentDynamicParameters
-    {
-        internal protected virtual void SetParametersOnRequest(OrganizationRequest request)
-        {
-        }
-    }
-
-    public sealed class AddSolutionComponentDynamicParameters2016 : AddSolutionComponentDynamicParameters
-    {
-        [Parameter]
-        public SwitchParameter ExcludeSubComponents { get; set; }
-
-        [Parameter]
-        public SwitchParameter ExcludeMetadata { get; set; }
-
-        protected internal override void SetParametersOnRequest(OrganizationRequest request)
-        {
-            base.SetParametersOnRequest(request);
-
-            request.Parameters.Add("DoNotIncludeSubcomponents", ExcludeSubComponents.ToBool());
-            request.Parameters.Add("IncludedComponentSettingsValues", ExcludeMetadata.ToBool() ? new string[] { } : null);
         }
     }
 }

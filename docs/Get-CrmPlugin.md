@@ -41,8 +41,85 @@ Get the plugins starting with 'amsoftware.'
 Exclude plugins whose name matches the provided pattern.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetPluginByFilter
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: True
+```
+
+### -Id
+The id of the plugin to retrieve.
+
+```yaml
+Type: System.Guid
+Parameter Sets: GetPluginById
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Name
+The name of the plugin to retrieve.
+
+```yaml
+Type: System.String
+Parameter Sets: GetPluginByFilter
+Aliases: Include
+
+Required: False
+Position: 2
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: True
+```
+
+### -PluginAssembly
+The id of the assembly containing to plugins to retrieve.
+
+```yaml
+Type: System.Guid
+Parameter Sets: GetPluginByFilter
+Aliases:
+
+Required: False
+Position: 1
+Default value: None
+Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -IncludeTotalCount
+Return the total count (and accuracy) of the number of records before returning the result.
+
+Because of the limitations of Dynamics CRM, the total count is only returned accurate when the result is limited to 5000 items.
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Skip
+Skips (does not return) the specified number of records.
+
+```yaml
+Type: System.UInt64
+Parameter Sets: (All)
 Aliases:
 
 Required: False
@@ -56,84 +133,7 @@ Accept wildcard characters: False
 Specifies the number of records to retrieve from the beginning.
 
 ```yaml
-Type: UInt64
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Id
-The id of the plugin to retrieve.
-
-```yaml
-Type: Guid
-Parameter Sets: GetPluginById
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -IncludeTotalCount
-Return the total count (and accuracy) of the number of records before returning the result.
-
-Because of the limitations of Dynamics CRM, the total count is only returned accurate when the result is limited to 5000 items.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Name
-The name of the plugin to retrieve.
-
-```yaml
-Type: String
-Parameter Sets: GetPluginByFilter
-Aliases: Include
-
-Required: False
-Position: 2
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -PluginAssembly
-The id of the assembly containing to plugins to retrieve.
-
-```yaml
-Type: Guid
-Parameter Sets: GetPluginByFilter
-Aliases:
-
-Required: False
-Position: 1
-Default value: None
-Accept pipeline input: True (ByValue)
-Accept wildcard characters: False
-```
-
-### -Skip
-Skips (does not return) the specified number of records.
-
-```yaml
-Type: UInt64
+Type: System.UInt64
 Parameter Sets: (All)
 Aliases:
 
@@ -165,4 +165,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 [Unregister-CrmPlugin](Unregister-CrmPlugin.md)
 
-[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)
+[Entity Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.entity)

@@ -30,7 +30,7 @@ Update a SDK Message Processing Step.
 The LogicalName of the filtering attributes for the SDK Message Processing Step.
 
 ```yaml
-Type: String[]
+Type: System.String[]
 Parameter Sets: (All)
 Aliases:
 
@@ -45,7 +45,7 @@ Accept wildcard characters: False
 Set Delete async operation when completed for the SDK Message Processing Step.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -60,7 +60,7 @@ Accept wildcard characters: False
 The deployment type for the SDK Message Processing Step.
 
 ```yaml
-Type: CrmPluginStepDeployment
+Type: AMSoftware.Crm.PowerShell.Common.CrmPluginStepDeployment
 Parameter Sets: (All)
 Aliases:
 Accepted values: ServerOnly, OfflineOnly, Both
@@ -76,7 +76,7 @@ Accept wildcard characters: False
 The description for the SDK Message Processing Step.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -91,7 +91,7 @@ Accept wildcard characters: False
 The execution order for the SDK Message Processing Step.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -106,7 +106,7 @@ Accept wildcard characters: False
 The id of the SDK Message Processing Step to update.
 
 ```yaml
-Type: Guid
+Type: System.Guid
 Parameter Sets: (All)
 Aliases:
 
@@ -121,7 +121,7 @@ Accept wildcard characters: False
 The mode for the SDK Message Processing Step.
 
 ```yaml
-Type: CrmPluginStepMode
+Type: AMSoftware.Crm.PowerShell.Common.CrmPluginStepMode
 Parameter Sets: (All)
 Aliases:
 Accepted values: Synchronous, Asynchronous
@@ -137,7 +137,7 @@ Accept wildcard characters: False
 The name for the SDK Message Processing Step.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -152,7 +152,7 @@ Accept wildcard characters: False
 Returns an object that represents the Plugin Step. By default, this cmdlet does not generate any output.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -167,7 +167,7 @@ Accept wildcard characters: False
 The secure configuration for the SDK Message Processing Step.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -182,7 +182,7 @@ Accept wildcard characters: False
 The stage for the SDK Message Processing Step.
 
 ```yaml
-Type: CrmPluginStepStage
+Type: AMSoftware.Crm.PowerShell.Common.CrmPluginStepStage
 Parameter Sets: (All)
 Aliases:
 Accepted values: PreValidation, PreOperation, PostOperation
@@ -198,7 +198,7 @@ Accept wildcard characters: False
 The unsecure configuration for the SDK Message Processing Step.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -213,7 +213,7 @@ Accept wildcard characters: False
 The id of the user for the SDK Message Processing Step context.
 
 ```yaml
-Type: Guid
+Type: System.Nullable`1[System.Guid]
 Parameter Sets: (All)
 Aliases:
 

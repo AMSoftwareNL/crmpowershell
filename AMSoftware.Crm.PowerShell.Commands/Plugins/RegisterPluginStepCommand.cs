@@ -54,7 +54,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
         [Parameter]
         [ValidateNotNull]
         [ValidateRange(1, int.MaxValue)]
-        public int? ExecutionOrder { get; set; }
+        public int ExecutionOrder { get; set; }
 
         [Parameter]
         [ValidateNotNullOrEmpty]
@@ -109,7 +109,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
             {
                 throw new Exception("Asynchronous Execution Mode requires registration in one of the Post Stages. Please change the Mode or the Stage.");
             }
-            if (!string.IsNullOrWhiteSpace(SecureConfig) && (Deployment == CrmPluginStepDeployment.OfflineOnly || Deployment == CrmPluginStepDeployment.Both))
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(SecureConfig)) && (Deployment == CrmPluginStepDeployment.OfflineOnly || Deployment == CrmPluginStepDeployment.Both))
             {
                 throw new Exception("Secure Configuration is not supported for Steps deployed Offline.");
             }
@@ -157,7 +157,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
             if (string.IsNullOrWhiteSpace(Description)) Description = generatedDescription;
 
             Guid secureConfigId = Guid.Empty;
-            if (!string.IsNullOrWhiteSpace(SecureConfig))
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(SecureConfig)))
             {
                 secureConfigId = _repository.Add("sdkmessageprocessingstepsecureconfig", Guid.Empty, new System.Collections.Hashtable()
                 {
@@ -240,14 +240,14 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
                 Attributes = new AttributeCollection()
             };
             crmPluginStep.Attributes.Add("asyncautodelete", DeleteAsyncOperation.ToBool());
-            crmPluginStep.Attributes.Add("rank", ExecutionOrder ?? 1);
+            crmPluginStep.Attributes.Add("rank", this.MyInvocation.BoundParameters.ContainsKey(nameof(ExecutionOrder)) ? ExecutionOrder : 1);
             crmPluginStep.Attributes.Add("description", Description);
             crmPluginStep.Attributes.Add("name", Name);
             crmPluginStep.Attributes.Add("configuration", UnsecureConfig);
             crmPluginStep.Attributes.Add("stage", new OptionSetValue((int)Stage));
             crmPluginStep.Attributes.Add("mode", new OptionSetValue((int)Mode));
             crmPluginStep.Attributes.Add("supporteddeployment", new OptionSetValue((int)Deployment));
-            if (User != Guid.Empty)
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(User)) && User != Guid.Empty)
             {
                 crmPluginStep.Attributes.Add("impersonatinguserid", new EntityReference("systemuser", User));
             }

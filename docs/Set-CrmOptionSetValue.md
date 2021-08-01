@@ -35,7 +35,7 @@ Update the value of an optionset.
 The LogicalName of the Attribute to update.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: SetOptionSetValueEntity
 Aliases: LogicalName
 
@@ -50,7 +50,7 @@ Accept wildcard characters: False
 The description for the optionset value.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -65,7 +65,7 @@ Accept wildcard characters: False
 The displayname for the optionset value.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -80,7 +80,7 @@ Accept wildcard characters: False
 The LogicalName of the entity to update.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: SetOptionSetValueEntity
 Aliases: EntityLogicalName
 
@@ -95,7 +95,7 @@ Accept wildcard characters: False
 The name of the global optionset to update.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: SetOptionSetValueGlobal
 Aliases: Name
 
@@ -110,7 +110,7 @@ Accept wildcard characters: False
 The value of the optionset value to update.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 

@@ -66,12 +66,17 @@ namespace AMSoftware.Crm.PowerShell.Commands
         public const string SetRelationshipHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Set-CrmRelationship.md";
         public const string SetRelationshipCascadeConfigHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Set-CrmRelationshipCascadeConfig.md";
         public const string SetStringAttributeHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Set-CrmStringAttribute.md";
+
         public const string AddContentHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Add-CrmContent.md";
         public const string GetContentHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Get-CrmContent.md";
         public const string JoinContentHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Join-CrmContent.md";
         public const string RemoveContentHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Remove-CrmContent.md";
         public const string SetContentHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Set-CrmContent.md";
         public const string SplitContentHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Split-CrmContent.md";
+        public const string StartBatchHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Start-CrmBatch.md";
+        public const string StopBatchHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Stop-CrmBatch.md";
+        public const string SubmitBatchHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Submit-CrmBatch.md";
+
         public const string AddLanguageHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Add-CrmLanguage.md";
         public const string ExportTranslationHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Export-CrmTranslation.md";
         public const string GetBusinessUnitHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Get-CrmBusinessUnit.md";
@@ -154,5 +159,11 @@ namespace AMSoftware.Crm.PowerShell.Commands
         public const string NewEnvironmentVariableHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/New-CrmEnvironmentVariable.md";
         public const string SetEnvironmentVariableHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Set-CrmEnvironmentVariable.md";
 
+        public const string GetDataProviderHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Get-CrmDataProvider.md";
+        public const string RegisterDataProviderHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Register-CrmDataProvider.md";
+        public const string UnregisterDataProviderHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Unregister-CrmDataProvider.md";
+        public const string SetDataProviderHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Set-CrmDataProvider.md";
+
+        public const string SetSessionHelpUrl = "https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Set-CrmSession.md";
     }
 }

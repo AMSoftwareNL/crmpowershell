@@ -37,7 +37,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 
         private readonly ContentRepository _repository = new ContentRepository();
 
-        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
+        [Parameter(ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
         [ValidateNotNullOrEmpty]
         public Guid Id { get; set; }
 
@@ -54,7 +54,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
         [ValidateNotNullOrEmpty]
         public string EndpointPathOrName { get; set; }
 
-        [Parameter(Mandatory = false)]
+        [Parameter()]
         [ValidateNotNullOrEmpty]
         public string Description { get; set; }
 
@@ -70,8 +70,8 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
         [ValidateSet("Queue", "Topic", "Eventhub", IgnoreCase = true)]
         public CrmServiceEndpointContract QueueContract { get; set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = QueueEndpointWithTokenParameterSet)]
-        [Parameter(Mandatory = false, ParameterSetName = QueueEndpointWithKeyParameterSet)]
+        [Parameter(ParameterSetName = QueueEndpointWithTokenParameterSet)]
+        [Parameter(ParameterSetName = QueueEndpointWithKeyParameterSet)]
         [ValidateNotNullOrEmpty]
         [PSDefaultValue(Value = CrmServiceEndpointMessageFormat.DOTNETBinary)]
         public CrmServiceEndpointMessageFormat MessageFormat { get; set; }
@@ -86,13 +86,13 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
         [ValidateNotNullOrEmpty]
         public string SASKeyName { get; set; }
 
-        [Parameter(Mandatory = true, ParameterSetName = QueueEndpointWithTokenParameterSet)]
-        [Parameter(Mandatory = true, ParameterSetName = RelayEndpointWithTokenParameterSet)]
+        [Parameter(Mandatory = true, ParameterSetName = QueueEndpointWithKeyParameterSet)]
+        [Parameter(Mandatory = true, ParameterSetName = RelayEndpointWithKeyParameterSet)]
         [ValidateNotNullOrEmpty]
         [ValidateLength(44, 44)]
         public string SASKey { get; set; }
 
-        [Parameter(Mandatory = false)]
+        [Parameter()]
         [ValidateNotNull]
         [Alias("UserInformation")]
         [PSDefaultValue(Value = CrmServiceEndpointUserClaim.None)]
@@ -105,15 +105,15 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
         {
             base.ExecuteCmdlet();
 
-            if ((int)Claim == 0) Claim = CrmServiceEndpointUserClaim.None;
-            if ((int)MessageFormat == 0) MessageFormat = CrmServiceEndpointMessageFormat.DOTNETBinary;
+            if (!this.MyInvocation.BoundParameters.ContainsKey(nameof(Claim))) Claim = CrmServiceEndpointUserClaim.None;
+            if (!this.MyInvocation.BoundParameters.ContainsKey(nameof(MessageFormat))) MessageFormat = CrmServiceEndpointMessageFormat.DOTNETBinary;
 
             ValidateNameUnique(_repository, Name, Id);
             ValidateEndpoint(Endpoint, QueueContract != 0 ? QueueContract : RelayContract);
             ValidateMessageFormat(QueueContract != 0 ? QueueContract : RelayContract, MessageFormat);
 
             Entity serviceEndpointEntity = GenerateCrmEntity();
-            if (Id != Guid.Empty)
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(Id)))
             {
                 serviceEndpointEntity.Id = Id;
                 _repository.Update(serviceEndpointEntity);
@@ -137,7 +137,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
 
             crmServiceEndpoint.Attributes.Add("namespaceformat", new OptionSetValue(2));  //CrmServiceEndpointNamespaceFormat.Address
             crmServiceEndpoint.Attributes.Add("name", Name);
-            if (!string.IsNullOrWhiteSpace(Description))
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(Description)))
             {
                 crmServiceEndpoint.Attributes.Add("description", Description);
             }
@@ -170,7 +170,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
                     break;
                 case RelayEndpointWithKeyParameterSet:
                 case QueueEndpointWithKeyParameterSet:
-                    crmServiceEndpoint.Attributes.Add("userclaim", new OptionSetValue((int)CrmServiceEndpointAuthType.SASKey));
+                    crmServiceEndpoint.Attributes.Add("authtype", new OptionSetValue((int)CrmServiceEndpointAuthType.SASKey));
                     crmServiceEndpoint.Attributes.Add("saskeyname", SASKeyName);
                     crmServiceEndpoint.Attributes.Add("saskey", SASKey);
                     break;

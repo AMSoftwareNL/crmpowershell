@@ -27,13 +27,12 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 {
     [Cmdlet(VerbsCommon.Add, "CrmRelationship", HelpUri = HelpUrlConstants.AddRelationshipHelpUrl)]
     [OutputType(typeof(RelationshipMetadataBase))]
-    public sealed class AddRelationshipCommand : CrmOrganizationCmdlet, IDynamicParameters
+    public sealed class AddRelationshipCommand : CrmOrganizationCmdlet
     {
         private const string AddOneToManyRelationshipParameterSet = "AddOneToManyRelationship";
         private const string AddManyToManyRelationsipParameterSet = "AddManyToManyRelationship";
 
         private readonly MetadataRepository _repository = new MetadataRepository();
-        private AddRelationshipDynamicParameters _context;
 
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = AddManyToManyRelationsipParameterSet)]
         [ValidateNotNullOrEmpty]
@@ -82,11 +81,18 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 
         [Parameter]
         [ValidateNotNull]
-        public bool? AdvancedFind { get; set; }
+        public bool AdvancedFind { get; set; }
+
+        [Parameter(ParameterSetName = AddOneToManyRelationshipParameterSet)]
+        [ValidateNotNull]
+        public bool IsHierarchical { get; set; }
 
         [Parameter]
         [ValidateNotNull]
-        public bool? Customizable { get; set; }
+        public bool Customizable { get; set; }
+
+        [Parameter(ParameterSetName = AddOneToManyRelationshipParameterSet)]
+        public SwitchParameter Polymorphic { get; set; }
 
         [Parameter]
         public SwitchParameter PassThru { get; set; }
@@ -108,16 +114,6 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
             }
         }
 
-        public object GetDynamicParameters()
-        {
-            if (CrmVersionManager.IsSupported(CrmVersion.CRM2016_RTM))
-            {
-                _context = new AddRelationshipDynamicParameters2016();
-            }
-
-            return _context;
-        }
-
         private void AddOneToMany()
         {
             OneToManyRelationshipMetadata relationship = new OneToManyRelationshipMetadata
@@ -126,10 +122,19 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
                 ReferencingEntity = Entity,
                 SchemaName = Name
             };
-            if (_context != null) _context.SetParametersOnRelationship(relationship);
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(AdvancedFind))) relationship.IsValidForAdvancedFind = AdvancedFind;
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(Customizable))) relationship.IsCustomizable = new BooleanManagedProperty(Customizable);
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(IsHierarchical)))
+            {
+                if (string.Equals(relationship.ReferencingEntity, relationship.ReferencedEntity, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    relationship.IsHierarchical = IsHierarchical;
+                } 
+            }
 
             LookupAttributeMetadata lookup = new LookupAttributeMetadata
             {
+                LogicalName = AttributeName,
                 SchemaName = AttributeName,
                 DisplayName = new Label(AttributeDisplayName, CrmContext.Session.Language),
                 Description = new Label(AttributeDescription ?? string.Empty, CrmContext.Session.Language)
@@ -140,57 +145,39 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
             if (AttributeRequired == CrmRequiredLevel.Optional) requiredLevel = AttributeRequiredLevel.None;
             lookup.RequiredLevel = new AttributeRequiredLevelManagedProperty(requiredLevel);
 
-            Guid result = _repository.AddRelationship(relationship, lookup);
-            if (PassThru)
+            if (Polymorphic)
             {
-                WriteObject(_repository.GetRelationship(result));
+                Guid result = _repository.AddPolymorphicRelationship(relationship, lookup);
+                if (PassThru)
+                {
+                    WriteObject(_repository.GetRelationship(result));
+                }
+            }
+            else
+            {
+                Guid result = _repository.AddRelationship(relationship, lookup);
+                if (PassThru)
+                {
+                    WriteObject(_repository.GetRelationship(result));
+                }
             }
         }
 
         private void AddManyToMany()
         {
-            ManyToManyRelationshipMetadata data = new ManyToManyRelationshipMetadata()
+            ManyToManyRelationshipMetadata relationship = new ManyToManyRelationshipMetadata()
             {
                 SchemaName = Name,
                 Entity1LogicalName = Entity1,
                 Entity2LogicalName = Entity2
             };
-            if (AdvancedFind.HasValue) data.IsValidForAdvancedFind = AdvancedFind;
-            if (Customizable.HasValue) data.IsCustomizable = new BooleanManagedProperty(Customizable.Value);
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(AdvancedFind))) relationship.IsValidForAdvancedFind = AdvancedFind;
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(Customizable))) relationship.IsCustomizable = new BooleanManagedProperty(Customizable);
 
-            Guid result = _repository.AddRelationship(data, IntersectName);
+            Guid result = _repository.AddRelationship(relationship, IntersectName);
             if (PassThru)
             {
                 WriteObject(_repository.GetRelationship(result));
-            }
-        }
-    }
-
-    public abstract class AddRelationshipDynamicParameters
-    {
-        internal protected virtual void SetParametersOnRelationship(RelationshipMetadataBase relationship)
-        {
-        }
-    }
-
-    public sealed class AddRelationshipDynamicParameters2016 : AddRelationshipDynamicParameters
-    {
-        [Parameter, ValidateNotNull]
-        public bool? IsHierarchical { get; set; }
-
-        protected internal override void SetParametersOnRelationship(RelationshipMetadataBase relationship)
-        {
-            base.SetParametersOnRelationship(relationship);
-
-            if (relationship is OneToManyRelationshipMetadata internalRelationship)
-            {
-                if (IsHierarchical.HasValue)
-                {
-                    if (string.Equals(internalRelationship.ReferencingEntity, internalRelationship.ReferencedEntity, StringComparison.InvariantCultureIgnoreCase))
-                    {
-                        ((OneToManyRelationshipMetadata)relationship).IsHierarchical = IsHierarchical.Value;
-                    }
-                }
             }
         }
     }

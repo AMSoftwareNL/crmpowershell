@@ -15,31 +15,26 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-using System.Collections;
+using AMSoftware.Crm.PowerShell.Common;
+using System;
 using System.Management.Automation;
-using AMSoftware.Crm.PowerShell.Common.Repositories;
-using Microsoft.Xrm.Sdk;
 
-namespace AMSoftware.Crm.PowerShell.Commands.Administration
+namespace AMSoftware.Crm.PowerShell.Commands.Content
 {
-    [Cmdlet(VerbsLifecycle.Invoke, "CrmRequest", HelpUri = HelpUrlConstants.InvokeRequestHelpUrl)]
-    public sealed class InvokeRequestCommand : CrmOrganizationCmdlet
+    [Cmdlet(VerbsLifecycle.Start, "CrmBatch", HelpUri = HelpUrlConstants.StartBatchHelpUrl)]
+    public sealed class StartBatchCommand : CrmOrganizationCmdlet
     {
-        private readonly ContentRepository _repository = new ContentRepository();
-
-        [Parameter(Mandatory = true, Position = 1)]
-        [ValidateNotNullOrEmpty]
-        public string Request { get; set; }
-
-        [Parameter(Mandatory = false, Position = 2, ValueFromPipeline = true)]
-        public Hashtable Parameters { get; set; }
-
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
 
-            OrganizationResponse response = _repository.Execute(Request, Parameters);
-            WriteObject(response.Results);
+            if (CrmContext.Session.BatchActive)
+            {
+                throw new InvalidOperationException("A Batch is already active. Submit or Stop the current batch before starting a new one.");
+            } else
+            {
+                CrmContext.Session.BatchActive = true; 
+            }
         }
     }
 }

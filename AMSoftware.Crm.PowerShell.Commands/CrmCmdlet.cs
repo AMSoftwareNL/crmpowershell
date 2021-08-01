@@ -30,11 +30,11 @@ namespace AMSoftware.Crm.PowerShell.Commands
         {
             if (string.IsNullOrEmpty(base.ParameterSetName))
             {
-                this.WriteDebugWithTimestamp(string.Format("{0} begin processing without ParameterSet.", base.GetType().Name));
+                this.WriteVerboseWithTimestamp(string.Format("{0} begin processing without ParameterSet.", base.GetType().Name));
             }
             else
             {
-                this.WriteDebugWithTimestamp(string.Format("{0} begin processing with ParameterSet '{1}'.", base.GetType().Name, base.ParameterSetName));
+                this.WriteVerboseWithTimestamp(string.Format("{0} begin processing with ParameterSet '{1}'.", base.GetType().Name, base.ParameterSetName));
             }
             base.BeginProcessing();
         }
@@ -43,6 +43,8 @@ namespace AMSoftware.Crm.PowerShell.Commands
         {
             try
             {
+                this.WriteVerboseWithTimestamp(string.Format("{0} process record.", base.GetType().Name));
+
                 base.ProcessRecord();
                 this.ExecuteCmdlet();
             }
@@ -61,8 +63,7 @@ namespace AMSoftware.Crm.PowerShell.Commands
 
         protected override void EndProcessing()
         {
-            string message = string.Format("{0} end processing.", base.GetType().Name);
-            this.WriteDebugWithTimestamp(message);
+            this.WriteVerboseWithTimestamp(string.Format("{0} end processing.", base.GetType().Name));
             base.EndProcessing();
         }
 
@@ -142,6 +143,8 @@ namespace AMSoftware.Crm.PowerShell.Commands
             }
 
             base.BeginProcessing();
+
+            CrmContext.Session.OrganizationCache.UpdateCache();
 
             if (!string.IsNullOrEmpty(CrmContext.Session.ActiveSolutionName))
             {

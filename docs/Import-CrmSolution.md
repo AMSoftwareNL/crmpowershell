@@ -42,24 +42,9 @@ Import the solution 'product1.zip' into Dynamics CRM as managed solution and pub
 Execute the import of the solution asynchronously. Returns an asyncoperation instead of an importjob.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Confirm
-Prompts you for confirmation before running the cmdlet.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: cf
 
 Required: False
 Position: Named
@@ -72,7 +57,7 @@ Accept wildcard characters: False
 Direct the system to convert any matching unmanaged customizations into your managed solution.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -87,7 +72,7 @@ Accept wildcard characters: False
 The literal path of the solution file to import.
 
 ```yaml
-Type: String[]
+Type: System.String[]
 Parameter Sets: ImportSolutionFromLiteralPath
 Aliases: PSPath
 
@@ -102,7 +87,7 @@ Accept wildcard characters: False
 Whether any unmanaged customizations that have been applied over existing managed solution components should be overwritten.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -117,7 +102,7 @@ Accept wildcard characters: False
 The path of the solution file to import.
 
 ```yaml
-Type: String[]
+Type: System.String[]
 Parameter Sets: ImportSolutionFromPath
 Aliases:
 
@@ -132,7 +117,7 @@ Accept wildcard characters: False
 Whether any processes (workflows) included in the solution should be activated after they are imported.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -147,9 +132,24 @@ Accept wildcard characters: False
 Whether enforcement of dependencies related to product updates should be skipped.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Confirm
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
 
 Required: False
 Position: Named
@@ -163,7 +163,7 @@ Shows what would happen if the cmdlet runs.
 The cmdlet is not run.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases: wi
 
@@ -199,4 +199,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 [Use-CrmSolution](Use-CrmSolution.md)
 
-[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)
+[Entity Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.entity)

@@ -34,7 +34,7 @@ Remove the roles for a user or team.
 Remove all roles from the user or team.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: RemovePrincipalRolesAll
 Aliases:
 
@@ -49,7 +49,7 @@ Accept wildcard characters: False
 The id of the user or team to remove the roles from.
 
 ```yaml
-Type: Guid[]
+Type: System.Guid[]
 Parameter Sets: (All)
 Aliases: Id
 
@@ -64,7 +64,7 @@ Accept wildcard characters: False
 The type of principal to remove the roles from.
 
 ```yaml
-Type: CrmPrincipalType
+Type: AMSoftware.Crm.PowerShell.Common.CrmPrincipalType
 Parameter Sets: (All)
 Aliases:
 Accepted values: User, Team
@@ -80,7 +80,7 @@ Accept wildcard characters: False
 The id of the roles to remove from the user or team.
 
 ```yaml
-Type: Guid[]
+Type: System.Guid[]
 Parameter Sets: RemovePrincipalRolesSelected
 Aliases:
 

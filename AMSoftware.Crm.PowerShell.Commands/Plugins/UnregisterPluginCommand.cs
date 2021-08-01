@@ -34,7 +34,8 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
             PluginType,
             PluginStepSecureConfig,
             PluginStep,
-            PluginImage
+            PluginImage,
+            DataProvider
         }
 
         private readonly ContentRepository _repository = new ContentRepository();
@@ -78,6 +79,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
                 UnregisterComponents("plugintype", _components[PluginComponentType.PluginType]);
                 UnregisterComponents("pluginassembly", _components[PluginComponentType.PluginAssembly]);
                 UnregisterComponents("serviceendpoint", _components[PluginComponentType.ServiceEndpoint]);
+                UnregisterComponents("entitydataprovider", _components[PluginComponentType.DataProvider]);
             }
         }
 
@@ -148,6 +150,15 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
         protected override PluginComponentType ComponentType
         {
             get { return PluginComponentType.ServiceEndpoint; }
+        }
+    }
+
+    [Cmdlet(VerbsLifecycle.Unregister, "CrmDataProvider", HelpUri = HelpUrlConstants.UnregisterDataProviderHelpUrl)]
+    public sealed class UnregisterDataProviderCommand : UnregisterPluginCommandBase
+    {
+        protected override PluginComponentType ComponentType
+        {
+            get { return PluginComponentType.DataProvider; }
         }
     }
 

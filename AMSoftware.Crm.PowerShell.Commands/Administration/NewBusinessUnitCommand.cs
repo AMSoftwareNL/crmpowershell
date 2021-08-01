@@ -35,7 +35,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
 
         [Parameter(ValueFromPipeline = true)]
         [ValidateNotNullOrEmpty]
-        public Guid? Parent { get; set; }
+        public Guid Parent { get; set; }
 
         [Parameter]
         public SwitchParameter PassThru { get; set; }
@@ -44,7 +44,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         {
             base.ExecuteCmdlet();
 
-            Guid businessUnitId = Parent ?? SecurityManagementHelper.GetDefaultBusinessUnitId(_repository);
+            Guid businessUnitId = this.MyInvocation.BoundParameters.ContainsKey(nameof(Parent)) ? Parent : SecurityManagementHelper.GetDefaultBusinessUnitId(_repository);
 
             Entity newBusinessUnit = new Entity("businessunit")
             {

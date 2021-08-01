@@ -41,7 +41,7 @@ Get all roles for the business unit 'amsoftwarecrm'.
 The id of a business unit to retrieve the related roles for.
 
 ```yaml
-Type: Guid
+Type: System.Guid
 Parameter Sets: GetAllRoles
 Aliases:
 
@@ -56,8 +56,70 @@ Accept wildcard characters: False
 Exclude roles whose name matches the provided pattern.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetAllRoles
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: True
+```
+
+### -Id
+The id of the role to retrieve.
+
+```yaml
+Type: System.Guid[]
+Parameter Sets: GetRoleById
+Aliases:
+
+Required: True
+Position: 0
+Default value: None
+Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -Name
+Include roles whose name matches the provided pattern.
+
+```yaml
+Type: System.String
+Parameter Sets: GetAllRoles
+Aliases: Include
+
+Required: False
+Position: 0
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: True
+```
+
+### -IncludeTotalCount
+Return the total count (and accuracy) of the number of records before returning the result.
+
+Because of the limitations of Dynamics CRM, the total count is only returned accurate when the result is limited to 5000 items.
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Skip
+Skips (does not return) the specified number of records.
+
+```yaml
+Type: System.UInt64
+Parameter Sets: (All)
 Aliases:
 
 Required: False
@@ -71,69 +133,7 @@ Accept wildcard characters: False
 Specifies the number of records to retrieve from the beginning.
 
 ```yaml
-Type: UInt64
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Id
-The id of the role to retrieve.
-
-```yaml
-Type: Guid[]
-Parameter Sets: GetRoleById
-Aliases:
-
-Required: True
-Position: 0
-Default value: None
-Accept pipeline input: True (ByValue)
-Accept wildcard characters: False
-```
-
-### -IncludeTotalCount
-Return the total count (and accuracy) of the number of records before returning the result.
-
-Because of the limitations of Dynamics CRM, the total count is only returned accurate when the result is limited to 5000 items.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Name
-Include roles whose name matches the provided pattern.
-
-```yaml
-Type: String
-Parameter Sets: GetAllRoles
-Aliases: Include
-
-Required: False
-Position: 0
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Skip
-Skips (does not return) the specified number of records.
-
-```yaml
-Type: UInt64
+Type: System.UInt64
 Parameter Sets: (All)
 Aliases:
 
@@ -165,4 +165,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 [Get-CrmPrincipalRoles](Get-CrmPrincipalRoles.md)
 
-[Entity Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.entity.aspx)
+[Entity Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.entity)

@@ -38,23 +38,25 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
         [ValidateNotNull]
         public Guid[] Id { get; set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = GetAllEnvironmentVariablesParameterSet, Position = 0)]
+        [Parameter(ParameterSetName = GetAllEnvironmentVariablesParameterSet, Position = 0)]
         [Alias("Include")]
         [ValidateNotNullOrEmpty]
         [SupportsWildcards]
         public string Name { get; set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = GetAllEnvironmentVariablesParameterSet)]
+        [Parameter(ParameterSetName = GetAllEnvironmentVariablesParameterSet)]
         [ValidateNotNullOrEmpty]
         [SupportsWildcards]
         public string Exclude { get; set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = GetAllEnvironmentVariablesParameterSet)]
+        [Parameter(ParameterSetName = GetAllEnvironmentVariablesParameterSet)]
+        [ValidateNotNullOrEmpty]
         [PSDefaultValue(Value = CrmEnvironmentVariableType.All)]
-        public CrmEnvironmentVariableType? VariableType { get; set; }
+        public CrmEnvironmentVariableType VariableType { get; set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = GetAllEnvironmentVariablesParameterSet)]
-        public Guid? SolutionId { get; set; }
+        [Parameter(ParameterSetName = GetAllEnvironmentVariablesParameterSet)]
+        [ValidateNotNullOrEmpty]
+        public Guid SolutionId { get; set; }
 
 
         protected override void ExecuteCmdlet()
@@ -121,14 +123,14 @@ namespace AMSoftware.Crm.PowerShell.Commands.Administration
                 }
             };
 
-            if (VariableType.HasValue && VariableType.Value != CrmEnvironmentVariableType.All)
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(VariableType)) && VariableType != CrmEnvironmentVariableType.All)
             {
-                query.Criteria.AddCondition("type", ConditionOperator.Equal, (int)VariableType.Value);
+                query.Criteria.AddCondition("type", ConditionOperator.Equal, (int)VariableType);
             }
 
-            if (SolutionId.HasValue && SolutionId.Value != Guid.Empty)
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(SolutionId)) && SolutionId != Guid.Empty)
             {
-                query.Criteria.AddCondition("solutionid", ConditionOperator.Equal, SolutionId.Value);
+                query.Criteria.AddCondition("solutionid", ConditionOperator.Equal, SolutionId);
             }
             return query;
         }

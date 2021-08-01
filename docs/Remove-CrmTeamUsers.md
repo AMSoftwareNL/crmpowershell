@@ -33,7 +33,7 @@ Remove users from a team.
 Remove all users from the team.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: RemoveTeamUsersAll
 Aliases:
 
@@ -48,7 +48,7 @@ Accept wildcard characters: False
 The id of the team to remove the users from.
 
 ```yaml
-Type: Guid[]
+Type: System.Guid[]
 Parameter Sets: (All)
 Aliases: Id
 
@@ -63,7 +63,7 @@ Accept wildcard characters: False
 The id of the users to remove from the team.
 
 ```yaml
-Type: Guid[]
+Type: System.Guid[]
 Parameter Sets: RemoveTeamUsersSelected
 Aliases:
 

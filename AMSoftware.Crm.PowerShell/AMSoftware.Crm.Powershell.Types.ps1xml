@@ -238,5 +238,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.-->
       <TypeName>AMSoftware.Crm.PowerShell.Common.Converters.MoneyConverter</TypeName>
     </TypeConverter>
   </Type>
+  <!-- Microsoft.Xrm.Sdk.OrganizationRequest -->
+  <Type>
+    <Name>Microsoft.Xrm.Sdk.OrganizationRequest</Name>
+    <TypeAdapter>
+      <TypeName>AMSoftware.Crm.PowerShell.Common.PropertyAdapters.OrganizationRequestPropertyAdapter</TypeName>
+    </TypeAdapter>
+  </Type>
+  <!-- Microsoft.Xrm.Sdk.OrganizationResponse -->
+  <Type>
+    <Name>Microsoft.Xrm.Sdk.OrganizationResponse</Name>
+    <TypeAdapter>
+      <TypeName>AMSoftware.Crm.PowerShell.Common.PropertyAdapters.OrganizationResponsePropertyAdapter</TypeName>
+    </TypeAdapter>
+  </Type>
 </Types>
 

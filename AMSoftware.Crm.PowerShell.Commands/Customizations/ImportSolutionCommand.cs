@@ -81,7 +81,7 @@ namespace AMSoftware.Crm.PowerShell.Commands.Customizations
             {
                 byte[] content = File.ReadAllBytes(fullPath);
 
-                if (Async.ToBool() && CrmVersionManager.IsSupported(CrmVersion.CRM2015_RTM))
+                if (Async.ToBool())
                 {
                     ExecuteAction(fullPath, delegate
                     {

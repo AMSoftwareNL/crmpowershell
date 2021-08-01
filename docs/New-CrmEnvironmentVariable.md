@@ -8,7 +8,7 @@ schema: 2.0.0
 # New-CrmEnvironmentVariable
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Create a new environment variable
 
 ## SYNTAX
 
@@ -19,24 +19,17 @@ New-CrmEnvironmentVariable [-Name] <String> -DisplayName <String> [-Description 
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Create a new environment variable
 
 ## EXAMPLES
-
-### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -DefaultValue
-{{ Fill DefaultValue Description }}
+The default value for the environment variable
 
 ```yaml
-Type: Object
+Type: System.Object
 Parameter Sets: (All)
 Aliases:
 
@@ -48,10 +41,10 @@ Accept wildcard characters: False
 ```
 
 ### -Description
-{{ Fill Description Description }}
+The description of the environment variable
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -63,10 +56,10 @@ Accept wildcard characters: False
 ```
 
 ### -DisplayName
-{{ Fill DisplayName Description }}
+The displayname of the environment variable
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -78,10 +71,10 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{ Fill Name Description }}
+The name of the environment variable
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -93,10 +86,10 @@ Accept wildcard characters: False
 ```
 
 ### -PassThru
-{{ Fill PassThru Description }}
+Return the newly created environment variale to the pipeline
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -108,10 +101,10 @@ Accept wildcard characters: False
 ```
 
 ### -Value
-{{ Fill Value Description }}
+The value of the environment variable
 
 ```yaml
-Type: Object
+Type: System.Object
 Parameter Sets: (All)
 Aliases:
 
@@ -123,10 +116,10 @@ Accept wildcard characters: False
 ```
 
 ### -VariableType
-{{ Fill VariableType Description }}
+The value type of the environment variable
 
 ```yaml
-Type: CrmEnvironmentVariableType
+Type: AMSoftware.Crm.PowerShell.Common.CrmEnvironmentVariableType
 Parameter Sets: (All)
 Aliases:
 Accepted values: All, String, Number, Boolean, JSON, DataSource

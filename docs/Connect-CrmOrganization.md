@@ -14,12 +14,12 @@ Connect to a Dataverse environment.
 
 ### Connectionstring (Default)
 ```
-Connect-CrmOrganization [-Connectionstring] <String> [<CommonParameters>]
+Connect-CrmOrganization [-Connectionstring] <String> [-InitializeMetadataCache] [<CommonParameters>]
 ```
 
 ### Connection
 ```
-Connect-CrmOrganization [-Connection] <CrmServiceClient> [<CommonParameters>]
+Connect-CrmOrganization [-Connection] <CrmServiceClient> [-InitializeMetadataCache] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -49,7 +49,7 @@ PS C:\> Connect-CrmOrganization -Connectionstring 'AuthType=Office365;Username=j
 CrmServiceClient object from Get-CrmOrganization.
 
 ```yaml
-Type: CrmServiceClient
+Type: Microsoft.Xrm.Tooling.Connector.CrmServiceClient
 Parameter Sets: Connection
 Aliases:
 
@@ -64,12 +64,28 @@ Accept wildcard characters: False
 Connectionstring to connect using the CrmServiceClient. See [Use connection strings in XRM tooling to connect to Microsoft Dataverse](https://docs.microsoft.com/en-us/powerapps/developer/data-platform/xrm-tooling/use-connection-strings-xrm-tooling-connect) 
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: Connectionstring
 Aliases:
 
 Required: True
 Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -InitializeMetadataCache
+If provided immediately initializes the Entity Metadata Cache when connected, instead of waiting on first use of the cache.
+To disable the use of cache completely in the session run 'Set-CrmSession -UseMetadataCache $false'
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -90,7 +106,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[OrganizationDetail Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.organization.organizationdetail.aspx)
+[OrganizationDetail Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.organization.organizationdetail)
 
 [Use connection strings in XRM tooling to connect to Microsoft Dataverse](https://docs.microsoft.com/en-us/powerapps/developer/data-platform/xrm-tooling/use-connection-strings-xrm-tooling-connect) 
 

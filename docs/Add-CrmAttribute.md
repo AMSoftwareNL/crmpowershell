@@ -27,7 +27,7 @@ Add an attribute to an entity.
 The LogicalName of the entity to add the attribute to.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -42,7 +42,7 @@ Accept wildcard characters: False
 The AttributeMetadata of the attribute to add.
 
 ```yaml
-Type: AttributeMetadata
+Type: Microsoft.Xrm.Sdk.Metadata.AttributeMetadata
 Parameter Sets: (All)
 Aliases: Attribute
 
@@ -57,7 +57,7 @@ Accept wildcard characters: False
 Returns an object that represents the AttributeMetadata. By default, this cmdlet does not generate any output.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -105,4 +105,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 [Add-CrmStringAttribute](Add-CrmStringAttribute.md)
 
-[AttributeMetadata Class](https://msdn.microsoft.com/library/microsoft.xrm.sdk.metadata.attributemetadata.aspx)
+[AttributeMetadata Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.metadata.attributemetadata)

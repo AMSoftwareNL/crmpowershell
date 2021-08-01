@@ -25,13 +25,12 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 {
     [Cmdlet(VerbsCommon.Set, "CrmRelationship", HelpUri = HelpUrlConstants.SetRelationshipHelpUrl, DefaultParameterSetName = SetRelationshipByInputObjectParameterSet)]
     [OutputType(typeof(RelationshipMetadataBase))]
-    public sealed class SetRelationshipCommand : CrmOrganizationCmdlet, IDynamicParameters
+    public sealed class SetRelationshipCommand : CrmOrganizationCmdlet
     {
         private const string SetRelationshipParameterSet = "SetRelationship";
         private const string SetRelationshipByInputObjectParameterSet = "SetRelationshipByInputObject";
 
         private readonly MetadataRepository _repository = new MetadataRepository();
-        private SetRelationshipDynamicParameters _context;
 
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = SetRelationshipByInputObjectParameterSet, ValueFromPipeline = true)]
         [Alias("Relationship")]
@@ -45,11 +44,15 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
 
         [Parameter(ParameterSetName = SetRelationshipParameterSet)]
         [ValidateNotNull]
-        public bool? AdvancedFind { get; set; }
+        public bool AdvancedFind { get; set; }
 
         [Parameter(ParameterSetName = SetRelationshipParameterSet)]
         [ValidateNotNull]
-        public bool? Customizable { get; set; }
+        public bool IsHierarchical { get; set; }
+
+        [Parameter(ParameterSetName = SetRelationshipParameterSet)]
+        [ValidateNotNull]
+        public bool Customizable { get; set; }
 
         [Parameter]
         public SwitchParameter PassThru { get; set; }
@@ -62,11 +65,19 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
             {
                 case SetRelationshipParameterSet:
                     RelationshipMetadataBase internalRelationship = _repository.GetRelationship(Name);
-                    if (AdvancedFind.HasValue) internalRelationship.IsValidForAdvancedFind = AdvancedFind.Value;
-                    if (Customizable.HasValue) internalRelationship.IsCustomizable = new BooleanManagedProperty(Customizable.Value);
-                    if (_context != null) _context.SetParametersOnRelationship(internalRelationship);
+
+                    if (this.MyInvocation.BoundParameters.ContainsKey(nameof(AdvancedFind))) 
+                        internalRelationship.IsValidForAdvancedFind = AdvancedFind;
+                    if (this.MyInvocation.BoundParameters.ContainsKey(nameof(Customizable)))
+                        internalRelationship.IsCustomizable = new BooleanManagedProperty(Customizable);
+                    if (this.MyInvocation.BoundParameters.ContainsKey(nameof(IsHierarchical)))
+                    {
+                        if (internalRelationship is OneToManyRelationshipMetadata)
+                            ((OneToManyRelationshipMetadata)internalRelationship).IsHierarchical = IsHierarchical;
+                    }
 
                     _repository.UpdateRelationship(internalRelationship);
+
                     if (PassThru)
                     {
                         WriteObject(_repository.GetRelationship(internalRelationship.MetadataId.Value));
@@ -81,48 +92,6 @@ namespace AMSoftware.Crm.PowerShell.Commands.Metadata
                     break;
                 default:
                     break;
-            }
-        }
-
-        public object GetDynamicParameters()
-        {
-            if (this.ParameterSetName == SetRelationshipParameterSet)
-            {
-                if (CrmVersionManager.IsSupported(CrmVersion.CRM2016_RTM))
-                {
-                    _context = new SetRelationshipDynamicParameters2016();
-                }
-
-                return _context;
-            }
-            else
-            {
-                return null;
-            }
-        }
-    }
-
-    public abstract class SetRelationshipDynamicParameters
-    {
-        internal protected virtual void SetParametersOnRelationship(RelationshipMetadataBase relationship)
-        {
-        }
-    }
-
-    public sealed class SetRelationshipDynamicParameters2016 : SetRelationshipDynamicParameters
-    {
-        [Parameter, ValidateNotNull]
-        public bool? IsHierarchical { get; set; }
-
-        protected internal override void SetParametersOnRelationship(RelationshipMetadataBase relationship)
-        {
-            base.SetParametersOnRelationship(relationship);
-
-#pragma warning disable IDE0038 // Use pattern matching
-            if (relationship is OneToManyRelationshipMetadata)
-#pragma warning restore IDE0038 // Use pattern matching
-            {
-                if (IsHierarchical.HasValue) ((OneToManyRelationshipMetadata)relationship).IsHierarchical = IsHierarchical.Value;
             }
         }
     }
