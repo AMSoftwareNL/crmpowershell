@@ -27,35 +27,47 @@ namespace AMSoftware.Crm.PowerShell.Common.PropertyAdapters
 {
     public class OrganizationResponsePropertyAdapter : PropertyAdapterBase<OrganizationResponse>
     {
+        List<PropertyInfo> _typeProperties = new List<PropertyInfo>();
+
+        public OrganizationResponsePropertyAdapter() : base()
+        {
+            _typeProperties = new List<PropertyInfo>();
+
+            Type organizationResponseType = typeof(OrganizationResponse);
+            PropertyInfo[] organizationResponseProperties = organizationResponseType.GetProperties();
+
+            string[] excludedProperties = { "ExtensionData" };
+            foreach (var property in organizationResponseProperties)
+            {
+                if (!excludedProperties.Contains(property.Name))
+                {
+                    _typeProperties.Add(property);
+                }
+            }
+        }
+
         protected override Collection<PSAdaptedProperty> GetAdaptedProperties(OrganizationResponse internalObject)
         {
+            var resultCollection = new List<PSAdaptedProperty>();
+
             List<PSAdaptedProperty> properties = new List<PSAdaptedProperty>();
-
-            List<PSAdaptedProperty> typeProperties = new List<PSAdaptedProperty>();
-            Type responseType = typeof(OrganizationResponse);
-            PropertyInfo[] responseProperties = responseType.GetProperties();
-
-            foreach (var property in responseProperties)
+            foreach (var property in _typeProperties)
             {
-                if (property.Name != nameof(OrganizationResponse.ExtensionData))
-                {
-                    typeProperties.Add(new PSAdaptedProperty(property.Name, new MemberTypePropertyHandler<OrganizationResponse>(property)));
+                resultCollection.Add(new PSAdaptedProperty(property.Name, new MemberTypePropertyHandler<OrganizationResponse>(property)));
 
-                    if (property.Name == nameof(OrganizationResponse.Results))
+                if (property.Name == nameof(OrganizationResponse.Results))
+                {
+                    foreach (var key in internalObject.Results.Keys)
                     {
-                        foreach (var key in internalObject.Results.Keys)
+                        if (internalObject.Results[key] != null)
                         {
-                            if (internalObject.Results[key] != null)
-                            {
-                                properties.Add(new PSAdaptedProperty(key, new ReadonlyDataCollectionPropertyHandler<OrganizationResponse, string, object>(property, key)));
-                            }
+                            properties.Add(new PSAdaptedProperty(key, new ReadonlyDataCollectionPropertyHandler<OrganizationResponse, string, object>(property, key)));
                         }
                     }
                 }
             }
-            typeProperties = typeProperties.OrderBy(p => p.Name, StringComparer.OrdinalIgnoreCase).ToList();
+            resultCollection = resultCollection.OrderBy(p => p.Name, StringComparer.OrdinalIgnoreCase).ToList();
 
-            var resultCollection = new Collection<PSAdaptedProperty>(typeProperties);
             foreach (var prop in properties.OrderBy(p => p.Name, StringComparer.OrdinalIgnoreCase))
             {
                 if (!resultCollection.Any(p => p.Name.Equals(prop.Name, StringComparison.OrdinalIgnoreCase)))
@@ -64,7 +76,7 @@ namespace AMSoftware.Crm.PowerShell.Common.PropertyAdapters
                 }
             }
 
-            return resultCollection;
+            return new Collection<PSAdaptedProperty>(resultCollection);
         }
     }
 }

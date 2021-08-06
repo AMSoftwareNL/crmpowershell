@@ -27,11 +27,13 @@ using System.Management.Automation.Language;
 
 namespace AMSoftware.Crm.PowerShell.Common.ArgumentCompleters
 {
-    public class AttributeArgumentCompleter : IArgumentCompleter
+    public class AttributeArgumentCompleter : MetadataArgumentCompleter
     {
         private readonly string[] _filterParameters = new string[] { "Entity", "PrimaryEntity", "InputObject" };
 
-        public IEnumerable<CompletionResult> CompleteArgument(string commandName, string parameterName, string wordToComplete, CommandAst commandAst, IDictionary fakeBoundParameters)
+        public AttributeArgumentCompleter() : base() { }
+
+        public override IEnumerable<CompletionResult> CompleteArgument(string commandName, string parameterName, string wordToComplete, CommandAst commandAst, IDictionary fakeBoundParameters)
         {
             if (fakeBoundParameters == null) throw new ArgumentNullException("fakeBoundParameters");
 
@@ -40,17 +42,16 @@ namespace AMSoftware.Crm.PowerShell.Common.ArgumentCompleters
             {
                 if (fakeBoundParameters.Contains(filterParameter))
                 {
-                    MetadataRepository repository = new MetadataRepository();
                     IEnumerable<AttributeMetadata> attributeMetadatas = null;
                     try
                     {
                         if (fakeBoundParameters[filterParameter] is string)
                         {
-                            attributeMetadatas = repository.GetAttribute(fakeBoundParameters[filterParameter] as string, false, false, true);
+                            attributeMetadatas = Repository.GetAttribute(fakeBoundParameters[filterParameter] as string, false, false, true);
                         }
                         else if (fakeBoundParameters[filterParameter] is Entity)
                         {
-                            attributeMetadatas = repository.GetAttribute((fakeBoundParameters[filterParameter] as Entity).LogicalName, false, false, true);
+                            attributeMetadatas = Repository.GetAttribute((fakeBoundParameters[filterParameter] as Entity).LogicalName, false, false, true);
                         }
                     }
                     catch { }

@@ -77,6 +77,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArgumentCompleters\MetadataArgumentCompleter.cs" />
     <Compile Include="ArgumentCompleters\EntityKeyArgumentCompleter.cs" />
     <Compile Include="ArgumentCompleters\OptionSetArgumentCompleter.cs" />
     <Compile Include="ArgumentCompleters\EntityArgumentCompleter.cs" />

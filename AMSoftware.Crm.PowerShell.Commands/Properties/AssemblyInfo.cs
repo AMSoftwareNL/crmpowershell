@@ -1,4 +1,4 @@
-﻿/*
+/*
 CRM PowerShell Library
 Copyright (C) 2017 Arjan Meskers / AMSoftware
 
@@ -24,7 +24,7 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyTitle("AMSoftware.Crm.PowerShell.Commands")]
 [assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyConfiguration("Release")]
 [assembly: AssemblyCompany("AMSoftware")]
 [assembly: AssemblyProduct("AMSoftware Crm PowerShell Library")]
 [assembly: AssemblyCopyright("Copyright (C) 2017 Arjan Meskers / AMSoftware")]
@@ -48,6 +48,6 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
-// [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2.1.0.0")]
-[assembly: AssemblyFileVersion("2.1.0.0")]
+// [assembly: AssemblyVersion("2.1.1.0")]
+[assembly: AssemblyVersion("2.1.1.0")]
+[assembly: AssemblyFileVersion("2.1.1.1")]

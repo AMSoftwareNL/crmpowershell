@@ -26,17 +26,18 @@ using System.Management.Automation.Language;
 
 namespace AMSoftware.Crm.PowerShell.Common.ArgumentCompleters
 {
-    public class OptionSetArgumentCompleter : IArgumentCompleter
+    public class OptionSetArgumentCompleter : MetadataArgumentCompleter
     {
-        public IEnumerable<CompletionResult> CompleteArgument(string commandName, string parameterName, string wordToComplete, CommandAst commandAst, IDictionary fakeBoundParameters)
+        public OptionSetArgumentCompleter() : base() { }
+
+        public override IEnumerable<CompletionResult> CompleteArgument(string commandName, string parameterName, string wordToComplete, CommandAst commandAst, IDictionary fakeBoundParameters)
         {
             if (fakeBoundParameters == null) throw new ArgumentNullException("fakeBoundParameters");
 
-            MetadataRepository repository = new MetadataRepository();
             IEnumerable<OptionSetMetadataBase> optionSetMetadatas = null;
             try
             {
-                optionSetMetadatas = repository.GetOptionSet(false, false);
+                optionSetMetadatas = Repository.GetOptionSet(false, false);
             }
             catch { }
 

@@ -26,17 +26,18 @@ using System.Management.Automation.Language;
 
 namespace AMSoftware.Crm.PowerShell.Common.ArgumentCompleters
 {
-    public class EntityArgumentCompleter : IArgumentCompleter
+    public class EntityArgumentCompleter : MetadataArgumentCompleter
     {
-        public IEnumerable<CompletionResult> CompleteArgument(string commandName, string parameterName, string wordToComplete, CommandAst commandAst, IDictionary fakeBoundParameters)
+        public EntityArgumentCompleter() : base() { }
+
+        public override IEnumerable<CompletionResult> CompleteArgument(string commandName, string parameterName, string wordToComplete, CommandAst commandAst, IDictionary fakeBoundParameters)
         {
             if (fakeBoundParameters == null) throw new ArgumentNullException("fakeBoundParameters");
 
-            MetadataRepository repository = new MetadataRepository();
             IEnumerable<EntityMetadata> entitiesMetadatas = null;
             try
             {
-                entitiesMetadatas = repository.GetEntity();
+                entitiesMetadatas = Repository.GetEntity();
             }
             catch { }
 

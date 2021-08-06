@@ -1,9 +1,11 @@
 #escape=`
-FROM mcr.microsoft.com/windows/servercore:20H2
+FROM mcr.microsoft.com/windows/servercore:ltsc2019
+
+ARG VERSION
 
 LABEL maintainer="AMSoftware <info@amsoftware.nl>" `
       name="powerplatformtools" `
-      version="1.0.0" `
+      version="$VERSION" `
       description="Collection of tools to work with Microsoft Power Platform. `
 Tools included: `
 * Microsoft Power Platform CLI `
@@ -42,7 +44,7 @@ RUN `
     Install-Module -Name 'Microsoft.PowerApps.Checker.PowerShell' -Repository 'PSGallery' -Force -SkipPublisherCheck; `
     # Install AMSoftware.Crm Powershell module `
     # https://www.powershellgallery.com/packages/AMSoftware.Crm `
-    Install-Module -Name 'AMSoftware.Crm' -Repository 'PSGallery' -Force -SkipPublisherCheck; `
+    Install-Module -Name 'AMSoftware.Crm' -Repository 'PSGallery' -RequiredVersion '$VERSION' -Force -SkipPublisherCheck; `
     # Restore Powershell Gallery repository to default (untrusted) `
     Set-PSRepository -Name 'PSGallery' -InstallationPolicy Untrusted;
 

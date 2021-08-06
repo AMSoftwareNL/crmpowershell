@@ -29,11 +29,11 @@ namespace AMSoftware.Crm.PowerShell.Common.PropertyAdapters
 {
     public sealed class EntityPropertyAdapter : PropertyAdapterBase<Entity>
     {
-        List<PSAdaptedProperty> _typeProperties = new List<PSAdaptedProperty>();
+        List<PropertyInfo> _typeProperties = new List<PropertyInfo>();
 
         public EntityPropertyAdapter()
         {
-            _typeProperties = new List<PSAdaptedProperty>();
+            _typeProperties = new List<PropertyInfo>();
 
             Type entityType = typeof(Entity);
             PropertyInfo[] entityProperties = entityType.GetProperties();
@@ -45,7 +45,7 @@ namespace AMSoftware.Crm.PowerShell.Common.PropertyAdapters
             {
                 if (!excludedProperties.Contains(property.Name))
                 {
-                    _typeProperties.Add(new PSAdaptedProperty(property.Name, new MemberTypePropertyHandler<Entity>(property)));
+                    _typeProperties.Add(property);
                 }
             }
         }
@@ -55,7 +55,11 @@ namespace AMSoftware.Crm.PowerShell.Common.PropertyAdapters
             MetadataRepository repository = new MetadataRepository();
             EntityMetadata entityMetadata = repository.GetEntity(internalObject.LogicalName);
 
-            var resultCollection = new List<PSAdaptedProperty>(_typeProperties);
+            var resultCollection = new List<PSAdaptedProperty>();
+            foreach (var propertyInfo in _typeProperties)
+            {
+                resultCollection.Add(new PSAdaptedProperty(propertyInfo.Name, new MemberTypePropertyHandler<Entity>(propertyInfo)));
+            }
 
             PropertyInfo formattedValuesPropertyInfo = typeof(Entity).GetProperty(nameof(Entity.FormattedValues));
             resultCollection.Add(new PSAdaptedProperty("State", new ReadonlyDataCollectionPropertyHandler<Entity, string, string>(formattedValuesPropertyInfo, "statecode")));
