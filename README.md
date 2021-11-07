@@ -1,4 +1,7 @@
-## Dynamics CRM PowerShell Library
+## Dataverse PowerShell Library
+
+__IMPORTANT__
+This project is no longer being developed. Bugs will be fixed, but no additional features will be added.
 
 **Project Description**
 
