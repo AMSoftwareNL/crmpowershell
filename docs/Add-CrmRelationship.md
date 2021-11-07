@@ -275,5 +275,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Add-CrmRelationship.md](https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Add-CrmRelationship.md)
+[Add-CrmRelationship](Add-CrmRelationship.md)
 

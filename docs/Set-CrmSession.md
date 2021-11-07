@@ -13,7 +13,8 @@ Set properties on the active session
 ## SYNTAX
 
 ```
-Set-CrmSession [-Language <Int32>] [-Solution <Guid>] [-UseMetadataCache <Boolean>] [<CommonParameters>]
+Set-CrmSession [-Language <Int32>] [-Solution <Guid>] [-UseMetadataCache <Boolean>]
+ [-ImpersonatedUserId <Guid>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -22,6 +23,21 @@ Set properties on the active session
 ## EXAMPLES
 
 ## PARAMETERS
+
+### -ImpersonatedUserId
+Id of the User to impersonate
+
+```yaml
+Type: System.Guid
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### -Language
 Set the active language for the session (0 = default organization language)
@@ -82,5 +98,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Set-CrmSession.md](https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Set-CrmSession.md)
+[Set-CrmSession](Set-CrmSession.md)
 

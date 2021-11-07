@@ -21,6 +21,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AMSoftware.Crm.PowerShell",
 		AMSoftware.Crm.PowerShell\AMSoftware.Crm.psd1 = AMSoftware.Crm.PowerShell\AMSoftware.Crm.psd1
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{A269025B-369C-4DC1-893E-7931E661793B}"
+	ProjectSection(SolutionItems) = preProject
+		docker\Dockerfile = docker\Dockerfile
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

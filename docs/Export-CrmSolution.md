@@ -241,7 +241,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Export-CrmSolution.md](https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Export-CrmSolution.md)
+[Export-CrmSolution](Export-CrmSolution.md)
 
 [Get-CrmSolution](Get-CrmSolution.md)
 

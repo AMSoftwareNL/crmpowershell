@@ -159,5 +159,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Set-CrmDataProvider.md](https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Set-CrmDataProvider.md)
+[Set-CrmDataProvider](Set-CrmDataProvider.md)
 

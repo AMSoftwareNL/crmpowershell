@@ -89,5 +89,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Get-CrmSPDocumentLocation.md](https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Get-CrmSPDocumentLocation.md)
+[Get-CrmSPDocumentLocation](Get-CrmSPDocumentLocation.md)
 

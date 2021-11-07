@@ -129,5 +129,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Set-CrmEnvironmentVariable.md](https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Set-CrmEnvironmentVariable.md)
+[Set-CrmEnvironmentVariable](Set-CrmEnvironmentVariable.md)
 

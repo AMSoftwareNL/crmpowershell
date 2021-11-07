@@ -52,5 +52,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Stop-CrmBatch.md](https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Stop-CrmBatch.md)
+[Stop-CrmBatch](Stop-CrmBatch.md)
 

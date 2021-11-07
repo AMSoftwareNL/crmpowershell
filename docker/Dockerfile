@@ -28,6 +28,7 @@ RUN "pac install latest"
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'Continue'; $verbosePreference='Continue';"]
 USER ContainerAdministrator
+ENV MODULEVERSION=$VERSION
 RUN `
     # Install-Module uses the NuGet Package provider. Must be the first action `
     Install-PackageProvider -Name 'NuGet' -MinimumVersion '2.8.5.201' -Force; `
@@ -44,7 +45,7 @@ RUN `
     Install-Module -Name 'Microsoft.PowerApps.Checker.PowerShell' -Repository 'PSGallery' -Force -SkipPublisherCheck; `
     # Install AMSoftware.Crm Powershell module `
     # https://www.powershellgallery.com/packages/AMSoftware.Crm `
-    Install-Module -Name 'AMSoftware.Crm' -Repository 'PSGallery' -RequiredVersion '$VERSION' -Force -SkipPublisherCheck; `
+    Install-Module -Name 'AMSoftware.Crm' -Repository 'PSGallery' -RequiredVersion "$env:MODULEVERSION" -Force -SkipPublisherCheck; `
     # Restore Powershell Gallery repository to default (untrusted) `
     Set-PSRepository -Name 'PSGallery' -InstallationPolicy Untrusted;
 

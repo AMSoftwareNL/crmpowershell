@@ -122,5 +122,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Invoke-CrmWebApiRequest.md](https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Invoke-CrmWebApiRequest.md)
+[Invoke-CrmWebApiRequest](Invoke-CrmWebApiRequest.md)
 

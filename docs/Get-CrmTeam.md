@@ -119,7 +119,7 @@ The type of team to retrieve. If not provide all types of teams will be returned
 Type: AMSoftware.Crm.PowerShell.Common.CrmTeamType
 Parameter Sets: GetAllTeams
 Aliases:
-Accepted values: Owner, Access
+Accepted values: Owner, Access, AADSecurityGroup, AADOfficeGroup
 
 Required: False
 Position: Named

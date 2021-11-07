@@ -85,7 +85,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### System.Object
+### Microsoft.Xrm.Sdk.OrganizationResponse
+
 ## NOTES
 
 ## RELATED LINKS

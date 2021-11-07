@@ -171,5 +171,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Get-CrmEnvironmentVariable.md](https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Get-CrmEnvironmentVariable.md)
+[Get-CrmEnvironmentVariable](Get-CrmEnvironmentVariable.md)
 

@@ -12,9 +12,17 @@ Add a new team.
 
 ## SYNTAX
 
+### NewTeam (Default)
 ```
 New-CrmTeam [-Name] <String> [-TeamType] <CrmTeamType> [-Administrator] <Guid> [-BusinessUnit <Guid>]
  [-Description <String>] [-Users <Guid[]>] [-PassThru] [<CommonParameters>]
+```
+
+### NewAADTeam
+```
+New-CrmTeam [-Name] <String> [-TeamType] <CrmTeamType> [-Administrator] <Guid> [-BusinessUnit <Guid>]
+ [-Description <String>] [-MembershipType <CrmTeamMembershipType>] -AADObjectId <Guid> [-PassThru]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -23,6 +31,21 @@ Add a new team.
 ## EXAMPLES
 
 ## PARAMETERS
+
+### -AADObjectId
+The Azure active directory object Id for a group.
+
+```yaml
+Type: System.Guid
+Parameter Sets: NewAADTeam
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### -Administrator
 The id of the user who administers the team.
@@ -69,6 +92,22 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -MembershipType
+The team membership type.
+
+```yaml
+Type: AMSoftware.Crm.PowerShell.Common.CrmTeamMembershipType
+Parameter Sets: NewAADTeam
+Aliases:
+Accepted values: MembersGuests, Members, Owners, Guests
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -Name
 The name for the team.
 
@@ -106,7 +145,7 @@ The team of team to create.
 Type: AMSoftware.Crm.PowerShell.Common.CrmTeamType
 Parameter Sets: (All)
 Aliases:
-Accepted values: Owner, Access
+Accepted values: Owner, Access, AADSecurityGroup, AADOfficeGroup
 
 Required: True
 Position: 1
@@ -120,7 +159,7 @@ The id of users who will be members of the team.
 
 ```yaml
 Type: System.Guid[]
-Parameter Sets: (All)
+Parameter Sets: NewTeam
 Aliases:
 
 Required: False

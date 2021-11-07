@@ -627,6 +627,48 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.-->
       </TableControl>
     </View>
     <View>
+      <Name>Microsoft.Xrm.Sdk.Entity+TeamTemplate</Name>
+      <ViewSelectedBy>
+        <TypeName>Microsoft.Xrm.Sdk.Entity+teamtemplate</TypeName>
+      </ViewSelectedBy>
+      <TableControl>
+        <TableHeaders>
+          <TableColumnHeader>
+            <Width>36</Width>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Width>21</Width>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>ObjectTypeCode</Label>
+            <Width>10</Width>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>ObjectTypeName</Label>
+            <Width>21</Width>
+          </TableColumnHeader>
+        </TableHeaders>
+        <TableRowEntries>
+          <TableRowEntry>
+            <TableColumnItems>
+              <TableColumnItem>
+                <PropertyName>Id</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>Name</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>objecttypecode</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>objecttypecode_FormattedValue</PropertyName>
+              </TableColumnItem>
+            </TableColumnItems>
+          </TableRowEntry>
+        </TableRowEntries>
+      </TableControl>
+    </View>
+    <View>
       <Name>Microsoft.Xrm.Sdk.Entity+Solution</Name>
       <ViewSelectedBy>
         <TypeName>Microsoft.Xrm.Sdk.Entity+solution</TypeName>
@@ -753,7 +795,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.-->
               <TableColumnItem>
                 <PropertyName>dependencytype_FormattedValue</PropertyName>
               </TableColumnItem>
-            </TableColumnItems> 
+            </TableColumnItems>
           </TableRowEntry>
         </TableRowEntries>
       </TableControl>
@@ -1084,6 +1126,76 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.-->
               </TableColumnItem>
               <TableColumnItem>
                 <PropertyName>deleteplugin</PropertyName>
+              </TableColumnItem>
+            </TableColumnItems>
+          </TableRowEntry>
+        </TableRowEntries>
+      </TableControl>
+    </View>
+    <View>
+      <Name>Microsoft.Xrm.Sdk.Entity+Privilege</Name>
+      <ViewSelectedBy>
+        <TypeName>Microsoft.Xrm.Sdk.Entity+privilege</TypeName>
+      </ViewSelectedBy>
+      <TableControl>
+        <TableHeaders>
+          <TableColumnHeader>
+            <Width>36</Width>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Width>25</Width>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>AccessRight</Label>
+            <Width>36</Width>
+          </TableColumnHeader>
+        </TableHeaders>
+        <TableRowEntries>
+          <TableRowEntry>
+            <TableColumnItems>
+              <TableColumnItem>
+                <PropertyName>Id</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>Name</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <ScriptBlock>([AMSoftware.Crm.PowerShell.Common.CrmAccessRight]$_.accessright).ToString()</ScriptBlock>
+              </TableColumnItem>
+            </TableColumnItems>
+          </TableRowEntry>
+        </TableRowEntries>
+      </TableControl>
+    </View>
+    <View>
+      <Name>Microsoft.Crm.Sdk.Messages.PrincipalAccess</Name>
+      <ViewSelectedBy>
+        <TypeName>Microsoft.Crm.Sdk.Messages.PrincipalAccess</TypeName>
+      </ViewSelectedBy>
+      <TableControl>
+        <TableHeaders>
+          <TableColumnHeader>
+            <Width>25</Width>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Width>36</Width>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>AccessRight</Label>
+            <Width>36</Width>
+          </TableColumnHeader>
+        </TableHeaders>
+        <TableRowEntries>
+          <TableRowEntry>
+            <TableColumnItems>
+              <TableColumnItem>
+                <PropertyName>PrincipalLogicalName</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>PrincipalId</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <ScriptBlock>$_.AccessRight.ToString()</ScriptBlock>
               </TableColumnItem>
             </TableColumnItems>
           </TableRowEntry>

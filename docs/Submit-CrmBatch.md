@@ -61,7 +61,7 @@ Failure won't throw an exception. Check the results to determine if the batch su
 ## PARAMETERS
 
 ### -AsTransaction
-{{ Fill AsTransaction Description }}
+Execute all request in the Batch in a single transaction
 
 ```yaml
 Type: System.Management.Automation.SwitchParameter
@@ -76,7 +76,7 @@ Accept wildcard characters: False
 ```
 
 ### -ContinueOnError
-{{ Fill ContinueOnError Description }}
+On error the batch won't stop, but continues with the next request
 
 ```yaml
 Type: System.Management.Automation.SwitchParameter
@@ -91,7 +91,7 @@ Accept wildcard characters: False
 ```
 
 ### -ReturnResponses
-{{ Fill ReturnResponses Description }}
+Return the output of the requests in the batch
 
 ```yaml
 Type: System.Management.Automation.SwitchParameter
@@ -122,5 +122,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Submit-CrmBatch.md](https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Submit-CrmBatch.md)
+[Submit-CrmBatch](Submit-CrmBatch.md)
 

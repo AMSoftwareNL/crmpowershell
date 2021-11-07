@@ -146,5 +146,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/New-CrmEnvironmentVariable.md](https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/New-CrmEnvironmentVariable.md)
+[New-CrmEnvironmentVariable](New-CrmEnvironmentVariable.md)
 

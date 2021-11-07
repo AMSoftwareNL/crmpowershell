@@ -53,5 +53,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Get-CrmEnvironmentVariableValue.md](https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Get-CrmEnvironmentVariableValue.md)
+[Get-CrmEnvironmentVariableValue](Get-CrmEnvironmentVariableValue.md)
 

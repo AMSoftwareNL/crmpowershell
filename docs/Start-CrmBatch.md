@@ -38,5 +38,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Start-CrmBatch.md](https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Start-CrmBatch.md)
+[Start-CrmBatch](Start-CrmBatch.md)
 

@@ -13,7 +13,8 @@ Add a new role.
 ## SYNTAX
 
 ```
-New-CrmRole [-Name] <String> [-BusinessUnit <Guid>] [-PassThru] [<CommonParameters>]
+New-CrmRole [-Name] <String> [-BusinessUnit <Guid>] [-Inheritance <CrmRoleInheritance>] [-PassThru]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -35,6 +36,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -Inheritance
+Is Role inherited by users from team membership, if role associated with team.
+
+```yaml
+Type: AMSoftware.Crm.PowerShell.Common.CrmRoleInheritance
+Parameter Sets: (All)
+Aliases:
+Accepted values: TeamOnly, DirectUser
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

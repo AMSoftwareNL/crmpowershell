@@ -2,7 +2,7 @@
 Module Name: AMSoftware.Crm
 Module Guid: 1e7f1ebc-e035-4d73-86af-3c07a6a85260
 Download Help Link: 
-Help Version: 2.1.0.0
+Help Version: 2.2.0.0
 Locale: en-us
 ---
 
@@ -53,6 +53,9 @@ Add an attribute of type Money.
 ### [Add-CrmOptionSetAttribute](Add-CrmOptionSetAttribute.md)
 Add an attribute of type OptionSet.
 
+### [Add-CrmRecordTeamUser](Add-CrmRecordTeamUser.md)
+Add a user to the Team for a record
+
 ### [Add-CrmRelationship](Add-CrmRelationship.md)
 Add a relationship.
 
@@ -89,6 +92,9 @@ Get a Business Unit.
 ### [Get-CrmContent](Get-CrmContent.md)
 Retrieve data records from an entity.
 
+### [Get-CrmContentAccess](Get-CrmContentAccess.md)
+Retrieve all security principals (users or teams) that have access to, and access rights for, the specified record.
+
 ### [Get-CrmDataProvider](Get-CrmDataProvider.md)
 Get a registered data provider.
 
@@ -122,6 +128,9 @@ Get SDK Message Processing Step.
 ### [Get-CrmPluginStepImage](Get-CrmPluginStepImage.md)
 Get SDK Message Processing Step Image.
 
+### [Get-CrmPrincipalPrivileges](Get-CrmPrincipalPrivileges.md)
+Retrieve the privileges a system user (user) or team has through roles in the specified business unit.
+
 ### [Get-CrmPrincipalRoles](Get-CrmPrincipalRoles.md)
 Get the roles related to a user or team.
 
@@ -140,6 +149,9 @@ Get role from the connected organization.
 ### [Get-CrmRolePrincipals](Get-CrmRolePrincipals.md)
 Get the users and teams assigned to a role.
 
+### [Get-CrmRolePrivileges](Get-CrmRolePrivileges.md)
+Retrieve the privileges that are assigned to the specified role.
+
 ### [Get-CrmServiceEndpoint](Get-CrmServiceEndpoint.md)
 Get a registered serviceendpoint.
 
@@ -154,6 +166,9 @@ Retrieve SharePoint Document locations
 
 ### [Get-CrmTeam](Get-CrmTeam.md)
 Get team from the connected organization.
+
+### [Get-CrmTeamTemplate](Get-CrmTeamTemplate.md)
+Get team template from the connected organization.
 
 ### [Get-CrmTeamUsers](Get-CrmTeamUsers.md)
 Get the users assinged to a team.
@@ -185,6 +200,9 @@ Invoke the WebAPI
 ### [Join-CrmContent](Join-CrmContent.md)
 Associate one record with another.
 
+### [New-CrmApplication](New-CrmApplication.md)
+Register a new Application User (S2S) with Dataverse
+
 ### [New-CrmBusinessUnit](New-CrmBusinessUnit.md)
 Add a new business unit.
 
@@ -211,6 +229,9 @@ Add new customizations solution.
 
 ### [New-CrmTeam](New-CrmTeam.md)
 Add a new team.
+
+### [New-CrmTeamTemplate](New-CrmTeamTemplate.md)
+Team template for an entity enabled for automatically created access teams
 
 ### [New-CrmUser](New-CrmUser.md)
 Add a new user.
@@ -269,14 +290,26 @@ Remove a value from a global optionset or picklist attribute.
 ### [Remove-CrmPrincipalRoles](Remove-CrmPrincipalRoles.md)
 Remove the roles for a user or team.
 
+### [Remove-CrmRecordTeamUser](Remove-CrmRecordTeamUser.md)
+Remove a user from the Team for a record
+
 ### [Remove-CrmRelationship](Remove-CrmRelationship.md)
 Remove a relationship.
 
 ### [Remove-CrmRolePrincipals](Remove-CrmRolePrincipals.md)
 Remove the teams or users assigned to a role.
 
+### [Remove-CrmRolePrivilege](Remove-CrmRolePrivilege.md)
+Remove a privilege from an existing role
+
 ### [Remove-CrmSolutionComponent](Remove-CrmSolutionComponent.md)
 Remove a component from a customization solution.
+
+### [Remove-CrmTeam](Remove-CrmTeam.md)
+Remove a Team
+
+### [Remove-CrmTeamTemplate](Remove-CrmTeamTemplate.md)
+Remove a Team Template
 
 ### [Remove-CrmTeamUsers](Remove-CrmTeamUsers.md)
 Remove users from a team.
@@ -362,14 +395,26 @@ Update a relationship.
 ### [Set-CrmRelationshipCascadeConfig](Set-CrmRelationshipCascadeConfig.md)
 Set the cascading behavior for a relationship.
 
+### [Set-CrmRole](Set-CrmRole.md)
+Update a Security Role
+
 ### [Set-CrmRolePrincipals](Set-CrmRolePrincipals.md)
 Set the teams or users assigned to a role.
+
+### [Set-CrmRolePrivilege](Set-CrmRolePrivilege.md)
+Add a set of existing privileges to an existing role.
 
 ### [Set-CrmSession](Set-CrmSession.md)
 Set properties on the active session
 
 ### [Set-CrmStringAttribute](Set-CrmStringAttribute.md)
 Update an attribute of type String.
+
+### [Set-CrmTeam](Set-CrmTeam.md)
+Update a Team
+
+### [Set-CrmTeamTemplate](Set-CrmTeamTemplate.md)
+Update a Team Template
 
 ### [Set-CrmTeamUsers](Set-CrmTeamUsers.md)
 Set the users who are members of team.
@@ -404,6 +449,9 @@ Validate a customization solution.
 ### [Test-CrmSolutionComponent](Test-CrmSolutionComponent.md)
 Validate a component in a solution.
 
+### [Test-CrmUserPrivilege](Test-CrmUserPrivilege.md)
+Retrieves the list of privileges for a system user (user) from all direct roles associated with the system user and from all indirect roles associated with teams in which the system user is a member
+
 ### [Unregister-CrmDataProvider](Unregister-CrmDataProvider.md)
 Remove a registered Data Provider
 
@@ -421,6 +469,9 @@ Unregister SDK Message Processing Step Image.
 
 ### [Unregister-CrmServiceEndpoint](Unregister-CrmServiceEndpoint.md)
 Unregister a serviceendpoint.
+
+### [Use-CrmImpersonatedUser](Use-CrmImpersonatedUser.md)
+Set the user to impersonate in the session context. All following request will be impersonated.
 
 ### [Use-CrmLanguage](Use-CrmLanguage.md)
 Set the active language to use in the PowerShell session.

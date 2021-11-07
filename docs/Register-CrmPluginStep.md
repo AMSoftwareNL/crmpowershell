@@ -15,7 +15,7 @@ Register a SDK Message Processing Step.
 ```
 Register-CrmPluginStep [-EventSource] <Guid> [-Message] <String> [[-PrimaryEntity] <String>]
  [-SecondaryEntity <String>] [-ExecutionOrder <Int32>] [-Name <String>] [-Description <String>]
- -Stage <CrmPluginStepStage> -Mode <CrmPluginStepMode> -Deployment <CrmPluginStepDeployment>
+ -Stage <CrmPluginStepStage> -Mode <CrmPluginStepMode> [-Deployment <CrmPluginStepDeployment>]
  [-DeleteAsyncOperation] [-UnsecureConfig <String>] [-SecureConfig <String>] [-User <Guid>]
  [-Attributes <String[]>] [-PassThru] [<CommonParameters>]
 ```
@@ -66,7 +66,7 @@ Parameter Sets: (All)
 Aliases:
 Accepted values: ServerOnly, OfflineOnly, Both
 
-Required: True
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False

@@ -157,5 +157,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Register-CrmWebhook.md](https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Register-CrmWebhook.md)
+[Register-CrmWebhook](Register-CrmWebhook.md)
 

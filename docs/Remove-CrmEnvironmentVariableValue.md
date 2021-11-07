@@ -67,5 +67,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Remove-CrmEnvironmentVariableValue.md](https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Remove-CrmEnvironmentVariableValue.md)
+[Remove-CrmEnvironmentVariableValue](Remove-CrmEnvironmentVariableValue.md)
 

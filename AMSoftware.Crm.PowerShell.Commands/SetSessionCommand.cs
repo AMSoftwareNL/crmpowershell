@@ -15,7 +15,6 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-using AMSoftware.Crm.PowerShell.Commands.Helpers;
 using AMSoftware.Crm.PowerShell.Common;
 using AMSoftware.Crm.PowerShell.Common.Helpers;
 using AMSoftware.Crm.PowerShell.Common.Repositories;
@@ -28,16 +27,16 @@ namespace AMSoftware.Crm.PowerShell.Commands
     public sealed class SetSessionCommand : CrmOrganizationCmdlet
     {
         [Parameter]
-        [ValidateNotNullOrEmpty]
         public int Language { get; set; }
 
         [Parameter]
-        [ValidateNotNullOrEmpty]
         public Guid Solution { get; set; }
 
         [Parameter]
-        [ValidateNotNullOrEmpty]
         public bool UseMetadataCache { get; set; }
+
+        [Parameter]
+        public Guid ImpersonatedUserId { get; set; }
 
         protected override void ExecuteCmdlet()
         {
@@ -69,6 +68,21 @@ namespace AMSoftware.Crm.PowerShell.Commands
                         CrmContext.Session.ActiveSolutionName = solutionName;
                         CrmContext.Session.ActiveSolutionId = Solution;
                     }
+                }
+            }
+
+            if (this.MyInvocation.BoundParameters.ContainsKey(nameof(ImpersonatedUserId)))
+            {
+                if (ImpersonatedUserId == Guid.Empty)
+                {
+                    CrmContext.Session.Client.CallerId = Guid.Empty;
+                    CrmContext.Session.Client.CallerAADObjectId = null;
+                }
+                else
+                {
+                    ContentRepository repository = new ContentRepository();
+                    CrmContext.Session.Client.CallerId = ImpersonatedUserId;
+                    CrmContext.Session.Client.CallerAADObjectId = repository.Get("systemuser", ImpersonatedUserId).GetAttributeValue<Guid>("azureactivedirectoryobjectid");
                 }
             }
         }

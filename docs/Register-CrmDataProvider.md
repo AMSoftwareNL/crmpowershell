@@ -190,5 +190,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Register-CrmDataProvider.md](https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Register-CrmDataProvider.md)
+[Register-CrmDataProvider](Register-CrmDataProvider.md)
 

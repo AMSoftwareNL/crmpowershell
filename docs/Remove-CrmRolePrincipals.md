@@ -118,5 +118,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Remove-CrmRolePrincipals.md](https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Remove-CrmRolePrincipals.md)
+[Remove-CrmRolePrincipals](Remove-CrmRolePrincipals.md)
 

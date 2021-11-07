@@ -31,6 +31,7 @@ namespace AMSoftware.Crm.PowerShell.Common.Converters
         public override bool CanConvertTo(object sourceValue, Type destinationType)
         {
             if (destinationType == typeof(Guid)) return true;
+            if (destinationType == typeof(EntityReference)) return true;
             return false;
         }
 
@@ -41,9 +42,10 @@ namespace AMSoftware.Crm.PowerShell.Common.Converters
 
         public override object ConvertTo(object sourceValue, Type destinationType, IFormatProvider formatProvider, bool ignoreCase)
         {
-            if (sourceValue != null && sourceValue is Entity entityValue && destinationType == typeof(Guid))
+            if (sourceValue != null && sourceValue is Entity entityValue)
             {
-                return entityValue.Id;
+                if (destinationType == typeof(Guid)) return entityValue.Id;
+                if (destinationType == typeof(EntityReference)) return entityValue.ToEntityReference();
             }
 
             if (sourceValue != null && sourceValue is EntityReference entityReferenceValue && destinationType == typeof(Guid))

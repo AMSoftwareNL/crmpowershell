@@ -88,5 +88,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Remove-CrmUserTeams.md](https://github.com/AMSoftwareNL/crmpowershell/blob/master/docs/Remove-CrmUserTeams.md)
+[Remove-CrmUserTeams](Remove-CrmUserTeams.md)
 

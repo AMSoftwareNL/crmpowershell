@@ -168,7 +168,17 @@ namespace AMSoftware.Crm.PowerShell.Common
     public enum CrmTeamType
     {
         Owner = 0,
-        Access
+        Access,
+        AADSecurityGroup,
+        AADOfficeGroup
+    }
+
+    public enum CrmTeamMembershipType
+    {
+        MembersGuests = 0,
+        Members = 1,
+        Owners = 2,
+        Guests = 3
     }
 
     public enum CrmPluginStepMode
@@ -273,5 +283,34 @@ namespace AMSoftware.Crm.PowerShell.Common
         Boolean = 100000002,
         JSON = 100000003,
         DataSource = 100000004
+    }
+
+    [Flags]
+    public enum CrmAccessRight
+    {
+        None = 0,
+        Read = 1,
+        Write = 2,
+        Append = 4,
+        AppendTo = 16,
+        Create = 32,
+        Assign = 524288,
+        Delete = 65536,
+        Share = 262144
+    }
+
+    public enum CrmAccessScope
+    {
+        None = -1,
+        User = 0,
+        BusinessUnit = 1,
+        ChildBusinessUnit = 2,
+        Organization = 3
+    }
+
+    public enum CrmRoleInheritance
+    {
+        TeamOnly = 0,
+        DirectUser = 1
     }
 }

@@ -72,8 +72,9 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
         [ValidateNotNull]
         public CrmPluginStepMode Mode { get; set; }
 
-        [Parameter(Mandatory = true)]
+        [Parameter]
         [ValidateNotNull]
+        [PSDefaultValue(Value = CrmPluginStepDeployment.Both)]
         public CrmPluginStepDeployment Deployment { get; set; }
 
         [Parameter]
@@ -104,6 +105,11 @@ namespace AMSoftware.Crm.PowerShell.Commands.Plugins
         protected override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
+
+            if (!this.MyInvocation.BoundParameters.ContainsKey(nameof(Deployment)))
+            {
+                Deployment = CrmPluginStepDeployment.Both;
+            }
 
             if (Mode == CrmPluginStepMode.Asynchronous && Stage != CrmPluginStepStage.PostOperation)
             {

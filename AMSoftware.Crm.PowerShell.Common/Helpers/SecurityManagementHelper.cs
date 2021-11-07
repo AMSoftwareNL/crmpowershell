@@ -242,5 +242,28 @@ namespace AMSoftware.Crm.PowerShell.Common.Helpers
                 return entities.First().Id;
             }
         }
+
+        public static IEnumerable<Entity> GetEntityPrivileges(ContentRepository repository, string logicalName)
+        {
+            QueryExpression query = new QueryExpression("privilege")
+            {
+                ColumnSet = new ColumnSet("privilegeid", "name", "accessright"),
+                LinkEntities =
+                {
+                    new LinkEntity("privilege", "privilegeobjecttypecodes", "privilegeid", "privilegeid", JoinOperator.Inner)
+                    {
+                        LinkCriteria =
+                        {
+                            Conditions =
+                            {
+                                new ConditionExpression("objecttypecode", ConditionOperator.Equal, logicalName)
+                            }
+                        }
+                    }
+                }
+            };
+
+            return repository.Get(query).AsEnumerable();
+        }
     }
 }
